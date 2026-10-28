@@ -2,7 +2,7 @@
 
 Monolito modular con Spring Boot y Clean Architecture dentro de cada módulo (ver el documento de arquitectura).
 
-## Backend (`src/main/java/com/example/quienlotiene`)
+## Backend (`src/main/java/com/quienlotiene`)
 
 Un paquete por módulo de negocio: `identidad`, `clientes`, `tiendas`, `catalogo`, `solicitudes`, `ordenes`, `mensajeria`, `reputacion`, `notificaciones`, `administracion`.
 
