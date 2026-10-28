@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: 'postgis/postgis:17-3.5-alpine'
+    labels:
+      org.springframework.boot.service-connection: postgres
+    environment:
+      - 'POSTGRES_DB=mydatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=myuser'
+    ports:
+      - '5432'
