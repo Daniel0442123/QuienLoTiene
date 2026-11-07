@@ -1,0 +1,9 @@
+# Perfil de pruebas de integración (*IT): la base la entrega Testcontainers con @ServiceConnection
+spring:
+  docker:
+    compose:
+      enabled: false
+
+logging:
+  level:
+    com.quienlotiene: info

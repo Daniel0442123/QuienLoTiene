@@ -1,11 +1,24 @@
+# Base de datos local para desarrollo (perfil dev). Los valores salen del archivo .env
+# (cópialo de .env.ejemplo). Spring Boot lo levanta solo al arrancar la app.
 services:
   postgres:
     image: 'postgis/postgis:17-3.5-alpine'
     labels:
       org.springframework.boot.service-connection: postgres
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_DB: ${QLT_DB_NOMBRE:-quienlotiene}
+      POSTGRES_USER: ${QLT_DB_USUARIO:-quienlotiene}
+      POSTGRES_PASSWORD: ${QLT_DB_CLAVE:?Define QLT_DB_CLAVE en el archivo .env}
     ports:
-      - '5432'
+      # Solo accesible desde este equipo
+      - '127.0.0.1:${QLT_DB_PUERTO:-5432}:5432'
+    volumes:
+      - datos_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  datos_postgres:
