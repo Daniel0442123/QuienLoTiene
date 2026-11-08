@@ -5,6 +5,8 @@ import com.quienlotiene.tiendas.domain.model.ConfiguracionDomicilio;
 import com.quienlotiene.tiendas.domain.model.DocumentoVerificacion;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
 import com.quienlotiene.tiendas.domain.model.HorarioAtencion;
+import com.quienlotiene.tiendas.domain.model.MedioPago;
+import com.quienlotiene.tiendas.domain.model.MediosPagoAceptados;
 import com.quienlotiene.tiendas.domain.model.TarifaDomicilio;
 import com.quienlotiene.tiendas.domain.model.Tienda;
 import com.quienlotiene.tiendas.domain.model.TiendaCandidata;
@@ -12,6 +14,7 @@ import com.quienlotiene.tiendas.domain.model.TiendaNoEncontradaException;
 import com.quienlotiene.tiendas.domain.model.TipoDocumento;
 import com.quienlotiene.tiendas.domain.port.TiendaRepository;
 import jakarta.persistence.EntityManager;
+import java.sql.Timestamp;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.util.List;
@@ -81,6 +84,39 @@ class JpaTiendaRepository implements TiendaRepository {
     @Override
     public Optional<Tienda> buscarPorDueno(UUID duenoId) {
         return tiendaJpaRepository.findByDuenoId(duenoId).map(this::aDominio);
+    }
+
+    @Override
+    public MediosPagoAceptados buscarMediosPago(UUID tiendaId) {
+        var medios = jdbcClient
+                .sql("select medio_pago from tiendas.medio_pago_tienda where tienda_id = :tiendaId")
+                .param("tiendaId", tiendaId)
+                .query(String.class)
+                .list();
+        return medios.isEmpty()
+                ? MediosPagoAceptados.sinConfigurar()
+                : MediosPagoAceptados.de(medios.stream().map(MedioPago::valueOf).toList());
+    }
+
+    /** Tabla de solo dos columnas de clave: se reemplaza completa con SQL parametrizado, sin entidad JPA. */
+    @Override
+    public void guardarMediosPago(UUID tiendaId, MediosPagoAceptados mediosPago) {
+        var ahora = Timestamp.from(reloj.instant());
+        jdbcClient
+                .sql("delete from tiendas.medio_pago_tienda where tienda_id = :tiendaId")
+                .param("tiendaId", tiendaId)
+                .update();
+        for (var medio : mediosPago.medios()) {
+            jdbcClient
+                    .sql("""
+                            insert into tiendas.medio_pago_tienda (tienda_id, medio_pago, creado_en, actualizado_en)
+                            values (:tiendaId, :medio, :ahora, :ahora)
+                            """)
+                    .param("tiendaId", tiendaId)
+                    .param("medio", medio.name())
+                    .param("ahora", ahora)
+                    .update();
+        }
     }
 
     @Override
