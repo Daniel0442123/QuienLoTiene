@@ -6,13 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.postgresql.PostgreSQLContainer;
-import org.testcontainers.utility.DockerImageName;
 
 /**
  * Arranca la aplicación completa contra PostgreSQL + PostGIS real: Flyway aplica las migraciones y Hibernate
@@ -20,13 +17,9 @@ import org.testcontainers.utility.DockerImageName;
  */
 @SpringBootTest
 @ActiveProfiles("test")
+@Import(ContenedoresDePrueba.class)
 @Testcontainers(disabledWithoutDocker = true)
 class QuienLoTieneApplicationIT {
-
-    @Container
-    @ServiceConnection
-    static final PostgreSQLContainer baseDeDatos = new PostgreSQLContainer(
-            DockerImageName.parse("postgis/postgis:17-3.5-alpine").asCompatibleSubstituteFor("postgres"));
 
     @Autowired
     JdbcClient jdbcClient;

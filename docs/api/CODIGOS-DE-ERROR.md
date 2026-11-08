@@ -28,4 +28,9 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `GEN-006` | 405 | Método no permitido | La ruta existe pero no acepta ese método HTTP | T-01 |
 | `GEN-007` | 415 / 406 | Formato no soportado | El `Content-Type` enviado o el `Accept` pedido no están soportados | T-01 |
 | `GEN-008` | 500 | Error interno | Falla inesperada; el detalle técnico queda solo en el log con el `idCorrelacion` | T-01 |
+| `IDE-001` | 409 | Correo ya registrado | Alguien intenta registrarse con un correo que ya tiene cuenta | HU-001 |
+| `IDE-002` | 400 | Frase de contraseña muy corta | La frase tiene menos de 15 caracteres | HU-001 |
+| `IDE-003` | 400 | Frase de contraseña común | La frase está en la lista de contraseñas comunes o filtradas, o es un mismo carácter repetido | HU-001 |
+| `IDE-004` | 400 | Frase de contraseña muy larga | La frase tiene más de 128 caracteres | HU-001 |
+| `IDE-005` | 400 | Correo inválido | El correo no tiene la forma nombre@dominio.tld o supera 254 caracteres | HU-001 |
 | `SOL-001` | 422 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora | HU-016 |
