@@ -45,6 +45,9 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `TIE-001` | 400 | Tienda incompleta | Falta el nombre, la categoría, el teléfono o la ubicación de la tienda | HU-002 |
 | `TIE-002` | 400 | Documento faltante | El registro llega sin la foto del local o sin el RUT (CP-TIE-002-02) | HU-002 |
 | `TIE-003` | 400 | Archivo no permitido | Un documento pesa más de 5 MB o no es JPEG, PNG, WebP ni PDF (revisado por contenido) | HU-002 |
+| `TIE-004` | 409 | Cambio de estado no permitido | Se intenta aprobar o rechazar una tienda que no está PENDIENTE | HU-036 |
+| `TIE-005` | 400 | Motivo de rechazo inválido | El rechazo llega sin motivo o con más de 300 caracteres | HU-036 |
+| `TIE-006` | 404 | Tienda no encontrada | La tienda o el documento pedido no existe | HU-036 |
 | `GEN-010` | 413 | Archivo muy grande | La petición trae un archivo de más de 5 MB; la corta el servidor antes de llegar al caso de uso | HU-002 |
 | `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
 | `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |

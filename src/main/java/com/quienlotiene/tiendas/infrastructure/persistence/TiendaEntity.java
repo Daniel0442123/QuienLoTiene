@@ -51,6 +51,12 @@ public class TiendaEntity {
     @Column(nullable = false)
     private boolean abierta;
 
+    @Column(name = "motivo_rechazo", length = 300)
+    private String motivoRechazo;
+
+    @Column(name = "fecha_revision")
+    private Instant fechaRevision;
+
     @Version
     private long version;
 
@@ -82,5 +88,21 @@ public class TiendaEntity {
         this.abierta = abierta;
         this.creadoEn = creadoEn;
         this.actualizadoEn = creadoEn;
+    }
+
+    /** Copia en la fila la decisión del administrador (HU-036). */
+    void registrarRevision(String nuevoEstado, String motivo, Instant fecha) {
+        this.estado = nuevoEstado;
+        this.motivoRechazo = motivo;
+        this.fechaRevision = fecha;
+        this.actualizadoEn = fecha;
+    }
+
+    double latitud() {
+        return ubicacion.getY();
+    }
+
+    double longitud() {
+        return ubicacion.getX();
     }
 }

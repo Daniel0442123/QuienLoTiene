@@ -97,8 +97,9 @@ class SegundoFactorIT {
                 .readTree(respuesta.getResponse().getContentAsString())
                 .get("tokenAcceso")
                 .asString();
+        // El token abre el panel de administración (bandeja de tiendas de HU-036)
         mockMvc.perform(get("/api/v1/admin/tiendas").header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenAcceso))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isOk());
         // El token temporal es de un solo uso
         verificar(tokenTemporal, codigoVigente())
                 .andExpect(status().isUnauthorized())
