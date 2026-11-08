@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * HU-016 Publicar solicitud (CU-04, diagrama 03 pasos 1 a 8): revisa el límite de 10 por hora, guarda la solicitud
- * ABIERTA con su vencimiento a 30 minutos y publica {@link SolicitudPublicadaEvent} para la difusión (HU-017).
+ * ABIERTA con su vencimiento a 30 minutos y la difunde a las tiendas elegibles (HU-017).
  */
 @Slf4j
 @Service
@@ -28,16 +28,19 @@ public class PublicarSolicitud {
     private final SolicitudRepository solicitudRepository;
     private final ParametrosSolicitudes parametros;
     private final ApplicationEventPublisher publicadorEventos;
+    private final DifundirSolicitud difundirSolicitud;
     private final Clock reloj;
 
     PublicarSolicitud(
             SolicitudRepository solicitudRepository,
             ParametrosSolicitudes parametros,
             ApplicationEventPublisher publicadorEventos,
+            DifundirSolicitud difundirSolicitud,
             Clock reloj) {
         this.solicitudRepository = solicitudRepository;
         this.parametros = parametros;
         this.publicadorEventos = publicadorEventos;
+        this.difundirSolicitud = difundirSolicitud;
         this.reloj = reloj;
     }
 
@@ -62,9 +65,10 @@ public class PublicarSolicitud {
                 ahora);
         solicitudRepository.guardarNueva(solicitud);
         publicadorEventos.publishEvent(aEvento(solicitud));
+        var tiendasNotificadas = difundirSolicitud.difundir(solicitud, ahora);
         log.info("Solicitud {} publicada por el cliente {}", solicitud.getId(), solicitud.getClienteId());
 
-        return aResultado(solicitud);
+        return aResultado(solicitud, tiendasNotificadas);
     }
 
     /** {@code null} se deja pasar: el dominio responde que falta la modalidad. */
@@ -94,7 +98,7 @@ public class PublicarSolicitud {
                 solicitud.getFechaVencimiento());
     }
 
-    private static SolicitudPublicada aResultado(Solicitud solicitud) {
+    private static SolicitudPublicada aResultado(Solicitud solicitud, int tiendasNotificadas) {
         return new SolicitudPublicada(
                 solicitud.getId(),
                 solicitud.getCategoriaId(),
@@ -107,6 +111,7 @@ public class PublicarSolicitud {
                 solicitud.getRadioEnMetros(),
                 solicitud.getEstado().name(),
                 solicitud.getFechaPublicacion(),
-                solicitud.getFechaVencimiento());
+                solicitud.getFechaVencimiento(),
+                tiendasNotificadas);
     }
 }
