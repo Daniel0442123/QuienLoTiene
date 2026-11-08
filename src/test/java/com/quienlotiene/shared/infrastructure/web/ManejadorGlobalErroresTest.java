@@ -12,11 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.quienlotiene.shared.domain.ConTiempoDeEspera;
 import com.quienlotiene.shared.domain.ReglaNegocioException;
 import com.quienlotiene.shared.domain.TipoError;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.time.Duration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -167,6 +169,25 @@ class ManejadorGlobalErroresTest {
         assertThat(ProblemasHttp.aSlug("  ¿Qué pasó, Ñandú?  ")).isEqualTo("que-paso-nandu");
     }
 
+    @Test
+    @DisplayName("Un límite de uso envía Retry-After en segundos enteros hacia arriba")
+    void enviaRetryAfterEnLosLimitesDeUso() throws Exception {
+        mockMvc.perform(get("/prueba/limite"))
+                .andExpect(status().isTooManyRequests())
+                .andExpect(header().string("Retry-After", "721"));
+    }
+
+    static final class LimiteConEsperaException extends ReglaNegocioException implements ConTiempoDeEspera {
+        LimiteConEsperaException() {
+            super("PRU-003", "Límite con espera", "Intenta en 13 minutos.", TipoError.DEMASIADOS_INTENTOS);
+        }
+
+        @Override
+        public Duration tiempoDeEspera() {
+            return Duration.ofSeconds(720).plusMillis(1);
+        }
+    }
+
     record PeticionDePrueba(
             @NotBlank(message = "El nombre es obligatorio") String nombre,
 
@@ -204,6 +225,11 @@ class ManejadorGlobalErroresTest {
 
         @PostMapping("/prueba/validacion")
         void validar(@Valid @RequestBody PeticionDePrueba peticion) {}
+
+        @GetMapping("/prueba/limite")
+        void lanzarLimite() {
+            throw new LimiteConEsperaException();
+        }
 
         @GetMapping("/prueba/inesperado")
         void fallarInesperadamente() {

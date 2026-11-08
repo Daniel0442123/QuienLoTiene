@@ -227,7 +227,7 @@ Ya decidido en los diagramas de secuencia: prefijo `/api/v1`, JSON y JWT. Reglas
 | Nulos | los campos sin valor no se envían | |
 | Archivos | `multipart/form-data` solo en el registro de tienda | `POST /api/v1/tiendas/registro` |
 
-Códigos de estado que usa la API: `200`, `201`, `204`, `400` (datos inválidos), `401` (sin sesión), `403` (sin permiso), `404` (no existe o no es tuyo), `409` (conflicto de estado, por ejemplo cancelar una orden entregada), `422` (regla de negocio, por ejemplo el límite de solicitudes por hora), `429` (demasiados intentos de inicio de sesión), `500`.
+Códigos de estado que usa la API: `200`, `201`, `204`, `400` (datos inválidos), `401` (sin sesión), `403` (sin permiso), `404` (no existe o no es tuyo), `409` (conflicto de estado, por ejemplo cancelar una orden entregada), `422` (regla de negocio, por ejemplo calificar una orden no entregada), `429` (límites de uso: intentos de inicio de sesión y solicitudes por hora, con `Retry-After`), `500`.
 
 Documentación: **propuesta** agregar `springdoc-openapi-starter-webmvc-ui` (la versión 3.x es la que soporta Spring Boot 4; confirmar la versión exacta al agregarla). Cada controlador lleva `@Tag` y cada operación `@Operation` en español. Swagger UI queda habilitado en `dev` y deshabilitado en `prod`.
 
@@ -241,7 +241,7 @@ Documentación: **propuesta** agregar `springdoc-openapi-starter-webmvc-ui` (la 
 {
   "type": "https://quienlotiene.app/errores/limite-solicitudes-superado",
   "title": "Límite de solicitudes superado",
-  "status": 422,
+  "status": 429,
   "detail": "Puedes publicar hasta 10 solicitudes por hora. Intenta de nuevo en 12 minutos.",
   "instance": "/api/v1/solicitudes",
   "codigo": "SOL-001",
@@ -296,7 +296,7 @@ Dos niveles, sin duplicar:
 - **Administrador con TOTP**: librería `dev.samstevens.totp`. El secreto se guarda cifrado.
 - **Roles**: `CLIENTE`, `TIENDA`, `ADMIN` (`hasRole(...)` en la configuración y `@PreAuthorize` en los casos que lo necesiten).
 - **Autorización por objeto**: todo caso de uso que recibe un id comprueba que el recurso pertenezca al usuario actual. Es el riesgo R-03 y tiene pruebas específicas.
-- Límites de uso con Bucket4j y Caffeine en memoria: intentos de inicio de sesión (`429`), 10 solicitudes por hora por cliente (`422`, código `SOL-001`) y respuestas por tienda.
+- Límites de uso con Bucket4j y Caffeine en memoria: intentos de inicio de sesión (`429`), 10 solicitudes por hora por cliente (`429` con `Retry-After`, código `SOL-001`, como pide CP-SOL-016-03) y respuestas por tienda.
 - CORS solo para el dominio del frontend. HTTPS lo da Caddy.
 - Ningún secreto en el repositorio: todo sale de variables de entorno (`QLT_JWT_LLAVE_PRIVADA`, `QLT_DB_CLAVE`, ...). Hay un `.env.ejemplo` sin valores reales.
 - **Decidido**: quitar `spring-boot-starter-security-oauth2-client` si no se va a ofrecer inicio de sesión con Google u otro proveedor (no está en el alcance del MVP).
