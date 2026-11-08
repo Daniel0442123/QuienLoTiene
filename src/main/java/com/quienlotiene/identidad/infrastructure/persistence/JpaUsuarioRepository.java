@@ -6,6 +6,8 @@ import com.quienlotiene.identidad.domain.model.Usuario;
 import com.quienlotiene.identidad.domain.port.UsuarioRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
+import java.util.Optional;
+import java.util.UUID;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +33,16 @@ class JpaUsuarioRepository implements UsuarioRepository {
     @Override
     public boolean existePorCorreo(Correo correo) {
         return usuarioJpaRepository.existsByCorreo(correo.valor());
+    }
+
+    @Override
+    public Optional<Usuario> buscarPorCorreo(Correo correo) {
+        return usuarioJpaRepository.findByCorreo(correo.valor()).map(usuarioMapper::aDominio);
+    }
+
+    @Override
+    public Optional<Usuario> buscarPorId(UUID id) {
+        return usuarioJpaRepository.findById(id).map(usuarioMapper::aDominio);
     }
 
     @Override
