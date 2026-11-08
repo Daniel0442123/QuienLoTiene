@@ -39,4 +39,6 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `IDE-009` | 403 | Cuenta suspendida | Las credenciales son correctas pero el administrador suspendió la cuenta | HU-003 |
 | `IDE-010` | 401 | Sesión vencida | Al renovar o cerrar sesión: falta la cookie, el token de refresco venció o fue revocado | HU-003 |
 | `IDE-011` | 401 | Segundo factor requerido | Un administrador intenta entrar por el inicio de sesión normal; entra con TOTP (HU-004) | HU-003 |
-| `SOL-001` | 422 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora | HU-016 |
+| `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
+| `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |
+| `GEN-009` | 400 | Ubicación inválida | La latitud no está entre -90 y 90 o la longitud no está entre -180 y 180 | HU-016 |

@@ -41,6 +41,11 @@ quienlotiene:
     version-politica-datos: "1.0"
     # Duración del token de refresco (HU-003): cuánto dura la sesión sin volver a escribir la frase
     duracion-token-refresco: 7d
+  solicitudes:
+    # Valores aprobados en la Fase 9 (DECISIONES-BACKEND, sección 13)
+    vigencia: 30m
+    maximo-por-hora: 10
+    radio-inicial-en-metros: 3000
   seguridad:
     jwt:
       emisor: quienlotiene

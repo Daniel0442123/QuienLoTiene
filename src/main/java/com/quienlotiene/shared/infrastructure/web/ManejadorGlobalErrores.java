@@ -1,5 +1,6 @@
 package com.quienlotiene.shared.infrastructure.web;
 
+import com.quienlotiene.shared.domain.ConTiempoDeEspera;
 import com.quienlotiene.shared.domain.ReglaNegocioException;
 import com.quienlotiene.shared.domain.TipoError;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +42,13 @@ public class ManejadorGlobalErrores extends ResponseEntityExceptionHandler {
                 excepcion.getMessage(),
                 peticion.getRequestURI(),
                 List.of());
-        return ResponseEntity.status(estado).body(problema);
+        var respuesta = ResponseEntity.status(estado);
+        if (excepcion instanceof ConTiempoDeEspera conEspera) {
+            // Segundos enteros hacia arriba: nunca invitar a reintentar antes de tiempo (RFC 9110, Retry-After)
+            var segundos = Math.max(1, (conEspera.tiempoDeEspera().toMillis() + 999) / 1000);
+            respuesta.header(HttpHeaders.RETRY_AFTER, String.valueOf(segundos));
+        }
+        return respuesta.body(problema);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
