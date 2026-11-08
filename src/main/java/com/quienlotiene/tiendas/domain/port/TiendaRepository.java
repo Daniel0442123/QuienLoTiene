@@ -4,6 +4,7 @@ import com.quienlotiene.shared.domain.Ubicacion;
 import com.quienlotiene.tiendas.domain.model.ConfiguracionDomicilio;
 import com.quienlotiene.tiendas.domain.model.DocumentoVerificacion;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
+import com.quienlotiene.tiendas.domain.model.MediosPagoAceptados;
 import com.quienlotiene.tiendas.domain.model.Tienda;
 import com.quienlotiene.tiendas.domain.model.TiendaCandidata;
 import java.util.List;
@@ -30,6 +31,11 @@ public interface TiendaRepository {
 
     /** Guarda el nombre, el teléfono y el horario (HU-009). */
     void guardarPerfil(Tienda tienda);
+
+    MediosPagoAceptados buscarMediosPago(UUID tiendaId);
+
+    /** Reemplaza los medios de pago de la tienda (HU-012). */
+    void guardarMediosPago(UUID tiendaId, MediosPagoAceptados mediosPago);
 
     /** Configuración de domicilio de la tienda (HU-010); sin domicilio si nunca la configuró. */
     ConfiguracionDomicilio buscarDomicilio(UUID tiendaId);

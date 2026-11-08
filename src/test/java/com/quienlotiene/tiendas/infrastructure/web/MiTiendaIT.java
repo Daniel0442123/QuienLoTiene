@@ -230,6 +230,47 @@ class MiTiendaIT {
     }
 
     @Test
+    @Tag("HU-012")
+    @Tag("CP-TIE-012-02")
+    @DisplayName("HU-012 Configura efectivo, transferencia y datáfono, y luego desactiva el datáfono")
+    void configuraLosMediosDePago() throws Exception {
+        // Dado
+        var token = registrarTiendaEIniciarSesion();
+        mockMvc.perform(put("/api/v1/tiendas/me/medios-pago")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"mediosPago": ["DATAFONO", "EFECTIVO", "TRANSFERENCIA"]}
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.mediosPago.length()").value(3));
+
+        // Cuando
+        mockMvc.perform(put("/api/v1/tiendas/me/medios-pago")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"mediosPago": ["EFECTIVO", "TRANSFERENCIA"]}
+                                """))
+                .andExpect(status().isOk());
+
+        // Entonces
+        mockMvc.perform(get("/api/v1/tiendas/me/medios-pago").header(HttpHeaders.AUTHORIZATION, token))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.mediosPago[0]").value("EFECTIVO"))
+                .andExpect(jsonPath("$.mediosPago[1]").value("TRANSFERENCIA"))
+                .andExpect(jsonPath("$.mediosPago.length()").value(2));
+        mockMvc.perform(put("/api/v1/tiendas/me/medios-pago")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"mediosPago": []}
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errores[0].campo").value("mediosPago"));
+    }
+
+    @Test
     @DisplayName("Solo el rol TIENDA usa /tiendas/me")
     void soloLasTiendasVenSuPerfil() throws Exception {
         mockMvc.perform(get("/api/v1/tiendas/me")).andExpect(status().isUnauthorized());
