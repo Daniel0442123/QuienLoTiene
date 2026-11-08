@@ -8,9 +8,16 @@ import java.util.UUID;
  * el JavaScript de la página no pueda leerlo.
  *
  * @param tipoToken siempre {@code Bearer}: el frontend envía {@code Authorization: Bearer <tokenAcceso>}
+ * @param segundoFactorRequerido siempre {@code false}: la sesión ya está completa
  */
 public record SesionResponse(
-        UUID usuarioId, String rol, String tokenAcceso, String tipoToken, Instant fechaExpiracion) {
+        UUID usuarioId,
+        String rol,
+        String tokenAcceso,
+        String tipoToken,
+        Instant fechaExpiracion,
+        boolean segundoFactorRequerido)
+        implements RespuestaInicioSesion {
 
     @Override
     public String toString() {

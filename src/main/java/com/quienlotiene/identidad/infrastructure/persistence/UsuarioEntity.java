@@ -40,6 +40,10 @@ public class UsuarioEntity {
     @Column(nullable = false, length = 12)
     private String estado;
 
+    /** Secreto TOTP cifrado; solo administradores (HU-004). */
+    @Column(name = "secreto_totp")
+    private String secretoTotp;
+
     @Column(name = "creado_en", nullable = false, updatable = false)
     private Instant creadoEn;
 
@@ -54,6 +58,7 @@ public class UsuarioEntity {
             String hashContrasena,
             String rol,
             String estado,
+            String secretoTotp,
             Instant creadoEn,
             Instant actualizadoEn) {
         this.id = id;
@@ -63,6 +68,7 @@ public class UsuarioEntity {
         this.hashContrasena = hashContrasena;
         this.rol = rol;
         this.estado = estado;
+        this.secretoTotp = secretoTotp;
         this.creadoEn = creadoEn;
         this.actualizadoEn = actualizadoEn;
     }

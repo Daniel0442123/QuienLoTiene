@@ -25,6 +25,7 @@
         <bucket4j.version>8.22.0</bucket4j.version>
         <bouncycastle.version>1.86</bouncycastle.version>
         <archunit.version>1.5.1</archunit.version>
+        <totp.version>1.7.1</totp.version>
 
         <!-- Plugins de calidad -->
         <jacoco.version>0.8.16</jacoco.version>
@@ -77,6 +78,22 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk18on</artifactId>
             <version>${bouncycastle.version}</version>
+        </dependency>
+        <!-- Códigos TOTP del administrador (D-15, HU-004). Sin zxing (QR) ni commons-net (hora por NTP): no se usan -->
+        <dependency>
+            <groupId>dev.samstevens.totp</groupId>
+            <artifactId>totp</artifactId>
+            <version>${totp.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.zxing</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-net</groupId>
+                    <artifactId>commons-net</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- Límites de uso en memoria (sección 11) -->
         <dependency>

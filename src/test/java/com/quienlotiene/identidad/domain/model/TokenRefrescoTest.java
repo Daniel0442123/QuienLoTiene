@@ -21,7 +21,7 @@ class TokenRefrescoTest {
     @DisplayName("Se emite activo, con vencimiento a 7 días y guardando solo el hash")
     void seEmiteActivoYConHash() {
         // Dado
-        var valor = ValorTokenRefresco.generar();
+        var valor = ValorTokenOpaco.generar();
 
         // Cuando
         var token = TokenRefresco.emitir(UUID.randomUUID(), UUID.randomUUID(), valor, SIETE_DIAS, AHORA);
@@ -40,7 +40,7 @@ class TokenRefrescoTest {
     @DisplayName("Vence justo en su fecha de expiración")
     void venceEnSuFechaDeExpiracion() {
         var token = TokenRefresco.emitir(
-                UUID.randomUUID(), UUID.randomUUID(), ValorTokenRefresco.generar(), SIETE_DIAS, AHORA);
+                UUID.randomUUID(), UUID.randomUUID(), ValorTokenOpaco.generar(), SIETE_DIAS, AHORA);
 
         assertThat(token.estaVencido(AHORA.plus(SIETE_DIAS).minusSeconds(1))).isFalse();
         assertThat(token.estaVencido(AHORA.plus(SIETE_DIAS))).isTrue();
@@ -62,12 +62,12 @@ class TokenRefrescoTest {
     void generaValoresAleatoriosConHashEstable() {
         var valores = new HashSet<String>();
         for (int intento = 0; intento < 100; intento++) {
-            valores.add(ValorTokenRefresco.generar().valor());
+            valores.add(ValorTokenOpaco.generar().valor());
         }
 
         assertThat(valores).hasSize(100).allMatch(valor -> valor.matches("[A-Za-z0-9_-]{43}"));
-        var valor = new ValorTokenRefresco("valor-fijo");
-        assertThat(valor.calcularHash()).isEqualTo(new ValorTokenRefresco("valor-fijo").calcularHash());
+        var valor = new ValorTokenOpaco("valor-fijo");
+        assertThat(valor.calcularHash()).isEqualTo(new ValorTokenOpaco("valor-fijo").calcularHash());
         assertThat(valor.toString()).doesNotContain("valor-fijo");
     }
 }

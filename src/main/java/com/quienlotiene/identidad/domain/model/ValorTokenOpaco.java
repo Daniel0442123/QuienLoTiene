@@ -8,18 +8,19 @@ import java.util.Base64;
 import java.util.HexFormat;
 
 /**
- * Valor opaco del token de refresco que viaja en la cookie. En la base solo se guarda su hash SHA-256: si alguien
- * copia la tabla no puede usar los tokens. Al ser 256 bits aleatorios no hace falta un hash lento como Argon2id.
+ * Valor opaco y aleatorio de un token (refresco de sesión o desafío de segundo factor). En la base solo se guarda su
+ * hash SHA-256: si alguien copia la tabla no puede usar los tokens. Al ser 256 bits aleatorios no hace falta un hash
+ * lento como Argon2id.
  */
-public record ValorTokenRefresco(String valor) {
+public record ValorTokenOpaco(String valor) {
 
     private static final int BYTES_ALEATORIOS = 32;
     private static final SecureRandom GENERADOR = new SecureRandom();
 
-    public static ValorTokenRefresco generar() {
+    public static ValorTokenOpaco generar() {
         var bytes = new byte[BYTES_ALEATORIOS];
         GENERADOR.nextBytes(bytes);
-        return new ValorTokenRefresco(Base64.getUrlEncoder().withoutPadding().encodeToString(bytes));
+        return new ValorTokenOpaco(Base64.getUrlEncoder().withoutPadding().encodeToString(bytes));
     }
 
     public String calcularHash() {
@@ -33,6 +34,6 @@ public record ValorTokenRefresco(String valor) {
 
     @Override
     public String toString() {
-        return "ValorTokenRefresco[***]";
+        return "ValorTokenOpaco[***]";
     }
 }

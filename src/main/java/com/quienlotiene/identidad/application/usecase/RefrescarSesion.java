@@ -2,7 +2,7 @@ package com.quienlotiene.identidad.application.usecase;
 
 import com.quienlotiene.identidad.application.dto.SesionIniciada;
 import com.quienlotiene.identidad.domain.model.SesionVencidaException;
-import com.quienlotiene.identidad.domain.model.ValorTokenRefresco;
+import com.quienlotiene.identidad.domain.model.ValorTokenOpaco;
 import com.quienlotiene.identidad.domain.port.TokenRefrescoRepository;
 import com.quienlotiene.identidad.domain.port.UsuarioRepository;
 import java.time.Clock;
@@ -45,7 +45,7 @@ public class RefrescarSesion {
         }
         var ahora = reloj.instant();
         var token = tokenRefrescoRepository
-                .buscarPorHash(new ValorTokenRefresco(tokenRefrescoRecibido).calcularHash())
+                .buscarPorHash(new ValorTokenOpaco(tokenRefrescoRecibido).calcularHash())
                 .orElseThrow(SesionVencidaException::new);
 
         if (token.estaRevocado() || !tokenRefrescoRepository.revocarSiSigueActivo(token.getId(), ahora)) {

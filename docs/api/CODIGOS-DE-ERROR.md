@@ -38,7 +38,10 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `IDE-008` | 401 | Credenciales incorrectas | El correo no tiene cuenta o la frase no coincide; el mensaje no dice cuál de los dos falló | HU-003 |
 | `IDE-009` | 403 | Cuenta suspendida | Las credenciales son correctas pero el administrador suspendió la cuenta | HU-003 |
 | `IDE-010` | 401 | Sesión vencida | Al renovar o cerrar sesión: falta la cookie, el token de refresco venció o fue revocado | HU-003 |
-| `IDE-011` | 401 | Segundo factor requerido | Un administrador intenta entrar por el inicio de sesión normal; entra con TOTP (HU-004) | HU-003 |
+| `IDE-011` | 401 | Segundo factor requerido | Un administrador sin secreto TOTP configurado intenta iniciar sesión | HU-003, HU-004 |
+| `IDE-012` | 401 | Código incorrecto | El código TOTP no es válido o ya venció (CP-IDE-004-02) | HU-004 |
+| `IDE-013` | 401 | Verificación vencida | El token del segundo factor no existe, venció (5 minutos), ya se usó o agotó sus 5 intentos | HU-004 |
+| `IDE-014` | 400 | Secreto TOTP inválido | El secreto del administrador inicial no está en Base32 o tiene menos de 26 caracteres | HU-004 |
 | `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
 | `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |
 | `GEN-009` | 400 | Ubicación inválida | La latitud no está entre -90 y 90 o la longitud no está entre -180 y 180 | HU-016 |
