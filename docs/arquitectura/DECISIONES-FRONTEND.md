@@ -1,6 +1,6 @@
 # Decisiones técnicas y convenciones del frontend · Quién lo tiene
 
-Versión 1.1 (aprobada por Pedro) · 08/11/2026
+Versión 1.2 (aprobada por Pedro) · 08/11/2026
 
 Este documento hace para el frontend lo mismo que `DECISIONES-BACKEND.md` hace para el backend: deja por escrito cómo se construye la PWA para que Monica (y quien la apoye) escriba todo de la misma forma. Nace de analizar una lista de estándares de usabilidad y accesibilidad contra lo que el proyecto ya tiene documentado y contra el plazo real. Pedro aprobó todas las decisiones el 08/11/2026; lo que queda abierto es del equipo de backend (sección 15.2).
 
@@ -345,6 +345,16 @@ Convenciones (las mismas del backend, adaptadas):
 
 ---
 
+### 13.1 Dependencias vulnerables (RNF-011)
+
+- Cuando una alerta de Dependabot o de `npm audit` cae en una dependencia transitiva, primero se actualiza el paquete padre. Si el padre todavía no la actualizó, se fuerza la versión corregida con `overrides` en `frontend/package.json`, se comprueba que el build y las pruebas siguen pasando y se anota aquí.
+- Las alertas sin versión corregida se descartan en GitHub con su justificación, nunca en silencio, y se anotan aquí.
+
+| Fecha | Alerta | Qué se hizo |
+|---|---|---|
+| 08/11/2026 | `minimatch` (GHSA-g3hv-75wg-m249, moderada) y `glob` (GHSA-3g3m-2fjr-6pw4), transitivas de `vite-plugin-pwa` → `workbox-build` | `overrides: { "glob": "^14.0.4" }`, que trae `minimatch` 11.0.5 corregido. El service worker generado sigue precargando los mismos 14 archivos |
+| 08/11/2026 | `deepmerge` (GHSA-gcqx-w48m-w2h4, baja), transitiva de `workbox-build` → `@rollup/plugin-node-resolve` | No hay versión corregida (todas hasta la 4.3.1 están afectadas y el paquete no se publica desde 2023). Solo se usa al compilar, una vez, para copiar las opciones internas del plugin (`deepMerge({}, defaults)`), sin datos externos, y no llega al navegador. Se descarta en GitHub como «riesgo tolerable» y se revisa cuando `workbox-build` cambie de dependencia |
+
 ## 14. Fuera del MVP (F-22)
 
 | Qué | Por qué no ahora | Cuándo tendría sentido |
@@ -382,3 +392,4 @@ Convenciones (las mismas del backend, adaptadas):
 | 0.1 | 08/11/2026 | Primera propuesta: análisis de la lista de estándares contra lo documentado y decisiones F-01 a F-23 |
 | 1.0 | 08/11/2026 | Pedro aprueba todas las decisiones: TypeScript, WCAG 2.2 AA, shadcn/ui con Tailwind; Monica define prototipos y paleta; Daniel aprueba los pull requests del frontend |
 | 1.1 | 08/11/2026 | Ajustes al crear el andamiaje: oxlint en lugar de ESLint (mismas reglas `jsx-a11y`), TypeScript 5.9 en lugar de 7, axe-core directo en lugar de `vitest-axe`, flujo de CI propio `frontend.yml` |
+| 1.2 | 08/11/2026 | Sección 13.1: manejo de dependencias vulnerables; `overrides` de `glob` para la alerta de `minimatch` y justificación de `deepmerge` |
