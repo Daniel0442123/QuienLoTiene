@@ -1,0 +1,67 @@
+# Contraseñas comunes o filtradas de 15 o más caracteres (NIST 800-63B, NF-SEG-006).
+# Una por línea; se comparan sin distinguir mayúsculas. Las líneas que empiezan con # se ignoran.
+# Las de menos de 15 caracteres no hacen falta: la regla de longitud ya las rechaza.
+# Fuente: secuencias de teclado y frases que más se repiten en listas públicas de filtraciones.
+# Para ampliarla, agrega líneas y anota el cambio en el pull request.
+123456789012345
+1234567890123456
+12345678901234567890
+123456789987654321
+1234567890qwerty
+0123456789012345
+098765432109876
+111111111122222
+112233445566778899
+147258369147258
+qwertyuiopasdfg
+qwertyuiopasdfgh
+qwertyuiopasdfghjkl
+qwertyuiopasdfghjklzxcvbnm
+qwertyuiop123456
+1qaz2wsx3edc4rfv
+1q2w3e4r5t6y7u8i
+1q2w3e4r5t6y7u8i9o0p
+q1w2e3r4t5y6u7i8
+zaq12wsxcde34rfv
+asdfghjklqwertyu
+abcdefghijklmnop
+abcdefghijklmnopqrstuvwxyz
+abcdefg123456789
+abc123abc123abc123
+passwordpassword
+password12345678
+password1234567
+password123456789
+mypasswordis123
+thisismypassword
+letmeinletmein1
+iloveyouiloveyou
+iloveyou123456789
+welcome123456789
+administrator123
+administrador123
+contrasena123456
+contraseña123456
+contrasenasegura
+contraseñasegura
+miclavesecreta123
+claveclaveclave1
+holaholaholahola
+hola123456789012
+teamoteamoteamo1
+teamomucho123456
+colombia12345678
+colombiacolombia
+colombia1234567890
+popayan123456789
+quienlotiene123456
+quienlotiene2026
+correctbatteryhorsestaple
+correcthorsebatterystaple
+trustno1trustno1
+superman12345678
+pokemonpokemon12
+dragondragondragon
+football12345678
+sunshine12345678
+princess12345678
