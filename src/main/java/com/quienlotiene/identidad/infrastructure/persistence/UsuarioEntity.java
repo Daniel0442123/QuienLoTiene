@@ -50,6 +50,13 @@ public class UsuarioEntity {
     @Column(name = "actualizado_en", nullable = false)
     private Instant actualizadoEn;
 
+    /** Copia en la fila el perfil editado por el usuario (HU-007). */
+    void actualizarPerfil(String nuevoNombre, String nuevoTelefono, Instant fecha) {
+        this.nombre = nuevoNombre;
+        this.telefono = nuevoTelefono;
+        this.actualizadoEn = fecha;
+    }
+
     public UsuarioEntity(
             UUID id,
             String nombre,
