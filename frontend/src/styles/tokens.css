@@ -1,0 +1,34 @@
+/*
+ * Tokens de diseño (DECISIONES-FRONTEND F-10). Único lugar con valores de color, tipografía y espacio.
+ * Los colores son PROVISIONALES: Monica define la paleta con los prototipos. Al cambiarlos, verificar
+ * contraste ≥ 4,5:1 para texto y ≥ 3:1 para bordes y foco (WCAG 2.2 AA, RNF-028).
+ */
+:root {
+  color-scheme: light;
+
+  /* Color por función */
+  --color-primario: #1d4ed8; /* 6,7:1 sobre blanco */
+  --color-primario-texto: #ffffff;
+  --color-primario-hover: #1e40af;
+  --color-fondo: #ffffff;
+  --color-superficie: #f8fafc;
+  --color-texto: #0f172a; /* 17:1 sobre blanco */
+  --color-texto-suave: #475569; /* 7,6:1 sobre blanco */
+  --color-borde: #64748b; /* 4,8:1: bordes de controles ≥ 3:1 */
+  --color-borde-suave: #e2e8f0; /* solo decorativo, nunca para delimitar un control */
+  --color-exito: #15803d;
+  --color-advertencia: #a16207;
+  --color-peligro: #b91c1c;
+  --color-foco: #1d4ed8;
+
+  /* Tipografía: base de 16 px (RNF-028), siempre en rem para que el zoom funcione */
+  --fuente-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --texto-base: 1rem;
+
+  /* Tamaño táctil mínimo (RNF-028) y radios */
+  --tamano-tactil: 2.75rem; /* 44 px */
+  --radio: 0.5rem;
+
+  /* Alto de la barra fija inferior: el foco nunca queda tapado (WCAG 2.4.11) */
+  --alto-barra-inferior: 4rem;
+}

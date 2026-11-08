@@ -1,0 +1,73 @@
+# Integración continua del frontend (DECISIONES-FRONTEND sección 13).
+# Solo corre cuando cambia algo dentro de frontend/; los escaneos de Trivy y Gitleaks de ci.yml ya cubren esta carpeta.
+name: CI frontend
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['frontend/**', '.github/workflows/frontend.yml']
+  push:
+    branches: [main]
+    paths: ['frontend/**', '.github/workflows/frontend.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  calidad-y-pruebas:
+    name: Lint, tipos, pruebas, build y Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Formato (Prettier)
+        run: npm run formato:revisar
+
+      # Incluye las reglas de jsx-a11y
+      - name: Lint (oxlint)
+        run: npm run lint
+
+      - name: Tipos (TypeScript estricto)
+        run: npm run tipos
+
+      # Vitest + Testing Library + axe; falla si la cobertura de la lógica baja del 70 %
+      - name: Pruebas y cobertura
+        run: npm run test:cobertura
+
+      - name: Dependencias sin vulnerabilidades altas (RNF-011)
+        run: npm audit --audit-level=high --omit=dev
+
+      - name: Build de producción
+        run: npm run build
+
+      # Accesibilidad >= 90 bloquea; rendimiento >= 80 solo avisa (RNF-028, RNF-005)
+      - name: Lighthouse CI
+        run: npm run lighthouse
+
+      - name: Publicar reportes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-frontend
+          path: |
+            frontend/coverage/
+            frontend/.lighthouseci/
+          retention-days: 14

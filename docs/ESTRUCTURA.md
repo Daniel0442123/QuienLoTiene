@@ -30,7 +30,7 @@ Dentro de cada módulo:
 
 ## Otras carpetas
 
-- `frontend/`: aplicación React + Vite (PWA).
+- `frontend/`: aplicación React + Vite + TypeScript (PWA). Estructura y comandos en `frontend/README.md`; convenciones en `docs/arquitectura/DECISIONES-FRONTEND.md`.
 - `docs/`: requisitos, arquitectura, diagramas `.drawio` y documentación de la API.
 - `docs/pruebas/`: estrategia de pruebas, bitácora de ejecuciones, plantillas y registros de cada ejecución con sus evidencias.
 - `docker/`: Dockerfile de la API, inicialización de PostgreSQL/PostGIS y configuración de Caddy.

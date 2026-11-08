@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+/* Tailwind toma los tokens: bg-primario, text-texto, border-borde, rounded-control... */
+@theme inline {
+  --color-primario: var(--color-primario);
+  --color-primario-texto: var(--color-primario-texto);
+  --color-primario-hover: var(--color-primario-hover);
+  --color-fondo: var(--color-fondo);
+  --color-superficie: var(--color-superficie);
+  --color-texto: var(--color-texto);
+  --color-texto-suave: var(--color-texto-suave);
+  --color-borde: var(--color-borde);
+  --color-borde-suave: var(--color-borde-suave);
+  --color-exito: var(--color-exito);
+  --color-advertencia: var(--color-advertencia);
+  --color-peligro: var(--color-peligro);
+  --color-foco: var(--color-foco);
+  --font-sans: var(--fuente-base);
+  --radius-control: var(--radio);
+  --spacing-tactil: var(--tamano-tactil);
+}
+
+@layer base {
+  html {
+    font-size: 100%;
+    scroll-padding-bottom: var(--alto-barra-inferior);
+  }
+
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-base);
+    font-size: var(--texto-base);
+    line-height: 1.5;
+  }
+
+  /* Foco siempre visible (WCAG 2.4.7) */
+  :focus-visible {
+    outline: 2px solid var(--color-foco);
+    outline-offset: 2px;
+  }
+
+  /* El h1 recibe el foco al cambiar de ruta; no necesita anillo porque no es interactivo */
+  h1[tabindex='-1']:focus {
+    outline: none;
+  }
+}
+
+/* Movimiento reducido (DECISIONES-FRONTEND sección 8, regla 11) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

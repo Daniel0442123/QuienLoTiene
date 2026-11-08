@@ -49,7 +49,7 @@ Priorizados por la prioridad de la historia (MoSCoW) y, dentro de ella, por núm
 | NF-ESC-020 | RNF-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | k6 | Francisco Castro |
 | NF-COM-026 | RNF-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | Manual (matriz de navegadores) | Francisco Castro |
 | NF-USA-027 | RNF-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | Prueba con 5 usuarios | Francisco Castro |
-| NF-USA-028 | RNF-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.1 AA. | Lighthouse + axe + checklist WCAG | Francisco Castro |
+| NF-USA-028 | RNF-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | Lighthouse + axe + checklist WCAG | Francisco Castro |
 | NF-POR-029 | RNF-029 | 15 minutos o menos siguiendo el manual de despliegue. | Manual de despliegue en servidor limpio | Francisco Castro |
 
 **Punta a punta**

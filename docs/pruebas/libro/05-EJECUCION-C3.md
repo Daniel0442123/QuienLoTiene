@@ -119,7 +119,7 @@ Alcance: casos de las historias Could que se hayan implementado (10), punta a pu
 | NF-ESC-020 | RNF-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | k6 |  |  |  |  |  |  |  |  |
 | NF-COM-026 | RNF-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | Manual (matriz de navegadores) |  |  |  |  |  |  |  |  |
 | NF-USA-027 | RNF-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | Prueba con 5 usuarios |  |  |  |  |  |  |  |  |
-| NF-USA-028 | RNF-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.1 AA. | Lighthouse + axe + checklist WCAG |  |  |  |  |  |  |  |  |
+| NF-USA-028 | RNF-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | Lighthouse + axe + checklist WCAG |  |  |  |  |  |  |  |  |
 | NF-POR-029 | RNF-029 | 15 minutos o menos siguiendo el manual de despliegue. | Manual de despliegue en servidor limpio |  |  |  |  |  |  |  |  |
 
 ## 4. Pruebas de humo en producción (26/11)
