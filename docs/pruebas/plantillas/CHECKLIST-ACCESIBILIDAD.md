@@ -1,4 +1,4 @@
-# Lista de verificación de accesibilidad (WCAG 2.1 AA y RNF-028)
+# Lista de verificación de accesibilidad (WCAG 2.2 AA y RNF-028)
 
 > Anexo G del Plan Maestro. Responsable: Francisco José Castro Muñoz. Una por rol (cliente, tienda, administrador) en C3.
 
@@ -16,3 +16,9 @@ Pantallas revisadas: · Fecha: · Versión:
 | 8 | Los avisos en tiempo real se anuncian al lector de pantalla (4.1.3) | ☐ | |
 | 9 | Sin desplazamiento horizontal a 320 px (1.4.10) | ☐ | |
 | 10 | Lighthouse accesibilidad ≥ 90 y axe sin violaciones graves | ☐ | |
+| 11 | El elemento con foco no queda tapado por barras fijas ni avisos (2.4.11) | ☐ | |
+| 12 | Lo que se hace arrastrando (pin del mapa) tiene alternativa sin arrastrar (2.5.7) | ☐ | |
+| 13 | Objetivos táctiles de al menos 24 × 24 px con espacio entre ellos (2.5.8; RNF-028 ya exige 44 × 44) | ☐ | |
+| 14 | No se pide dos veces el mismo dato en un mismo proceso: direcciones guardadas, repetir solicitud (3.3.7) | ☐ | |
+| 15 | El inicio de sesión permite pegar la frase y usar el gestor de contraseñas, sin pruebas cognitivas (3.3.8) | ☐ | |
+| 16 | La ayuda o el contacto están siempre en el mismo lugar (3.2.6) | ☐ | |

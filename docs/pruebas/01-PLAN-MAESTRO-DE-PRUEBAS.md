@@ -278,7 +278,7 @@ Al cerrar cada ciclo se analiza cada defecto con la ficha error → defecto → 
 | Análisis de defectos | Error, defecto, falla y principios | Yanimar | Al cerrar cada ciclo | `plantillas/ANALISIS-DE-DEFECTOS.md` |
 | Acta de liberación (anexo E) | Decisión go / no-go | Product Owner + QA | 25/11 | `plantillas/ACTA-DE-LIBERACION.md` |
 | Sesión exploratoria (anexo F) | Registro de exploración | QA | C2 y C3 | `plantillas/SESION-EXPLORATORIA.md` |
-| Lista de accesibilidad (anexo G) | WCAG 2.1 AA | Francisco | C3 | `plantillas/CHECKLIST-ACCESIBILIDAD.md` |
+| Lista de accesibilidad (anexo G) | WCAG 2.2 AA | Francisco | C3 | `plantillas/CHECKLIST-ACCESIBILIDAD.md` |
 | Pruebas de humo (anexo H) | Verificación en producción | Yanimar y Francisco | 26/11 | `plantillas/PRUEBAS-DE-HUMO.md` |
 | Reportes automáticos | Surefire, Failsafe, JaCoCo, Trivy | CI | Cada pull request | GitHub Actions y `evidencias/` |
 
@@ -315,7 +315,7 @@ Al cerrar cada ciclo se analiza cada defecto con la ficha error → defecto → 
 
 ### 10.1 Accesibilidad
 
-Meta WCAG 2.1 AA y RNF-028 (Lighthouse ≥ 90, texto base ≥ 16 px, botones ≥ 44 × 44 px). Francisco revisa con axe DevTools y Lighthouse las pantallas de cliente, tienda y administrador y diligencia el anexo G.
+Meta WCAG 2.2 AA (aprobada por Pedro el 08/11/2026; incluye todos los criterios de la 2.1) y RNF-028 (Lighthouse ≥ 90, texto base ≥ 16 px, botones ≥ 44 × 44 px). Francisco revisa con axe DevTools y Lighthouse las pantallas de cliente, tienda y administrador y diligencia el anexo G.
 
 ### 10.2 Móvil y navegadores
 

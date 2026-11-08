@@ -80,6 +80,6 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-025 | NF-COM-025 | JSON sobre HTTPS con prefijo /api/v1. | C2 |  |  |  |
 | RNF-026 | NF-COM-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | C3 |  |  |  |
 | RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 |  |  |  |
-| RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.1 AA. | C3 |  |  |  |
+| RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 |  |  |  |
 | RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 |  |  |  |
 | RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 |  |  |  |
