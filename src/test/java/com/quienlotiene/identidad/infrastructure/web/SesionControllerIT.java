@@ -77,10 +77,10 @@ class SesionControllerIT {
                         .isBetween(SIETE_DIAS_EN_SEGUNDOS - 5, SIETE_DIAS_EN_SEGUNDOS))
                 .andReturn();
 
-        // Entonces: el token abre una ruta protegida (responde 404 porque aún no existe, no 401)
+        // Entonces: el token abre una ruta protegida (su perfil, HU-007)
         var tokenAcceso = leer(respuesta, "tokenAcceso");
         mockMvc.perform(get("/api/v1/usuarios/me").header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenAcceso))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isOk());
         mockMvc.perform(get("/api/v1/usuarios/me")).andExpect(status().isUnauthorized());
         var minutosDeVigencia = Duration.between(Instant.now(), Instant.parse(leer(respuesta, "fechaExpiracion")))
                 .toMinutes();

@@ -21,4 +21,7 @@ public interface UsuarioRepository {
      *     correo al mismo tiempo
      */
     void guardarNuevo(Usuario usuario);
+
+    /** Guarda el nombre y el teléfono del perfil (HU-007). */
+    void guardarPerfil(Usuario usuario);
 }

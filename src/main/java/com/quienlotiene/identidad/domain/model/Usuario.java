@@ -9,9 +9,9 @@ import java.util.UUID;
 public final class Usuario {
 
     private final UUID id;
-    private final String nombre;
+    private String nombre;
     private final Correo correo;
-    private final String telefono;
+    private String telefono;
     private final String hashContrasena;
     private final Rol rol;
     private final EstadoCuenta estado;
@@ -111,6 +111,14 @@ public final class Usuario {
             Instant fechaCreacion) {
         return new Usuario(
                 id, nombre, correo, telefono, hashContrasena, rol, estado, secretoTotpCifrado, fechaCreacion);
+    }
+
+    /** CU-03 pasos 14 a 16: el usuario cambia el nombre y el teléfono de su perfil. El correo no se cambia aquí. */
+    public void actualizarPerfil(String nuevoNombre, String nuevoTelefono) {
+        var nombreValidado = exigirTexto(nuevoNombre, "nombre");
+        var telefonoValidado = exigirTexto(nuevoTelefono, "telefono");
+        this.nombre = nombreValidado.strip();
+        this.telefono = telefonoValidado.strip();
     }
 
     public boolean estaActiva() {

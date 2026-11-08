@@ -6,6 +6,8 @@ import com.quienlotiene.identidad.domain.model.Usuario;
 import com.quienlotiene.identidad.domain.port.UsuarioRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
+import java.time.Clock;
+import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
 import org.hibernate.exception.ConstraintViolationException;
@@ -20,19 +22,30 @@ class JpaUsuarioRepository implements UsuarioRepository {
     private final UsuarioJpaRepository usuarioJpaRepository;
     private final UsuarioPersistenceMapper usuarioMapper;
     private final EntityManager entityManager;
+    private final Clock reloj;
 
     JpaUsuarioRepository(
             UsuarioJpaRepository usuarioJpaRepository,
             UsuarioPersistenceMapper usuarioMapper,
-            EntityManager entityManager) {
+            EntityManager entityManager,
+            Clock reloj) {
         this.usuarioJpaRepository = usuarioJpaRepository;
         this.usuarioMapper = usuarioMapper;
         this.entityManager = entityManager;
+        this.reloj = reloj;
     }
 
     @Override
     public boolean existePorCorreo(Correo correo) {
         return usuarioJpaRepository.existsByCorreo(correo.valor());
+    }
+
+    @Override
+    public void guardarPerfil(Usuario usuario) {
+        usuarioJpaRepository
+                .findById(usuario.getId())
+                .orElseThrow()
+                .actualizarPerfil(usuario.getNombre(), usuario.getTelefono(), Instant.now(reloj));
     }
 
     @Override

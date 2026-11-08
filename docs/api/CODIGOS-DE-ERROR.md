@@ -53,6 +53,9 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `TIE-009` | 400 | Domicilio inválido | Tarifa negativa, radio fuera de 500 a 10.000 m o domicilio activo sin radio o tarifa (CP-TIE-010-02) | HU-010 |
 | `TIE-010` | 422 | Fuera de cobertura | La tienda no hace domicilio o el cliente está más lejos que su radio de cobertura | HU-010 |
 | `TIE-011` | 400 | Medios de pago inválidos | La tienda no elige ningún medio de pago o envía uno desconocido | HU-012 |
+| `CLI-001` | 400 | Dirección incompleta | Falta el nombre, la ubicación en el mapa, la dirección escrita o el teléfono (CP-CLI-007-02) | HU-007 |
+| `CLI-002` | 422 | Límite de direcciones | El cliente ya tiene 10 direcciones guardadas | HU-007 |
+| `CLI-003` | 404 | Dirección no encontrada | La dirección no existe o es de otro cliente | HU-007 |
 | `GEN-010` | 413 | Archivo muy grande | La petición trae un archivo de más de 5 MB; la corta el servidor antes de llegar al caso de uso | HU-002 |
 | `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
 | `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |
