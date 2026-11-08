@@ -1,11 +1,24 @@
 package com.quienlotiene.tiendas.domain.port;
 
 import com.quienlotiene.tiendas.domain.model.DocumentoVerificacion;
+import com.quienlotiene.tiendas.domain.model.EstadoTienda;
 import com.quienlotiene.tiendas.domain.model.Tienda;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 /** Guarda las tiendas y sus documentos en el esquema {@code tiendas}. */
 public interface TiendaRepository {
 
     void guardarNueva(Tienda tienda, List<DocumentoVerificacion> documentos);
+
+    Optional<Tienda> buscarPorId(UUID tiendaId);
+
+    /** De la más antigua a la más reciente. */
+    List<Tienda> listarPorEstado(EstadoTienda estado);
+
+    List<DocumentoVerificacion> listarDocumentos(UUID tiendaId);
+
+    /** Guarda el estado, el motivo y la fecha de revisión de una tienda existente. */
+    void guardarRevision(Tienda tienda);
 }
