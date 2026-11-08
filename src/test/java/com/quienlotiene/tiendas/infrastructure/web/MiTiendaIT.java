@@ -3,6 +3,7 @@ package com.quienlotiene.tiendas.infrastructure.web;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -138,6 +139,40 @@ class MiTiendaIT {
                                 """))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.codigo").value("TIE-007"));
+    }
+
+    @Test
+    @Tag("HU-013")
+    @Tag("CP-TIE-013-02")
+    @DisplayName("HU-013 Una tienda pendiente no abre (409 TIE-008); aprobada abre y cierra")
+    void abreYCierraLaTienda() throws Exception {
+        // Dado: la tienda recién registrada sigue pendiente
+        var token = registrarTiendaEIniciarSesion();
+        mockMvc.perform(patch("/api/v1/tiendas/me/apertura")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"abierta\": true}"))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.codigo").value("TIE-008"));
+
+        // Cuando: el administrador la aprueba
+        jdbcClient
+                .sql("update tiendas.tienda set estado = 'APROBADA' where nombre = 'La 5' and estado = 'PENDIENTE'")
+                .update();
+
+        // Entonces: puede abrir y cerrar
+        mockMvc.perform(patch("/api/v1/tiendas/me/apertura")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"abierta\": true}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.estaAbierta").value(true));
+        mockMvc.perform(patch("/api/v1/tiendas/me/apertura")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"abierta\": false}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.estaAbierta").value(false));
     }
 
     @Test

@@ -90,6 +90,12 @@ public class TiendaEntity {
         this.actualizadoEn = creadoEn;
     }
 
+    /** Copia en la fila el interruptor de apertura (HU-013). */
+    void cambiarApertura(boolean estaAbierta, Instant fecha) {
+        this.abierta = estaAbierta;
+        this.actualizadoEn = fecha;
+    }
+
     /** Copia en la fila el perfil editado por el dueño (HU-009). */
     void actualizarPerfil(String nuevoNombre, String nuevoTelefono, Instant fecha) {
         this.nombre = nuevoNombre;

@@ -20,7 +20,7 @@ public final class Tienda {
     private HorarioAtencion horario;
     private final Ubicacion ubicacion;
     private EstadoTienda estado;
-    private final boolean estaAbierta;
+    private boolean estaAbierta;
     private final Instant fechaRegistro;
     private String motivoRechazo;
     private Instant fechaRevision;
@@ -145,6 +145,19 @@ public final class Tienda {
         this.estado = EstadoTienda.RECHAZADA;
         this.motivoRechazo = motivo.strip();
         this.fechaRevision = ahora;
+    }
+
+    /**
+     * HU-013 (CU-19): con el interruptor en Abierto la tienda entra en la difusión de solicitudes (si además está en su
+     * horario). Cerrada deja de recibir solicitudes nuevas; sus órdenes en curso siguen.
+     *
+     * @throws TiendaNoAprobadaException si la tienda no está APROBADA
+     */
+    public void cambiarApertura(boolean abrir) {
+        if (estado != EstadoTienda.APROBADA) {
+            throw new TiendaNoAprobadaException();
+        }
+        this.estaAbierta = abrir;
     }
 
     /**

@@ -39,3 +39,6 @@ build/
 
 ### Documentos que guarda la aplicación en desarrollo (quienlotiene.archivos.directorio) ###
 /almacen-archivos/
+
+### Archivos temporales de Word y Excel mientras un documento está abierto ###
+~$*
