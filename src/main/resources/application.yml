@@ -34,6 +34,20 @@ spring:
     compose:
       enabled: false
 
+# Propiedades propias (DECISIONES-BACKEND, sección 13)
+quienlotiene:
+  seguridad:
+    jwt:
+      emisor: quienlotiene
+      vigencia-token-acceso: 15m
+      llave-privada: ${QLT_JWT_LLAVE_PRIVADA:}
+      llave-publica: ${QLT_JWT_LLAVE_PUBLICA:}
+      kid: ${QLT_JWT_KID:llave-1}
+      # Solo dev, test y demo generan llaves temporales si faltan; en prod la app no arranca sin ellas
+      permitir-llaves-temporales: false
+    cors:
+      origenes-permitidos: ${QLT_CORS_ORIGENES:http://localhost:5173}
+
 # El id de correlación de cada petición sale en todas las líneas de log (DECISIONES-BACKEND, sección 14)
 logging:
   pattern:
