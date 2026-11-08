@@ -1,5 +1,6 @@
 package com.quienlotiene.tiendas.infrastructure.web;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -21,6 +22,7 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -51,6 +53,9 @@ class MiTiendaIT {
 
     @Autowired
     MockMvc mockMvc;
+
+    @Autowired
+    JdbcClient jdbcClient;
 
     private final JsonMapper lectorJson = JsonMapper.builder().build();
 
@@ -111,6 +116,12 @@ class MiTiendaIT {
                 .andExpect(jsonPath("$.horario[0].diaSemana").value("MONDAY"))
                 .andExpect(jsonPath("$.horario[0].abre").value("08:00:00"))
                 .andExpect(jsonPath("$.horario[1].diaSemana").value("SATURDAY"));
+        // La base guarda la hora local de Colombia tal cual, sin correrla por la zona horaria de la JVM
+        var horasGuardadas = jdbcClient
+                .sql("select cast(abre as text) from tiendas.horario where dia_semana = 1 and cierra = '18:00'")
+                .query(String.class)
+                .list();
+        assertThat(horasGuardadas).contains("08:00:00");
     }
 
     @Test

@@ -16,10 +16,8 @@ spring:
     hibernate:
       # La base solo cambia con Flyway (D-11)
       ddl-auto: validate
-    properties:
-      hibernate:
-        jdbc:
-          time_zone: UTC
+    # Sin hibernate.jdbc.time_zone: las fechas son Instant sobre timestamptz y ya se guardan en UTC (D-14). Esa
+    # propiedad además corría las horas LocalTime del horario de las tiendas según la zona de la JVM.
 
   flyway:
     # Flyway recorre las subcarpetas: db/migration/<modulo>/V<AAAAMMDDHHmm>__<modulo>_<descripcion>.sql (D-12)
