@@ -15,8 +15,9 @@ public final class Tienda {
     private final UUID id;
     private final UUID duenoId;
     private final UUID categoriaId;
-    private final String nombre;
-    private final String telefono;
+    private String nombre;
+    private String telefono;
+    private HorarioAtencion horario;
     private final Ubicacion ubicacion;
     private EstadoTienda estado;
     private final boolean estaAbierta;
@@ -30,6 +31,7 @@ public final class Tienda {
             UUID categoriaId,
             String nombre,
             String telefono,
+            HorarioAtencion horario,
             Ubicacion ubicacion,
             EstadoTienda estado,
             boolean estaAbierta,
@@ -41,6 +43,7 @@ public final class Tienda {
         this.categoriaId = categoriaId;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.horario = horario;
         this.ubicacion = ubicacion;
         this.estado = estado;
         this.estaAbierta = estaAbierta;
@@ -62,18 +65,9 @@ public final class Tienda {
             String telefono,
             Ubicacion ubicacion,
             Instant ahora) {
-        if (nombre == null || nombre.isBlank()) {
-            throw new TiendaIncompletaException("falta el nombre de la tienda");
-        }
-        if (nombre.strip().length() > LONGITUD_MAXIMA_NOMBRE) {
-            throw new TiendaIncompletaException(
-                    "el nombre puede tener máximo " + LONGITUD_MAXIMA_NOMBRE + " caracteres");
-        }
+        validarNombreYTelefono(nombre, telefono);
         if (categoriaId == null) {
             throw new TiendaIncompletaException("falta la categoría");
-        }
-        if (telefono == null || telefono.isBlank()) {
-            throw new TiendaIncompletaException("falta el teléfono");
         }
         if (ubicacion == null) {
             throw new TiendaIncompletaException("falta la ubicación del local");
@@ -84,6 +78,7 @@ public final class Tienda {
                 categoriaId,
                 nombre.strip(),
                 telefono.strip(),
+                HorarioAtencion.sinConfigurar(),
                 ubicacion,
                 EstadoTienda.PENDIENTE,
                 false,
@@ -99,6 +94,7 @@ public final class Tienda {
             UUID categoriaId,
             String nombre,
             String telefono,
+            HorarioAtencion horario,
             Ubicacion ubicacion,
             EstadoTienda estado,
             boolean estaAbierta,
@@ -111,6 +107,7 @@ public final class Tienda {
                 categoriaId,
                 nombre,
                 telefono,
+                horario,
                 ubicacion,
                 estado,
                 estaAbierta,
@@ -150,15 +147,44 @@ public final class Tienda {
         this.fechaRevision = ahora;
     }
 
+    /**
+     * HU-009 (CU-16): el dueño cambia el nombre visible, el teléfono y el horario. La categoría y la ubicación no se
+     * cambian aquí porque el administrador las revisó al aprobar la tienda.
+     *
+     * @throws TiendaIncompletaException si falta el nombre o el teléfono
+     */
+    public void actualizarPerfil(String nuevoNombre, String nuevoTelefono, HorarioAtencion nuevoHorario) {
+        validarNombreYTelefono(nuevoNombre, nuevoTelefono);
+        this.nombre = nuevoNombre.strip();
+        this.telefono = nuevoTelefono.strip();
+        this.horario = nuevoHorario == null ? HorarioAtencion.sinConfigurar() : nuevoHorario;
+    }
+
+    private static void validarNombreYTelefono(String nombre, String telefono) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new TiendaIncompletaException("falta el nombre de la tienda");
+        }
+        if (nombre.strip().length() > LONGITUD_MAXIMA_NOMBRE) {
+            throw new TiendaIncompletaException(
+                    "el nombre puede tener máximo " + LONGITUD_MAXIMA_NOMBRE + " caracteres");
+        }
+        if (telefono == null || telefono.isBlank()) {
+            throw new TiendaIncompletaException("falta el teléfono");
+        }
+    }
+
     private void exigirEstado(EstadoTienda estadoEsperado, String accion) {
         if (estado != estadoEsperado) {
             throw new TransicionTiendaInvalidaException(accion, estado);
         }
     }
 
-    /** Solo una tienda aprobada y con el interruptor en Abierto entra en la difusión de solicitudes. */
-    public boolean puedeRecibirSolicitudes() {
-        return estado == EstadoTienda.APROBADA && estaAbierta;
+    /**
+     * Solo una tienda aprobada, con el interruptor en Abierto y dentro de su horario entra en la difusión de
+     * solicitudes (CP-TIE-002-01, CP-TIE-009-01).
+     */
+    public boolean puedeRecibirSolicitudes(Instant ahora) {
+        return estado == EstadoTienda.APROBADA && estaAbierta && horario.atiendeEn(ahora);
     }
 
     public UUID getId() {
@@ -179,6 +205,10 @@ public final class Tienda {
 
     public String getTelefono() {
         return telefono;
+    }
+
+    public HorarioAtencion getHorario() {
+        return horario;
     }
 
     public Ubicacion getUbicacion() {

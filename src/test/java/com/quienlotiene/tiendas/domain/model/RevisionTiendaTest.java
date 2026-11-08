@@ -26,6 +26,7 @@ class RevisionTiendaTest {
                 UUID.randomUUID(),
                 "Droguería La 5",
                 "3001234567",
+                HorarioAtencion.sinConfigurar(),
                 new Ubicacion(2.4448, -76.6147),
                 estado,
                 false,
@@ -49,7 +50,7 @@ class RevisionTiendaTest {
         assertThat(tienda.getFechaRevision()).contains(REVISION);
         assertThat(tienda.getMotivoRechazo()).isEmpty();
         // Aprobada pero cerrada: todavía no recibe solicitudes hasta que la abra (HU-013)
-        assertThat(tienda.puedeRecibirSolicitudes()).isFalse();
+        assertThat(tienda.puedeRecibirSolicitudes(REVISION)).isFalse();
     }
 
     @Test
@@ -109,6 +110,7 @@ class RevisionTiendaTest {
                 UUID.randomUUID(),
                 "La 5",
                 "3001234567",
+                HorarioAtencion.sinConfigurar(),
                 new Ubicacion(2.4, -76.6),
                 EstadoTienda.APROBADA,
                 true,
@@ -116,7 +118,7 @@ class RevisionTiendaTest {
                 null,
                 REVISION);
 
-        assertThat(tienda.puedeRecibirSolicitudes()).isTrue();
+        assertThat(tienda.puedeRecibirSolicitudes(REVISION)).isTrue();
         assertThat(tienda.estaAbierta()).isTrue();
     }
 }
