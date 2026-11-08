@@ -1,6 +1,7 @@
 package com.quienlotiene.tiendas.domain.port;
 
 import com.quienlotiene.shared.domain.Ubicacion;
+import com.quienlotiene.tiendas.domain.model.ConfiguracionDomicilio;
 import com.quienlotiene.tiendas.domain.model.DocumentoVerificacion;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
 import com.quienlotiene.tiendas.domain.model.Tienda;
@@ -29,6 +30,11 @@ public interface TiendaRepository {
 
     /** Guarda el nombre, el teléfono y el horario (HU-009). */
     void guardarPerfil(Tienda tienda);
+
+    /** Configuración de domicilio de la tienda (HU-010); sin domicilio si nunca la configuró. */
+    ConfiguracionDomicilio buscarDomicilio(UUID tiendaId);
+
+    void guardarDomicilio(UUID tiendaId, ConfiguracionDomicilio domicilio);
 
     /** Guarda el interruptor de apertura (HU-013). */
     void guardarApertura(Tienda tienda);
