@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  * distingue mayúsculas ni espacios a los lados. Para ampliar la lista basta con agregar líneas al archivo.
  */
 @Component
-class ArchivoListaFrasesComunes implements ListaFrasesComunes {
+final class ArchivoListaFrasesComunes implements ListaFrasesComunes {
 
     static final String RUTA_ARCHIVO = "identidad/frases-comunes.txt";
 

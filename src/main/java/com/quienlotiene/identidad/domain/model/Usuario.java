@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 /** Cuenta que inicia sesión: cliente, tienda o administrador (glosario, DECISIONES-BACKEND 3.4). */
-public class Usuario {
+public final class Usuario {
 
     private final UUID id;
     private final String nombre;
