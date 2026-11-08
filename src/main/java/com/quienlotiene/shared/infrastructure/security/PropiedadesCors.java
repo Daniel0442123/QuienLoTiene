@@ -12,4 +12,9 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @ConfigurationProperties("quienlotiene.seguridad.cors")
-public record PropiedadesCors(@NotEmpty List<String> origenesPermitidos) {}
+public record PropiedadesCors(@NotEmpty List<String> origenesPermitidos) {
+
+    public PropiedadesCors {
+        origenesPermitidos = origenesPermitidos == null ? List.of() : List.copyOf(origenesPermitidos);
+    }
+}
