@@ -176,6 +176,60 @@ class MiTiendaIT {
     }
 
     @Test
+    @Tag("HU-010")
+    @Tag("CP-TIE-010-01")
+    @DisplayName("HU-010 Configura domicilio con tarifa fija de 5.000 COP, lo consulta y simula el costo")
+    void configuraElDomicilio() throws Exception {
+        // Dado
+        var token = registrarTiendaEIniciarSesion();
+
+        // Cuando
+        mockMvc.perform(put("/api/v1/tiendas/me/domicilio")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"haceDomicilio": true, "radioCoberturaEnMetros": 3000, "tarifaFijaEnPesos": 5000}
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.tipoTarifa").value("FIJA"));
+
+        // Entonces
+        mockMvc.perform(get("/api/v1/tiendas/me/domicilio").header(HttpHeaders.AUTHORIZATION, token))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.tarifaFijaEnPesos").value(5000))
+                .andExpect(jsonPath("$.radioCoberturaEnMetros").value(3000));
+        mockMvc.perform(get("/api/v1/tiendas/me/domicilio/simulacion")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .param("subtotalEnPesos", "60000")
+                        .param("distanciaEnMetros", "2500"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.costoDomicilioEnPesos").value(5000));
+        mockMvc.perform(get("/api/v1/tiendas/me/domicilio/simulacion")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .param("subtotalEnPesos", "60000")
+                        .param("distanciaEnMetros", "3500"))
+                .andExpect(status().isUnprocessableContent())
+                .andExpect(jsonPath("$.codigo").value("TIE-010"));
+    }
+
+    @Test
+    @Tag("HU-010")
+    @Tag("CP-TIE-010-02")
+    @DisplayName("CP-TIE-010-02 Una tarifa negativa responde 400 con el campo")
+    void rechazaUnaTarifaNegativa() throws Exception {
+        var token = registrarTiendaEIniciarSesion();
+
+        mockMvc.perform(put("/api/v1/tiendas/me/domicilio")
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"haceDomicilio": true, "radioCoberturaEnMetros": 3000, "tarifaFijaEnPesos": -5000}
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errores[0].campo").value("tarifaFijaEnPesos"));
+    }
+
+    @Test
     @DisplayName("Solo el rol TIENDA usa /tiendas/me")
     void soloLasTiendasVenSuPerfil() throws Exception {
         mockMvc.perform(get("/api/v1/tiendas/me")).andExpect(status().isUnauthorized());

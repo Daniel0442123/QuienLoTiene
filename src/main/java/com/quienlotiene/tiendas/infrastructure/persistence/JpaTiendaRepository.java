@@ -1,9 +1,11 @@
 package com.quienlotiene.tiendas.infrastructure.persistence;
 
 import com.quienlotiene.shared.domain.Ubicacion;
+import com.quienlotiene.tiendas.domain.model.ConfiguracionDomicilio;
 import com.quienlotiene.tiendas.domain.model.DocumentoVerificacion;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
 import com.quienlotiene.tiendas.domain.model.HorarioAtencion;
+import com.quienlotiene.tiendas.domain.model.TarifaDomicilio;
 import com.quienlotiene.tiendas.domain.model.Tienda;
 import com.quienlotiene.tiendas.domain.model.TiendaCandidata;
 import com.quienlotiene.tiendas.domain.model.TiendaNoEncontradaException;
@@ -79,6 +81,28 @@ class JpaTiendaRepository implements TiendaRepository {
     @Override
     public Optional<Tienda> buscarPorDueno(UUID duenoId) {
         return tiendaJpaRepository.findByDuenoId(duenoId).map(this::aDominio);
+    }
+
+    @Override
+    public ConfiguracionDomicilio buscarDomicilio(UUID tiendaId) {
+        var fila = tiendaJpaRepository.findById(tiendaId).orElseThrow(TiendaNoEncontradaException::new);
+        if (!fila.isHaceDomicilio()) {
+            return ConfiguracionDomicilio.sinDomicilio();
+        }
+        return ConfiguracionDomicilio.conDomicilio(
+                fila.getRadioCoberturaMetros(), new TarifaDomicilio.TarifaFija(fila.getValorTarifaPesos()));
+    }
+
+    @Override
+    public void guardarDomicilio(UUID tiendaId, ConfiguracionDomicilio domicilio) {
+        var fila = tiendaJpaRepository.findById(tiendaId).orElseThrow(TiendaNoEncontradaException::new);
+        var tarifaFija = domicilio.tarifa().map(TarifaDomicilio.TarifaFija.class::cast);
+        fila.actualizarDomicilio(
+                domicilio.haceDomicilio(),
+                domicilio.haceDomicilio() ? domicilio.radioCoberturaEnMetros() : null,
+                tarifaFija.map(TarifaDomicilio::tipo).orElse(null),
+                tarifaFija.map(TarifaDomicilio.TarifaFija::valorEnPesos).orElse(null),
+                reloj.instant());
     }
 
     @Override

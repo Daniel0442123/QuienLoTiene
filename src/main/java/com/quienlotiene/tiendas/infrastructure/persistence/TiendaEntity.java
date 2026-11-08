@@ -51,6 +51,18 @@ public class TiendaEntity {
     @Column(nullable = false)
     private boolean abierta;
 
+    @Column(name = "hace_domicilio", nullable = false)
+    private boolean haceDomicilio;
+
+    @Column(name = "radio_cobertura_metros")
+    private Integer radioCoberturaMetros;
+
+    @Column(name = "tipo_tarifa", length = 20)
+    private String tipoTarifa;
+
+    @Column(name = "valor_tarifa_pesos")
+    private Long valorTarifaPesos;
+
     @Column(name = "motivo_rechazo", length = 300)
     private String motivoRechazo;
 
@@ -88,6 +100,20 @@ public class TiendaEntity {
         this.abierta = abierta;
         this.creadoEn = creadoEn;
         this.actualizadoEn = creadoEn;
+    }
+
+    /** Copia en la fila la configuración de domicilio (HU-010). */
+    void actualizarDomicilio(
+            boolean haceDomicilio,
+            Integer radioCoberturaMetros,
+            String tipoTarifa,
+            Long valorTarifaPesos,
+            Instant fecha) {
+        this.haceDomicilio = haceDomicilio;
+        this.radioCoberturaMetros = radioCoberturaMetros;
+        this.tipoTarifa = tipoTarifa;
+        this.valorTarifaPesos = valorTarifaPesos;
+        this.actualizadoEn = fecha;
     }
 
     /** Copia en la fila el interruptor de apertura (HU-013). */
