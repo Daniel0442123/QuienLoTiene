@@ -44,16 +44,22 @@ public final class Usuario {
     /** Un cliente nuevo nace activo (HU-001): puede iniciar sesión de inmediato. */
     public static Usuario registrarCliente(
             UUID id, String nombre, Correo correo, String telefono, String hashContrasena, Instant ahora) {
+        return registrarConRol(id, nombre, correo, telefono, hashContrasena, Rol.CLIENTE, ahora);
+    }
+
+    /**
+     * El dueño de una tienda nueva (HU-002) también nace activo: puede iniciar sesión para ver el estado de su tienda,
+     * que queda PENDIENTE hasta que el administrador la apruebe.
+     */
+    public static Usuario registrarDuenoTienda(
+            UUID id, String nombre, Correo correo, String telefono, String hashContrasena, Instant ahora) {
+        return registrarConRol(id, nombre, correo, telefono, hashContrasena, Rol.TIENDA, ahora);
+    }
+
+    private static Usuario registrarConRol(
+            UUID id, String nombre, Correo correo, String telefono, String hashContrasena, Rol rol, Instant ahora) {
         return new Usuario(
-                id,
-                nombre.strip(),
-                correo,
-                telefono.strip(),
-                hashContrasena,
-                Rol.CLIENTE,
-                EstadoCuenta.ACTIVA,
-                null,
-                ahora);
+                id, nombre.strip(), correo, telefono.strip(), hashContrasena, rol, EstadoCuenta.ACTIVA, null, ahora);
     }
 
     /**

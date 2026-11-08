@@ -25,6 +25,12 @@ spring:
     # Flyway recorre las subcarpetas: db/migration/<modulo>/V<AAAAMMDDHHmm>__<modulo>_<descripcion>.sql (D-12)
     locations: classpath:db/migration
 
+  servlet:
+    multipart:
+      # Documentos de la tienda (RNF-012): máximo 5 MB cada uno; dos archivos más los datos por petición
+      max-file-size: 5MB
+      max-request-size: 11MB
+
   modulith:
     events:
       # Reenvía los eventos que quedaron sin procesar si la app se reinicia (sección 4.3)
@@ -50,6 +56,9 @@ quienlotiene:
       telefono: ${QLT_ADMIN_TELEFONO:0000000}
       frase-contrasena: ${QLT_ADMIN_FRASE:}
       secreto-totp: ${QLT_ADMIN_SECRETO_TOTP:}
+  archivos:
+    # Carpeta de los documentos de las tiendas (sección 12); en prod fuera de la carpeta de la aplicación
+    directorio: ${QLT_ARCHIVOS_DIRECTORIO:./almacen-archivos}
   solicitudes:
     # Valores aprobados en la Fase 9 (DECISIONES-BACKEND, sección 13)
     vigencia: 30m

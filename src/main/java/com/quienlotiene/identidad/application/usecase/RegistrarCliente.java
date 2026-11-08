@@ -2,11 +2,6 @@ package com.quienlotiene.identidad.application.usecase;
 
 import com.quienlotiene.identidad.application.dto.ClienteRegistrado;
 import com.quienlotiene.identidad.application.dto.RegistrarClienteComando;
-import com.quienlotiene.identidad.domain.model.AutorizacionDatos;
-import com.quienlotiene.identidad.domain.model.Correo;
-import com.quienlotiene.identidad.domain.model.CorreoYaRegistradoException;
-import com.quienlotiene.identidad.domain.model.FraseContrasena;
-import com.quienlotiene.identidad.domain.model.FraseContrasenaComunException;
 import com.quienlotiene.identidad.domain.model.Usuario;
 import com.quienlotiene.identidad.domain.port.AutorizacionDatosRepository;
 import com.quienlotiene.identidad.domain.port.CodificadorFrasesContrasena;
@@ -14,7 +9,6 @@ import com.quienlotiene.identidad.domain.port.ListaFrasesComunes;
 import com.quienlotiene.identidad.domain.port.PoliticaDatos;
 import com.quienlotiene.identidad.domain.port.UsuarioRepository;
 import java.time.Clock;
-import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,12 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RegistrarCliente {
 
-    private final UsuarioRepository usuarioRepository;
-    private final CodificadorFrasesContrasena codificadorFrases;
-    private final ListaFrasesComunes listaFrasesComunes;
-    private final AutorizacionDatosRepository autorizacionDatosRepository;
-    private final PoliticaDatos politicaDatos;
-    private final Clock reloj;
+    private final RegistroConAutorizacion registro;
 
     public RegistrarCliente(
             UsuarioRepository usuarioRepository,
@@ -42,42 +31,27 @@ public class RegistrarCliente {
             AutorizacionDatosRepository autorizacionDatosRepository,
             PoliticaDatos politicaDatos,
             Clock reloj) {
-        this.usuarioRepository = usuarioRepository;
-        this.codificadorFrases = codificadorFrases;
-        this.listaFrasesComunes = listaFrasesComunes;
-        this.autorizacionDatosRepository = autorizacionDatosRepository;
-        this.politicaDatos = politicaDatos;
-        this.reloj = reloj;
+        this.registro = new RegistroConAutorizacion(
+                usuarioRepository,
+                codificadorFrases,
+                listaFrasesComunes,
+                autorizacionDatosRepository,
+                politicaDatos,
+                reloj);
     }
 
     @Transactional
     public ClienteRegistrado ejecutar(RegistrarClienteComando comando) {
-        var ahora = reloj.instant();
-        var usuarioId = UUID.randomUUID();
-        var autorizacion = AutorizacionDatos.otorgar(
-                UUID.randomUUID(),
-                usuarioId,
-                comando.aceptaPoliticaDatos(),
-                comando.versionPoliticaDatos(),
-                politicaDatos.versionVigente(),
-                ahora);
-        var correo = new Correo(comando.correo());
-        var frase = new FraseContrasena(comando.fraseContrasena());
-        if (listaFrasesComunes.contiene(frase)) {
-            throw new FraseContrasenaComunException();
-        }
-        if (usuarioRepository.existePorCorreo(correo)) {
-            throw new CorreoYaRegistradoException();
-        }
-
-        var cliente = Usuario.registrarCliente(
-                usuarioId, comando.nombre(), correo, comando.telefono(), codificadorFrases.calcularHash(frase), ahora);
-        usuarioRepository.guardarNuevo(cliente);
-        autorizacionDatosRepository.guardar(autorizacion);
-        log.info(
-                "Cliente {} registrado con la política de datos {}",
-                cliente.getId(),
-                autorizacion.getVersionPolitica());
+        var cliente = registro.registrar(
+                new RegistroConAutorizacion.DatosRegistro(
+                        comando.nombre(),
+                        comando.correo(),
+                        comando.telefono(),
+                        comando.fraseContrasena(),
+                        comando.aceptaPoliticaDatos(),
+                        comando.versionPoliticaDatos()),
+                Usuario::registrarCliente);
+        log.info("Cliente {} registrado", cliente.getId());
 
         return new ClienteRegistrado(
                 cliente.getId(),
