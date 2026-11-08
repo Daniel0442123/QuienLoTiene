@@ -15,3 +15,9 @@ springdoc:
 logging:
   level:
     com.quienlotiene: debug
+
+# Sin llaves JWT en el .env se generan unas temporales al arrancar (nunca en prod)
+quienlotiene:
+  seguridad:
+    jwt:
+      permitir-llaves-temporales: true
