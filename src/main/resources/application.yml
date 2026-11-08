@@ -36,6 +36,9 @@ spring:
 
 # Propiedades propias (DECISIONES-BACKEND, sección 13)
 quienlotiene:
+  identidad:
+    # Versión vigente de la política de tratamiento de datos (HU-005); el registro debe enviar esta misma
+    version-politica-datos: "1.0"
   seguridad:
     jwt:
       emisor: quienlotiene
