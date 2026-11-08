@@ -13,7 +13,8 @@ public record SesionIniciada(
         String tokenAcceso,
         Instant fechaExpiracionAcceso,
         String tokenRefresco,
-        Instant fechaExpiracionRefresco) {
+        Instant fechaExpiracionRefresco)
+        implements ResultadoInicioSesion {
 
     @Override
     public String toString() {

@@ -33,7 +33,7 @@ public final class TokenRefresco {
     }
 
     public static TokenRefresco emitir(
-            UUID id, UUID usuarioId, ValorTokenRefresco valor, Duration duracion, Instant ahora) {
+            UUID id, UUID usuarioId, ValorTokenOpaco valor, Duration duracion, Instant ahora) {
         return new TokenRefresco(id, usuarioId, valor.calcularHash(), ahora.plus(duracion), false, ahora);
     }
 

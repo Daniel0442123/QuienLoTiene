@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import com.quienlotiene.identidad.application.dto.IniciarSesionComando;
+import com.quienlotiene.identidad.application.dto.SesionIniciada;
 import com.quienlotiene.identidad.domain.model.Correo;
 import com.quienlotiene.identidad.domain.model.CredencialesIncorrectasException;
 import com.quienlotiene.identidad.domain.model.CuentaSuspendidaException;
@@ -19,8 +20,9 @@ import com.quienlotiene.identidad.domain.model.SesionVencidaException;
 import com.quienlotiene.identidad.domain.model.TokenAcceso;
 import com.quienlotiene.identidad.domain.model.TokenRefresco;
 import com.quienlotiene.identidad.domain.model.Usuario;
-import com.quienlotiene.identidad.domain.model.ValorTokenRefresco;
+import com.quienlotiene.identidad.domain.model.ValorTokenOpaco;
 import com.quienlotiene.identidad.domain.port.CodificadorFrasesContrasena;
+import com.quienlotiene.identidad.domain.port.DesafioSegundoFactorRepository;
 import com.quienlotiene.identidad.domain.port.GeneradorTokenAcceso;
 import com.quienlotiene.identidad.domain.port.TokenRefrescoRepository;
 import com.quienlotiene.identidad.domain.port.UsuarioRepository;
@@ -62,6 +64,9 @@ class SesionesTest {
     @Mock
     TokenRefrescoRepository tokenRefrescoRepository;
 
+    @Mock
+    DesafioSegundoFactorRepository desafioRepository;
+
     Clock reloj = Clock.fixed(AHORA, ZoneOffset.UTC);
     EmisorSesion emisorSesion;
 
@@ -83,7 +88,8 @@ class SesionesTest {
 
         @BeforeEach
         void configurar() {
-            iniciarSesion = new IniciarSesion(usuarioRepository, codificadorFrases, emisorSesion, reloj);
+            iniciarSesion =
+                    new IniciarSesion(usuarioRepository, codificadorFrases, emisorSesion, desafioRepository, reloj);
         }
 
         @Test
@@ -99,7 +105,7 @@ class SesionesTest {
                     .thenReturn(new TokenAcceso("jwt-firmado", AHORA.plus(Duration.ofMinutes(15))));
 
             // Cuando
-            var sesion = iniciarSesion.ejecutar(new IniciarSesionComando("Ana@Correo.com", FRASE));
+            var sesion = (SesionIniciada) iniciarSesion.ejecutar(new IniciarSesionComando("Ana@Correo.com", FRASE));
 
             // Entonces
             assertThat(sesion.tokenAcceso()).isEqualTo("jwt-firmado");
@@ -110,7 +116,7 @@ class SesionesTest {
             verify(tokenRefrescoRepository).guardar(tokenGuardado.capture());
             assertThat(tokenGuardado.getValue().getUsuarioId()).isEqualTo(cliente.getId());
             assertThat(tokenGuardado.getValue().getHashToken())
-                    .isEqualTo(new ValorTokenRefresco(sesion.tokenRefresco()).calcularHash());
+                    .isEqualTo(new ValorTokenOpaco(sesion.tokenRefresco()).calcularHash());
         }
 
         @Test
@@ -173,7 +179,7 @@ class SesionesTest {
         }
 
         @Test
-        @DisplayName("El administrador no entra sin segundo factor (HU-004)")
+        @DisplayName("Un administrador sin secreto TOTP configurado no entra (IDE-011)")
         void exigeSegundoFactorAlAdministrador() {
             when(usuarioRepository.buscarPorCorreo(any()))
                     .thenReturn(Optional.of(usuario(Rol.ADMIN, EstadoCuenta.ACTIVA)));
@@ -190,7 +196,7 @@ class SesionesTest {
     class RefrescarSesionTest {
 
         RefrescarSesion refrescarSesion;
-        ValorTokenRefresco valorRecibido = ValorTokenRefresco.generar();
+        ValorTokenOpaco valorRecibido = ValorTokenOpaco.generar();
 
         @BeforeEach
         void configurar() {
@@ -310,7 +316,7 @@ class SesionesTest {
         @DisplayName("Revoca el token de refresco de la cookie")
         void revocaElToken() {
             // Dado
-            var valor = ValorTokenRefresco.generar();
+            var valor = ValorTokenOpaco.generar();
             var token = TokenRefresco.emitir(UUID.randomUUID(), UUID.randomUUID(), valor, SIETE_DIAS, AHORA);
             when(tokenRefrescoRepository.buscarPorHash(valor.calcularHash())).thenReturn(Optional.of(token));
 

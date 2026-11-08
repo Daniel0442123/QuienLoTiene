@@ -1,10 +1,12 @@
 package com.quienlotiene.identidad.infrastructure.web;
 
+import com.quienlotiene.identidad.application.dto.SegundoFactorPendiente;
 import com.quienlotiene.identidad.application.dto.SesionIniciada;
 import com.quienlotiene.identidad.application.usecase.CerrarSesion;
 import com.quienlotiene.identidad.application.usecase.IniciarSesion;
 import com.quienlotiene.identidad.application.usecase.RefrescarSesion;
 import com.quienlotiene.identidad.application.usecase.RegistrarCliente;
+import com.quienlotiene.identidad.application.usecase.VerificarSegundoFactor;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,6 +34,7 @@ class AutenticacionController {
     private final IniciarSesion iniciarSesion;
     private final RefrescarSesion refrescarSesion;
     private final CerrarSesion cerrarSesion;
+    private final VerificarSegundoFactor verificarSegundoFactor;
     private final IdentidadWebMapper identidadMapper;
     private final Clock reloj;
 
@@ -40,12 +43,14 @@ class AutenticacionController {
             IniciarSesion iniciarSesion,
             RefrescarSesion refrescarSesion,
             CerrarSesion cerrarSesion,
+            VerificarSegundoFactor verificarSegundoFactor,
             IdentidadWebMapper identidadMapper,
             Clock reloj) {
         this.registrarCliente = registrarCliente;
         this.iniciarSesion = iniciarSesion;
         this.refrescarSesion = refrescarSesion;
         this.cerrarSesion = cerrarSesion;
+        this.verificarSegundoFactor = verificarSegundoFactor;
         this.identidadMapper = identidadMapper;
         this.reloj = reloj;
     }
@@ -65,13 +70,35 @@ class AutenticacionController {
     @Operation(
             summary = "Iniciar sesión",
             description = "HU-003. Devuelve el token de acceso de 15 minutos y deja el token de refresco en la cookie "
-                    + CookieTokenRefresco.NOMBRE + ".")
-    @ApiResponse(responseCode = "200", description = "Sesión iniciada")
-    @ApiResponse(responseCode = "401", description = "Correo o frase incorrectos (IDE-008); administrador (IDE-011)")
+                    + CookieTokenRefresco.NOMBRE + ". Para el administrador devuelve segundoFactorRequerido=true y "
+                    + "un token temporal para POST /api/v1/auth/totp (HU-004).")
+    @ApiResponse(responseCode = "200", description = "Sesión iniciada o segundo factor pendiente")
+    @ApiResponse(
+            responseCode = "401",
+            description = "Correo o frase incorrectos (IDE-008); administrador sin segundo factor (IDE-011)")
     @ApiResponse(responseCode = "403", description = "Cuenta suspendida (IDE-009)")
     @PostMapping("/login")
-    ResponseEntity<SesionResponse> iniciarSesion(@Valid @RequestBody IniciarSesionRequest peticion) {
-        return respuestaConSesion(iniciarSesion.ejecutar(identidadMapper.aComando(peticion)));
+    ResponseEntity<RespuestaInicioSesion> iniciarSesion(@Valid @RequestBody IniciarSesionRequest peticion) {
+        var resultado = iniciarSesion.ejecutar(identidadMapper.aComando(peticion));
+        return switch (resultado) {
+            case SesionIniciada sesion -> respuestaConSesion(sesion);
+            case SegundoFactorPendiente pendiente ->
+                ResponseEntity.ok()
+                        .header(HttpHeaders.CACHE_CONTROL, "no-store")
+                        .body(identidadMapper.aResponse(pendiente));
+        };
+    }
+
+    @Operation(
+            summary = "Verificar el segundo factor",
+            description = "HU-004. Con el token temporal del inicio de sesión y el código de 6 dígitos de la "
+                    + "aplicación autenticadora, entrega la sesión del administrador.")
+    @ApiResponse(responseCode = "200", description = "Sesión del administrador iniciada")
+    @ApiResponse(responseCode = "401", description = "Código incorrecto (IDE-012) o verificación vencida (IDE-013)")
+    @PostMapping("/totp")
+    ResponseEntity<RespuestaInicioSesion> verificarSegundoFactor(
+            @Valid @RequestBody VerificarSegundoFactorRequest peticion) {
+        return respuestaConSesion(verificarSegundoFactor.ejecutar(identidadMapper.aComando(peticion)));
     }
 
     @Operation(
@@ -80,7 +107,7 @@ class AutenticacionController {
     @ApiResponse(responseCode = "200", description = "Sesión renovada")
     @ApiResponse(responseCode = "401", description = "Sin cookie, o token vencido o revocado (IDE-010)")
     @PostMapping("/refresco")
-    ResponseEntity<SesionResponse> refrescarSesion(
+    ResponseEntity<RespuestaInicioSesion> refrescarSesion(
             @CookieValue(name = CookieTokenRefresco.NOMBRE, required = false) String tokenRefresco) {
         return respuestaConSesion(refrescarSesion.ejecutar(tokenRefresco));
     }
@@ -96,7 +123,7 @@ class AutenticacionController {
                 .build();
     }
 
-    private ResponseEntity<SesionResponse> respuestaConSesion(SesionIniciada sesion) {
+    private ResponseEntity<RespuestaInicioSesion> respuestaConSesion(SesionIniciada sesion) {
         var cookie = CookieTokenRefresco.con(sesion.tokenRefresco(), sesion.fechaExpiracionRefresco(), reloj.instant());
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, cookie.toString())

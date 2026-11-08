@@ -1,6 +1,6 @@
 package com.quienlotiene.identidad.application.usecase;
 
-import com.quienlotiene.identidad.domain.model.ValorTokenRefresco;
+import com.quienlotiene.identidad.domain.model.ValorTokenOpaco;
 import com.quienlotiene.identidad.domain.port.TokenRefrescoRepository;
 import java.time.Clock;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class CerrarSesion {
             return;
         }
         tokenRefrescoRepository
-                .buscarPorHash(new ValorTokenRefresco(tokenRefrescoRecibido).calcularHash())
+                .buscarPorHash(new ValorTokenOpaco(tokenRefrescoRecibido).calcularHash())
                 .ifPresent(token -> {
                     tokenRefrescoRepository.revocarSiSigueActivo(token.getId(), reloj.instant());
                     log.info("Usuario {} cerró sesión", token.getUsuarioId());

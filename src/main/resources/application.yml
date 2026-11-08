@@ -41,6 +41,15 @@ quienlotiene:
     version-politica-datos: "1.0"
     # Duración del token de refresco (HU-003): cuánto dura la sesión sin volver a escribir la frase
     duracion-token-refresco: 7d
+    # Llave AES de 32 bytes en Base64 para cifrar los secretos TOTP (HU-004): openssl rand -base64 32
+    llave-cifrado-totp: ${QLT_TOTP_LLAVE_CIFRADO:}
+    # Administrador que se crea al arrancar si no existe; sin correo no se crea nada (HU-004)
+    administrador-inicial:
+      nombre: ${QLT_ADMIN_NOMBRE:Administrador}
+      correo: ${QLT_ADMIN_CORREO:}
+      telefono: ${QLT_ADMIN_TELEFONO:0000000}
+      frase-contrasena: ${QLT_ADMIN_FRASE:}
+      secreto-totp: ${QLT_ADMIN_SECRETO_TOTP:}
   solicitudes:
     # Valores aprobados en la Fase 9 (DECISIONES-BACKEND, sección 13)
     vigencia: 30m

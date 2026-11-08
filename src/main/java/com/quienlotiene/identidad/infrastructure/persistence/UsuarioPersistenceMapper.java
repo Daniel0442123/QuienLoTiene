@@ -4,20 +4,30 @@ import com.quienlotiene.identidad.domain.model.Correo;
 import com.quienlotiene.identidad.domain.model.EstadoCuenta;
 import com.quienlotiene.identidad.domain.model.Rol;
 import com.quienlotiene.identidad.domain.model.Usuario;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
-/** Convierte el {@code Usuario} del dominio en la fila de {@code identidad.usuario} y al revés. */
-@Mapper
-interface UsuarioPersistenceMapper {
+/**
+ * Convierte el {@code Usuario} del dominio en la fila de {@code identidad.usuario} y al revés. Se escribe a mano: el
+ * dominio solo se crea por sus fábricas y el secreto TOTP es opcional.
+ */
+@Component
+class UsuarioPersistenceMapper {
 
-    @Mapping(target = "correo", source = "correo.valor")
-    @Mapping(target = "creadoEn", source = "fechaCreacion")
-    @Mapping(target = "actualizadoEn", source = "fechaCreacion")
-    UsuarioEntity aEntity(Usuario usuario);
+    UsuarioEntity aEntity(Usuario usuario) {
+        return new UsuarioEntity(
+                usuario.getId(),
+                usuario.getNombre(),
+                usuario.getCorreo().valor(),
+                usuario.getTelefono(),
+                usuario.getHashContrasena(),
+                usuario.getRol().name(),
+                usuario.getEstado().name(),
+                usuario.getSecretoTotpCifrado().orElse(null),
+                usuario.getFechaCreacion(),
+                usuario.getFechaCreacion());
+    }
 
-    /** El dominio solo se crea por sus fábricas, así que esta conversión se escribe a mano. */
-    default Usuario aDominio(UsuarioEntity fila) {
+    Usuario aDominio(UsuarioEntity fila) {
         return Usuario.reconstituir(
                 fila.getId(),
                 fila.getNombre(),
@@ -26,6 +36,7 @@ interface UsuarioPersistenceMapper {
                 fila.getHashContrasena(),
                 Rol.valueOf(fila.getRol()),
                 EstadoCuenta.valueOf(fila.getEstado()),
+                fila.getSecretoTotp(),
                 fila.getCreadoEn());
     }
 }

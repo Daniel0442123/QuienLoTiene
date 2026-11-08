@@ -3,7 +3,7 @@ package com.quienlotiene.identidad.application.usecase;
 import com.quienlotiene.identidad.application.dto.SesionIniciada;
 import com.quienlotiene.identidad.domain.model.TokenRefresco;
 import com.quienlotiene.identidad.domain.model.Usuario;
-import com.quienlotiene.identidad.domain.model.ValorTokenRefresco;
+import com.quienlotiene.identidad.domain.model.ValorTokenOpaco;
 import com.quienlotiene.identidad.domain.port.ConfiguracionSesion;
 import com.quienlotiene.identidad.domain.port.GeneradorTokenAcceso;
 import com.quienlotiene.identidad.domain.port.TokenRefrescoRepository;
@@ -30,7 +30,7 @@ class EmisorSesion {
 
     SesionIniciada emitirPara(Usuario usuario, Instant ahora) {
         var tokenAcceso = generadorTokenAcceso.generar(usuario.getId(), usuario.getRol());
-        var valorRefresco = ValorTokenRefresco.generar();
+        var valorRefresco = ValorTokenOpaco.generar();
         var tokenRefresco = TokenRefresco.emitir(
                 UUID.randomUUID(), usuario.getId(), valorRefresco, configuracionSesion.duracionTokenRefresco(), ahora);
         tokenRefrescoRepository.guardar(tokenRefresco);
