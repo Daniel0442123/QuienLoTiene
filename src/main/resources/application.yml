@@ -1,0 +1,47 @@
+# Configuración común a todos los perfiles (DECISIONES-BACKEND, sección 13).
+# Los secretos nunca van aquí: salen de variables de entorno (ver .env.ejemplo).
+spring:
+  application:
+    name: quienlotiene
+  profiles:
+    default: dev
+
+  datasource:
+    url: ${QLT_DB_URL:jdbc:postgresql://localhost:5432/quienlotiene}
+    username: ${QLT_DB_USUARIO:quienlotiene}
+    password: ${QLT_DB_CLAVE:}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      # La base solo cambia con Flyway (D-11)
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    # Flyway recorre las subcarpetas: db/migration/<modulo>/V<AAAAMMDDHHmm>__<modulo>_<descripcion>.sql (D-12)
+    locations: classpath:db/migration
+
+  modulith:
+    events:
+      # Reenvía los eventos que quedaron sin procesar si la app se reinicia (sección 4.3)
+      republish-outstanding-events-on-restart: true
+
+  docker:
+    compose:
+      enabled: false
+
+server:
+  error:
+    include-stacktrace: never
+    include-message: never
+
+# Swagger UI solo fuera de producción (D-17); el perfil dev lo habilita
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

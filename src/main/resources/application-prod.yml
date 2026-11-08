@@ -1,0 +1,13 @@
+# Perfil de producción (VPS): sin valores por defecto para la base, todo sale de variables de entorno
+spring:
+  datasource:
+    url: ${QLT_DB_URL}
+    username: ${QLT_DB_USUARIO}
+    password: ${QLT_DB_CLAVE}
+
+logging:
+  structured:
+    format:
+      console: ecs
+  level:
+    root: info

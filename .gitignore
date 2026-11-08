@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secretos (RNF-030): solo se sube .env.ejemplo ###
+.env
+.env.*
+!.env.ejemplo

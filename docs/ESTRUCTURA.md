@@ -26,11 +26,13 @@ Dentro de cada módulo:
 - `src/main/resources/db/migration/<modulo>/`: migraciones Flyway, una carpeta por módulo (un esquema de PostgreSQL por módulo).
 - `src/test/java/.../arquitectura/`: pruebas de Spring Modulith y ArchUnit que verifican las fronteras.
 - `src/test/java/.../<modulo>/`: pruebas de cada módulo.
+- Convención: `*Test.java` = unitarias (`mvn test`), `*IT.java` = integración (`mvn verify`). Cada prueba lleva `@Tag("HU-xxx")` y `@Tag("CP-xxx")`. Detalle en `docs/pruebas/ESTRATEGIA-DE-PRUEBAS.md`.
 
 ## Otras carpetas
 
 - `frontend/`: aplicación React + Vite (PWA).
 - `docs/`: requisitos, arquitectura, diagramas `.drawio` y documentación de la API.
+- `docs/pruebas/`: estrategia de pruebas, bitácora de ejecuciones, plantillas y registros de cada ejecución con sus evidencias.
 - `docker/`: Dockerfile de la API, inicialización de PostgreSQL/PostGIS y configuración de Caddy.
 - `.github/workflows/`: integración continua.
 - `scripts/`: utilidades de desarrollo y copias de seguridad.

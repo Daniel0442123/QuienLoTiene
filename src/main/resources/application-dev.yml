@@ -1,0 +1,17 @@
+# Perfil de desarrollo local: levanta PostgreSQL + PostGIS con compose.yaml y el archivo .env
+spring:
+  docker:
+    compose:
+      enabled: true
+      lifecycle-management: start-only
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+
+logging:
+  level:
+    com.quienlotiene: debug
