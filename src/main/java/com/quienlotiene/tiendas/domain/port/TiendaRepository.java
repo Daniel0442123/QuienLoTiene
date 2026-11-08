@@ -1,8 +1,10 @@
 package com.quienlotiene.tiendas.domain.port;
 
+import com.quienlotiene.shared.domain.Ubicacion;
 import com.quienlotiene.tiendas.domain.model.DocumentoVerificacion;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
 import com.quienlotiene.tiendas.domain.model.Tienda;
+import com.quienlotiene.tiendas.domain.model.TiendaCandidata;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,4 +29,13 @@ public interface TiendaRepository {
 
     /** Guarda el nombre, el teléfono y el horario (HU-009). */
     void guardarPerfil(Tienda tienda);
+
+    /** Guarda el interruptor de apertura (HU-013). */
+    void guardarApertura(Tienda tienda);
+
+    /**
+     * Tiendas APROBADAS y abiertas de la categoría cuyo local está a {@code radioEnMetros} o menos del punto, de la más
+     * cercana a la más lejana (PostGIS {@code ST_DWithin}). El horario lo revisa el dominio.
+     */
+    List<TiendaCandidata> buscarCandidatasCerca(UUID categoriaId, Ubicacion punto, int radioEnMetros);
 }

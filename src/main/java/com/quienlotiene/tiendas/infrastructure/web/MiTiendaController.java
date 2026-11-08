@@ -4,6 +4,7 @@ import com.quienlotiene.shared.infrastructure.security.UsuarioActual;
 import com.quienlotiene.tiendas.application.dto.ActualizarPerfilTiendaComando;
 import com.quienlotiene.tiendas.application.dto.MiTienda;
 import com.quienlotiene.tiendas.application.usecase.ActualizarPerfilTienda;
+import com.quienlotiene.tiendas.application.usecase.CambiarAperturaTienda;
 import com.quienlotiene.tiendas.application.usecase.ConsultarMiTienda;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +27,27 @@ class MiTiendaController {
 
     private final ConsultarMiTienda consultarMiTienda;
     private final ActualizarPerfilTienda actualizarPerfilTienda;
+    private final CambiarAperturaTienda cambiarAperturaTienda;
     private final UsuarioActual usuarioActual;
 
     MiTiendaController(
             ConsultarMiTienda consultarMiTienda,
             ActualizarPerfilTienda actualizarPerfilTienda,
+            CambiarAperturaTienda cambiarAperturaTienda,
             UsuarioActual usuarioActual) {
         this.consultarMiTienda = consultarMiTienda;
         this.actualizarPerfilTienda = actualizarPerfilTienda;
+        this.cambiarAperturaTienda = cambiarAperturaTienda;
         this.usuarioActual = usuarioActual;
+    }
+
+    @Operation(
+            summary = "Abrir o cerrar la tienda",
+            description = "HU-013. Abierta (y en su horario) recibe solicitudes nuevas; cerrada deja de recibirlas.")
+    @ApiResponse(responseCode = "409", description = "La tienda aún no está aprobada (TIE-008)")
+    @PatchMapping("/apertura")
+    MiTienda cambiarApertura(@Valid @RequestBody CambiarAperturaRequest peticion) {
+        return cambiarAperturaTienda.ejecutar(usuarioActual.id(), peticion.abierta());
     }
 
     @Operation(summary = "Ver mi tienda", description = "Estado, motivo de rechazo si lo hay, perfil y horario.")

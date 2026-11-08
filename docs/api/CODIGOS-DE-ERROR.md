@@ -49,6 +49,7 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `TIE-005` | 400 | Motivo de rechazo inválido | El rechazo llega sin motivo o con más de 300 caracteres | HU-036 |
 | `TIE-006` | 404 | Tienda no encontrada | La tienda o el documento pedido no existe | HU-036 |
 | `TIE-007` | 400 | Horario inválido | Un día aparece dos veces o una franja abre después de cerrar | HU-009 |
+| `TIE-008` | 409 | Tienda no aprobada | La tienda intenta abrir o cerrar antes de que el administrador la apruebe | HU-013 |
 | `GEN-010` | 413 | Archivo muy grande | La petición trae un archivo de más de 5 MB; la corta el servidor antes de llegar al caso de uso | HU-002 |
 | `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
 | `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |
