@@ -8,6 +8,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.quienlotiene.identidad.application.dto.RegistrarClienteComando;
+import com.quienlotiene.identidad.domain.model.AutorizacionDatos;
+import com.quienlotiene.identidad.domain.model.AutorizacionDatosRequeridaException;
 import com.quienlotiene.identidad.domain.model.Correo;
 import com.quienlotiene.identidad.domain.model.CorreoYaRegistradoException;
 import com.quienlotiene.identidad.domain.model.FraseContrasena;
@@ -15,6 +17,7 @@ import com.quienlotiene.identidad.domain.model.FraseContrasenaComunException;
 import com.quienlotiene.identidad.domain.model.FraseContrasenaMuyCortaException;
 import com.quienlotiene.identidad.domain.model.Rol;
 import com.quienlotiene.identidad.domain.model.Usuario;
+import com.quienlotiene.identidad.domain.port.AutorizacionDatosRepository;
 import com.quienlotiene.identidad.domain.port.CodificadorFrasesContrasena;
 import com.quienlotiene.identidad.domain.port.ListaFrasesComunes;
 import com.quienlotiene.identidad.domain.port.UsuarioRepository;
@@ -37,6 +40,7 @@ class RegistrarClienteTest {
 
     private static final Instant AHORA = Instant.parse("2026-11-09T15:30:00Z");
     private static final String FRASE_VALIDA = "mi perro come mango los domingos";
+    private static final String VERSION_VIGENTE = "1.0";
 
     @Mock
     UsuarioRepository usuarioRepository;
@@ -47,12 +51,20 @@ class RegistrarClienteTest {
     @Mock
     ListaFrasesComunes listaFrasesComunes;
 
+    @Mock
+    AutorizacionDatosRepository autorizacionDatosRepository;
+
     RegistrarCliente registrarCliente;
 
     @BeforeEach
     void configurar() {
         registrarCliente = new RegistrarCliente(
-                usuarioRepository, codificadorFrases, listaFrasesComunes, Clock.fixed(AHORA, ZoneOffset.UTC));
+                usuarioRepository,
+                codificadorFrases,
+                listaFrasesComunes,
+                autorizacionDatosRepository,
+                () -> VERSION_VIGENTE,
+                Clock.fixed(AHORA, ZoneOffset.UTC));
     }
 
     @Test
@@ -123,7 +135,45 @@ class RegistrarClienteTest {
         verify(usuarioRepository, never()).guardarNuevo(any());
     }
 
+    @Test
+    @Tag("HU-005")
+    @Tag("CP-IDE-005-01")
+    @DisplayName("CP-IDE-005-01 Registro sin autorización de datos: no crea la cuenta")
+    void noCreaLaCuentaSinAutorizacionDeDatos() {
+        // Dado
+        var comandoSinAutorizacion = new RegistrarClienteComando(
+                "Ana Pérez", "ana@correo.com", "3001234567", FRASE_VALIDA, false, VERSION_VIGENTE);
+
+        // Cuando / Entonces
+        assertThatThrownBy(() -> registrarCliente.ejecutar(comandoSinAutorizacion))
+                .isInstanceOf(AutorizacionDatosRequeridaException.class)
+                .extracting("codigo")
+                .isEqualTo("IDE-006");
+        verify(usuarioRepository, never()).guardarNuevo(any());
+        verify(autorizacionDatosRepository, never()).guardar(any());
+    }
+
+    @Test
+    @Tag("HU-005")
+    @Tag("CP-IDE-005-02")
+    @Tag("NF-SEG-014")
+    @DisplayName("CP-IDE-005-02 Autorización registrada con fecha, hora y versión 1.0 del mismo usuario")
+    void guardaLaAutorizacionConVersionYFecha() {
+        // Dado
+        when(codificadorFrases.calcularHash(any())).thenReturn("$argon2id$hash");
+
+        // Cuando
+        var resultado = registrarCliente.ejecutar(comando("ana@correo.com", FRASE_VALIDA));
+
+        // Entonces
+        var autorizacionGuardada = ArgumentCaptor.forClass(AutorizacionDatos.class);
+        verify(autorizacionDatosRepository).guardar(autorizacionGuardada.capture());
+        assertThat(autorizacionGuardada.getValue().getUsuarioId()).isEqualTo(resultado.id());
+        assertThat(autorizacionGuardada.getValue().getVersionPolitica()).isEqualTo("1.0");
+        assertThat(autorizacionGuardada.getValue().getFechaAceptacion()).isEqualTo(AHORA);
+    }
+
     private static RegistrarClienteComando comando(String correo, String frase) {
-        return new RegistrarClienteComando("Ana Pérez", correo, "3001234567", frase);
+        return new RegistrarClienteComando("Ana Pérez", correo, "3001234567", frase, true, VERSION_VIGENTE);
     }
 }

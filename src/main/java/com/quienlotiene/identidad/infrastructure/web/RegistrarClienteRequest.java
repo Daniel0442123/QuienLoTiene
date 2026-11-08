@@ -1,7 +1,9 @@
 package com.quienlotiene.identidad.infrastructure.web;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -26,7 +28,16 @@ public record RegistrarClienteRequest(
         String telefono,
 
         @NotBlank(message = "La frase de contraseña es obligatoria")
-        String fraseContrasena) {
+        String fraseContrasena,
+
+        // CP-IDE-005-01: el error sale en la lista "errores" con este campo para que la pantalla resalte la casilla
+        @NotNull(message = "Debes aceptar la política de tratamiento de datos")
+        @AssertTrue(message = "Debes aceptar la política de tratamiento de datos")
+        Boolean aceptaPoliticaDatos,
+
+        @NotBlank(message = "La versión de la política aceptada es obligatoria")
+        @Size(max = 10, message = "La versión de la política puede tener máximo 10 caracteres")
+        String versionPoliticaDatos) {
 
     @Override
     public String toString() {

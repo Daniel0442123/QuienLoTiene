@@ -115,7 +115,8 @@ class AutenticacionControllerIT {
     @DisplayName("Los campos con forma inválida responden 400 GEN-001 con la lista de errores")
     void rechazaLosCamposInvalidos() throws Exception {
         var cuerpoInvalido = """
-                {"nombre": "", "correo": "no-es-correo", "telefono": "abc", "fraseContrasena": "mi perro come mango"}
+                {"nombre": "", "correo": "no-es-correo", "telefono": "abc", "fraseContrasena": "mi perro come mango",
+                 "aceptaPoliticaDatos": true, "versionPoliticaDatos": "1.0"}
                 """;
 
         mockMvc.perform(post("/api/v1/auth/registro")
@@ -124,6 +125,69 @@ class AutenticacionControllerIT {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.codigo").value("GEN-001"))
                 .andExpect(jsonPath("$.errores.length()").value(3));
+    }
+
+    @Test
+    @Tag("HU-005")
+    @Tag("CP-IDE-005-01")
+    @DisplayName(
+            "CP-IDE-005-01 Sin marcar la casilla responde 400 con el campo aceptaPoliticaDatos y no crea la cuenta")
+    void rechazaElRegistroSinAutorizacion() throws Exception {
+        // Dado
+        var correo = correoUnico();
+        var cuerpoSinAutorizacion = """
+                {"nombre": "Ana Pérez", "correo": "%s", "telefono": "3001234567",
+                 "fraseContrasena": "mi perro come mango los domingos",
+                 "aceptaPoliticaDatos": false, "versionPoliticaDatos": "1.0"}
+                """.formatted(correo);
+
+        // Cuando / Entonces
+        mockMvc.perform(post("/api/v1/auth/registro")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cuerpoSinAutorizacion))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.codigo").value("GEN-001"))
+                .andExpect(jsonPath("$.errores[0].campo").value("aceptaPoliticaDatos"));
+        assertThat(contarUsuariosCon(correo)).isZero();
+    }
+
+    @Test
+    @Tag("HU-005")
+    @Tag("CP-IDE-005-02")
+    @Tag("NF-SEG-014")
+    @DisplayName("CP-IDE-005-02 Guarda la autorización con la versión 1.0 y la fecha de aceptación")
+    void guardaLaAutorizacionDeDatos() throws Exception {
+        // Dado
+        var correo = correoUnico();
+
+        // Cuando
+        mockMvc.perform(post("/api/v1/auth/registro")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cuerpoRegistro(correo, "mi perro come mango los domingos")))
+                .andExpect(status().isCreated());
+
+        // Entonces
+        var versionGuardada =
+                jdbcClient.sql("""
+                        select a.version_politica from identidad.autorizacion_datos a
+                        join identidad.usuario u on u.id = a.usuario_id
+                        where u.correo = :correo and a.aceptada_en is not null
+                        """).param("correo", correo).query(String.class).single();
+        assertThat(versionGuardada).isEqualTo("1.0");
+    }
+
+    @Test
+    @Tag("HU-005")
+    @DisplayName("Una versión vieja de la política responde 409 IDE-007")
+    void rechazaUnaVersionViejaDeLaPolitica() throws Exception {
+        var cuerpoVersionVieja = cuerpoRegistro(correoUnico(), "mi perro come mango los domingos")
+                .replace("\"versionPoliticaDatos\": \"1.0\"", "\"versionPoliticaDatos\": \"0.9\"");
+
+        mockMvc.perform(post("/api/v1/auth/registro")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cuerpoVersionVieja))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.codigo").value("IDE-007"));
     }
 
     private long contarUsuariosCon(String correo) {
@@ -140,7 +204,8 @@ class AutenticacionControllerIT {
 
     private static String cuerpoRegistro(String correo, String frase) {
         return """
-                {"nombre": "Ana Pérez", "correo": "%s", "telefono": "3001234567", "fraseContrasena": "%s"}
+                {"nombre": "Ana Pérez", "correo": "%s", "telefono": "3001234567", "fraseContrasena": "%s",
+                 "aceptaPoliticaDatos": true, "versionPoliticaDatos": "1.0"}
                 """.formatted(correo, frase);
     }
 }
