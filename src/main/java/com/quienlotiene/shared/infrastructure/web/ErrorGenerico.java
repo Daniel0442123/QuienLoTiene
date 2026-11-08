@@ -28,6 +28,11 @@ public enum ErrorGenerico {
             HttpStatus.UNSUPPORTED_MEDIA_TYPE,
             "Formato no soportado",
             "El formato de los datos enviados o pedidos no está soportado."),
+    ARCHIVO_MUY_GRANDE(
+            "GEN-010",
+            HttpStatus.CONTENT_TOO_LARGE,
+            "Archivo muy grande",
+            "Los archivos pueden pesar máximo 5 MB cada uno."),
     ERROR_INTERNO(
             "GEN-008",
             HttpStatus.INTERNAL_SERVER_ERROR,
@@ -54,6 +59,7 @@ public enum ErrorGenerico {
             case 404 -> RECURSO_NO_ENCONTRADO;
             case 405 -> METODO_NO_PERMITIDO;
             case 406, 415 -> FORMATO_NO_SOPORTADO;
+            case 413 -> ARCHIVO_MUY_GRANDE;
             default -> estadoHttp.is5xxServerError() ? ERROR_INTERNO : PETICION_MAL_FORMADA;
         };
     }
