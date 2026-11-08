@@ -46,6 +46,9 @@ class PublicarSolicitudTest {
     @Mock
     ApplicationEventPublisher publicadorEventos;
 
+    @Mock
+    DifundirSolicitud difundirSolicitud;
+
     PublicarSolicitud publicarSolicitud;
 
     @BeforeEach
@@ -67,7 +70,11 @@ class PublicarSolicitudTest {
             }
         };
         publicarSolicitud = new PublicarSolicitud(
-                solicitudRepository, parametros, publicadorEventos, Clock.fixed(AHORA, ZoneOffset.UTC));
+                solicitudRepository,
+                parametros,
+                publicadorEventos,
+                difundirSolicitud,
+                Clock.fixed(AHORA, ZoneOffset.UTC));
     }
 
     private static PublicarSolicitudComando paracetamol(String modalidad) {

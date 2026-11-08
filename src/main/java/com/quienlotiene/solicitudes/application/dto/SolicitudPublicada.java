@@ -16,4 +16,5 @@ public record SolicitudPublicada(
         int radioEnMetros,
         String estado,
         Instant fechaPublicacion,
-        Instant fechaVencimiento) {}
+        Instant fechaVencimiento,
+        int tiendasNotificadas) {}
