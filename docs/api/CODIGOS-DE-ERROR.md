@@ -1,6 +1,6 @@
 # Códigos de error de la API · Quién lo tiene
 
-Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` estable (DECISIONES-BACKEND, sección 8). Un código publicado no cambia nunca: el frontend y las pruebas se apoyan en él. Cada pull request que agregue un código lo registra aquí.
+Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` estable (DECISIONES-BACKEND, sección 8). Todas las respuestas de error traen además `idCorrelacion`, el mismo valor de la cabecera `X-Correlacion-Id`, para buscar la petición en los logs. Un código publicado no cambia nunca: el frontend y las pruebas se apoyan en él. Cada pull request que agregue un código lo registra aquí.
 
 | Prefijo | Módulo |
 |---|---|
@@ -21,4 +21,11 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | Código | HTTP | Título | Cuándo ocurre | Historia |
 |---|---|---|---|---|
 | `GEN-001` | 400 | Datos inválidos | Falla la validación de forma del `Request`; trae la lista `errores` | — |
+| `GEN-002` | 400 | Petición mal formada | El cuerpo no es JSON válido, falta un parámetro o un valor no tiene el tipo esperado | T-01 |
+| `GEN-003` | 401 | Sesión requerida | La petición no trae un token válido o el token venció | T-01 |
+| `GEN-004` | 403 | Sin permiso | El usuario no tiene el rol que pide la operación | T-01 |
+| `GEN-005` | 404 | Recurso no encontrado | La ruta no existe | T-01 |
+| `GEN-006` | 405 | Método no permitido | La ruta existe pero no acepta ese método HTTP | T-01 |
+| `GEN-007` | 415 / 406 | Formato no soportado | El `Content-Type` enviado o el `Accept` pedido no están soportados | T-01 |
+| `GEN-008` | 500 | Error interno | Falla inesperada; el detalle técnico queda solo en el log con el `idCorrelacion` | T-01 |
 | `SOL-001` | 422 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora | HU-016 |
