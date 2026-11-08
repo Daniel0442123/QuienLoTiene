@@ -39,6 +39,8 @@ quienlotiene:
   identidad:
     # Versión vigente de la política de tratamiento de datos (HU-005); el registro debe enviar esta misma
     version-politica-datos: "1.0"
+    # Duración del token de refresco (HU-003): cuánto dura la sesión sin volver a escribir la frase
+    duracion-token-refresco: 7d
   seguridad:
     jwt:
       emisor: quienlotiene

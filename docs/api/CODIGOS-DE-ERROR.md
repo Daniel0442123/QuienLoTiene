@@ -35,4 +35,8 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `IDE-005` | 400 | Correo inválido | El correo no tiene la forma nombre@dominio.tld o supera 254 caracteres | HU-001 |
 | `IDE-006` | 400 | Autorización de datos requerida | El registro llega sin aceptar la política de tratamiento de datos | HU-005 |
 | `IDE-007` | 409 | Versión de la política desactualizada | La versión aceptada no es la vigente; la pantalla debe mostrar la nueva | HU-005 |
+| `IDE-008` | 401 | Credenciales incorrectas | El correo no tiene cuenta o la frase no coincide; el mensaje no dice cuál de los dos falló | HU-003 |
+| `IDE-009` | 403 | Cuenta suspendida | Las credenciales son correctas pero el administrador suspendió la cuenta | HU-003 |
+| `IDE-010` | 401 | Sesión vencida | Al renovar o cerrar sesión: falta la cookie, el token de refresco venció o fue revocado | HU-003 |
+| `IDE-011` | 401 | Segundo factor requerido | Un administrador intenta entrar por el inicio de sesión normal; entra con TOTP (HU-004) | HU-003 |
 | `SOL-001` | 422 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora | HU-016 |
