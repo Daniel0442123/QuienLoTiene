@@ -32,7 +32,7 @@ class TiendaTest {
         // Entonces
         assertThat(tienda.getEstado()).isEqualTo(EstadoTienda.PENDIENTE);
         assertThat(tienda.estaAbierta()).isFalse();
-        assertThat(tienda.puedeRecibirSolicitudes()).isFalse();
+        assertThat(tienda.puedeRecibirSolicitudes(AHORA)).isFalse();
         assertThat(tienda.getNombre()).isEqualTo("Droguería La 5");
         assertThat(tienda.getTelefono()).isEqualTo("3001234567");
         assertThat(tienda.getUbicacion()).isEqualTo(POPAYAN);

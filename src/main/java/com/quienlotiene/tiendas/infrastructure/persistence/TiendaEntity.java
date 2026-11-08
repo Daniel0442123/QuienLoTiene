@@ -90,6 +90,13 @@ public class TiendaEntity {
         this.actualizadoEn = creadoEn;
     }
 
+    /** Copia en la fila el perfil editado por el dueño (HU-009). */
+    void actualizarPerfil(String nuevoNombre, String nuevoTelefono, Instant fecha) {
+        this.nombre = nuevoNombre;
+        this.telefono = nuevoTelefono;
+        this.actualizadoEn = fecha;
+    }
+
     /** Copia en la fila la decisión del administrador (HU-036). */
     void registrarRevision(String nuevoEstado, String motivo, Instant fecha) {
         this.estado = nuevoEstado;
