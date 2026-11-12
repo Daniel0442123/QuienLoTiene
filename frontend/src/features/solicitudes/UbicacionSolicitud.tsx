@@ -1,5 +1,6 @@
 import { MapPin } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import { EstadoError } from '@/components/Estados'
 import { SelectorUbicacion, type Coordenadas } from '@/components/SelectorUbicacion'
 import { useDirecciones } from '@/hooks/useDirecciones'
@@ -52,7 +53,12 @@ export function UbicacionSolicitud({
       ) : direcciones.isError ? (
         <EstadoError error={direcciones.error} alReintentar={() => void direcciones.refetch()} />
       ) : sinDirecciones ? (
-        <p className="text-sm text-texto-suave">{textos.sinDirecciones}</p>
+        <p className="text-sm text-texto-suave">
+          {textos.sinDirecciones}{' '}
+          <Link to="/cuenta" className="text-primario underline underline-offset-4 hover:no-underline">
+            {textos.enlaceGuardarDirecciones}
+          </Link>
+        </p>
       ) : (
         <div className="flex flex-col gap-2">
           {direcciones.data.map((direccion) => (
