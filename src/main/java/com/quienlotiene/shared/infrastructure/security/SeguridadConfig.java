@@ -57,6 +57,9 @@ public class SeguridadConfig {
     };
 
     private static final String RUTA_REGISTRO_TIENDA = "/api/v1/tiendas/registro";
+    /** Las categorías se leen sin sesión: el registro de tienda las pide antes de crear la cuenta (HU-002). */
+    private static final String RUTA_CATEGORIAS = "/api/v1/categorias";
+
     private static final String RUTAS_ADMINISTRACION = "/api/v1/admin/**";
 
     // Parámetros de Argon2id recomendados por OWASP: 19 MiB de memoria, 2 iteraciones, 1 hilo, sal de 16 bytes
@@ -87,6 +90,8 @@ public class SeguridadConfig {
                         .requestMatchers(RUTAS_PUBLICAS)
                         .permitAll()
                         .requestMatchers(HttpMethod.POST, RUTA_REGISTRO_TIENDA)
+                        .permitAll()
+                        .requestMatchers(HttpMethod.GET, RUTA_CATEGORIAS)
                         .permitAll()
                         .requestMatchers(RUTAS_ADMINISTRACION)
                         .hasRole("ADMIN")
