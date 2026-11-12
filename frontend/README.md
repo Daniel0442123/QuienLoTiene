@@ -64,7 +64,7 @@ Antes de abrir un pull request: `npm run formato && npm run lint && npm run tipo
 | `src/features/<modulo>/` | Una carpeta por módulo del backend: `api.ts`, `esquemas.ts`, `textos.ts`, componentes y sus pruebas               |
 | `src/pages/`             | Una pantalla por ruta (`...Pagina.tsx`)                                                                           |
 | `src/services/`          | Cliente HTTP (`clienteApi.ts`), sesión, errores y mensajes, formato de pesos y fechas, tipos de OpenAPI           |
-| `src/styles/tokens.css`  | Colores, tipografía y tamaños. **Único lugar con colores**: aquí va tu paleta                                     |
+| `src/styles/tokens.css`  | Colores, tipografía y tamaños. **Único lugar con colores** (paleta «Verde botica» y Atkinson Hyperlegible)        |
 | `src/mocks/`             | Respuestas simuladas de la API (MSW) para pruebas y para avanzar sin el backend                                   |
 | `src/pruebas/`           | Configuración y ayudas de las pruebas (axe, renderizar con proveedores)                                           |
 
@@ -72,6 +72,11 @@ Antes de abrir un pull request: `npm run formato && npm run lint && npm run tipo
 
 ## Pendiente de tu lado
 
-- Paleta, tipografía e íconos definitivos en `src/styles/tokens.css` y `public/` (los actuales son provisionales y cumplen contraste).
 - Agregar componentes de shadcn/ui a medida que se necesiten: `npx shadcn@latest add dialog` (revisa que queden en `src/components/ui/` y con los tokens).
 - La primera vez que el backend esté arriba: `npm run api:tipos` y subir `src/services/api-tipos.ts`.
+
+## Identidad visual
+
+- **Paleta «B · Verde botica»** en `src/styles/tokens.css`, con el contraste de cada color anotado (texto ≥ 4,5:1, bordes y foco ≥ 3:1). Si se cambia un color, recalcular el contraste antes de subirlo. El manifest (`vite.config.ts`) y el `<meta name="theme-color">` de `index.html` repiten el primario `#0b6e63` porque no pueden leer variables CSS.
+- **Atkinson Hyperlegible** (OFL 1.1) desde `@fontsource`, solo latino en regular y negrita, con `font-display: swap`. Como no tiene pesos intermedios, `font-medium` y `font-semibold` usan la negrita (`src/styles/index.css`).
+- **Íconos** en `public/`: `icono.svg` (pestaña), `icono-192.png`, `icono-512.png` e `icono-maskable-512.png` (el pin queda dentro de la zona segura del 80 %). El «?» es un trazo, no texto, así que no depende de ninguna fuente.

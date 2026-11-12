@@ -16,7 +16,7 @@ const variantesBoton = cva(
       variante: {
         principal: 'bg-primario text-primario-texto hover:bg-primario-hover',
         secundario: 'border border-borde bg-fondo text-texto hover:bg-superficie',
-        peligro: 'bg-peligro text-white hover:opacity-90',
+        peligro: 'bg-peligro text-peligro-texto hover:opacity-90',
         enlace: 'text-primario underline underline-offset-4 hover:no-underline',
       },
       ancho: {
