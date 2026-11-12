@@ -45,7 +45,7 @@ Los 23 casos «No ejecutado» son de las historias del Sprint 2 (HU-018, HU-019,
 | HU-017 | CP-SOL-017-01, CP-SOL-017-02, CP-SOL-017-03 | 4 en verde | 3 de 3 aprobados | Sí |
 | HU-036 | CP-ADM-036-01, CP-ADM-036-02 | 9 en verde | 2 de 2 aprobados | Sí |
 
-## 4. Defectos nuevos (S1 0 / S2 0 / S3 2 / S4 2)
+## 4. Defectos nuevos (S1 0 / S2 0 / S3 2 / S4 3)
 
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla |
 |---|---|---|---|---|---|
@@ -53,8 +53,13 @@ Los 23 casos «No ejecutado» son de las historias del Sprint 2 (HU-018, HU-019,
 | DEF-002 | S3 Media | P3 Normal | Asignado (Sprint 2) | NF-SEG-011 | El pipeline de CI no ejecuta OWASP Dependency-Check, que NF-SEG-011 exige junto con Trivy |
 | DEF-003 | S4 Baja | P4 Baja | Asignado (Sprint 2) | NF-MAN-022 | jacoco:check valida el 70 % sobre todo el proyecto (BUNDLE) y no por módulo como pide el plan |
 | DEF-004 | S4 Baja | P4 Baja | Asignado (Sprint 2) | NF-FIA-016 | La prueba de transiciones inválidas de la tienda no lleva @Tag("NF-FIA-016") |
+| DEF-005 | S4 Baja | P4 Baja | Asignado (Sprint 2) | Exploratoria-20261112 | Publicar solicitud muestra los errores por etapas: con el producto vacío no avisa que falta la categoría ni muestra el resumen |
 
-Ningún defecto está en la lógica de negocio: dos son del pipeline y de la configuración de cobertura, uno de documentación de la API y uno de etiquetado de pruebas. Por decisión del equipo, todos se corrigen en el Sprint 2.
+Ningún defecto está en la lógica de negocio: dos son del pipeline y de la configuración de cobertura, uno de documentación de la API, uno de etiquetado de pruebas y uno de usabilidad en la pantalla de publicar solicitud. Por decisión del equipo, todos se corrigen en el Sprint 2.
+
+### Verificación de la interfaz
+
+Además de la suite automatizada, se levantó la PWA con el backend v0.2.0 y se recorrieron 45 vistas y estados de las 13 historias del Sprint 1 en tamaño de celular, con capturas de cada una (`evidencias/C1/2026-11-12/frontend/`). Todo el flujo funciona de punta a punta: registro, entrada con segundo factor del administrador, aprobación, configuración y apertura de la tienda, y la solicitud que llega a 1 tienda abierta. Detalle en `EXPLORATORIA-20261112-yanimar.md`; de ahí salió DEF-005.
 
 ## 5. Bloqueos y acciones
 

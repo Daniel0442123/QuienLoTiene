@@ -35,7 +35,7 @@
 | S1 Crítica | 0 | 0 | 0 | 0 | 0 abiertos |
 | S2 Alta | 0 | 0 | 0 | 0 | 0 abiertos |
 | S3 Media | 2 | 0 | 0 | 0 | ≤ 5 con plan |
-| S4 Baja | 2 | 0 | 0 | 0 | Sin límite, con plan |
+| S4 Baja | 3 | 0 | 0 | 0 | Sin límite, con plan |
 
 ## Indicadores
 
@@ -45,7 +45,7 @@
 | Tasa de aprobación | Aprobados / (ejecutados − No aplica) | 38 / 38 = 100 % |
 | Casos Alta ejecutados | Casos Alta con resultado / casos Alta | 28 / 51 = 54,9 % (los 23 restantes son del Sprint 2) |
 | Cobertura de requisitos | Requisitos con todos sus casos ejecutados / 38 | 13 / 38 = 34,2 % (todas las RF del Sprint 1) |
-| Densidad de defectos | Defectos confirmados / requisitos del módulo | 4 defectos / 30 requisitos del ciclo (22 RF + 8 RNF) = 0,13 (ninguno en la lógica de negocio) |
+| Densidad de defectos | Defectos confirmados / requisitos del módulo | 5 defectos / 30 requisitos del ciclo (22 RF + 8 RNF) = 0,17 (ninguno en la lógica de negocio) |
 | Defectos reabiertos | Reabiertos / corregidos | 0 / 0 |
 | Cobertura de código | Líneas cubiertas / líneas de domain + application | 1130 / 1163 = 97,2 % |
 | Pruebas automatizadas | Total `@Test` (unitarias + integración) · pasan | 256 (209 unitarias + 47 de integración) · 256 pasan |

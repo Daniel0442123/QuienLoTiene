@@ -3,7 +3,7 @@
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
 Responsables de QA: Yanimar Burbano Piamba · Francisco José Castro Muñoz
-Sesiones de ejecución: 2026-11-12 (corte del Sprint 1). Se completa con las sesiones del Sprint 2 al cierre del ciclo (15/11).
+Sesiones de ejecución: 2026-11-12 (corte del Sprint 1: suite automatizada y sesión exploratoria de la interfaz). Se completa con las sesiones del Sprint 2 al cierre del ciclo (15/11).
 
 ## 1. Introducción
 
@@ -549,3 +549,71 @@ Captura de la sesión: ![casos-administracion](../../evidencias/C1/2026-11-12/ca
 | NF-POR-030 | RNF-030 | Francisco Castro | CI run #83 · Gitleaks 8.21.2 | Aprobado | — | 33 commits revisados, «no leaks found». |
 
 Evidencia: ![00-resumen-suite](../../evidencias/C1/2026-11-12/00-resumen-suite.png) · [`ci-seguridad-run83.txt`](../../evidencias/C1/2026-11-12/ci-seguridad-run83.txt)
+
+## 9. Evidencia de la interfaz — sesión exploratoria 2026-11-12
+
+La PWA se levantó en local con el backend v0.2.0 y se recorrieron 45 vistas y estados en tamaño de celular. El detalle de cada vista está en [EXPLORATORIA-20261112-yanimar.md](EXPLORATORIA-20261112-yanimar.md) y las 45 capturas en `evidencias/C1/2026-11-12/frontend/`. Estas son las capturas que respaldan cada caso del Sprint 1:
+
+**Cuenta de cliente creada (CP-IDE-001-01)**
+
+![06-crear-cuenta-exitosa](../../evidencias/C1/2026-11-12/frontend/06-crear-cuenta-exitosa.png)
+
+**Frase filtrada rechazada (CP-IDE-001-03)**
+
+![08-crear-cuenta-frase-filtrada](../../evidencias/C1/2026-11-12/frontend/08-crear-cuenta-frase-filtrada.png)
+
+**Credenciales incorrectas (CP-IDE-003-02)**
+
+![09-entrar-credenciales-incorrectas](../../evidencias/C1/2026-11-12/frontend/09-entrar-credenciales-incorrectas.png)
+
+**Segundo factor inválido (CP-IDE-004-02)**
+
+![22-admin-codigo-incorrecto](../../evidencias/C1/2026-11-12/frontend/22-admin-codigo-incorrecto.png)
+
+**Dirección guardada (CP-CLI-007-01)**
+
+![13-direccion-guardada](../../evidencias/C1/2026-11-12/frontend/13-direccion-guardada.png)
+
+**Tienda en revisión (CP-TIE-002-01)**
+
+![19-registrar-tienda-pendiente](../../evidencias/C1/2026-11-12/frontend/19-registrar-tienda-pendiente.png)
+
+**Registro sin documentos (CP-TIE-002-02)**
+
+![18-registrar-tienda-sin-documentos](../../evidencias/C1/2026-11-12/frontend/18-registrar-tienda-sin-documentos.png)
+
+**Tienda aprobada (CP-ADM-036-01)**
+
+![27-admin-tienda-aprobada](../../evidencias/C1/2026-11-12/frontend/27-admin-tienda-aprobada.png)
+
+**Tienda rechazada con motivo (CP-ADM-036-02)**
+
+![25-admin-tienda-rechazada](../../evidencias/C1/2026-11-12/frontend/25-admin-tienda-rechazada.png)
+
+**Perfil y horario (CP-TIE-009-02)**
+
+![33-tienda-perfil-horario-guardado](../../evidencias/C1/2026-11-12/frontend/33-tienda-perfil-horario-guardado.png)
+
+**Tarifa fija de domicilio (CP-TIE-010-01)**
+
+![39-tienda-domicilio-simulacion-1km](../../evidencias/C1/2026-11-12/frontend/39-tienda-domicilio-simulacion-1km.png)
+
+**Medios de pago activos (CP-TIE-012-01)**
+
+![37-tienda-medios-guardados](../../evidencias/C1/2026-11-12/frontend/37-tienda-medios-guardados.png)
+
+**Tienda abierta (CP-TIE-013-02)**
+
+![38-tienda-abierta](../../evidencias/C1/2026-11-12/frontend/38-tienda-abierta.png)
+
+**Solicitud que llega a 1 tienda (CP-SOL-016-01, CP-SOL-017-01)**
+
+![41-solicitud-llega-a-tienda-abierta](../../evidencias/C1/2026-11-12/frontend/41-solicitud-llega-a-tienda-abierta.png)
+
+**Tienda cerrada no la recibe (CP-TIE-013-01)**
+
+![44-solicitud-tienda-cerrada-no-la-recibe](../../evidencias/C1/2026-11-12/frontend/44-solicitud-tienda-cerrada-no-la-recibe.png)
+
+**Solicitud incompleta (CP-SOL-016-02, DEF-005)**
+
+![14-solicitud-incompleta](../../evidencias/C1/2026-11-12/frontend/14-solicitud-incompleta.png)
