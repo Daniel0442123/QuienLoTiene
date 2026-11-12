@@ -14,6 +14,28 @@ npm run dev          # http://localhost:5173 ; /api va al backend por el proxy d
 
 Usa Chrome o Edge en desarrollo: tratan `localhost` como seguro y aceptan la cookie `Secure` del token de refresco.
 
+### Sin backend (API simulada)
+
+```bash
+npm run dev:simulado # http://localhost:5173 ; /api lo responde MSW en el navegador
+```
+
+- Las respuestas salen de `src/mocks/` (`manejadores-*.ts`, uno por módulo), con la forma de los DTOs del backend y los códigos de `docs/api/CODIGOS-DE-ERROR.md`. Las mismas respuestas usan las pruebas.
+- Los datos viven en memoria (`src/mocks/datos.ts`) y vuelven al estado inicial al recargar. Tampoco hay cookie de refresco: **al recargar la página hay que volver a entrar**.
+- Usuarios de prueba (todos con `FRASE_DE_PRUEBA` de `src/mocks/datos.ts`):
+
+    | Correo                     | Para probar                                              |
+    | -------------------------- | -------------------------------------------------------- |
+    | `cliente@ejemplo.com`      | Cliente con una dirección guardada                       |
+    | `tienda@ejemplo.com`       | Tienda aprobada y abierta, con horario y domicilio       |
+    | `tienda.nueva@ejemplo.com` | Tienda pendiente de revisión (no puede abrir: `TIE-008`) |
+    | `admin@ejemplo.com`        | Administrador; pide el código `CODIGO_TOTP_DE_PRUEBA`    |
+    | `suspendido@ejemplo.com`   | Cuenta suspendida (`IDE-009`)                            |
+
+- Las categorías (`CATEGORIAS_SIMULADAS`) solo existen en la simulación: el backend aún no publica un endpoint de categorías.
+- El service worker de MSW se sirve solo en este modo, desde `node_modules` (plugin en `vite.config.ts`); `main.tsx` carga la simulación con un `import` dinámico que desaparece del build de producción.
+- Necesita un navegador que permita service workers (Chrome o Edge). El navegador integrado del escritorio de Claude no los permite: ahí la app abre, pero sin API.
+
 ## Comandos
 
 | Para qué                                | Comando                                              |

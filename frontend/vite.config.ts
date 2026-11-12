@@ -1,13 +1,34 @@
 /// <reference types="vitest/config" />
+import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import path from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+/**
+ * Sirve el service worker de MSW solo en `npm run dev:simulado`, directo desde node_modules: no se copia a public/,
+ * así nunca llega al build ni lo precarga el service worker de la PWA.
+ */
+function trabajadorSimulacionApi(): Plugin {
+  return {
+    name: 'qlt-trabajador-simulacion-api',
+    apply: (_configuracion, { command, mode }) => command === 'serve' && mode === 'simulado',
+    configureServer(servidor) {
+      const archivo = createRequire(import.meta.url).resolve('msw/mockServiceWorker.js')
+      servidor.middlewares.use('/mockServiceWorker.js', (_peticion, respuesta) => {
+        respuesta.setHeader('Content-Type', 'text/javascript')
+        respuesta.end(readFileSync(archivo))
+      })
+    },
+  }
+}
 
 // DECISIONES-FRONTEND: F-05 (origen único con proxy), F-13 (PWA), F-17 (pruebas)
 export default defineConfig({
   plugins: [
+    trabajadorSimulacionApi(),
     react(),
     tailwindcss(),
     VitePWA({
