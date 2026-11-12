@@ -28,10 +28,17 @@ probar() {
     trap 'docker rm -f "$CONTENEDOR_PRUEBA" >/dev/null 2>&1 || true' EXIT
     docker run -d --name "$CONTENEDOR_PRUEBA" -e POSTGRES_PASSWORD=prueba -e POSTGRES_DB=quienlotiene \
         "$IMAGEN_BASE" >/dev/null
-    for _ in $(seq 1 30); do
-        docker exec "$CONTENEDOR_PRUEBA" pg_isready -U postgres -d quienlotiene >/dev/null 2>&1 && break
+    # La imagen arranca primero un servidor temporal (solo por socket) para inicializarse y luego lo reinicia.
+    # Por TCP solo responde el servidor definitivo: se espera a ese para no restaurar en el temporal.
+    local listo=false
+    for _ in $(seq 1 60); do
+        if docker exec "$CONTENEDOR_PRUEBA" pg_isready -h 127.0.0.1 -U postgres -d quienlotiene >/dev/null 2>&1; then
+            listo=true
+            break
+        fi
         sleep 2
     done
+    [[ "$listo" == true ]] || { echo "La base temporal no arrancó en 2 minutos"; exit 1; }
     # La imagen de PostGIS crea sus extensiones en la base inicial; se restaura en una base limpia desde template0
     docker exec "$CONTENEDOR_PRUEBA" createdb -U postgres -T template0 restaurada
     restic dump --tag base latest quienlotiene.dump \
