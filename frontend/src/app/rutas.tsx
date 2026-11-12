@@ -1,6 +1,7 @@
-import { createBrowserRouter, type RouteObject } from 'react-router'
+import { createBrowserRouter, Outlet, type RouteObject } from 'react-router'
 import { ErrorDeRuta } from './ErrorDeRuta'
 import { Plantilla } from './Plantilla'
+import { RutaProtegida } from './RutaProtegida'
 
 /**
  * Rutas de la PWA, en español y kebab-case (DECISIONES-FRONTEND sección 5).
@@ -35,6 +36,37 @@ export const rutas: RouteObject[] = [
           {
             path: 'registrar-tienda',
             lazy: async () => ({ Component: (await import('@/pages/RegistroTiendaPagina')).RegistroTiendaPagina }),
+          },
+          {
+            // Panel de la tienda (HU-009 a HU-013): solo el rol TIENDA; un paquete aparte que el cliente no descarga
+            path: 'tienda',
+            element: (
+              <RutaProtegida roles={['TIENDA']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                index: true,
+                lazy: async () => ({ Component: (await import('@/pages/PanelTiendaPagina')).PanelTiendaPagina }),
+              },
+              {
+                path: 'perfil',
+                lazy: async () => ({ Component: (await import('@/pages/PerfilTiendaPagina')).PerfilTiendaPagina }),
+              },
+              {
+                path: 'domicilio',
+                lazy: async () => ({
+                  Component: (await import('@/pages/DomicilioTiendaPagina')).DomicilioTiendaPagina,
+                }),
+              },
+              {
+                path: 'medios-pago',
+                lazy: async () => ({
+                  Component: (await import('@/pages/MediosPagoTiendaPagina')).MediosPagoTiendaPagina,
+                }),
+              },
+            ],
           },
           {
             path: '*',

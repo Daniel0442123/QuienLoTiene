@@ -11,7 +11,7 @@ interface EstadoInicioSesion {
 export function InicioSesionPagina() {
   const navegar = useNavigate()
   const { state } = useLocation()
-  const { volverA = '/', correoRegistrado } = (state as EstadoInicioSesion | null) ?? {}
+  const { volverA, correoRegistrado } = (state as EstadoInicioSesion | null) ?? {}
 
   return (
     <section className="mx-auto flex max-w-md flex-col gap-6">
@@ -24,7 +24,8 @@ export function InicioSesionPagina() {
         alIniciar={(respuesta) => {
           // HU-004: el administrador escribe el código de su app autenticadora antes de tener sesión
           if (respuesta.segundoFactorRequerido) navegar('/entrar/codigo', { state: { volverA } })
-          else navegar(volverA, { replace: true })
+          // Sin destino pedido, cada rol llega a su pantalla principal: la tienda, a su panel
+          else navegar(volverA ?? (respuesta.rol === 'TIENDA' ? '/tienda' : '/'), { replace: true })
         }}
       />
       <p>

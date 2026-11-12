@@ -25,6 +25,14 @@ export function InicioPagina() {
           </Link>
         </div>
       )}
+      {sesion?.rol === 'TIENDA' ? (
+        <Link
+          to="/tienda"
+          className="inline-flex min-h-tactil items-center self-start rounded-control bg-primario px-4 font-semibold text-primario-texto"
+        >
+          {textosTiendas.enlacePanel}
+        </Link>
+      ) : null}
       {sesion ? null : (
         <p>
           {textosTiendas.invitacionInicio}{' '}
