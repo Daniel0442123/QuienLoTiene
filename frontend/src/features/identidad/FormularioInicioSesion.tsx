@@ -16,7 +16,14 @@ import { textosIdentidad as textos } from './textos'
  * Valida al salir del campo, asocia los errores con aria-describedby, permite pegar la frase y usar el gestor de
  * contraseñas (WCAG 3.3.8) y lleva el foco al primer campo con error.
  */
-export function FormularioInicioSesion({ alIniciar }: { alIniciar: (respuesta: RespuestaInicioSesion) => void }) {
+export function FormularioInicioSesion({
+  alIniciar,
+  correoInicial = '',
+}: {
+  alIniciar: (respuesta: RespuestaInicioSesion) => void
+  /** Correo ya escrito, por ejemplo al llegar desde el registro (WCAG 3.3.7: no pedir dos veces el mismo dato). */
+  correoInicial?: string
+}) {
   const anunciar = useAnunciar()
   const [fraseVisible, setFraseVisible] = useState(false)
   const {
@@ -28,6 +35,7 @@ export function FormularioInicioSesion({ alIniciar }: { alIniciar: (respuesta: R
     resolver: zodResolver(esquemaInicioSesion),
     mode: 'onTouched',
     shouldFocusError: true,
+    defaultValues: { correo: correoInicial, fraseContrasena: '' },
   })
 
   const inicioSesion = useMutation({

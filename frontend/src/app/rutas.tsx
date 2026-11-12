@@ -23,6 +23,12 @@ export const rutas: RouteObject[] = [
             lazy: async () => ({ Component: (await import('@/pages/InicioSesionPagina')).InicioSesionPagina }),
           },
           {
+            path: 'crear-cuenta',
+            lazy: async () => ({
+              Component: (await import('@/pages/RegistroClientePagina')).RegistroClientePagina,
+            }),
+          },
+          {
             path: '*',
             lazy: async () => ({ Component: (await import('@/pages/NoEncontradaPagina')).NoEncontradaPagina }),
           },

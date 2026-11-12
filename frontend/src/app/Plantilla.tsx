@@ -1,9 +1,12 @@
 import { Link, Outlet } from 'react-router'
+import { BotonCerrarSesion } from '@/features/identidad/BotonCerrarSesion'
+import { useSesion } from '@/hooks/useSesion'
 import { AnunciadorDeRuta } from './AnunciadorDeRuta'
 import { AvisoActualizacion } from './AvisoActualizacion'
 
 /** Estructura común de todas las pantallas: enlace para saltar al contenido, encabezado y región principal. */
 export function Plantilla() {
+  const sesion = useSesion()
   return (
     <>
       <a
@@ -17,6 +20,7 @@ export function Plantilla() {
           <Link to="/" className="flex min-h-tactil items-center text-lg font-bold">
             ¿Quién lo tiene?
           </Link>
+          {sesion ? <BotonCerrarSesion /> : null}
         </div>
       </header>
       <main id="contenido" className="mx-auto max-w-3xl px-4 py-6">
