@@ -1,5 +1,98 @@
 /** Textos de la funcionalidad de tiendas (DECISIONES-FRONTEND F-12). */
 export const textosTiendas = {
+  // Panel de la tienda (HU-009 a HU-013)
+  tituloPanel: 'Mi tienda',
+  enlacePanel: 'Ir al panel de mi tienda',
+  volverAlPanel: 'Volver al panel',
+  cargandoTienda: 'Cargando tu tienda…',
+  navegacionPanel: 'Secciones de mi tienda',
+  seccionPerfil: 'Perfil y horario',
+  descripcionPerfil: 'Nombre, celular y a qué horas atiendes.',
+  seccionDomicilio: 'Domicilio',
+  descripcionDomicilio: 'Si llevas pedidos, hasta dónde y cuánto cobras.',
+  seccionMediosPago: 'Medios de pago',
+  descripcionMediosPago: 'Efectivo, transferencia o datáfono.',
+  estadoTienda: {
+    PENDIENTE: 'En revisión',
+    APROBADA: 'Aprobada',
+    RECHAZADA: 'Rechazada',
+    SUSPENDIDA: 'Suspendida',
+  },
+  explicacionEstado: {
+    PENDIENTE:
+      'El equipo está revisando tus documentos. Mientras tanto puedes dejar listo el perfil, el horario, el domicilio y los medios de pago.',
+    APROBADA: 'Tu tienda puede recibir preguntas de clientes cercanos cuando está abierta y dentro de su horario.',
+    RECHAZADA: 'Tu tienda no fue aprobada.',
+    SUSPENDIDA: 'Tu tienda está suspendida y no recibe solicitudes. Escríbenos desde la sección de ayuda.',
+  },
+  motivoRechazo: (motivo: string) => `Motivo: ${motivo}`,
+
+  // Abrir o cerrar (HU-013)
+  etiquetaApertura: 'Recibir solicitudes',
+  abierta: 'Abierta',
+  cerrada: 'Cerrada',
+  explicacionAbierta: 'Recibes las preguntas de clientes cercanos dentro de tu horario.',
+  explicacionCerrada: 'No recibes preguntas nuevas. Tus pedidos en curso siguen igual.',
+  razonNoAprobada: 'Podrás abrir la tienda cuando el equipo la apruebe.',
+  tiendaAbierta: 'Tienda abierta. Recibes solicitudes nuevas.',
+  tiendaCerrada: 'Tienda cerrada. No recibes solicitudes nuevas.',
+  errorApertura: 'No pudimos cambiar el estado de la tienda. Inténtalo de nuevo.',
+
+  // Perfil y horario (HU-009)
+  pistaTelefonoTienda: 'Los clientes lo ven cuando eligen tu tienda.',
+  etiquetaHorario: 'Horario de atención',
+  pistaHorario: 'Marca los días que abres y escribe a qué hora abres y cierras (hora de Colombia).',
+  horaAbre: 'Abre',
+  horaCierra: 'Cierra',
+  diaCerrado: 'Cerrado',
+  copiarLunes: 'Copiar el horario del lunes a los días que abro',
+  botonGuardar: 'Guardar cambios',
+  botonGuardando: 'Guardando…',
+  cambiosGuardados: 'Cambios guardados.',
+  horaObligatoria: 'Escribe la hora.',
+  abreAntesDeCerrar: 'La hora de cierre debe ser después de la de apertura.',
+  dias: {
+    MONDAY: 'lunes',
+    TUESDAY: 'martes',
+    WEDNESDAY: 'miércoles',
+    THURSDAY: 'jueves',
+    FRIDAY: 'viernes',
+    SATURDAY: 'sábado',
+    SUNDAY: 'domingo',
+  },
+
+  // Domicilio (HU-010)
+  etiquetaHaceDomicilio: 'Hago domicilios',
+  pistaHaceDomicilio: 'Si no lo marcas, los clientes solo podrán recoger en tu local.',
+  etiquetaRadio: 'Hasta qué distancia llevas pedidos',
+  elegirDistancia: 'Elige una distancia',
+  mediosGuardados: 'Medios de pago actualizados.',
+  etiquetaTarifa: 'Valor del domicilio (pesos)',
+  pistaTarifa: 'Un valor fijo para cualquier distancia dentro de tu cobertura. Escribe 0 si es gratis.',
+  vistaTarifa: (valor: string) => `Los clientes verán: ${valor}`,
+  radioObligatorio: 'Elige hasta qué distancia llevas pedidos.',
+  tarifaObligatoria: 'Escribe el valor del domicilio, o 0 si es gratis.',
+  tarifaInvalida: 'Escribe el valor en pesos, solo números y sin puntos. Por ejemplo 4000.',
+  tituloSimulador: 'Prueba cuánto pagaría un cliente',
+  pistaSimulador: 'Con los datos guardados. Sirve para revisar antes de recibir pedidos.',
+  etiquetaSubtotal: 'Valor de la compra (pesos)',
+  etiquetaDistancia: 'Distancia del cliente',
+  botonSimular: 'Calcular',
+  botonSimulando: 'Calculando…',
+  resultadoSimulacion: (costo: string) => `El cliente pagaría ${costo} de domicilio.`,
+  fueraDeCobertura: 'Ese cliente queda fuera de tu cobertura: no podría pedir domicilio.',
+  sinDomicilioParaSimular: 'Activa y guarda el domicilio para poder probarlo.',
+
+  // Medios de pago (HU-012)
+  etiquetaMediosPago: 'Medios de pago que aceptas',
+  pistaMediosPago: 'Solo se registran: los clientes pagan en la entrega o en el local, no en la app.',
+  mediosPago: {
+    EFECTIVO: 'Efectivo',
+    TRANSFERENCIA: 'Transferencia (Nequi, Daviplata, banco)',
+    DATAFONO: 'Datáfono (tarjeta)',
+  },
+  medioObligatorio: 'Elige al menos un medio de pago.',
+
   invitacionInicio: '¿Tienes una farmacia o ferretería?',
   enlaceRegistrarTienda: 'Registra tu tienda',
 
