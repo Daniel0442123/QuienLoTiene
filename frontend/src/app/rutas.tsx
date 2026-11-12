@@ -28,6 +28,21 @@ export const rutas: RouteObject[] = [
             lazy: async () => ({ Component: (await import('@/pages/SegundoFactorPagina')).SegundoFactorPagina }),
           },
           {
+            // Administración (HU-036): solo el rol ADMIN, que entra con segundo factor (HU-004)
+            path: 'admin',
+            element: (
+              <RutaProtegida roles={['ADMIN']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                path: 'tiendas',
+                lazy: async () => ({ Component: (await import('@/pages/RevisarTiendasPagina')).RevisarTiendasPagina }),
+              },
+            ],
+          },
+          {
             path: 'crear-cuenta',
             lazy: async () => ({
               Component: (await import('@/pages/RegistroClientePagina')).RegistroClientePagina,

@@ -37,7 +37,7 @@ export const CATEGORIAS_SIMULADAS = [
   { id: '3f6b1c2a-0002-4a8e-9b1d-5c2e7a9f0002', nombre: 'Ferretería' },
 ] as const
 
-const [FARMACIA] = CATEGORIAS_SIMULADAS
+const [FARMACIA, FERRETERIA] = CATEGORIAS_SIMULADAS
 
 /** Popayán, centro: sirve de ubicación por defecto en los datos simulados. */
 const UBICACION_BASE = { latitud: 2.4419, longitud: -76.6063 }
@@ -225,13 +225,16 @@ function crearBaseInicial(): BaseSimulada {
         domicilio: { haceDomicilio: true, radioCoberturaEnMetros: 3000, tarifaFijaEnPesos: 4000 },
         mediosPago: ['EFECTIVO', 'TRANSFERENCIA'],
       },
-      tienda({
-        id: 'c1a2b3d4-0002-4e5f-8a9b-0c1d2e3f4a02',
-        duenoId: duenoPendiente.id,
-        nombre: 'Ferretería El Tornillo',
-        estado: 'PENDIENTE',
-        estaAbierta: false,
-      }),
+      {
+        ...tienda({
+          id: 'c1a2b3d4-0002-4e5f-8a9b-0c1d2e3f4a02',
+          duenoId: duenoPendiente.id,
+          nombre: 'Ferretería El Tornillo',
+          estado: 'PENDIENTE',
+          estaAbierta: false,
+        }),
+        categoriaId: FERRETERIA.id,
+      },
     ],
     direcciones: [
       {

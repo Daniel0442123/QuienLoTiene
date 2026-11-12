@@ -74,6 +74,95 @@ export interface PathsProvisionales {
    * PROPUESTO por el frontend: el backend aún no tiene catálogo (módulo catalogo vacío). Lo usan HU-002 y HU-016.
    * Contrato sugerido a Daniel: lista pública de categorías activas, ordenadas por nombre.
    */
+  '/api/v1/admin/tiendas': {
+    parameters: { query?: never; header?: never; path?: never; cookie?: never }
+    /** HU-036. Por defecto, las PENDIENTE. */
+    get: {
+      parameters: {
+        query?: { estado?: 'PENDIENTE' | 'APROBADA' | 'RECHAZADA' | 'SUSPENDIDA' }
+        header?: never
+        path?: never
+        cookie?: never
+      }
+      requestBody?: never
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['TiendaParaRevision'][] }
+        }
+      }
+    }
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/api/v1/admin/tiendas/{tiendaId}/documentos/{documentoId}': {
+    parameters: { query?: never; header?: never; path: { tiendaId: string; documentoId: string }; cookie?: never }
+    /** HU-036. Archivo con Content-Disposition attachment; 404 TIE-006. */
+    get: {
+      parameters: { query?: never; header?: never; path: { tiendaId: string; documentoId: string }; cookie?: never }
+      requestBody?: never
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/octet-stream': Blob }
+        }
+      }
+    }
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/api/v1/admin/tiendas/{tiendaId}/aprobacion': {
+    parameters: { query?: never; header?: never; path: { tiendaId: string }; cookie?: never }
+    get?: never
+    put?: never
+    /** HU-036. 409 TIE-004 si no está PENDIENTE. */
+    post: {
+      parameters: { query?: never; header?: never; path: { tiendaId: string }; cookie?: never }
+      requestBody?: never
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['TiendaParaRevision'] }
+        }
+      }
+    }
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/api/v1/admin/tiendas/{tiendaId}/rechazo': {
+    parameters: { query?: never; header?: never; path: { tiendaId: string }; cookie?: never }
+    get?: never
+    put?: never
+    /** HU-036. Motivo de 5 a 300 caracteres (TIE-005); 409 TIE-004. */
+    post: {
+      parameters: { query?: never; header?: never; path: { tiendaId: string }; cookie?: never }
+      requestBody: { content: { 'application/json': ComponentesProvisionales['RechazarTiendaRequest'] } }
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['TiendaParaRevision'] }
+        }
+      }
+    }
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/api/v1/categorias': {
     parameters: { query?: never; header?: never; path?: never; cookie?: never }
     get: {
@@ -343,6 +432,31 @@ export interface ComponentesProvisionales {
     /** Format: date-time */
     fechaRegistro: string
   }
+  TiendaParaRevision: {
+    /** Format: uuid */
+    id: string
+    nombre: string
+    /** Format: uuid */
+    categoriaId: string
+    telefono: string
+    latitud: number
+    longitud: number
+    estado: 'PENDIENTE' | 'APROBADA' | 'RECHAZADA' | 'SUSPENDIDA'
+    /** Format: date-time */
+    fechaRegistro: string
+    motivoRechazo: string | null
+    /** Format: date-time */
+    fechaRevision: string | null
+    documentos: ComponentesProvisionales['DocumentoResumen'][]
+  }
+  DocumentoResumen: {
+    /** Format: uuid */
+    id: string
+    tipo: 'FOTO_LOCAL' | 'RUT'
+    tipoContenido: string
+    tamanoEnBytes: number
+  }
+  RechazarTiendaRequest: { motivo: string }
   RegistrarClienteRequest: {
     nombre: string
     correo: string
