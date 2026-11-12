@@ -14,4 +14,36 @@ export const textosIdentidad = {
   fraseObligatoria: 'Escribe tu frase de contraseña.',
   fraseMuyLarga: 'La frase de contraseña puede tener máximo 128 caracteres.',
   sesionIniciada: 'Sesión iniciada.',
+  sinCuenta: '¿No tienes cuenta?',
+  enlaceCrearCuenta: 'Crear una cuenta',
+  cuentaCreada: 'Cuenta creada. Ya puedes entrar con tu correo y tu frase de contraseña.',
+
+  // Cerrar sesión (HU-003)
+  botonCerrarSesion: 'Cerrar sesión',
+  sesionCerrada: 'Sesión cerrada.',
+
+  // Registro de cliente (HU-001) y política de datos (HU-005)
+  tituloRegistro: 'Crear cuenta',
+  introRegistro: 'Con tu cuenta preguntas una vez y las tiendas cercanas te responden si tienen lo que buscas.',
+  etiquetaNombre: 'Nombre',
+  pistaNombre: 'Como quieres que te llamen las tiendas.',
+  etiquetaTelefono: 'Celular',
+  pistaTelefono: 'Solo números, por ejemplo 3001234567. La tienda lo usa para coordinar la entrega.',
+  pistaFraseNueva: (largo: number) =>
+    `Mínimo 15 caracteres; puedes usar espacios, por ejemplo una oración que recuerdes. Llevas ${largo}.`,
+  etiquetaPolitica: 'Autorizo el tratamiento de mis datos personales según la política de datos.',
+  resumenPolitica: 'Leer la política de tratamiento de datos',
+  botonCrearCuenta: 'Crear cuenta',
+  botonCreandoCuenta: 'Creando cuenta…',
+  yaTienesCuenta: '¿Ya tienes cuenta?',
+  enlaceEntrar: 'Entrar',
+  enlaceEntrarConCorreo: 'Entrar con ese correo',
+  correoYaRegistrado: 'Este correo ya tiene una cuenta.',
+  tituloResumenErrores: 'Revisa estos datos antes de continuar:',
+  errorGeneralRegistro: 'No pudimos crear la cuenta. Inténtalo de nuevo.',
+  codigoSoporte: (idCorrelacion?: string) => `Código para soporte: ${idCorrelacion ?? ''}`,
+  nombreObligatorio: 'Escribe tu nombre.',
+  nombreMuyLargo: 'El nombre puede tener máximo 120 caracteres.',
+  telefonoInvalido: 'Escribe tu celular con 7 a 15 dígitos, por ejemplo 3001234567.',
+  politicaObligatoria: 'Para crear la cuenta debes marcar la autorización de datos.',
 } as const
