@@ -14,6 +14,7 @@ export const textosSolicitudes = {
   cargandoDirecciones: 'Cargando tus direcciones…',
   errorDirecciones: 'No pudimos cargar tus direcciones guardadas. Puedes usar tu ubicación o el mapa.',
   sinDirecciones: 'Usa tu ubicación o toca el mapa. Si guardas tus direcciones, la próxima vez irás más rápido.',
+  enlaceGuardarDirecciones: 'Guardar mis direcciones',
   etiquetaMapa: 'Ubicación de la búsqueda',
   pistaMapa: 'Buscamos tiendas a unos 3 km de este punto.',
   etiquetaModalidad: '¿Cómo lo quieres?',

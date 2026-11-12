@@ -42,13 +42,86 @@ export interface PathsProvisionales {
       }
     }
     put?: never
-    post?: never
+    /** HU-007. Máximo 10 (422 CLI-002). */
+    post: {
+      parameters: { query?: never; header?: never; path?: never; cookie?: never }
+      requestBody: { content: { 'application/json': ComponentesProvisionales['DireccionRequest'] } }
+      responses: {
+        201: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['DatosDireccion'] }
+        }
+      }
+    }
     delete?: never
     options?: never
     head?: never
     patch?: never
     trace?: never
   }
+  '/api/v1/clientes/me/direcciones/{direccionId}': {
+    parameters: { query?: never; header?: never; path: { direccionId: string }; cookie?: never }
+    get?: never
+    /** HU-007. 404 CLI-003 si no es del cliente. */
+    put: {
+      parameters: { query?: never; header?: never; path: { direccionId: string }; cookie?: never }
+      requestBody: { content: { 'application/json': ComponentesProvisionales['DireccionRequest'] } }
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['DatosDireccion'] }
+        }
+      }
+    }
+    post?: never
+    /** HU-007. 404 CLI-003 si no es del cliente. */
+    delete: {
+      parameters: { query?: never; header?: never; path: { direccionId: string }; cookie?: never }
+      requestBody?: never
+      responses: {
+        204: {
+          headers: { [nombre: string]: unknown }
+          content?: never
+        }
+      }
+    }
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/api/v1/usuarios/me': {
+    parameters: { query?: never; header?: never; path?: never; cookie?: never }
+    /** Perfil del usuario actual. */
+    get: {
+      parameters: { query?: never; header?: never; path?: never; cookie?: never }
+      requestBody?: never
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['PerfilUsuario'] }
+        }
+      }
+    }
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    /** HU-007 (CU-03 pasos 14 a 16). */
+    patch: {
+      parameters: { query?: never; header?: never; path?: never; cookie?: never }
+      requestBody: { content: { 'application/json': ComponentesProvisionales['ActualizarPerfilRequest'] } }
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['PerfilUsuario'] }
+        }
+      }
+    }
+    trace?: never
+  }
+
   '/api/v1/auth/registro': {
     parameters: { query?: never; header?: never; path?: never; cookie?: never }
     get?: never
@@ -514,4 +587,20 @@ export interface ComponentesProvisionales {
     /** Format: date-time */
     fechaCreacion: string
   }
+  DireccionRequest: {
+    nombre: string
+    ubicacion: ComponentesProvisionales['Ubicacion']
+    direccionEscrita: string
+    indicaciones?: string | null
+    telefono: string
+  }
+  PerfilUsuario: {
+    /** Format: uuid */
+    id: string
+    nombre: string
+    correo: string
+    telefono: string
+    rol: 'CLIENTE' | 'TIENDA' | 'ADMIN'
+  }
+  ActualizarPerfilRequest: { nombre: string; telefono: string }
 }

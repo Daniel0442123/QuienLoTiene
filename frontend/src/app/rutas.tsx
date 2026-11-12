@@ -49,6 +49,21 @@ export const rutas: RouteObject[] = [
             }),
           },
           {
+            // Perfil y direcciones del cliente (HU-007)
+            path: 'cuenta',
+            element: (
+              <RutaProtegida roles={['CLIENTE']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                index: true,
+                lazy: async () => ({ Component: (await import('@/pages/MiCuentaPagina')).MiCuentaPagina }),
+              },
+            ],
+          },
+          {
             // Publicar solicitud (HU-016): solo el rol CLIENTE
             path: 'solicitudes',
             element: (

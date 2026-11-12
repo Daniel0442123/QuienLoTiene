@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router'
+import { textosClientes } from '@/features/clientes/textos'
 import { BotonCerrarSesion } from '@/features/identidad/BotonCerrarSesion'
 import { useSesion } from '@/hooks/useSesion'
 import { AnunciadorDeRuta } from './AnunciadorDeRuta'
@@ -16,11 +17,23 @@ export function Plantilla() {
         Ir al contenido
       </a>
       <header className="border-b border-borde-suave">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2 px-4 py-3">
           <Link to="/" className="flex min-h-tactil items-center text-lg font-bold">
             ¿Quién lo tiene?
           </Link>
-          {sesion ? <BotonCerrarSesion /> : null}
+          {sesion ? (
+            <div className="flex flex-wrap items-center gap-2">
+              {sesion.rol === 'CLIENTE' ? (
+                <Link
+                  to="/cuenta"
+                  className="flex min-h-tactil items-center px-2 font-semibold text-primario underline underline-offset-4 hover:no-underline"
+                >
+                  {textosClientes.enlaceMiCuenta}
+                </Link>
+              ) : null}
+              <BotonCerrarSesion />
+            </div>
+          ) : null}
         </div>
       </header>
       <main id="contenido" className="mx-auto max-w-3xl px-4 py-6">

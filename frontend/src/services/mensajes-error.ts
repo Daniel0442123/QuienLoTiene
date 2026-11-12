@@ -38,6 +38,9 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'IDE-012': 'El código no es correcto o ya cambió. Escribe el que muestra ahora tu aplicación autenticadora.',
   'IDE-013': 'La verificación venció o se agotaron los intentos. Vuelve a entrar con tu correo y tu frase.',
   'IDE-014': 'El segundo factor del administrador está mal configurado. Avisa al equipo técnico.',
+  'CLI-001': 'Falta un dato de la dirección: nombre, ubicación en el mapa, dirección escrita o teléfono.',
+  'CLI-002': 'Ya tienes 10 direcciones guardadas. Borra una para agregar otra.',
+  'CLI-003': 'No encontramos esa dirección. Puede que ya la hayas borrado.',
   'SOL-001': 'Ya publicaste 10 solicitudes en la última hora. Espera un poco para publicar otra.',
   'SOL-002': 'Falta un dato de la solicitud: qué buscas, dónde buscar, cómo lo quieres o tu ubicación.',
 }
