@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { enfocarCampo } from './enfocarCampo'
 
 export interface ErrorDeResumen {
   /** id del campo con el error: el enlace lleva el foco ahí. */
@@ -28,7 +29,7 @@ export function ResumenErrores({ titulo, errores }: { titulo: string; errores: E
               onClick={(evento) => {
                 // Solo mover el foco: cambiar el # de la URL no aporta y el enrutador no lo necesita
                 evento.preventDefault()
-                document.getElementById(idCampo)?.focus()
+                enfocarCampo(idCampo)
               }}
             >
               {mensaje}

@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { textosIdentidad } from '@/features/identidad/textos'
+import { textosTiendas } from '@/features/tiendas/textos'
 import { useSesion } from '@/hooks/useSesion'
 
 export function InicioPagina() {
@@ -23,6 +24,14 @@ export function InicioPagina() {
             {textosIdentidad.enlaceEntrar}
           </Link>
         </div>
+      )}
+      {sesion ? null : (
+        <p>
+          {textosTiendas.invitacionInicio}{' '}
+          <Link to="/registrar-tienda" className="text-primario underline underline-offset-4 hover:no-underline">
+            {textosTiendas.enlaceRegistrarTienda}
+          </Link>
+        </p>
       )}
     </section>
   )

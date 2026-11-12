@@ -1,4 +1,5 @@
 import { manejadoresAdministracion } from './manejadores-administracion'
+import { manejadoresCatalogo } from './manejadores-catalogo'
 import { manejadoresClientes } from './manejadores-clientes'
 import { manejadoresIdentidad } from './manejadores-identidad'
 import { manejadoresSolicitudes } from './manejadores-solicitudes'
@@ -17,6 +18,7 @@ export const FRASE_CORRECTA = FRASE_DE_PRUEBA
 
 export const manejadores = [
   ...manejadoresIdentidad,
+  ...manejadoresCatalogo,
   ...manejadoresClientes,
   ...manejadoresTiendas,
   ...manejadoresSolicitudes,

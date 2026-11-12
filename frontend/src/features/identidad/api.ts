@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { clienteApi } from '@/services/clienteApi'
 import type { DatosRegistroCliente } from './esquemas'
-import { VERSION_POLITICA_DATOS } from './politicaDatos'
+import { VERSION_POLITICA_DATOS } from '@/services/politicaDatos'
 
 /** Consultas y mutaciones de identidad (DECISIONES-FRONTEND sección 4). El inicio de sesión vive en services/sesion.ts. */
 

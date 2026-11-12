@@ -49,3 +49,11 @@ export function minutosHasta(fechaIso: string, ahora: Date = new Date()): number
   const diferenciaEnMilisegundos = new Date(fechaIso).getTime() - ahora.getTime()
   return Math.max(0, Math.ceil(diferenciaEnMilisegundos / 60_000))
 }
+
+const formatoMegabytes = new Intl.NumberFormat(IDIOMA, { maximumFractionDigits: 1 })
+
+/** Tamaño de un archivo para mostrarlo a la persona: "850 KB", "1,2 MB". */
+export function formatearTamano(bytes: number): string {
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`
+  return `${formatoMegabytes.format(bytes / (1024 * 1024))} MB`
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatearDistancia, formatearFechaHora, formatearPesos, minutosHasta } from './formato'
+import { formatearDistancia, formatearFechaHora, formatearPesos, formatearTamano, minutosHasta } from './formato'
 
 describe('Formato para Colombia', () => {
   it('muestra pesos sin decimales y con punto de miles', () => {
@@ -19,5 +19,11 @@ describe('Formato para Colombia', () => {
     const ahora = new Date('2026-11-08T15:00:00Z')
     expect(minutosHasta('2026-11-08T15:30:00Z', ahora)).toBe(30)
     expect(minutosHasta('2026-11-08T14:00:00Z', ahora)).toBe(0)
+  })
+
+  it('muestra el tamaño de un archivo en KB o MB', () => {
+    expect(formatearTamano(200)).toBe('1 KB')
+    expect(formatearTamano(850 * 1024)).toBe('850 KB')
+    expect(formatearTamano(1.25 * 1024 * 1024)).toMatch(/^1,[23] MB$/)
   })
 })

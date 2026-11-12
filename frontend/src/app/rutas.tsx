@@ -33,6 +33,10 @@ export const rutas: RouteObject[] = [
             }),
           },
           {
+            path: 'registrar-tienda',
+            lazy: async () => ({ Component: (await import('@/pages/RegistroTiendaPagina')).RegistroTiendaPagina }),
+          },
+          {
             path: '*',
             lazy: async () => ({ Component: (await import('@/pages/NoEncontradaPagina')).NoEncontradaPagina }),
           },

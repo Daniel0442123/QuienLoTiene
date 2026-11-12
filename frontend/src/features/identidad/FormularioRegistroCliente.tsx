@@ -4,6 +4,7 @@ import { useForm, useWatch, type FieldPath } from 'react-hook-form'
 import { Link } from 'react-router'
 import { CampoTexto } from '@/components/CampoTexto'
 import { CasillaVerificacion } from '@/components/CasillaVerificacion'
+import { PoliticaDatosDesplegable } from '@/components/PoliticaDatosDesplegable'
 import { ResumenErrores } from '@/components/ResumenErrores'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
@@ -11,7 +12,6 @@ import { esErrorApi, type ErrorApi } from '@/services/errores'
 import { debeMostrarIdCorrelacion, mensajeParaUsuario } from '@/services/mensajes-error'
 import { useRegistrarCliente } from './api'
 import { esquemaRegistroCliente, type DatosRegistroCliente, type EntradaRegistroCliente } from './esquemas'
-import { politicaDatos } from './politicaDatos'
 import { textosIdentidad as textos } from './textos'
 
 type Campo = FieldPath<EntradaRegistroCliente>
@@ -181,20 +181,7 @@ export function FormularioRegistroCliente({ alRegistrar }: { alRegistrar: (corre
       </div>
 
       <div className="flex flex-col gap-2">
-        <details className="rounded-control border border-borde-suave bg-superficie">
-          <summary className="flex min-h-tactil cursor-pointer items-center px-3 font-medium text-primario underline underline-offset-4">
-            {textos.resumenPolitica}
-          </summary>
-          <div className="flex flex-col gap-3 px-3 pb-3">
-            <h2 className="font-semibold">{politicaDatos.titulo}</h2>
-            {politicaDatos.secciones.map((seccion) => (
-              <section key={seccion.titulo}>
-                <h3 className="font-medium">{seccion.titulo}</h3>
-                <p className="text-texto-suave">{seccion.texto}</p>
-              </section>
-            ))}
-          </div>
-        </details>
+        <PoliticaDatosDesplegable />
         <CasillaVerificacion
           id={ID_CAMPO.aceptaPoliticaDatos}
           etiqueta={textos.etiquetaPolitica}
