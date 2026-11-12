@@ -22,8 +22,9 @@ export function InicioSesionPagina() {
       <FormularioInicioSesion
         correoInicial={correoRegistrado}
         alIniciar={(respuesta) => {
-          // TODO HU-004: si respuesta.segundoFactorRequerido, ir a la pantalla del código TOTP
-          if (!respuesta.segundoFactorRequerido) navegar(volverA, { replace: true })
+          // HU-004: el administrador escribe el código de su app autenticadora antes de tener sesión
+          if (respuesta.segundoFactorRequerido) navegar('/entrar/codigo', { state: { volverA } })
+          else navegar(volverA, { replace: true })
         }}
       />
       <p>

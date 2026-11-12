@@ -64,3 +64,24 @@ export const esquemaRegistroCliente = z.object({
 export type EntradaRegistroCliente = z.input<typeof esquemaRegistroCliente>
 /** Lo que se envía al backend. */
 export type DatosRegistroCliente = z.output<typeof esquemaRegistroCliente>
+
+export const LARGO_CODIGO_TOTP = 6
+
+/** Código de la aplicación autenticadora (HU-004). Se quitan los espacios que algunas apps muestran ("123 456"). */
+export const esquemaSegundoFactor = z.object({
+  codigo: z
+    .string()
+    .transform((valor) => valor.replace(/\s/g, ''))
+    .superRefine((codigo, contexto) => {
+      if (codigo.length === 0) {
+        contexto.addIssue({ code: 'custom', message: textos.codigoObligatorio })
+      } else if (!/^\d+$/.test(codigo)) {
+        contexto.addIssue({ code: 'custom', message: textos.codigoSoloNumeros })
+      } else if (codigo.length !== LARGO_CODIGO_TOTP) {
+        contexto.addIssue({ code: 'custom', message: textos.codigoLargo(codigo.length) })
+      }
+    }),
+})
+
+export type EntradaSegundoFactor = z.input<typeof esquemaSegundoFactor>
+export type DatosSegundoFactor = z.output<typeof esquemaSegundoFactor>

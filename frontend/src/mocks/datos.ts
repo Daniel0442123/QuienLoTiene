@@ -124,8 +124,8 @@ export interface BaseSimulada {
   tiendas: TiendaSimulada[]
   direcciones: DireccionSimulada[]
   solicitudes: SolicitudSimulada[]
-  /** Token temporal del segundo factor → id del administrador. */
-  segundosFactoresPendientes: Map<string, string>
+  /** Token temporal del segundo factor → administrador, vencimiento (ms) e intentos fallidos. */
+  segundosFactoresPendientes: Map<string, { usuarioId: string; vence: number; intentosFallidos: number }>
 }
 
 const HACE_UNA_SEMANA = '2026-11-04T14:00:00Z'

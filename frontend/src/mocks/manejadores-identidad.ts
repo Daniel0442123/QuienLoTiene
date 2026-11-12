@@ -15,6 +15,7 @@ import {
 
 const RUTA = '/api/v1/auth'
 const CINCO_MINUTOS_MS = 5 * 60 * 1000
+const MAXIMO_INTENTOS_TOTP = 5
 const FRASES_COMUNES = ['contraseña contraseña', 'password password', '123456789012345', 'qwertyuiopasdfgh']
 
 /** Reglas de la frase que el backend revisa en el dominio (IDE-002, IDE-003, IDE-004). */
@@ -119,11 +120,12 @@ export const manejadoresIdentidad = [
 
     if (usuario.rol === 'ADMIN') {
       const tokenSegundoFactor = crypto.randomUUID()
-      base.segundosFactoresPendientes.set(tokenSegundoFactor, usuario.id)
+      const vence = Date.now() + CINCO_MINUTOS_MS
+      base.segundosFactoresPendientes.set(tokenSegundoFactor, { usuarioId: usuario.id, vence, intentosFallidos: 0 })
       return HttpResponse.json({
         segundoFactorRequerido: true,
         tokenSegundoFactor,
-        fechaExpiracion: new Date(Date.now() + CINCO_MINUTOS_MS).toISOString(),
+        fechaExpiracion: new Date(vence).toISOString(),
       })
     }
     return respuestaSesion(usuario)
@@ -137,10 +139,15 @@ export const manejadoresIdentidad = [
     ])
     if (invalidos) return invalidos
 
-    const usuarioId = base.segundosFactoresPendientes.get(tokenSegundoFactor ?? '')
-    const usuario = base.usuarios.find((u) => u.id === usuarioId)
-    if (!usuario) return problema(401, 'IDE-013', 'Verificación vencida')
-    if (codigo !== CODIGO_TOTP_DE_PRUEBA) return problema(401, 'IDE-012', 'Código incorrecto')
+    // Como DesafioSegundoFactor: vence a los 5 minutos, sirve una sola vez y admite 5 intentos fallidos
+    const desafio = base.segundosFactoresPendientes.get(tokenSegundoFactor ?? '')
+    const vigente = desafio && desafio.vence > Date.now() && desafio.intentosFallidos < MAXIMO_INTENTOS_TOTP
+    const usuario = vigente ? base.usuarios.find((u) => u.id === desafio.usuarioId) : undefined
+    if (!desafio || !usuario) return problema(401, 'IDE-013', 'Verificación vencida')
+    if (codigo !== CODIGO_TOTP_DE_PRUEBA) {
+      desafio.intentosFallidos += 1
+      return problema(401, 'IDE-012', 'Código incorrecto')
+    }
 
     base.segundosFactoresPendientes.delete(tokenSegundoFactor ?? '')
     return respuestaSesion(usuario)

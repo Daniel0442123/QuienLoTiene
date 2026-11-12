@@ -1,4 +1,4 @@
-import { errorDesdeRespuesta, errorSinConexion } from './errores'
+import { ErrorApi, errorDesdeRespuesta, errorSinConexion } from './errores'
 
 /**
  * Sesión del usuario (DECISIONES-FRONTEND F-06).
@@ -35,6 +35,8 @@ export type RespuestaInicioSesion = SesionResponse | SegundoFactorPendiente
 const RUTA_AUTENTICACION = '/api/v1/auth'
 
 let sesionActual: Sesion | null = null
+/** Token temporal del administrador entre /auth/login y /auth/totp (HU-004). Solo memoria, como el de acceso. */
+let segundoFactorPendiente: SegundoFactorPendiente | null = null
 const suscriptores = new Set<() => void>()
 let renovacionEnCurso: Promise<Sesion | null> | null = null
 
@@ -68,7 +70,17 @@ export function guardarSesion(respuesta: SesionResponse): Sesion {
 
 export function limpiarSesion(): void {
   sesionActual = null
+  segundoFactorPendiente = null
   notificarCambio()
+}
+
+/** Hay un segundo factor por verificar y no ha vencido. */
+export function haySegundoFactorPendiente(ahora: Date = new Date()): boolean {
+  return segundoFactorPendiente !== null && Date.parse(segundoFactorPendiente.fechaExpiracion) > ahora.getTime()
+}
+
+export function descartarSegundoFactorPendiente(): void {
+  segundoFactorPendiente = null
 }
 
 async function publicarEnAutenticacion(ruta: string, cuerpo?: unknown): Promise<Response> {
@@ -88,8 +100,34 @@ export async function iniciarSesion(correo: string, fraseContrasena: string): Pr
   const respuesta = await publicarEnAutenticacion('/login', { correo, fraseContrasena })
   if (!respuesta.ok) throw await errorDesdeRespuesta(respuesta)
   const datos = (await respuesta.json()) as RespuestaInicioSesion
-  if (!datos.segundoFactorRequerido) guardarSesion(datos)
+  if (datos.segundoFactorRequerido) {
+    segundoFactorPendiente = datos
+  } else {
+    segundoFactorPendiente = null
+    guardarSesion(datos)
+  }
   return datos
+}
+
+/**
+ * Envía el código de 6 dígitos con el token temporal guardado en memoria (HU-004, CU-25 pasos 8 a 16).
+ * Si el token ya no sirve (IDE-013) se descarta: hay que volver a escribir la frase.
+ */
+export async function verificarSegundoFactor(codigo: string): Promise<Sesion> {
+  if (!segundoFactorPendiente) {
+    throw new ErrorApi({ status: 401, codigo: 'IDE-013', title: 'Verificación vencida' })
+  }
+  const respuesta = await publicarEnAutenticacion('/totp', {
+    tokenSegundoFactor: segundoFactorPendiente.tokenSegundoFactor,
+    codigo,
+  })
+  if (!respuesta.ok) {
+    const error = await errorDesdeRespuesta(respuesta)
+    if (error.codigo === 'IDE-013') segundoFactorPendiente = null
+    throw error
+  }
+  segundoFactorPendiente = null
+  return guardarSesion((await respuesta.json()) as SesionResponse)
 }
 
 /**
