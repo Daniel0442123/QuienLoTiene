@@ -18,6 +18,22 @@ export const textosIdentidad = {
   enlaceCrearCuenta: 'Crear una cuenta',
   cuentaCreada: 'Cuenta creada. Ya puedes entrar con tu correo y tu frase de contraseña.',
 
+  // Segundo factor del administrador (HU-004)
+  tituloSegundoFactor: 'Código de verificación',
+  introSegundoFactor:
+    'Abre tu aplicación autenticadora (por ejemplo Google Authenticator o Microsoft Authenticator) y escribe el código de 6 dígitos de ¿Quién lo tiene?.',
+  limiteSegundoFactor: 'Tienes 5 minutos y 5 intentos; después tendrás que volver a entrar.',
+  etiquetaCodigo: 'Código de 6 dígitos',
+  pistaCodigo: 'El código cambia cada 30 segundos. Si está por cambiar, espera el siguiente.',
+  botonVerificar: 'Verificar',
+  botonVerificando: 'Verificando…',
+  enlaceVolverAEntrar: 'Volver a entrar',
+  enlaceUsarOtraCuenta: 'Entrar con otra cuenta',
+  codigoObligatorio: 'Escribe el código de 6 dígitos.',
+  codigoSoloNumeros: 'El código solo tiene números.',
+  codigoLargo: (largo: number) => `El código tiene 6 dígitos. Llevas ${largo}.`,
+  errorGeneralSegundoFactor: 'No pudimos verificar el código. Inténtalo de nuevo.',
+
   // Cerrar sesión (HU-003)
   botonCerrarSesion: 'Cerrar sesión',
   sesionCerrada: 'Sesión cerrada.',
