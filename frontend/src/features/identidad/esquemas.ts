@@ -30,11 +30,37 @@ export function mensajeFraseCorta(largoActual: number): string {
   return `La frase debe tener al menos ${LARGO_MINIMO_FRASE} caracteres. Llevas ${largoActual}.`
 }
 
+export const LARGO_MAXIMO_NOMBRE = 120
+
+const nombre = z.string().trim().min(1, textos.nombreObligatorio).max(LARGO_MAXIMO_NOMBRE, textos.nombreMuyLargo)
+
+/** Mismo patrón del backend (^\+?[0-9]{7,15}$). Antes se quitan espacios, guiones y paréntesis que la gente escribe. */
+const telefono = z
+  .string()
+  .transform((valor) => valor.replace(/[\s\-()]/g, ''))
+  .pipe(z.string().regex(/^\+?[0-9]{7,15}$/, textos.telefonoInvalido))
+
 export const esquemaFraseNueva = z
   .string()
   .max(LARGO_MAXIMO_FRASE, textos.fraseMuyLarga)
   .superRefine((frase, contexto) => {
-    if (frase.length < LARGO_MINIMO_FRASE) {
+    if (frase.length === 0) {
+      contexto.addIssue({ code: 'custom', message: textos.fraseObligatoria })
+    } else if (frase.length < LARGO_MINIMO_FRASE) {
       contexto.addIssue({ code: 'custom', message: mensajeFraseCorta(frase.length) })
     }
   })
+
+/** Registro de cliente (HU-001, HU-005). Igual a RegistrarClienteRequest, sin la versión de la política (la pone api.ts). */
+export const esquemaRegistroCliente = z.object({
+  nombre,
+  correo,
+  telefono,
+  fraseContrasena: esquemaFraseNueva,
+  aceptaPoliticaDatos: z.boolean().refine((acepta) => acepta, textos.politicaObligatoria),
+})
+
+/** Lo que escribe la persona (antes de limpiar el teléfono). */
+export type EntradaRegistroCliente = z.input<typeof esquemaRegistroCliente>
+/** Lo que se envía al backend. */
+export type DatosRegistroCliente = z.output<typeof esquemaRegistroCliente>

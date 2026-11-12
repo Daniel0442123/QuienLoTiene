@@ -1,5 +1,6 @@
 import createClient, { type Middleware } from 'openapi-fetch'
 import type { paths } from './api-tipos'
+import type { PathsProvisionales } from './api-tipos-provisionales'
 import { errorDesdeRespuesta, errorSinConexion } from './errores'
 import { obtenerTokenAcceso, renovarSesion } from './sesion'
 
@@ -45,5 +46,12 @@ const renovacionYErrores: Middleware = {
   },
 }
 
-export const clienteApi = createClient<paths>({ baseUrl: '', credentials: 'same-origin' })
+// PathsProvisionales se quita cuando api-tipos.ts se genere desde el backend (ver api-tipos-provisionales.ts)
+// El origen de la página: las rutas siguen siendo del mismo origen, pero `Request` en Node (pruebas) exige URL absoluta
+export const clienteApi = createClient<paths & PathsProvisionales>({
+  baseUrl: globalThis.location?.origin ?? '',
+  credentials: 'same-origin',
+  // Se busca fetch en cada llamada (no al importar): así lo ven las herramientas que lo envuelven, como MSW en las pruebas
+  fetch: (peticion) => globalThis.fetch(peticion),
+})
 clienteApi.use(autenticacion, renovacionYErrores)
