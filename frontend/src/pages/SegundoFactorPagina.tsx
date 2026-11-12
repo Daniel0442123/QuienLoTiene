@@ -11,7 +11,9 @@ import { descartarSegundoFactorPendiente, haySegundoFactorPendiente } from '@/se
 export function SegundoFactorPagina() {
   const navegar = useNavigate()
   const { state } = useLocation()
-  const volverA = (state as { volverA?: string } | null)?.volverA ?? '/'
+  // Sin un destino concreto ("/" es el de cualquier inicio de sesión), el administrador llega a revisar tiendas
+  const pedido = (state as { volverA?: string } | null)?.volverA
+  const volverA = pedido && pedido !== '/' ? pedido : '/admin/tiendas'
   // Se revisa una sola vez: si luego vence (IDE-013), la pantalla lo explica en vez de saltar sin aviso
   const [habiaPendiente] = useState(() => haySegundoFactorPendiente())
 

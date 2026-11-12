@@ -1,6 +1,7 @@
-import { createBrowserRouter, type RouteObject } from 'react-router'
+import { createBrowserRouter, Outlet, type RouteObject } from 'react-router'
 import { ErrorDeRuta } from './ErrorDeRuta'
 import { Plantilla } from './Plantilla'
+import { RutaProtegida } from './RutaProtegida'
 
 /**
  * Rutas de la PWA, en español y kebab-case (DECISIONES-FRONTEND sección 5).
@@ -25,6 +26,21 @@ export const rutas: RouteObject[] = [
           {
             path: 'entrar/codigo',
             lazy: async () => ({ Component: (await import('@/pages/SegundoFactorPagina')).SegundoFactorPagina }),
+          },
+          {
+            // Administración (HU-036): solo el rol ADMIN, que entra con segundo factor (HU-004)
+            path: 'admin',
+            element: (
+              <RutaProtegida roles={['ADMIN']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                path: 'tiendas',
+                lazy: async () => ({ Component: (await import('@/pages/RevisarTiendasPagina')).RevisarTiendasPagina }),
+              },
+            ],
           },
           {
             path: 'crear-cuenta',
