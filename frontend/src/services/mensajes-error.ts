@@ -38,6 +38,8 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'IDE-012': 'El código no es correcto o ya cambió. Escribe el que muestra ahora tu aplicación autenticadora.',
   'IDE-013': 'La verificación venció o se agotaron los intentos. Vuelve a entrar con tu correo y tu frase.',
   'IDE-014': 'El segundo factor del administrador está mal configurado. Avisa al equipo técnico.',
+  'SOL-001': 'Ya publicaste 10 solicitudes en la última hora. Espera un poco para publicar otra.',
+  'SOL-002': 'Falta un dato de la solicitud: qué buscas, dónde buscar, cómo lo quieres o tu ubicación.',
 }
 
 const MENSAJE_GENERAL = 'No pudimos completar la acción. Inténtalo de nuevo.'
@@ -45,7 +47,12 @@ const MENSAJE_GENERAL = 'No pudimos completar la acción. Inténtalo de nuevo.'
 export function mensajeParaUsuario(error: ErrorApi): string {
   if (error.status === 429 && error.segundosParaReintentar) {
     const minutos = Math.ceil(error.segundosParaReintentar / 60)
-    return `Hiciste muchos intentos seguidos. Vuelve a intentarlo en ${minutos} ${minutos === 1 ? 'minuto' : 'minutos'}.`
+    const espera = `${minutos} ${minutos === 1 ? 'minuto' : 'minutos'}`
+    // SOL-001 (CP-SOL-016-03): el límite es de solicitudes, no de intentos de inicio de sesión
+    if (error.codigo === 'SOL-001') {
+      return `Ya publicaste 10 solicitudes en la última hora. Podrás publicar otra en ${espera}.`
+    }
+    return `Hiciste muchos intentos seguidos. Vuelve a intentarlo en ${espera}.`
   }
   return MENSAJES_POR_CODIGO[error.codigo] ?? error.detalle ?? MENSAJE_GENERAL
 }

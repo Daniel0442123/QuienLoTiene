@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate } from 'react-router'
 import { FormularioInicioSesion } from '@/features/identidad/FormularioInicioSesion'
 import { textosIdentidad } from '@/features/identidad/textos'
 
+const destinoPorRol: Partial<Record<string, string>> = { TIENDA: '/tienda', CLIENTE: '/solicitudes/nueva' }
+
 interface EstadoInicioSesion {
   volverA?: string
   /** Llega desde el registro (CU-01 paso 14): se avisa y se deja el correo escrito. */
@@ -24,8 +26,9 @@ export function InicioSesionPagina() {
         alIniciar={(respuesta) => {
           // HU-004: el administrador escribe el código de su app autenticadora antes de tener sesión
           if (respuesta.segundoFactorRequerido) navegar('/entrar/codigo', { state: { volverA } })
-          // Sin destino pedido, cada rol llega a su pantalla principal: la tienda, a su panel
-          else navegar(volverA ?? (respuesta.rol === 'TIENDA' ? '/tienda' : '/'), { replace: true })
+          // Sin destino pedido, cada rol llega a su pantalla principal: la tienda a su panel y el cliente directo a
+          // preguntar (RNF-027: publicar en ≤ 60 s)
+          else navegar(volverA ?? destinoPorRol[respuesta.rol] ?? '/', { replace: true })
         }}
       />
       <p>
