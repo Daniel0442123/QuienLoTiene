@@ -1,6 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Aplicacion } from '@/app/Aplicacion'
+// Atkinson Hyperlegible (tokens.css): solo latino, regular y negrita, servida desde la app con font-display: swap
+import '@fontsource/atkinson-hyperlegible/latin-400.css'
+import '@fontsource/atkinson-hyperlegible/latin-700.css'
 import '@/styles/index.css'
 
 const raiz = document.getElementById('raiz')

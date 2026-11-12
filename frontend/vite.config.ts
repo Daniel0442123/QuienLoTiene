@@ -42,11 +42,14 @@ export default defineConfig({
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
-        theme_color: '#1d4ed8',
+        // Mismos valores que --color-primario y --color-fondo de tokens.css (el manifest no puede leer variables CSS)
+        theme_color: '#0b6e63',
         icons: [
           { src: 'icono-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icono-512.png', sizes: '512x512', type: 'image/png' },
-          { src: 'icono-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          // Archivo propio para «maskable»: el pin queda dentro de la zona segura del 80 % y Android puede recortarlo
+          { src: 'icono-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icono.svg', sizes: 'any', type: 'image/svg+xml' },
         ],
       },
       workbox: {

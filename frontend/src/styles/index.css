@@ -6,6 +6,8 @@
   --color-primario: var(--color-primario);
   --color-primario-texto: var(--color-primario-texto);
   --color-primario-hover: var(--color-primario-hover);
+  --color-acento: var(--color-acento);
+  --color-acento-texto: var(--color-acento-texto);
   --color-fondo: var(--color-fondo);
   --color-superficie: var(--color-superficie);
   --color-texto: var(--color-texto);
@@ -15,8 +17,13 @@
   --color-exito: var(--color-exito);
   --color-advertencia: var(--color-advertencia);
   --color-peligro: var(--color-peligro);
+  --color-peligro-texto: var(--color-peligro-texto);
   --color-foco: var(--color-foco);
   --font-sans: var(--fuente-base);
+  /* Atkinson Hyperlegible solo tiene 400 y 700: «medium» y «semibold» usan la negrita para que etiquetas y títulos
+     no caigan a regular (el navegador redondea 500 hacia abajo) */
+  --font-weight-medium: 700;
+  --font-weight-semibold: 700;
   --radius-control: var(--radio);
   --spacing-tactil: var(--tamano-tactil);
 }

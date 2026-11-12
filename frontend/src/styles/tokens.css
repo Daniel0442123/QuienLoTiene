@@ -1,28 +1,33 @@
 /*
  * Tokens de diseño (DECISIONES-FRONTEND F-10). Único lugar con valores de color, tipografía y espacio.
- * Los colores son PROVISIONALES: Monica define la paleta con los prototipos. Al cambiarlos, verificar
- * contraste ≥ 4,5:1 para texto y ≥ 3:1 para bordes y foco (WCAG 2.2 AA, RNF-028).
+ * Paleta «B · Verde botica», elegida por Monica (12/11/2026). Contraste calculado con la fórmula de WCAG 2.2 para cada
+ * combinación que usa la app: texto ≥ 4,5:1 y bordes y foco ≥ 3:1 (RNF-028). Si se cambia un color, recalcular.
  */
 :root {
   color-scheme: light;
 
   /* Color por función */
-  --color-primario: #1d4ed8; /* 6,7:1 sobre blanco */
-  --color-primario-texto: #ffffff;
-  --color-primario-hover: #1e40af;
+  --color-primario: #0b6e63; /* verde botica · 6,13:1 sobre fondo, 5,66:1 sobre superficie */
+  --color-primario-texto: #ffffff; /* 6,13:1 sobre primario */
+  --color-primario-hover: #08564d; /* 8,58:1 con texto blanco */
+  --color-acento: #b45309; /* ámbar: lo urgente o destacado · 5,02:1 sobre fondo */
+  --color-acento-texto: #ffffff; /* 5,02:1 sobre acento */
   --color-fondo: #ffffff;
-  --color-superficie: #f8fafc;
-  --color-texto: #0f172a; /* 17:1 sobre blanco */
-  --color-texto-suave: #475569; /* 7,6:1 sobre blanco */
-  --color-borde: #64748b; /* 4,8:1: bordes de controles ≥ 3:1 */
-  --color-borde-suave: #e2e8f0; /* solo decorativo, nunca para delimitar un control */
-  --color-exito: #15803d;
-  --color-advertencia: #a16207;
-  --color-peligro: #b91c1c;
-  --color-foco: #1d4ed8;
+  --color-superficie: #f2f7f5;
+  --color-texto: #13261f; /* 15,85:1 sobre fondo, 14,64:1 sobre superficie */
+  --color-texto-suave: #4b5d56; /* 7,00:1 sobre fondo, 6,47:1 sobre superficie */
+  --color-borde: #6a7d76; /* 4,37:1 sobre fondo, 4,03:1 sobre superficie: bordes de controles ≥ 3:1 */
+  --color-borde-suave: #dce7e2; /* solo decorativo, nunca para delimitar un control (no llega a 3:1) */
+  --color-exito: #1f7a2e; /* 5,41:1 sobre fondo y con texto blanco */
+  --color-advertencia: #8a5a00; /* 5,93:1 sobre fondo */
+  --color-peligro: #b3261e; /* 6,54:1 sobre fondo */
+  --color-peligro-texto: #ffffff; /* 6,54:1 sobre peligro */
+  --color-foco: #0b6e63; /* 6,13:1 sobre fondo, 5,66:1 sobre superficie */
 
-  /* Tipografía: base de 16 px (RNF-028), siempre en rem para que el zoom funcione */
-  --fuente-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Tipografía: base de 16 px (RNF-028), siempre en rem para que el zoom funcione.
+     Atkinson Hyperlegible (OFL 1.1, Braille Institute): pensada para baja visión, no confunde I, l, 1 ni O, 0.
+     Solo regular (400) y negrita (700), subconjunto latino: 33,9 kB en total, con font-display: swap. */
+  --fuente-base: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --texto-base: 1rem;
 
   /* Tamaño táctil mínimo (RNF-028) y radios */
