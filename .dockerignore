@@ -1,0 +1,15 @@
+# Contexto de las imágenes de docker/api y docker/caddy: solo lo necesario para compilar
+.git
+.github
+.idea
+.vscode
+docs
+scripts
+target
+almacen-archivos
+frontend/node_modules
+frontend/dist
+frontend/dev-dist
+frontend/coverage
+.env
+.env.*

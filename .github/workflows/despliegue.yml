@@ -1,0 +1,169 @@
+# Despliegue a producción en el VPS (diagrama 08-despliegue, docs/despliegue/DESPLIEGUE.md).
+# Corre al crear una etiqueta v* (git tag v0.1.0 && git push origin v0.1.0). También se puede lanzar a mano desde
+# Actions con una etiqueta que ya exista, para volver a una versión anterior.
+#
+# Secretos del repositorio: VPS_HOST, VPS_USUARIO, VPS_LLAVE_SSH (llave privada solo para despliegue) y
+# VPS_HUELLA (línea de ssh-keyscan del servidor, para no aceptar un servidor desconocido).
+name: Despliegue
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Etiqueta a desplegar (por ejemplo v0.1.0)'
+        required: true
+
+permissions:
+  contents: read
+
+# Un despliegue a la vez y nunca se cancela a medias
+concurrency:
+  group: despliegue-produccion
+  cancel-in-progress: false
+
+env:
+  VERSION: ${{ inputs.version || github.ref_name }}
+
+jobs:
+  probar:
+    name: Pruebas antes de desplegar
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.VERSION }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # Mismas pruebas que CI: la etiqueta puede estar en un commit que no pasó por main
+      - name: Construir y probar
+        run: ./mvnw -B verify
+
+  imagenes:
+    name: Construir, escanear y publicar imágenes
+    needs: probar
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.VERSION }}
+
+      - name: Nombre de las imágenes
+        run: echo "PREFIJO=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/quienlotiene" >> "$GITHUB_ENV"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Construir la API
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/api/Dockerfile
+          load: true
+          tags: ${{ env.PREFIJO }}-api:${{ env.VERSION }}
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,mode=max,scope=api
+
+      - name: Construir Caddy con la PWA
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/caddy/Dockerfile
+          load: true
+          tags: ${{ env.PREFIJO }}-caddy:${{ env.VERSION }}
+          cache-from: type=gha,scope=caddy
+          cache-to: type=gha,mode=max,scope=caddy
+
+      # RNF-011: no se publica una imagen con vulnerabilidades críticas o altas que tengan arreglo
+      - name: Trivy (imágenes)
+        run: |
+          for imagen in api caddy; do
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.58.1 \
+              image --scanners vuln --severity CRITICAL,HIGH --ignore-unfixed --exit-code 1 \
+              "$PREFIJO-$imagen:$VERSION"
+          done
+
+      - name: Publicar en GHCR
+        run: |
+          for imagen in api caddy; do
+            docker tag "$PREFIJO-$imagen:$VERSION" "$PREFIJO-$imagen:latest"
+            docker push "$PREFIJO-$imagen:$VERSION"
+            docker push "$PREFIJO-$imagen:latest"
+          done
+
+  desplegar:
+    name: Desplegar en el VPS
+    needs: imagenes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.VERSION }}
+
+      - name: Preparar SSH
+        env:
+          LLAVE: ${{ secrets.VPS_LLAVE_SSH }}
+          HUELLA: ${{ secrets.VPS_HUELLA }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$LLAVE" > ~/.ssh/despliegue
+          chmod 600 ~/.ssh/despliegue
+          printf '%s\n' "$HUELLA" > ~/.ssh/known_hosts
+          printf 'Host vps\n  HostName %s\n  User %s\n  IdentityFile ~/.ssh/despliegue\n  StrictHostKeyChecking yes\n' \
+            "${{ secrets.VPS_HOST }}" "${{ secrets.VPS_USUARIO }}" > ~/.ssh/config
+
+      - name: Copiar compose y scripts de respaldo
+        run: |
+          ssh vps 'mkdir -p /opt/quienlotiene/respaldo'
+          scp compose.prod.yaml vps:/opt/quienlotiene/compose.prod.yaml
+          scp scripts/respaldo/respaldo.sh scripts/respaldo/restaurar.sh \
+            scripts/respaldo/quienlotiene-respaldo.service scripts/respaldo/quienlotiene-respaldo.timer \
+            scripts/respaldo/respaldo.env.ejemplo vps:/opt/quienlotiene/respaldo/
+          ssh vps 'chmod 750 /opt/quienlotiene/respaldo/*.sh'
+
+      # El token de GitHub solo vive mientras dura este job: el VPS inicia sesión en GHCR, descarga y cierra sesión
+      - name: Actualizar los contenedores
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ssh vps bash -s <<EOF
+          set -euo pipefail
+          cd /opt/quienlotiene
+          sed -i '/^QLT_VERSION=/d' .env
+          echo "QLT_VERSION=${VERSION}" >> .env
+          echo "${TOKEN}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          docker compose -f compose.prod.yaml pull
+          docker logout ghcr.io
+          docker compose -f compose.prod.yaml up -d --wait --wait-timeout 240
+          docker compose -f compose.prod.yaml ps
+          docker image prune -f
+          EOF
+
+      - name: Comprobar que el sitio responde
+        run: |
+          dominio=$(ssh vps "grep '^QLT_DOMINIO=' /opt/quienlotiene/.env | cut -d= -f2")
+          curl -fsS --retry 10 --retry-delay 6 --retry-all-errors -o /dev/null -w 'HTTPS %{http_code}\n' "https://$dominio/"
+
+      - name: Borrar la llave
+        if: always()
+        run: rm -f ~/.ssh/despliegue

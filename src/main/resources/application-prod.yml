@@ -5,6 +5,10 @@ spring:
     username: ${QLT_DB_USUARIO}
     password: ${QLT_DB_CLAVE}
 
+server:
+  # Caddy pasa la IP real del cliente y el esquema https en X-Forwarded-* (red interna de Docker)
+  forward-headers-strategy: native
+
 logging:
   structured:
     format:
