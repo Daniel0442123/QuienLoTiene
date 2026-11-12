@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" version="3.0.2" name="com.quienlotiene.tiendas.infrastructure.web.MiTiendaIT" time="5.765" tests="7" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="configuraLosMediosDePago" classname="HU-009 Perfil y horario de la tienda por la API" time="0.258">
+    </testcase>
+  <testcase name="rechazaUnHorarioInvalido" classname="HU-009 Perfil y horario de la tienda por la API" time="0.151">
+    </testcase>
+  <testcase name="soloLasTiendasVenSuPerfil" classname="HU-009 Perfil y horario de la tienda por la API" time="0.009" />
+  <testcase name="abreYCierraLaTienda" classname="HU-009 Perfil y horario de la tienda por la API" time="0.193">
+    </testcase>
+  <testcase name="actualizaPerfilYHorario" classname="HU-009 Perfil y horario de la tienda por la API" time="0.212">
+    </testcase>
+  <testcase name="configuraElDomicilio" classname="HU-009 Perfil y horario de la tienda por la API" time="0.183">
+    </testcase>
+  <testcase name="rechazaUnaTarifaNegativa" classname="HU-009 Perfil y horario de la tienda por la API" time="0.14">
+    </testcase>
+</testsuite>

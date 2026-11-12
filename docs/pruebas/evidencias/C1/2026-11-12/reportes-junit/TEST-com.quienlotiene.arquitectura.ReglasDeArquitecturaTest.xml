@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.arquitectura.ReglasDeArquitecturaTest" time="1.271" tests="6" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="elDominioNoDependeDeFrameworks" classname="NF-MAN-023 Reglas de arquitectura por capas" time="1.169" />
+  <testcase name="elDominioNoDependeDeOtrasCapas" classname="NF-MAN-023 Reglas de arquitectura por capas" time="0.004" />
+  <testcase name="laAplicacionNoDependeDeInfraestructura" classname="NF-MAN-023 Reglas de arquitectura por capas" time="0.012" />
+  <testcase name="losControladoresNoUsanPersistencia" classname="NF-MAN-023 Reglas de arquitectura por capas" time="0.037" />
+  <testcase name="sinInyeccionEnAtributos" classname="NF-MAN-023 Reglas de arquitectura por capas" time="0.03" />
+  <testcase name="sinSystemOut" classname="NF-MAN-023 Reglas de arquitectura por capas" time="0.014" />
+</testsuite>

@@ -1,0 +1,28 @@
+Evidencia: GitHub Actions · workflow CI · run #83 (id 43297877152) · job "Análisis de seguridad" (id 131460921966)
+Commit: ea7351d06da2d35f44dd123f8a699a9cbe051920 (tag v0.2.0) · rama main · 2026-11-12 20:12 a 20:13 UTC · conclusión: success
+Enlace: https://github.com/Daniel0442123/QuienLoTiene/actions/runs/43297877152/job/131460921966
+
+--- Paso "SpotBugs, FindSecBugs y SBOM": ./mvnw -B -Pseguridad -DskipTests verify
+[INFO] --- spotbugs:4.10.5.0:check (analisis-spotbugs) @ QuienLoTiene ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] BUILD SUCCESS
+[INFO] CycloneDX: Creating BOM version 1.6 with 145 component(s)
+
+--- Paso "Trivy (dependencias)"
+docker run --rm -v "$PWD:/proyecto" -w /proyecto aquasec/trivy:0.58.1 fs --scanners vuln --severity CRITICAL,HIGH --ignore-unfixed --exit-code 1 .
+INFO [vulndb] Artifact successfully downloaded repo="mirror.gcr.io/aquasec/trivy-db:2"
+INFO Number of language-specific files num=2
+INFO [npm] Detecting vulnerabilities...
+INFO [pom] Detecting vulnerabilities...
+(sin tabla de hallazgos; --exit-code 1 no se disparó: 0 críticas y 0 altas con corrección disponible) -> paso en verde
+
+--- Paso "Gitleaks (secretos)"
+docker run --rm -v "$PWD:/proyecto" zricethezav/gitleaks:v8.21.2 detect --source /proyecto --redact --verbose
+INF 33 commits scanned.
+INF scan completed in 335ms
+INF no leaks found
+
+Nota: el pipeline no ejecuta OWASP Dependency-Check (ver DEF-002). Trivy y Gitleaks no se pudieron repetir en el ambiente de QA
+porque Docker Hub devolvió el límite de descargas anónimas; se toma como evidencia la corrida del pipeline sobre el mismo commit.
