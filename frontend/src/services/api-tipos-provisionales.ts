@@ -7,6 +7,48 @@
  */
 
 export interface PathsProvisionales {
+  '/api/v1/solicitudes': {
+    parameters: { query?: never; header?: never; path?: never; cookie?: never }
+    get?: never
+    put?: never
+    /** HU-016. Máximo 10 por hora (429 SOL-001 con Retry-After). */
+    post: {
+      parameters: { query?: never; header?: never; path?: never; cookie?: never }
+      requestBody: { content: { 'application/json': ComponentesProvisionales['PublicarSolicitudRequest'] } }
+      responses: {
+        201: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['SolicitudResponse'] }
+        }
+      }
+    }
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/api/v1/clientes/me/direcciones': {
+    parameters: { query?: never; header?: never; path?: never; cookie?: never }
+    /** HU-007. Direcciones guardadas del cliente. */
+    get: {
+      parameters: { query?: never; header?: never; path?: never; cookie?: never }
+      requestBody?: never
+      responses: {
+        200: {
+          headers: { [nombre: string]: unknown }
+          content: { 'application/json': ComponentesProvisionales['DatosDireccion'][] }
+        }
+      }
+    }
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/api/v1/auth/registro': {
     parameters: { query?: never; header?: never; path?: never; cookie?: never }
     get?: never
@@ -315,6 +357,46 @@ export interface ComponentesProvisionales {
     nombre: string
     correo: string
     rol: string
+    /** Format: date-time */
+    fechaCreacion: string
+  }
+  Ubicacion: { latitud: number; longitud: number }
+  PublicarSolicitudRequest: {
+    producto: string
+    cantidad: number
+    /** Format: uuid */
+    categoriaId: string
+    modalidad: 'RECOGER' | 'DOMICILIO'
+    esUrgente?: boolean
+    ubicacion: ComponentesProvisionales['Ubicacion']
+  }
+  SolicitudResponse: {
+    /** Format: uuid */
+    id: string
+    /** Format: uuid */
+    categoriaId: string
+    producto: string
+    cantidad: number
+    modalidad: 'RECOGER' | 'DOMICILIO'
+    esUrgente: boolean
+    ubicacion: ComponentesProvisionales['Ubicacion']
+    radioEnMetros: number
+    estado: 'ABIERTA' | 'RESUELTA' | 'VENCIDA'
+    /** Format: date-time */
+    fechaPublicacion: string
+    /** Format: date-time */
+    fechaVencimiento: string
+    tiendasNotificadas: number
+  }
+  DatosDireccion: {
+    /** Format: uuid */
+    id: string
+    nombre: string
+    latitud: number
+    longitud: number
+    direccionEscrita: string
+    indicaciones: string | null
+    telefono: string
     /** Format: date-time */
     fechaCreacion: string
   }

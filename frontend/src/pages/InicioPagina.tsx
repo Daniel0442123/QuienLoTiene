@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { textosIdentidad } from '@/features/identidad/textos'
+import { textosSolicitudes } from '@/features/solicitudes/textos'
 import { textosTiendas } from '@/features/tiendas/textos'
 import { useSesion } from '@/hooks/useSesion'
 
@@ -31,6 +32,14 @@ export function InicioPagina() {
           className="inline-flex min-h-tactil items-center self-start rounded-control bg-primario px-4 font-semibold text-primario-texto"
         >
           {textosTiendas.enlacePanel}
+        </Link>
+      ) : null}
+      {sesion?.rol === 'CLIENTE' ? (
+        <Link
+          to="/solicitudes/nueva"
+          className="inline-flex min-h-tactil items-center self-start rounded-control bg-primario px-4 font-semibold text-primario-texto"
+        >
+          {textosSolicitudes.enlacePreguntar}
         </Link>
       ) : null}
       {sesion ? null : (

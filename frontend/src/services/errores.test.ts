@@ -27,6 +27,14 @@ describe('ProblemDetail → mensaje para el usuario', () => {
       respuestaProblema({ status: 429, codigo: 'SOL-001' }, 429, { 'Retry-After': '700' }),
     )
     expect(mensajeParaUsuario(error)).toMatch(/12 minutos/)
+    expect(mensajeParaUsuario(error)).toMatch(/Ya publicaste 10 solicitudes/)
+  })
+
+  it('en otro 429 (por ejemplo intentos de inicio de sesión) habla de intentos y dice 1 minuto en singular', async () => {
+    const error = await errorDesdeRespuesta(
+      respuestaProblema({ status: 429, codigo: 'GEN-011' }, 429, { 'Retry-After': '30' }),
+    )
+    expect(mensajeParaUsuario(error)).toBe('Hiciste muchos intentos seguidos. Vuelve a intentarlo en 1 minuto.')
   })
 
   it('conserva los errores de campo de una validación', async () => {

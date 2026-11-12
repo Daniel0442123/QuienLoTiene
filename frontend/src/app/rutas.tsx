@@ -34,6 +34,23 @@ export const rutas: RouteObject[] = [
             }),
           },
           {
+            // Publicar solicitud (HU-016): solo el rol CLIENTE
+            path: 'solicitudes',
+            element: (
+              <RutaProtegida roles={['CLIENTE']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                path: 'nueva',
+                lazy: async () => ({
+                  Component: (await import('@/pages/PublicarSolicitudPagina')).PublicarSolicitudPagina,
+                }),
+              },
+            ],
+          },
+          {
             path: 'registrar-tienda',
             lazy: async () => ({ Component: (await import('@/pages/RegistroTiendaPagina')).RegistroTiendaPagina }),
           },
