@@ -21,6 +21,10 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'IDE-008': 'El correo o la frase de contraseña no coinciden. Revísalos e inténtalo de nuevo.',
   'IDE-009': 'Tu cuenta está suspendida. Escríbenos si crees que es un error.',
   'IDE-010': 'Tu sesión terminó. Vuelve a entrar.',
+  'IDE-011': 'Tu cuenta de administración no tiene configurado el segundo factor. Pide a soporte que lo configure.',
+  'IDE-012': 'El código no es correcto o ya cambió. Escribe el que muestra ahora tu aplicación autenticadora.',
+  'IDE-013': 'La verificación venció o se agotaron los intentos. Vuelve a entrar con tu correo y tu frase.',
+  'IDE-014': 'El segundo factor del administrador está mal configurado. Avisa al equipo técnico.',
 }
 
 const MENSAJE_GENERAL = 'No pudimos completar la acción. Inténtalo de nuevo.'
