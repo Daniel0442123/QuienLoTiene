@@ -1,0 +1,41 @@
+# Proxy inverso de producción (diagrama 08-despliegue, DECISIONES-FRONTEND F-05).
+# La PWA y la API comparten el dominio: la cookie SameSite=Strict del refresco funciona sin CORS.
+# QLT_DOMINIO sale del .env del VPS (compose.prod.yaml). Caddy saca y renueva solo el certificado de Let's Encrypt.
+# El puerto 80 solo redirige a https y atiende el reto del certificado; nunca entrega contenido.
+
+{$QLT_DOMINIO} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+		-Server
+	}
+
+	# API: documentos de la tienda de 5 MB cada uno, dos por petición más los datos (application.yml).
+	# SSE (/api/v1/eventos) no necesita ajustes: Caddy no guarda en búfer text/event-stream.
+	handle /api/* {
+		request_body {
+			max_size 12MB
+		}
+		reverse_proxy api:8080
+	}
+
+	# PWA: archivos con huella en /assets con caché de un año; el resto (index.html, sw.js, manifest) sin caché
+	handle {
+		root * /srv
+		@conHuella path /assets/*
+		header @conHuella Cache-Control "public, max-age=31536000, immutable"
+		@sinHuella not path /assets/*
+		header @sinHuella Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+www.{$QLT_DOMINIO} {
+	redir https://{$QLT_DOMINIO}{uri} permanent
+}

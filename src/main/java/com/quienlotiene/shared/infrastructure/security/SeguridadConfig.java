@@ -42,9 +42,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableConfigurationProperties({PropiedadesJwt.class, PropiedadesCors.class})
 public class SeguridadConfig {
 
-    /** Rutas que no piden sesión: registro, inicio y refresco de sesión, y la documentación (solo fuera de prod). */
+    /**
+     * Rutas que no piden sesión: registro, inicio y refresco de sesión, la documentación (solo fuera de prod) y la salud
+     * de la API para el healthcheck del contenedor (Caddy solo publica {@code /api/*}, así que no sale a internet).
+     */
     private static final String[] RUTAS_PUBLICAS = {
-        "/api/v1/auth/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/error"
+        "/api/v1/auth/**",
+        "/swagger-ui/**",
+        "/swagger-ui.html",
+        "/v3/api-docs/**",
+        "/error",
+        "/actuator/health",
+        "/actuator/health/**"
     };
 
     private static final String RUTA_REGISTRO_TIENDA = "/api/v1/tiendas/registro";

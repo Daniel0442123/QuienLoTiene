@@ -74,6 +74,18 @@ quienlotiene:
     cors:
       origenes-permitidos: ${QLT_CORS_ORIGENES:http://localhost:5173}
 
+# Solo la salud de la API, sin detalles, con las sondas liveness y readiness para el healthcheck del contenedor
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+
 # El id de correlación de cada petición sale en todas las líneas de log (DECISIONES-BACKEND, sección 14)
 logging:
   pattern:

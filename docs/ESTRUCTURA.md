@@ -31,10 +31,12 @@ Dentro de cada módulo:
 ## Otras carpetas
 
 - `frontend/`: aplicación React + Vite + TypeScript (PWA). Estructura y comandos en `frontend/README.md`; convenciones en `docs/arquitectura/DECISIONES-FRONTEND.md`.
+- `docs/despliegue/`: cómo está montado el VPS, cómo desplegar, volver atrás y restaurar respaldos.
 - `docs/`: requisitos, arquitectura, diagramas `.drawio` y documentación de la API.
 - `docs/pruebas/`: estrategia de pruebas, bitácora de ejecuciones, plantillas y registros de cada ejecución con sus evidencias.
-- `docker/`: Dockerfile de la API, inicialización de PostgreSQL/PostGIS y configuración de Caddy.
-- `.github/workflows/`: integración continua.
-- `scripts/`: utilidades de desarrollo y copias de seguridad.
+- `docker/`: Dockerfile de la API (`docker/api`) y de Caddy con el build de la PWA y su `Caddyfile` (`docker/caddy`).
+- `compose.yaml`: base local para desarrollo; `compose.prod.yaml`: producción en el VPS (ver `docs/despliegue/DESPLIEGUE.md`).
+- `.github/workflows/`: integración continua (`ci.yml`, `frontend.yml`) y despliegue al VPS con etiquetas `v*` (`despliegue.yml`).
+- `scripts/`: utilidades de desarrollo; `scripts/respaldo/` tiene el respaldo diario con restic y la restauración.
 
 Los archivos `.gitkeep` solo existen para que Git conserve las carpetas vacías; se pueden borrar cuando la carpeta tenga contenido.

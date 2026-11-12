@@ -1,0 +1,69 @@
+# Producción en el VPS (diagrama 08-despliegue). Vive en /opt/quienlotiene junto al .env y lo copia el workflow
+# de despliegue. Los valores salen del .env (ver .env.ejemplo y docs/despliegue/DESPLIEGUE.md).
+#
+# Solo Caddy publica puertos: Docker se salta ufw, así que la base y la API quedan en la red interna sin "ports".
+#
+#   docker compose -f compose.prod.yaml up -d --wait
+name: quienlotiene
+
+services:
+  db:
+    image: postgis/postgis:17-3.5-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${QLT_DB_NOMBRE:?Define QLT_DB_NOMBRE en el .env}
+      POSTGRES_USER: ${QLT_DB_USUARIO:?Define QLT_DB_USUARIO en el .env}
+      POSTGRES_PASSWORD: ${QLT_DB_CLAVE:?Define QLT_DB_CLAVE en el .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    mem_limit: 512m
+    networks: [interna]
+
+  api:
+    image: ghcr.io/daniel0442123/quienlotiene-api:${QLT_VERSION:-latest}
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads:/datos/archivos
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -fsS http://localhost:8080/actuator/health/readiness || exit 1']
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 120s
+    mem_limit: 640m
+    networks: [interna]
+
+  caddy:
+    image: ghcr.io/daniel0442123/quienlotiene-caddy:${QLT_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      QLT_DOMINIO: ${QLT_DOMINIO:?Define QLT_DOMINIO en el .env}
+    depends_on:
+      - api
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    mem_limit: 128m
+    networks: [interna]
+
+volumes:
+  pgdata:
+  uploads:
+  caddy_data:
+  caddy_config:
+
+networks:
+  interna:
