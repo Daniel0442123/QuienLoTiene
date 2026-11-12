@@ -7,6 +7,7 @@
 export const VERSION_POLITICA_DATOS = '1.0'
 
 export const politicaDatos = {
+  resumen: 'Leer la política de tratamiento de datos',
   titulo: `Política de tratamiento de datos · versión ${VERSION_POLITICA_DATOS}`,
   secciones: [
     {

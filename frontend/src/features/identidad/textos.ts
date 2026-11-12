@@ -32,7 +32,6 @@ export const textosIdentidad = {
   pistaFraseNueva: (largo: number) =>
     `Mínimo 15 caracteres; puedes usar espacios, por ejemplo una oración que recuerdes. Llevas ${largo}.`,
   etiquetaPolitica: 'Autorizo el tratamiento de mis datos personales según la política de datos.',
-  resumenPolitica: 'Leer la política de tratamiento de datos',
   botonCrearCuenta: 'Crear cuenta',
   botonCreandoCuenta: 'Creando cuenta…',
   yaTienesCuenta: '¿Ya tienes cuenta?',
