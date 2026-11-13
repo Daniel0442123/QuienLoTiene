@@ -74,6 +74,7 @@ _Tabla generada el 12/11/2026 23:33 (hora de Bogotá) con `scripts/gestion/bitac
 | H-07 | Los PR no usan etiquetas, hitos ni responsable asignado (solo #19, #20, #22 y #25 tienen responsable) | API de GitHub | Procedimiento de seguimiento, sección 4 |
 | H-08 | Las historias de `tiendas`, `clientes` y `administracion` las implementó otra persona distinta a la del backlog, sin registro del cambio | PR #9 a #16 frente a `BACKLOG-SPRINT-1.md` sección 2 | SC-012 y compromiso C-11 |
 | H-09 | Las fechas del Sprint 1 cambiaron frente al plan de proyecto sin registro de la decisión | `BACKLOG-SPRINT-1.md` («Ojo con las fechas») | SC-013 y compromiso C-11 |
+| H-10 | Los resultados de pruebas y la cobertura de cada versión solo viven como artefactos de GitHub Actions, que se borran a los 14 días; ninguna etiqueta tiene Release | `ci.yml` (`retention-days: 14`), API de releases | Flujo `version.yml` y compromiso C-14 |
 
 ## 3. Hechos fuera de pull requests
 
@@ -113,6 +114,7 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-11 | Documentar el motivo y la aprobación de SC-012 (reasignación) y SC-013 (fechas del Sprint 1) | SC-012, SC-013 | Brayan Grajales Escarraga | 15/11/2026 | Abierto | |
 | C-12 | Agregar el endpoint de categorías a la trazabilidad y a los casos (`docs/pruebas/libro/`) cuando se fusione #32 | SC-007 | Yanimar Burbano Piamba | Después de #32 | Abierto | |
 | C-13 | Agregar encabezado de control e historial a los 8 archivos de `docs/pruebas/libro/` y al Excel del libro de QA | H-05 | Yanimar Burbano Piamba | Después de #32 | Abierto | |
+| C-14 | Ejecutar «Documentar versión» (`version.yml`, Run workflow) para `v0.1.0`, `v0.1.1`, `v0.1.2` y `v0.2.0`, antes de que venzan sus artefactos de pruebas | Este PR | Daniel Montenegro Almendra | 25/11/2026 | Abierto | |
 
 ## Historial del documento
 

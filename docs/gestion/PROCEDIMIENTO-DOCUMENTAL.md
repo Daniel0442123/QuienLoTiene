@@ -58,6 +58,9 @@ Todo documento termina con:
 
 - SemVer con etiquetas **anotadas**: `git tag -a v0.3.0 -m "Sprint 2: …"` y `git push origin v0.3.0`.
 - Antes de etiquetar: actualizar `REGISTRO-DE-CAMBIOS.md` y regenerar la bitácora.
+- Al terminar el despliegue de la etiqueta, el flujo `.github/workflows/version.yml` crea la **Release de GitHub** con las notas de `REGISTRO-DE-CAMBIOS.md` y la evidencia de calidad: corrida de CI con cada job, pruebas unitarias y de integración, cobertura, CI del frontend y despliegue. Le adjunta los resultados de pruebas, el reporte de cobertura y el SBOM, que GitHub Actions borra a los 14 o 30 días; así la evidencia se conserva.
+- Quien creó la etiqueta revisa la Release y copia el bloque «Evidencia de calidad» a `REGISTRO-DE-CAMBIOS.md` en el PR de la bitácora.
+- Si un despliegue falla, la Release lo dice igual: la evidencia de una versión fallida también se conserva.
 
 ## 7. Conservación
 

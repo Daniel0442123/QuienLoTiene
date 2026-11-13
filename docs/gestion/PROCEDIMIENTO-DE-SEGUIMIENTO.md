@@ -18,7 +18,7 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.3.2 evaluación y control del pro
 | ¿Se salió del plan? | `CONTROL-DE-CAMBIOS.md` (SC-nnn) y sección «Control de cambios» del PR | Quien detecta la desviación |
 | ¿Qué se decidió fuera de GitHub? | `BITACORA-DEL-PROYECTO.md`, sección 3 | Scrum Master |
 | ¿Qué quedó pendiente? | `BITACORA-DEL-PROYECTO.md`, sección 4 | Autor del PR o Scrum Master |
-| ¿Qué trae cada versión? | `REGISTRO-DE-CAMBIOS.md` | Quien crea la etiqueta |
+| ¿Qué trae cada versión y con qué evidencia salió? | `REGISTRO-DE-CAMBIOS.md` y la Release de GitHub de cada etiqueta | Quien crea la etiqueta; la Release la arma `version.yml` |
 | ¿Cómo van las pruebas? | `docs/pruebas/libro/` y su Excel, informes de corte | QA |
 | ¿Qué versión tiene cada documento? | Encabezado e historial de cada documento | Autor del cambio |
 
@@ -32,6 +32,7 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.3.2 evaluación y control del pro
 | Al terminar el día (si hubo fusiones) | Regenerar la bitácora, anotar los hechos fuera de PR y actualizar compromisos | Scrum Master |
 | En la daily | Repasar los compromisos abiertos vencidos y las SC en análisis | Scrum Master |
 | Antes de etiquetar una versión | Actualizar `REGISTRO-DE-CAMBIOS.md`, regenerar la bitácora, etiqueta anotada | Arquitecto |
+| Después del despliegue | Revisar la Release que crea `version.yml` (notas, evidencia de CI, pruebas, cobertura y despliegue) y copiar la evidencia al registro de cambios | Arquitecto |
 | En el corte de sprint | Informe de corte (QA), revisión de SC abiertas con el comité, cierre de compromisos | Scrum Master, líder de QA, Product Owner |
 
 ## 3. Regenerar la bitácora

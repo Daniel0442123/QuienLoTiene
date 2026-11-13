@@ -24,10 +24,11 @@ Aquí se responde, para todo el proyecto, **qué se hizo, cuándo, quién lo hiz
 | `.github/workflows/gestion.yml` + `scripts/gestion/verificar_pr.py` | Falla el PR si falta la historia, si no marca si se desvía del plan, si cita una SC que no está registrada o si no dice qué documentos actualizó |
 | `scripts/gestion/bitacora.py` | Regenera la tabla de PR de la bitácora desde GitHub |
 | `scripts/gestion/libro_excel.py` | Regenera el libro Excel desde estos Markdown |
+| `.github/workflows/version.yml` + `scripts/gestion/evidencia_version.py` | Al desplegar cada etiqueta crea la Release de GitHub con notas, evidencia de CI, pruebas, cobertura, frontend y despliegue, y adjunta los artefactos |
 
 ## Flujo en una línea
 
-Abrir PR con la plantilla → si se desvía, registrar SC-nnn → actualizar los documentos afectados en el mismo PR → revisión «Approve» → fusionar con los chequeos en verde → regenerar bitácora y Excel → al etiquetar, notas de versión.
+Abrir PR con la plantilla → si se desvía, registrar SC-nnn → actualizar los documentos afectados en el mismo PR → revisión «Approve» → fusionar con los chequeos en verde → regenerar bitácora y Excel → al etiquetar, notas de versión → al desplegar, Release con la evidencia de calidad.
 
 ## Historial del documento
 

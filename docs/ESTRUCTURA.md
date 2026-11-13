@@ -39,7 +39,7 @@ Dentro de cada módulo:
 - `docs/pruebas/`: estrategia de pruebas, bitácora de ejecuciones, plantillas y registros de cada ejecución con sus evidencias.
 - `docker/`: Dockerfile de la API (`docker/api`) y de Caddy con el build de la PWA y su `Caddyfile` (`docker/caddy`).
 - `compose.yaml`: base local para desarrollo; `compose.prod.yaml`: producción en el VPS (ver `docs/despliegue/DESPLIEGUE.md`).
-- `.github/workflows/`: integración continua (`ci.yml`, `frontend.yml`), control de cambios de cada PR (`gestion.yml`) y despliegue al VPS con etiquetas `v*` (`despliegue.yml`).
+- `.github/workflows/`: integración continua (`ci.yml`, `frontend.yml`), control de cambios de cada PR (`gestion.yml`), Release con la evidencia de cada versión (`version.yml`) y despliegue al VPS con etiquetas `v*` (`despliegue.yml`).
 - `scripts/`: utilidades de desarrollo; `scripts/respaldo/` tiene el respaldo diario con restic y la restauración; `scripts/gestion/` genera la bitácora y el libro de control de cambios y revisa la descripción de cada PR.
 
 Los archivos `.gitkeep` solo existen para que Git conserve las carpetas vacías; se pueden borrar cuando la carpeta tenga contenido.
