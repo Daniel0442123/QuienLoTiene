@@ -1,5 +1,7 @@
 # Informe de Cierre — Ciclo <N> (C<N>)
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
 > Anexo D del Plan Maestro. Guardar en `docs/pruebas/informes/<ciclo>/INFORME-DE-CIERRE-<ciclo>.md`. Todas las cifras salen del libro de control.
@@ -75,3 +77,10 @@ Recomendaciones para el equipo:
 |---|---|
 | Yanimar Burbano Piamba · Líder de QA · Firma: | Wilson Javier Galindez Certuche · Product Owner · Firma: |
 | Francisco José Castro Muñoz · QA no funcional · Firma: | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

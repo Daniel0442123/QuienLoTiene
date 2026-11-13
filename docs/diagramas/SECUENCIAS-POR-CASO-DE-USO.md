@@ -1,5 +1,7 @@
 # Diagramas de secuencia por caso de uso
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 Cada caso de uso del diagrama `01-casos-de-uso.drawio` tiene su diagrama de secuencia. Los códigos CU-xx siguen el orden en que aparecen en ese diagrama (Cliente, Tienda, Administrador y Reloj del sistema). Los participantes son los módulos del monolito (diagrama `07-componentes.drawio`): la línea "API REST módulo X" es el controlador y el caso de uso del módulo que recibe la petición, y "módulo X (fachada api)" es la fachada `api/` que otro módulo consulta.
 
 Convención de nombres: `NN-secuencia-cuXX-nombre-corto.drawio`.
@@ -56,3 +58,10 @@ No tienen diagrama propio porque se ejecutan dentro de otro caso; aparecen como 
 - Eventos nuevos que no estaban en el diagrama 07: `MensajeEnviado`, `SolicitudVencida`, `RadioAmpliado` y `TiendaRevisada`.
 - Los reportes viven en el módulo `reputacion`, porque el diagrama 07 muestra "administracion → reputacion: api reportes".
 - Las categorías y los restringidos los escribe el propio módulo `catalogo` con endpoints restringidos al rol ADMIN.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

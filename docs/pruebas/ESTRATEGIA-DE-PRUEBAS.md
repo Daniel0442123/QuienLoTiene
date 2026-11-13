@@ -1,6 +1,6 @@
 # Estrategia de pruebas · Quién lo tiene
 
-Versión 2.1 · 07/11/2026 · Responsables: Yanimar Burbano Piamba (QA funcional) y Francisco José Castro Muñoz (QA no funcional y seguridad).
+> **Control del documento** · Versión 2.2 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (QA funcional) y Francisco José Castro Muñoz (QA no funcional y seguridad) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 ## 1. Qué cambió y por qué
 
@@ -250,3 +250,10 @@ Las ejecuciones automáticas de GitHub Actions en cada push no necesitan registr
 ```
 
 Con esto, `./mvnw verify` falla si la cobertura de dominio y aplicación baja del 70 %, y el pipeline de GitHub Actions lo hace cumplir automáticamente.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 2.2 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (el documento declaraba la versión 2.1) (SC-009) |

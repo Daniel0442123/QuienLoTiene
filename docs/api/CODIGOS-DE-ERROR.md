@@ -1,5 +1,7 @@
 # Códigos de error de la API · Quién lo tiene
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` estable (DECISIONES-BACKEND, sección 8). Todas las respuestas de error traen además `idCorrelacion`, el mismo valor de la cabecera `X-Correlacion-Id`, para buscar la petición en los logs. Un código publicado no cambia nunca: el frontend y las pruebas se apoyan en él. Cada pull request que agregue un código lo registra aquí.
 
 | Prefijo | Módulo |
@@ -60,3 +62,23 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
 | `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |
 | `GEN-009` | 400 | Ubicación inválida | La latitud no está entre -90 y 90 o la longitud no está entre -180 y 180 | HU-016 |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(shared): base común de errores, correlación y reloj (T-01) (#2) |
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(identidad): registrar cliente (HU-001) (#4) |
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(identidad): exige y guarda la autorización de datos en el registro (#5) |
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(identidad): inicia, renueva y cierra sesión con refresco rotativo (#6) |
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(solicitudes): publica solicitudes con límite de 10 por hora (#7) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(identidad): agrega segundo factor TOTP para el administrador (#8) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(tiendas): registra tiendas con documentos y cuenta del dueño (#9) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(administracion): aprueba o rechaza tiendas con auditoría (#10) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(tiendas): perfil y horario de la tienda (HU-009) (#11) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(tiendas): abre o cierra la tienda y expone TiendasApi para la difusión (#12) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(tiendas): configura domicilio con tarifa fija (#14) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(tiendas): configura los medios de pago de la tienda (#15) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(clientes): gestiona las direcciones y el perfil del cliente (#16) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
