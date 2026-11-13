@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.1 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -55,10 +55,10 @@ Fuente: API de GitHub del repositorio `Daniel0442123/QuienLoTiene`, consultada e
 | [#29](https://github.com/Daniel0442123/QuienLoTiene/pull/29) | feat(front): pantalla de perfil y direcciones del cliente | Funcionalidad · front | HU-007 | — | Monica Anyi Cajas Mellizo (@monicacajas-art) | 12/11/2026 09:07 | 12/11/2026 14:32 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | v0.2.0 | Fusionado | Sí |
 | [#30](https://github.com/Daniel0442123/QuienLoTiene/pull/30) | feat(front): identidad visual con la paleta Verde botica, Atkinson Hyperlegible e íconos | Funcionalidad · front | — | — | Monica Anyi Cajas Mellizo (@monicacajas-art) | 12/11/2026 09:28 | 12/11/2026 14:34 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | v0.2.0 | Fusionado | Sí |
 | [#31](https://github.com/Daniel0442123/QuienLoTiene/pull/31) | feat(catalogo): listar categorías en GET /api/v1/categorias | Funcionalidad · catalogo | HU-002, HU-016 | — | Daniel Montenegro Almendra (@Daniel0442123) | 12/11/2026 14:59 | 12/11/2026 15:11 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | v0.2.0 | Fusionado | Sí |
-| [#32](https://github.com/Daniel0442123/QuienLoTiene/pull/32) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 | Documentación · pruebas | HU-001 | — | Daniel Montenegro Almendra (@Daniel0442123) | 12/11/2026 15:59 | — | — | No registrada | — | Abierto | Sí |
+| [#32](https://github.com/Daniel0442123/QuienLoTiene/pull/32) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 | Documentación · pruebas | HU-001 | — | Daniel Montenegro Almendra (@Daniel0442123) | 12/11/2026 15:59 | 12/11/2026 23:49 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | Sin liberar | Fusionado | Sí |
 | [#33](https://github.com/Daniel0442123/QuienLoTiene/pull/33) | docs(diseno): mockups de las historias pendientes del Sprint 2 en adelante | Documentación · diseno | HU-015, HU-018, HU-019, HU-023, HU-035, HU-037 | — | Monica Anyi Cajas Mellizo (@monicacajas-art) | 12/11/2026 21:29 | — | — | No registrada | — | Abierto | Sí |
 
-_Tabla generada el 12/11/2026 23:33 (hora de Bogotá) con `scripts/gestion/bitacora.py`._
+_Tabla generada el 12/11/2026 23:54 (hora de Bogotá) con `scripts/gestion/bitacora.py`._
 <!-- fin-bitacora -->
 
 ### Hallazgos de la reconstrucción (13/11/2026)
@@ -69,7 +69,7 @@ _Tabla generada el 12/11/2026 23:33 (hora de Bogotá) con `scripts/gestion/bitac
 | H-02 | Varios PR se fusionaron entre 2 y 7 minutos después de abrirse | #1 (4 min), #17 (3 min), #18 (2 min), #19 (6 min), #20 (3 min), #25 (7 min) | Regla de revisión del procedimiento de control de cambios, sección 5 |
 | H-03 | Desviaciones del plan escritas solo dentro del PR, sin número ni aprobador | #7, #17, #20, #24 y #31 | Registradas hacia atrás como SC-001 a SC-008 |
 | H-04 | Etiquetas `v0.1.0` a `v0.2.0` ligeras (sin fecha, autor ni notas) | `git for-each-ref refs/tags` | Notas en `REGISTRO-DE-CAMBIOS.md`; en adelante `git tag -a` (procedimiento documental, sección 6) |
-| H-05 | 31 documentos MD sin encabezado de versión ni historial | Revisión de `docs/` | 22 se completaron en este cambio con su historial reconstruido desde Git; los 8 del libro de pruebas esperan a que se fusione #32 (compromiso C-13); `prompt-claude-design.md` es un texto para pegar en otra herramienta y queda fuera |
+| H-05 | 31 documentos MD sin encabezado de versión ni historial, más 10 registros nuevos del corte C1 (#32) | Revisión de `docs/` | Los 41 se completaron con su historial reconstruido desde Git en este cambio (los del libro de QA después de fusionar #32); `prompt-claude-design.md` es un texto para pegar en otra herramienta y queda fuera |
 | H-06 | PDF de arquitectura y plan de proyecto atrasados frente a sus Word (WCAG 2.1) | PR #17, sección «Pendiente» | Compromiso C-01 |
 | H-07 | Los PR no usan etiquetas, hitos ni responsable asignado (solo #19, #20, #22 y #25 tienen responsable) | API de GitHub | Procedimiento de seguimiento, sección 4 |
 | H-08 | Las historias de `tiendas`, `clientes` y `administracion` las implementó otra persona distinta a la del backlog, sin registro del cambio | PR #9 a #16 frente a `BACKLOG-SPRINT-1.md` sección 2 | SC-012 y compromiso C-11 |
@@ -92,7 +92,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 11/11/2026 | Etiqueta `v0.1.2` | Daniel Montenegro Almendra | `826c359` | — |
 | 12/11/2026 | Respaldos con Backblaze B2 en marcha; prueba de restauración corregida | Daniel Montenegro Almendra | PR #25 | — |
 | 12/11/2026 | Etiqueta `v0.2.0` (cierre funcional del Sprint 1) | Daniel Montenegro Almendra | `ea7351d` | — |
-| 12/11/2026 | Corte del Sprint 1 del ciclo C1 sobre `v0.2.0` (en revisión) | Yanimar Burbano Piamba | PR #32 | — |
+| 12/11/2026 | Corte del Sprint 1 del ciclo C1 sobre `v0.2.0`; fusionado a las 23:49 sin revisión registrada | Yanimar Burbano Piamba (QA), PR de Daniel Montenegro Almendra | PR #32 | — |
 | 13/11/2026 | Se monta el seguimiento y control de cambios del proyecto (`docs/gestion/`) | Daniel Montenegro Almendra, a pedido de Pedro | Este PR | SC-009, SC-010 |
 
 ## 4. Compromisos abiertos
@@ -110,10 +110,10 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-07 | Aprobar el texto de la política de datos 1.0 (hoy es borrador en `politicaDatos.ts`) | PR #22 | Wilson Javier Galindez Certuche | 15/11/2026 | Abierto | |
 | C-08 | Revisar el diagrama `09-entidad-relacion` frente a las columnas `radio_metros` y `creado_en` | SC-003 | Daniel Montenegro Almendra | 15/11/2026 | Abierto | |
 | C-09 | Activar en GitHub la protección de `main` con una aprobación obligatoria y el chequeo «Control de cambios» | SC-010 | Pedro (dueño del repositorio) | 14/11/2026 | Abierto | |
-| C-10 | Agregar las secciones «Control de cambios» y «Documentos actualizados» a la descripción de los PR #32 y #33 | Este PR | Autores de #32 y #33 | Antes de fusionarlos | Abierto | |
+| C-10 | Agregar las secciones «Control de cambios» y «Documentos actualizados» a la descripción de #33 (#32 se fusionó antes de que existiera el chequeo) | Este PR | Monica Anyi Cajas Mellizo | Antes de fusionar #33 | Abierto | |
 | C-11 | Documentar el motivo y la aprobación de SC-012 (reasignación) y SC-013 (fechas del Sprint 1) | SC-012, SC-013 | Brayan Grajales Escarraga | 15/11/2026 | Abierto | |
 | C-12 | Agregar el endpoint de categorías a la trazabilidad y a los casos (`docs/pruebas/libro/`) cuando se fusione #32 | SC-007 | Yanimar Burbano Piamba | Después de #32 | Abierto | |
-| C-13 | Agregar encabezado de control e historial a los 8 archivos de `docs/pruebas/libro/` y al Excel del libro de QA | H-05 | Yanimar Burbano Piamba | Después de #32 | Abierto | |
+| C-13 | Agregar encabezado de control e historial a los archivos de `docs/pruebas/libro/`, defectos e informes del C1, y versión al Excel del libro de QA | H-05 | Daniel Montenegro Almendra | Después de #32 | Cerrado | 13/11/2026, PR #34 |
 | C-14 | Ejecutar «Documentar versión» (`version.yml`, Run workflow) para `v0.1.0`, `v0.1.1`, `v0.1.2` y `v0.2.0`, antes de que venzan sus artefactos de pruebas | Este PR | Daniel Montenegro Almendra | 25/11/2026 | Abierto | |
 
 ## Historial del documento
@@ -121,3 +121,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: bitácora reconstruida desde el PR #1 hasta el #33, hechos fuera de PR y compromisos abiertos |
+| 1.1 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fusión de #32: tabla regenerada, hecho del corte, C-10 y C-13 actualizados |

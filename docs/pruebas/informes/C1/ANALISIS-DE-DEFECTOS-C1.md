@@ -1,5 +1,7 @@
 # Análisis de defectos y principios de las pruebas · Ciclo 1
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Versión preliminar con el corte del Sprint 1 (12/11/2026, v0.2.0). Se completa al cerrar el C1 con los defectos del Sprint 2.
 
 ## 1. Error → defecto → falla
@@ -30,3 +32,10 @@
 |---|---|---|
 | 1 | ¿Cómo ayudó priorizar las pruebas unitarias en este ciclo? | Cada historia llegó con sus pruebas etiquetadas, así que el corte se ejecutó en una sola corrida de `./mvnw verify` y cada caso del libro tiene su prueba trazable. |
 | 2 | ¿Qué cambiaríamos en el siguiente ciclo? | Revisar en cada PR también lo que no es código de negocio (pipeline, contrato OpenAPI, etiquetas NF) y hacer el corte en la fecha del plan. |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

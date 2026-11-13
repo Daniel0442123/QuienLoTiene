@@ -14,6 +14,7 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 
 ### Agregado
 - Seguimiento y control de cambios del proyecto: bitácora, registro de solicitudes de cambio, procedimientos, plantilla y libro de control de cambios, chequeo «Control de cambios» en CI (SC-009).
+- Pruebas: corte del Sprint 1 del ciclo C1 sobre `v0.2.0` con informes, defectos DEF-001 a DEF-005 y evidencias (#32).
 - Documentación automática de cada versión: Release de GitHub con notas, evidencia de calidad y artefactos (`version.yml`, SC-009).
 
 ## v0.2.0 · 12/11/2026 · Cierre funcional del Sprint 1
