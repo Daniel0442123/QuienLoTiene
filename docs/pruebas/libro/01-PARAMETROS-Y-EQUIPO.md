@@ -5,13 +5,13 @@
 | Parámetro | Valor | Nota |
 |---|---|---|
 | Sistema | Quién lo tiene (API REST + PWA) | Monolito modular Spring Boot, 10 módulos |
-| Versión en pruebas | v0.1.0 | Se actualiza con cada despliegue en el ambiente de pruebas |
+| Versión en pruebas | v0.2.0 (`ea7351d`) | Corte del Sprint 1, 12/11/2026. Se actualiza con cada despliegue en el ambiente de pruebas |
 | Versión objetivo de la liberación | v1.0.0 | Producción el 26/11/2026 |
 | Repositorio | GitHub (rama `main`, una rama por historia) | Pull request obligatorio |
 | Ambiente local | Java 21, Maven Wrapper, Docker Compose (`postgis/postgis:17-3.5-alpine`) | Pruebas unitarias e integración |
 | Ambiente de integración continua | GitHub Actions | `./mvnw verify` en cada pull request |
 | Ambiente de pruebas | VPS Hostinger KVM 1 (URL por definir) | Nunca datos personales reales |
-| Producción | VPS Hostinger KVM 1 (URL por definir) | Solo pruebas de humo |
+| Producción | VPS Hostinger KVM 1 · https://quienlotiene.tech | Solo pruebas de humo |
 | Fecha inicio C1 | 02/11/2026 | Sprints 1 y 2 |
 | Fecha cierre C1 | 15/11/2026 | Corte parcial el 08/11 |
 | Fechas C2 | 16/11/2026 al 22/11/2026 | Sprint 3 |

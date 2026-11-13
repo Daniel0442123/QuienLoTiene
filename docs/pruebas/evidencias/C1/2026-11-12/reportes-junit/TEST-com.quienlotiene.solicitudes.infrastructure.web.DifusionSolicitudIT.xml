@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" version="3.0.2" name="com.quienlotiene.solicitudes.infrastructure.web.DifusionSolicitudIT" time="0.142" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="noDifundeAOtraCategoria" classname="HU-017 Difundir a tiendas elegibles por la API" time="0.044">
+    </testcase>
+  <testcase name="noDifundeAUnaTiendaSuspendida" classname="HU-017 Difundir a tiendas elegibles por la API" time="0.045">
+    </testcase>
+  <testcase name="difundeSoloDentroDelRadio" classname="HU-017 Difundir a tiendas elegibles por la API" time="0.034">
+    </testcase>
+</testsuite>

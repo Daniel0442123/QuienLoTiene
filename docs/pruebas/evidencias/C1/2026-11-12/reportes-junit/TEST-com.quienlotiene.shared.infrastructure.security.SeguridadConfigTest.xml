@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.shared.infrastructure.security.SeguridadConfigTest" time="4.029" tests="10" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaUnTokenDeOtroEmisor" classname="T-02 Seguridad con JWT RS256 y roles" time="0.868">
+    </testcase>
+  <testcase name="rechazaLaPeticionSinToken" classname="T-02 Seguridad con JWT RS256 y roles" time="0.014" />
+  <testcase name="dejaPasarLasRutasPublicas" classname="T-02 Seguridad con JWT RS256 y roles" time="0.011" />
+  <testcase name="aceptaSoloElOrigenDelFrontend" classname="T-02 Seguridad con JWT RS256 y roles" time="0.007" />
+  <testcase name="rechazaUnTokenVencido" classname="T-02 Seguridad con JWT RS256 y roles" time="0.012" />
+  <testcase name="permiteAlAdministradorEnAdministracion" classname="T-02 Seguridad con JWT RS256 y roles" time="0.016" />
+  <testcase name="rechazaUnTokenConOtraFirma" classname="T-02 Seguridad con JWT RS256 y roles" time="0.159">
+    </testcase>
+  <testcase name="respetaElRolDePreAuthorize" classname="T-02 Seguridad con JWT RS256 y roles" time="0.05" />
+  <testcase name="aceptaUnTokenValidoYEntregaElUsuario" classname="T-02 Seguridad con JWT RS256 y roles" time="0.009" />
+  <testcase name="rechazaAUnClienteEnAdministracion" classname="T-02 Seguridad con JWT RS256 y roles" time="0.008" />
+</testsuite>

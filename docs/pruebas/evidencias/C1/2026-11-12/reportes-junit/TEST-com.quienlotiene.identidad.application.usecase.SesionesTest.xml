@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.identidad.application.usecase.SesionesTest" time="0.136" tests="14" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="cierraTodasLasSesionesAnteElReusoDeUnToken" classname="Renovar la sesión" time="0.009">
+    </testcase>
+  <testcase name="rechazaLaRenovacionDeUnaCuentaSuspendida" classname="Renovar la sesión" time="0.004" />
+  <testcase name="rechazaUnTokenVencido" classname="Renovar la sesión" time="0.004" />
+  <testcase name="rotaElToken" classname="Renovar la sesión" time="0.004" />
+  <testcase name="rechazaLaFaltaDeToken" classname="Renovar la sesión" time="0.004" />
+  <testcase name="tratanLaRotacionSimultaneaComoReuso" classname="Renovar la sesión" time="0.005">
+    </testcase>
+  <testcase name="esIdempotente" classname="Cerrar sesión" time="0.008" />
+  <testcase name="revocaElToken" classname="Cerrar sesión" time="0.005">
+    </testcase>
+  <testcase name="niegaElAccesoConFraseIncorrecta" classname="Iniciar sesión" time="0.009">
+    </testcase>
+  <testcase name="tratanElCorreoMalEscritoComoCredencialesIncorrectas" classname="Iniciar sesión" time="0.003" />
+  <testcase name="informaQueLaCuentaEstaSuspendida" classname="Iniciar sesión" time="0.01">
+    </testcase>
+  <testcase name="entregaLosTokensConCredencialesCorrectas" classname="Iniciar sesión" time="0.005">
+    </testcase>
+  <testcase name="niegaElAccesoSinDelatarQueElCorreoNoExiste" classname="Iniciar sesión" time="0.008" />
+  <testcase name="exigeSegundoFactorAlAdministrador" classname="Iniciar sesión" time="0.004">
+    </testcase>
+</testsuite>
