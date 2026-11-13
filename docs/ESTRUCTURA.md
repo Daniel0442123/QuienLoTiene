@@ -31,6 +31,7 @@ Dentro de cada módulo:
 ## Otras carpetas
 
 - `frontend/`: aplicación React + Vite + TypeScript (PWA). Estructura y comandos en `frontend/README.md`; convenciones en `docs/arquitectura/DECISIONES-FRONTEND.md`.
+- `docs/diseno/`: diseño de interfaz; `docs/diseno/mockups/` tiene los mockups de las historias pendientes.
 - `docs/despliegue/`: cómo está montado el VPS, cómo desplegar, volver atrás y restaurar respaldos.
 - `docs/`: requisitos, arquitectura, diagramas `.drawio` y documentación de la API.
 - `docs/pruebas/`: estrategia de pruebas, bitácora de ejecuciones, plantillas y registros de cada ejecución con sus evidencias.
