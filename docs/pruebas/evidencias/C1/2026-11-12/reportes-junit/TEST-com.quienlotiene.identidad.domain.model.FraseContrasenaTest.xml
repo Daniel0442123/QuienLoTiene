@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.identidad.domain.model.FraseContrasenaTest" time="0.024" tests="10" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaUnaFraseDeDiezCaracteres" classname="HU-001 Frase de contraseña" time="0.001" />
+  <testcase name="rechazaUnaFraseDeCatorceCaracteres" classname="HU-001 Frase de contraseña" time="0.001" />
+  <testcase name="rechazaUnaFraseNula" classname="HU-001 Frase de contraseña" time="0.002" />
+  <testcase name="cuentaCaracteresRealesNoUnidadesUtf16" classname="HU-001 Frase de contraseña" time="0.004" />
+  <testcase name="ocultaLaFraseAlImprimirla" classname="HU-001 Frase de contraseña" time="0.001" />
+  <testcase name="limitaLaLongitudMaxima" classname="HU-001 Frase de contraseña" time="0.001" />
+  <testcase name="rechazaUnMismoCaracterRepetido(String)[1]" classname="HU-001 Frase de contraseña" time="0.002" />
+  <testcase name="rechazaUnMismoCaracterRepetido(String)[2]" classname="HU-001 Frase de contraseña" time="0.001" />
+  <testcase name="rechazaUnMismoCaracterRepetido(String)[3]" classname="HU-001 Frase de contraseña" time="0.001" />
+  <testcase name="aceptaUnaFraseDeQuinceCaracteres" classname="HU-001 Frase de contraseña" time="0.001" />
+</testsuite>

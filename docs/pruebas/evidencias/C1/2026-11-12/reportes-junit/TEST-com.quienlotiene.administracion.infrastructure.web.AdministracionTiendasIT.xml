@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" version="3.0.2" name="com.quienlotiene.administracion.infrastructure.web.AdministracionTiendasIT" time="5.568" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaLaTiendaConMotivo" classname="HU-036 Aprobar o rechazar tiendas por la API" time="0.566">
+    </testcase>
+  <testcase name="descargaElDocumento" classname="HU-036 Aprobar o rechazar tiendas por la API" time="0.089">
+    </testcase>
+  <testcase name="soloElAdministradorRevisa" classname="HU-036 Aprobar o rechazar tiendas por la API" time="0.068">
+    </testcase>
+  <testcase name="apruebaLaTienda" classname="HU-036 Aprobar o rechazar tiendas por la API" time="0.153">
+    </testcase>
+</testsuite>

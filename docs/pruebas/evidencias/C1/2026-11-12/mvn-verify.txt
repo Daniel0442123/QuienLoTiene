@@ -1,0 +1,74 @@
+# ./mvnw -B clean verify · tag v0.2.0 (ea7351d) · ambiente QA (contenedor Linux, Java 21, Docker 29.9.2 + Testcontainers postgis/postgis:17-3.5-alpine) · 2026-11-12
+
+[INFO] --- jacoco:0.8.16:prepare-agent (preparar-agente) @ QuienLoTiene ---
+[INFO] --- surefire:3.5.6:test (default-test) @ QuienLoTiene ---
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.322 s -- in T-01 Filtro del id de correlaci?n
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.260 s -- in T-01 Manejador global de errores con ProblemDetail
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in HU-002 Almac?n de archivos en disco
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.029 s -- in T-02 Seguridad con JWT RS256 y roles
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.425 s -- in T-02 Llaves RSA y codificaci?n de frases de contrase?a
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in T-01 Excepci?n base de reglas de negocio
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in HU-004 Verificaci?n TOTP y cifrado del secreto
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-001 Lista de frases comunes
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.109 s -- in Crear el administrador inicial
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in Verificar el c?digo
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.929 s -- in HU-004 Segundo factor del administrador
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in Renovar la sesi?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in Cerrar sesi?n
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in Iniciar sesi?n
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.136 s -- in HU-003 Iniciar, renovar y cerrar sesi?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in HU-007 Perfil del usuario
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.097 s -- in HU-001 Registrar cliente
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in HU-005 Autorizaci?n de tratamiento de datos
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in HU-001 Usuario
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in HU-001 Correo
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in HU-003 Token de refresco
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in HU-001 Frase de contrase?a
+[INFO] Running com.quienlotiene.arquitectura.ModulosTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.286 s -- in com.quienlotiene.arquitectura.ModulosTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.195 s -- in HU-036 Revisar tienda con auditor?a (m?dulo administracion)
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 s -- in HU-007 Gestionar direcciones del cliente
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in HU-007 Direcci?n del cliente
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.148 s -- in HU-013 Cambiar apertura y buscar tiendas elegibles
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in HU-010 Configurar domicilio de mi tienda
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in HU-012 Configurar medios de pago de mi tienda
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.172 s -- in HU-002 Registrar tienda
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in HU-009 Consultar y actualizar el perfil de mi tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.149 s -- in HU-036 Revisar tiendas (m?dulo tiendas)
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in HU-036 Revisi?n de la tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in HU-009 Horario de atenci?n y perfil de la tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in HU-002 Tienda y documentos
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in HU-013 Abrir o cerrar la tienda
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in HU-012 Medios de pago de la tienda
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in HU-010 Domicilio con tarifa fija
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in HU-002 y HU-016 Listar las categor?as para los formularios
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.160 s -- in HU-017 Difundir la solicitud a las tiendas elegibles
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.225 s -- in HU-016 Publicar solicitud
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in HU-016 L?mite de 10 solicitudes por hora
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in HU-016 Solicitud
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.271 s -- in NF-MAN-023 Reglas de arquitectura por capas
+[INFO] Results:
+[INFO] Tests run: 209, Failures: 0, Errors: 0, Skipped: 0
+[INFO] --- jacoco:0.8.16:report (reporte-cobertura) @ QuienLoTiene ---
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura) @ QuienLoTiene ---
+[INFO] --- failsafe:3.5.6:integration-test (default) @ QuienLoTiene ---
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.52 s -- in HU-003 Iniciar y cerrar sesi?n por la API
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.376 s -- in HU-004 Segundo factor del administrador por la API
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.297 s -- in HU-001 Registrar cliente por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.568 s -- in HU-036 Aprobar o rechazar tiendas por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.753 s -- in HU-007 Perfil y direcciones del cliente por la API
+[INFO] Running com.quienlotiene.QuienLoTieneApplicationIT
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.606 s -- in com.quienlotiene.QuienLoTieneApplicationIT
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.149 s -- in HU-013 TiendasApi: tiendas elegibles por radio con PostGIS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.765 s -- in HU-009 Perfil y horario de la tienda por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.131 s -- in HU-002 Registrar tienda por la API
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in HU-002 y HU-016 Categor?as por la API
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.142 s -- in HU-017 Difundir a tiendas elegibles por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.233 s -- in HU-016 Publicar solicitud por la API
+[INFO] Results:
+[INFO] Tests run: 47, Failures: 0, Errors: 0, Skipped: 0
+[INFO] --- failsafe:3.5.6:verify (default) @ QuienLoTiene ---
+[INFO] BUILD SUCCESS
+[INFO] Total time:  01:21 min
+[INFO] Finished at: 2026-11-12T20:52:08Z
+EXIT=0
