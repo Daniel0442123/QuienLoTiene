@@ -1,5 +1,7 @@
 # Hoja «Ejecución C3» · Cierre (23/11 al 25/11) · Regresión y sistema integrado
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
 Alcance: casos de las historias Could que se hayan implementado (10), punta a punta (5), no funcionales sobre el VPS (13) y la regresión completa de los 85 casos. El «Resultado final» de cada caso es el de C3; es el que cuenta para el criterio de liberación (≥ 95 % aprobados).
@@ -125,3 +127,11 @@ Alcance: casos de las historias Could que se hayan implementado (10), punta a pu
 ## 4. Pruebas de humo en producción (26/11)
 
 Se diligencian con la plantilla `plantillas/PRUEBAS-DE-HUMO.md` después del despliegue final.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(front): andamiaje del frontend y decisiones de usabilidad y accesibilidad (#17) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

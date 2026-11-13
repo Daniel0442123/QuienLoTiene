@@ -1,5 +1,7 @@
 # Informe de corte · Sprint 1 · Ciclo C1
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo C del Plan Maestro (informe de avance).
 
 | Campo | Valor |
@@ -75,3 +77,10 @@ Además de la suite automatizada, se levantó la PWA con el backend v0.2.0 y se 
 2. Ejecutar los 23 casos del Sprint 2 a medida que se fusiona cada historia, con sus `@Tag("HU-…")` y `@Tag("CP-…")`.
 3. Completar NF-FIA-016 con las máquinas de estado de la solicitud (HU-021) y la orden (HU-027).
 4. Cerrar el C1 el 15/11 con el informe de cierre, el documento de evidencias completo y el análisis de defectos.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

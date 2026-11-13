@@ -1,5 +1,7 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Informe final de la campaña (C1 a C3). Se entrega el 25/11/2026 junto con el acta de liberación. Guardar en `docs/pruebas/informes/INFORME-DE-PRUEBAS.md`.
 
 Ingeniería de Software III · Byte Force
@@ -122,3 +124,10 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 | Caso | Título | Causa |
 |---|---|---|
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

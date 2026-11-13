@@ -1,0 +1,63 @@
+# Documenta cada versión (docs/gestion/PROCEDIMIENTO-DOCUMENTAL.md, sección 6).
+# Al terminar el despliegue de una etiqueta v*, crea o actualiza la Release de
+# GitHub con las notas de REGISTRO-DE-CAMBIOS.md y la evidencia de calidad (CI,
+# pruebas, cobertura, frontend y despliegue), y le adjunta los artefactos de
+# pruebas, cobertura y SBOM, que GitHub Actions solo guarda 14 o 30 días.
+# Para versiones anteriores: «Run workflow» con la etiqueta.
+name: Documentar versión
+
+on:
+  workflow_run:
+    workflows: [Despliegue]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Etiqueta a documentar (por ejemplo v0.2.0)'
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: version-${{ github.event.workflow_run.head_branch || inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  documentar:
+    name: Release con notas y evidencia
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.workflow_run.head_branch, 'v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Las notas se leen de main, donde está REGISTRO-DE-CAMBIOS.md al día.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Armar notas y evidencia
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.event.workflow_run.head_branch || inputs.version }}
+        run: |
+          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Etiqueta no válida: $VERSION"; exit 1; }
+          python3 scripts/gestion/evidencia_version.py "$VERSION" --salida notas.md --adjuntos evidencia/
+
+      - name: Crear o actualizar la Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.event.workflow_run.head_branch || inputs.version }}
+        run: |
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            gh release edit "$VERSION" --notes-file notas.md
+          else
+            gh release create "$VERSION" --verify-tag --title "$VERSION" --notes-file notas.md
+          fi
+          if compgen -G "evidencia/*.zip" >/dev/null; then
+            gh release upload "$VERSION" evidencia/*.zip --clobber
+          fi

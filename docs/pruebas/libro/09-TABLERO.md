@@ -1,5 +1,7 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0.
 >
 > En el Excel se calcula solo con fórmulas sobre las hojas de ejecución y defectos. Aquí se copia el valor al cerrar cada sprint y cada ciclo.
@@ -49,3 +51,11 @@
 | Defectos reabiertos | Reabiertos / corregidos | 0 / 0 |
 | Cobertura de código | Líneas cubiertas / líneas de domain + application | 1130 / 1163 = 97,2 % |
 | Pruebas automatizadas | Total `@Test` (unitarias + integración) · pasan | 256 (209 unitarias + 47 de integración) · 256 pasan |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
