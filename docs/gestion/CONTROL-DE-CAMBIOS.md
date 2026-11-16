@@ -1,6 +1,6 @@
 # Control de cambios · Quién lo tiene
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
+> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
 
 Procedimiento y registro de las **solicitudes de cambio (SC)**: todo lo que se aparta de lo planeado o aprobado, por cualquier motivo, queda aquí con su motivo, su impacto, quién lo aprobó, cuándo, en qué PR se hizo y qué documentos se ajustaron.
 
@@ -76,6 +76,7 @@ Las SC-001 a SC-008, SC-012 y SC-013 se registraron el 13/11/2026 al reconstruir
 | SC-011 | 12/11/2026 | Monica Anyi Cajas Mellizo | Nueve decisiones de interfaz de los mockups del Sprint 2 y 3 (precio sugerido en HU-019, nombre «Tengo algo parecido», botones a 320 px, «Mis respuestas» en HU-021, motivos de HU-035, periodo y porcentajes de HU-015, aviso de HU-023, confirmación de HU-037, datos del cliente al cancelar en HU-029) | Mockups de las historias pendientes (#33) | Mayor | `DECISIONES-FRONTEND` §8; contrato del Sprint 2; RF-015 en el Sprint 3 | Aprobada · Pedro · 16/11/2026; la ratifica Daniel Montenegro Almendra (arquitecto) con «Approve» en el PR | #35, #33 y el PR de este registro | [`solicitudes/SC-011.md`](solicitudes/SC-011.md), `DECISIONES-FRONTEND.md` 1.3, `CONTRATO-SPRINT-2.md` 0.3 | Implementada parcialmente (Sprint 3: puntos 5 a 9) |
 | SC-012 | 08/11/2026 | Por documentar | Las historias de `tiendas`, `clientes` y `administracion` (HU-002, HU-007, HU-009, HU-010, HU-012, HU-013, HU-036) las implementó Daniel Montenegro Almendra; el backlog las asignaba a Deiner Stiven Ramírez Vente | Por documentar | Mayor | Responsables en `BACKLOG-SPRINT-1.md` y en el plan de proyecto | Por documentar (Scrum Master) | #9 a #16 | `BACKLOG-SPRINT-1.md` 1.1 lo deja anotado | Por ratificar |
 | SC-013 | 07/11/2026 | Por documentar | Fechas del Sprint 1: el plan decía 02/11 al 08/11, pero el código empezó el 07/11 y el corte se hizo el 12/11 sobre `v0.2.0` | El backlog pedía decidirlo en la planning («Ojo con las fechas») | Mayor | Plan de proyecto, `01-PARAMETROS-Y-EQUIPO.md`, plan C1 | Por documentar: falta registrar qué se decidió en la planning | — | — | Por ratificar |
+| SC-014 | 16/11/2026 | Monica Anyi Cajas Mellizo | Hasta 5 conexiones SSE por usuario en lugar de una; cada aviso llega a todas y la sexta cierra la más antigua | Con la app abierta en el celular y en el PC, las dos conexiones se cerraban entre sí y reconectaban sin parar (PR #43) | Mayor | D-18 (`DECISIONES-BACKEND` §12), F-14 (`DECISIONES-FRONTEND` §7.1), contrato del Sprint 2 | Aprobada · Pedro · 16/11/2026; la ratifica Daniel Montenegro Almendra (arquitecto) con «Approve» en el PR | El PR de este registro | [`solicitudes/SC-014.md`](solicitudes/SC-014.md), `CONTRATO-SPRINT-2.md` 0.4, `DECISIONES-BACKEND.md` 1.3, `DECISIONES-FRONTEND.md` 1.4 | Implementada |
 
 ## Historial del documento
 
@@ -83,3 +84,4 @@ Las SC-001 a SC-008, SC-012 y SC-013 se registraron el 13/11/2026 al reconstruir
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: procedimiento de control de cambios y registro de SC-001 a SC-013 (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-011 decidida: aprobada por Pedro con la fórmula de HU-015; la ratifica el arquitecto en el PR; archivo `solicitudes/SC-011.md` |
+| 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-014 registrada y aprobada por Pedro: varias conexiones SSE por usuario; archivo `solicitudes/SC-014.md` |
