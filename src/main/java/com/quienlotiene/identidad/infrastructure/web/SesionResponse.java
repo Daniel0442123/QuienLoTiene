@@ -1,5 +1,6 @@
 package com.quienlotiene.identidad.infrastructure.web;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -12,7 +13,10 @@ import java.util.UUID;
  */
 public record SesionResponse(
         UUID usuarioId,
+
+        @Schema(allowableValues = {"CLIENTE", "TIENDA", "ADMIN"})
         String rol,
+
         String tokenAcceso,
         String tipoToken,
         Instant fechaExpiracion,

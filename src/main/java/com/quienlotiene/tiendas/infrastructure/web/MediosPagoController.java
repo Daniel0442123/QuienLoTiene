@@ -3,6 +3,8 @@ package com.quienlotiene.tiendas.infrastructure.web;
 import com.quienlotiene.shared.infrastructure.security.UsuarioActual;
 import com.quienlotiene.tiendas.application.usecase.ConfigurarMediosPago;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -45,7 +47,9 @@ class MediosPagoController {
     }
 
     /** Medios activos: EFECTIVO, TRANSFERENCIA o DATAFONO. */
-    record MediosPagoResponse(List<String> mediosPago) {
+    record MediosPagoResponse(
+            @ArraySchema(schema = @Schema(allowableValues = {"EFECTIVO", "TRANSFERENCIA", "DATAFONO"}))
+            List<String> mediosPago) {
 
         MediosPagoResponse {
             mediosPago = List.copyOf(mediosPago);

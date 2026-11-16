@@ -4,6 +4,8 @@ import com.quienlotiene.administracion.application.usecase.RevisarTienda;
 import com.quienlotiene.shared.infrastructure.security.UsuarioActual;
 import com.quienlotiene.tiendas.api.TiendaParaRevision;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -48,6 +50,13 @@ class AdministracionTiendasController {
     }
 
     @Operation(summary = "Descargar un documento", description = "HU-036. Queda en la auditoría.")
+    @ApiResponse(
+            responseCode = "200",
+            description = "El archivo (JPEG, PNG, WebP o PDF) con Content-Disposition attachment",
+            content =
+                    @Content(
+                            mediaType = "application/octet-stream",
+                            schema = @Schema(type = "string", format = "binary")))
     @ApiResponse(responseCode = "404", description = "La tienda o el documento no existe (TIE-006)")
     @GetMapping("/{tiendaId}/documentos/{documentoId}")
     ResponseEntity<byte[]> descargarDocumento(@PathVariable UUID tiendaId, @PathVariable UUID documentoId) {

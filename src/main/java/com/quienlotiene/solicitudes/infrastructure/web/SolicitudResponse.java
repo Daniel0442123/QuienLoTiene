@@ -1,5 +1,6 @@
 package com.quienlotiene.solicitudes.infrastructure.web;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -9,11 +10,14 @@ public record SolicitudResponse(
         UUID categoriaId,
         String producto,
         int cantidad,
-        String modalidad,
+        @Schema(allowableValues = {"RECOGER", "DOMICILIO"}) String modalidad,
         boolean esUrgente,
         UbicacionResponse ubicacion,
         int radioEnMetros,
+
+        @Schema(allowableValues = {"ABIERTA", "RESUELTA", "VENCIDA"})
         String estado,
+
         Instant fechaPublicacion,
         Instant fechaVencimiento,
         int tiendasNotificadas) {

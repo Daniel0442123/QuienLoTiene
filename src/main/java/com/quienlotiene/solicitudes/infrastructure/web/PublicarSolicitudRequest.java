@@ -1,5 +1,6 @@
 package com.quienlotiene.solicitudes.infrastructure.web;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -26,6 +27,7 @@ public record PublicarSolicitudRequest(
 
         @NotNull(message = "Elige si vas a recoger o quieres domicilio")
         @Pattern(regexp = "RECOGER|DOMICILIO", message = "La modalidad debe ser RECOGER o DOMICILIO")
+        @Schema(allowableValues = {"RECOGER", "DOMICILIO"})
         String modalidad,
 
         Boolean esUrgente,

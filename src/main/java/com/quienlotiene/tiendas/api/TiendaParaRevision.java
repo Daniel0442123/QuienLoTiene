@@ -1,8 +1,10 @@
 package com.quienlotiene.tiendas.api;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import org.jspecify.annotations.Nullable;
 
 /** Lo que el administrador ve de una tienda en la bandeja de revisión. Nunca incluye el contenido de los documentos. */
 public record TiendaParaRevision(
@@ -12,10 +14,13 @@ public record TiendaParaRevision(
         String telefono,
         double latitud,
         double longitud,
+
+        @Schema(allowableValues = {"PENDIENTE", "APROBADA", "RECHAZADA", "SUSPENDIDA"})
         String estado,
+
         Instant fechaRegistro,
-        String motivoRechazo,
-        Instant fechaRevision,
+        @Nullable String motivoRechazo,
+        @Nullable Instant fechaRevision,
         List<DocumentoResumen> documentos) {
 
     public TiendaParaRevision {
@@ -23,5 +28,9 @@ public record TiendaParaRevision(
     }
 
     /** Datos de un documento para listarlo; el archivo se descarga aparte. */
-    public record DocumentoResumen(UUID id, String tipo, String tipoContenido, int tamanoEnBytes) {}
+    public record DocumentoResumen(
+            UUID id,
+            @Schema(allowableValues = {"FOTO_LOCAL", "RUT"}) String tipo,
+            String tipoContenido,
+            int tamanoEnBytes) {}
 }

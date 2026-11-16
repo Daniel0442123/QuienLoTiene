@@ -86,6 +86,7 @@ class RevisionTiendaTest {
     }
 
     @ParameterizedTest
+    @Tag("NF-FIA-016")
     @EnumSource(value = EstadoTienda.class, names = "PENDIENTE", mode = EnumSource.Mode.EXCLUDE)
     @DisplayName("Solo una tienda Pendiente se aprueba o se rechaza (RNF-016)")
     void rechazaTransicionesInvalidas(EstadoTienda estado) {

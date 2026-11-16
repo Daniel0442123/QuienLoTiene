@@ -1,5 +1,6 @@
 package com.quienlotiene.tiendas.infrastructure.web;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +39,7 @@ public record ActualizarPerfilTiendaRequest(
             @Pattern(
                     regexp = "MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY",
                     message = "El día debe ser MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY o SUNDAY")
+            @Schema(allowableValues = {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"})
             String diaSemana,
 
             @NotNull(message = "Falta la hora de apertura") LocalTime abre,

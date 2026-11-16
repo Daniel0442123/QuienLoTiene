@@ -2,6 +2,7 @@ package com.quienlotiene.clientes.application.dto;
 
 import java.time.Instant;
 import java.util.UUID;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Dirección como la envía y la ve el cliente (HU-007).
@@ -9,14 +10,14 @@ import java.util.UUID;
  * @param id {@code null} al crearla
  */
 public record DatosDireccion(
-        UUID id,
+        @Nullable UUID id,
         String nombre,
         Double latitud,
         Double longitud,
         String direccionEscrita,
-        String indicaciones,
+        @Nullable String indicaciones,
         String telefono,
-        Instant fechaCreacion) {
+        @Nullable Instant fechaCreacion) {
 
     @Override
     public String toString() {
