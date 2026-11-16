@@ -1,6 +1,6 @@
 # Códigos de error de la API · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` estable (DECISIONES-BACKEND, sección 8). Todas las respuestas de error traen además `idCorrelacion`, el mismo valor de la cabecera `X-Correlacion-Id`, para buscar la petición en los logs. Un código publicado no cambia nunca: el frontend y las pruebas se apoyan en él. Cada pull request que agregue un código lo registra aquí.
 
@@ -62,6 +62,17 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `SOL-001` | 429 | Límite de solicitudes superado | El cliente intenta publicar más de 10 solicitudes en una hora; la cabecera `Retry-After` dice en cuántos segundos puede volver a intentar (CP-SOL-016-03) | HU-016 |
 | `SOL-002` | 400 | Solicitud incompleta | Falta el producto, la categoría, la modalidad o la ubicación, o la cantidad no está entre 1 y 999 | HU-016 |
 | `GEN-009` | 400 | Ubicación inválida | La latitud no está entre -90 y 90 o la longitud no está entre -180 y 180 | HU-016 |
+| `SOL-003` | 404 | Solicitud no encontrada | La solicitud no existe, es de otro cliente o no llegó a la tienda que la pide | HU-018, HU-019, HU-020 |
+| `SOL-004` | 409 | Solicitud cerrada | La solicitud ya no está ABIERTA, venció o ya tiene una respuesta elegida: no acepta más respuestas ni elecciones (CP-SOL-021-01) | HU-019, HU-021, HU-024 |
+| `SOL-005` | 409 | Respuesta duplicada | La tienda ya respondió esta solicitud (CP-SOL-019-04) | HU-019 |
+| `SOL-006` | 400 | Respuesta incompleta | Falta el precio o las unidades con SI o PARECIDO, falta la descripción de la alternativa con PARECIDO (CP-SOL-019-02) o las unidades superan las pedidas | HU-019 |
+| `SOL-007` | 404 | Respuesta no encontrada | La respuesta elegida no existe o no es de una solicitud del cliente | HU-024 |
+| `SOL-008` | 422 | Respuesta no elegible | El cliente intenta elegir una respuesta «No lo tengo» | HU-024 |
+| `ORD-001` | 404 | Orden no encontrada | La orden no existe o no es del cliente ni de la tienda que la pide (CP-ORD-024-03, CP-ORD-028-02) | HU-024, HU-027, HU-028 |
+| `ORD-002` | 409 | Cambio de estado no permitido | La orden no puede pasar a ese estado desde el actual, por ejemplo de CONFIRMADO a ENTREGADO (CP-ORD-027-02) o confirmar recepción antes de ENTREGADO | HU-027, HU-028 |
+| `ORD-003` | 422 | Medio de pago no aceptado | El cliente elige un medio de pago que la tienda no tiene activo (CP-ORD-024-04) | HU-024 |
+| `ORD-004` | 400 | Orden incompleta | Pide domicilio sin elegir la dirección de entrega | HU-024 |
+| `MEN-001` | 409 | Contacto no disponible | Se pide el WhatsApp de una orden que ya no está activa (resuelta, cancelada o vencida) | HU-032 |
 
 ## Historial del documento
 
@@ -82,3 +93,4 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(tiendas): configura los medios de pago de la tienda (#15) |
 | — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(clientes): gestiona las direcciones y el perfil del cliente (#16) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 2: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004` y `MEN-001` (contrato del Sprint 2) |

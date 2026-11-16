@@ -1,0 +1,834 @@
+openapi: 3.1.0
+info:
+  title: Quién lo tiene · Contrato del Sprint 2
+  version: 0.3.0-contrato
+  description: |
+    Contrato acordado de las historias del Sprint 2 (HU-018, HU-019, HU-020, HU-021, HU-024, HU-027, HU-028,
+    HU-030 y HU-032) para que el frontend trabaje con MSW mientras el backend las construye.
+
+    Reglas comunes (DECISIONES-BACKEND §7 y §8):
+    - JWT en la cabecera `Authorization: Bearer <token>` en todas las rutas, también en `/api/v1/eventos`.
+    - Fechas ISO-8601 en UTC con `Z`. Dinero en pesos enteros (`...EnPesos`). Distancias en metros enteros.
+    - Los campos marcados `nullable` llegan como `null` cuando no aplican; los demás siempre llegan.
+    - Errores con `ProblemDetail` (RFC 9457) y `codigo` estable (`docs/api/CODIGOS-DE-ERROR.md`).
+    - Si el recurso existe pero es de otro usuario se responde `404`, no `403` (riesgo R-03).
+
+    Cuando el backend esté fusionado, la fuente de verdad pasa a ser `/v3/api-docs` y este archivo se conserva
+    solo como registro del acuerdo.
+servers:
+  - url: http://localhost:8080
+security:
+  - jwt: []
+
+tags:
+  - name: Eventos
+    description: HU-030 Notificaciones en tiempo real (SSE)
+  - name: Solicitudes de la tienda
+    description: HU-018 y HU-019 Ver solicitudes nuevas y responderlas
+  - name: Respuestas del cliente
+    description: HU-020 y HU-021 Ver, ordenar respuestas y estado de la solicitud
+  - name: Órdenes
+    description: HU-024, HU-027 y HU-028 Crear la orden, avanzar su estado y confirmar recepción
+  - name: Mensajería
+    description: HU-032 Contactar por WhatsApp
+
+paths:
+  /api/v1/eventos:
+    get:
+      tags: [Eventos]
+      operationId: abrirEventos
+      summary: Abrir el flujo de eventos en tiempo real
+      description: |
+        HU-030. Flujo `text/event-stream` con una conexión por usuario: si el mismo usuario abre otra, la anterior se
+        cierra. Cada 25 s llega un comentario `:latido` para que el proxy no corte la conexión (el cliente lo ignora).
+
+        Cada evento trae `id`, `event` (el tipo, ver `EventoTiempoReal`) y `data` (JSON). Al reconectar, el cliente
+        envía la cabecera `Last-Event-ID` con el último `id` recibido y el servidor reenvía los eventos perdidos de
+        los últimos 5 minutos (diagrama 20, pasos 11 a 13).
+
+        Los eventos llevan solo ids y datos mínimos: el frontend invalida la consulta de TanStack Query que
+        corresponda y vuelve a pedir el detalle por REST.
+      parameters:
+        - name: Last-Event-ID
+          in: header
+          required: false
+          schema: { type: string }
+      responses:
+        '200':
+          description: Conexión abierta
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/EventoTiempoReal'
+              example: |
+                id: 0193a5e2-6f1c-7b8e-9a41-2b0c8d1e4f55
+                event: solicitud-nueva
+                data: {"solicitudId":"7c9e6679-7425-40de-944b-e07fc1f90ae7","producto":"Paracetamol 500 mg","cantidad":2,"modalidad":"DOMICILIO","esUrgente":true,"distanciaEnMetros":1200,"fechaVencimiento":"2026-11-18T15:30:00Z"}
+
+                :latido
+        '401': { $ref: '#/components/responses/SinSesion' }
+
+  /api/v1/solicitudes/disponibles:
+    get:
+      tags: [Solicitudes de la tienda]
+      operationId: listarSolicitudesDisponibles
+      summary: Ver solicitudes nuevas de mi tienda
+      description: |
+        HU-018 (CU-20, diagrama 26). Solicitudes ABIERTAS, sin vencer, que llegaron a la tienda del usuario y que la
+        tienda todavía no respondió. Primero las urgentes y luego de la más reciente a la más antigua
+        (CP-NOT-030-02). Nunca trae nombre, teléfono, dirección ni coordenadas del cliente (CP-SOL-018-01).
+      responses:
+        '200':
+          description: Solicitudes nuevas (lista vacía si no hay)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/SolicitudDisponibleResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: El usuario no tiene tienda registrada (TIE-006)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /api/v1/solicitudes/{solicitudId}/respuestas:
+    parameters:
+      - $ref: '#/components/parameters/SolicitudId'
+    post:
+      tags: [Solicitudes de la tienda]
+      operationId: responderSolicitud
+      summary: Responder una solicitud
+      description: |
+        HU-019 (diagrama 03 pasos 13 a 17). Solo la tienda a la que llegó la solicitud, una sola vez (CP-SOL-019-04)
+        y mientras esté ABIERTA y sin vencer.
+        - `SI`: precio por unidad y unidades disponibles obligatorios.
+        - `PARECIDO` («Tengo algo parecido»): además, la descripción de la alternativa (CP-SOL-019-02).
+        - `NO`: sin más datos. El «deshacer» lo maneja el frontend esperando unos segundos antes de enviar.
+
+        El backend calcula si la tienda ofrece domicilio y cuánto cuesta, con su configuración de HU-010 y la
+        ubicación de la solicitud. Avisa al cliente con el evento `respuesta-recibida` (si no es `NO`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ResponderSolicitudRequest' }
+            examples:
+              si:
+                value: { tipo: SI, precioEnPesos: 8000, cantidadDisponible: 2, tiempoEstimadoEnMinutos: 30 }
+              parecido:
+                value: { tipo: PARECIDO, precioEnPesos: 7500, cantidadDisponible: 2,
+                         descripcionAlternativa: Acetaminofén 500 mg genérico }
+              no:
+                value: { tipo: NO }
+      responses:
+        '201':
+          description: Respuesta registrada. Cabecera `Location` con `/api/v1/tiendas/me/respuestas/{id}`.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RespuestaDeTiendaResponse' }
+        '400':
+          description: Faltan datos (GEN-001) o la respuesta está incompleta (SOL-006)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: La solicitud no existe o no llegó a esta tienda (SOL-003)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '409':
+          description: Ya respondió esta solicitud (SOL-005) o la solicitud ya no está abierta (SOL-004)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+    get:
+      tags: [Respuestas del cliente]
+      operationId: listarRespuestasDeSolicitud
+      summary: Ver y ordenar las respuestas de mi solicitud
+      description: |
+        HU-020 (CU-05, diagrama 13). Solo el cliente dueño de la solicitud. Trae las respuestas `SI` y `PARECIDO`
+        como tarjetas; las `NO` solo cuentan en `respuestasRecibidas`. Las `PARECIDO` llegan con
+        `esAlternativa: true` (CP-SOL-020-03). Mientras la solicitud está ABIERTA las respuestas nuevas llegan por
+        el evento `respuesta-recibida` y el frontend reordena sin volver a pedir la lista.
+      parameters:
+        - name: orden
+          in: query
+          required: false
+          description: Criterio de orden. `precio` por unidad (por defecto), `distancia` o `total` con domicilio.
+          schema:
+            type: string
+            enum: [precio, distancia, total]
+            default: precio
+      responses:
+        '200':
+          description: Respuestas ordenadas
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RespuestasDeSolicitudResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: La solicitud no existe o es de otro cliente (SOL-003)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /api/v1/solicitudes/{solicitudId}:
+    parameters:
+      - $ref: '#/components/parameters/SolicitudId'
+    get:
+      tags: [Respuestas del cliente]
+      operationId: obtenerSolicitud
+      summary: Ver mi solicitud y su estado
+      description: |
+        HU-020 y HU-021. Solo el cliente dueño. El estado dice si sigue ABIERTA, si ya eligió (RESUELTA, con
+        `ordenId`) o si venció sin elección (VENCIDA).
+      responses:
+        '200':
+          description: La solicitud
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SolicitudResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: La solicitud no existe o es de otro cliente (SOL-003)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /api/v1/tiendas/me/respuestas:
+    get:
+      tags: [Solicitudes de la tienda]
+      operationId: listarMisRespuestas
+      summary: Ver mis respuestas («Mis respuestas»)
+      description: |
+        HU-019 y HU-021 (decisión 7 del README de mockups). Respuestas `SI` y `PARECIDO` de la tienda de las últimas
+        24 horas, de la más reciente a la más antigua, con su estado: ESPERANDO, ELEGIDA, NO_ELEGIDA o VENCIDA
+        (CP-SOL-021-02).
+      responses:
+        '200':
+          description: Respuestas de la tienda
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/RespuestaDeTiendaResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+
+  /api/v1/ordenes:
+    post:
+      tags: [Órdenes]
+      operationId: crearOrden
+      summary: Elegir una respuesta y crear la orden
+      description: |
+        HU-024 (diagrama 04 pasos 1 a 9). Solo el cliente dueño de la solicitud, mientras esté ABIERTA y sin vencer,
+        y una sola elección por solicitud. Total = precio × cantidad disponible + domicilio (CP-ORD-024-01). El
+        medio de pago debe estar activo en la tienda (CP-ORD-024-04). Con `DOMICILIO` la dirección es obligatoria y
+        debe estar dentro de la cobertura de la tienda (TIE-010).
+
+        Efectos: la solicitud pasa a RESUELTA, la tienda elegida recibe `orden-creada`, las tiendas que respondieron
+        y no fueron elegidas reciben `respuesta-no-elegida` y todas las que la recibieron, `solicitud-cerrada`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CrearOrdenRequest' }
+            example:
+              respuestaId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              modalidad: DOMICILIO
+              direccionId: 9b2d1c2e-7a43-4c55-9d1e-0f6a2b3c4d5e
+              medioPago: EFECTIVO
+      responses:
+        '201':
+          description: Orden CONFIRMADO con el desglose del total. Cabecera `Location` con `/api/v1/ordenes/{id}`.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OrdenResponse' }
+        '400':
+          description: Faltan datos (GEN-001) o falta la dirección con domicilio (ORD-004)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: La respuesta no existe o no es de una solicitud del cliente (SOL-007), o la dirección no es suya (CLI-003)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '409':
+          description: La solicitud ya no está abierta, venció o ya se eligió una respuesta (SOL-004)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '422':
+          description: |
+            Medio de pago no aceptado (ORD-003), la respuesta es «No lo tengo» (SOL-008) o la dirección está fuera
+            de la cobertura de domicilio de la tienda (TIE-010)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+    get:
+      tags: [Órdenes]
+      operationId: listarMisOrdenes
+      summary: Ver mis órdenes
+      description: |
+        HU-027. El cliente ve las suyas y la tienda las que recibió. Primero las activas (CONFIRMADO, PREPARANDO,
+        EN_CAMINO, LISTO_PARA_RECOGER, ENTREGADO) y luego las cerradas, cada grupo de la más reciente a la más
+        antigua. Máximo 50.
+      responses:
+        '200':
+          description: Órdenes del usuario
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/OrdenResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+
+  /api/v1/ordenes/{ordenId}:
+    parameters:
+      - $ref: '#/components/parameters/OrdenId'
+    get:
+      tags: [Órdenes]
+      operationId: obtenerOrden
+      summary: Ver una orden
+      description: |
+        HU-024 y HU-027. Solo el cliente o la tienda de la orden; cualquier otra tienda o cliente recibe `404`
+        sin datos (CP-ORD-024-03). La tienda ve el nombre, el teléfono y la dirección del cliente solo mientras la
+        orden está activa (CP-ORD-024-02, CP-ORD-028-01).
+      responses:
+        '200':
+          description: La orden
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OrdenResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '404':
+          description: La orden no existe o no es del usuario (ORD-001)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /api/v1/ordenes/{ordenId}/estado:
+    parameters:
+      - $ref: '#/components/parameters/OrdenId'
+    patch:
+      tags: [Órdenes]
+      operationId: cambiarEstadoOrden
+      summary: Avanzar el estado de la orden
+      description: |
+        HU-027 (diagrama 04 pasos 10 a 15, diagrama 05). Solo la tienda de la orden y solo al paso siguiente válido:
+        CONFIRMADO → PREPARANDO; PREPARANDO → EN_CAMINO (domicilio) o LISTO_PARA_RECOGER (recoger);
+        EN_CAMINO o LISTO_PARA_RECOGER → ENTREGADO. Cualquier otro cambio responde `409` ORD-002 (CP-ORD-027-02).
+        El cliente recibe `estado-orden-cambiado`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CambiarEstadoOrdenRequest' }
+      responses:
+        '200':
+          description: Orden con el estado nuevo
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OrdenResponse' }
+        '400': { $ref: '#/components/responses/DatosInvalidos' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: La orden no existe o no es de esta tienda (ORD-001)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '409':
+          description: Cambio de estado no permitido (ORD-002)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /api/v1/ordenes/{ordenId}/recepcion:
+    parameters:
+      - $ref: '#/components/parameters/OrdenId'
+    post:
+      tags: [Órdenes]
+      operationId: confirmarRecepcion
+      summary: Confirmar que recibí mi pedido
+      description: |
+        HU-028 (diagrama 04 pasos 16 a 19). Solo el cliente de la orden y solo si está ENTREGADO. La orden pasa a
+        RESUELTA y la tienda deja de ver los datos del cliente (CP-ORD-028-01). Otro cliente recibe `404`
+        (CP-ORD-028-02). La tienda recibe `estado-orden-cambiado`.
+      responses:
+        '200':
+          description: Orden RESUELTA
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OrdenResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404':
+          description: La orden no existe o es de otro cliente (ORD-001)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '409':
+          description: La orden todavía no está ENTREGADO (ORD-002)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /api/v1/ordenes/{ordenId}/whatsapp:
+    parameters:
+      - $ref: '#/components/parameters/OrdenId'
+    get:
+      tags: [Mensajería]
+      operationId: obtenerContactoWhatsapp
+      summary: Obtener el enlace de WhatsApp de la otra parte
+      description: |
+        HU-032 (CU-12, diagrama 18). Solo el cliente o la tienda de la orden y solo mientras la orden está activa
+        (CONFIRMADO a ENTREGADO). El cliente recibe el número de la tienda y la tienda el del cliente. Antes de
+        elegir no hay orden, así que no hay número (CP-MEN-032-02); el frontend muestra el botón solo con orden
+        activa.
+      responses:
+        '200':
+          description: Enlace listo para abrir
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContactoWhatsappResponse' }
+        '401': { $ref: '#/components/responses/SinSesion' }
+        '404':
+          description: La orden no existe o no es del usuario (ORD-001)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '409':
+          description: La orden ya no está activa (MEN-001)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    SolicitudId:
+      name: solicitudId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    OrdenId:
+      name: ordenId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+
+  responses:
+    DatosInvalidos:
+      description: Datos inválidos (GEN-001) o petición mal formada (GEN-002)
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problema' }
+    SinSesion:
+      description: Sin sesión o token vencido (GEN-003)
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problema' }
+    SinPermiso:
+      description: El rol no permite la operación (GEN-004)
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problema' }
+
+  schemas:
+    Modalidad:
+      type: string
+      enum: [RECOGER, DOMICILIO]
+    MedioPago:
+      type: string
+      enum: [EFECTIVO, TRANSFERENCIA, DATAFONO]
+    TipoRespuesta:
+      type: string
+      enum: [SI, PARECIDO, NO]
+    EstadoSolicitud:
+      type: string
+      enum: [ABIERTA, RESUELTA, VENCIDA]
+    EstadoRespuesta:
+      type: string
+      description: |
+        Cómo ve la tienda su respuesta. ESPERANDO mientras la solicitud está abierta; ELEGIDA o NO_ELEGIDA cuando el
+        cliente eligió; VENCIDA si la solicitud venció sin elección.
+      enum: [ESPERANDO, ELEGIDA, NO_ELEGIDA, VENCIDA]
+    EstadoOrden:
+      type: string
+      enum: [CONFIRMADO, PREPARANDO, EN_CAMINO, LISTO_PARA_RECOGER, ENTREGADO, RESUELTA, CANCELADO, VENCIDA]
+    Ubicacion:
+      type: object
+      required: [latitud, longitud]
+      properties:
+        latitud: { type: number, format: double }
+        longitud: { type: number, format: double }
+
+    Problema:
+      type: object
+      description: ProblemDetail (RFC 9457) con el código estable de la API
+      required: [type, title, status, detail, instance, codigo, idCorrelacion]
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        instance: { type: string }
+        codigo: { type: string, examples: [SOL-005] }
+        idCorrelacion: { type: string }
+        errores:
+          type: array
+          items:
+            type: object
+            required: [campo, mensaje]
+            properties:
+              campo: { type: string }
+              mensaje: { type: string }
+
+    SolicitudDisponibleResponse:
+      type: object
+      description: Tarjeta de solicitud para la tienda. Sin ningún dato del cliente (CP-SOL-018-01).
+      required: [id, categoriaId, producto, cantidad, modalidad, esUrgente, distanciaEnMetros, fechaPublicacion,
+                 fechaVencimiento, precioSugeridoEnPesos]
+      properties:
+        id: { type: string, format: uuid }
+        categoriaId: { type: string, format: uuid }
+        producto: { type: string, examples: [Paracetamol 500 mg] }
+        cantidad: { type: integer, minimum: 1, maximum: 999 }
+        modalidad: { $ref: '#/components/schemas/Modalidad' }
+        esUrgente: { type: boolean }
+        distanciaEnMetros:
+          type: integer
+          description: Distancia aproximada, redondeada a 100 m (mínimo 100). El frontend la muestra como «a 1,2 km» (CP-SOL-018-02).
+          examples: [1200]
+        fechaPublicacion: { type: string, format: date-time }
+        fechaVencimiento: { type: string, format: date-time }
+        precioSugeridoEnPesos:
+          type: [integer, 'null']
+          format: int64
+          description: Último precio por unidad que esta tienda dio para el mismo producto, para precargar «Sí lo tengo». `null` si nunca lo ha respondido.
+
+    ResponderSolicitudRequest:
+      type: object
+      required: [tipo]
+      properties:
+        tipo: { $ref: '#/components/schemas/TipoRespuesta' }
+        precioEnPesos:
+          type: [integer, 'null']
+          format: int64
+          minimum: 1
+          maximum: 100000000
+          description: Precio por unidad. Obligatorio con SI y PARECIDO; se ignora con NO.
+        cantidadDisponible:
+          type: [integer, 'null']
+          minimum: 1
+          maximum: 999
+          description: Unidades que la tienda tiene, hasta la cantidad pedida. Obligatoria con SI y PARECIDO.
+        descripcionAlternativa:
+          type: [string, 'null']
+          maxLength: 300
+          description: Qué ofrece en su lugar. Obligatoria con PARECIDO (CP-SOL-019-02).
+        tiempoEstimadoEnMinutos:
+          type: [integer, 'null']
+          minimum: 1
+          maximum: 240
+          description: Opcional. En cuánto tiempo lo tiene listo o lo entrega.
+
+    RespuestaDeTiendaResponse:
+      type: object
+      description: Respuesta tal como la ve la tienda que la dio.
+      required: [id, solicitudId, producto, cantidadSolicitada, tipo, precioEnPesos, cantidadDisponible,
+                 descripcionAlternativa, tiempoEstimadoEnMinutos, ofreceDomicilio, costoDomicilioEnPesos, estado,
+                 fechaRespuesta, ordenId]
+      properties:
+        id: { type: string, format: uuid }
+        solicitudId: { type: string, format: uuid }
+        producto: { type: string }
+        cantidadSolicitada: { type: integer }
+        tipo: { $ref: '#/components/schemas/TipoRespuesta' }
+        precioEnPesos: { type: [integer, 'null'], format: int64 }
+        cantidadDisponible: { type: [integer, 'null'] }
+        descripcionAlternativa: { type: [string, 'null'] }
+        tiempoEstimadoEnMinutos: { type: [integer, 'null'] }
+        ofreceDomicilio: { type: boolean }
+        costoDomicilioEnPesos: { type: [integer, 'null'], format: int64 }
+        estado: { $ref: '#/components/schemas/EstadoRespuesta' }
+        fechaRespuesta: { type: string, format: date-time }
+        ordenId:
+          type: [string, 'null']
+          format: uuid
+          description: Solo cuando la respuesta fue ELEGIDA.
+
+    SolicitudResponse:
+      type: object
+      description: |
+        Solicitud tal como la ve su cliente. Es el mismo esquema que devuelve `POST /api/v1/solicitudes` (HU-016)
+        con dos campos nuevos: `respuestasRecibidas` y `ordenId`.
+      required: [id, categoriaId, producto, cantidad, modalidad, esUrgente, ubicacion, radioEnMetros, estado,
+                 fechaPublicacion, fechaVencimiento, tiendasNotificadas, respuestasRecibidas, ordenId]
+      properties:
+        id: { type: string, format: uuid }
+        categoriaId: { type: string, format: uuid }
+        producto: { type: string }
+        cantidad: { type: integer }
+        modalidad: { $ref: '#/components/schemas/Modalidad' }
+        esUrgente: { type: boolean }
+        ubicacion: { $ref: '#/components/schemas/Ubicacion' }
+        radioEnMetros: { type: integer }
+        estado: { $ref: '#/components/schemas/EstadoSolicitud' }
+        fechaPublicacion: { type: string, format: date-time }
+        fechaVencimiento: { type: string, format: date-time }
+        tiendasNotificadas: { type: integer }
+        respuestasRecibidas:
+          type: integer
+          description: Todas las respuestas, incluidas las NO.
+        ordenId:
+          type: [string, 'null']
+          format: uuid
+          description: La orden creada cuando el cliente eligió (estado RESUELTA).
+
+    RespuestasDeSolicitudResponse:
+      type: object
+      required: [solicitudId, estadoSolicitud, cantidadSolicitada, respuestasRecibidas, respuestas]
+      properties:
+        solicitudId: { type: string, format: uuid }
+        estadoSolicitud: { $ref: '#/components/schemas/EstadoSolicitud' }
+        cantidadSolicitada: { type: integer }
+        respuestasRecibidas:
+          type: integer
+          description: Todas las respuestas, incluidas las NO. Si es 0 la pantalla muestra el estado vacío.
+        respuestas:
+          type: array
+          items: { $ref: '#/components/schemas/RespuestaParaClienteResponse' }
+
+    RespuestaParaClienteResponse:
+      type: object
+      description: Tarjeta de respuesta para el cliente (solo SI y PARECIDO). Sin teléfono de la tienda (HU-032).
+      required: [id, tiendaId, nombreTienda, tipo, esAlternativa, descripcionAlternativa, precioEnPesos,
+                 cantidadDisponible, subtotalEnPesos, ofreceDomicilio, costoDomicilioEnPesos, totalEnPesos,
+                 distanciaEnMetros, tiempoEstimadoEnMinutos, fechaRespuesta, fueElegida]
+      properties:
+        id: { type: string, format: uuid }
+        tiendaId: { type: string, format: uuid }
+        nombreTienda: { type: string }
+        tipo:
+          type: string
+          enum: [SI, PARECIDO]
+        esAlternativa:
+          type: boolean
+          description: true si es «Tengo algo parecido» (CP-SOL-020-03)
+        descripcionAlternativa: { type: [string, 'null'] }
+        precioEnPesos: { type: integer, format: int64, description: Por unidad }
+        cantidadDisponible: { type: integer }
+        subtotalEnPesos: { type: integer, format: int64, description: precioEnPesos × cantidadDisponible }
+        ofreceDomicilio: { type: boolean }
+        costoDomicilioEnPesos:
+          type: [integer, 'null']
+          format: int64
+          description: Solo si ofrece domicilio a la ubicación de la solicitud
+        totalEnPesos:
+          type: integer
+          format: int64
+          description: subtotal + domicilio (si la solicitud es DOMICILIO y lo ofrece); si no, el subtotal
+        distanciaEnMetros: { type: integer }
+        tiempoEstimadoEnMinutos: { type: [integer, 'null'] }
+        fechaRespuesta: { type: string, format: date-time }
+        fueElegida: { type: boolean }
+
+    CrearOrdenRequest:
+      type: object
+      required: [respuestaId, modalidad, medioPago]
+      properties:
+        respuestaId: { type: string, format: uuid }
+        modalidad: { $ref: '#/components/schemas/Modalidad' }
+        direccionId:
+          type: [string, 'null']
+          format: uuid
+          description: Dirección guardada del cliente (HU-007). Obligatoria con DOMICILIO.
+        medioPago: { $ref: '#/components/schemas/MedioPago' }
+
+    CambiarEstadoOrdenRequest:
+      type: object
+      required: [estado]
+      properties:
+        estado:
+          type: string
+          enum: [PREPARANDO, EN_CAMINO, LISTO_PARA_RECOGER, ENTREGADO]
+
+    OrdenResponse:
+      type: object
+      required: [id, solicitudId, respuestaId, producto, cantidad, precioUnitarioEnPesos, subtotalEnPesos,
+                 costoDomicilioEnPesos, totalEnPesos, modalidad, medioPago, estado, esActiva, fechaCreacion,
+                 tienda, cliente, historial]
+      properties:
+        id: { type: string, format: uuid }
+        solicitudId: { type: string, format: uuid }
+        respuestaId: { type: string, format: uuid }
+        producto:
+          type: string
+          description: Lo que la tienda entrega; si respondió PARECIDO es la descripción de la alternativa.
+        cantidad: { type: integer }
+        precioUnitarioEnPesos: { type: integer, format: int64 }
+        subtotalEnPesos: { type: integer, format: int64 }
+        costoDomicilioEnPesos: { type: integer, format: int64, description: 0 si es para recoger }
+        totalEnPesos: { type: integer, format: int64 }
+        modalidad: { $ref: '#/components/schemas/Modalidad' }
+        medioPago: { $ref: '#/components/schemas/MedioPago' }
+        estado: { $ref: '#/components/schemas/EstadoOrden' }
+        esActiva:
+          type: boolean
+          description: CONFIRMADO, PREPARANDO, EN_CAMINO, LISTO_PARA_RECOGER o ENTREGADO
+        fechaCreacion: { type: string, format: date-time }
+        tienda: { $ref: '#/components/schemas/TiendaDeOrden' }
+        cliente:
+          oneOf:
+            - $ref: '#/components/schemas/ClienteDeOrden'
+            - type: 'null'
+          description: |
+            Solo lo recibe la tienda de la orden y solo mientras está activa (CP-ORD-024-02). El cliente recibe
+            `null` en este campo (ya conoce sus datos), igual que la tienda cuando la orden se cierra.
+        historial:
+          type: array
+          description: Cambios de estado, del primero al último
+          items: { $ref: '#/components/schemas/CambioEstadoOrden' }
+
+    TiendaDeOrden:
+      type: object
+      required: [id, nombre]
+      properties:
+        id: { type: string, format: uuid }
+        nombre: { type: string }
+
+    ClienteDeOrden:
+      type: object
+      required: [nombre, telefono, direccion]
+      properties:
+        nombre: { type: string }
+        telefono: { type: string }
+        direccion:
+          oneOf:
+            - $ref: '#/components/schemas/DireccionDeEntrega'
+            - type: 'null'
+          description: Solo con DOMICILIO
+
+    DireccionDeEntrega:
+      type: object
+      required: [nombre, direccionEscrita, indicaciones, ubicacion]
+      properties:
+        nombre: { type: string, examples: [Casa] }
+        direccionEscrita: { type: string }
+        indicaciones: { type: [string, 'null'] }
+        ubicacion: { $ref: '#/components/schemas/Ubicacion' }
+
+    CambioEstadoOrden:
+      type: object
+      required: [estado, fecha]
+      properties:
+        estado: { $ref: '#/components/schemas/EstadoOrden' }
+        fecha: { type: string, format: date-time }
+
+    ContactoWhatsappResponse:
+      type: object
+      required: [nombre, telefono, enlace]
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la tienda (para el cliente) o del cliente (para la tienda)
+        telefono:
+          type: string
+          description: Número en formato internacional sin «+», por ejemplo 573001234567
+        enlace:
+          type: string
+          description: Enlace wa.me con un mensaje que trae el producto y el número corto de la orden
+          examples: ['https://wa.me/573001234567?text=Hola%2C%20te%20escribo%20por%20la%20orden%20A1B2C3D4']
+
+    EventoTiempoReal:
+      description: |
+        Eventos del flujo `/api/v1/eventos`. El tipo va en el campo `event:` del SSE y el JSON en `data:`.
+
+        | event | Quién lo recibe | data |
+        |---|---|---|
+        | `solicitud-nueva` | Tiendas a las que llegó la solicitud (HU-018, CP-NOT-030-01) | `EventoSolicitudNueva` |
+        | `respuesta-recibida` | Cliente de la solicitud, solo SI y PARECIDO (HU-020, CP-SOL-020-01) | `EventoRespuestaRecibida` |
+        | `solicitud-cerrada` | Tiendas a las que llegó la solicitud, al elegir o al vencer (HU-021) | `EventoSolicitudCerrada` |
+        | `respuesta-no-elegida` | Tiendas que respondieron y no fueron elegidas (CP-SOL-021-02) | `EventoRespuestaNoElegida` |
+        | `solicitud-vencida` | Cliente de la solicitud (HU-021, diagrama 33 paso 7) | `EventoSolicitudVencida` |
+        | `orden-creada` | Tienda elegida (HU-024, diagrama 04 paso 9) | `EventoOrdenCreada` |
+        | `estado-orden-cambiado` | El cliente cuando cambia la tienda, la tienda cuando confirma el cliente (HU-027, HU-028) | `EventoEstadoOrdenCambiado` |
+      oneOf:
+        - $ref: '#/components/schemas/EventoSolicitudNueva'
+        - $ref: '#/components/schemas/EventoRespuestaRecibida'
+        - $ref: '#/components/schemas/EventoSolicitudCerrada'
+        - $ref: '#/components/schemas/EventoRespuestaNoElegida'
+        - $ref: '#/components/schemas/EventoSolicitudVencida'
+        - $ref: '#/components/schemas/EventoOrdenCreada'
+        - $ref: '#/components/schemas/EventoEstadoOrdenCambiado'
+
+    EventoSolicitudNueva:
+      type: object
+      description: Mismos datos de la tarjeta de HU-018, sin datos del cliente.
+      required: [solicitudId, producto, cantidad, modalidad, esUrgente, distanciaEnMetros, fechaVencimiento]
+      properties:
+        solicitudId: { type: string, format: uuid }
+        producto: { type: string }
+        cantidad: { type: integer }
+        modalidad: { $ref: '#/components/schemas/Modalidad' }
+        esUrgente: { type: boolean, description: Si es true, el panel la pone primero y suena la alerta (CP-NOT-030-02) }
+        distanciaEnMetros: { type: integer, description: Redondeada a 100 m }
+        fechaVencimiento: { type: string, format: date-time }
+    EventoRespuestaRecibida:
+      type: object
+      required: [solicitudId, respuestaId, tipo, nombreTienda]
+      properties:
+        solicitudId: { type: string, format: uuid }
+        respuestaId: { type: string, format: uuid }
+        tipo: { type: string, enum: [SI, PARECIDO] }
+        nombreTienda: { type: string, description: Para el aviso aria-live «Llegó una respuesta de …» }
+    EventoSolicitudCerrada:
+      type: object
+      required: [solicitudId, estado]
+      properties:
+        solicitudId: { type: string, format: uuid }
+        estado: { type: string, enum: [RESUELTA, VENCIDA] }
+    EventoRespuestaNoElegida:
+      type: object
+      required: [solicitudId, respuestaId]
+      properties:
+        solicitudId: { type: string, format: uuid }
+        respuestaId: { type: string, format: uuid }
+    EventoSolicitudVencida:
+      type: object
+      required: [solicitudId, respuestasRecibidas]
+      properties:
+        solicitudId: { type: string, format: uuid }
+        respuestasRecibidas: { type: integer }
+    EventoOrdenCreada:
+      type: object
+      required: [ordenId, solicitudId, producto, totalEnPesos, modalidad]
+      properties:
+        ordenId: { type: string, format: uuid }
+        solicitudId: { type: string, format: uuid }
+        producto: { type: string }
+        totalEnPesos: { type: integer, format: int64 }
+        modalidad: { $ref: '#/components/schemas/Modalidad' }
+    EventoEstadoOrdenCambiado:
+      type: object
+      required: [ordenId, estado]
+      properties:
+        ordenId: { type: string, format: uuid }
+        estado: { $ref: '#/components/schemas/EstadoOrden' }
