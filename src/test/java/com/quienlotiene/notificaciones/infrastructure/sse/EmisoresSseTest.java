@@ -18,8 +18,8 @@ class EmisoresSseTest {
     private static final Instant AHORA = Instant.parse("2026-11-17T15:00:00Z");
 
     @Test
-    @DisplayName("Una segunda conexión del mismo usuario reemplaza a la primera")
-    void unaConexionPorUsuario() {
+    @DisplayName("SC-014: una segunda conexión del mismo usuario (otro celular u otra pestaña) no cierra la primera")
+    void variasConexionesPorUsuario() {
         // Dado
         var emisores = new EmisoresSse(Clock.fixed(AHORA, ZoneOffset.UTC));
         var usuario = UUID.randomUUID();
@@ -28,7 +28,38 @@ class EmisoresSseTest {
         var segunda = emisores.conectar(usuario, null);
         // Entonces
         assertThat(segunda).isNotSameAs(primera);
-        assertThat(emisores.estaConectado(usuario)).isTrue();
+        assertThat(emisores.conexionesDe(usuario)).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("SC-014: con el tope de conexiones lleno, la nueva reemplaza a la más antigua")
+    void topeDeConexiones() {
+        // Dado
+        var emisores = new EmisoresSse(Clock.fixed(AHORA, ZoneOffset.UTC));
+        var usuario = UUID.randomUUID();
+        for (var i = 0; i < EmisoresSse.MAXIMO_CONEXIONES_POR_USUARIO; i++) {
+            emisores.conectar(usuario, null);
+        }
+        // Cuando
+        emisores.conectar(usuario, null);
+        // Entonces
+        assertThat(emisores.conexionesDe(usuario)).isEqualTo(EmisoresSse.MAXIMO_CONEXIONES_POR_USUARIO);
+    }
+
+    @Test
+    @DisplayName("Las conexiones de usuarios distintos no se cuentan juntas")
+    void conexionesPorUsuarioSeparadas() {
+        var emisores = new EmisoresSse(Clock.fixed(AHORA, ZoneOffset.UTC));
+        var tienda = UUID.randomUUID();
+        var cliente = UUID.randomUUID();
+
+        emisores.conectar(tienda, null);
+        emisores.conectar(tienda, null);
+        emisores.conectar(cliente, null);
+        emisores.enviar(new Notificacion("1", tienda, "solicitud-nueva", "datos", AHORA));
+
+        assertThat(emisores.conexionesDe(tienda)).isEqualTo(2);
+        assertThat(emisores.conexionesDe(cliente)).isEqualTo(1);
     }
 
     @Test
