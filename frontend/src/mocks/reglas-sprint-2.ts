@@ -7,6 +7,7 @@ import {
   type SolicitudSimulada,
   type TiendaSimulada,
 } from './datos'
+import { emitirEvento } from './eventos'
 
 /**
  * Reglas del contrato del Sprint 2 (docs/api/CONTRATO-SPRINT-2.md) que comparten los manejadores de respuestas y
@@ -47,8 +48,27 @@ export function costoDomicilio(tienda: TiendaSimulada, destino: { latitud: numbe
 /** Las solicitudes ABIERTA que ya pasaron su vencimiento quedan VENCIDA (HU-021, sin temporizadores). */
 export function actualizarVencimientos(ahora = Date.now()): void {
   for (const solicitud of base.solicitudes) {
-    if (solicitud.estado === 'ABIERTA' && Date.parse(solicitud.fechaVencimiento) <= ahora) solicitud.estado = 'VENCIDA'
+    if (solicitud.estado === 'ABIERTA' && Date.parse(solicitud.fechaVencimiento) <= ahora) {
+      solicitud.estado = 'VENCIDA'
+      // HU-021 (diagrama 33): el cliente recibe solicitud-vencida y las tiendas, solicitud-cerrada
+      emitirEvento([solicitud.clienteId], 'solicitud-vencida', {
+        solicitudId: solicitud.id,
+        respuestasRecibidas: respuestasVisibles(solicitud.id, ahora).length,
+      })
+      emitirEvento(duenosAlcanzados(solicitud), 'solicitud-cerrada', { solicitudId: solicitud.id, estado: 'VENCIDA' })
+    }
   }
+}
+
+/** Dueños de las tiendas a las que llegó la solicitud: a ellos van solicitud-nueva y solicitud-cerrada. */
+export function duenosAlcanzados(solicitud: SolicitudSimulada): string[] {
+  return base.tiendas.filter((t) => llegoALaTienda(solicitud, t)).map((t) => t.duenoId)
+}
+
+/** Dueño de una tienda, para enviarle sus eventos. */
+export function duenoDe(tiendaId: string): string[] {
+  const tienda = base.tiendas.find((t) => t.id === tiendaId)
+  return tienda ? [tienda.duenoId] : []
 }
 
 /** Las respuestas que ya existen: las de las tiendas simuladas tienen hora futura hasta que «llegan». */

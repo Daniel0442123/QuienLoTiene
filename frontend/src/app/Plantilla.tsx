@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router'
 import { textosClientes } from '@/features/clientes/textos'
 import { textosOrdenes } from '@/features/ordenes/textos'
 import { BotonCerrarSesion } from '@/features/identidad/BotonCerrarSesion'
+import { ConexionTiempoReal } from '@/features/notificaciones/ConexionTiempoReal'
 import { useSesion } from '@/hooks/useSesion'
 import { AnunciadorDeRuta } from './AnunciadorDeRuta'
 import { AvisoActualizacion } from './AvisoActualizacion'
@@ -48,6 +49,7 @@ export function Plantilla() {
       <main id="contenido" className="mx-auto max-w-3xl px-4 py-6">
         <Outlet />
       </main>
+      <ConexionTiempoReal />
       <AnunciadorDeRuta />
       <AvisoActualizacion />
     </>

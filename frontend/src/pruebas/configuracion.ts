@@ -2,6 +2,7 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { afterAll, afterEach, beforeAll } from 'vitest'
 import { reiniciarDatosSimulados } from '@/mocks/datos'
+import { reiniciarEventosSimulados } from '@/mocks/eventos'
 import { servidorSimulado } from '@/mocks/servidor'
 
 // Envíos multipart (registro de tienda): jsdom trae sus propios FormData, Blob y File, pero fetch es el de Node, y el
@@ -26,6 +27,7 @@ beforeAll(() => servidorSimulado.listen({ onUnhandledFrame: 'error' }))
 afterEach(() => {
   servidorSimulado.resetHandlers()
   reiniciarDatosSimulados()
+  reiniciarEventosSimulados()
   cleanup()
 })
 afterAll(() => servidorSimulado.close())

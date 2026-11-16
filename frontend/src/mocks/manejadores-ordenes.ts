@@ -6,7 +6,15 @@ import {
   type OrdenSimulada,
   type UsuarioSimulado,
 } from './datos'
-import { actualizarVencimientos, costoDomicilio, ordenActiva, siguienteEstadoValido } from './reglas-sprint-2'
+import { emitirEvento } from './eventos'
+import {
+  actualizarVencimientos,
+  costoDomicilio,
+  duenoDe,
+  duenosAlcanzados,
+  ordenActiva,
+  siguienteEstadoValido,
+} from './reglas-sprint-2'
 import { autorizar, leerJson, problema, validar, vacio } from './utilidades'
 
 /** Órdenes (HU-024, HU-027 y HU-028) y contacto por WhatsApp (HU-032), según docs/api/contrato-sprint-2.yaml. */
@@ -79,6 +87,8 @@ function aOrdenResponse(orden: OrdenSimulada, usuario: UsuarioSimulado) {
 function cambiarEstado(orden: OrdenSimulada, estado: EstadoOrdenSimulado): void {
   orden.estado = estado
   orden.historial.push({ estado, fecha: new Date().toISOString() })
+  // Llega a las dos partes, así se actualiza también la pestaña de quien hizo el cambio
+  emitirEvento([orden.clienteId, ...duenoDe(orden.tiendaId)], 'estado-orden-cambiado', { ordenId: orden.id, estado })
 }
 
 /** Teléfono colombiano en formato internacional sin «+», como lo pide wa.me. */
@@ -175,6 +185,18 @@ export const manejadoresOrdenes = [
     base.ordenes.push(orden)
     solicitud.estado = 'RESUELTA'
     solicitud.ordenId = orden.id
+    emitirEvento(duenoDe(tienda.id), 'orden-creada', {
+      ordenId: orden.id,
+      solicitudId: solicitud.id,
+      producto: orden.producto,
+      totalEnPesos: orden.precioUnitarioEnPesos * orden.cantidad + orden.costoDomicilioEnPesos,
+      modalidad: orden.modalidad,
+    })
+    for (const otra of base.respuestas) {
+      if (otra.solicitudId !== solicitud.id || otra.id === respuesta.id || otra.tipo === 'NO') continue
+      emitirEvento(duenoDe(otra.tiendaId), 'respuesta-no-elegida', { solicitudId: solicitud.id, respuestaId: otra.id })
+    }
+    emitirEvento(duenosAlcanzados(solicitud), 'solicitud-cerrada', { solicitudId: solicitud.id, estado: 'RESUELTA' })
     return HttpResponse.json(aOrdenResponse(orden, cliente), {
       status: 201,
       headers: { Location: `/api/v1/ordenes/${orden.id}` },
