@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tienda: pedido, indicadores, tarifas y avisos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+a{color:#0b6e63}a:hover{color:#08564d}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
+.barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
+.marca{margin:0;font-weight:700;font-size:18px}
+.volver{min-height:44px;min-width:44px;border:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:#0b6e63;display:inline-flex;align-items:center;gap:4px;padding:0 8px 0 0}
+.cont{box-sizing:border-box;flex:1;overflow:hidden;padding:20px 16px;display:flex;flex-direction:column;gap:14px}
+.h1{margin:0;font-size:26px;line-height:1.2;font-weight:700}
+.h2{margin:0;font-size:18px;line-height:1.3;font-weight:700}
+.p{margin:0;font-size:16px;line-height:1.45}
+.suave{color:#4b5d56}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tarjeta{box-sizing:border-box;border:1px solid #6a7d76;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px;background:#ffffff}
+.btn{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#0b6e63;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn2{box-sizing:border-box;min-height:48px;border-radius:12px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.chip{display:inline-flex;align-items:center;font-size:16px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid #0b6e63;background:#ffffff;color:#0b6e63;width:fit-content}
+.aviso{box-sizing:border-box;border-radius:12px;padding:12px 14px;background:#f2f7f5;border:1px solid #dce7e2;font-size:16px;line-height:1.45;margin:0}
+.pie{box-sizing:border-box;flex:none;padding:12px 16px 20px;border-top:1px solid #dce7e2;display:flex;flex-direction:column;gap:8px}
+.dato{display:flex;justify-content:space-between;gap:12px;font-size:16px;line-height:1.4}
+.cifras{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px}
+.cifra{box-sizing:border-box;border:1px solid #dce7e2;background:#f2f7f5;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center}
+.cifra-n{margin:0;font-size:36px;font-weight:700;line-height:1.1;color:#0b6e63}
+.barra-prog{height:12px;border-radius:6px;background:#dce7e2;overflow:hidden}
+.barra-prog span{display:block;height:100%;background:#0b6e63;border-radius:6px}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+legend{font-weight:700;font-size:16px;padding:0;margin-bottom:8px}
+.opcion{box-sizing:border-box;display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 12px;border:1px solid #6a7d76;border-radius:12px;font-size:16px}
+.opcion input{width:22px;height:22px;accent-color:#0b6e63;margin:0}
+.opcion-sel{border:2px solid #0b6e63;background:#f2f7f5}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo label{font-weight:700;font-size:16px}
+input[type=text]{box-sizing:border-box;min-height:48px;border:1px solid #6a7d76;border-radius:12px;font:inherit;font-size:16px;padding:0 12px;width:100%}
+.campana{width:96px;height:96px;border-radius:50%;background:#f2f7f5;border:2px solid #dce7e2;display:flex;align-items:center;justify-content:center;align-self:center;margin-top:16px}
+</style>
+</helmet>
+<div class="tablero" style="width:1824px;height:1060px">
+
+<div class="col">
+<p class="etq">HU-027 · Pedido de la tienda</p>
+<p class="etq-nota">La tienda elegida ve los datos del cliente. Solo se ofrece el siguiente paso válido del pedido.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver a pedidos">‹ Pedidos</button><p class="marca">Droguería La 5</p></div>
+<div class="cont">
+<div class="fila"><h1 class="h1">Pedido nuevo</h1><span class="chip">Confirmado</span></div>
+<div class="tarjeta">
+<p class="h2">Acetaminofén 500 mg · 1 caja</p>
+<div class="dato"><span class="suave">Producto</span><span>$ 7.500</span></div>
+<div class="dato"><span class="suave">Domicilio</span><span>$ 3.000</span></div>
+<div class="dato" style="font-weight:700"><span>Total · Efectivo</span><span>$ 10.500</span></div>
+</div>
+<div class="tarjeta">
+<p class="h2">Cliente</p>
+<p class="p">Ana María Ruiz</p>
+<p class="p">300 765 4321</p>
+<p class="p">Calle 5 # 10-20, Popayán · casa de reja verde</p>
+<a class="btn2" href="#">Escribir por WhatsApp</a>
+</div>
+<p class="p suave">El cliente ve cada cambio al instante.</p>
+</div>
+<div class="pie"><button class="btn" type="button">Empezar a preparar</button></div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-015 · Indicadores</p>
+<p class="etq-nota">Recibidas, respondidas y ganadas. Una tienda nueva ve todo en cero, sin errores.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver al panel">‹ Mi tienda</button><p class="marca">Droguería La 5</p></div>
+<div class="cont">
+<h1 class="h1">Tu resumen</h1>
+<label class="p" style="display:flex;align-items:center;gap:8px">Periodo <select style="box-sizing:border-box;min-height:44px;border:1px solid #6a7d76;border-radius:10px;font:inherit;font-size:16px;padding:0 10px;background:#ffffff"><option>Últimos 7 días</option><option>Últimos 30 días</option></select></label>
+<div class="cifras">
+<div class="cifra"><p class="cifra-n">10</p><p class="p suave">recibidas</p></div>
+<div class="cifra"><p class="cifra-n">8</p><p class="p suave">respondidas</p></div>
+<div class="cifra"><p class="cifra-n">3</p><p class="p suave">ganadas</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px"><div class="fila"><p class="p">Respondiste</p><p class="p" style="font-weight:700">8 de 10 (80 %)</p></div><div class="barra-prog" aria-hidden="true"><span style="width:80%"></span></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div class="fila"><p class="p">Te eligieron</p><p class="p" style="font-weight:700">3 de 8 (38 %)</p></div><div class="barra-prog" aria-hidden="true"><span style="width:38%"></span></div></div>
+<p class="aviso">Ganadas son las solicitudes en que el cliente eligió tu respuesta.</p>
+</div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-011 · Tarifas de domicilio</p>
+<p class="etq-nota">Tarifa fija o por kilómetro, y domicilio gratis desde un monto. Un ejemplo muestra cuánto paga el cliente.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver al panel">‹ Mi tienda</button><p class="marca">Droguería La 5</p></div>
+<div class="cont">
+<h1 class="h1">Domicilio</h1>
+<fieldset><legend>¿Cómo cobras el domicilio?</legend>
+<label class="opcion"><input type="radio" name="tarifa">Tarifa fija</label>
+<label class="opcion opcion-sel"><input type="radio" name="tarifa" checked>Por kilómetro</label>
+</fieldset>
+<div class="campo"><label for="km">Valor por kilómetro</label><input id="km" type="text" inputmode="numeric" value="$ 1.000"></div>
+<div class="campo"><label for="gratis">Gratis desde (opcional)</label><input id="gratis" type="text" inputmode="numeric" value="$ 50.000"></div>
+<p class="aviso">Ejemplo: un cliente a 2,5 km paga $ 2.500. Si su pedido es de $ 50.000 o más, no paga domicilio.</p>
+</div>
+<div class="pie"><button class="btn" type="button">Guardar tarifas</button></div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-031 · Avisos con la app cerrada</p>
+<p class="etq-nota">Se explica antes de pedir el permiso del navegador. Si lo rechaza, las solicitudes siguen visibles al abrir el panel.</p>
+<div class="tel">
+<div class="barra"><p class="marca">Droguería La 5</p></div>
+<div class="cont" style="gap:16px">
+<div class="campana"><svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15z" fill="none" stroke="#0b6e63" stroke-width="1.8" stroke-linejoin="round"></path><path d="M10 20.5a2 2 0 0 0 4 0" fill="none" stroke="#0b6e63" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+<h1 class="h1" style="text-align:center">¿Te avisamos de solicitudes nuevas?</h1>
+<p class="p suave" style="text-align:center">Aunque tengas la app cerrada, el celular te avisará cuando un cliente cercano busque algo. Solo mientras tu tienda esté abierta.</p>
+<p class="aviso">Después el navegador te pedirá permiso. Puedes cambiarlo cuando quieras en Mi tienda.</p>
+</div>
+<div class="pie"><button class="btn" type="button">Activar avisos</button><button class="btn2" type="button">Ahora no</button></div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1824,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

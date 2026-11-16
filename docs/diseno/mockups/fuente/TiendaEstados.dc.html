@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tienda: respuesta no elegida y estados del pedido</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+a{color:#0b6e63}a:hover{color:#08564d}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
+.barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
+.marca{margin:0;font-weight:700;font-size:18px}
+.volver{min-height:44px;min-width:44px;border:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:#0b6e63;display:inline-flex;align-items:center;gap:4px;padding:0 8px 0 0}
+.cont{box-sizing:border-box;flex:1;overflow:hidden;padding:20px 16px;display:flex;flex-direction:column;gap:12px}
+.h1{margin:0;font-size:26px;line-height:1.2;font-weight:700}
+.h2{margin:0;font-size:18px;line-height:1.3;font-weight:700}
+.p{margin:0;font-size:16px;line-height:1.45}
+.suave{color:#4b5d56}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tarjeta{box-sizing:border-box;border:1px solid #6a7d76;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px;background:#ffffff}
+.btn{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#0b6e63;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn2{box-sizing:border-box;min-height:48px;border-radius:12px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.chip{display:inline-flex;align-items:center;font-size:16px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;width:fit-content}
+.chip-ok{border-color:#1f7a2e;color:#1f7a2e}
+.chip-no{border-color:#6a7d76;color:#4b5d56}
+.chip-esp{border-color:#0b6e63;color:#0b6e63}
+.chip-pel{border-color:#b3261e;color:#b3261e}
+.aviso{box-sizing:border-box;border-radius:12px;padding:12px 14px;background:#f2f7f5;border:1px solid #dce7e2;font-size:16px;line-height:1.45;margin:0}
+.aviso-pel{background:#fdf3f2;border:2px solid #b3261e}
+.pie{box-sizing:border-box;flex:none;padding:12px 16px 20px;border-top:1px solid #dce7e2;display:flex;flex-direction:column;gap:8px}
+.pestanas{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));border-bottom:1px solid #dce7e2}
+.pestanas a{min-height:48px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#4b5d56;text-decoration:none}
+.pestanas .on{color:#0b6e63;border-bottom:3px solid #0b6e63}
+.dato{display:flex;justify-content:space-between;gap:12px;font-size:16px;line-height:1.4}
+.pasos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.paso{display:flex;gap:12px;align-items:flex-start;min-height:46px}
+.punto{box-sizing:border-box;width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;border:2px solid #6a7d76;background:#ffffff}
+.punto-ok{background:#0b6e63;border-color:#0b6e63}
+.punto-ya{border-color:#0b6e63;border-width:4px}
+.paso-t{margin:0;font-size:16px;line-height:1.3;padding-top:3px}
+</style>
+</helmet>
+<div class="tablero" style="width:1378px;height:1060px">
+
+<div class="col">
+<p class="etq">HU-021 · Mis respuestas: «No elegida»</p>
+<p class="etq-nota">Cuando el cliente elige otra tienda, las demás ven su respuesta como no elegida (CP-SOL-021-02).</p>
+<div class="tel">
+<div class="barra"><p class="marca">Droguería La 5</p><button class="volver" type="button">Mi tienda</button></div>
+<div class="pestanas" role="tablist" aria-label="Solicitudes"><a href="#" role="tab" aria-selected="false">Nuevas (2)</a><a class="on" href="#" role="tab" aria-selected="true">Mis respuestas</a></div>
+<div class="cont">
+<div class="tarjeta">
+<div class="fila"><p class="h2">Acetaminofén 500 mg</p><span class="chip chip-esp">Esperando</span></div>
+<p class="p suave">Sí lo tengo · $ 8.000 · hace 6 min</p>
+</div>
+<div class="tarjeta">
+<div class="fila"><p class="h2">Loratadina 10 mg</p><span class="chip chip-no">No elegida</span></div>
+<p class="p suave">Sí lo tengo · $ 11.000 · hace 25 min</p>
+<p class="p">El cliente eligió otra tienda.</p>
+</div>
+<div class="tarjeta">
+<div class="fila"><p class="h2">Suero oral sabor coco</p><span class="chip chip-ok">Elegida</span></div>
+<p class="p suave">Sí lo tengo · $ 4.500 · hace 1 h</p>
+<a class="p" href="#">Ver el pedido</a>
+</div>
+<div class="tarjeta">
+<div class="fila"><p class="h2">Ibuprofeno 400 mg</p><span class="chip chip-no">Vencida</span></div>
+<p class="p suave">Tengo algo parecido · $ 6.000 · ayer</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-027 · Pedido en camino</p>
+<p class="etq-nota">Secuencia Confirmado → Preparando → En camino → Entregado. Solo se ofrece el paso siguiente; no se puede saltar a Entregado (CP-ORD-027-02).</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver a pedidos">‹ Pedidos</button><p class="marca">Droguería La 5</p></div>
+<div class="cont">
+<div class="fila"><h1 class="h1">Pedido</h1><span class="chip chip-esp">En camino</span></div>
+<p class="p suave">Acetaminofén 500 mg · 1 caja · $ 10.500 en efectivo</p>
+<ol class="pasos" aria-label="Estado del pedido">
+<li class="paso"><span class="punto punto-ok"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><p class="paso-t">Confirmado · 3:58 p. m.</p></li>
+<li class="paso"><span class="punto punto-ok"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><p class="paso-t">Preparando · 4:01 p. m.</p></li>
+<li class="paso"><span class="punto punto-ya"></span><p class="paso-t" style="font-weight:700">En camino (estado actual) · 4:12 p. m.</p></li>
+<li class="paso"><span class="punto"></span><p class="paso-t suave">Entregado</p></li>
+</ol>
+<div class="tarjeta">
+<p class="h2">Entregar a</p>
+<p class="p">Ana María Ruiz · 300 765 4321</p>
+<p class="p">Calle 5 # 10-20, Popayán · casa de reja verde</p>
+</div>
+<p class="p suave">El cliente ve cada cambio al instante.</p>
+</div>
+<div class="pie"><button class="btn" type="button">Marcar como entregado</button></div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-027, HU-029 · Pedido cancelado</p>
+<p class="etq-nota">Si el cliente cancela antes de que salga, la tienda lo ve al instante y no se ofrecen más pasos.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver a pedidos">‹ Pedidos</button><p class="marca">Droguería La 5</p></div>
+<div class="cont">
+<div class="fila"><h1 class="h1">Pedido</h1><span class="chip chip-pel">Cancelado</span></div>
+<p class="p suave">Acetaminofén 500 mg · 1 caja · $ 10.500</p>
+<div class="aviso aviso-pel" role="alert"><p class="p"><b>El cliente canceló el pedido a las 4:05 p. m.</b> No lo prepares ni lo envíes.</p></div>
+<div class="tarjeta">
+<div class="dato"><span class="suave">Confirmado</span><span>3:58 p. m.</span></div>
+<div class="dato"><span class="suave">Preparando</span><span>4:01 p. m.</span></div>
+<div class="dato" style="font-weight:700"><span>Cancelado por el cliente</span><span>4:05 p. m.</span></div>
+</div>
+<p class="p suave">Los datos del cliente ya no se muestran.</p>
+</div>
+<div class="pie"><a class="btn2" href="#">Volver a pedidos</a></div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1378,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
