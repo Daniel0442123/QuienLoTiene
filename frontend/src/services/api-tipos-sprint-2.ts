@@ -13,8 +13,8 @@ export interface paths {
         };
         /**
          * Abrir el flujo de eventos en tiempo real
-         * @description HU-030. Flujo `text/event-stream` con una conexión por usuario: si el mismo usuario abre otra, la anterior se
-         *     cierra. Cada 25 s llega un comentario `:latido` para que el proxy no corte la conexión (el cliente lo ignora).
+         * @description HU-030. Flujo `text/event-stream`. Un usuario puede tener hasta 5 conexiones a la vez (el celular y el PC, o
+         *     varias pestañas) y cada evento llega a todas; si abre una sexta, se cierra la más antigua (SC-014). Cada 25 s llega un comentario `:latido` para que el proxy no corte la conexión (el cliente lo ignora).
          *
          *     Cada evento trae `id`, `event` (el tipo, ver `EventoTiempoReal`) y `data` (JSON). Al reconectar, el cliente
          *     envía la cabecera `Last-Event-ID` con el último `id` recibido y el servidor reenvía los eventos perdidos de
