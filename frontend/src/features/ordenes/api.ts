@@ -38,11 +38,79 @@ export function useCrearOrden() {
   })
 }
 
+/** Mientras no llega el tiempo real (HU-030), una orden activa se vuelve a pedir cada 15 s. */
+const INTERVALO_ORDEN_ACTIVA_MS = 15_000
+
 /** HU-024 y HU-027: una orden del cliente o de la tienda. */
 export function useOrden(ordenId: string) {
   return useQuery({
     queryKey: clavesOrdenes.orden(ordenId),
     queryFn: async () =>
       exigirDatos((await clienteApi.GET('/api/v1/ordenes/{ordenId}', { params: { path: { ordenId } } })).data),
+    refetchInterval: (consulta) => (consulta.state.data?.esActiva ? INTERVALO_ORDEN_ACTIVA_MS : false),
+  })
+}
+
+/** HU-027: mis órdenes (cliente) o las recibidas (tienda), activas primero; lo ordena la API. */
+export function useOrdenes() {
+  return useQuery({
+    queryKey: clavesOrdenes.todas,
+    queryFn: async () => exigirDatos((await clienteApi.GET('/api/v1/ordenes')).data),
+    refetchInterval: INTERVALO_ORDEN_ACTIVA_MS,
+  })
+}
+
+function useGuardarOrden() {
+  const clienteConsultas = useQueryClient()
+  return (orden: Orden) => {
+    clienteConsultas.setQueryData(clavesOrdenes.orden(orden.id), orden)
+    void clienteConsultas.invalidateQueries({ queryKey: clavesOrdenes.todas, exact: true })
+  }
+}
+
+export type EstadoQueAvanzaLaTienda = Esquemas['CambiarEstadoOrdenRequest']['estado']
+
+/**
+ * HU-027: la tienda avanza la orden al paso siguiente. Sin actualización optimista: si otro celular ya la avanzó,
+ * el backend responde ORD-002 y se vuelve a pedir la orden para mostrar el estado real.
+ */
+export function useCambiarEstadoOrden(ordenId: string) {
+  const clienteConsultas = useQueryClient()
+  const guardar = useGuardarOrden()
+  return useMutation({
+    mutationFn: async (estado: EstadoQueAvanzaLaTienda) =>
+      exigirDatos(
+        (
+          await clienteApi.PATCH('/api/v1/ordenes/{ordenId}/estado', {
+            params: { path: { ordenId } },
+            body: { estado },
+          })
+        ).data,
+      ),
+    onSuccess: guardar,
+    onError: () => void clienteConsultas.invalidateQueries({ queryKey: clavesOrdenes.orden(ordenId) }),
+  })
+}
+
+/** HU-028: «Recibí mi pedido». La orden queda RESUELTA y la tienda deja de ver los datos del cliente. */
+export function useConfirmarRecepcion(ordenId: string) {
+  const guardar = useGuardarOrden()
+  return useMutation({
+    mutationFn: async () =>
+      exigirDatos(
+        (await clienteApi.POST('/api/v1/ordenes/{ordenId}/recepcion', { params: { path: { ordenId } } })).data,
+      ),
+    onSuccess: guardar,
+  })
+}
+
+/** HU-032: enlace wa.me de la otra parte; solo se pide con la orden activa (MEN-001 si no). */
+export function useContactoWhatsapp(ordenId: string, habilitado: boolean) {
+  return useQuery({
+    queryKey: [...clavesOrdenes.orden(ordenId), 'whatsapp'],
+    queryFn: async () =>
+      exigirDatos((await clienteApi.GET('/api/v1/ordenes/{ordenId}/whatsapp', { params: { path: { ordenId } } })).data),
+    enabled: habilitado,
+    staleTime: Infinity,
   })
 }

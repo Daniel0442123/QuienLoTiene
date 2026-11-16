@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { CircleCheck, CircleSlash, Hourglass, TimerOff, type LucideIcon } from 'lucide-react'
 import type { EstadoRespuesta, RespuestaDeTienda } from './api'
 import { resumenDeRespuesta } from './presentacion'
@@ -25,6 +26,14 @@ export function TarjetaMiRespuesta({ respuesta }: { respuesta: RespuestaDeTienda
         {textos.estadosRespuesta[respuesta.estado]}
       </p>
       <p className="text-texto-suave">{textos.explicacionEstadoRespuesta[respuesta.estado]}</p>
+      {respuesta.ordenId ? (
+        <Link
+          to={`/tienda/pedidos/${respuesta.ordenId}`}
+          className="inline-flex min-h-tactil items-center self-start font-semibold text-primario underline underline-offset-4 hover:no-underline"
+        >
+          {textos.verElPedido}
+        </Link>
+      ) : null}
     </article>
   )
 }
