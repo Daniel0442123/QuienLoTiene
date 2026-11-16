@@ -90,3 +90,43 @@ jobs:
           name: sbom-cyclonedx
           path: target/bom.*
           retention-days: 30
+
+  # DEF-002 · NF-SEG-011: segunda revisión de dependencias junto con Trivy. Job aparte porque la base del NVD
+  # es grande: se guarda en caché y se actualiza una vez al día. Necesita el secreto NVD_API_KEY (gratis en
+  # https://nvd.nist.gov/developers/request-an-api-key); sin él la primera descarga puede tardar horas.
+  dependency-check:
+    name: OWASP Dependency-Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Fecha para la caché de la base del NVD
+        id: fecha
+        run: echo "dia=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Caché de la base del NVD
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository/org/owasp/dependency-check-data
+          key: nvd-${{ steps.fecha.outputs.dia }}
+          restore-keys: nvd-
+
+      - name: Dependency-Check (falla con CVSS >= 7 sin justificar)
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: ./mvnw -B -Pdependencias -DskipTests verify
+
+      - name: Publicar reporte de Dependency-Check
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-dependency-check
+          path: target/dependency-check-report.*
+          retention-days: 30

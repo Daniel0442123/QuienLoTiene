@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DEF-002 · NF-SEG-011: falsos positivos y vulnerabilidades aceptadas de OWASP Dependency-Check.
+  Cada supresión lleva en <notes> el motivo, quién la aprobó y la fecha; sin eso no se acepta en el PR.
+  Hoy no hay ninguna.
+-->
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+</suppressions>
