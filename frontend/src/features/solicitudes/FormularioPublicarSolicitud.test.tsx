@@ -77,7 +77,7 @@ describe('HU-016 · Publicar solicitud', () => {
     const minutos = (Date.parse(publicada.fechaVencimiento) - Date.parse(publicada.fechaPublicacion)) / 60_000
     expect(minutos).toBe(30)
     const casa = base.direcciones[0]
-    expect(base.solicitudes[0]).toMatchObject({
+    expect(base.solicitudes.at(-1)).toMatchObject({
       cantidad: 1,
       esUrgente: false,
       ubicacion: { latitud: casa?.latitud, longitud: casa?.longitud },

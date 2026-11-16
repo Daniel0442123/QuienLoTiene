@@ -2,6 +2,8 @@ import { manejadoresAdministracion } from './manejadores-administracion'
 import { manejadoresCatalogo } from './manejadores-catalogo'
 import { manejadoresClientes } from './manejadores-clientes'
 import { manejadoresIdentidad } from './manejadores-identidad'
+import { manejadoresOrdenes } from './manejadores-ordenes'
+import { manejadoresRespuestas } from './manejadores-respuestas'
 import { manejadoresSolicitudes } from './manejadores-solicitudes'
 import { manejadoresTiendas } from './manejadores-tiendas'
 import { CORREOS_DE_PRUEBA, FRASE_DE_PRUEBA } from './datos'
@@ -21,6 +23,9 @@ export const manejadores = [
   ...manejadoresCatalogo,
   ...manejadoresClientes,
   ...manejadoresTiendas,
+  // Rutas de solicitudes del Sprint 2 antes que las del Sprint 1 (/disponibles antes de /:solicitudId)
+  ...manejadoresRespuestas,
   ...manejadoresSolicitudes,
+  ...manejadoresOrdenes,
   ...manejadoresAdministracion,
 ]
