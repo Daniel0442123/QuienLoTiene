@@ -27,9 +27,9 @@ class EventosController {
 
     @Operation(
             summary = "Abrir el flujo de eventos en tiempo real",
-            description = "HU-030. text/event-stream con el JWT en Authorization. Una conexión por usuario, latido "
-                    + "':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. Tipos: "
-                    + "solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, "
+            description = "HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario "
+                    + "(SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. "
+                    + "Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, "
                     + "solicitud-vencida, orden-creada y estado-orden-cambiado (docs/api/contrato-sprint-2.yaml).")
     @ApiResponse(responseCode = "200", description = "Conexión abierta")
     @ApiResponse(responseCode = "401", description = "Sin sesión (GEN-003)")

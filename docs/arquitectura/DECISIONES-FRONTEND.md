@@ -1,6 +1,6 @@
 # Decisiones técnicas y convenciones del frontend · Quién lo tiene
 
-Versión 1.3 (aprobada por Pedro) · 16/11/2026
+Versión 1.4 (aprobada por Pedro) · 16/11/2026
 
 Este documento hace para el frontend lo mismo que `DECISIONES-BACKEND.md` hace para el backend: deja por escrito cómo se construye la PWA para que Monica (y quien la apoye) escriba todo de la misma forma. Nace de analizar una lista de estándares de usabilidad y accesibilidad contra lo que el proyecto ya tiene documentado y contra el plazo real. Pedro aprobó todas las decisiones el 08/11/2026; lo que queda abierto es del equipo de backend (sección 15.2).
 
@@ -45,7 +45,7 @@ La última fila es la que más pesa en el análisis: todo lo que se adopte tiene
 | F-11 | Formularios | React Hook Form + Zod, validación al salir del campo | Decidida (Pedro, 08/11) |
 | F-12 | Textos e idioma | Español (`es-CO`), textos centralizados por funcionalidad, formato con `Intl`; sin librería de i18n | Decidida (Pedro, 08/11) |
 | F-13 | PWA | `vite-plugin-pwa` (Workbox); el service worker **no** guarda respuestas de la API | Decidida (Pedro, 08/11) |
-| F-14 | Tiempo real | SSE con `fetch` (cabecera `Authorization`), una conexión por usuario | Decidida (Pedro, 08/11); depende del backend (15.2) |
+| F-14 | Tiempo real | SSE con `fetch` (cabecera `Authorization`), una conexión por pestaña; el backend acepta hasta 5 por usuario (SC-014) | Decidida (Pedro, 08/11); depende del backend (15.2) |
 | F-15 | Mapas | Leaflet directo, cargado solo en las pantallas que lo usan | Decidida (arquitectura) |
 | F-16 | Rendimiento | Core Web Vitals como meta interna, división por ruta, *skeletons* en listas | Decidida (Pedro, 08/11) |
 | F-17 | Pruebas | Vitest + Testing Library (por rol) + axe-core; Playwright + `@axe-core/playwright` en los flujos del Cierre | Decidida (Pedro, 08/11) |
@@ -228,7 +228,7 @@ La cookie de refresco es `SameSite=Strict` y su ruta es `/api/v1/auth`. Lo más 
 ### 7.1 SSE
 
 - `EventSource` del navegador **no permite enviar la cabecera `Authorization`**, y la API se autentica con el JWT en esa cabecera. Por eso se usa `@microsoft/fetch-event-source`, que abre el flujo con `fetch` y sí la envía, y además reintenta con espera creciente y renueva el token si recibe `401`.
-- Una sola conexión por usuario, abierta desde `features/notificaciones` mientras la app está visible. Cada evento invalida la consulta correspondiente de TanStack Query (por ejemplo, `RespuestaRecibida` refresca las respuestas de esa solicitud) y anuncia el cambio en la región `aria-live`.
+- Una conexión por pestaña, abierta desde `features/notificaciones` mientras la app está visible. El backend acepta hasta 5 por usuario y envía cada aviso a todas, así el celular y el PC de la tienda reciben lo mismo sin cerrarse entre sí (SC-014). Cada evento invalida la consulta correspondiente de TanStack Query (por ejemplo, `RespuestaRecibida` refresca las respuestas de esa solicitud) y anuncia el cambio en la región `aria-live`.
 - Esto hay que acordarlo con Daniel antes de que construya `/api/v1/eventos` en el Sprint 2 (sección 15.2).
 
 ### 7.2 PWA
@@ -394,3 +394,4 @@ Convenciones (las mismas del backend, adaptadas):
 | 1.1 | 08/11/2026 | Ajustes al crear el andamiaje: oxlint en lugar de ESLint (mismas reglas `jsx-a11y`), TypeScript 5.9 en lugar de 7, axe-core directo en lugar de `vitest-axe`, flujo de CI propio `frontend.yml` |
 | 1.2 | 08/11/2026 | Sección 13.1: manejo de dependencias vulnerables; `overrides` de `glob` para la alerta de `minimatch` y justificación de `deepmerge` |
 | 1.3 | 16/11/2026 | SC-011: la alternativa se llama «Tengo algo parecido» en todas las pantallas (§8, regla 3); el precio precargado de «Sí lo tengo» es el último que dio la tienda para el mismo producto |
+| 1.4 | 16/11/2026 | SC-014: el backend acepta varias conexiones SSE por usuario (F-14, §7.1) |
