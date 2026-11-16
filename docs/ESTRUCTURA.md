@@ -1,6 +1,6 @@
 # Estructura del proyecto Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Monolito modular con Spring Boot y Clean Architecture dentro de cada módulo (ver el documento de arquitectura).
 
@@ -55,3 +55,4 @@ Los archivos `.gitkeep` solo existen para que Git conserve las carpetas vacías;
 | — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(front): andamiaje del frontend y decisiones de usabilidad y accesibilidad (#17) |
 | — | 11/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | build(despliegue): imágenes, compose de producción, despliegue por etiquetas y respaldos (#19) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión. Se agregan `docs/gestion/`, `scripts/gestion/` y `gestion.yml` (SC-009) |
+| 1.1 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Se agrega `docs/diseno/` con los mockups de las historias pendientes (#33) |
