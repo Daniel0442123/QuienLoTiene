@@ -1,6 +1,6 @@
 # Decisiones técnicas y convenciones del frontend · Quién lo tiene
 
-Versión 1.2 (aprobada por Pedro) · 08/11/2026
+Versión 1.3 (aprobada por Pedro) · 16/11/2026
 
 Este documento hace para el frontend lo mismo que `DECISIONES-BACKEND.md` hace para el backend: deja por escrito cómo se construye la PWA para que Monica (y quien la apoye) escriba todo de la misma forma. Nace de analizar una lista de estándares de usabilidad y accesibilidad contra lo que el proyecto ya tiene documentado y contra el plazo real. Pedro aprobó todas las decisiones el 08/11/2026; lo que queda abierto es del equipo de backend (sección 15.2).
 
@@ -246,7 +246,7 @@ Reglas que se revisan en cada pull request del frontend:
 
 1. **HTML semántico primero**: `button` para acciones, `a` para navegar, `label` en cada campo, un solo `h1` por pantalla, `main`, `nav` y `header` como regiones.
 2. **Texto base de 16 px** (`1rem`) y tamaños en `rem` para que el zoom al 200 % funcione (RNF-028, 1.4.4).
-3. **Objetivos táctiles de 44 × 44 px o más** con al menos 8 px entre ellos (RNF-028). Los botones «Sí lo tengo», «Parecido» y «No lo tengo» son grandes y están al alcance del pulgar.
+3. **Objetivos táctiles de 44 × 44 px o más** con al menos 8 px entre ellos (RNF-028). Los botones «Sí lo tengo», «Tengo algo parecido» y «No lo tengo» (nombre fijado en SC-011) son grandes y están al alcance del pulgar.
 4. **Foco visible** siempre (anillo de 2 px con contraste ≥ 3:1) y **nunca tapado** por barras fijas (2.4.11): `scroll-padding` del alto de esas barras.
 5. **Contraste** de texto ≥ 4,5:1 y de bordes de controles ≥ 3:1, verificado al definir los tokens, no pantalla por pantalla.
 6. **No solo el color** comunica estado: «Abierta/Cerrada», el estado de la orden y los errores llevan texto o ícono además del color.
@@ -393,3 +393,4 @@ Convenciones (las mismas del backend, adaptadas):
 | 1.0 | 08/11/2026 | Pedro aprueba todas las decisiones: TypeScript, WCAG 2.2 AA, shadcn/ui con Tailwind; Monica define prototipos y paleta; Daniel aprueba los pull requests del frontend |
 | 1.1 | 08/11/2026 | Ajustes al crear el andamiaje: oxlint en lugar de ESLint (mismas reglas `jsx-a11y`), TypeScript 5.9 en lugar de 7, axe-core directo en lugar de `vitest-axe`, flujo de CI propio `frontend.yml` |
 | 1.2 | 08/11/2026 | Sección 13.1: manejo de dependencias vulnerables; `overrides` de `glob` para la alerta de `minimatch` y justificación de `deepmerge` |
+| 1.3 | 16/11/2026 | SC-011: la alternativa se llama «Tengo algo parecido» en todas las pantallas (§8, regla 3); el precio precargado de «Sí lo tengo» es el último que dio la tienda para el mismo producto |
