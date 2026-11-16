@@ -38,7 +38,7 @@ describe('HU-016 · Esperando respuestas después de publicar', () => {
     // Entonces
     const titulo = await screen.findByRole('heading', { level: 1, name: 'Esperando respuestas' })
     expect(titulo).toHaveFocus()
-    expect(screen.getByText('Le preguntamos a 1 tienda cercana si tiene «Paracetamol 500 mg».')).toBeInTheDocument()
+    expect(screen.getByText('Le preguntamos a 3 tiendas cercanas si tienen «Paracetamol 500 mg».')).toBeInTheDocument()
     expect(screen.getByText(/Las tiendas pueden responder hasta las .* \(en 30 min\)\./)).toBeInTheDocument()
     expect(screen.getByText('Buscamos a 3 km a la redonda.')).toBeInTheDocument()
     expect(await violacionesDeAccesibilidad(container)).toEqual([])

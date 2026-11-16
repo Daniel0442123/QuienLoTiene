@@ -43,6 +43,17 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'CLI-003': 'No encontramos esa dirección. Puede que ya la hayas borrado.',
   'SOL-001': 'Ya publicaste 10 solicitudes en la última hora. Espera un poco para publicar otra.',
   'SOL-002': 'Falta un dato de la solicitud: qué buscas, dónde buscar, cómo lo quieres o tu ubicación.',
+  'SOL-003': 'Esta solicitud ya no está disponible. Puede que haya vencido o que no sea para ti.',
+  'SOL-004': 'Esta solicitud ya se cerró: venció o el cliente ya eligió una respuesta.',
+  'SOL-005': 'Ya respondiste esta solicitud. El cliente ya puede ver tu respuesta.',
+  'SOL-006': 'Falta un dato de la respuesta: el precio, las unidades o qué producto ofreces.',
+  'SOL-007': 'No encontramos esa respuesta. Puede que la tienda ya no esté disponible.',
+  'SOL-008': 'Esa tienda respondió que no lo tiene. Elige otra respuesta.',
+  'ORD-001': 'No encontramos ese pedido.',
+  'ORD-002': 'El pedido no puede pasar a ese estado ahora. Recarga para ver cómo va.',
+  'ORD-003': 'La tienda no recibe ese medio de pago. Elige otro.',
+  'ORD-004': 'Elige la dirección a donde llevamos tu pedido.',
+  'MEN-001': 'El pedido ya se cerró, así que el contacto por WhatsApp ya no está disponible.',
 }
 
 const MENSAJE_GENERAL = 'No pudimos completar la acción. Inténtalo de nuevo.'

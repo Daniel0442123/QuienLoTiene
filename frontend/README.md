@@ -24,13 +24,16 @@ npm run dev:simulado # http://localhost:5173 ; /api lo responde MSW en el navega
 - Los datos viven en memoria (`src/mocks/datos.ts`) y vuelven al estado inicial al recargar. Tampoco hay cookie de refresco: **al recargar la página hay que volver a entrar**.
 - Usuarios de prueba (todos con `FRASE_DE_PRUEBA` de `src/mocks/datos.ts`):
 
-    | Correo                     | Para probar                                              |
-    | -------------------------- | -------------------------------------------------------- |
-    | `cliente@ejemplo.com`      | Cliente con una dirección guardada                       |
-    | `tienda@ejemplo.com`       | Tienda aprobada y abierta, con horario y domicilio       |
-    | `tienda.nueva@ejemplo.com` | Tienda pendiente de revisión (no puede abrir: `TIE-008`) |
-    | `admin@ejemplo.com`        | Administrador; pide el código `CODIGO_TOTP_DE_PRUEBA`    |
-    | `suspendido@ejemplo.com`   | Cuenta suspendida (`IDE-009`)                            |
+    | Correo                     | Para probar                                                                                   |
+    | -------------------------- | --------------------------------------------------------------------------------------------- |
+    | `cliente@ejemplo.com`      | Cliente con una dirección guardada y una orden ENTREGADO para confirmar la recepción (HU-028) |
+    | `tienda@ejemplo.com`       | Tienda aprobada y abierta: 2 solicitudes nuevas (HU-018) y una orden CONFIRMADO (HU-027)      |
+    | `tienda.nueva@ejemplo.com` | Tienda pendiente de revisión (no puede abrir: `TIE-008`)                                      |
+    | `admin@ejemplo.com`        | Administrador; pide el código `CODIGO_TOTP_DE_PRUEBA`                                         |
+    | `suspendido@ejemplo.com`   | Cuenta suspendida (`IDE-009`)                                                                 |
+    | `vecina@ejemplo.com`       | Otra clienta: es quien publicó las solicitudes que ve la tienda de prueba                     |
+
+- **Sprint 2** (`manejadores-respuestas.ts`, `manejadores-ordenes.ts`, reglas en `reglas-sprint-2.ts`): cuando el cliente publica una solicitud de Farmacia, «Botica San José» responde «Sí lo tengo» a los 6 s y «Farmacia Popular» «Tengo algo parecido» a los 15 s. La solicitud vence a los 30 min. Botica acepta efectivo y datáfono; Popular no hace domicilio. Los tipos de esas rutas salen del contrato con `npm run api:tipos:contrato` (`src/services/api-tipos-sprint-2.ts`).
 
 - Las categorías (`CATEGORIAS_SIMULADAS`) solo existen en la simulación: el backend aún no publica un endpoint de categorías.
 - El service worker de MSW se sirve solo en este modo, desde `node_modules` (plugin en `vite.config.ts`); `main.tsx` carga la simulación con un `import` dinámico que desaparece del build de producción.
@@ -51,6 +54,7 @@ npm run dev:simulado # http://localhost:5173 ; /api lo responde MSW en el navega
 | Build de producción                     | `npm run build` y `npm run preview`                  |
 | Lighthouse como en CI                   | `npm run build && npm run lighthouse`                |
 | Regenerar tipos de la API               | `npm run api:tipos` (con el backend en perfil `dev`) |
+| Tipos del contrato del Sprint 2         | `npm run api:tipos:contrato`                         |
 
 Antes de abrir un pull request: `npm run formato && npm run lint && npm run tipos && npm test`.
 

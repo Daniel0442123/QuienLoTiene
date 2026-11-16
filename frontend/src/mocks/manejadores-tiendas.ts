@@ -44,7 +44,7 @@ function aDomicilio(tienda: TiendaSimulada) {
 }
 
 /** La tienda del usuario con rol TIENDA, o el error que daría el backend. */
-function miTienda(request: Request): TiendaSimulada | Response {
+export function miTienda(request: Request): TiendaSimulada | Response {
   const dueno = autorizar(request, ['TIENDA'])
   if (dueno instanceof Response) return dueno
   return base.tiendas.find((t) => t.duenoId === dueno.id) ?? problema(404, 'TIE-006', 'Tienda no encontrada')

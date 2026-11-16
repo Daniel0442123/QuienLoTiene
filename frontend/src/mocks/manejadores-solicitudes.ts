@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { base, type SolicitudSimulada } from './datos'
+import { aSolicitudResponse, respuestasAutomaticas } from './reglas-sprint-2'
 import { autorizar, leerJson, problema, ubicacionInvalida, vacio, validar } from './utilidades'
 
 /** Solicitudes: publicar «¿quién tiene X?» (HU-016). Máximo 10 por hora; vence a los 30 minutos. */
@@ -17,11 +18,6 @@ interface PublicarSolicitudRequest {
   modalidad: 'RECOGER' | 'DOMICILIO'
   esUrgente?: boolean | null
   ubicacion: { latitud: number; longitud: number }
-}
-
-function aRespuesta(solicitud: SolicitudSimulada) {
-  const { clienteId: _clienteId, ...datos } = solicitud
-  return datos
 }
 
 export const manejadoresSolicitudes = [
@@ -85,9 +81,11 @@ export const manejadoresSolicitudes = [
       fechaPublicacion: new Date(ahora).toISOString(),
       fechaVencimiento: new Date(ahora + TREINTA_MINUTOS_MS).toISOString(),
       tiendasNotificadas,
+      ordenId: null,
     }
     base.solicitudes.push(solicitud)
-    return HttpResponse.json(aRespuesta(solicitud), {
+    base.respuestas.push(...respuestasAutomaticas(solicitud, ahora))
+    return HttpResponse.json(aSolicitudResponse(solicitud), {
       status: 201,
       headers: { Location: `${RUTA}/${solicitud.id}` },
     })
