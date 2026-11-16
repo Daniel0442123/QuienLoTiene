@@ -35,6 +35,7 @@
         <spotbugs-plugin.version>4.10.5.0</spotbugs-plugin.version>
         <findsecbugs.version>1.14.0</findsecbugs.version>
         <cyclonedx.version>2.9.3</cyclonedx.version>
+        <dependency-check.version>12.2.0</dependency-check.version>
     </properties>
 
     <dependencies>
@@ -656,6 +657,49 @@
                                 <phase>package</phase>
                                 <goals>
                                     <goal>makeAggregateBom</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- DEF-002 · NF-SEG-011: OWASP Dependency-Check (lo corre el CI junto con Trivy).
+             ./mvnw -Pdependencias -DskipTests verify; con NVD_API_KEY la primera descarga de la base tarda minutos y no horas -->
+        <profile>
+            <id>dependencias</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${dependency-check.version}</version>
+                        <configuration>
+                            <!-- Falla con vulnerabilidades altas o críticas (CVSS >= 7) que no estén justificadas -->
+                            <failBuildOnCVSS>7</failBuildOnCVSS>
+                            <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
+                            <suppressionFiles>
+                                <suppressionFile>${project.basedir}/config/dependency-check/supresiones.xml</suppressionFile>
+                            </suppressionFiles>
+                            <formats>
+                                <format>HTML</format>
+                                <format>JSON</format>
+                            </formats>
+                            <!-- Solo dependencias Java: el frontend lo revisan npm audit y Trivy -->
+                            <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
+                            <nodeAuditAnalyzerEnabled>false</nodeAuditAnalyzerEnabled>
+                            <yarnAuditAnalyzerEnabled>false</yarnAuditAnalyzerEnabled>
+                            <pnpmAuditAnalyzerEnabled>false</pnpmAuditAnalyzerEnabled>
+                            <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
+                            <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                            <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>analisis-dependencias</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
                                 </goals>
                             </execution>
                         </executions>

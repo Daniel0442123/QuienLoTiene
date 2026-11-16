@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DEF-002 · NF-SEG-011: falsos positivos y vulnerabilidades aceptadas de OWASP Dependency-Check.
+  Cada supresión lleva en <notes> el motivo, quién la aprobó y la fecha; sin eso no se acepta en el PR.
+-->
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+    <suppress>
+        <notes><![CDATA[
+        Falso positivo (16/11/2026, PR de DEF-002, pendiente de aprobación del arquitecto de software).
+        CVE-2022-31691 es del editor YAML de «Spring Tools 4 for Eclipse» (cpe vmware:spring_boot_tools), un
+        complemento del IDE, no de la librería spring-boot-devtools. Dependency-Check la asocia solo por el nombre.
+        Además devtools es opcional y Spring Boot la excluye del jar que se despliega.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring-boot-devtools@.*$</packageUrl>
+        <cve>CVE-2022-31691</cve>
+    </suppress>
+</suppressions>
