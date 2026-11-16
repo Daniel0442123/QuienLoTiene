@@ -328,7 +328,7 @@ paths:
         HU-027 (diagrama 04 pasos 10 a 15, diagrama 05). Solo la tienda de la orden y solo al paso siguiente válido:
         CONFIRMADO → PREPARANDO; PREPARANDO → EN_CAMINO (domicilio) o LISTO_PARA_RECOGER (recoger);
         EN_CAMINO o LISTO_PARA_RECOGER → ENTREGADO. Cualquier otro cambio responde `409` ORD-002 (CP-ORD-027-02).
-        El cliente recibe `estado-orden-cambiado`.
+        El cliente y la tienda reciben `estado-orden-cambiado`.
       requestBody:
         required: true
         content:
@@ -364,7 +364,7 @@ paths:
       description: |
         HU-028 (diagrama 04 pasos 16 a 19). Solo el cliente de la orden y solo si está ENTREGADO. La orden pasa a
         RESUELTA y la tienda deja de ver los datos del cliente (CP-ORD-028-01). Otro cliente recibe `404`
-        (CP-ORD-028-02). La tienda recibe `estado-orden-cambiado`.
+        (CP-ORD-028-02). El cliente y la tienda reciben `estado-orden-cambiado`.
       responses:
         '200':
           description: Orden RESUELTA
@@ -769,7 +769,7 @@ components:
         | `respuesta-no-elegida` | Tiendas que respondieron y no fueron elegidas (CP-SOL-021-02) | `EventoRespuestaNoElegida` |
         | `solicitud-vencida` | Cliente de la solicitud (HU-021, diagrama 33 paso 7) | `EventoSolicitudVencida` |
         | `orden-creada` | Tienda elegida (HU-024, diagrama 04 paso 9) | `EventoOrdenCreada` |
-        | `estado-orden-cambiado` | El cliente cuando cambia la tienda, la tienda cuando confirma el cliente (HU-027, HU-028) | `EventoEstadoOrdenCambiado` |
+        | `estado-orden-cambiado` | El cliente y la tienda en cada cambio, para que cualquier pestaña abierta se actualice (HU-027, HU-028) | `EventoEstadoOrdenCambiado` |
       oneOf:
         - $ref: '#/components/schemas/EventoSolicitudNueva'
         - $ref: '#/components/schemas/EventoRespuestaRecibida'

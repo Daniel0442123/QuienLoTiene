@@ -1,8 +1,8 @@
 # Contrato de la API del Sprint 2 · Quién lo tiene
 
-> **Control del documento** · Versión 0.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.2 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
-Acuerdo del «primer día» del backlog del Sprint 2 (`docs/planificacion/BACKLOG-SPRINT-2.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-018, HU-019, HU-020, HU-021, HU-024, HU-027, HU-028, HU-030 y HU-032. El detalle completo está en [`contrato-sprint-2.yaml`](contrato-sprint-2.yaml) (OpenAPI 3.1); Monica puede generar sus simulaciones de MSW desde ese archivo mientras el backend se construye. Cuando el backend esté fusionado manda `/v3/api-docs`.
+Acuerdo del «primer día» del backlog del Sprint 2 (`docs/planificacion/BACKLOG-SPRINT-2.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-018, HU-019, HU-020, HU-021, HU-024, HU-027, HU-028, HU-030 y HU-032. El detalle completo está en [`contrato-sprint-2.yaml`](contrato-sprint-2.yaml) (OpenAPI 3.1); Monica puede generar sus simulaciones de MSW desde ese archivo mientras el backend se construye. Cuando el backend esté fusionado manda `/v3/api-docs`, que ya marca los campos obligatorios y los nulables (DEF-001).
 
 ## Rutas
 
@@ -31,7 +31,7 @@ Acuerdo del «primer día» del backlog del Sprint 2 (`docs/planificacion/BACKLO
 | `respuesta-no-elegida` | Tiendas que respondieron y no fueron elegidas | Solicitud y respuesta |
 | `solicitud-vencida` | Cliente | Solicitud y respuestas recibidas |
 | `orden-creada` | Tienda elegida | Orden, producto, total y modalidad |
-| `estado-orden-cambiado` | La otra parte de la orden | Orden y estado nuevo |
+| `estado-orden-cambiado` | El cliente y la tienda de la orden, en cada cambio (así se actualiza también la pestaña de quien hizo el cambio) | Orden y estado nuevo |
 
 Los eventos llevan solo ids y datos mínimos (DECISIONES-BACKEND §4.3, diagrama 20): el frontend invalida la consulta de TanStack Query que corresponda y pide el detalle por REST.
 
@@ -55,3 +55,4 @@ Se agregan a `CODIGOS-DE-ERROR.md`: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004`
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión del contrato del Sprint 2 para que el frontend empiece en paralelo |
+| 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `estado-orden-cambiado` llega a las dos partes; el contrato queda alineado con el backend implementado |

@@ -1,6 +1,7 @@
 package com.quienlotiene.solicitudes.infrastructure.web;
 
 import com.quienlotiene.solicitudes.application.dto.PublicarSolicitudComando;
+import com.quienlotiene.solicitudes.application.dto.SolicitudDelCliente;
 import com.quienlotiene.solicitudes.application.dto.SolicitudPublicada;
 import java.util.UUID;
 import org.mapstruct.Mapper;
@@ -18,5 +19,11 @@ interface SolicitudWebMapper {
 
     @Mapping(target = "ubicacion.latitud", source = "latitud")
     @Mapping(target = "ubicacion.longitud", source = "longitud")
+    @Mapping(target = "respuestasRecibidas", constant = "0")
+    @Mapping(target = "ordenId", ignore = true)
     SolicitudResponse aResponse(SolicitudPublicada solicitud);
+
+    @Mapping(target = "ubicacion.latitud", source = "latitud")
+    @Mapping(target = "ubicacion.longitud", source = "longitud")
+    SolicitudResponse aResponse(SolicitudDelCliente solicitud);
 }

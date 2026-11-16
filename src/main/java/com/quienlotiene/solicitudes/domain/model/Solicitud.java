@@ -20,7 +20,7 @@ public final class Solicitud {
     private final boolean esUrgente;
     private final Ubicacion ubicacion;
     private final int radioEnMetros;
-    private final EstadoSolicitud estado;
+    private EstadoSolicitud estado;
     private final Instant fechaPublicacion;
     private final Instant fechaVencimiento;
 
@@ -103,8 +103,78 @@ public final class Solicitud {
                 ahora.plus(vigencia));
     }
 
+    /** Vuelve a armar una solicitud guardada; solo lo usa el adaptador de persistencia. */
+    public static Solicitud reconstituir(
+            UUID id,
+            UUID clienteId,
+            UUID categoriaId,
+            String producto,
+            int cantidad,
+            Modalidad modalidad,
+            boolean esUrgente,
+            Ubicacion ubicacion,
+            int radioEnMetros,
+            EstadoSolicitud estado,
+            Instant fechaPublicacion,
+            Instant fechaVencimiento) {
+        return new Solicitud(
+                id,
+                clienteId,
+                categoriaId,
+                producto,
+                cantidad,
+                modalidad,
+                esUrgente,
+                ubicacion,
+                radioEnMetros,
+                estado,
+                fechaPublicacion,
+                fechaVencimiento);
+    }
+
     public boolean estaVencida(Instant ahora) {
         return !ahora.isBefore(fechaVencimiento);
+    }
+
+    /** ABIERTA y sin cumplir su tiempo: recibe respuestas y se puede elegir una. */
+    public boolean recibeRespuestas(Instant ahora) {
+        return estado == EstadoSolicitud.ABIERTA && !estaVencida(ahora);
+    }
+
+    /**
+     * @throws SolicitudCerradaException si ya no está ABIERTA o ya venció (CP-SOL-021-01)
+     */
+    public void verificarQueRecibeRespuestas(Instant ahora) {
+        if (!recibeRespuestas(ahora)) {
+            throw new SolicitudCerradaException();
+        }
+    }
+
+    /**
+     * HU-024: el cliente eligió una respuesta. Una sola elección por solicitud (diagrama 05).
+     *
+     * @throws SolicitudCerradaException si ya no está ABIERTA o ya venció
+     */
+    public void resolver(Instant ahora) {
+        verificarQueRecibeRespuestas(ahora);
+        this.estado = EstadoSolicitud.RESUELTA;
+    }
+
+    /**
+     * HU-021 (CU-29): pasó su tiempo sin elección. Si ya no está ABIERTA no hace nada.
+     *
+     * @return {@code true} si pasó a VENCIDA
+     */
+    public boolean vencer(Instant ahora) {
+        if (estado != EstadoSolicitud.ABIERTA || !estaVencida(ahora)) {
+            return false;
+        }
+        this.estado = EstadoSolicitud.VENCIDA;
+        return true;
+    }
+
+    public boolean esDe(UUID posibleCliente) {
+        return clienteId.equals(posibleCliente);
     }
 
     public UUID getId() {

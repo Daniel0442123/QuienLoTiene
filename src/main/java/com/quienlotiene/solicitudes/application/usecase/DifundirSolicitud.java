@@ -1,6 +1,7 @@
 package com.quienlotiene.solicitudes.application.usecase;
 
 import com.quienlotiene.solicitudes.api.SolicitudDifundidaEvent;
+import com.quienlotiene.solicitudes.domain.model.DistanciaAproximada;
 import com.quienlotiene.solicitudes.domain.model.EnvioSolicitud;
 import com.quienlotiene.solicitudes.domain.model.Solicitud;
 import com.quienlotiene.solicitudes.domain.port.EnvioSolicitudRepository;
@@ -43,14 +44,26 @@ class DifundirSolicitud {
                 ahora);
         envioRepository.guardarTodos(elegibles.stream()
                 .map(tienda -> new EnvioSolicitud(
-                        UUID.randomUUID(), solicitud.getId(), tienda.tiendaId(), tienda.distanciaEnMetros(), ahora))
+                        UUID.randomUUID(),
+                        solicitud.getId(),
+                        tienda.tiendaId(),
+                        tienda.duenoId(),
+                        tienda.distanciaEnMetros(),
+                        ahora))
                 .toList());
         publicadorEventos.publishEvent(new SolicitudDifundidaEvent(
                 solicitud.getId(),
+                solicitud.getProducto(),
+                solicitud.getCantidad(),
+                solicitud.getModalidad().name(),
+                solicitud.esUrgente(),
+                solicitud.getFechaVencimiento(),
                 solicitud.getRadioEnMetros(),
                 elegibles.stream()
                         .map(tienda -> new SolicitudDifundidaEvent.Destinatario(
-                                tienda.tiendaId(), tienda.duenoId(), tienda.distanciaEnMetros()))
+                                tienda.tiendaId(),
+                                tienda.duenoId(),
+                                DistanciaAproximada.redondear(tienda.distanciaEnMetros())))
                         .toList()));
         log.info("Solicitud {} enviada a {} tiendas", solicitud.getId(), elegibles.size());
         return elegibles.size();
