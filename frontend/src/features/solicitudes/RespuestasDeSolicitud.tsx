@@ -1,11 +1,12 @@
 import { TimerOff } from 'lucide-react'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { EsqueletoLista, EstadoError, EstadoVacio } from '@/components/Estados'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
+import { textosOrdenes } from '@/features/ordenes/textos'
 import { formatearHora } from '@/services/formato'
-import { useRespuestasDeSolicitud, type CriterioOrden, type RespuestaParaCliente } from './api'
+import { useRespuestasDeSolicitud, type CriterioOrden } from './api'
 import { TarjetaRespuesta } from './TarjetaRespuesta'
 import { textosSolicitudes as textos } from './textos'
 
@@ -19,13 +20,13 @@ export function RespuestasDeSolicitud({
   solicitudId,
   modalidad,
   fechaVencimiento,
-  accionPara,
+  ordenId,
 }: {
   solicitudId: string
   modalidad: 'RECOGER' | 'DOMICILIO'
   fechaVencimiento: string
-  /** HU-024: el botón para elegir una respuesta mientras la solicitud está abierta. */
-  accionPara?: (respuesta: RespuestaParaCliente) => ReactNode
+  /** La orden creada al elegir (solicitud RESUELTA), para ir a ella. */
+  ordenId?: string | null
 }) {
   const anunciar = useAnunciar()
   const [orden, setOrden] = useState<CriterioOrden>('precio')
@@ -76,9 +77,16 @@ export function RespuestasDeSolicitud({
       ) : null}
 
       {estadoSolicitud === 'RESUELTA' ? (
-        <p className="rounded-control border border-exito p-4 font-semibold text-exito">
-          {elegida ? textos.yaElegiste(elegida.nombreTienda) : textos.yaElegisteSinTienda}
-        </p>
+        <div className="flex flex-col gap-3 rounded-control border border-exito p-4">
+          <p className="font-semibold text-exito">
+            {elegida ? textos.yaElegiste(elegida.nombreTienda) : textos.yaElegisteSinTienda}
+          </p>
+          {ordenId ? (
+            <Boton asChild className="self-start">
+              <Link to={`/pedidos/${ordenId}`}>{textos.verMiPedido}</Link>
+            </Boton>
+          ) : null}
+        </div>
       ) : null}
 
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -123,7 +131,19 @@ export function RespuestasDeSolicitud({
                 respuesta={respuesta}
                 cantidadSolicitada={cantidadSolicitada}
                 conDomicilio={modalidad === 'DOMICILIO'}
-                accion={abierta ? accionPara?.(respuesta) : undefined}
+                accion={
+                  abierta ? (
+                    // HU-024: elegir lleva a confirmar el pedido; solo mientras la solicitud está abierta
+                    <Boton asChild>
+                      <Link
+                        to={`/solicitudes/${solicitudId}/elegir/${respuesta.id}`}
+                        aria-label={textosOrdenes.botonElegirDe(respuesta.nombreTienda)}
+                      >
+                        {textosOrdenes.botonElegir}
+                      </Link>
+                    </Boton>
+                  ) : undefined
+                }
               />
             </li>
           ))}

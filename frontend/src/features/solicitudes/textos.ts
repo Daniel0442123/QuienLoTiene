@@ -164,4 +164,5 @@ export const textosSolicitudes = {
   publicarDeNuevo: 'Publicar de nuevo',
   yaElegiste: (tienda: string) => `Elegiste a ${tienda}.`,
   yaElegisteSinTienda: 'Ya elegiste una tienda para esta solicitud.',
+  verMiPedido: 'Ver mi pedido',
 } as const

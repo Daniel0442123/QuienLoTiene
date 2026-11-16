@@ -52,6 +52,7 @@ export function SolicitudClientePagina() {
           solicitudId={solicitud.data.id}
           modalidad={solicitud.data.modalidad}
           fechaVencimiento={solicitud.data.fechaVencimiento}
+          ordenId={solicitud.data.ordenId}
         />
       )}
     </section>

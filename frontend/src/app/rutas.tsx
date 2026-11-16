@@ -85,6 +85,28 @@ export const rutas: RouteObject[] = [
                   Component: (await import('@/pages/SolicitudClientePagina')).SolicitudClientePagina,
                 }),
               },
+              {
+                // Elegir una respuesta y confirmar el pedido (HU-024)
+                path: ':solicitudId/elegir/:respuestaId',
+                lazy: async () => ({
+                  Component: (await import('@/pages/ConfirmarPedidoPagina')).ConfirmarPedidoPagina,
+                }),
+              },
+            ],
+          },
+          {
+            // Pedidos del cliente (HU-024, HU-027, HU-028)
+            path: 'pedidos',
+            element: (
+              <RutaProtegida roles={['CLIENTE']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                path: ':ordenId',
+                lazy: async () => ({ Component: (await import('@/pages/PedidoPagina')).PedidoPagina }),
+              },
             ],
           },
           {
