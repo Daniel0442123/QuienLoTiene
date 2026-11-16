@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type { ComponentesProvisionales } from '@/services/api-tipos-provisionales'
 import type { components } from '@/services/api-tipos-sprint-2'
 import { clienteApi } from '@/services/clienteApi'
@@ -45,6 +45,51 @@ export function useMisRespuestas() {
     queryKey: clavesSolicitudesTienda.misRespuestas,
     queryFn: async () => exigirDatos((await clienteApi.GET('/api/v1/tiendas/me/respuestas')).data),
     refetchInterval: INTERVALO_SIN_TIEMPO_REAL_MS,
+  })
+}
+
+export type SolicitudDelCliente = Esquemas['SolicitudResponse']
+export type RespuestasDeSolicitud = Esquemas['RespuestasDeSolicitudResponse']
+export type RespuestaParaCliente = Esquemas['RespuestaParaClienteResponse']
+export type CriterioOrden = 'precio' | 'distancia' | 'total'
+
+/** Claves de las consultas del cliente sobre su solicitud. */
+export const clavesSolicitudCliente = {
+  solicitud: (solicitudId: string) => ['solicitudes', solicitudId] as const,
+  respuestas: (solicitudId: string, orden: CriterioOrden) => ['solicitudes', solicitudId, 'respuestas', orden] as const,
+  todasLasRespuestas: (solicitudId: string) => ['solicitudes', solicitudId, 'respuestas'] as const,
+}
+
+/** Mientras la solicitud está abierta y no hay tiempo real (HU-030), las respuestas se vuelven a pedir cada 10 s. */
+const INTERVALO_RESPUESTAS_MS = 10_000
+
+/** HU-020 y HU-021: mi solicitud y su estado (ABIERTA, RESUELTA o VENCIDA). */
+export function useSolicitud(solicitudId: string) {
+  return useQuery({
+    queryKey: clavesSolicitudCliente.solicitud(solicitudId),
+    queryFn: async () =>
+      exigirDatos(
+        (await clienteApi.GET('/api/v1/solicitudes/{solicitudId}', { params: { path: { solicitudId } } })).data,
+      ),
+    refetchInterval: (consulta) => (consulta.state.data?.estado === 'ABIERTA' ? INTERVALO_RESPUESTAS_MS : false),
+  })
+}
+
+/** HU-020: tarjetas SI y PARECIDO ordenadas por la API; al cambiar el orden se ve la lista anterior hasta que llegue. */
+export function useRespuestasDeSolicitud(solicitudId: string, orden: CriterioOrden) {
+  return useQuery({
+    queryKey: clavesSolicitudCliente.respuestas(solicitudId, orden),
+    queryFn: async () =>
+      exigirDatos(
+        (
+          await clienteApi.GET('/api/v1/solicitudes/{solicitudId}/respuestas', {
+            params: { path: { solicitudId }, query: { orden } },
+          })
+        ).data,
+      ),
+    placeholderData: keepPreviousData,
+    refetchInterval: (consulta) =>
+      consulta.state.data?.estadoSolicitud === 'ABIERTA' ? INTERVALO_RESPUESTAS_MS : false,
   })
 }
 

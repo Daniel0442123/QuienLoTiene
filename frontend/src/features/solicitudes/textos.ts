@@ -131,4 +131,37 @@ export const textosSolicitudes = {
   yaRespondiste: (tipo: string, precio: string, unidades: string, hora: string) =>
     `Ya respondiste esta solicitud. Tu respuesta fue «${tipo}», ${precio} por ${unidades}, a las ${hora}.`,
   tuRespuesta: 'Tu respuesta',
+
+  // Respuestas para el cliente (HU-020) y estado de la solicitud (HU-021)
+  tituloRespuestas: 'Respuestas a tu solicitud',
+  resumenSolicitud: (producto: string, unidades: string) => `${producto} · ${unidades}`,
+  cargandoRespuestas: 'Cargando respuestas…',
+  cantidadRespuestas: (cantidad: number) => (cantidad === 1 ? '1 respuesta' : `${cantidad} respuestas`),
+  ordenarPor: 'Ordenar por',
+  criteriosOrden: { precio: 'Precio', distancia: 'Distancia', total: 'Total' },
+  sinRespuestas: 'Todavía no hay respuestas',
+  sinRespuestasAyuda: 'Te avisamos en esta pantalla apenas una tienda conteste.',
+  soloNo: (cantidad: number) =>
+    cantidad === 1
+      ? '1 tienda respondió que no lo tiene. Seguimos esperando a las demás.'
+      : `${cantidad} tiendas respondieron que no lo tienen. Seguimos esperando a las demás.`,
+  llegoRespuesta: (tienda: string) => `Llegó una respuesta de ${tienda}.`,
+  tipoSi: 'Sí lo tengo',
+  tipoParecido: 'Tengo algo parecido',
+  ofrece: (descripcion: string) => `Ofrece: ${descripcion}`,
+  tieneDe: (tiene: number, pedidas: number) => `Tiene ${tiene} de ${pedidas}`,
+  aDistancia: (distancia: string) => `a ${distancia}`,
+  domicilioCuesta: (costo: string) => `Domicilio ${costo}`,
+  soloRecoger: 'Solo para recoger',
+  listoEn: (minutos: number) => `Listo en ${minutos} min`,
+  precioPorUnidad: (precio: string) => `${precio} c/u`,
+  total: (total: string) => `Total ${total}`,
+  estadoVencida: 'Vencida',
+  vencio: (hora: string) => `Tu solicitud venció a las ${hora} y ya no recibe respuestas.`,
+  vencioSinRespuestas: 'Ninguna tienda la tenía disponible.',
+  vencioConRespuestas: 'Ya no puedes elegir estas respuestas.',
+  vencioAnuncio: 'Tu solicitud venció y ya no recibe respuestas.',
+  publicarDeNuevo: 'Publicar de nuevo',
+  yaElegiste: (tienda: string) => `Elegiste a ${tienda}.`,
+  yaElegisteSinTienda: 'Ya elegiste una tienda para esta solicitud.',
 } as const

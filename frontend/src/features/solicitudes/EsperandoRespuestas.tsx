@@ -4,12 +4,14 @@ import { EstadoVacio } from '@/components/Estados'
 import { Boton } from '@/components/ui/Boton'
 import { formatearDistancia, formatearHora, minutosHasta } from '@/services/formato'
 import type { Solicitud } from './api'
+import { RespuestasDeSolicitud } from './RespuestasDeSolicitud'
 import { textosSolicitudes as textos } from './textos'
 
 /**
  * Después de publicar (paso 9 de la secuencia: «Esperando respuestas»). Dice a cuántas tiendas se les preguntó, hasta
  * cuándo pueden responder y a qué distancia; si no hubo ninguna, lo dice y sugiere qué hacer (estado vacío).
- * La pantalla cambia sin cambiar de ruta: el foco va al título para que el lector de pantalla lo lea.
+ * La pantalla cambia sin cambiar de ruta: el foco va al título para que el lector de pantalla lo lea. Debajo llegan
+ * las respuestas de las tiendas (HU-020).
  */
 export function EsperandoRespuestas({ solicitud, alHacerOtra }: { solicitud: Solicitud; alHacerOtra: () => void }) {
   const titulo = useRef<HTMLHeadingElement>(null)
@@ -46,6 +48,14 @@ export function EsperandoRespuestas({ solicitud, alHacerOtra }: { solicitud: Sol
       ) : (
         <EstadoVacio titulo={textos.sinTiendas(solicitud.producto)}>{textos.sugerenciaSinTiendas}</EstadoVacio>
       )}
+
+      {hayTiendas ? (
+        <RespuestasDeSolicitud
+          solicitudId={solicitud.id}
+          modalidad={solicitud.modalidad}
+          fechaVencimiento={solicitud.fechaVencimiento}
+        />
+      ) : null}
 
       <Boton type="button" variante="secundario" className="self-start" onClick={alHacerOtra}>
         {textos.hacerOtraPregunta}

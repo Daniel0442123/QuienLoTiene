@@ -64,7 +64,7 @@ export const rutas: RouteObject[] = [
             ],
           },
           {
-            // Publicar solicitud (HU-016): solo el rol CLIENTE
+            // Publicar solicitud (HU-016) y ver sus respuestas (HU-020, HU-021): solo el rol CLIENTE
             path: 'solicitudes',
             element: (
               <RutaProtegida roles={['CLIENTE']}>
@@ -76,6 +76,13 @@ export const rutas: RouteObject[] = [
                 path: 'nueva',
                 lazy: async () => ({
                   Component: (await import('@/pages/PublicarSolicitudPagina')).PublicarSolicitudPagina,
+                }),
+              },
+              {
+                // Respuestas de mi solicitud y su estado (HU-020, HU-021)
+                path: ':solicitudId',
+                lazy: async () => ({
+                  Component: (await import('@/pages/SolicitudClientePagina')).SolicitudClientePagina,
                 }),
               },
             ],
