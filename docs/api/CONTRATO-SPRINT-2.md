@@ -1,6 +1,6 @@
 # Contrato de la API del Sprint 2 · Quién lo tiene
 
-> **Control del documento** · Versión 0.2 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.3 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Acuerdo del «primer día» del backlog del Sprint 2 (`docs/planificacion/BACKLOG-SPRINT-2.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-018, HU-019, HU-020, HU-021, HU-024, HU-027, HU-028, HU-030 y HU-032. El detalle completo está en [`contrato-sprint-2.yaml`](contrato-sprint-2.yaml) (OpenAPI 3.1); Monica puede generar sus simulaciones de MSW desde ese archivo mientras el backend se construye. Cuando el backend esté fusionado manda `/v3/api-docs`, que ya marca los campos obligatorios y los nulables (DEF-001).
 
@@ -42,7 +42,7 @@ Se agregan a `CODIGOS-DE-ERROR.md`: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004`
 ## Decisiones tomadas en este contrato
 
 1. **La orden se crea con una fachada, no con un evento** (decisión 3 del backlog). `ordenes` llama a `SolicitudesApi.elegirRespuesta` dentro de la misma transacción: si el medio de pago no se acepta o la dirección está fuera de cobertura, la solicitud no queda RESUELTA. Con un evento el cliente recibiría `201` antes de saber si la orden existe. Es lo que muestra el diagrama 04 (paso 3).
-2. **Precio sugerido** (decisión 2 del backlog, SC-011): `precioSugeridoEnPesos` en la tarjeta de la tienda es el último precio por unidad que la tienda dio para el mismo producto (mismo texto sin importar mayúsculas ni espacios). No necesita tabla nueva: sale de las respuestas guardadas. Si SC-011 se rechaza, el campo llega siempre en `null`.
+2. **Precio sugerido** (decisión 2 del backlog, SC-011): `precioSugeridoEnPesos` en la tarjeta de la tienda es el último precio por unidad que la tienda dio para el mismo producto (mismo texto sin importar mayúsculas ni espacios). No necesita tabla nueva: sale de las respuestas guardadas. SC-011 lo aprobó el 16/11/2026; llega en `null` cuando la tienda nunca ha respondido ese producto.
 3. **«No lo tengo» con deshacer:** el deshacer lo maneja el frontend esperando unos segundos antes de enviar `NO`. El backend no ofrece borrar respuestas.
 4. **Cantidad disponible:** la tienda dice cuántas unidades tiene, hasta la cantidad pedida. El subtotal y el total de la orden usan esas unidades: total = precio × cantidad disponible + domicilio (CP-ORD-024-01).
 5. **Domicilio:** el backend calcula `ofreceDomicilio` y `costoDomicilioEnPesos` al responder, con la configuración de HU-010 y la ubicación de la solicitud. Al crear la orden se vuelve a calcular con la dirección elegida.
@@ -56,3 +56,4 @@ Se agregan a `CODIGOS-DE-ERROR.md`: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004`
 |---|---|---|---|
 | 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión del contrato del Sprint 2 para que el frontend empiece en paralelo |
 | 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `estado-orden-cambiado` llega a las dos partes; el contrato queda alineado con el backend implementado |
+| 0.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-011 aprobada: el precio sugerido queda como parte del contrato |
