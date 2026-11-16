@@ -98,6 +98,30 @@ export const rutas: RouteObject[] = [
                 lazy: async () => ({ Component: (await import('@/pages/PanelTiendaPagina')).PanelTiendaPagina }),
               },
               {
+                // Solicitudes nuevas (HU-018), responder (HU-019) y «Mis respuestas» (HU-021)
+                path: 'solicitudes',
+                children: [
+                  {
+                    index: true,
+                    lazy: async () => ({
+                      Component: (await import('@/pages/SolicitudesTiendaPagina')).SolicitudesTiendaPagina,
+                    }),
+                  },
+                  {
+                    path: 'mis-respuestas',
+                    lazy: async () => ({
+                      Component: (await import('@/pages/MisRespuestasTiendaPagina')).MisRespuestasTiendaPagina,
+                    }),
+                  },
+                  {
+                    path: ':solicitudId',
+                    lazy: async () => ({
+                      Component: (await import('@/pages/ResponderSolicitudPagina')).ResponderSolicitudPagina,
+                    }),
+                  },
+                ],
+              },
+              {
                 path: 'perfil',
                 lazy: async () => ({ Component: (await import('@/pages/PerfilTiendaPagina')).PerfilTiendaPagina }),
               },

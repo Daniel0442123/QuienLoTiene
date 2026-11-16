@@ -37,3 +37,58 @@ export const esquemaPublicarSolicitud = z.object({
 
 export type EntradaPublicarSolicitud = z.input<typeof esquemaPublicarSolicitud>
 export type DatosPublicarSolicitud = z.output<typeof esquemaPublicarSolicitud>
+
+/**
+ * Responder una solicitud (HU-019), con los límites de ResponderSolicitudRequest. «No lo tengo» no pasa por aquí:
+ * se envía con un toque desde la lista. La cantidad va de 1 a la que pidió el cliente (SOL-006).
+ */
+
+const PRECIO_MAXIMO = 100_000_000
+const LARGO_MAXIMO_ALTERNATIVA = 300
+
+export const TIPOS_RESPUESTA_CON_PRECIO = ['SI', 'PARECIDO'] as const
+
+export function crearEsquemaResponder(cantidadPedida: number) {
+  return z
+    .object({
+      tipo: z.enum(TIPOS_RESPUESTA_CON_PRECIO),
+      // Se aceptan los puntos de miles que la gente escribe («8.000»); se envían solo los dígitos
+      precio: z
+        .string()
+        .transform((valor) => valor.replace(/[\s.$]/g, ''))
+        .pipe(
+          // Vacío dice solo «Escribe el precio»; el formato se revisa después (pipe se detiene en el primer error)
+          z
+            .string()
+            .min(1, textos.precioObligatorio)
+            .pipe(z.string().regex(/^\d{1,9}$/, textos.precioInvalido))
+            .transform(Number)
+            .refine((precio) => precio >= 1 && precio <= PRECIO_MAXIMO, textos.precioInvalido),
+        ),
+      cantidad: z
+        .string()
+        .trim()
+        .regex(/^\d{1,3}$/, textos.cantidadDisponibleInvalida(cantidadPedida))
+        .transform(Number)
+        .refine(
+          (cantidad) => cantidad >= 1 && cantidad <= cantidadPedida,
+          textos.cantidadDisponibleInvalida(cantidadPedida),
+        ),
+      descripcionAlternativa: z.string().trim(),
+    })
+    .superRefine(({ tipo, descripcionAlternativa }, contexto) => {
+      if (tipo !== 'PARECIDO') return
+      if (descripcionAlternativa === '') {
+        contexto.addIssue({ code: 'custom', path: ['descripcionAlternativa'], message: textos.alternativaObligatoria })
+      } else if (descripcionAlternativa.length > LARGO_MAXIMO_ALTERNATIVA) {
+        contexto.addIssue({
+          code: 'custom',
+          path: ['descripcionAlternativa'],
+          message: textos.alternativaMuyLarga(descripcionAlternativa.length),
+        })
+      }
+    })
+}
+
+export type EntradaResponder = z.input<ReturnType<typeof crearEsquemaResponder>>
+export type DatosResponder = z.output<ReturnType<typeof crearEsquemaResponder>>

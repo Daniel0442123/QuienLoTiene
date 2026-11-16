@@ -1,11 +1,18 @@
-import { BadgeCheck, ChevronRight, CircleAlert, Clock, Truck, Wallet } from 'lucide-react'
+import { BadgeCheck, ChevronRight, CircleAlert, Clock, Inbox, Truck, Wallet } from 'lucide-react'
 import { Link } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { useMiTienda, type MiTienda } from '@/features/tiendas/api'
 import { InterruptorAperturaTienda } from '@/features/tiendas/InterruptorAperturaTienda'
+import { textosSolicitudes } from '@/features/solicitudes/textos'
 import { textosTiendas as textos } from '@/features/tiendas/textos'
 
 const SECCIONES = [
+  {
+    ruta: '/tienda/solicitudes',
+    titulo: textosSolicitudes.seccionSolicitudes,
+    descripcion: textosSolicitudes.descripcionSeccionSolicitudes,
+    Icono: Inbox,
+  },
   { ruta: '/tienda/perfil', titulo: textos.seccionPerfil, descripcion: textos.descripcionPerfil, Icono: Clock },
   {
     ruta: '/tienda/domicilio',
@@ -45,7 +52,10 @@ function EstadoDeLaTienda({ tienda }: { tienda: MiTienda }) {
   )
 }
 
-/** /tienda · Panel de la tienda: estado, abrir o cerrar (HU-013) y acceso a la configuración (HU-009 a HU-012). */
+/**
+ * /tienda · Panel de la tienda: estado, abrir o cerrar (HU-013), solicitudes nuevas (HU-018) y acceso a la
+ * configuración (HU-009 a HU-012).
+ */
 export function PanelTiendaPagina() {
   const miTienda = useMiTienda()
 
