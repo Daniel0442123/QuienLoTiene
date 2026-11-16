@@ -1,6 +1,6 @@
 # Decisiones técnicas y convenciones del backend · Quién lo tiene
 
-> **Control del documento** · Versión 1.2 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Pedro (versión 1.1, 07/11/2026) · Estado: Vigente · Cambios: «Historial» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Pedro (versión 1.1, 07/11/2026) · Estado: Vigente · Cambios: «Historial» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Este documento reúne las decisiones que el equipo necesita tener claras para que todos escriban el backend de la misma forma. Todas las decisiones de la tabla están aprobadas; las que vienen del documento de arquitectura se marcan como tales. Lo poco que falta está en la sección 20.
 
@@ -305,7 +305,7 @@ Dos niveles, sin duplicar:
 
 ## 12. Tiempo real, tareas programadas y archivos (D-18, D-19)
 
-- **SSE**: `GET /api/v1/eventos` con `SseEmitter`, una conexión por usuario, latido cada 25 segundos para que Caddy no corte la conexión. El módulo `notificaciones` escucha los eventos de los otros módulos y los envía.
+- **SSE**: `GET /api/v1/eventos` con `SseEmitter`, hasta 5 conexiones por usuario (el celular y el PC, o varias pestañas; cada aviso llega a todas y la sexta cierra la más antigua, SC-014), latido cada 25 segundos para que Caddy no corte la conexión. El módulo `notificaciones` escucha los eventos de los otros módulos y los envía.
 - **Web Push** para la tienda (librería `nl.martijndwars:web-push` o equivalente, a confirmar al implementarlo).
 - **Tareas del reloj del sistema** (CU-29, CU-30, CU-31): `@Scheduled(fixedDelay = ...)` cada minuto, cada una en su módulo. Las filas a procesar se toman con `SELECT ... FOR UPDATE SKIP LOCKED` (como dice el documento de arquitectura), así dos ejecuciones nunca procesan la misma solicitud aunque se solapen. Todas reciben un `Clock` inyectado.
 - **Archivos** (documentos de la tienda): en disco del VPS detrás del puerto `AlmacenArchivos` (`shared/infrastructure/storage`), con nombre generado (UUID), tipo real validado por contenido, tamaño máximo y sin metadatos EXIF en las fotos. Nunca se sirven por una ruta pública; solo el administrador los descarga por la API.
@@ -425,3 +425,4 @@ Ninguna. Pedro aprobó todas las decisiones el 07/11/2026.
 | 1.1 | 07/11/2026 | D-23: sin procedimientos almacenados (sección 10.1) |
 | 1.0 | 07/11/2026 | Pedro aprueba todas las propuestas; el arquitecto de software aprueba los pull requests; paquete `com.quienlotiene` aplicado |
 | 1.2 | 13/11/2026 | Se registran en el historial los cambios del PR #7 (07/11): `SOL-001` responde 429 y no 422 en las secciones 7, 8 y 11 (SC-001), y el límite por hora se cuenta en PostgreSQL y no con Bucket4j, sección 11 (SC-002). Sección 17: aprobación registrada en GitHub y etiquetas anotadas (SC-009, SC-010) |
+| 1.3 | 16/11/2026 | Sección 12 (D-18): hasta 5 conexiones SSE por usuario en lugar de una (SC-014) |
