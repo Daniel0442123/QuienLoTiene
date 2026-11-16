@@ -1,5 +1,7 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
 Requisito → historia → casos → pruebas automatizadas → resultado. Estado del requisito: Verificado (todos aprobados) · Verificado parcialmente (aprobados y bloqueados) · Con fallas (al menos un fallido) · Bloqueado (sin verificar) · Sin ejecutar. «¿Cobertura completa?» = Sí cuando cada criterio de aceptación tiene al menos una prueba automatizada o manual registrada.
@@ -83,3 +85,12 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 |  |  |  |
 | RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 |  |  |  |
 | RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 | Aprobado | 0 | Verificado |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(front): andamiaje del frontend y decisiones de usabilidad y accesibilidad (#17) |
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

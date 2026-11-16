@@ -1,5 +1,7 @@
 # Pruebas de humo posteriores al despliegue
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo H del Plan Maestro. En producción el 26/11/2026, después de desplegar v1.0.0. Si una falla, reversión inmediata a la versión anterior. Responsables: Yanimar Burbano Piamba y Francisco José Castro Muñoz.
 
 Fecha y hora: · Versión: · URL:
@@ -24,3 +26,10 @@ Resultado: ☐ Liberación confirmada · ☐ Reversión ejecutada (motivo):
 | Líder de QA | Yanimar Burbano Piamba | |
 | QA no funcional y seguridad | Francisco José Castro Muñoz | |
 | Administrador del ambiente | Daniel Montenegro Almendra | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

@@ -1,5 +1,7 @@
 # Hoja «Ejecución C1» · Sprints 1 y 2 (02/11 al 15/11)
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
 Alcance: casos de las historias de los Sprints 1 y 2 (53) y los no funcionales que corren en CI desde el inicio (8). Corte parcial el 08/11 (fin del Sprint 1) y cierre del ciclo el 15/11. Resultado: Aprobado · Fallido · Bloqueado · No ejecutado · No aplica. Todo Fallido lleva su DEF-nnn y todo Bloqueado su causa en Observaciones.
@@ -74,3 +76,11 @@ Alcance: casos de las historias de los Sprints 1 y 2 (53) y los no funcionales q
 | NF-MAN-022 | RNF-022 | Mayor o igual a 70 %. | JaCoCo | Yanimar Burbano | 2026-11-12 | Aprobado | DEF-003 | [jacoco.csv](../evidencias/C1/2026-11-12/jacoco.csv) · [captura](../evidencias/C1/2026-11-12/jacoco-resumen.png) | 97,2 % de líneas en domain + application; el módulo más bajo es identidad con 94,1 %. La regla automática es global (DEF-003). | <1 |
 | NF-MAN-023 | RNF-023 | 0 violaciones en el pipeline. | ArchUnit | Yanimar Burbano | 2026-11-12 | Aprobado | — | [mvn-verify.txt](../evidencias/C1/2026-11-12/mvn-verify.txt) · [captura](../evidencias/C1/2026-11-12/00-resumen-suite.png) | 0 violaciones. | <1 |
 | NF-POR-030 | RNF-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | gitleaks / escaneo de secretos (CI) | Francisco Castro | 2026-11-12 | Aprobado | — | [ci-seguridad-run83.txt](../evidencias/C1/2026-11-12/ci-seguridad-run83.txt) | 33 commits revisados, «no leaks found». | <1 |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

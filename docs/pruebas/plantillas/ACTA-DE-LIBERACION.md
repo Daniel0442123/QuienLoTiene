@@ -1,5 +1,7 @@
 # Acta de liberación (go / no-go) · Quién lo tiene v1.0.0
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo E del Plan Maestro. Comité del 25/11/2026. Guardar en `docs/pruebas/informes/ACTA-DE-LIBERACION.md`.
 
 | Campo | Valor |
@@ -33,3 +35,10 @@
 | QA no funcional y seguridad | Francisco José Castro Muñoz | |
 | Arquitecto de software | Daniel Montenegro Almendra | |
 | Scrum Master | Brayan Grajales Escarraga | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

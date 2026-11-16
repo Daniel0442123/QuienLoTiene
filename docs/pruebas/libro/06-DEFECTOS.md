@@ -1,5 +1,7 @@
 # Hoja «Defectos» · Registro de defectos
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Un defecto por fila. ID consecutivo `DEF-nnn`. El detalle completo (pasos, evidencia, justificación) puede ir además en `docs/pruebas/defectos/DEF-nnn.md` con la plantilla `plantillas/REPORTE-DE-DEFECTO.md`. Título: «Qué falla + dónde + con qué dato».
 
 | ID | Fecha de reporte | Reportado por | Ciclo | ID del caso | Requisito | Módulo | Título (qué falla) | Pasos para reproducir | Resultado esperado | Resultado obtenido | Severidad | Justificación severidad | Prioridad | Justificación prioridad | Estado | Asignado a | Versión donde se detectó | Versión de corrección | Pull request | Fecha de cierre | Evidencia | Observaciones |
@@ -20,3 +22,11 @@ Confirmado → Diferido (solo S3/S4, con aprobación del Product Owner en el act
 ```
 
 - **Nuevo**: lo registra QA. **Confirmado**: el triaje lo reproduce. **Asignado**: tiene desarrollador. **Corregido**: el pull request está fusionado. **En verificación**: la corrección está desplegada en pruebas y QA re-prueba con el mismo caso. **Cerrado**: la re-prueba pasa. **Reabierto**: la re-prueba falla.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

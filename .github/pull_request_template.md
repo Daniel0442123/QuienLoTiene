@@ -1,10 +1,23 @@
 ## Historia
 
-<!-- HU-xxx y enlace a la tarjeta del tablero -->
+<!-- HU-xxx o tarea T-xx, y enlace a la tarjeta del tablero. Si no hay historia, diga el motivo (defecto DEF-nnn, alerta de seguridad, despliegue…) -->
 
 ## Qué cambia
 
 <!-- Dos o tres frases: qué hace este pull request y por qué -->
+
+## Control de cambios
+
+<!-- Marque exactamente una opción. Se desvía del plan cuando cambia algo ya aprobado: alcance o criterios de una HU, una decisión D-xx/F-xx/DA-xx, el contrato de la API o un código de error, el modelo de datos frente al diagrama 09, el cronograma o el sprint de una historia, una dependencia o herramienta no prevista, o la infraestructura. Procedimiento: docs/gestion/CONTROL-DE-CAMBIOS.md -->
+
+- [ ] No se desvía del plan
+- [ ] Se desvía del plan: solicitud de cambio SC-___ registrada en `docs/gestion/CONTROL-DE-CAMBIOS.md` (estado y aprobador)
+
+## Documentos actualizados
+
+<!-- Liste cada documento, plantilla, diagrama o Word/Excel que cambió con su nueva versión (por ejemplo «DECISIONES-BACKEND.md 1.2»), o escriba «Ninguno». Si un documento afectado no se actualiza aquí, deje la acción pendiente en la bitácora del proyecto. -->
+
+- 
 
 ## Pruebas
 
@@ -24,4 +37,10 @@
 - [ ] `./mvnw spotless:apply` ejecutado
 - [ ] Códigos de error nuevos agregados a `docs/api/CODIGOS-DE-ERROR.md`
 
-Aprobación requerida: arquitecto de software.
+## Trazabilidad
+
+- [ ] Encabezado e «Historial del documento» actualizados en cada documento que cambió (`docs/gestion/PROCEDIMIENTO-DOCUMENTAL.md`)
+- [ ] Si quedó algo pendiente, está en «Compromisos abiertos» de `docs/gestion/BITACORA-DEL-PROYECTO.md`
+- [ ] Si el PR usó asistencia de IA, lo dice al final de esta descripción
+
+Aprobación requerida: arquitecto de software, registrada como revisión «Approve» en GitHub (no basta con fusionar).

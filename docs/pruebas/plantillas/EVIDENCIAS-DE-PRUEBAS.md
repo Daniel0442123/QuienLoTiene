@@ -1,5 +1,7 @@
 # Documento de evidencias de pruebas · Ciclo <N> (C<N>)
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
 > Guardar en `docs/pruebas/informes/<ciclo>/EVIDENCIAS-<ciclo>.md`. Las imágenes viven en `docs/pruebas/evidencias/<ciclo>/<sesión AAAA-MM-DD>/<ID del caso>/` y se enlazan con ruta relativa.
@@ -53,3 +55,10 @@ Qué contiene, cuántos casos, cómo se organiza.
 | Evidencia | ![01-descripcion](../../evidencias/<ciclo>/<sesión>/<caso>/01-descripcion.png) |
 
 (Repetir la ficha por cada caso. Para las pruebas unitarias en verde basta una ficha por clase de prueba con la lista de métodos y la captura del resultado.)
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

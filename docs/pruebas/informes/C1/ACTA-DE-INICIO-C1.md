@@ -1,5 +1,7 @@
 # Acta de inicio del ciclo C1
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo B del Plan Maestro. El ciclo C1 arrancó el 02/11 con el Sprint 1; esta acta se diligencia el 12/11, junto con el corte del Sprint 1, porque antes no había una versión desplegada que probar.
 
 | Campo | Valor |
@@ -18,3 +20,10 @@
 | Líder de QA | Yanimar Burbano Piamba | |
 | QA no funcional y seguridad | Francisco José Castro Muñoz | |
 | Product Owner | Wilson Javier Galindez Certuche | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

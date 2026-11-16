@@ -1,5 +1,7 @@
 # Despliegue en producción
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 Cómo está montado el VPS, cómo se publica una versión, cómo se vuelve atrás y cómo se restauran los respaldos. Complementa el diagrama `docs/diagramas/08-despliegue.drawio`, `DECISIONES-BACKEND.md` (secciones 11 a 14) y `DECISIONES-FRONTEND.md` (F-05 y sección 13).
 
 ## 1. Arquitectura
@@ -141,3 +143,10 @@ Detiene la API, crea la base limpia, restaura la base y los documentos, y vuelve
 
 - **Content-Security-Policy** en el `Caddyfile`: acordarla con el frontend cuando estén definidas las fuentes del mapa (teselas de OpenStreetMap) y de Web Push.
 - **Ajustar memoria** con datos reales del C3 (`docker stats`).
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 11/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | build(despliegue): imágenes, compose de producción, despliegue por etiquetas y respaldos (#19) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

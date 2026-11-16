@@ -1,5 +1,7 @@
 # Lista de verificación de accesibilidad (WCAG 2.2 AA y RNF-028)
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo G del Plan Maestro. Responsable: Francisco José Castro Muñoz. Una por rol (cliente, tienda, administrador) en C3.
 
 Pantallas revisadas: · Fecha: · Versión:
@@ -22,3 +24,11 @@ Pantallas revisadas: · Fecha: · Versión:
 | 14 | No se pide dos veces el mismo dato en un mismo proceso: direcciones guardadas, repetir solicitud (3.3.7) | ☐ | |
 | 15 | El inicio de sesión permite pegar la frase y usar el gestor de contraseñas, sin pruebas cognitivas (3.3.8) | ☐ | |
 | 16 | La ayuda o el contacto están siempre en el mismo lugar (3.2.6) | ☐ | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(front): andamiaje del frontend y decisiones de usabilidad y accesibilidad (#17) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

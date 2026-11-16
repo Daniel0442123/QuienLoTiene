@@ -1,5 +1,7 @@
 # Hoja de sesión exploratoria · Pantallas del Sprint 1
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo F del Plan Maestro. Sesión manual sobre la PWA levantada en local con la versión del corte. Las capturas están en `docs/pruebas/evidencias/C1/2026-11-12/frontend/` (pantalla de celular de 412 × 915). Los defectos se registran con el caso `Exploratoria-20261112`.
 
 | Campo | Valor |
@@ -60,3 +62,10 @@
 | 42 | [42-solicitud-otra-categoria-sin-tiendas](../../evidencias/C1/2026-11-12/frontend/42-solicitud-otra-categoria-sin-tiendas.png) | HU-017 · CP-SOL-017-02 | Una solicitud de Ferretería no llega a la farmacia (la ferretería está rechazada) | Como se espera |
 | 43 | [43-tienda-cerrada](../../evidencias/C1/2026-11-12/frontend/43-tienda-cerrada.png) | HU-013 · CP-TIE-013-01 | La tienda vuelve a Cerrada | Como se espera |
 | 44 | [44-solicitud-tienda-cerrada-no-la-recibe](../../evidencias/C1/2026-11-12/frontend/44-solicitud-tienda-cerrada-no-la-recibe.png) | HU-013 · CP-TIE-013-01 | Con la farmacia cerrada, la solicitud no llega a ninguna tienda | Como se espera |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

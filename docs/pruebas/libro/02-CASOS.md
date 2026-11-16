@@ -1,5 +1,7 @@
 # Hoja «Casos» · Catálogo de casos de prueba
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
 Derivados de los 85 escenarios Gherkin del SRS (sección 14). ID = `CP-<MÓDULO>-<HU>-<nn>`; «Ref. SRS» conserva el número original. Prioridad = MoSCoW de la historia (Must → Alta, Should → Media, Could → Baja). «Nivel» es dónde se automatiza o ejecuta primero; en C3 todos se repiten como regresión.
@@ -142,3 +144,12 @@ Se ejecutan cuando los módulos del flujo principal estén desplegados juntos en
 | E2E-03 | Aprobar una tienda con segundo factor | HU-002, HU-003, HU-004, HU-036 | Una tienda se registra con documentos; el administrador inicia sesión con TOTP y la aprueba; la tienda empieza a recibir solicitudes. | Alta | C3 | Yanimar Burbano |
 | E2E-04 | Calificar después de la entrega | HU-028, HU-034 | Tras confirmar la recepción, el cliente califica la tienda con 1 a 5 estrellas y la calificación se ve en el detalle de la tienda. | Media | C3 | Yanimar Burbano |
 | E2E-05 | Solicitud sin respuestas que amplía el radio y vence | HU-021, HU-022 | Sin tiendas que respondan en 10 minutos, el radio pasa de 3 a 5 km una vez y a los 30 minutos la solicitud vence. | Media | C3 | Yanimar Burbano |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(front): andamiaje del frontend y decisiones de usabilidad y accesibilidad (#17) |
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

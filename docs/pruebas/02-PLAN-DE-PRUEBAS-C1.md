@@ -1,5 +1,7 @@
 # Plan de pruebas · Ciclo 1 (C1) · Pruebas unitarias de los Sprints 1 y 2
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 | Campo | Valor |
 |---|---|
 | Sistema | Quién lo tiene · Byte Force |
@@ -153,3 +155,10 @@ El ciclo se considera terminado cuando se cumplan todos los siguientes criterios
 | Elaboró (líder de QA) | Yanimar Burbano Piamba | | |
 | Elaboró (QA no funcional) | Francisco José Castro Muñoz | | |
 | Aprobó (Product Owner) | Wilson Javier Galindez Certuche | | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

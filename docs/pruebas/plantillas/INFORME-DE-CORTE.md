@@ -1,5 +1,7 @@
 # Informe de corte · <Sprint N> · Ciclo <C1 · C2 · C3>
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo C del Plan Maestro (informe de avance). Se entrega el último día de cada sprint, antes de la revisión. Guardar en `docs/pruebas/informes/<ciclo>/INFORME-DE-CORTE-SPRINT-N.md`.
 
 | Campo | Valor |
@@ -42,3 +44,10 @@
 |---|---|---|---|---|
 
 ## 6. Plan para el siguiente sprint
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
