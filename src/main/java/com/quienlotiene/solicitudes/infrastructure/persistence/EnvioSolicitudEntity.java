@@ -26,6 +26,9 @@ public class EnvioSolicitudEntity {
     @Column(name = "tienda_id", nullable = false, updatable = false)
     private UUID tiendaId;
 
+    @Column(name = "dueno_id", updatable = false)
+    private UUID duenoId;
+
     @Column(name = "distancia_metros", nullable = false, updatable = false)
     private int distanciaMetros;
 
@@ -35,10 +38,12 @@ public class EnvioSolicitudEntity {
     @Column(name = "actualizado_en", nullable = false)
     private Instant actualizadoEn;
 
-    public EnvioSolicitudEntity(UUID id, UUID solicitudId, UUID tiendaId, int distanciaMetros, Instant creadoEn) {
+    public EnvioSolicitudEntity(
+            UUID id, UUID solicitudId, UUID tiendaId, UUID duenoId, int distanciaMetros, Instant creadoEn) {
         this.id = id;
         this.solicitudId = solicitudId;
         this.tiendaId = tiendaId;
+        this.duenoId = duenoId;
         this.distanciaMetros = distanciaMetros;
         this.creadoEn = creadoEn;
         this.actualizadoEn = creadoEn;

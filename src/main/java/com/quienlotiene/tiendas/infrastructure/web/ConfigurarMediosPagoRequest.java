@@ -1,5 +1,7 @@
 package com.quienlotiene.tiendas.infrastructure.web;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 /** Cuerpo de {@code PUT /api/v1/tiendas/me/medios-pago} (HU-012). */
 public record ConfigurarMediosPagoRequest(
         @NotEmpty(message = "Elige al menos un medio de pago")
+        @ArraySchema(schema = @Schema(allowableValues = {"EFECTIVO", "TRANSFERENCIA", "DATAFONO"}))
         List<
                         @Pattern(
                                 regexp = "EFECTIVO|TRANSFERENCIA|DATAFONO",

@@ -13,3 +13,6 @@ quienlotiene:
   seguridad:
     jwt:
       permitir-llaves-temporales: true
+  # Las *IT llaman los casos de uso de las tareas con su propio reloj
+  tareas-programadas:
+    habilitadas: false

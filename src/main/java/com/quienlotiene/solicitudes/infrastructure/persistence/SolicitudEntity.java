@@ -106,4 +106,18 @@ public class SolicitudEntity {
         this.creadoEn = creadoEn;
         this.actualizadoEn = creadoEn;
     }
+
+    /** Nuevo estado (RESUELTA o VENCIDA). El bloqueo optimista lo da {@code @Version}. */
+    void cambiarEstado(String nuevoEstado, Instant ahora) {
+        this.estado = nuevoEstado;
+        this.actualizadoEn = ahora;
+    }
+
+    double latitud() {
+        return ubicacion.getY();
+    }
+
+    double longitud() {
+        return ubicacion.getX();
+    }
 }

@@ -3,6 +3,7 @@ package com.quienlotiene.tiendas.infrastructure.web;
 import com.quienlotiene.tiendas.application.dto.RegistrarTiendaComando;
 import com.quienlotiene.tiendas.application.usecase.RegistrarTienda;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -47,8 +48,12 @@ class RegistroTiendaController {
     @PostMapping(path = "/registro", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<TiendaRegistradaResponse> registrar(
             @Valid @RequestPart("datos") RegistrarTiendaRequest datos,
-            @RequestPart(name = "fotoLocal", required = false) MultipartFile fotoLocal,
-            @RequestPart(name = "rut", required = false) MultipartFile rut) {
+            // required = false para que el dominio responda TIE-002 con su mensaje; en el contrato son obligatorios
+            @Parameter(required = true, description = "Foto del local")
+                    @RequestPart(name = "fotoLocal", required = false)
+                    MultipartFile fotoLocal,
+            @Parameter(required = true, description = "RUT") @RequestPart(name = "rut", required = false)
+                    MultipartFile rut) {
         var tiendaRegistrada = registrarTienda.ejecutar(new RegistrarTiendaComando(
                 datos.nombreDueno(),
                 datos.correo(),

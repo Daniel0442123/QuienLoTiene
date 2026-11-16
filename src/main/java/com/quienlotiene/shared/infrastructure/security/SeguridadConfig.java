@@ -4,6 +4,7 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.quienlotiene.shared.infrastructure.web.FiltroIdCorrelacion;
+import jakarta.servlet.DispatcherType;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -87,6 +88,9 @@ public class SeguridadConfig {
                 .logout(AbstractHttpConfigurer::disable)
                 .requestCache(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(autorizacion -> autorizacion
+                        // El flujo SSE (HU-030) sigue en un despacho ASYNC que ya pasó la autorización al abrirse
+                        .dispatcherTypeMatchers(DispatcherType.ASYNC)
+                        .permitAll()
                         .requestMatchers(RUTAS_PUBLICAS)
                         .permitAll()
                         .requestMatchers(HttpMethod.POST, RUTA_REGISTRO_TIENDA)
@@ -151,8 +155,12 @@ public class SeguridadConfig {
         var configuracion = new CorsConfiguration();
         configuracion.setAllowedOrigins(propiedades.origenesPermitidos());
         configuracion.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuracion.setAllowedHeaders(
-                List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE, FiltroIdCorrelacion.CABECERA));
+        configuracion.setAllowedHeaders(List.of(
+                HttpHeaders.AUTHORIZATION,
+                HttpHeaders.CONTENT_TYPE,
+                FiltroIdCorrelacion.CABECERA,
+                // HU-030: el cliente SSE la envía al reconectar
+                "Last-Event-ID"));
         configuracion.setExposedHeaders(List.of(HttpHeaders.LOCATION, FiltroIdCorrelacion.CABECERA));
         // Necesario para que el navegador envíe la cookie del token de refresco
         configuracion.setAllowCredentials(true);
