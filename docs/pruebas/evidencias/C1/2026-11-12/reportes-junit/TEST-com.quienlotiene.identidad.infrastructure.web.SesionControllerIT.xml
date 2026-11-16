@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" version="3.0.2" name="com.quienlotiene.identidad.infrastructure.web.SesionControllerIT" time="16.525" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="iniciaSesionYUsaElToken" classname="HU-003 Iniciar y cerrar sesión por la API" time="1.201">
+    </testcase>
+  <testcase name="niegaElAccesoALaCuentaSuspendida" classname="HU-003 Iniciar y cerrar sesión por la API" time="0.153">
+    </testcase>
+  <testcase name="cierraLaSesion" classname="HU-003 Iniciar y cerrar sesión por la API" time="0.178">
+    </testcase>
+  <testcase name="niegaElAccesoConMensajeGenerico" classname="HU-003 Iniciar y cerrar sesión por la API" time="0.144">
+    </testcase>
+  <testcase name="rotaElRefrescoYDetectaElReuso" classname="HU-003 Iniciar y cerrar sesión por la API" time="0.146">
+    </testcase>
+</testsuite>

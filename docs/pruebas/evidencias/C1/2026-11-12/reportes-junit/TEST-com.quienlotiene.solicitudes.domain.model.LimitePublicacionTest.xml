@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.solicitudes.domain.model.LimitePublicacionTest" time="0.012" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="cuentaDesdeUnaHoraAntes" classname="HU-016 Límite de 10 solicitudes por hora" time="0.001" />
+  <testcase name="esperaAQueQuedenNueve" classname="HU-016 Límite de 10 solicitudes por hora" time="0.002" />
+  <testcase name="dejaPublicarLaDecima" classname="HU-016 Límite de 10 solicitudes por hora" time="0.001" />
+  <testcase name="rechazaLaUndecimaYDiceCuandoReintentar" classname="HU-016 Límite de 10 solicitudes por hora" time="0.001" />
+  <testcase name="redondeaLaEsperaHaciaArriba" classname="HU-016 Límite de 10 solicitudes por hora" time="0.001" />
+</testsuite>

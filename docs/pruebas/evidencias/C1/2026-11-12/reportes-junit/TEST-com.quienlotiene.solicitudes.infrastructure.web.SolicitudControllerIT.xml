@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" version="3.0.2" name="com.quienlotiene.solicitudes.infrastructure.web.SolicitudControllerIT" time="0.233" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="soloLosClientesPublican" classname="HU-016 Publicar solicitud por la API" time="0.016">
+    </testcase>
+  <testcase name="aplicaElLimitePorHora" classname="HU-016 Publicar solicitud por la API" time="0.165">
+    </testcase>
+  <testcase name="publicaLaSolicitud" classname="HU-016 Publicar solicitud por la API" time="0.029">
+    </testcase>
+  <testcase name="rechazaLaSolicitudIncompleta" classname="HU-016 Publicar solicitud por la API" time="0.012" />
+</testsuite>

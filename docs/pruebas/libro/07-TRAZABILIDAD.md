@@ -8,23 +8,23 @@ Requisito → historia → casos → pruebas automatizadas → resultado. Estado
 
 | Requisito | Nombre | HU | MoSCoW | Módulo | Sprint | Casos | Ref. SRS | N.º casos | Pruebas JUnit / Cucumber | ¿Cobertura completa? | Aprobados | Fallidos | Bloqueados | Defectos abiertos | Estado del requisito |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| RF-001 | Registrar cliente | HU-001 | Must | identidad | Sprint 1 | CP-IDE-001-01, CP-IDE-001-02, CP-IDE-001-03 | CP-001, CP-002, CP-003 | 3 |  |  |  |  |  |  |  |
-| RF-002 | Registrar tienda | HU-002 | Must | tiendas | Sprint 1 | CP-TIE-002-01, CP-TIE-002-02 | CP-004, CP-005 | 2 |  |  |  |  |  |  |  |
-| RF-003 | Iniciar y cerrar sesión | HU-003 | Must | identidad | Sprint 1 | CP-IDE-003-01, CP-IDE-003-02, CP-IDE-003-03 | CP-006, CP-007, CP-008 | 3 |  |  |  |  |  |  |  |
-| RF-004 | Segundo factor del administrador | HU-004 | Should | identidad | Sprint 1 | CP-IDE-004-01, CP-IDE-004-02 | CP-009, CP-010 | 2 |  |  |  |  |  |  |  |
-| RF-005 | Aceptar política de datos | HU-005 | Must | identidad | Sprint 1 | CP-IDE-005-01, CP-IDE-005-02 | CP-011, CP-012 | 2 |  |  |  |  |  |  |  |
+| RF-001 | Registrar cliente | HU-001 | Must | identidad | Sprint 1 | CP-IDE-001-01, CP-IDE-001-02, CP-IDE-001-03 | CP-001, CP-002, CP-003 | 3 | 18 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
+| RF-002 | Registrar tienda | HU-002 | Must | tiendas | Sprint 1 | CP-TIE-002-01, CP-TIE-002-02 | CP-004, CP-005 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
+| RF-003 | Iniciar y cerrar sesión | HU-003 | Must | identidad | Sprint 1 | CP-IDE-003-01, CP-IDE-003-02, CP-IDE-003-03 | CP-006, CP-007, CP-008 | 3 | 9 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
+| RF-004 | Segundo factor del administrador | HU-004 | Should | identidad | Sprint 1 | CP-IDE-004-01, CP-IDE-004-02 | CP-009, CP-010 | 2 | 7 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
+| RF-005 | Aceptar política de datos | HU-005 | Must | identidad | Sprint 1 | CP-IDE-005-01, CP-IDE-005-02 | CP-011, CP-012 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-006 | Verificar correo | HU-006 | Could | identidad | Cierre | CP-IDE-006-01, CP-IDE-006-02 | CP-013, CP-014 | 2 |  |  |  |  |  |  |  |
-| RF-007 | Gestionar perfil y direcciones | HU-007 | Must | clientes | Sprint 1 | CP-CLI-007-01, CP-CLI-007-02 | CP-015, CP-016 | 2 |  |  |  |  |  |  |  |
+| RF-007 | Gestionar perfil y direcciones | HU-007 | Must | clientes | Sprint 1 | CP-CLI-007-01, CP-CLI-007-02 | CP-015, CP-016 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-008 | Consultar historial y repetir | HU-008 | Could | clientes | Cierre | CP-CLI-008-01, CP-CLI-008-02 | CP-017, CP-018 | 2 |  |  |  |  |  |  |  |
-| RF-009 | Configurar perfil de tienda | HU-009 | Must | tiendas | Sprint 1 | CP-TIE-009-01, CP-TIE-009-02 | CP-019, CP-020 | 2 |  |  |  |  |  |  |  |
-| RF-010 | Configurar domicilio con tarifa fija | HU-010 | Must | tiendas | Sprint 1 | CP-TIE-010-01, CP-TIE-010-02 | CP-021, CP-022 | 2 |  |  |  |  |  |  |  |
+| RF-009 | Configurar perfil de tienda | HU-009 | Must | tiendas | Sprint 1 | CP-TIE-009-01, CP-TIE-009-02 | CP-019, CP-020 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
+| RF-010 | Configurar domicilio con tarifa fija | HU-010 | Must | tiendas | Sprint 1 | CP-TIE-010-01, CP-TIE-010-02 | CP-021, CP-022 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-011 | Tarifas de domicilio avanzadas | HU-011 | Could | tiendas | Cierre | CP-TIE-011-01, CP-TIE-011-02 | CP-023, CP-024 | 2 |  |  |  |  |  |  |  |
-| RF-012 | Configurar medios de pago | HU-012 | Must | tiendas | Sprint 1 | CP-TIE-012-01, CP-TIE-012-02 | CP-025, CP-026 | 2 |  |  |  |  |  |  |  |
-| RF-013 | Abrir o cerrar tienda | HU-013 | Must | tiendas | Sprint 1 | CP-TIE-013-01, CP-TIE-013-02 | CP-027, CP-028 | 2 |  |  |  |  |  |  |  |
+| RF-012 | Configurar medios de pago | HU-012 | Must | tiendas | Sprint 1 | CP-TIE-012-01, CP-TIE-012-02 | CP-025, CP-026 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
+| RF-013 | Abrir o cerrar tienda | HU-013 | Must | tiendas | Sprint 1 | CP-TIE-013-01, CP-TIE-013-02 | CP-027, CP-028 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-014 | Ver detalle de tienda | HU-014 | Should | tiendas | Sprint 3 | CP-TIE-014-01, CP-TIE-014-02 | CP-029, CP-030 | 2 |  |  |  |  |  |  |  |
 | RF-015 | Ver resumen de indicadores | HU-015 | Could | tiendas | Cierre | CP-TIE-015-01, CP-TIE-015-02 | CP-031, CP-032 | 2 |  |  |  |  |  |  |  |
-| RF-016 | Publicar solicitud | HU-016 | Must | solicitudes | Sprint 1 | CP-SOL-016-01, CP-SOL-016-02, CP-SOL-016-03 | CP-033, CP-034, CP-035 | 3 |  |  |  |  |  |  |  |
-| RF-017 | Difundir a tiendas elegibles | HU-017 | Must | solicitudes | Sprint 1 | CP-SOL-017-01, CP-SOL-017-02, CP-SOL-017-03 | CP-036, CP-037, CP-038 | 3 |  |  |  |  |  |  |  |
+| RF-016 | Publicar solicitud | HU-016 | Must | solicitudes | Sprint 1 | CP-SOL-016-01, CP-SOL-016-02, CP-SOL-016-03 | CP-033, CP-034, CP-035 | 3 | 15 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
+| RF-017 | Difundir a tiendas elegibles | HU-017 | Must | solicitudes | Sprint 1 | CP-SOL-017-01, CP-SOL-017-02, CP-SOL-017-03 | CP-036, CP-037, CP-038 | 3 | 4 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
 | RF-018 | Ver solicitudes nuevas | HU-018 | Must | solicitudes | Sprint 2 | CP-SOL-018-01, CP-SOL-018-02 | CP-039, CP-040 | 2 |  |  |  |  |  |  |  |
 | RF-019 | Responder solicitud | HU-019 | Must | solicitudes | Sprint 2 | CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-03, CP-SOL-019-04 | CP-041, CP-042, CP-043, CP-044 | 4 |  |  |  |  |  |  |  |
 | RF-020 | Ver y ordenar respuestas | HU-020 | Must | solicitudes | Sprint 2 | CP-SOL-020-01, CP-SOL-020-02, CP-SOL-020-03 | CP-045, CP-046, CP-047 | 3 |  |  |  |  |  |  |  |
@@ -43,7 +43,7 @@ Requisito → historia → casos → pruebas automatizadas → resultado. Estado
 | RF-033 | Mini chat | HU-033 | Should | mensajeria | Sprint 3 | CP-MEN-033-01, CP-MEN-033-02 | CP-073, CP-074 | 2 |  |  |  |  |  |  |  |
 | RF-034 | Calificar tienda | HU-034 | Must | reputacion | Sprint 3 | CP-REP-034-01, CP-REP-034-02, CP-REP-034-03 | CP-075, CP-076, CP-077 | 3 |  |  |  |  |  |  |  |
 | RF-035 | Reportar problema | HU-035 | Should | reputacion | Sprint 3 | CP-REP-035-01, CP-REP-035-02 | CP-078, CP-079 | 2 |  |  |  |  |  |  |  |
-| RF-036 | Aprobar o rechazar tiendas | HU-036 | Must | administracion | Sprint 1 | CP-ADM-036-01, CP-ADM-036-02 | CP-080, CP-081 | 2 |  |  |  |  |  |  |  |
+| RF-036 | Aprobar o rechazar tiendas | HU-036 | Must | administracion | Sprint 1 | CP-ADM-036-01, CP-ADM-036-02 | CP-080, CP-081 | 2 | 9 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-037 | Gestionar reportes y suspender | HU-037 | Should | administracion | Sprint 3 | CP-ADM-037-01, CP-ADM-037-02 | CP-082, CP-083 | 2 |  |  |  |  |  |  |  |
 | RF-038 | Gestionar categorías y restringidos | HU-038 | Should | catalogo | Sprint 3 | CP-CAT-038-01, CP-CAT-038-02 | CP-084, CP-085 | 2 |  |  |  |  |  |  |  |
 
@@ -58,28 +58,28 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-003 | NF-REN-003 | Menor o igual a 200 ms usando índice GiST. | C2 |  |  |  |
 | RNF-004 | NF-REN-004 | API como máximo 640 MB y todo el stack como máximo 2 GB de los 4 GB del VPS. | C3 |  |  |  |
 | RNF-005 | NF-REN-005 | Mayor o igual a 80 y primera carga de 3 s o menos en 4G simulado. | C3 |  |  |  |
-| RNF-006 | NF-SEG-006 | Mínimo 15 caracteres, hash Argon2id o bcrypt, rechazo de contraseñas de la lista de filtradas. | C1 |  |  |  |
+| RNF-006 | NF-SEG-006 | Mínimo 15 caracteres, hash Argon2id o bcrypt, rechazo de contraseñas de la lista de filtradas. | C1 | Aprobado | 0 | Verificado |
 | RNF-007 | NF-SEG-007 | 0 accesos indebidos; cada endpoint con datos personales tiene prueba negativa. | C2 |  |  |  |
 | RNF-008 | NF-SEG-008 | JWT de 15 minutos; refresco rotativo en cookie HttpOnly, Secure y SameSite=Strict. | C2 |  |  |  |
 | RNF-009 | NF-SEG-009 | Máximo 5 intentos de inicio de sesión por minuto por cuenta y 10 solicitudes por hora por cliente; el exceso recibe HTTP 429. | C2 |  |  |  |
 | RNF-010 | NF-SEG-010 | Solo TLS 1.2 y 1.3, HSTS activo y calificación A o superior. | C3 |  |  |  |
-| RNF-011 | NF-SEG-011 | 0 críticas y 0 altas sin justificar en el build de entrega. | C1 |  |  |  |
+| RNF-011 | NF-SEG-011 | 0 críticas y 0 altas sin justificar en el build de entrega. | C1 | Aprobado | 1 (S3) | Verificado |
 | RNF-012 | NF-SEG-012 | Solo JPEG, PNG, WebP y PDF de hasta 5 MB, tipo verificado por contenido y metadatos EXIF eliminados. | C2 |  |  |  |
 | RNF-013 | NF-SEG-013 | 100 % registrados con usuario, fecha y acción, sin datos personales en los logs. | C2 |  |  |  |
-| RNF-014 | NF-SEG-014 | 100 % con fecha y versión de la política aceptada. | C1 |  |  |  |
+| RNF-014 | NF-SEG-014 | 100 % con fecha y versión de la política aceptada. | C1 | Aprobado | 0 | Verificado |
 | RNF-015 | NF-FIA-015 | 0 eventos perdidos en la prueba de reinicio. | C2 |  |  |  |
-| RNF-016 | NF-FIA-016 | 0 aceptadas; todas las combinaciones probadas. | C1 |  |  |  |
+| RNF-016 | NF-FIA-016 | 0 aceptadas; todas las combinaciones probadas. | C1 | Aprobado | 1 (S4) | Verificado parcialmente |
 | RNF-017 | NF-FIA-017 | RPO de 24 h, RTO de 4 h y una restauración probada antes de la entrega. | C3 |  |  |  |
 | RNF-018 | NF-DIS-018 | Mayor o igual a 99 % entre el 16/11/2026 y el 26/11/2026. | C3 |  |  |  |
 | RNF-019 | NF-DIS-019 | Como máximo 60 s por despliegue. | C3 |  |  |  |
 | RNF-020 | NF-ESC-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | C3 |  |  |  |
-| RNF-021 | NF-ESC-021 | 0 violaciones de dependencias entre módulos. | C1 |  |  |  |
-| RNF-022 | NF-MAN-022 | Mayor o igual a 70 %. | C1 |  |  |  |
-| RNF-023 | NF-MAN-023 | 0 violaciones en el pipeline. | C1 |  |  |  |
-| RNF-024 | NF-MAN-024 | 100 % de endpoints documentados. | C2 |  |  |  |
+| RNF-021 | NF-ESC-021 | 0 violaciones de dependencias entre módulos. | C1 | Aprobado | 0 | Verificado |
+| RNF-022 | NF-MAN-022 | Mayor o igual a 70 %. | C1 | Aprobado | 1 (S4) | Verificado |
+| RNF-023 | NF-MAN-023 | 0 violaciones en el pipeline. | C1 | Aprobado | 0 | Verificado |
+| RNF-024 | NF-MAN-024 | 100 % de endpoints documentados. | C2 |  | 1 (S3) DEF-001 |  |
 | RNF-025 | NF-COM-025 | JSON sobre HTTPS con prefijo /api/v1. | C2 |  |  |  |
 | RNF-026 | NF-COM-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | C3 |  |  |  |
 | RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 |  |  |  |
 | RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 |  |  |  |
 | RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 |  |  |  |
-| RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 |  |  |  |
+| RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 | Aprobado | 0 | Verificado |

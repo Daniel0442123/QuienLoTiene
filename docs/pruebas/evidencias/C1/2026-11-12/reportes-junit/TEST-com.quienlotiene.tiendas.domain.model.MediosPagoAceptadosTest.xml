@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.tiendas.domain.model.MediosPagoAceptadosTest" time="0.005" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="desactivaUnMedio" classname="HU-012 Medios de pago de la tienda" time="0.001" />
+  <testcase name="soloAceptaLosMediosActivos" classname="HU-012 Medios de pago de la tienda" time="0.001" />
+  <testcase name="exigeAlMenosUno" classname="HU-012 Medios de pago de la tienda" time="0.001" />
+</testsuite>

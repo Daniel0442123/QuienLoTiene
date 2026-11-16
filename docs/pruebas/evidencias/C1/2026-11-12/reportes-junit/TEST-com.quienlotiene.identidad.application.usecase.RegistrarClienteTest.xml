@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.identidad.application.usecase.RegistrarClienteTest" time="0.097" tests="6" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaUnaFraseComun" classname="HU-001 Registrar cliente" time="0.073" />
+  <testcase name="rechazaUnaFraseCorta" classname="HU-001 Registrar cliente" time="0.006" />
+  <testcase name="noCreaLaCuentaSinAutorizacionDeDatos" classname="HU-001 Registrar cliente" time="0.003" />
+  <testcase name="rechazaUnCorreoYaRegistrado" classname="HU-001 Registrar cliente" time="0.003" />
+  <testcase name="registraAlClienteConRolCliente" classname="HU-001 Registrar cliente" time="0.004">
+    </testcase>
+  <testcase name="guardaLaAutorizacionConVersionYFecha" classname="HU-001 Registrar cliente" time="0.002">
+    </testcase>
+</testsuite>

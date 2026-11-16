@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.tiendas.domain.model.ConfiguracionDomicilioTest" time="0.013" tests="6" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaFueraDeCobertura" classname="HU-010 Domicilio con tarifa fija" time="0.001" />
+  <testcase name="cobraLaTarifaFija" classname="HU-010 Domicilio con tarifa fija" time="0.001" />
+  <testcase name="validaElRadio(int)[1]" classname="HU-010 Domicilio con tarifa fija" time="0.001" />
+  <testcase name="validaElRadio(int)[2]" classname="HU-010 Domicilio con tarifa fija" time="0.001" />
+  <testcase name="validaElRadio(int)[3]" classname="HU-010 Domicilio con tarifa fija" time="0.002" />
+  <testcase name="rechazaUnaTarifaNegativa" classname="HU-010 Domicilio con tarifa fija" time="0.001" />
+</testsuite>

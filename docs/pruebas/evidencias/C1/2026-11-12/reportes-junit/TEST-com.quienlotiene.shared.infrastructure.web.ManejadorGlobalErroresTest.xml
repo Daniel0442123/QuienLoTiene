@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErroresTest" time="2.26" tests="16" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="enviaRetryAfterEnLosLimitesDeUso" classname="T-01 Manejador global de errores con ProblemDetail" time="1.666">
+    </testcase>
+  <testcase name="armaElSlugSinTildes" classname="T-01 Manejador global de errores con ProblemDetail" time="0.014">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[1]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.095">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[2]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.031">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[3]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.018">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[4]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.019">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[5]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.02">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[6]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.018">
+    </testcase>
+  <testcase name="traduceCadaTipoDeErrorAUnEstadoHttp(TipoError, int)[7]" classname="T-01 Manejador global de errores con ProblemDetail" time="0.015">
+    </testcase>
+  <testcase name="respondeElCuerpoIlegibleComoPeticionMalFormada" classname="T-01 Manejador global de errores con ProblemDetail" time="0.077">
+    </testcase>
+  <testcase name="respondeElMetodoNoPermitido" classname="T-01 Manejador global de errores con ProblemDetail" time="0.019">
+    </testcase>
+  <testcase name="ocultaElMensajeTecnicoDeUnErrorInesperado" classname="T-01 Manejador global de errores con ProblemDetail" time="0.025">
+    </testcase>
+  <testcase name="respondeLosDatosInvalidosConLaListaDeCampos" classname="T-01 Manejador global de errores con ProblemDetail" time="0.166">
+    </testcase>
+  <testcase name="respondeLaReglaDeNegocioConSuCodigo" classname="T-01 Manejador global de errores con ProblemDetail" time="0.017">
+    </testcase>
+  <testcase name="respondeElAccesoDenegado" classname="T-01 Manejador global de errores con ProblemDetail" time="0.013">
+    </testcase>
+  <testcase name="respondeLaSesionRequerida" classname="T-01 Manejador global de errores con ProblemDetail" time="0.013">
+    </testcase>
+</testsuite>

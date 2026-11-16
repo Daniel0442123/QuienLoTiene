@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" version="3.0.2" name="com.quienlotiene.identidad.infrastructure.web.SegundoFactorIT" time="5.376" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="niegaElAccesoConCodigoIncorrecto" classname="HU-004 Segundo factor del administrador por la API" time="0.227">
+    </testcase>
+  <testcase name="elTokenTemporalNoAbreLaApi" classname="HU-004 Segundo factor del administrador por la API" time="0.06">
+    </testcase>
+  <testcase name="entraConElSegundoFactor" classname="HU-004 Segundo factor del administrador por la API" time="0.147">
+    </testcase>
+</testsuite>

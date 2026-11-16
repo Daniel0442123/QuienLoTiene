@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.quienlotiene.tiendas.domain.model.RevisionTiendaTest" time="0.021" tests="7" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaConMotivo" classname="HU-036 Revisión de la tienda" time="0.001" />
+  <testcase name="apruebaUnaTiendaPendiente" classname="HU-036 Revisión de la tienda" time="0.001" />
+  <testcase name="exigeUnMotivoValido" classname="HU-036 Revisión de la tienda" time="0.001" />
+  <testcase name="rechazaTransicionesInvalidas(EstadoTienda)[1]" classname="HU-036 Revisión de la tienda" time="0.001" />
+  <testcase name="rechazaTransicionesInvalidas(EstadoTienda)[2]" classname="HU-036 Revisión de la tienda" time="0.002" />
+  <testcase name="rechazaTransicionesInvalidas(EstadoTienda)[3]" classname="HU-036 Revisión de la tienda" time="0.002" />
+  <testcase name="unaTiendaAprobadaYAbiertaRecibeSolicitudes" classname="HU-036 Revisión de la tienda" time="0.002" />
+</testsuite>
