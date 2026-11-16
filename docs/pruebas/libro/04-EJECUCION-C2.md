@@ -1,5 +1,7 @@
 # Hoja «Ejecución C2» · Sprint 3 (16/11 al 22/11)
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
 Alcance: (1) casos nuevos de las historias del Sprint 3 (22); (2) no funcionales de integración y seguridad (9); (3) re-prueba obligatoria de todo caso Fallido o Bloqueado en C1 (se copia la fila desde «Ejecución C1»).
@@ -50,3 +52,10 @@ Alcance: (1) casos nuevos de las historias del Sprint 3 (22); (2) no funcionales
 | ID del caso | Resultado C1 | Defecto C1 | Probador | Fecha | Resultado | Defecto(s) | Evidencia (enlace) | Observaciones | Duración (min) | Resultado final |
 |---|---|---|---|---|---|---|---|---|---|---|
 |  |  |  |  |  |  |  |  |  |  |  |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

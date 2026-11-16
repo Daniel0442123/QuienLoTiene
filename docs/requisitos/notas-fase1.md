@@ -1,5 +1,7 @@
 # Quién lo tiene · Notas de levantamiento (Fase 1)
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Wilson Javier Galindez Certuche (Product Owner) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 Fuentes: idea-negocio.pdf (Byte Force, Ingeniería del Software 3) y documento de arquitectura
 (https://claude.ai/artifact/685QgQCQEEASFZfMkQSApV).
 
@@ -21,3 +23,10 @@ Fuentes: idea-negocio.pdf (Byte Force, Ingeniería del Software 3) y documento d
 - SRS completo (21 secciones + anexos): https://claude.ai/artifact/QgeXSyJwMLhgsNJNmU3V2T
 - Diagramas .drawio: /mnt/project-files/requisitos/diagramas/ (00 a 09)
 - Pendiente de Pedro: roles de las 7 personas y rúbrica del profesor.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 28/10/2026 | Daniel Montenegro Almendra (@daniel0442) | Estructura inicial del proyecto Quién lo tiene |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

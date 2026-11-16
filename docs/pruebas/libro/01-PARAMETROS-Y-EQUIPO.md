@@ -1,5 +1,7 @@
 # Hojas «Parámetros» y «Equipo»
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 ## Parámetros de la campaña
 
 | Parámetro | Valor | Nota |
@@ -40,3 +42,11 @@
 | Daniel Montenegro Almendra | Arquitecto de software · Developer backend | Escribe las pruebas unitarias e integración de identidad, solicitudes y órdenes; corrige defectos; administra el ambiente |
 | Deiner Stiven Ramírez Vente | Developer backend | Escribe las pruebas de tiendas, catálogo, notificaciones, mensajería y reputación; corrige defectos |
 | Monica Anyi Cajas Mellizo | UX Designer · Developer frontend | Corrige defectos de interfaz y accesibilidad |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

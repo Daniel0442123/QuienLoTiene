@@ -1,5 +1,7 @@
 # DEF-nnn · <Qué falla + dónde + con qué dato>
 
+> **Control del documento** · Plantilla versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 > Anexo A del Plan Maestro. Copiar a `docs/pruebas/defectos/DEF-nnn.md` y registrar la fila en `libro/06-DEFECTOS.md`. Un archivo por defecto.
 
 | Campo | Valor |
@@ -39,3 +41,10 @@
 | Versión de corrección | |
 | Re-prueba (fecha, ciclo, resultado) | |
 | Fecha de cierre | |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

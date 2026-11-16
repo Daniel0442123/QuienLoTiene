@@ -1,5 +1,7 @@
 # Hoja «Listas» · Valores permitidos
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 | Lista | Valores |
 |---|---|
 | Resultado | Aprobado · Fallido · Bloqueado · No ejecutado · No aplica |
@@ -33,3 +35,10 @@ Por defecto S1 → P1, S2 → P2, S3 → P3 y S4 → P4. El triaje puede cambiar
 | S2 Alta | Falla una función principal en la demo | Caso típico: función importante sin alternativa | Función importante con alternativa temporal | Función importante que nadie usa en la demo |
 | S3 Media | Defecto moderado muy visible para el profesor | Función secundaria con impacto en la demo | Caso más común | Puede esperar a la siguiente versión |
 | S4 Baja | Algo cosmético muy visible | Revisar por qué algo menor es urgente | Detalle menor | Caso típico: cosmético |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

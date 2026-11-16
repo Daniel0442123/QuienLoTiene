@@ -1,5 +1,7 @@
 # Documento de evidencias de pruebas · Ciclo 1 (C1)
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
 Responsables de QA: Yanimar Burbano Piamba · Francisco José Castro Muñoz
@@ -617,3 +619,10 @@ La PWA se levantó en local con el backend v0.2.0 y se recorrieron 45 vistas y e
 **Solicitud incompleta (CP-SOL-016-02, DEF-005)**
 
 ![14-solicitud-incompleta](../../evidencias/C1/2026-11-12/frontend/14-solicitud-incompleta.png)
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |

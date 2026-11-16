@@ -1,6 +1,8 @@
 # Backlog del Sprint 1 por persona y módulo · Quién lo tiene
 
-Versión 1.0 · 07/11/2026 · Propuesta para la planning del Sprint 1 (la ajustan Wilson como Product Owner y Brayan como Scrum Master).
+> **Control del documento** · Versión 1.1 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
+Propuesta para la planning del Sprint 1 (la ajustan Wilson como Product Owner y Brayan como Scrum Master).
 
 Fuentes: roles de `docs/presentacion/prompt-claude-design.md` (matriz RACI), alcance del Sprint 1 en `docs/pruebas/02-PLAN-DE-PRUEBAS-C1.md`, casos en `docs/pruebas/libro/02-CASOS.md`, convenciones en `docs/arquitectura/DECISIONES-BACKEND.md`.
 
@@ -102,3 +104,20 @@ Pull request aprobado por el arquitecto de software, CI en verde (formato, unita
 - Primera migración Flyway: extensiones `postgis`, `pg_trgm`, `unaccent`, un esquema por módulo y tablas de eventos de Spring Modulith.
 - Pruebas de arquitectura (`ModulosTest`, `ReglasDeArquitecturaTest`) y prueba de arranque con Testcontainers (`QuienLoTieneApplicationIT`).
 - Pipeline `.github/workflows/ci.yml`, plantilla de pull request y `CODEOWNERS`.
+
+## 6. Cambios después de la planning
+
+Registrados en `docs/gestion/CONTROL-DE-CAMBIOS.md`. Este backlog se deja como se planeó; los cambios quedan aquí y en su solicitud.
+
+| SC | Cambio frente a este backlog | Estado |
+|---|---|---|
+| SC-007 | Se agregó `GET /api/v1/categorias` (módulo `catalogo`, PR #31), que no estaba en el Sprint 1: lo necesitan los formularios de HU-002 y HU-016 | Implementada · falta la aprobación del Product Owner |
+| SC-012 | Las historias de `tiendas`, `clientes` y `administracion` asignadas a Deiner (sección 3) las implementó Daniel (PR #9 a #16) | Falta documentar el motivo y la aprobación |
+| SC-013 | Las fechas del Sprint 1 («Ojo con las fechas» al inicio): el código empezó el 07/11 y el corte se hizo el 12/11 sobre `v0.2.0` | Falta registrar lo que decidió la planning |
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.1 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (el documento declaraba la versión 1.0) (SC-009). Sección 6 nueva con los cambios después de la planning (SC-007, SC-012 y SC-013) |

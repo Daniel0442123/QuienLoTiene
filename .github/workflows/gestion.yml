@@ -1,0 +1,35 @@
+# Control de cambios (docs/gestion/CONTROL-DE-CAMBIOS.md).
+# Revisa que cada pull request diga qué historia atiende, si se desvía del plan
+# (con su SC-nnn registrada) y qué documentos actualizó.
+name: Control de cambios
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gestion-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  verificar-descripcion:
+    name: Descripción del PR y solicitudes de cambio
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # La descripción va por variable de entorno, nunca interpolada en el script.
+      - name: Revisar la descripción
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python3 scripts/gestion/verificar_pr.py

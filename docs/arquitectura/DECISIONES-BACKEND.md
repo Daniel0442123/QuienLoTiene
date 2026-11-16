@@ -1,6 +1,6 @@
 # Decisiones técnicas y convenciones del backend · Quién lo tiene
 
-Versión 1.1 (aprobada por Pedro) · 07/11/2026
+> **Control del documento** · Versión 1.2 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Pedro (versión 1.1, 07/11/2026) · Estado: Vigente · Cambios: «Historial» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Este documento reúne las decisiones que el equipo necesita tener claras para que todos escriban el backend de la misma forma. Todas las decisiones de la tabla están aprobadas; las que vienen del documento de arquitectura se marcan como tales. Lo poco que falta está en la sección 20.
 
@@ -296,7 +296,7 @@ Dos niveles, sin duplicar:
 - **Administrador con TOTP**: librería `dev.samstevens.totp`. El secreto se guarda cifrado.
 - **Roles**: `CLIENTE`, `TIENDA`, `ADMIN` (`hasRole(...)` en la configuración y `@PreAuthorize` en los casos que lo necesiten).
 - **Autorización por objeto**: todo caso de uso que recibe un id comprueba que el recurso pertenezca al usuario actual. Es el riesgo R-03 y tiene pruebas específicas.
-- Límites de uso con Bucket4j y Caffeine en memoria: intentos de inicio de sesión (`429`), 10 solicitudes por hora por cliente (`429` con `Retry-After`, código `SOL-001`, como pide CP-SOL-016-03) y respuestas por tienda.
+- Límites de uso: las 10 solicitudes por hora por cliente se cuentan en PostgreSQL (`429` con `Retry-After`, código `SOL-001`, como pide CP-SOL-016-03), porque así el conteo es exacto para «la última hora», sobrevive a reinicios y se prueba con un `Clock` fijo (SC-002). Los intentos de inicio de sesión (`429`) y las respuestas por tienda usarán Bucket4j y Caffeine en memoria (todavía no implementados).
 - CORS solo para el dominio del frontend. HTTPS lo da Caddy.
 - Ningún secreto en el repositorio: todo sale de variables de entorno (`QLT_JWT_LLAVE_PRIVADA`, `QLT_DB_CLAVE`, ...). Hay un `.env.ejemplo` sin valores reales.
 - **Decidido**: quitar `spring-boot-starter-security-oauth2-client` si no se va a ofrecer inicio de sesión con Google u otro proveedor (no está en el alcance del MVP).
@@ -365,7 +365,8 @@ Dependencias que faltan en el `pom.xml` para cumplir la estrategia (ver sección
 - Ramas cortas desde `main`, con la historia en el nombre: `feature/HU-016-limite-solicitudes`, `fix/HU-027-estado-orden`, `docs/convenciones-backend`, `test/HU-021-vencimiento`.
 - Commits con **Conventional Commits en español**: `feat(solicitudes): limita a 10 solicitudes por hora`, `fix(ordenes): impide cancelar una orden entregada`, `test(identidad): ...`, `docs: ...`, `refactor: ...`, `chore: ...`.
 - Pull request pequeño (idealmente menos de 400 líneas), con la plantilla del repositorio, aprobado por el **arquitecto de software** (único aprobador de los pull requests del backend), CI en verde (compilación, unitarias, arquitectura, cobertura ≥ 70 % y formato) y fusión con *squash*.
-- Versiones con SemVer y etiqueta en Git: `v0.1.0` al final de cada sprint, `v1.0.0` el 26/11.
+- La aprobación queda registrada como revisión «Approve» en GitHub y el chequeo «Control de cambios» debe estar en verde; fusionar no cuenta como aprobación. Si el PR se desvía del plan, cita su solicitud de cambio SC-nnn (`docs/gestion/CONTROL-DE-CAMBIOS.md`, SC-010).
+- Versiones con SemVer y etiqueta **anotada** en Git (`git tag -a`): `v0.1.0` al final de cada sprint, `v1.0.0` el 26/11. Antes de etiquetar se actualiza `docs/gestion/REGISTRO-DE-CAMBIOS.md`.
 
 ---
 
@@ -423,3 +424,4 @@ Ninguna. Pedro aprobó todas las decisiones el 07/11/2026.
 | 0.2 | 07/11/2026 | Pedro aprueba nombres descriptivos en español (D-03 y D-04); no se usan prefijos de tipo |
 | 1.1 | 07/11/2026 | D-23: sin procedimientos almacenados (sección 10.1) |
 | 1.0 | 07/11/2026 | Pedro aprueba todas las propuestas; el arquitecto de software aprueba los pull requests; paquete `com.quienlotiene` aplicado |
+| 1.2 | 13/11/2026 | Se registran en el historial los cambios del PR #7 (07/11): `SOL-001` responde 429 y no 422 en las secciones 7, 8 y 11 (SC-001), y el límite por hora se cuenta en PostgreSQL y no con Bucket4j, sección 11 (SC-002). Sección 17: aprobación registrada en GitHub y etiquetas anotadas (SC-009, SC-010) |

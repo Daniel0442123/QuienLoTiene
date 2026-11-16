@@ -1,5 +1,7 @@
 # Documentación de pruebas · Quién lo tiene
 
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+
 Responsables de QA: **Yanimar Burbano Piamba** (líder de QA, pruebas funcionales) y **Francisco José Castro Muñoz** (no funcionales y seguridad).
 
 Todo se escribe primero aquí en Markdown, con la estructura y los campos de las plantillas del docente, y después se pasa a esas plantillas (Word y Excel). El Markdown es la fuente: si algo cambia, se cambia aquí y se vuelve a generar el Word o el Excel.
@@ -61,3 +63,10 @@ En Word, el índice («Contenido») se actualiza con clic derecho → Actualizar
 ## Cómo regenerar el catálogo de casos
 
 El catálogo (`libro/02-CASOS.md`) y las hojas de ejecución y trazabilidad se generaron a partir de los escenarios Gherkin del SRS. Si el SRS cambia, se actualizan aquí a mano o se vuelven a generar, conservando los resultados ya registrados.
+
+## Historial del documento
+
+| Versión | Fecha | Autor | Cambio |
+|---|---|---|---|
+| — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
+| 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
