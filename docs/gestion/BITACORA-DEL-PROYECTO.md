@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.1 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -110,11 +110,14 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-07 | Aprobar el texto de la política de datos 1.0 (hoy es borrador en `politicaDatos.ts`) | PR #22 | Wilson Javier Galindez Certuche | 15/11/2026 | Abierto | |
 | C-08 | Revisar el diagrama `09-entidad-relacion` frente a las columnas `radio_metros` y `creado_en` | SC-003 | Daniel Montenegro Almendra | 15/11/2026 | Abierto | |
 | C-09 | Activar en GitHub la protección de `main` con una aprobación obligatoria y el chequeo «Control de cambios» | SC-010 | Pedro (dueño del repositorio) | 14/11/2026 | Abierto | |
-| C-10 | Agregar las secciones «Control de cambios» y «Documentos actualizados» a la descripción de #33 (#32 se fusionó antes de que existiera el chequeo) | Este PR | Monica Anyi Cajas Mellizo | Antes de fusionar #33 | Abierto | |
+| C-10 | Agregar las secciones «Control de cambios» y «Documentos actualizados» a la descripción de #33 (#32 se fusionó antes de que existiera el chequeo) | Este PR | Monica Anyi Cajas Mellizo | Antes de fusionar #33 | Cerrado | 16/11/2026, PR #33 |
 | C-11 | Documentar el motivo y la aprobación de SC-012 (reasignación) y SC-013 (fechas del Sprint 1) | SC-012, SC-013 | Brayan Grajales Escarraga | 15/11/2026 | Abierto | |
 | C-12 | Agregar el endpoint de categorías a la trazabilidad y a los casos (`docs/pruebas/libro/`) cuando se fusione #32 | SC-007 | Yanimar Burbano Piamba | Después de #32 | Abierto | |
 | C-13 | Agregar encabezado de control e historial a los archivos de `docs/pruebas/libro/`, defectos e informes del C1, y versión al Excel del libro de QA | H-05 | Daniel Montenegro Almendra | Después de #32 | Cerrado | 13/11/2026, PR #34 |
 | C-14 | Ejecutar «Documentar versión» (`version.yml`, Run workflow) para `v0.1.0`, `v0.1.1`, `v0.1.2` y `v0.2.0`, antes de que venzan sus artefactos de pruebas | Este PR | Daniel Montenegro Almendra | 25/11/2026 | Abierto | |
+| C-15 | Mockups de Sprint 3 y cierre que dejó la revisión del #33: HU-014 con mapa y teléfono, HU-023 al publicar, HU-025 vencida, HU-029 en camino, HU-033 solo lectura, HU-008 vacío, confirmaciones de HU-029 y HU-037, deshacer en HU-038 y anotaciones de accesibilidad | PR #33 | Monica Anyi Cajas Mellizo | Sprint 3 | Abierto | |
+| C-16 | Aprobar las 8 decisiones de interfaz de `docs/diseno/mockups/README.md` (sección «Para que apruebe el Product Owner») | PR #33 | Wilson Javier Galindez Certuche | Antes de construir el Sprint 2 | Abierto | |
+| C-17 | Agregar la columna «Mockup» en `docs/pruebas/libro/07-TRAZABILIDAD.md` para los casos manuales de interfaz | PR #33 | Yanimar Burbano Piamba | Después de C-16 | Abierto | |
 
 ## Historial del documento
 
@@ -122,3 +125,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: bitácora reconstruida desde el PR #1 hasta el #33, hechos fuera de PR y compromisos abiertos |
 | 1.1 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fusión de #32: tabla regenerada, hecho del corte, C-10 y C-13 actualizados |
+| 1.2 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-10 cerrado con la descripción del #33; nuevos C-15 a C-17 con lo que dejó la revisión de los mockups (#33) |

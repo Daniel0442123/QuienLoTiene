@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Administrador: reportes y catálogo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+a{color:#0b6e63}a:hover{color:#08564d}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
+.barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
+.marca{margin:0;font-weight:700;font-size:18px}
+.volver{min-height:44px;min-width:44px;border:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:#0b6e63;display:inline-flex;align-items:center;gap:4px;padding:0 8px 0 0}
+.cont{box-sizing:border-box;flex:1;overflow:hidden;padding:20px 16px;display:flex;flex-direction:column;gap:12px}
+.h1{margin:0;font-size:26px;line-height:1.2;font-weight:700}
+.h2{margin:0;font-size:18px;line-height:1.3;font-weight:700}
+.p{margin:0;font-size:16px;line-height:1.45}
+.suave{color:#4b5d56}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tarjeta{box-sizing:border-box;border:1px solid #6a7d76;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;background:#ffffff}
+.btn{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#0b6e63;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn2{box-sizing:border-box;min-height:44px;border-radius:12px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-peligro{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#b3261e;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px}
+.chip{display:inline-flex;align-items:center;font-size:16px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid #b45309;background:#ffffff;color:#b45309;width:fit-content}
+.pie{box-sizing:border-box;flex:none;padding:12px 16px 20px;border-top:1px solid #dce7e2;display:flex;flex-direction:column;gap:8px}
+textarea{box-sizing:border-box;width:100%;min-height:80px;border:1px solid #6a7d76;border-radius:12px;font:inherit;font-size:16px;padding:10px 12px;resize:none}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo label{font-weight:700;font-size:16px}
+.interruptor{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:6px 12px;border:1px solid #6a7d76;border-radius:12px;font-size:16px}
+.sw{position:relative;width:56px;height:32px;border-radius:16px;border:2px solid #0b6e63;background:#0b6e63;flex:none;padding:0}
+.sw span{position:absolute;top:2px;left:26px;width:24px;height:24px;border-radius:50%;background:#ffffff}
+.sw-off{background:#ffffff;border-color:#6a7d76}
+.sw-off span{left:2px;background:#6a7d76}
+.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.lista li{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:0 4px 0 12px;border-bottom:1px solid #dce7e2;font-size:16px}
+input[type=text]{box-sizing:border-box;min-height:48px;border:1px solid #6a7d76;border-radius:12px;font:inherit;font-size:16px;padding:0 12px;flex:1;min-width:0}
+</style>
+</helmet>
+<div class="tablero" style="width:932px;height:1060px">
+
+<div class="col">
+<p class="etq">HU-037 · Reportes y suspender cuentas</p>
+<p class="etq-nota">Cada acción queda auditada. Una cuenta suspendida no entra ni recibe solicitudes.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver a reportes">‹ Reportes</button><p class="marca">Administración</p></div>
+<div class="cont">
+<div class="fila"><h1 class="h1">Demora en la entrega</h1><span class="chip">Abierto</span></div>
+<p class="p suave">Reportado por un cliente · hoy, 5:10 p. m.</p>
+<div class="tarjeta">
+<p class="h2">Droguería El Centro</p>
+<p class="p">3 reportes confirmados en 30 días</p>
+<p class="p suave">«Ya pasó una hora y no ha llegado.»</p>
+</div>
+<div class="campo"><label for="nota">Nota de resolución</label><textarea id="nota">Hablé con la tienda: el domiciliario tuvo un problema. Se entregó a las 6:05 p. m.</textarea></div>
+<button class="btn" type="button">Marcar como resuelto</button>
+</div>
+<div class="pie"><button class="btn-peligro" type="button">Suspender a Droguería El Centro</button><p class="p suave" style="text-align:center">Pedirá confirmación antes de suspender.</p></div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-038 · Categorías y restringidos</p>
+<p class="etq-nota">Una categoría desactivada deja de aparecer al publicar. Los productos restringidos muestran el aviso de HU-023.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver al menú de administración">‹ Menú</button><p class="marca">Administración</p></div>
+<div class="cont">
+<h1 class="h1">Catálogo</h1>
+<p class="h2">Categorías</p>
+<div class="interruptor"><span>Farmacia · activa</span><button class="sw" type="button" role="switch" aria-checked="true" aria-label="Farmacia activa"><span></span></button></div>
+<div class="interruptor"><span>Ferretería · inactiva</span><button class="sw sw-off" type="button" role="switch" aria-checked="false" aria-label="Ferretería activa"><span></span></button></div>
+<p class="h2" style="margin-top:8px">Productos restringidos</p>
+<ul class="lista">
+<li>Amoxicilina<button class="btn2" type="button" aria-label="Quitar Amoxicilina">Quitar</button></li>
+<li>Clonazepam<button class="btn2" type="button" aria-label="Quitar Clonazepam">Quitar</button></li>
+<li>Tramadol<button class="btn2" type="button" aria-label="Quitar Tramadol">Quitar</button></li>
+</ul>
+<div class="campo"><label for="nuevo">Agregar producto restringido</label><div style="display:flex;gap:8px"><input id="nuevo" type="text" placeholder="Nombre del producto"><button class="btn" type="button">Agregar</button></div></div>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":932,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

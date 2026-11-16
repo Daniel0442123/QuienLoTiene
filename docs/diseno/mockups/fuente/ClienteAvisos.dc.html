@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cliente: producto restringido y verificación de correo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+a{color:#0b6e63}a:hover{color:#08564d}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
+.barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
+.marca{margin:0;font-weight:700;font-size:18px}
+.volver{min-height:44px;min-width:44px;border:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:#0b6e63;display:inline-flex;align-items:center;gap:4px;padding:0 8px 0 0}
+.cont{box-sizing:border-box;flex:1;overflow:hidden;padding:20px 16px;display:flex;flex-direction:column;gap:14px}
+.h1{margin:0;font-size:26px;line-height:1.2;font-weight:700}
+.p{margin:0;font-size:16px;line-height:1.45}
+.suave{color:#4b5d56}
+.btn{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#0b6e63;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn2{box-sizing:border-box;min-height:48px;border-radius:12px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.pie{box-sizing:border-box;flex:none;padding:12px 16px 20px;border-top:1px solid #dce7e2;display:flex;flex-direction:column;gap:8px}
+.advertencia{box-sizing:border-box;border-radius:12px;padding:14px;background:#fff8eb;border:2px solid #8a5a00;display:flex;gap:12px;align-items:flex-start}
+.advertencia-t{margin:0;font-size:16px;font-weight:700;color:#13261f}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+legend{font-weight:700;font-size:16px;padding:0;margin-bottom:8px}
+.opcion{box-sizing:border-box;display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 12px;border:1px solid #6a7d76;border-radius:12px;font-size:16px}
+.opcion input{width:22px;height:22px;accent-color:#0b6e63;margin:0}
+.opcion-sel{border:2px solid #0b6e63;background:#f2f7f5}
+.opcion-off{border:1px dashed #6a7d76;color:#4b5d56;background:#f7f9f8}
+.icono-grande{width:96px;height:96px;border-radius:50%;background:#f2f7f5;border:2px solid #dce7e2;display:flex;align-items:center;justify-content:center;align-self:center;margin-top:24px}
+</style>
+</helmet>
+<div class="tablero" style="width:932px;height:1060px">
+
+<div class="col">
+<p class="etq">HU-023 · Producto restringido</p>
+<p class="etq-nota">Si el producto está en la lista de restringidos, se avisa que consulte con la farmacia y no se ofrece domicilio.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button" aria-label="Volver a las respuestas">‹ Respuestas</button><p class="marca">¿Quién lo tiene?</p></div>
+<div class="cont">
+<h1 class="h1">Confirmar pedido</h1>
+<p class="p suave">Droguería La 5 · Amoxicilina 500 mg · 1 caja</p>
+<div class="advertencia" role="note">
+<svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" style="flex:none"><path d="M12 3.5L2.8 19.5h18.4z" fill="none" stroke="#8a5a00" stroke-width="2" stroke-linejoin="round"></path><path d="M12 10v4.5" stroke="#8a5a00" stroke-width="2" stroke-linecap="round"></path><circle cx="12" cy="17" r="1.2" fill="#8a5a00"></circle></svg>
+<div style="display:flex;flex-direction:column;gap:4px"><p class="advertencia-t">Este medicamento necesita fórmula médica</p><p class="p">Consulta con la farmacia y lleva tu fórmula al recogerlo. No se puede pedir a domicilio.</p></div>
+</div>
+<fieldset><legend>¿Cómo lo recibes?</legend>
+<label class="opcion opcion-sel"><input type="radio" name="entrega" checked>Recoger en la tienda</label>
+<label class="opcion opcion-off"><input type="radio" name="entrega" disabled>Domicilio · no disponible para este producto</label>
+</fieldset>
+<fieldset><legend>¿Cómo pagas?</legend>
+<label class="opcion opcion-sel"><input type="radio" name="pago" checked>Efectivo</label>
+<label class="opcion"><input type="radio" name="pago">Nequi</label>
+</fieldset>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:16px">
+<div style="display:flex;justify-content:space-between"><span style="color:#4b5d56">Producto</span><span>$ 12.000</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:#4b5d56">Domicilio</span><span>No aplica</span></div>
+<div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px"><span>Total</span><span>$ 12.000</span></div>
+</div>
+</div>
+<div class="pie"><button class="btn" type="button">Confirmar pedido · $ 12.000</button></div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-006 · Verificar el correo</p>
+<p class="etq-nota">El enlace dura 24 horas. Si venció, se ofrece enviarlo de nuevo.</p>
+<div class="tel">
+<div class="barra"><p class="marca">¿Quién lo tiene?</p></div>
+<div class="cont" style="gap:16px">
+<div class="icono-grande"><svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="#0b6e63" stroke-width="1.8"></rect><path d="M3.5 7l8.5 6 8.5-6" fill="none" stroke="#0b6e63" stroke-width="1.8" stroke-linejoin="round"></path></svg></div>
+<h1 class="h1" style="text-align:center">Este enlace ya venció</h1>
+<p class="p suave" style="text-align:center">Los enlaces para verificar el correo duran 24 horas. Pide uno nuevo y te lo enviaremos a cl•••••@ejemplo.com.</p>
+<button class="btn" type="button">Enviar un enlace nuevo</button>
+<a class="btn2" href="#">Ir al inicio</a>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":932,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

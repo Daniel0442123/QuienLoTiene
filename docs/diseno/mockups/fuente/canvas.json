@@ -1,0 +1,27 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-12T21:10:00Z" },
+  "title": "Mockups de las historias pendientes",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1378, "h": 1060, "title": "Cliente · Respuestas y pedido (HU-020, HU-014, HU-024)" },
+    "ClienteOrden.dc.html": { "x": 1458, "y": 0, "w": 1824, "h": 1060, "title": "Cliente · Seguimiento del pedido (HU-027 a HU-029, HU-025, HU-026, HU-032, HU-033)" },
+    "ClienteDespues.dc.html": { "x": 0, "y": 1180, "w": 1378, "h": 1060, "title": "Cliente · Después del pedido (HU-034, HU-035, HU-008)" },
+    "ClienteAvisos.dc.html": { "x": 1458, "y": 1180, "w": 932, "h": 1060, "title": "Cliente · Avisos (HU-023, HU-006)" },
+    "ClienteEstados.dc.html": { "x": 2470, "y": 1180, "w": 932, "h": 1060, "title": "Cliente · Estados del Sprint 2 (HU-020 vacío, HU-021 vencida)" },
+    "TiendaSolicitudes.dc.html": { "x": 0, "y": 2640, "w": 1824, "h": 1060, "title": "Tienda · Solicitudes y responder (HU-018, HU-019, HU-030)" },
+    "TiendaGestion.dc.html": { "x": 1904, "y": 2640, "w": 1824, "h": 1060, "title": "Tienda · Pedidos y configuración (HU-027, HU-015, HU-011, HU-031)" },
+    "TiendaEstados.dc.html": { "x": 0, "y": 3820, "w": 1378, "h": 1060, "title": "Tienda · Estados del Sprint 2 (HU-021 no elegida, HU-027)" },
+    "TiendaSolicitudes320.dc.html": { "x": 1458, "y": 3820, "w": 792, "h": 860, "title": "Tienda · Solicitudes a 320 px (reflujo, WCAG 1.4.10)" },
+    "Admin.dc.html": { "x": 0, "y": 5280, "w": 932, "h": 1060, "title": "Administrador (HU-037, HU-038)" }
+  },
+  "order": ["Main.dc.html", "ClienteOrden.dc.html", "ClienteDespues.dc.html", "ClienteAvisos.dc.html", "ClienteEstados.dc.html", "TiendaSolicitudes.dc.html", "TiendaGestion.dc.html", "TiendaEstados.dc.html", "TiendaSolicitudes320.dc.html", "Admin.dc.html"],
+  "notes": {
+    "titulo-cliente": { "x": 0, "y": -300, "text": "Cliente", "kind": "title1", "maxW": 3282 },
+    "titulo-tienda": { "x": 0, "y": 2340, "text": "Tienda", "kind": "title1", "maxW": 3728 },
+    "titulo-admin": { "x": 0, "y": 4980, "text": "Administrador", "kind": "title1", "maxW": 932 },
+    "nota-alcance": { "x": 3482, "y": 1180, "w": 360, "fill": "teal", "text": "Mockups de las historias que faltan (Sprint 2 en adelante), con la paleta Verde botica y Atkinson Hyperlegible. Las del Sprint 1 ya están construidas en la app. Los datos de ejemplo (tiendas, precios, reseñas) son inventados para el mockup." }
+  },
+  "designSystems": []
+}
