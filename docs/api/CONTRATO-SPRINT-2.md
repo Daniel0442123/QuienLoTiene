@@ -1,6 +1,6 @@
 # Contrato de la API del Sprint 2 · Quién lo tiene
 
-> **Control del documento** · Versión 0.3 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.4 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Acuerdo del «primer día» del backlog del Sprint 2 (`docs/planificacion/BACKLOG-SPRINT-2.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-018, HU-019, HU-020, HU-021, HU-024, HU-027, HU-028, HU-030 y HU-032. El detalle completo está en [`contrato-sprint-2.yaml`](contrato-sprint-2.yaml) (OpenAPI 3.1); Monica puede generar sus simulaciones de MSW desde ese archivo mientras el backend se construye. Cuando el backend esté fusionado manda `/v3/api-docs`, que ya marca los campos obligatorios y los nulables (DEF-001).
 
@@ -8,7 +8,7 @@ Acuerdo del «primer día» del backlog del Sprint 2 (`docs/planificacion/BACKLO
 
 | Método y ruta | Rol | Historia | Qué hace |
 |---|---|---|---|
-| `GET /api/v1/eventos` | todos | HU-030 | Flujo SSE, una conexión por usuario, latido cada 25 s, `Last-Event-ID` reenvía lo perdido (5 min) |
+| `GET /api/v1/eventos` | todos | HU-030 | Flujo SSE, hasta 5 conexiones por usuario (SC-014), latido cada 25 s, `Last-Event-ID` reenvía lo perdido (5 min) |
 | `GET /api/v1/solicitudes/disponibles` | TIENDA | HU-018 | Solicitudes abiertas que llegaron a mi tienda y no he respondido; urgentes primero; sin datos del cliente |
 | `POST /api/v1/solicitudes/{id}/respuestas` | TIENDA | HU-019 | Responder `SI`, `PARECIDO` o `NO`, una sola vez |
 | `GET /api/v1/tiendas/me/respuestas` | TIENDA | HU-019, HU-021 | «Mis respuestas» de las últimas 24 h con estado ESPERANDO, ELEGIDA, NO_ELEGIDA o VENCIDA |
@@ -57,3 +57,4 @@ Se agregan a `CODIGOS-DE-ERROR.md`: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004`
 | 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión del contrato del Sprint 2 para que el frontend empiece en paralelo |
 | 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `estado-orden-cambiado` llega a las dos partes; el contrato queda alineado con el backend implementado |
 | 0.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-011 aprobada: el precio sugerido queda como parte del contrato |
+| 0.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-014: hasta 5 conexiones SSE por usuario; cada aviso llega a todas y la sexta cierra la más antigua |
