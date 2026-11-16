@@ -355,7 +355,8 @@ function crearBaseInicial(): BaseSimulada {
         longitud: -76.608,
         direccionEscrita: 'Carrera 9 # 4-15, apto 302',
         indicaciones: null,
-        telefono: vecina.telefono,
+        // Otro número que el de la cuenta: con domicilio la tienda ve el de la dirección (quien recibe)
+        telefono: '3168889900',
         fechaCreacion: HACE_UNA_SEMANA,
       },
     ],

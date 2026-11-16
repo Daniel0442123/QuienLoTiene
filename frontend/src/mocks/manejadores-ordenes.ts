@@ -60,7 +60,7 @@ function aOrdenResponse(orden: OrdenSimulada, usuario: UsuarioSimulado) {
     cliente: verCliente
       ? {
           nombre: cliente.nombre,
-          telefono: cliente.telefono,
+          telefono: telefonoDelCliente(orden),
           direccion:
             orden.modalidad === 'DOMICILIO' && direccion
               ? {
@@ -82,9 +82,17 @@ function cambiarEstado(orden: OrdenSimulada, estado: EstadoOrdenSimulado): void 
 }
 
 /** Teléfono colombiano en formato internacional sin «+», como lo pide wa.me. */
+/** Como EnlaceWhatsapp del backend: solo dígitos y el 57 delante de un celular colombiano (10 dígitos que empiezan por 3). */
 function telefonoInternacional(telefono: string): string {
   const digitos = telefono.replace(/\D/g, '')
-  return digitos.length === 10 ? `57${digitos}` : digitos
+  return digitos.length === 10 && digitos.startsWith('3') ? `57${digitos}` : digitos
+}
+
+/** Con domicilio, el teléfono del cliente es el de la dirección de entrega, quien recibe el pedido (HU-007, CrearOrden). */
+function telefonoDelCliente(orden: OrdenSimulada): string {
+  const direccion = base.direcciones.find((d) => d.id === orden.direccionId)
+  if (orden.modalidad === 'DOMICILIO' && direccion) return direccion.telefono
+  return base.usuarios.find((u) => u.id === orden.clienteId)?.telefono ?? ''
 }
 
 export const manejadoresOrdenes = [
@@ -125,6 +133,13 @@ export const manejadoresOrdenes = [
     const tienda = base.tiendas.find((t) => t.id === respuesta.tiendaId)
     if (!tienda) return problema(404, 'SOL-007', 'Respuesta no encontrada')
 
+    // Mismo orden que CrearOrden del backend: medio de pago (ORD-003) antes que la cobertura (TIE-010)
+    if (!tienda.mediosPago.includes(pedido.medioPago)) {
+      return problema(422, 'ORD-003', 'Medio de pago no aceptado', {
+        detail: `${tienda.nombre} no recibe ese medio de pago.`,
+      })
+    }
+
     let costoEnPesos = 0
     if (pedido.modalidad === 'DOMICILIO') {
       const direccion = base.direcciones.find((d) => d.id === pedido.direccionId && d.clienteId === cliente.id)
@@ -136,11 +151,6 @@ export const manejadoresOrdenes = [
         })
       }
       costoEnPesos = costo
-    }
-    if (!tienda.mediosPago.includes(pedido.medioPago)) {
-      return problema(422, 'ORD-003', 'Medio de pago no aceptado', {
-        detail: `${tienda.nombre} no recibe ese medio de pago.`,
-      })
     }
 
     const ahora = new Date().toISOString()
@@ -238,15 +248,20 @@ export const manejadoresOrdenes = [
     if (orden instanceof Response) return orden
     if (!ordenActiva(orden)) return problema(409, 'MEN-001', 'Contacto no disponible')
 
+    const tienda = base.tiendas.find((t) => t.id === orden.tiendaId)
     const otraParte =
       usuario.rol === 'CLIENTE'
-        ? base.tiendas.find((t) => t.id === orden.tiendaId)
-        : base.usuarios.find((u) => u.id === orden.clienteId)
-    const telefono = telefonoInternacional(otraParte?.telefono ?? '')
+        ? { nombre: tienda?.nombre ?? '', telefono: tienda?.telefono ?? '' }
+        : {
+            nombre: base.usuarios.find((u) => u.id === orden.clienteId)?.nombre ?? '',
+            telefono: telefonoDelCliente(orden),
+          }
+    const telefono = telefonoInternacional(otraParte.telefono)
     const numeroCorto = orden.id.slice(0, 8).toUpperCase()
-    const mensaje = `Hola, te escribo por la orden ${numeroCorto} (${orden.producto}) de Quién lo tiene.`
+    // Mismo texto que EnlaceWhatsapp del backend
+    const mensaje = `Hola, te escribo por la orden ${numeroCorto} de ${orden.producto} en ¿Quién lo tiene?`
     return HttpResponse.json({
-      nombre: otraParte?.nombre ?? '',
+      nombre: otraParte.nombre,
       telefono,
       enlace: `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`,
     })

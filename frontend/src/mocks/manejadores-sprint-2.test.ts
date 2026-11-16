@@ -42,8 +42,8 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-describe('Simulación de la API · Sprint 2 · tienda (HU-018, HU-019, HU-021)', () => {
-  it('HU-018: muestra las solicitudes nuevas con la urgente primero, sin datos del cliente y con precio sugerido', async () => {
+describe('Simulación de la API · Sprint 2 · tienda · HU-018, HU-019, HU-021 · CP-SOL-018-01, CP-SOL-018-02, CP-NOT-030-02, CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-04', () => {
+  it('CP-SOL-018-01 · CP-SOL-018-02 · CP-NOT-030-02 · urgente primero, sin datos del cliente, distancia redondeada y precio sugerido', async () => {
     // Dado
     const token = await entrar(CORREOS_DE_PRUEBA.tienda)
 
@@ -60,7 +60,7 @@ describe('Simulación de la API · Sprint 2 · tienda (HU-018, HU-019, HU-021)',
     expect(primera).not.toHaveProperty('ubicacion')
   })
 
-  it('HU-019: responde una sola vez, pide la descripción de «Tengo algo parecido» y la lista en «Mis respuestas»', async () => {
+  it('CP-SOL-019-01 · CP-SOL-019-02 · CP-SOL-019-04 · responde una sola vez, pide la descripción de «Tengo algo parecido» y la lista en «Mis respuestas»', async () => {
     // Dado
     const token = await entrar(CORREOS_DE_PRUEBA.tienda)
     const ruta = `/api/v1/solicitudes/${SOLICITUD_DE_LA_VECINA}/respuestas`
@@ -81,7 +81,7 @@ describe('Simulación de la API · Sprint 2 · tienda (HU-018, HU-019, HU-021)',
     expect(mias.find((r) => r.producto === 'Loratadina 10 mg')).toMatchObject({ estado: 'ELEGIDA' })
   })
 
-  it('HU-019: no acepta respuestas a una solicitud que llegó a otra categoría (SOL-003)', async () => {
+  it('HU-019 · no acepta respuestas a una solicitud que llegó a otra categoría (SOL-003)', async () => {
     // Dado
     const cliente = await entrar(CORREOS_DE_PRUEBA.cliente)
     const tienda = await entrar(CORREOS_DE_PRUEBA.tienda)
@@ -103,8 +103,8 @@ describe('Simulación de la API · Sprint 2 · tienda (HU-018, HU-019, HU-021)',
   })
 })
 
-describe('Simulación de la API · Sprint 2 · cliente (HU-020, HU-021, HU-024)', () => {
-  it('HU-020 y HU-024: las tiendas simuladas responden a los segundos y el cliente elige una con domicilio', async () => {
+describe('Simulación de la API · Sprint 2 · cliente · HU-020, HU-021, HU-024 · CP-SOL-020-02, CP-SOL-020-03, CP-SOL-021-01, CP-ORD-024-01, CP-ORD-024-04', () => {
+  it('CP-SOL-020-03 · CP-ORD-024-01 · CP-ORD-024-04 · las tiendas simuladas responden a los segundos y el cliente elige una con domicilio', async () => {
     // Dado
     vi.useFakeTimers({ toFake: ['Date'] })
     const token = await entrar(CORREOS_DE_PRUEBA.cliente)
@@ -141,7 +141,7 @@ describe('Simulación de la API · Sprint 2 · cliente (HU-020, HU-021, HU-024)'
     expect((await pedir(`/api/v1/solicitudes/${id}`, token)).cuerpo).toMatchObject({ estado: 'RESUELTA' })
   })
 
-  it('HU-021: la solicitud pasa a VENCIDA cuando se cumple su hora', async () => {
+  it('CP-SOL-021-01 · la solicitud pasa a VENCIDA cuando se cumple su hora', async () => {
     // Dado
     vi.useFakeTimers({ toFake: ['Date'] })
     const token = await entrar(CORREOS_DE_PRUEBA.cliente)
@@ -155,7 +155,7 @@ describe('Simulación de la API · Sprint 2 · cliente (HU-020, HU-021, HU-024)'
     expect(cuerpo).toMatchObject({ estado: 'VENCIDA' })
   })
 
-  it('responde SOL-003 al cliente que pide la solicitud de otro, sin decir que existe', async () => {
+  it('HU-020 · responde SOL-003 al cliente que pide la solicitud de otro, sin decir que existe', async () => {
     // Dado
     const token = await entrar(CORREOS_DE_PRUEBA.cliente)
 
@@ -167,8 +167,8 @@ describe('Simulación de la API · Sprint 2 · cliente (HU-020, HU-021, HU-024)'
   })
 })
 
-describe('Simulación de la API · Sprint 2 · órdenes (HU-027, HU-028, HU-032)', () => {
-  it('HU-027: la tienda solo avanza al paso siguiente y ve los datos del cliente con la orden activa', async () => {
+describe('Simulación de la API · Sprint 2 · órdenes · HU-027, HU-028, HU-032 · CP-ORD-024-02, CP-ORD-024-03, CP-ORD-027-01, CP-ORD-027-02, CP-ORD-028-01, CP-ORD-028-02, CP-MEN-032-01', () => {
+  it('CP-ORD-027-01 · CP-ORD-027-02 · CP-ORD-024-02 · la tienda solo avanza al paso siguiente y ve los datos del cliente con la orden activa', async () => {
     // Dado
     const token = await entrar(CORREOS_DE_PRUEBA.tienda)
     const ruta = `/api/v1/ordenes/${ORDEN_DE_LA_VECINA}/estado`
@@ -181,13 +181,13 @@ describe('Simulación de la API · Sprint 2 · órdenes (HU-027, HU-028, HU-032)
     expect(salto).toMatchObject({ status: 409, cuerpo: { codigo: 'ORD-002' } })
     expect(siguiente.cuerpo).toMatchObject({
       estado: 'PREPARANDO',
-      cliente: { nombre: 'Vecina de Prueba', direccion: { nombre: 'Apartamento' } },
+      cliente: { nombre: 'Vecina de Prueba', telefono: '3168889900', direccion: { nombre: 'Apartamento' } },
     })
     const lista = (await pedir('/api/v1/ordenes', token)).cuerpo as Cuerpo[]
     expect(lista.map((o) => o.esActiva)).toEqual([true, true])
   })
 
-  it('HU-028 y HU-032: el cliente confirma la recepción y después ya no hay WhatsApp ni datos para la tienda', async () => {
+  it('CP-ORD-028-01 · CP-ORD-028-02 · CP-MEN-032-01 · el cliente confirma la recepción y después ya no hay WhatsApp ni datos para la tienda', async () => {
     // Dado
     const cliente = await entrar(CORREOS_DE_PRUEBA.cliente)
     const tienda = await entrar(CORREOS_DE_PRUEBA.tienda)
@@ -199,10 +199,44 @@ describe('Simulación de la API · Sprint 2 · órdenes (HU-027, HU-028, HU-032)
 
     // Entonces
     expect(whatsapp).toMatchObject({ nombre: 'Droguería La 5', telefono: '573001234567' })
-    expect(String(whatsapp.enlace)).toMatch(/^https:\/\/wa\.me\/573001234567\?text=/)
+    expect(String(whatsapp.enlace)).toBe(
+      `https://wa.me/573001234567?text=${encodeURIComponent('Hola, te escribo por la orden E1F2A3B4 de Ibuprofeno 400 mg en ¿Quién lo tiene?')}`,
+    )
     expect(recibida.cuerpo).toMatchObject({ estado: 'RESUELTA', esActiva: false })
     expect((await pedir(`${ruta}/whatsapp`, cliente)).cuerpo).toMatchObject({ codigo: 'MEN-001' })
     expect((await pedir(ruta, tienda)).cuerpo).toMatchObject({ cliente: null })
     expect((await pedir(`/api/v1/ordenes/${ORDEN_DE_LA_VECINA}`, cliente)).cuerpo).toMatchObject({ codigo: 'ORD-001' })
+  })
+
+  it('CP-ORD-024-04 · revisa el medio de pago antes que la cobertura, como el backend', async () => {
+    // Dado: Farmacia Popular no hace domicilio y no recibe datáfono
+    vi.useFakeTimers({ toFake: ['Date'] })
+    const token = await entrar(CORREOS_DE_PRUEBA.cliente)
+    const id = await publicarSolicitud(token, 'DOMICILIO')
+    vi.setSystemTime(Date.now() + 20_000)
+    const { respuestas } = (await pedir(`/api/v1/solicitudes/${id}/respuestas`, token)).cuerpo as {
+      respuestas: Cuerpo[]
+    }
+    const popular = respuestas.find((t) => t.nombreTienda === 'Farmacia Popular')
+    const pedido = { respuestaId: popular?.id, modalidad: 'DOMICILIO', direccionId: DIRECCION_DE_LA_CLIENTA }
+
+    // Cuando
+    const otroMedio = await pedir('/api/v1/ordenes', token, 'POST', { ...pedido, medioPago: 'DATAFONO' })
+    const sinCobertura = await pedir('/api/v1/ordenes', token, 'POST', { ...pedido, medioPago: 'EFECTIVO' })
+
+    // Entonces
+    expect(otroMedio).toMatchObject({ status: 422, cuerpo: { codigo: 'ORD-003' } })
+    expect(sinCobertura).toMatchObject({ status: 422, cuerpo: { codigo: 'TIE-010' } })
+  })
+
+  it('CP-MEN-032-01 · con domicilio, la tienda escribe al teléfono de la dirección de entrega', async () => {
+    // Dado
+    const tienda = await entrar(CORREOS_DE_PRUEBA.tienda)
+
+    // Cuando
+    const { cuerpo } = await pedir(`/api/v1/ordenes/${ORDEN_DE_LA_VECINA}/whatsapp`, tienda)
+
+    // Entonces
+    expect(cuerpo).toMatchObject({ nombre: 'Vecina de Prueba', telefono: '573168889900' })
   })
 })
