@@ -55,9 +55,12 @@ public class CambiarEstadoOrden {
     }
 
     private static EstadoOrden estadoDe(String estado, Orden orden) {
+        if (estado == null) {
+            throw new TransicionOrdenInvalidaException(orden.getEstado(), EstadoOrden.CONFIRMADO);
+        }
         try {
             return EstadoOrden.valueOf(estado);
-        } catch (IllegalArgumentException | NullPointerException estadoDesconocido) {
+        } catch (IllegalArgumentException estadoDesconocido) {
             throw new TransicionOrdenInvalidaException(orden.getEstado(), EstadoOrden.CONFIRMADO);
         }
     }

@@ -58,11 +58,12 @@ public class ConfigurarDomicilio {
         if (!domicilio.haceDomicilio()) {
             return ConfiguracionDomicilio.sinDomicilio();
         }
-        if (domicilio.radioCoberturaEnMetros() == null || domicilio.tarifaFijaEnPesos() == null) {
+        var radio = domicilio.radioCoberturaEnMetros();
+        var tarifa = domicilio.tarifaFijaEnPesos();
+        if (radio == null || tarifa == null) {
             throw new DomicilioInvalidoException("con domicilio activo faltan el radio o la tarifa");
         }
-        return ConfiguracionDomicilio.conDomicilio(
-                domicilio.radioCoberturaEnMetros(), new TarifaDomicilio.TarifaFija(domicilio.tarifaFijaEnPesos()));
+        return ConfiguracionDomicilio.conDomicilio(radio, new TarifaDomicilio.TarifaFija(tarifa));
     }
 
     private static Domicilio aDomicilio(ConfiguracionDomicilio configuracion) {
