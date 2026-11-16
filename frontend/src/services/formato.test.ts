@@ -1,9 +1,30 @@
 import { describe, expect, it } from 'vitest'
-import { formatearDistancia, formatearFechaHora, formatearPesos, formatearTamano, minutosHasta } from './formato'
+import {
+  formatearDistancia,
+  formatearFechaHora,
+  formatearHace,
+  formatearPesos,
+  formatearTamano,
+  formatearUnidades,
+  minutosHasta,
+} from './formato'
 
 describe('Formato para Colombia', () => {
   it('muestra pesos sin decimales y con punto de miles', () => {
     expect(formatearPesos(4000).replace(/\s/g, ' ')).toBe('$ 4.000')
+  })
+
+  it('CP-SOL-018-02 · muestra 1.200 m como «1,2 km»', () => {
+    expect(formatearDistancia(1200)).toBe('1,2 km')
+  })
+
+  it('dice hace cuánto llegó una solicitud y cuántas unidades pide', () => {
+    const ahora = new Date('2026-11-16T15:30:00Z')
+    expect(formatearHace('2026-11-16T15:29:40Z', ahora)).toBe('hace un momento')
+    expect(formatearHace('2026-11-16T15:26:00Z', ahora)).toBe('hace 4 min')
+    expect(formatearHace('2026-11-16T13:00:00Z', ahora)).toBe('hace 2 h')
+    expect(formatearUnidades(1)).toBe('1 unidad')
+    expect(formatearUnidades(3)).toBe('3 unidades')
   })
 
   it('muestra metros por debajo de 1 km y kilómetros con un decimal por encima', () => {

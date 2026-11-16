@@ -1,11 +1,86 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type { ComponentesProvisionales } from '@/services/api-tipos-provisionales'
+import type { components } from '@/services/api-tipos-sprint-2'
 import { clienteApi } from '@/services/clienteApi'
-import type { DatosPublicarSolicitud } from './esquemas'
+import type { DatosPublicarSolicitud, DatosResponder } from './esquemas'
 
 /** Consultas y mutaciones de solicitudes (DECISIONES-FRONTEND sección 4). */
 
+type Esquemas = components['schemas']
+
 export type Solicitud = ComponentesProvisionales['SolicitudResponse']
+export type SolicitudDisponible = Esquemas['SolicitudDisponibleResponse']
+export type RespuestaDeTienda = Esquemas['RespuestaDeTiendaResponse']
+export type EstadoRespuesta = Esquemas['EstadoRespuesta']
+
+/** Claves de TanStack Query de las solicitudes de la tienda (el cierre de sesión borra toda la caché). */
+export const clavesSolicitudesTienda = {
+  disponibles: ['solicitudes', 'disponibles'] as const,
+  misRespuestas: ['tiendas', 'me', 'respuestas'] as const,
+}
+
+/**
+ * Mientras no llega el tiempo real (HU-030), la lista se vuelve a pedir cada 30 s. Con SSE, el evento
+ * `solicitud-nueva` invalida esta consulta y el intervalo queda solo como respaldo.
+ */
+const INTERVALO_SIN_TIEMPO_REAL_MS = 30_000
+
+function exigirDatos<T>(data: T | undefined): T {
+  if (data === undefined) throw new Error('La API respondió sin datos')
+  return data
+}
+
+/** HU-018: solicitudes abiertas que llegaron a la tienda y no ha respondido; urgentes primero (lo ordena la API). */
+export function useSolicitudesDisponibles() {
+  return useQuery({
+    queryKey: clavesSolicitudesTienda.disponibles,
+    queryFn: async () => exigirDatos((await clienteApi.GET('/api/v1/solicitudes/disponibles')).data),
+    refetchInterval: INTERVALO_SIN_TIEMPO_REAL_MS,
+  })
+}
+
+/** HU-019 y HU-021: respuestas de la tienda de las últimas 24 h con su estado. */
+export function useMisRespuestas() {
+  return useQuery({
+    queryKey: clavesSolicitudesTienda.misRespuestas,
+    queryFn: async () => exigirDatos((await clienteApi.GET('/api/v1/tiendas/me/respuestas')).data),
+    refetchInterval: INTERVALO_SIN_TIEMPO_REAL_MS,
+  })
+}
+
+type Respuesta = { solicitudId: string } & ({ tipo: 'NO' } | DatosResponder)
+
+/**
+ * HU-019: responder SI, PARECIDO o NO, una sola vez (SOL-005). Sin actualización optimista para SI y PARECIDO: el
+ * backend puede rechazar por vencida o duplicada. «No lo tengo» ya salió de la lista antes de enviarse (deshacer).
+ */
+export function useResponderSolicitud() {
+  const clienteConsultas = useQueryClient()
+  return useMutation({
+    mutationFn: async (respuesta: Respuesta) => {
+      const cuerpo =
+        respuesta.tipo === 'NO'
+          ? { tipo: 'NO' as const }
+          : {
+              tipo: respuesta.tipo,
+              precioEnPesos: respuesta.precio,
+              cantidadDisponible: respuesta.cantidad,
+              descripcionAlternativa: respuesta.tipo === 'PARECIDO' ? respuesta.descripcionAlternativa : null,
+            }
+      const { data } = await clienteApi.POST('/api/v1/solicitudes/{solicitudId}/respuestas', {
+        params: { path: { solicitudId: respuesta.solicitudId } },
+        body: cuerpo,
+      })
+      return exigirDatos(data)
+    },
+    // Respondida, duplicada o cerrada: en todos los casos la lista y «Mis respuestas» cambiaron. No se espera la
+    // recarga para que la pantalla avance apenas responde la API.
+    onSettled: () => {
+      void clienteConsultas.invalidateQueries({ queryKey: clavesSolicitudesTienda.disponibles })
+      void clienteConsultas.invalidateQueries({ queryKey: clavesSolicitudesTienda.misRespuestas })
+    },
+  })
+}
 
 /**
  * HU-016: publica «¿quién tiene X?» para las tiendas cercanas. Sin actualización optimista: el backend puede rechazar

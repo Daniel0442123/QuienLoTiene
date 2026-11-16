@@ -50,6 +50,19 @@ export function minutosHasta(fechaIso: string, ahora: Date = new Date()): number
   return Math.max(0, Math.ceil(diferenciaEnMilisegundos / 60_000))
 }
 
+/** Hace cuánto pasó algo: "hace un momento", "hace 4 min", "hace 2 h". */
+export function formatearHace(fechaIso: string, ahora: Date = new Date()): string {
+  const minutos = Math.floor((ahora.getTime() - new Date(fechaIso).getTime()) / 60_000)
+  if (minutos < 1) return 'hace un momento'
+  if (minutos < 60) return `hace ${minutos} min`
+  return `hace ${Math.floor(minutos / 60)} h`
+}
+
+/** 1 → "1 unidad"; 3 → "3 unidades". */
+export function formatearUnidades(cantidad: number): string {
+  return cantidad === 1 ? '1 unidad' : `${cantidad} unidades`
+}
+
 const formatoMegabytes = new Intl.NumberFormat(IDIOMA, { maximumFractionDigits: 1 })
 
 /** Tamaño de un archivo para mostrarlo a la persona: "850 KB", "1,2 MB". */
