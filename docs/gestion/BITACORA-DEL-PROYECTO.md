@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -104,7 +104,7 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-01 | Exportar de nuevo a PDF la arquitectura y el plan de proyecto (todavía dicen WCAG 2.1) | PR #17 | Daniel Montenegro Almendra | 15/11/2026 | Abierto | |
 | C-02 | Autenticar el SSE con `Authorization`, Caddy sirviendo `frontend/dist` y endpoint de la llave pública VAPID (DECISIONES-FRONTEND 15.2) | PR #17 | Daniel Montenegro Almendra | Sprint 2 | Abierto | |
 | C-03 | Acordar la Content-Security-Policy con el frontend | PR #19 | Daniel Montenegro Almendra, Monica Anyi Cajas Mellizo | Sprint 2 | Abierto | |
-| C-04 | Generar `frontend/src/services/api-tipos.ts` desde OpenAPI y borrar los tipos provisionales | PR #21, #22 | Monica Anyi Cajas Mellizo | Sprint 2 | Abierto | |
+| C-04 | Generar `frontend/src/services/api-tipos.ts` desde OpenAPI y borrar los tipos provisionales. 16/11/2026, revisión del #38: el backend del Sprint 2 ya está en `main` (#35), pero Monica no puede levantarlo en su equipo; el #38 usa tipos generados de `docs/api/contrato-sprint-2.yaml` (`api-tipos-sprint-2.ts`), que también se borran al cerrar este compromiso | PR #21, #22, #38 | Monica Anyi Cajas Mellizo | Sprint 2 | Abierto | |
 | C-05 | Validar que `categoriaId` exista al registrar tienda y al publicar solicitud | PR #7, #31 | Daniel Montenegro Almendra | Sprint 2 | Abierto | |
 | C-06 | Exponer los medios de pago por `TiendasApi` para la orden (HU-024) | PR #15 | Daniel Montenegro Almendra | Sprint 2 | Abierto | |
 | C-07 | Aprobar el texto de la política de datos 1.0 (hoy es borrador en `politicaDatos.ts`) | PR #22 | Wilson Javier Galindez Certuche | 15/11/2026 | Abierto | |
@@ -126,3 +126,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: bitácora reconstruida desde el PR #1 hasta el #33, hechos fuera de PR y compromisos abiertos |
 | 1.1 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fusión de #32: tabla regenerada, hecho del corte, C-10 y C-13 actualizados |
 | 1.2 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-10 cerrado con la descripción del #33; nuevos C-15 a C-17 con lo que dejó la revisión de los mockups (#33) |
+| 1.3 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-04 sigue abierto: anotado por qué no se cerró en la revisión del #38 |
