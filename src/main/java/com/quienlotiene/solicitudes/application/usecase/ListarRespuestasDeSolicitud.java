@@ -10,6 +10,7 @@ import com.quienlotiene.solicitudes.domain.port.RespuestaRepository;
 import com.quienlotiene.solicitudes.domain.port.SolicitudRepository;
 import com.quienlotiene.tiendas.api.DatosTienda;
 import com.quienlotiene.tiendas.api.DatosTiendasApi;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;
@@ -65,18 +66,24 @@ public class ListarRespuestasDeSolicitud {
                         .collect(Collectors.toMap(
                                 DatosTienda::tiendaId, DatosTienda::nombre, (primero, otro) -> primero));
 
+        Map<UUID, List<String>> mediosPorTienda = datosTiendasApi.mediosPagoDe(
+                conProducto.stream().map(r -> r.getTiendaId()).toList());
+
         var tarjetas = conProducto.stream()
                 .map(respuesta -> respuesta.aTarjeta(
                         solicitud.getModalidad(), distanciasPorTienda.getOrDefault(respuesta.getTiendaId(), 0)))
                 .sorted(CriterioOrden.desde(orden).comparador())
-                .map(tarjeta -> aTarjetaParaCliente(tarjeta, nombresPorTienda::get))
+                .map(tarjeta -> aTarjetaParaCliente(
+                        tarjeta, nombresPorTienda::get, id -> mediosPorTienda.getOrDefault(id, List.of())))
                 .toList();
         return new RespuestasDeSolicitud(
                 solicitud.getId(), solicitud.getEstado().name(), solicitud.getCantidad(), respuestas.size(), tarjetas);
     }
 
     private static RespuestasDeSolicitud.Tarjeta aTarjetaParaCliente(
-            TarjetaRespuesta tarjeta, Function<UUID, String> nombreDeTienda) {
+            TarjetaRespuesta tarjeta,
+            Function<UUID, String> nombreDeTienda,
+            Function<UUID, List<String>> mediosPagoDeTienda) {
         var nombre = nombreDeTienda.apply(tarjeta.tiendaId());
         return new RespuestasDeSolicitud.Tarjeta(
                 tarjeta.respuestaId(),
@@ -94,6 +101,7 @@ public class ListarRespuestasDeSolicitud {
                 tarjeta.distanciaEnMetros(),
                 tarjeta.tiempoEstimadoEnMinutos(),
                 tarjeta.fechaRespuesta(),
-                tarjeta.fueElegida());
+                tarjeta.fueElegida(),
+                mediosPagoDeTienda.apply(tarjeta.tiendaId()));
     }
 }

@@ -40,6 +40,7 @@ class MediosPagoController {
     @Operation(
             summary = "Configurar medios de pago",
             description = "HU-012. Reemplaza la lista: el medio que no se envía queda desactivado.")
+    @ApiResponse(responseCode = "200", description = "Medios de pago guardados")
     @ApiResponse(responseCode = "400", description = "Ningún medio o uno desconocido (GEN-001, TIE-011)")
     @PutMapping
     MediosPagoResponse guardar(@Valid @RequestBody ConfigurarMediosPagoRequest peticion) {

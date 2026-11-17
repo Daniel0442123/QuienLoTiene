@@ -41,6 +41,7 @@ class DomicilioController {
     @Operation(
             summary = "Configurar domicilio",
             description = "HU-010. Activa o apaga el domicilio, radio y tarifa fija.")
+    @ApiResponse(responseCode = "200", description = "Domicilio guardado")
     @ApiResponse(responseCode = "400", description = "Datos inválidos (GEN-001) o domicilio inválido (TIE-009)")
     @PutMapping
     Domicilio guardar(@Valid @RequestBody ConfigurarDomicilioRequest peticion) {
@@ -56,6 +57,7 @@ class DomicilioController {
     @Operation(
             summary = "Simular el costo del domicilio",
             description = "CU-17 pasos 7 a 10. Lo que pagaría un cliente con ese subtotal y a esa distancia.")
+    @ApiResponse(responseCode = "200", description = "Costo del domicilio")
     @ApiResponse(responseCode = "422", description = "No hace domicilio o el cliente está fuera del radio (TIE-010)")
     @GetMapping("/simulacion")
     SimulacionDomicilioResponse simular(

@@ -38,8 +38,10 @@ class DireccionController {
 
     @Operation(summary = "Listar mis direcciones")
     @GetMapping
-    List<DatosDireccion> listar() {
-        return gestionarDirecciones.listar(usuarioActual.id());
+    List<DireccionResponse> listar() {
+        return gestionarDirecciones.listar(usuarioActual.id()).stream()
+                .map(DireccionResponse::de)
+                .toList();
     }
 
     @Operation(summary = "Guardar una dirección", description = "HU-007 (CP-CLI-007-01). Máximo 10 por cliente.")
@@ -47,17 +49,18 @@ class DireccionController {
     @ApiResponse(responseCode = "400", description = "Falta un dato (GEN-001, CLI-001)")
     @ApiResponse(responseCode = "422", description = "Ya tiene 10 direcciones (CLI-002)")
     @PostMapping
-    ResponseEntity<DatosDireccion> crear(@Valid @RequestBody DireccionRequest peticion) {
-        var direccion = gestionarDirecciones.crear(usuarioActual.id(), aDatos(peticion));
+    ResponseEntity<DireccionResponse> crear(@Valid @RequestBody DireccionRequest peticion) {
+        var direccion = DireccionResponse.de(gestionarDirecciones.crear(usuarioActual.id(), aDatos(peticion)));
         return ResponseEntity.created(URI.create("/api/v1/clientes/me/direcciones/" + direccion.id()))
                 .body(direccion);
     }
 
     @Operation(summary = "Editar una dirección")
+    @ApiResponse(responseCode = "200", description = "Dirección actualizada")
     @ApiResponse(responseCode = "404", description = "No existe o es de otro cliente (CLI-003)")
     @PutMapping("/{direccionId}")
-    DatosDireccion editar(@PathVariable UUID direccionId, @Valid @RequestBody DireccionRequest peticion) {
-        return gestionarDirecciones.editar(usuarioActual.id(), direccionId, aDatos(peticion));
+    DireccionResponse editar(@PathVariable UUID direccionId, @Valid @RequestBody DireccionRequest peticion) {
+        return DireccionResponse.de(gestionarDirecciones.editar(usuarioActual.id(), direccionId, aDatos(peticion)));
     }
 
     @Operation(summary = "Borrar una dirección")

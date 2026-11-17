@@ -23,6 +23,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
@@ -137,6 +138,7 @@ class ConsultasDeRespuestasTest {
     @Tag("HU-020")
     @Tag("CP-SOL-020-02")
     @Tag("CP-SOL-020-03")
+    @Tag("DEF-007")
     @DisplayName("CP-SOL-020-02 Las tarjetas salen ordenadas por precio, sin las NO y con la alternativa marcada")
     void listaTarjetasOrdenadas() {
         // Dado
@@ -165,6 +167,8 @@ class ConsultasDeRespuestasTest {
                 .thenReturn(List.of(envio(solicitud.getId(), tiendaA, 400), envio(solicitud.getId(), tiendaB, 1_100)));
         when(datosTiendasApi.buscarPorIds(any()))
                 .thenReturn(List.of(new DatosTienda(tiendaA, UUID.randomUUID(), "Droguería A", "3000000000")));
+        when(datosTiendasApi.mediosPagoDe(any()))
+                .thenReturn(Map.of(tiendaA, List.of("EFECTIVO", "DATAFONO"), tiendaB, List.of()));
         var listar = new ListarRespuestasDeSolicitud(
                 solicitudRepository, respuestaRepository, envioRepository, datosTiendasApi);
         // Cuando
@@ -182,6 +186,10 @@ class ConsultasDeRespuestasTest {
         var ultima = porPrecio.respuestas().get(2);
         assertThat(ultima.nombreTienda()).isEqualTo("Droguería A");
         assertThat(ultima.totalEnPesos()).isEqualTo(20_000);
+        // DEF-007 (CP-TIE-012-01): cada tarjeta trae los medios de su tienda; sin datos, la lista va vacía
+        assertThat(ultima.mediosPagoAceptados()).containsExactly("EFECTIVO", "DATAFONO");
+        assertThat(primera.mediosPagoAceptados()).isEmpty();
+        assertThat(porPrecio.respuestas().get(1).mediosPagoAceptados()).isEmpty();
         assertThat(porTotal.respuestas())
                 .extracting(RespuestasDeSolicitud.Tarjeta::totalEnPesos)
                 .containsExactly(8_200L, 15_000L, 20_000L);

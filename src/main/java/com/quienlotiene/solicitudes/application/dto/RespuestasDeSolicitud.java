@@ -1,5 +1,6 @@
 package com.quienlotiene.solicitudes.application.dto;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.List;
@@ -44,5 +45,19 @@ public record RespuestasDeSolicitud(
             int distanciaEnMetros,
             @Nullable Integer tiempoEstimadoEnMinutos,
             Instant fechaRespuesta,
-            boolean fueElegida) {}
+            boolean fueElegida,
+
+            @ArraySchema(
+                    arraySchema =
+                            @Schema(
+                                    description = "Medios de pago que la tienda tiene activos: «Confirmar pedido» "
+                                            + "solo ofrece estos (DEF-007, CP-TIE-012-01). Vacía si la tienda no "
+                                            + "los configuró."),
+                    schema = @Schema(allowableValues = {"EFECTIVO", "TRANSFERENCIA", "DATAFONO"}))
+            List<String> mediosPagoAceptados) {
+
+        public Tarjeta {
+            mediosPagoAceptados = List.copyOf(mediosPagoAceptados);
+        }
+    }
 }

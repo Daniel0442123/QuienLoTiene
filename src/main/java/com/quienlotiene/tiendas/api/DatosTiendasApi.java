@@ -2,6 +2,7 @@ package com.quienlotiene.tiendas.api;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,4 +39,12 @@ public interface DatosTiendasApi {
 
     /** Si la tienda tiene activo ese medio de pago (HU-012, CP-ORD-024-04). */
     boolean aceptaMedioPago(UUID tiendaId, String medioPago);
+
+    /**
+     * Medios de pago activos de cada tienda, en el orden efectivo, transferencia, datáfono (HU-012). Con ellos el
+     * cliente solo ve en «Confirmar pedido» los que la tienda acepta (DEF-007, CP-TIE-012-01).
+     *
+     * @return una entrada por tienda pedida; vacía si la tienda no existe o no configuró sus medios
+     */
+    Map<UUID, List<String>> mediosPagoDe(Collection<UUID> tiendaIds);
 }

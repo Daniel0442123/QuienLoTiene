@@ -1,0 +1,3575 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Tiendas",
+            "description": "Registro y configuraci\u00f3n de las tiendas"
+        },
+        {
+            "name": "\u00d3rdenes",
+            "description": "Crear la orden, avanzar su estado y confirmar recepci\u00f3n"
+        },
+        {
+            "name": "Solicitudes",
+            "description": "Publicar, ver y responder solicitudes"
+        },
+        {
+            "name": "Cat\u00e1logo",
+            "description": "Categor\u00edas de tiendas y solicitudes"
+        },
+        {
+            "name": "Administraci\u00f3n",
+            "description": "Revisi\u00f3n de tiendas"
+        },
+        {
+            "name": "Usuarios",
+            "description": "Perfil del usuario actual"
+        },
+        {
+            "name": "Clientes",
+            "description": "Direcciones de entrega del cliente"
+        },
+        {
+            "name": "Eventos",
+            "description": "Notificaciones en tiempo real (SSE)"
+        },
+        {
+            "name": "Autenticaci\u00f3n",
+            "description": "Registro de clientes, inicio y cierre de sesi\u00f3n"
+        },
+        {
+            "name": "Mensajer\u00eda",
+            "description": "Contactar por WhatsApp"
+        }
+    ],
+    "paths": {
+        "/api/v1/tiendas/me/perfil": {
+            "put": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Actualizar perfil y horario",
+                "description": "HU-009. Nombre, tel\u00e9fono y una franja por d\u00eda en hora de Colombia; los d\u00edas que no se env\u00edan quedan cerrados.",
+                "operationId": "actualizarPerfil",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualizarPerfilTiendaRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Perfil y horario guardados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MiTienda"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inv\u00e1lidos (GEN-001) u horario inv\u00e1lido (TIE-007)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/me/medios-pago": {
+            "get": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Ver mis medios de pago",
+                "operationId": "consultar",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MediosPagoResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Configurar medios de pago",
+                "description": "HU-012. Reemplaza la lista: el medio que no se env\u00eda queda desactivado.",
+                "operationId": "guardar",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConfigurarMediosPagoRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Medios de pago guardados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MediosPagoResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ning\u00fan medio o uno desconocido (GEN-001, TIE-011)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/me/domicilio": {
+            "get": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Ver mi domicilio",
+                "operationId": "consultar_1",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Domicilio"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Configurar domicilio",
+                "description": "HU-010. Activa o apaga el domicilio, radio y tarifa fija.",
+                "operationId": "guardar_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConfigurarDomicilioRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Domicilio guardado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Domicilio"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inv\u00e1lidos (GEN-001) o domicilio inv\u00e1lido (TIE-009)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/clientes/me/direcciones/{direccionId}": {
+            "put": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Editar una direcci\u00f3n",
+                "operationId": "editar",
+                "parameters": [
+                    {
+                        "name": "direccionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DireccionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Direcci\u00f3n actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DatosDireccion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe o es de otro cliente (CLI-003)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Borrar una direcci\u00f3n",
+                "operationId": "borrar",
+                "parameters": [
+                    {
+                        "name": "direccionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Direcci\u00f3n borrada"
+                    },
+                    "404": {
+                        "description": "No existe o es de otro cliente (CLI-003)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/registro": {
+            "post": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Registrar tienda",
+                "description": "HU-002. multipart/form-data con la parte \"datos\" (JSON, Content-Type application/json) y los archivos \"fotoLocal\" y \"rut\" (JPEG, PNG, WebP o PDF de m\u00e1ximo 5 MB). Crea la cuenta del due\u00f1o con rol TIENDA y deja la tienda PENDIENTE de revisi\u00f3n.",
+                "operationId": "registrar",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "datos": {
+                                        "$ref": "#/components/schemas/RegistrarTiendaRequest"
+                                    },
+                                    "fotoLocal": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Foto del local"
+                                    },
+                                    "rut": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "RUT"
+                                    }
+                                },
+                                "required": [
+                                    "datos"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tienda registrada y en revisi\u00f3n",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TiendaRegistradaResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inv\u00e1lidos (GEN-001, TIE-001), documento faltante (TIE-002) o archivo no permitido (TIE-003); reglas de la cuenta (IDE-002 a IDE-007)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "El correo ya tiene una cuenta (IDE-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "Un archivo pesa m\u00e1s de 5 MB (GEN-010)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/solicitudes": {
+            "post": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Publicar solicitud",
+                "description": "HU-016. Publica \"\u00bfqui\u00e9n tiene X?\" para las tiendas cercanas. M\u00e1ximo 10 por hora.",
+                "operationId": "publicar",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublicarSolicitudRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Solicitud ABIERTA con su fecha de vencimiento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolicitudResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Falta un dato (GEN-001, SOL-002)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Solo los clientes publican solicitudes (GEN-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Super\u00f3 las 10 solicitudes de la \u00faltima hora (SOL-001); Retry-After dice cu\u00e1ndo reintentar",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/solicitudes/{solicitudId}/respuestas": {
+            "get": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Ver y ordenar las respuestas de mi solicitud",
+                "description": "HU-020. Tarjetas SI y PARECIDO; las NO solo cuentan en respuestasRecibidas.",
+                "operationId": "listarRespuestas",
+                "parameters": [
+                    {
+                        "name": "solicitudId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "orden",
+                        "in": "query",
+                        "description": "precio (por defecto), distancia o total con domicilio",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "precio",
+                            "enum": [
+                                "precio",
+                                "distancia",
+                                "total"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Respuestas ordenadas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RespuestasDeSolicitudResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe o es de otro cliente (SOL-003)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Responder una solicitud",
+                "description": "HU-019. SI con precio y unidades; PARECIDO adem\u00e1s con la descripci\u00f3n; NO sin datos. Una sola vez por tienda y mientras la solicitud est\u00e9 abierta.",
+                "operationId": "responder",
+                "parameters": [
+                    {
+                        "name": "solicitudId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResponderSolicitudRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Respuesta registrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RespuestaDeTiendaResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inv\u00e1lidos (GEN-001) o respuesta incompleta (SOL-006)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "La solicitud no existe o no lleg\u00f3 a esta tienda (SOL-003)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Ya respondi\u00f3 (SOL-005) o la solicitud se cerr\u00f3 (SOL-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ordenes": {
+            "get": {
+                "tags": [
+                    "\u00d3rdenes"
+                ],
+                "summary": "Ver mis \u00f3rdenes",
+                "description": "HU-027. Primero las activas. M\u00e1ximo 50.",
+                "operationId": "listar",
+                "responses": {
+                    "200": {
+                        "description": "\u00d3rdenes del usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrdenResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "\u00d3rdenes"
+                ],
+                "summary": "Elegir una respuesta y crear la orden",
+                "description": "HU-024. Total = precio \u00d7 unidades + domicilio. Una sola elecci\u00f3n por solicitud.",
+                "operationId": "crear",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CrearOrdenRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Orden CONFIRMADO con el desglose",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrdenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inv\u00e1lidos (GEN-001) o falta la direcci\u00f3n (ORD-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Respuesta (SOL-007) o direcci\u00f3n (CLI-003) no encontrada",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "La solicitud ya no est\u00e1 abierta (SOL-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Medio de pago no aceptado (ORD-003), respuesta NO (SOL-008) o fuera de cobertura (TIE-010)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ordenes/{ordenId}/recepcion": {
+            "post": {
+                "tags": [
+                    "\u00d3rdenes"
+                ],
+                "summary": "Confirmar que recib\u00ed mi pedido",
+                "description": "HU-028. Solo con la orden ENTREGADO; queda RESUELTA.",
+                "operationId": "confirmarRecepcion",
+                "parameters": [
+                    {
+                        "name": "ordenId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Orden RESUELTA",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrdenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe o es de otro cliente (ORD-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Todav\u00eda no est\u00e1 ENTREGADO (ORD-002)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/clientes/me/direcciones": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Listar mis direcciones",
+                "operationId": "listar_1",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DatosDireccion"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Guardar una direcci\u00f3n",
+                "description": "HU-007 (CP-CLI-007-01). M\u00e1ximo 10 por cliente.",
+                "operationId": "crear_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DireccionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Direcci\u00f3n guardada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DatosDireccion"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Falta un dato (GEN-001, CLI-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ya tiene 10 direcciones (CLI-002)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/totp": {
+            "post": {
+                "tags": [
+                    "Autenticaci\u00f3n"
+                ],
+                "summary": "Verificar el segundo factor",
+                "description": "HU-004. Con el token temporal del inicio de sesi\u00f3n y el c\u00f3digo de 6 d\u00edgitos de la aplicaci\u00f3n autenticadora, entrega la sesi\u00f3n del administrador.",
+                "operationId": "verificarSegundoFactor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VerificarSegundoFactorRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sesi\u00f3n del administrador iniciada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SegundoFactorPendienteResponse"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/SesionResponse"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "C\u00f3digo incorrecto (IDE-012) o verificaci\u00f3n vencida (IDE-013)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/registro": {
+            "post": {
+                "tags": [
+                    "Autenticaci\u00f3n"
+                ],
+                "summary": "Registrar cliente",
+                "description": "HU-001. Crea una cuenta de cliente activa.",
+                "operationId": "registrar_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrarClienteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cuenta creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UsuarioRegistradoResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inv\u00e1lidos (GEN-001) o frase d\u00e9bil (IDE-002, IDE-003, IDE-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "El correo ya tiene una cuenta (IDE-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/refresco": {
+            "post": {
+                "tags": [
+                    "Autenticaci\u00f3n"
+                ],
+                "summary": "Renovar la sesi\u00f3n",
+                "description": "HU-003. Usa la cookie de refresco, la cambia por una nueva y entrega otro token de acceso.",
+                "operationId": "refrescarSesion",
+                "parameters": [
+                    {
+                        "name": "qlt_refresco",
+                        "in": "cookie",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sesi\u00f3n renovada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SegundoFactorPendienteResponse"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/SesionResponse"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Sin cookie, o token vencido o revocado (IDE-010)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "post": {
+                "tags": [
+                    "Autenticaci\u00f3n"
+                ],
+                "summary": "Cerrar sesi\u00f3n",
+                "description": "HU-003. Revoca el token de refresco y borra la cookie.",
+                "operationId": "cerrarSesion",
+                "parameters": [
+                    {
+                        "name": "qlt_refresco",
+                        "in": "cookie",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Sesi\u00f3n cerrada"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Autenticaci\u00f3n"
+                ],
+                "summary": "Iniciar sesi\u00f3n",
+                "description": "HU-003. Devuelve el token de acceso de 15 minutos y deja el token de refresco en la cookie qlt_refresco. Para el administrador devuelve segundoFactorRequerido=true y un token temporal para POST /api/v1/auth/totp (HU-004).",
+                "operationId": "iniciarSesion",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IniciarSesionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sesi\u00f3n iniciada o segundo factor pendiente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SegundoFactorPendienteResponse"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/SesionResponse"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Correo o frase incorrectos (IDE-008); administrador sin segundo factor (IDE-011)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Cuenta suspendida (IDE-009)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/tiendas/{tiendaId}/rechazo": {
+            "post": {
+                "tags": [
+                    "Administraci\u00f3n"
+                ],
+                "summary": "Rechazar tienda",
+                "description": "HU-036 (CP-ADM-036-02). La tienda queda RECHAZADA con el motivo.",
+                "operationId": "rechazar",
+                "parameters": [
+                    {
+                        "name": "tiendaId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RechazarTiendaRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tienda rechazada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TiendaParaRevision"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Falta el motivo (GEN-001, TIE-005)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "La tienda no est\u00e1 PENDIENTE (TIE-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/tiendas/{tiendaId}/aprobacion": {
+            "post": {
+                "tags": [
+                    "Administraci\u00f3n"
+                ],
+                "summary": "Aprobar tienda",
+                "description": "HU-036 (CP-ADM-036-01). La tienda queda APROBADA.",
+                "operationId": "aprobar",
+                "parameters": [
+                    {
+                        "name": "tiendaId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tienda aprobada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TiendaParaRevision"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "La tienda no est\u00e1 PENDIENTE (TIE-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/usuarios/me": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Ver mi perfil",
+                "operationId": "consultar_2",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PerfilUsuario"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Editar mi nombre y tel\u00e9fono",
+                "description": "HU-007 (CU-03 pasos 14 a 16).",
+                "operationId": "actualizar",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualizarPerfilRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PerfilUsuario"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/me/apertura": {
+            "patch": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Abrir o cerrar la tienda",
+                "description": "HU-013. Abierta (y en su horario) recibe solicitudes nuevas; cerrada deja de recibirlas.",
+                "operationId": "cambiarApertura",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CambiarAperturaRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Apertura guardada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MiTienda"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "La tienda a\u00fan no est\u00e1 aprobada (TIE-008)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ordenes/{ordenId}/estado": {
+            "patch": {
+                "tags": [
+                    "\u00d3rdenes"
+                ],
+                "summary": "Avanzar el estado de la orden",
+                "description": "HU-027. Solo el paso siguiente v\u00e1lido.",
+                "operationId": "cambiarEstado",
+                "parameters": [
+                    {
+                        "name": "ordenId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CambiarEstadoOrdenRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Orden con el estado nuevo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrdenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe o no es de esta tienda (ORD-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Cambio de estado no permitido (ORD-002)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/me": {
+            "get": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Ver mi tienda",
+                "description": "Estado, motivo de rechazo si lo hay, perfil y horario.",
+                "operationId": "consultar_3",
+                "responses": {
+                    "200": {
+                        "description": "La tienda del usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MiTienda"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "El usuario no tiene tienda (TIE-006)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/me/respuestas": {
+            "get": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Ver mis respuestas",
+                "description": "HU-021. Respuestas SI y PARECIDO de las \u00faltimas 24 horas con su estado.",
+                "operationId": "listar_2",
+                "responses": {
+                    "200": {
+                        "description": "Respuestas de la tienda, la m\u00e1s reciente primero",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RespuestaDeTiendaResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tiendas/me/domicilio/simulacion": {
+            "get": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "summary": "Simular el costo del domicilio",
+                "description": "CU-17 pasos 7 a 10. Lo que pagar\u00eda un cliente con ese subtotal y a esa distancia.",
+                "operationId": "simular",
+                "parameters": [
+                    {
+                        "name": "subtotalEnPesos",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "distanciaEnMetros",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Costo del domicilio",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SimulacionDomicilioResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "No hace domicilio o el cliente est\u00e1 fuera del radio (TIE-010)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/solicitudes/{solicitudId}": {
+            "get": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Ver mi solicitud",
+                "description": "HU-020 y HU-021. Estado, respuestas recibidas y la orden si ya eligi\u00f3.",
+                "operationId": "obtener",
+                "parameters": [
+                    {
+                        "name": "solicitudId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "La solicitud",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolicitudResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe o es de otro cliente (SOL-003)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/solicitudes/disponibles": {
+            "get": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Ver solicitudes nuevas de mi tienda",
+                "description": "HU-018. ABIERTAS que llegaron a la tienda y que no ha respondido; urgentes primero. Sin datos del cliente; distancia redondeada a 100 m.",
+                "operationId": "listarDisponibles",
+                "responses": {
+                    "200": {
+                        "description": "Solicitudes nuevas (lista vac\u00eda si no hay)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SolicitudDisponibleResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Solo las tiendas (GEN-004)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "El usuario no tiene tienda (TIE-006)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ordenes/{ordenId}": {
+            "get": {
+                "tags": [
+                    "\u00d3rdenes"
+                ],
+                "summary": "Ver una orden",
+                "description": "HU-024 y HU-027. La tienda ve los datos del cliente solo mientras la orden est\u00e1 activa.",
+                "operationId": "obtener_1",
+                "parameters": [
+                    {
+                        "name": "ordenId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "La orden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrdenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe o no es del usuario (ORD-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ordenes/{ordenId}/whatsapp": {
+            "get": {
+                "tags": [
+                    "Mensajer\u00eda"
+                ],
+                "summary": "Obtener el enlace de WhatsApp de la otra parte",
+                "description": "HU-032. Solo con la orden activa; el cliente recibe el n\u00famero de la tienda y la tienda el del cliente.",
+                "operationId": "obtener_2",
+                "parameters": [
+                    {
+                        "name": "ordenId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Enlace wa.me listo para abrir",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ContactoWhatsappResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "La orden no existe o no es del usuario (ORD-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "La orden ya no est\u00e1 activa (MEN-001)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/eventos": {
+            "get": {
+                "tags": [
+                    "Eventos"
+                ],
+                "summary": "Abrir el flujo de eventos en tiempo real",
+                "description": "HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario (SC-014), latido ':latido' cada 25 s y reenv\u00edo de lo perdido en 5 minutos con Last-Event-ID. Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, solicitud-vencida, orden-creada y estado-orden-cambiado (docs/api/contrato-sprint-2.yaml).",
+                "operationId": "abrir",
+                "parameters": [
+                    {
+                        "name": "Last-Event-ID",
+                        "in": "header",
+                        "description": "\u00daltimo id recibido, para reenviar lo perdido",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Conexi\u00f3n abierta. Cada evento trae id, event (el tipo) y data (uno de estos JSON).",
+                        "content": {
+                            "text/event-stream": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/EventoSolicitudNueva"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/EventoRespuestaRecibida"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/EventoSolicitudCerrada"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/EventoRespuestaNoElegida"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/EventoSolicitudVencida"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/EventoOrdenCreada"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/EventoEstadoOrdenCambiado"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Sin sesi\u00f3n (GEN-003)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categorias": {
+            "get": {
+                "tags": [
+                    "Cat\u00e1logo"
+                ],
+                "summary": "Listar categor\u00edas",
+                "description": "HU-002 y HU-016. Categor\u00edas activas ordenadas por nombre. No pide sesi\u00f3n.",
+                "operationId": "listar_3",
+                "responses": {
+                    "200": {
+                        "description": "Categor\u00edas activas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CategoriaResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/tiendas": {
+            "get": {
+                "tags": [
+                    "Administraci\u00f3n"
+                ],
+                "summary": "Listar tiendas por estado",
+                "description": "HU-036. Por defecto, las PENDIENTE de revisi\u00f3n.",
+                "operationId": "listar_4",
+                "parameters": [
+                    {
+                        "name": "estado",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "PENDIENTE",
+                            "pattern": "PENDIENTE|APROBADA|RECHAZADA|SUSPENDIDA"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TiendaParaRevision"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/tiendas/{tiendaId}/documentos/{documentoId}": {
+            "get": {
+                "tags": [
+                    "Administraci\u00f3n"
+                ],
+                "summary": "Descargar un documento",
+                "description": "HU-036. Queda en la auditor\u00eda.",
+                "operationId": "descargarDocumento",
+                "parameters": [
+                    {
+                        "name": "tiendaId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "documentoId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El archivo (JPEG, PNG, WebP o PDF) con Content-Disposition attachment",
+                        "content": {
+                            "application/octet-stream": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "La tienda o el documento no existe (TIE-006)",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProblemDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ActualizarPerfilTiendaRequest": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 0
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\+?[0-9]{7,15}$"
+                    },
+                    "horario": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FranjaRequest"
+                        },
+                        "maxItems": 7,
+                        "minItems": 0
+                    }
+                },
+                "required": [
+                    "horario",
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "FranjaRequest": {
+                "type": "object",
+                "properties": {
+                    "diaSemana": {
+                        "$ref": "#/components/schemas/DiaSemana",
+                        "pattern": "MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY"
+                    },
+                    "abre": {
+                        "type": "string",
+                        "format": "time-local"
+                    },
+                    "cierra": {
+                        "type": "string",
+                        "format": "time-local"
+                    }
+                },
+                "required": [
+                    "abre",
+                    "cierra",
+                    "diaSemana"
+                ]
+            },
+            "Franja": {
+                "type": "object",
+                "properties": {
+                    "diaSemana": {
+                        "$ref": "#/components/schemas/DiaSemana"
+                    },
+                    "abre": {
+                        "type": "string",
+                        "format": "time-local"
+                    },
+                    "cierra": {
+                        "type": "string",
+                        "format": "time-local"
+                    }
+                },
+                "required": [
+                    "abre",
+                    "cierra",
+                    "diaSemana"
+                ]
+            },
+            "MiTienda": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "type": "string"
+                    },
+                    "categoriaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "latitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoTienda"
+                    },
+                    "estaAbierta": {
+                        "type": "boolean"
+                    },
+                    "motivoRechazo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "fechaRegistro": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "horario": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Franja"
+                        }
+                    }
+                },
+                "required": [
+                    "categoriaId",
+                    "estaAbierta",
+                    "estado",
+                    "fechaRegistro",
+                    "horario",
+                    "id",
+                    "latitud",
+                    "longitud",
+                    "motivoRechazo",
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "ConfigurarMediosPagoRequest": {
+                "type": "object",
+                "properties": {
+                    "mediosPago": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MedioPago",
+                            "pattern": "EFECTIVO|TRANSFERENCIA|DATAFONO"
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "mediosPago"
+                ]
+            },
+            "MediosPagoResponse": {
+                "type": "object",
+                "properties": {
+                    "mediosPago": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MedioPago"
+                        }
+                    }
+                },
+                "required": [
+                    "mediosPago"
+                ]
+            },
+            "ConfigurarDomicilioRequest": {
+                "type": "object",
+                "properties": {
+                    "haceDomicilio": {
+                        "type": "boolean"
+                    },
+                    "radioCoberturaEnMetros": {
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 10000,
+                        "minimum": 500
+                    },
+                    "tarifaFijaEnPesos": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0
+                    }
+                },
+                "required": [
+                    "haceDomicilio"
+                ]
+            },
+            "Domicilio": {
+                "type": "object",
+                "properties": {
+                    "haceDomicilio": {
+                        "type": "boolean"
+                    },
+                    "radioCoberturaEnMetros": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int32"
+                    },
+                    "tipoTarifa": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "FIJA"
+                        ]
+                    },
+                    "tarifaFijaEnPesos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int64"
+                    }
+                },
+                "required": [
+                    "haceDomicilio",
+                    "radioCoberturaEnMetros",
+                    "tarifaFijaEnPesos",
+                    "tipoTarifa"
+                ]
+            },
+            "DireccionRequest": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "minLength": 0
+                    },
+                    "ubicacion": {
+                        "$ref": "#/components/schemas/UbicacionRequest"
+                    },
+                    "direccionEscrita": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "minLength": 0
+                    },
+                    "indicaciones": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "minLength": 0
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\+?[0-9]{7,15}$"
+                    }
+                },
+                "required": [
+                    "direccionEscrita",
+                    "nombre",
+                    "telefono",
+                    "ubicacion"
+                ]
+            },
+            "UbicacionRequest": {
+                "type": "object",
+                "properties": {
+                    "latitud": {
+                        "type": "number",
+                        "format": "double",
+                        "maximum": 90,
+                        "minimum": -90
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double",
+                        "maximum": 180,
+                        "minimum": -180
+                    }
+                },
+                "required": [
+                    "latitud",
+                    "longitud"
+                ]
+            },
+            "DatosDireccion": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "latitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "direccionEscrita": {
+                        "type": "string"
+                    },
+                    "indicaciones": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "telefono": {
+                        "type": "string"
+                    },
+                    "fechaCreacion": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "direccionEscrita",
+                    "fechaCreacion",
+                    "id",
+                    "indicaciones",
+                    "latitud",
+                    "longitud",
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "RegistrarTiendaRequest": {
+                "type": "object",
+                "properties": {
+                    "nombreDueno": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 0
+                    },
+                    "correo": {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 254,
+                        "minLength": 0
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\+?[0-9]{7,15}$"
+                    },
+                    "fraseContrasena": {
+                        "type": "string",
+                        "maxLength": 128,
+                        "minLength": 0
+                    },
+                    "aceptaPoliticaDatos": {
+                        "type": "boolean"
+                    },
+                    "versionPoliticaDatos": {
+                        "type": "string",
+                        "maxLength": 10,
+                        "minLength": 0
+                    },
+                    "nombreTienda": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 0
+                    },
+                    "categoriaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ubicacion": {
+                        "$ref": "#/components/schemas/UbicacionRequest"
+                    }
+                },
+                "required": [
+                    "aceptaPoliticaDatos",
+                    "categoriaId",
+                    "correo",
+                    "fraseContrasena",
+                    "nombreDueno",
+                    "nombreTienda",
+                    "telefono",
+                    "ubicacion",
+                    "versionPoliticaDatos"
+                ]
+            },
+            "TiendaRegistradaResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "estado": {
+                        "type": "string"
+                    },
+                    "fechaRegistro": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "estado",
+                    "fechaRegistro",
+                    "id",
+                    "nombre"
+                ]
+            },
+            "PublicarSolicitudRequest": {
+                "type": "object",
+                "properties": {
+                    "producto": {
+                        "type": "string",
+                        "maxLength": 150,
+                        "minLength": 0
+                    },
+                    "cantidad": {
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 999,
+                        "minimum": 1
+                    },
+                    "categoriaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad",
+                        "pattern": "RECOGER|DOMICILIO"
+                    },
+                    "esUrgente": {
+                        "type": "boolean"
+                    },
+                    "ubicacion": {
+                        "$ref": "#/components/schemas/UbicacionRequest"
+                    }
+                },
+                "required": [
+                    "cantidad",
+                    "categoriaId",
+                    "modalidad",
+                    "producto",
+                    "ubicacion"
+                ]
+            },
+            "SolicitudResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "categoriaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "producto": {
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad"
+                    },
+                    "esUrgente": {
+                        "type": "boolean"
+                    },
+                    "ubicacion": {
+                        "$ref": "#/components/schemas/UbicacionResponse"
+                    },
+                    "radioEnMetros": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoSolicitud"
+                    },
+                    "fechaPublicacion": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "fechaVencimiento": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "tiendasNotificadas": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "respuestasRecibidas": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "ordenId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "uuid"
+                    }
+                },
+                "required": [
+                    "cantidad",
+                    "categoriaId",
+                    "esUrgente",
+                    "estado",
+                    "fechaPublicacion",
+                    "fechaVencimiento",
+                    "id",
+                    "modalidad",
+                    "ordenId",
+                    "producto",
+                    "radioEnMetros",
+                    "respuestasRecibidas",
+                    "tiendasNotificadas",
+                    "ubicacion"
+                ]
+            },
+            "UbicacionResponse": {
+                "type": "object",
+                "properties": {
+                    "latitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "required": [
+                    "latitud",
+                    "longitud"
+                ]
+            },
+            "ResponderSolicitudRequest": {
+                "type": "object",
+                "properties": {
+                    "tipo": {
+                        "$ref": "#/components/schemas/TipoRespuesta",
+                        "pattern": "SI|PARECIDO|NO"
+                    },
+                    "precioEnPesos": {
+                        "type": "integer",
+                        "format": "int64",
+                        "maximum": 100000000,
+                        "minimum": 1
+                    },
+                    "cantidadDisponible": {
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 999,
+                        "minimum": 1
+                    },
+                    "descripcionAlternativa": {
+                        "type": "string",
+                        "maxLength": 300,
+                        "minLength": 0
+                    },
+                    "tiempoEstimadoEnMinutos": {
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 240,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "tipo"
+                ]
+            },
+            "RespuestaDeTiendaResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "producto": {
+                        "type": "string"
+                    },
+                    "cantidadSolicitada": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tipo": {
+                        "$ref": "#/components/schemas/TipoRespuesta"
+                    },
+                    "precioEnPesos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int64"
+                    },
+                    "cantidadDisponible": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int32"
+                    },
+                    "descripcionAlternativa": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "tiempoEstimadoEnMinutos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int32"
+                    },
+                    "ofreceDomicilio": {
+                        "type": "boolean"
+                    },
+                    "costoDomicilioEnPesos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int64"
+                    },
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoRespuesta"
+                    },
+                    "fechaRespuesta": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "ordenId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "uuid"
+                    }
+                },
+                "required": [
+                    "cantidadDisponible",
+                    "cantidadSolicitada",
+                    "costoDomicilioEnPesos",
+                    "descripcionAlternativa",
+                    "estado",
+                    "fechaRespuesta",
+                    "id",
+                    "ofreceDomicilio",
+                    "ordenId",
+                    "precioEnPesos",
+                    "producto",
+                    "solicitudId",
+                    "tiempoEstimadoEnMinutos",
+                    "tipo"
+                ]
+            },
+            "CrearOrdenRequest": {
+                "type": "object",
+                "properties": {
+                    "respuestaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad",
+                        "pattern": "RECOGER|DOMICILIO"
+                    },
+                    "direccionId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "medioPago": {
+                        "$ref": "#/components/schemas/MedioPago",
+                        "pattern": "EFECTIVO|TRANSFERENCIA|DATAFONO"
+                    }
+                },
+                "required": [
+                    "medioPago",
+                    "modalidad",
+                    "respuestaId"
+                ]
+            },
+            "CambioEstadoOrden": {
+                "type": "object",
+                "properties": {
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoOrden"
+                    },
+                    "fecha": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "estado",
+                    "fecha"
+                ]
+            },
+            "ClienteDeOrden": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "type": "string"
+                    },
+                    "direccion": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DireccionDeEntrega"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "direccion",
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "DireccionDeEntrega": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "direccionEscrita": {
+                        "type": "string"
+                    },
+                    "indicaciones": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "ubicacion": {
+                        "$ref": "#/components/schemas/Ubicacion"
+                    }
+                },
+                "required": [
+                    "direccionEscrita",
+                    "indicaciones",
+                    "nombre",
+                    "ubicacion"
+                ]
+            },
+            "OrdenResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "respuestaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "producto": {
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "precioUnitarioEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "subtotalEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "costoDomicilioEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "totalEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad"
+                    },
+                    "medioPago": {
+                        "$ref": "#/components/schemas/MedioPago"
+                    },
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoOrden"
+                    },
+                    "esActiva": {
+                        "type": "boolean"
+                    },
+                    "fechaCreacion": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "tienda": {
+                        "$ref": "#/components/schemas/TiendaDeOrden"
+                    },
+                    "cliente": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/ClienteDeOrden"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "historial": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CambioEstadoOrden"
+                        }
+                    }
+                },
+                "required": [
+                    "cantidad",
+                    "cliente",
+                    "costoDomicilioEnPesos",
+                    "esActiva",
+                    "estado",
+                    "fechaCreacion",
+                    "historial",
+                    "id",
+                    "medioPago",
+                    "modalidad",
+                    "precioUnitarioEnPesos",
+                    "producto",
+                    "respuestaId",
+                    "solicitudId",
+                    "subtotalEnPesos",
+                    "tienda",
+                    "totalEnPesos"
+                ]
+            },
+            "TiendaDeOrden": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "nombre"
+                ]
+            },
+            "Ubicacion": {
+                "type": "object",
+                "properties": {
+                    "latitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "required": [
+                    "latitud",
+                    "longitud"
+                ]
+            },
+            "VerificarSegundoFactorRequest": {
+                "type": "object",
+                "properties": {
+                    "tokenSegundoFactor": {
+                        "type": "string",
+                        "maxLength": 64,
+                        "minLength": 0
+                    },
+                    "codigo": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "\\d{6}"
+                    }
+                },
+                "required": [
+                    "codigo",
+                    "tokenSegundoFactor"
+                ]
+            },
+            "RespuestaInicioSesion": {},
+            "SegundoFactorPendienteResponse": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RespuestaInicioSesion"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "segundoFactorRequerido": {
+                                "type": "boolean"
+                            },
+                            "tokenSegundoFactor": {
+                                "type": "string"
+                            },
+                            "fechaExpiracion": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                ],
+                "required": [
+                    "fechaExpiracion",
+                    "segundoFactorRequerido",
+                    "tokenSegundoFactor"
+                ]
+            },
+            "SesionResponse": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RespuestaInicioSesion"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "usuarioId": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "rol": {
+                                "type": "string",
+                                "enum": [
+                                    "CLIENTE",
+                                    "TIENDA",
+                                    "ADMIN"
+                                ]
+                            },
+                            "tokenAcceso": {
+                                "type": "string"
+                            },
+                            "tipoToken": {
+                                "type": "string"
+                            },
+                            "fechaExpiracion": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "segundoFactorRequerido": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ],
+                "required": [
+                    "fechaExpiracion",
+                    "rol",
+                    "segundoFactorRequerido",
+                    "tipoToken",
+                    "tokenAcceso",
+                    "usuarioId"
+                ]
+            },
+            "RegistrarClienteRequest": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 0
+                    },
+                    "correo": {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 254,
+                        "minLength": 0
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\+?[0-9]{7,15}$"
+                    },
+                    "fraseContrasena": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "aceptaPoliticaDatos": {
+                        "type": "boolean"
+                    },
+                    "versionPoliticaDatos": {
+                        "type": "string",
+                        "maxLength": 10,
+                        "minLength": 0
+                    }
+                },
+                "required": [
+                    "aceptaPoliticaDatos",
+                    "correo",
+                    "fraseContrasena",
+                    "nombre",
+                    "telefono",
+                    "versionPoliticaDatos"
+                ]
+            },
+            "UsuarioRegistradoResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "correo": {
+                        "type": "string"
+                    },
+                    "rol": {
+                        "type": "string",
+                        "enum": [
+                            "CLIENTE",
+                            "TIENDA",
+                            "ADMIN"
+                        ]
+                    },
+                    "fechaCreacion": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "correo",
+                    "fechaCreacion",
+                    "id",
+                    "nombre",
+                    "rol"
+                ]
+            },
+            "IniciarSesionRequest": {
+                "type": "object",
+                "properties": {
+                    "correo": {
+                        "type": "string",
+                        "maxLength": 254,
+                        "minLength": 0
+                    },
+                    "fraseContrasena": {
+                        "type": "string",
+                        "maxLength": 128,
+                        "minLength": 0
+                    }
+                },
+                "required": [
+                    "correo",
+                    "fraseContrasena"
+                ]
+            },
+            "RechazarTiendaRequest": {
+                "type": "object",
+                "properties": {
+                    "motivo": {
+                        "type": "string",
+                        "maxLength": 300,
+                        "minLength": 5
+                    }
+                },
+                "required": [
+                    "motivo"
+                ]
+            },
+            "DocumentoResumen": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "tipo": {
+                        "type": "string",
+                        "enum": [
+                            "FOTO_LOCAL",
+                            "RUT"
+                        ]
+                    },
+                    "tipoContenido": {
+                        "type": "string"
+                    },
+                    "tamanoEnBytes": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "required": [
+                    "id",
+                    "tamanoEnBytes",
+                    "tipo",
+                    "tipoContenido"
+                ]
+            },
+            "TiendaParaRevision": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "categoriaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "telefono": {
+                        "type": "string"
+                    },
+                    "latitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoTienda"
+                    },
+                    "fechaRegistro": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "motivoRechazo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "fechaRevision": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "documentos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DocumentoResumen"
+                        }
+                    }
+                },
+                "required": [
+                    "categoriaId",
+                    "documentos",
+                    "estado",
+                    "fechaRegistro",
+                    "fechaRevision",
+                    "id",
+                    "latitud",
+                    "longitud",
+                    "motivoRechazo",
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "ActualizarPerfilRequest": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 0
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\+?[0-9]{7,15}$"
+                    }
+                },
+                "required": [
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "PerfilUsuario": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "correo": {
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "type": "string"
+                    },
+                    "rol": {
+                        "type": "string",
+                        "enum": [
+                            "CLIENTE",
+                            "TIENDA",
+                            "ADMIN"
+                        ]
+                    }
+                },
+                "required": [
+                    "correo",
+                    "id",
+                    "nombre",
+                    "rol",
+                    "telefono"
+                ]
+            },
+            "CambiarAperturaRequest": {
+                "type": "object",
+                "properties": {
+                    "abierta": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "abierta"
+                ]
+            },
+            "CambiarEstadoOrdenRequest": {
+                "type": "object",
+                "properties": {
+                    "estado": {
+                        "type": "string",
+                        "enum": [
+                            "PREPARANDO",
+                            "EN_CAMINO",
+                            "LISTO_PARA_RECOGER",
+                            "ENTREGADO"
+                        ],
+                        "pattern": "PREPARANDO|EN_CAMINO|LISTO_PARA_RECOGER|ENTREGADO"
+                    }
+                },
+                "required": [
+                    "estado"
+                ]
+            },
+            "SimulacionDomicilioResponse": {
+                "type": "object",
+                "properties": {
+                    "costoDomicilioEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "required": [
+                    "costoDomicilioEnPesos"
+                ]
+            },
+            "RespuestaParaClienteResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "tiendaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombreTienda": {
+                        "type": "string"
+                    },
+                    "tipo": {
+                        "type": "string",
+                        "enum": [
+                            "SI",
+                            "PARECIDO"
+                        ]
+                    },
+                    "esAlternativa": {
+                        "type": "boolean"
+                    },
+                    "descripcionAlternativa": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "precioEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "cantidadDisponible": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "subtotalEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "ofreceDomicilio": {
+                        "type": "boolean"
+                    },
+                    "costoDomicilioEnPesos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int64"
+                    },
+                    "totalEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "distanciaEnMetros": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tiempoEstimadoEnMinutos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int32"
+                    },
+                    "fechaRespuesta": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "fueElegida": {
+                        "type": "boolean"
+                    },
+                    "mediosPagoAceptados": {
+                        "type": "array",
+                        "description": "Medios de pago que la tienda tiene activos: \u00abConfirmar pedido\u00bb solo ofrece estos (DEF-007, CP-TIE-012-01). Vac\u00eda si la tienda no los configur\u00f3.",
+                        "items": {
+                            "$ref": "#/components/schemas/MedioPago"
+                        }
+                    }
+                },
+                "required": [
+                    "cantidadDisponible",
+                    "costoDomicilioEnPesos",
+                    "descripcionAlternativa",
+                    "distanciaEnMetros",
+                    "esAlternativa",
+                    "fechaRespuesta",
+                    "fueElegida",
+                    "id",
+                    "mediosPagoAceptados",
+                    "nombreTienda",
+                    "ofreceDomicilio",
+                    "precioEnPesos",
+                    "subtotalEnPesos",
+                    "tiempoEstimadoEnMinutos",
+                    "tiendaId",
+                    "tipo",
+                    "totalEnPesos"
+                ]
+            },
+            "RespuestasDeSolicitudResponse": {
+                "type": "object",
+                "properties": {
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "estadoSolicitud": {
+                        "$ref": "#/components/schemas/EstadoSolicitud"
+                    },
+                    "cantidadSolicitada": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "respuestasRecibidas": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "respuestas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RespuestaParaClienteResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "cantidadSolicitada",
+                    "estadoSolicitud",
+                    "respuestas",
+                    "respuestasRecibidas",
+                    "solicitudId"
+                ]
+            },
+            "SolicitudDisponibleResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "categoriaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "producto": {
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad"
+                    },
+                    "esUrgente": {
+                        "type": "boolean"
+                    },
+                    "distanciaEnMetros": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "fechaPublicacion": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "fechaVencimiento": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "precioSugeridoEnPesos": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "format": "int64"
+                    }
+                },
+                "required": [
+                    "cantidad",
+                    "categoriaId",
+                    "distanciaEnMetros",
+                    "esUrgente",
+                    "fechaPublicacion",
+                    "fechaVencimiento",
+                    "id",
+                    "modalidad",
+                    "precioSugeridoEnPesos",
+                    "producto"
+                ]
+            },
+            "ContactoWhatsappResponse": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "type": "string"
+                    },
+                    "enlace": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "enlace",
+                    "nombre",
+                    "telefono"
+                ]
+            },
+            "EventoSolicitudNueva": {
+                "type": "object",
+                "description": "Mismos datos de la tarjeta de HU-018, sin datos del cliente.",
+                "properties": {
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "producto": {
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad"
+                    },
+                    "esUrgente": {
+                        "type": "boolean"
+                    },
+                    "distanciaEnMetros": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "fechaVencimiento": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "cantidad",
+                    "distanciaEnMetros",
+                    "esUrgente",
+                    "fechaVencimiento",
+                    "modalidad",
+                    "producto",
+                    "solicitudId"
+                ]
+            },
+            "EventoRespuestaRecibida": {
+                "type": "object",
+                "properties": {
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "respuestaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "tipo": {
+                        "type": "string",
+                        "enum": [
+                            "SI",
+                            "PARECIDO"
+                        ]
+                    },
+                    "nombreTienda": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "nombreTienda",
+                    "respuestaId",
+                    "solicitudId",
+                    "tipo"
+                ]
+            },
+            "EventoSolicitudCerrada": {
+                "type": "object",
+                "properties": {
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "enum": [
+                            "RESUELTA",
+                            "VENCIDA"
+                        ]
+                    }
+                },
+                "required": [
+                    "estado",
+                    "solicitudId"
+                ]
+            },
+            "EventoRespuestaNoElegida": {
+                "type": "object",
+                "properties": {
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "respuestaId": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                },
+                "required": [
+                    "respuestaId",
+                    "solicitudId"
+                ]
+            },
+            "EventoSolicitudVencida": {
+                "type": "object",
+                "properties": {
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "respuestasRecibidas": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "required": [
+                    "respuestasRecibidas",
+                    "solicitudId"
+                ]
+            },
+            "EventoOrdenCreada": {
+                "type": "object",
+                "properties": {
+                    "ordenId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "solicitudId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "producto": {
+                        "type": "string"
+                    },
+                    "totalEnPesos": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "modalidad": {
+                        "$ref": "#/components/schemas/Modalidad"
+                    }
+                },
+                "required": [
+                    "modalidad",
+                    "ordenId",
+                    "producto",
+                    "solicitudId",
+                    "totalEnPesos"
+                ]
+            },
+            "EventoEstadoOrdenCambiado": {
+                "type": "object",
+                "properties": {
+                    "ordenId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "estado": {
+                        "$ref": "#/components/schemas/EstadoOrden"
+                    }
+                },
+                "required": [
+                    "estado",
+                    "ordenId"
+                ]
+            },
+            "SseEmitter": {
+                "type": "object",
+                "properties": {
+                    "timeout": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "CategoriaResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "nombre"
+                ]
+            },
+            "EstadoRespuesta": {
+                "type": "string",
+                "enum": [
+                    "ESPERANDO",
+                    "ELEGIDA",
+                    "NO_ELEGIDA",
+                    "VENCIDA"
+                ]
+            },
+            "Modalidad": {
+                "type": "string",
+                "enum": [
+                    "RECOGER",
+                    "DOMICILIO"
+                ]
+            },
+            "MedioPago": {
+                "type": "string",
+                "enum": [
+                    "EFECTIVO",
+                    "TRANSFERENCIA",
+                    "DATAFONO"
+                ]
+            },
+            "TipoRespuesta": {
+                "type": "string",
+                "enum": [
+                    "SI",
+                    "PARECIDO",
+                    "NO"
+                ]
+            },
+            "EstadoSolicitud": {
+                "type": "string",
+                "enum": [
+                    "ABIERTA",
+                    "RESUELTA",
+                    "VENCIDA"
+                ]
+            },
+            "EstadoTienda": {
+                "type": "string",
+                "enum": [
+                    "PENDIENTE",
+                    "APROBADA",
+                    "RECHAZADA",
+                    "SUSPENDIDA"
+                ]
+            },
+            "EstadoOrden": {
+                "type": "string",
+                "enum": [
+                    "CONFIRMADO",
+                    "PREPARANDO",
+                    "EN_CAMINO",
+                    "LISTO_PARA_RECOGER",
+                    "ENTREGADO",
+                    "RESUELTA",
+                    "CANCELADO",
+                    "VENCIDA"
+                ]
+            },
+            "DiaSemana": {
+                "type": "string",
+                "enum": [
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
+                ]
+            },
+            "ErrorDeCampo": {
+                "type": "object",
+                "description": "Un campo que no pas\u00f3 la validaci\u00f3n (GEN-001).",
+                "properties": {
+                    "campo": {
+                        "type": "string"
+                    },
+                    "mensaje": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "campo",
+                    "mensaje"
+                ]
+            },
+            "ProblemDetail": {
+                "type": "object",
+                "description": "Error de la API (RFC 9457), con c\u00f3digo estable en \u00abcodigo\u00bb.",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "detail": {
+                        "type": "string"
+                    },
+                    "instance": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "codigo": {
+                        "type": "string",
+                        "description": "Por ejemplo ORD-003 o GEN-001"
+                    },
+                    "errores": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorDeCampo"
+                        }
+                    },
+                    "idCorrelacion": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            }
+        }
+    }
+}

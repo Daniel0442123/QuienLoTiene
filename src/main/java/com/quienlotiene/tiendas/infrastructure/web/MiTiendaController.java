@@ -44,6 +44,7 @@ class MiTiendaController {
     @Operation(
             summary = "Abrir o cerrar la tienda",
             description = "HU-013. Abierta (y en su horario) recibe solicitudes nuevas; cerrada deja de recibirlas.")
+    @ApiResponse(responseCode = "200", description = "Apertura guardada")
     @ApiResponse(responseCode = "409", description = "La tienda aún no está aprobada (TIE-008)")
     @PatchMapping("/apertura")
     MiTienda cambiarApertura(@Valid @RequestBody CambiarAperturaRequest peticion) {
@@ -51,6 +52,7 @@ class MiTiendaController {
     }
 
     @Operation(summary = "Ver mi tienda", description = "Estado, motivo de rechazo si lo hay, perfil y horario.")
+    @ApiResponse(responseCode = "200", description = "La tienda del usuario")
     @ApiResponse(responseCode = "404", description = "El usuario no tiene tienda (TIE-006)")
     @GetMapping
     MiTienda consultar() {
@@ -61,6 +63,7 @@ class MiTiendaController {
             summary = "Actualizar perfil y horario",
             description = "HU-009. Nombre, teléfono y una franja por día en hora de Colombia; los días que no se "
                     + "envían quedan cerrados.")
+    @ApiResponse(responseCode = "200", description = "Perfil y horario guardados")
     @ApiResponse(responseCode = "400", description = "Datos inválidos (GEN-001) u horario inválido (TIE-007)")
     @PutMapping("/perfil")
     MiTienda actualizarPerfil(@Valid @RequestBody ActualizarPerfilTiendaRequest peticion) {

@@ -200,6 +200,10 @@ class FlujoSolicitudAOrdenIT {
                 .andExpect(jsonPath("$.respuestasRecibidas").value(2))
                 .andExpect(jsonPath("$.respuestas.length()").value(1))
                 .andExpect(jsonPath("$.respuestas[0].totalEnPesos").value(16_000))
+                // DEF-007 (CP-TIE-012-01): la tienda solo acepta efectivo
+                .andExpect(
+                        jsonPath("$.respuestas[0].mediosPagoAceptados.length()").value(1))
+                .andExpect(jsonPath("$.respuestas[0].mediosPagoAceptados[0]").value("EFECTIVO"))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

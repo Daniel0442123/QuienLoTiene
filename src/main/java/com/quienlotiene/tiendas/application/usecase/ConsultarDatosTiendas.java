@@ -11,8 +11,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,6 +79,19 @@ class ConsultarDatosTiendas implements DatosTiendasApi {
                 .filter(valor -> valor.name().equals(medioPago))
                 .findFirst();
         return medio.isPresent() && tiendaRepository.buscarMediosPago(tiendaId).acepta(medio.get());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Map<UUID, List<String>> mediosPagoDe(Collection<UUID> tiendaIds) {
+        return new LinkedHashSet<>(tiendaIds)
+                .stream().collect(Collectors.toMap(Function.identity(), this::mediosPagoDe));
+    }
+
+    private List<String> mediosPagoDe(UUID tiendaId) {
+        return tiendaRepository.buscarMediosPago(tiendaId).medios().stream()
+                .map(MedioPago::name)
+                .toList();
     }
 
     private static DatosTienda aDatos(Tienda tienda) {
