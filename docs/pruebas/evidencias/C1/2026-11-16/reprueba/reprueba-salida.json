@@ -1,0 +1,21 @@
+{
+    "solicitudAna": "e777a68e-1819-4a02-a385-465aa6683fa2",
+    "def007la5": [
+        "EFECTIVO",
+        "TRANSFERENCIA"
+    ],
+    "def007botica": [
+        "EFECTIVO",
+        "DATAFONO"
+    ],
+    "pedidoAna": "http://127.0.0.1:5173/pedidos/bd71d5c2-68db-4ed2-a6d1-ef1ec0636ee7",
+    "pedidoAnaTexto": "Mis pedidos\nTu pedido\n\nPedido BD71D5C2\n\nConfirmado\n\nBotica San Jos\u00e9 \u00b7 Cetirizina 10 mg \u00b7 1 unidad \u00b7 $\u00a010.500\n\nDomicilio\n\nC\u00f3mo va tu pedido\nConfirmado \u00b7 9:47 p. m.\n(estado actual)\nPreparando\nEn camino\nEntregado\nRecibido\nEscribir por WhatsApp a Botica San Jos\u00e9\n(se abre WhatsApp)\nDetalle del pago\nProducto ($\u00a05.500 \u00d7 1 unidad)\n$\u00a05.500\nDomicilio\n$\u00a05.000\nTotal\n$\u00a010.500\n\nPagas con efectivo a la tienda.",
+    "DEF-007": "ok",
+    "def009tienda": "Pedidos\nPedido BD71D5C2\n\nConfirmado\n\nCetirizina 10 mg \u00b7 1 unidad\n\nDomicilio\n\nEntregar a\n\nAna G\u00f3mez\n\n3205550001\n\nCalle 5 # 10-20, Centro \u00b7 Port\u00f3n verde\n\nEscribir por WhatsApp a Ana G\u00f3mez\n(se abre WhatsApp)\n\nEl cliente ve cada cambio.\n\nEmpezar a preparar\nC\u00f3mo va el pedido\nConfirmado \u00b7 9:47 p. m.\n(estado actual)\nPreparando\nEn camino\nEntregado\nRecibido\nDetalle del pago\nProducto ($\u00a05.500 \u00d7 1 unidad)\n$\u00a05.500\nDomicilio\n$\u00a05.000\nTotal\n$\u00a010.500\n\nEl cliente paga con efectivo.",
+    "DEF-009": "ok",
+    "def008antes": "Esperando respuestas\nLe preguntamos a 3 tiendas cercanas si tienen \u00abIbuprofeno 400 mg\u00bb.\nLas tiendas pueden responder hasta las 10:17 p. m. (en 30 min).\nBuscamos a 3 km a la redonda.\n0 respuestas\n\nTodav\u00eda no hay respuestas\n\nTe avisamos en esta pantalla apenas una tienda conteste.\nHacer otra pregunta",
+    "def008id": "ae9d4184-6975-4fe9-a832-bcfe8bb9383b",
+    "def008despues": "Tu solicitud venci\u00f3\nLe preguntamos a 3 tiendas cercanas si tienen \u00abIbuprofeno 400 mg\u00bb.\nEl plazo para responder termin\u00f3 a las 10:17 p. m..\nBuscamos a 3 km a la redonda.\n\nVencida\n\nTu solicitud venci\u00f3 a las 10:17 p. m. y ya no recibe respuestas.\n\nNinguna tienda la ten\u00eda disponible.\n\nPublicar de nuevo\n0 respuestas\nHacer otra pregunta",
+    "def008estadoBd": "VENCIDA",
+    "DEF-008": "ok"
+}

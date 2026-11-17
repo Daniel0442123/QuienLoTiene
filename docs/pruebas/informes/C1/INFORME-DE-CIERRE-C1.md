@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 1 (C1)
 
-> **Control del documento** · Versión 0.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 16/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 16/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -95,17 +95,18 @@ Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado:
 | DEF-002 | S3 | P3 | En verificación | NF-SEG-011 | Faltaba OWASP Dependency-Check en el CI | v0.2.0 → corregido en #36 |
 | DEF-003 | S4 | P4 | En verificación | NF-MAN-022 | Cobertura medida sobre todo el proyecto y no por módulo | v0.2.0 → corregido en #35 |
 | DEF-004 | S4 | P4 | En verificación | NF-FIA-016 | Faltaba la etiqueta NF-FIA-016 | v0.2.0 → corregido en #35 |
-| DEF-005 | S4 | P4 | Asignado | Exploratoria-20261112 | Publicar solicitud muestra los errores por etapas | v0.2.0, sigue en 5e8ab98 |
-| DEF-006 | S3 | P2 | Nuevo | CP-ORD-024-01 (C-04) | /v3/api-docs sin respuesta 2xx en 9 operaciones | 5e8ab98 |
-| DEF-007 | S3 | P2 | Nuevo | CP-ORD-024-04 · CP-TIE-012-01 | «Confirmar pedido» ofrece medios de pago que la tienda no acepta | 5e8ab98 |
-| DEF-008 | S4 | P3 | Nuevo | CP-SOL-021-01 | La solicitud vencida sigue titulada «Esperando respuestas» | 5e8ab98 |
-| DEF-009 | S4 | P4 | Nuevo | CP-ORD-024-02 | La tienda lee «Pagas con efectivo» en su pedido | 5e8ab98 |
+| DEF-005 | S4 | P4 | En verificación | Exploratoria-20261112 | Publicar solicitud muestra los errores por etapas | v0.2.0 → corregido en #47 |
+| DEF-006 | S3 | P2 | En verificación | CP-ORD-024-01 (C-04) | /v3/api-docs sin respuesta 2xx en 9 operaciones | 5e8ab98 → corregido en #46 |
+| DEF-007 | S3 | P2 | En verificación | CP-ORD-024-04 · CP-TIE-012-01 | «Confirmar pedido» ofrece medios de pago que la tienda no acepta | 5e8ab98 → corregido en #46 y #47 |
+| DEF-008 | S4 | P3 | En verificación | CP-SOL-021-01 | La solicitud vencida sigue titulada «Esperando respuestas» | 5e8ab98 → corregido en #47 |
+| DEF-009 | S4 | P4 | En verificación | CP-ORD-024-02 | La tienda lee «Pagas con efectivo» en su pedido | 5e8ab98 → corregido en #47 |
+| DEF-010 | S4 | P4 | Nuevo | CP-SOL-021-01 | Punto doble después de la hora en tres textos («p. m..») | 55ab5b6 |
 
-Abiertos por severidad (sin contar los que están en verificación): S1 = 0 · S2 = 0 · S3 = 2 · S4 = 3
+Abiertos por severidad (sin contar los que están en verificación): S1 = 0 · S2 = 0 · S3 = 0 · S4 = 1. La re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (16/11) pasa: `evidencias/C1/2026-11-16/reprueba/`.
 
 ## 4. Requisitos y trazabilidad
 
-Ver `libro/07-TRAZABILIDAD.md` (versión 1.1). Todos los requisitos de los Sprints 1 y 2 quedan verificados; RF-012, RF-021 y RF-024 con defectos abiertos de severidad S3 o S4.
+Ver `libro/07-TRAZABILIDAD.md` (versión 1.2). Todos los requisitos de los Sprints 1 y 2 quedan verificados; RF-012, RF-021 y RF-024 tenían defectos S3 y S4 que ya pasan la re-prueba (en verificación); RF-021 tiene además DEF-010 (S4) abierto.
 
 ## 5. Resultados no funcionales
 
@@ -127,7 +128,7 @@ Ninguno.
 ## 7. Observaciones
 
 - Los casos de nivel «Manual (interfaz)» e «Integración (SSE)» del Sprint 2 se vieron en pantalla con el frontend de Monica contra el backend real.
-- El compromiso C-04 (tipos del frontend generados desde el backend) sigue abierto: ver `informes/C1/C-04-DIFERENCIAS-TIPOS.md` y DEF-006.
+- El compromiso C-04 (tipos del frontend generados desde el backend) quedó cerrado con el #48; la re-prueba confirma que `npm run api:tipos` contra el backend en vivo no cambia `api-tipos.ts`.
 - Cuatro observaciones menores del recorrido quedaron sin registrar como defecto, para el triaje de QA (sección «Observaciones» del recorrido).
 - Las horas de la bitácora son estimadas.
 
@@ -148,9 +149,8 @@ Borrador: el C1 cumple sus criterios de salida. Se recomienda cerrarlo el 20/11 
 
 Recomendaciones para el equipo:
 
-1. Corregir DEF-006 y DEF-007 (S3, P2) antes del cierre, porque afectan C-04 y el flujo de pago de la demo.
-2. Corregir DEF-005, DEF-008 y DEF-009 (S4) en el Sprint 3 si no alcanzan antes del 20/11.
-3. QA cierra DEF-001 a DEF-004 después de revisar la re-prueba del 16/11.
+1. QA cierra DEF-001 a DEF-009 después de revisar las re-pruebas del 16/11 (todas pasan).
+2. Corregir DEF-010 (S4) en el Sprint 3 si no alcanza antes del 20/11.
 
 | Elaborado por | Revisado / aprobado por |
 |---|---|
@@ -162,3 +162,4 @@ Recomendaciones para el equipo:
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 16/11; pendiente de la re-prueba final y la firma de QA |
+| 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (pasan), nuevo DEF-010 y C-04 cerrado. Pendiente: firma de QA |

@@ -1,6 +1,6 @@
 # Documento de evidencias de pruebas · Ciclo 1 (C1)
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
@@ -635,6 +635,23 @@ Versión `main` 5e8ab98. Todo lo de esta sesión está en `evidencias/C1/2026-11
 | Contrato y tipos generados (C-04) | [contrato/](../../evidencias/C1/2026-11-16/contrato/) · [C-04-DIFERENCIAS-TIPOS.md](C-04-DIFERENCIAS-TIPOS.md) |
 | Cómo se levantó el ambiente | [scripts/README.md](../../evidencias/C1/2026-11-16/scripts/README.md) |
 
+## 11. Re-prueba de DEF-005 a DEF-009 — 2026-11-16, main 55ab5b6 (borrador)
+
+Carpeta `evidencias/C1/2026-11-16/reprueba/`. Las cinco re-pruebas pasan; el detalle por defecto está en su `README.md`. Sale un defecto nuevo, DEF-010 (S4, punto doble después de la hora).
+
+| Archivo | Qué muestra |
+|---|---|
+| `capturas/01-def005-publicar-vacio.png` | DEF-005: un toque en «Preguntar» con todo vacío marca producto y categoría con el resumen |
+| `capturas/02-def007-confirmar-la5.png` | DEF-007: Droguería La 5 solo ofrece efectivo y transferencia |
+| `capturas/03-def007-confirmar-botica.png` | DEF-007 · CP-TIE-012-01: Botica San José solo ofrece efectivo y datáfono |
+| `capturas/04-def009-pedido-tienda.png` | DEF-009: la tienda lee «El cliente paga con efectivo.» |
+| `capturas/05-def009-pedido-cliente.png` | DEF-009: el cliente sigue leyendo «Pagas con efectivo a la tienda.» |
+| `capturas/06-def008-esperando.png` | DEF-008: la solicitud recién publicada, «Esperando respuestas» |
+| `capturas/07-def008-vencida.png` | DEF-008: al vencer, «Tu solicitud venció»; también muestra DEF-010 |
+| `api-docs-main-55ab5b6.json` | DEF-006: `/v3/api-docs` en vivo sobre main 55ab5b6 |
+| `reprueba-salida.json` | Textos y valores leídos en cada paso |
+| `scripts/` | Script de Playwright de la re-prueba |
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
@@ -642,3 +659,4 @@ Versión `main` 5e8ab98. Todo lo de esta sesión está en `evidencias/C1/2026-11
 | — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 10 con la evidencia del Sprint 2 (borrador, pendiente de firma de QA) |
+| 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 11 con la re-prueba de DEF-005 a DEF-009 (borrador, pendiente de firma de QA) |
