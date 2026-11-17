@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -30,7 +30,7 @@ Requisito → historia → casos → pruebas automatizadas → resultado. Estado
 | RF-018 | Ver solicitudes nuevas | HU-018 | Must | solicitudes | Sprint 2 | CP-SOL-018-01, CP-SOL-018-02 | CP-039, CP-040 | 2 | 3 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-019 | Responder solicitud | HU-019 | Must | solicitudes | Sprint 2 | CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-03, CP-SOL-019-04 | CP-041, CP-042, CP-043, CP-044 | 4 | 7 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-020 | Ver y ordenar respuestas | HU-020 | Must | solicitudes | Sprint 2 | CP-SOL-020-01, CP-SOL-020-02, CP-SOL-020-03 | CP-045, CP-046, CP-047 | 3 | 5 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 3 | 0 | 0 | 0 | Verificado (borrador 16/11) |
-| RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 | 8 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 2 (DEF-008 S4, en verificación: re-prueba 16/11 pasa; DEF-010 S4, nuevo) | Verificado con defecto abierto (borrador 16/11) |
+| RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 | 8 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 2 (DEF-008 y DEF-010, S4, en verificación: sus re-pruebas del 16/11 pasan) | Verificado (defectos en verificación, borrador 16/11) |
 | RF-022 | Ampliar radio automáticamente | HU-022 | Could | solicitudes | Cierre | CP-SOL-022-01, CP-SOL-022-02 | CP-050, CP-051 | 2 |  |  |  |  |  |  |  |
 | RF-023 | Advertir productos restringidos | HU-023 | Should | solicitudes | Sprint 3 | CP-SOL-023-01, CP-SOL-023-02 | CP-052, CP-053 | 2 |  |  |  |  |  |  |  |
 | RF-024 | Elegir respuesta y crear orden | HU-024 | Must | ordenes | Sprint 2 | CP-ORD-024-01, CP-ORD-024-02, CP-ORD-024-03, CP-ORD-024-04 | CP-054, CP-055, CP-056, CP-057 | 4 | 6 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 2 (DEF-007 S3, DEF-009 S4; en verificación: re-prueba 16/11 pasa) | Verificado (defectos en verificación, borrador 16/11) |
@@ -96,3 +96,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Requisitos del Sprint 2 con su resultado del 16/11 y RF-012 con DEF-007 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-007, DEF-008 y DEF-009 (pasa) y nuevo DEF-010 en RF-021 (borrador, pendiente de firma de QA) |
+| 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-021: DEF-010 corregido y re-probado (borrador, pendiente de firma de QA) |

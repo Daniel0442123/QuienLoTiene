@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 1 (C1)
 
-> **Control del documento** · Versión 0.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 16/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 16/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -100,13 +100,13 @@ Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado:
 | DEF-007 | S3 | P2 | En verificación | CP-ORD-024-04 · CP-TIE-012-01 | «Confirmar pedido» ofrece medios de pago que la tienda no acepta | 5e8ab98 → corregido en #46 y #47 |
 | DEF-008 | S4 | P3 | En verificación | CP-SOL-021-01 | La solicitud vencida sigue titulada «Esperando respuestas» | 5e8ab98 → corregido en #47 |
 | DEF-009 | S4 | P4 | En verificación | CP-ORD-024-02 | La tienda lee «Pagas con efectivo» en su pedido | 5e8ab98 → corregido en #47 |
-| DEF-010 | S4 | P4 | Nuevo | CP-SOL-021-01 | Punto doble después de la hora en tres textos («p. m..») | 55ab5b6 |
+| DEF-010 | S4 | P4 | En verificación | CP-SOL-021-01 | Punto doble después de la hora en tres textos («p. m..») | 55ab5b6 → corregido en #50 |
 
-Abiertos por severidad (sin contar los que están en verificación): S1 = 0 · S2 = 0 · S3 = 0 · S4 = 1. La re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (16/11) pasa: `evidencias/C1/2026-11-16/reprueba/`.
+Abiertos por severidad (sin contar los que están en verificación): S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Las re-pruebas del 16/11 pasan: DEF-005 a DEF-009 sobre main 55ab5b6 (`evidencias/C1/2026-11-16/reprueba/`) y DEF-010 sobre main e679ef3 (`evidencias/C1/2026-11-16/reprueba-def010/`).
 
 ## 4. Requisitos y trazabilidad
 
-Ver `libro/07-TRAZABILIDAD.md` (versión 1.2). Todos los requisitos de los Sprints 1 y 2 quedan verificados; RF-012, RF-021 y RF-024 tenían defectos S3 y S4 que ya pasan la re-prueba (en verificación); RF-021 tiene además DEF-010 (S4) abierto.
+Ver `libro/07-TRAZABILIDAD.md` (versión 1.2). Todos los requisitos de los Sprints 1 y 2 quedan verificados; RF-012, RF-021 y RF-024 tenían defectos S3 y S4 que ya pasan la re-prueba (en verificación); RF-021 tiene además DEF-010 (S4), también en verificación.
 
 ## 5. Resultados no funcionales
 
@@ -149,8 +149,7 @@ Borrador: el C1 cumple sus criterios de salida. Se recomienda cerrarlo el 20/11 
 
 Recomendaciones para el equipo:
 
-1. QA cierra DEF-001 a DEF-009 después de revisar las re-pruebas del 16/11 (todas pasan).
-2. Corregir DEF-010 (S4) en el Sprint 3 si no alcanza antes del 20/11.
+1. QA cierra DEF-001 a DEF-010 después de revisar las re-pruebas del 16/11 (todas pasan).
 
 | Elaborado por | Revisado / aprobado por |
 |---|---|
@@ -163,3 +162,4 @@ Recomendaciones para el equipo:
 |---|---|---|---|
 | 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 16/11; pendiente de la re-prueba final y la firma de QA |
 | 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (pasan), nuevo DEF-010 y C-04 cerrado. Pendiente: firma de QA |
+| 0.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-010 corregido (#50) y re-probado sobre main e679ef3: 0 defectos abiertos. Pendiente: firma de QA |
