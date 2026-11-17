@@ -34,7 +34,7 @@ describe('HU-003 · Cerrar sesión', () => {
 
   it('borra la sesión de memoria, lo anuncia y lleva a entrar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     iniciarSesionDePrueba()
     renderizarConProveedores(
       <Routes>

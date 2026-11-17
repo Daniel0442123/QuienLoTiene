@@ -45,7 +45,7 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
 
   it('CP-TIE-013-01 · con un toque cierra la tienda, lo dice en texto y lo anuncia', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<PanelTiendaPagina />)
     expect(await screen.findByRole('switch')).toHaveAttribute('aria-checked', 'true')
 
@@ -63,7 +63,7 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
 
   it('CP-TIE-013-02 · con otro toque la vuelve a abrir', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     tiendaDe(CORREOS_DE_PRUEBA.tienda)!.estaAbierta = false
     renderizarConProveedores(<PanelTiendaPagina />)
     await screen.findByRole('switch')
@@ -78,7 +78,7 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
 
   it('TIE-008 · si el backend lo rechaza, vuelve al estado anterior y explica por qué', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.patch('/api/v1/tiendas/me/apertura', () =>
         HttpResponse.json(
@@ -134,7 +134,7 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
 
   it('estado error con reintentar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     let intentos = 0
     servidorSimulado.use(
       http.get('/api/v1/tiendas/me', () => {
@@ -157,7 +157,7 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
   it('al entrar, el dueño de la tienda llega a su panel', async () => {
     // Dado
     limpiarSesion()
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(
       <Routes>
         <Route path="/entrar" element={<InicioSesionPagina />} />

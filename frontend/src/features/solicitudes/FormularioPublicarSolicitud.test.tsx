@@ -34,7 +34,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('no tiene violaciones de accesibilidad, ni vacío ni con errores', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const { container } = renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
     await screen.findByRole('radio', { name: 'Farmacia' })
     await screen.findByRole('radio', { name: /Casa/ })
@@ -49,7 +49,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('DEF-005 · vacío, al primer intento marca producto y categoría con el resumen', async () => {
     // Dado: el producto tiene el foco al entrar
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
     await screen.findByRole('radio', { name: 'Farmacia' })
     await vi.waitFor(() => expect(campoProducto()).toHaveFocus())
@@ -82,7 +82,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('CP-SOL-016-01 · publica «Paracetamol 500 mg, 1 caja» en farmacias para recoger y queda ABIERTA', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alPublicar = vi.fn()
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={alPublicar} />)
     await screen.findByRole('radio', { name: /Casa/ })
@@ -108,7 +108,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('CP-SOL-016-02 · sin producto no envía nada, lo indica y lleva el foco al campo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
     await usuario.click(await screen.findByRole('radio', { name: 'Farmacia' }))
@@ -129,7 +129,7 @@ describe('HU-016 · Publicar solicitud', () => {
   it('CP-SOL-016-02 · sin ubicación no envía nada e indica el dato faltante', async () => {
     // Dado
     sinDirecciones()
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
     await usuario.type(campoProducto(), 'Tornillos de 2 pulgadas')
@@ -150,7 +150,7 @@ describe('HU-016 · Publicar solicitud', () => {
   it('sin direcciones guardadas ofrece el GPS y el mapa, y con un toque en el mapa publica', async () => {
     // Dado
     sinDirecciones()
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alPublicar = vi.fn()
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={alPublicar} />)
 
@@ -168,7 +168,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('«Otra ubicación» abre el mapa para elegir otro punto', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
 
     // Cuando
@@ -180,7 +180,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('CP-SOL-016-03 · con el límite de 10 por hora dice cuándo puede volver a intentarlo', async () => {
     // Dado: el cliente ya publicó 10 solicitudes en la última hora
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post(RUTA, () =>
         HttpResponse.json(
@@ -204,7 +204,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('una cantidad inválida abre «Más detalles» y lleva el foco a la cantidad', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
     await screen.findByRole('radio', { name: /Casa/ })
     await usuario.type(campoProducto(), 'Paracetamol')
@@ -248,7 +248,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('estado enviando · el botón dice que está preguntando y no permite otro envío', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(http.post(RUTA, () => delay('infinite')))
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
     await screen.findByRole('radio', { name: /Casa/ })
@@ -264,7 +264,7 @@ describe('HU-016 · Publicar solicitud', () => {
 
   it('estado error · un fallo del servidor muestra qué pasó y el código para soporte', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post(RUTA, () =>
         HttpResponse.json(

@@ -53,7 +53,7 @@ describe('HU-020 · Ver y ordenar las respuestas · CP-SOL-020-02, CP-SOL-020-03
 
   it('CP-SOL-020-02 · ordena por precio de entrada y por distancia al elegirlo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir(crearSolicitud())
     await screen.findByText('2 respuestas')
     expect(tiendasEnOrden()).toEqual(['Farmacia Popular', 'Botica San José'])

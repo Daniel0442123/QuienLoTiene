@@ -43,7 +43,7 @@ describe('HU-009 · Perfil y horario de la tienda', () => {
 
   it('CP-TIE-009-02 · guarda el teléfono y el horario nuevos y avisa', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioPerfilTienda tienda={tiendaSimulada()} />)
 
     // Cuando
@@ -64,7 +64,7 @@ describe('HU-009 · Perfil y horario de la tienda', () => {
 
   it('CP-TIE-009-01 · no deja guardar una franja que cierra antes de abrir', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     servidorSimulado.events.on('request:start', ({ request }) => {
       if (request.method === 'PUT') peticiones()
@@ -86,7 +86,7 @@ describe('HU-009 · Perfil y horario de la tienda', () => {
 
   it('copia el horario del lunes a los demás días que abre', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioPerfilTienda tienda={tiendaSimulada()} />)
 
     // Cuando
@@ -99,7 +99,7 @@ describe('HU-009 · Perfil y horario de la tienda', () => {
 
   it('TIE-007 · si el backend rechaza el horario lo explica arriba del horario', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.put('/api/v1/tiendas/me/perfil', () =>
         HttpResponse.json({ title: 'Horario inválido', status: 400, codigo: 'TIE-007', errores: [] }, { status: 400 }),
@@ -116,7 +116,7 @@ describe('HU-009 · Perfil y horario de la tienda', () => {
 
   it('estado enviando · el botón dice que está guardando', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(http.put('/api/v1/tiendas/me/perfil', () => new Promise(() => undefined)))
     renderizarConProveedores(<FormularioPerfilTienda tienda={tiendaSimulada()} />)
 

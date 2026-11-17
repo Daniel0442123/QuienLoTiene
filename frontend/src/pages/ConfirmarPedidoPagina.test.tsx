@@ -48,7 +48,7 @@ describe('HU-024 · Elegir una respuesta y crear la orden · CP-ORD-024-01, CP-O
 
   it('desde las respuestas, «Elegir» lleva a confirmar el pedido de esa tienda', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const solicitudId = crearSolicitud()
     abrir(`/solicitudes/${solicitudId}`)
 
@@ -61,7 +61,7 @@ describe('HU-024 · Elegir una respuesta y crear la orden · CP-ORD-024-01, CP-O
 
   it('CP-ORD-024-01 · con domicilio a «Casa» y efectivo crea la orden CONFIRMADO con el total desglosado', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const { solicitudId } = abrirConfirmar()
     expect(await screen.findByRole('radio', { name: /Casa/ })).toBeChecked()
     expect(screen.getByRole('radio', { name: /^Domicilio · \$\s3\.000$/ })).toBeChecked()
@@ -86,7 +86,7 @@ describe('HU-024 · Elegir una respuesta y crear la orden · CP-ORD-024-01, CP-O
 
   it('al cambiar a recoger quita la dirección y el domicilio del total', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrirConfirmar()
     await screen.findByRole('radio', { name: /Casa/ })
 
@@ -100,7 +100,7 @@ describe('HU-024 · Elegir una respuesta y crear la orden · CP-ORD-024-01, CP-O
 
   it('sin medio de pago no envía nada: lo dice en el resumen y en el grupo, y lleva el foco ahí', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrirConfirmar()
     await screen.findByRole('radio', { name: /Casa/ })
 
@@ -132,7 +132,7 @@ describe('HU-024 · Elegir una respuesta y crear la orden · CP-ORD-024-01, CP-O
 
   it('CP-ORD-024-04 · si la tienda dejó de aceptar el medio mientras elegía, lo dice en ese grupo y no crea la orden', async () => {
     // Dado: Botica San José recibía efectivo y datáfono, y quitó el datáfono después de que cargó la pantalla
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrirConfirmar()
     await screen.findByRole('radio', { name: 'Datáfono' })
     base.tiendas.find((t) => t.id === TIENDAS_SPRINT_2.botica)!.mediosPago = ['EFECTIVO']

@@ -55,7 +55,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('no tiene violaciones de accesibilidad, ni vacío ni con errores', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const { container } = renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
     await screen.findByRole('radio', { name: 'Farmacia' })
     await screen.findByRole('button', { name: 'Tocar el mapa' })
@@ -70,7 +70,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('CP-TIE-002-01 · registra la tienda con sus documentos y queda PENDIENTE', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alRegistrar = vi.fn()
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={alRegistrar} />)
 
@@ -89,7 +89,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('CP-TIE-002-02 · sin el RUT no envía nada e indica el campo que falta', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
     await llenar(usuario, { sinRut: true })
@@ -112,7 +112,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('CP-TIE-002-02 · si el backend dice que falta un documento (TIE-002) marca ese campo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post(RUTA_REGISTRO, () =>
         HttpResponse.json(
@@ -135,7 +135,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('sin ubicación pide marcarla y lleva el foco a «Usar mi ubicación»', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
 
     // Cuando
@@ -151,7 +151,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('«Usar mi ubicación» marca la ubicación con el GPS y lo dice en texto', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     vi.stubGlobal('navigator', {
       ...navigator,
       geolocation: {
@@ -170,7 +170,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('si el permiso de ubicación está bloqueado explica cómo marcarla en el mapa', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     vi.stubGlobal('navigator', {
       ...navigator,
       geolocation: {
@@ -190,7 +190,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('TIE-003 · rechaza al momento un archivo que no es foto ni PDF', async () => {
     // Dado
-    const usuario = userEvent.setup({ applyAccept: false })
+    const usuario = userEvent.setup({ applyAccept: false, delay: null })
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
     const campo = screen.getByLabelText('RUT o documento del negocio')
 
@@ -204,7 +204,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('GEN-010 · rechaza al momento un PDF de más de 5 MB', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
     const campo = screen.getByLabelText('RUT o documento del negocio')
 
@@ -217,7 +217,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('muestra el archivo elegido con su tamaño', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
     const campo = screen.getByLabelText('RUT o documento del negocio')
 
@@ -230,7 +230,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('IDE-001 · con un correo que ya tiene cuenta lo marca y ofrece entrar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
 
     // Cuando
@@ -256,7 +256,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('categorías · estado error con reintentar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     let intentos = 0
     servidorSimulado.use(
       http.get('/api/v1/categorias', () => {
@@ -289,7 +289,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('estado enviando · el botón dice que está registrando y no permite otro envío', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(http.post(RUTA_REGISTRO, () => delay('infinite')))
     renderizarConProveedores(<FormularioRegistroTienda alRegistrar={vi.fn()} />)
 
@@ -303,7 +303,7 @@ describe('HU-002 · HU-005 · Registro de tienda', () => {
 
   it('estado error · un fallo del servidor muestra qué pasó y el código para soporte', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post(RUTA_REGISTRO, () =>
         HttpResponse.json(

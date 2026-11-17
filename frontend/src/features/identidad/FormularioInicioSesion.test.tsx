@@ -18,7 +18,7 @@ describe('HU-003 · Iniciar sesión', () => {
 
   it('muestra el error del correo al salir del campo y lo asocia al campo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioInicioSesion alIniciar={vi.fn()} />)
     const campoCorreo = screen.getByRole('textbox', { name: 'Correo' })
 
@@ -33,7 +33,7 @@ describe('HU-003 · Iniciar sesión', () => {
 
   it('CP-IDE-003-01 · inicia sesión y guarda el token solo en memoria', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alIniciar = vi.fn()
     renderizarConProveedores(<FormularioInicioSesion alIniciar={alIniciar} />)
 
@@ -51,7 +51,7 @@ describe('HU-003 · Iniciar sesión', () => {
 
   it('CP-IDE-003-02 · con credenciales incorrectas muestra un mensaje que no dice cuál falló', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioInicioSesion alIniciar={vi.fn()} />)
 
     // Cuando
@@ -66,7 +66,7 @@ describe('HU-003 · Iniciar sesión', () => {
 
   it('permite ver la frase escrita (WCAG 3.3.8)', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioInicioSesion alIniciar={vi.fn()} />)
 
     // Cuando

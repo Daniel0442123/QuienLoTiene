@@ -33,7 +33,7 @@ describe('HU-012 · Medios de pago de la tienda', () => {
 
   it('CP-TIE-012-02 · al desmarcar el datáfono deja de quedar activo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioMediosPago mediosPago={['EFECTIVO', 'DATAFONO']} />)
 
     // Cuando
@@ -47,7 +47,7 @@ describe('HU-012 · Medios de pago de la tienda', () => {
 
   it('sin ningún medio no envía nada, lo explica y lleva el foco a la primera casilla', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     servidorSimulado.events.on('request:start', ({ request }) => {
       if (request.method === 'PUT') peticiones()
@@ -69,7 +69,7 @@ describe('HU-012 · Medios de pago de la tienda', () => {
 
   it('TIE-011 · si el backend lo rechaza muestra el mensaje', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.put('/api/v1/tiendas/me/medios-pago', () =>
         HttpResponse.json({ title: 'Medios inválidos', status: 400, codigo: 'TIE-011', errores: [] }, { status: 400 }),
