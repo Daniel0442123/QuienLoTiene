@@ -20,7 +20,8 @@ export const esquemaPublicarSolicitud = z.object({
         contexto.addIssue({ code: 'custom', message: textos.productoMuyLargo(producto.length) })
       }
     }),
-  categoriaId: z.string().min(1, textos.categoriaObligatoria),
+  // Un grupo de radios sin elegir llega como null desde React Hook Form: mismo mensaje que vacío (DEF-005)
+  categoriaId: z.string({ error: textos.categoriaObligatoria }).min(1, textos.categoriaObligatoria),
   modalidad: z.enum(MODALIDADES),
   cantidad: z
     .string()

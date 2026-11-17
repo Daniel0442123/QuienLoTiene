@@ -116,20 +116,35 @@ describe('HU-024 · Elegir una respuesta y crear la orden · CP-ORD-024-01, CP-O
     expect(base.ordenes).toHaveLength(2)
   })
 
-  it('CP-ORD-024-04 · con un medio de pago que la tienda no acepta, lo dice en ese grupo y no crea la orden', async () => {
-    // Dado: Botica San José recibe efectivo y datáfono
+  it('DEF-007 · CP-TIE-012-01 · solo ofrece los medios de pago que la tienda acepta', async () => {
+    // Cuando: Botica San José recibe efectivo y datáfono
+    abrirConfirmar()
+
+    // Entonces
+    const grupo = await screen.findByRole('group', { name: '¿Cómo pagas?' })
+    expect(
+      within(grupo)
+        .getAllByRole('radio')
+        .map((opcion) => opcion.getAttribute('value')),
+    ).toEqual(['EFECTIVO', 'DATAFONO'])
+    expect(within(grupo).queryByRole('radio', { name: 'Transferencia' })).not.toBeInTheDocument()
+  })
+
+  it('CP-ORD-024-04 · si la tienda dejó de aceptar el medio mientras elegía, lo dice en ese grupo y no crea la orden', async () => {
+    // Dado: Botica San José recibía efectivo y datáfono, y quitó el datáfono después de que cargó la pantalla
     const usuario = userEvent.setup()
     abrirConfirmar()
-    await screen.findByRole('radio', { name: /Casa/ })
+    await screen.findByRole('radio', { name: 'Datáfono' })
+    base.tiendas.find((t) => t.id === TIENDAS_SPRINT_2.botica)!.mediosPago = ['EFECTIVO']
 
     // Cuando
-    await usuario.click(screen.getByRole('radio', { name: 'Transferencia' }))
+    await usuario.click(screen.getByRole('radio', { name: 'Datáfono' }))
     await usuario.click(confirmar())
 
     // Entonces
     const grupo = screen.getByRole('group', { name: '¿Cómo pagas?' })
     expect(await within(grupo).findByText('La tienda no recibe ese medio de pago. Elige otro.')).toBeInTheDocument()
-    expect(screen.getByRole('radio', { name: 'Transferencia' })).toHaveFocus()
+    expect(screen.getByRole('radio', { name: 'Datáfono' })).toHaveFocus()
     expect(base.ordenes).toHaveLength(2)
   })
 

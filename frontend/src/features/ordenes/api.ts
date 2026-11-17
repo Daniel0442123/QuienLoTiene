@@ -28,8 +28,12 @@ function exigirDatos<T>(data: T | undefined): T {
 export function useCrearOrden() {
   const clienteConsultas = useQueryClient()
   return useMutation({
-    mutationFn: async (pedido: DatosConfirmarPedido & { respuestaId: string }) =>
-      exigirDatos((await clienteApi.POST('/api/v1/ordenes', { body: pedido })).data),
+    // C-04 B1: CrearOrdenRequest.direccionId no admite null; para recoger el campo no se envía
+    mutationFn: async ({ direccionId, ...pedido }: DatosConfirmarPedido & { respuestaId: string }) =>
+      exigirDatos(
+        (await clienteApi.POST('/api/v1/ordenes', { body: { ...pedido, ...(direccionId ? { direccionId } : {}) } }))
+          .data,
+      ),
     onSuccess: (orden) => {
       clienteConsultas.setQueryData(clavesOrdenes.orden(orden.id), orden)
       void clienteConsultas.invalidateQueries({ queryKey: ['solicitudes', orden.solicitudId] })

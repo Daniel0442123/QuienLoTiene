@@ -50,7 +50,14 @@ export function useMisRespuestas() {
 
 export type SolicitudDelCliente = Esquemas['SolicitudResponse']
 export type RespuestasDeSolicitud = Esquemas['RespuestasDeSolicitudResponse']
-export type RespuestaParaCliente = Esquemas['RespuestaParaClienteResponse']
+export type RespuestaParaCliente = Esquemas['RespuestaParaClienteResponse'] & {
+  /**
+   * DEF-007: medios de pago que la tienda tiene activos. Lo agrega el backend a RespuestaParaClienteResponse (campo
+   * acordado con Daniel); es opcional mientras llega, y sin él «Confirmar pedido» ofrece los tres. Con C-04 sale del
+   * tipo generado y esta intersección se quita.
+   */
+  mediosPagoAceptados?: ('EFECTIVO' | 'TRANSFERENCIA' | 'DATAFONO')[]
+}
 export type CriterioOrden = 'precio' | 'distancia' | 'total'
 
 /** Claves de las consultas del cliente sobre su solicitud. */
@@ -103,6 +110,7 @@ export function useResponderSolicitud() {
   const clienteConsultas = useQueryClient()
   return useMutation({
     mutationFn: async (respuesta: Respuesta) => {
+      // C-04 B3: «No lo tengo» va solo con el tipo y ningún campo se manda en null (el backend no los admite)
       const cuerpo =
         respuesta.tipo === 'NO'
           ? { tipo: 'NO' as const }
@@ -110,7 +118,7 @@ export function useResponderSolicitud() {
               tipo: respuesta.tipo,
               precioEnPesos: respuesta.precio,
               cantidadDisponible: respuesta.cantidad,
-              descripcionAlternativa: respuesta.tipo === 'PARECIDO' ? respuesta.descripcionAlternativa : null,
+              ...(respuesta.tipo === 'PARECIDO' ? { descripcionAlternativa: respuesta.descripcionAlternativa } : {}),
             }
       const { data } = await clienteApi.POST('/api/v1/solicitudes/{solicitudId}/respuestas', {
         params: { path: { solicitudId: respuesta.solicitudId } },

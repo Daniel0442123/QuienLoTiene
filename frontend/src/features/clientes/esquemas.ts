@@ -23,7 +23,7 @@ export const esquemaDireccion = z.object({
     .nullable()
     .refine((ubicacion) => ubicacion !== null, textos.ubicacionObligatoria),
   direccionEscrita: z.string().trim().min(1, textos.direccionObligatoria).max(200, textos.direccionMuyLarga),
-  // Vacías se envían como null: el backend las trata como «sin indicaciones»
+  // Vacías quedan en null y no se envían (aPeticion): el backend las trata como «sin indicaciones»
   indicaciones: z
     .string()
     .trim()
