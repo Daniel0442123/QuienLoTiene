@@ -1,6 +1,6 @@
 # Despliegue en producción
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 17/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Cómo está montado el VPS, cómo se publica una versión, cómo se vuelve atrás y cómo se restauran los respaldos. Complementa el diagrama `docs/diagramas/08-despliegue.drawio`, `DECISIONES-BACKEND.md` (secciones 11 a 14) y `DECISIONES-FRONTEND.md` (F-05 y sección 13).
 
@@ -133,13 +133,50 @@ sudo /opt/quienlotiene/respaldo/restaurar.sh produccion <id>                    
 
 Detiene la API, crea la base limpia, restaura la base y los documentos, y vuelve a levantar la API. Pide escribir `RESTAURAR` para confirmar.
 
-## 7. Monitoreo (RNF-018)
+## 7. Limpieza de datos de prueba (SC-016)
+
+Mientras el sitio sea un ambiente de producción-pruebas, QA también prueba en producción. Para que esos datos no queden cuando entren usuarios reales:
+
+- **Las pruebas en producción usan correos `@prueba.quienlotiene.tech`**, tanto para clientes como para tiendas. El dominio se cambia con `QLT_LIMPIEZA_DOMINIO_PRUEBAS` en el `.env`.
+- El despliegue copia `scripts/limpieza/` a `/opt/quienlotiene/limpieza/`.
+
+```bash
+cd /opt/quienlotiene
+sudo limpieza/limpiar.sh pruebas --simular   # cuenta lo que borraría, sin tocar nada
+sudo limpieza/limpiar.sh pruebas             # borra las cuentas de prueba y lo que cuelga de ellas
+sudo limpieza/limpiar.sh total --simular
+sudo limpieza/limpiar.sh total               # borra todos los clientes y tiendas (solo antes del lanzamiento)
+```
+
+| Modo | Qué borra | Cuándo se puede usar |
+|---|---|---|
+| `pruebas` | Las cuentas `@prueba.quienlotiene.tech` y sus datos. También las solicitudes, respuestas y órdenes en que participó una de esas cuentas, aunque la otra parte sea real. | Siempre |
+| `total` | Todas las cuentas de clientes y tiendas y sus datos, los documentos de las tiendas y los eventos ya procesados | Solo con `QLT_LIMPIEZA_TOTAL_PERMITIDA=si` en el `.env`. **Al salir a producción real se borra esa línea** y el modo queda bloqueado |
+
+**Lo que nunca borra:**
+- las cuentas ADMIN;
+- las categorías;
+- la auditoría del administrador;
+- la estructura de la base y el historial de Flyway.
+
+**Antes de borrar**, el script:
+1. muestra lo que se borraría;
+2. pide escribir el dominio del sitio;
+3. saca un respaldo con `respaldo/respaldo.sh`. Si el respaldo falla, no borra nada.
+
+**Después de borrar**, quita del disco los documentos de las tiendas borradas. Cada ejecución queda en `/opt/quienlotiene/limpieza.log` y se anota también en la bitácora del proyecto.
+
+**Para deshacer una limpieza**, se restaura el respaldo que sacó el script (sección 6.3).
+
+Probado el 17/11/2026 contra una base con todas las migraciones y datos de clientes y tiendas reales y de prueba cruzados. El modo `pruebas` dejó intactas al administrador, a la cliente real, a la tienda real y su orden, y a un correo parecido a otro dominio. El modo `total` dejó solo al administrador y las categorías, y el modo total sin la variable se negó a correr.
+
+## 8. Monitoreo (RNF-018)
 
 - Un chequeo externo gratuito (UptimeRobot o similar) cada 5 minutos contra `https://quienlotiene.tech/`.
 - Healthchecks.io para el respaldo diario (sección 6.1).
 - `docker compose ps` muestra `healthy` o `unhealthy` según el healthcheck de la base y de la API.
 
-## 8. Pendientes
+## 9. Pendientes
 
 - **Content-Security-Policy** en el `Caddyfile`: acordarla con el frontend cuando estén definidas las fuentes del mapa (teselas de OpenStreetMap) y de Web Push.
 - **Ajustar memoria** con datos reales del C3 (`docker stats`).
@@ -150,3 +187,4 @@ Detiene la API, crea la base limpia, restaura la base y los documentos, y vuelve
 |---|---|---|---|
 | — | 11/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | build(despliegue): imágenes, compose de producción, despliegue por etiquetas y respaldos (#19) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
+| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 7: limpieza de datos de prueba en producción (SC-016); se renumeran monitoreo y pendientes |

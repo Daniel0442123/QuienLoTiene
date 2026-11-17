@@ -132,14 +132,15 @@ jobs:
           printf 'Host vps\n  HostName %s\n  User %s\n  IdentityFile ~/.ssh/despliegue\n  StrictHostKeyChecking yes\n' \
             "${{ secrets.VPS_HOST }}" "${{ secrets.VPS_USUARIO }}" > ~/.ssh/config
 
-      - name: Copiar compose y scripts de respaldo
+      - name: Copiar compose y scripts de respaldo y limpieza
         run: |
-          ssh vps 'mkdir -p /opt/quienlotiene/respaldo'
+          ssh vps 'mkdir -p /opt/quienlotiene/respaldo /opt/quienlotiene/limpieza'
           scp compose.prod.yaml vps:/opt/quienlotiene/compose.prod.yaml
           scp scripts/respaldo/respaldo.sh scripts/respaldo/restaurar.sh \
             scripts/respaldo/quienlotiene-respaldo.service scripts/respaldo/quienlotiene-respaldo.timer \
             scripts/respaldo/respaldo.env.ejemplo vps:/opt/quienlotiene/respaldo/
-          ssh vps 'chmod 750 /opt/quienlotiene/respaldo/*.sh'
+          scp scripts/limpieza/limpiar.sh scripts/limpieza/limpieza.sql vps:/opt/quienlotiene/limpieza/
+          ssh vps 'chmod 750 /opt/quienlotiene/respaldo/*.sh /opt/quienlotiene/limpieza/limpiar.sh'
 
       # El token de GitHub solo vive mientras dura este job: el VPS inicia sesión en GHCR, descarga y cierra sesión
       - name: Actualizar los contenedores

@@ -28,6 +28,7 @@ Etiqueta sobre `main` después del #55. Primera versión desplegada con el flujo
 - Frontend: seguimiento del pedido, recepción y WhatsApp (HU-027, HU-028, HU-032, #42).
 - Frontend: tiempo real con SSE y alerta sonora de las solicitudes urgentes (HU-030, #43).
 - CI: OWASP Dependency-Check junto con Trivy (DEF-002, #36).
+- Operación: `scripts/limpieza/limpiar.sh` para borrar los datos de prueba de producción, con modos «pruebas» y «total», respaldo previo y bloqueo al salir a producción real (SC-016, #56). El despliegue lo copia al VPS.
 - Gestión: seguimiento y control de cambios del proyecto (bitácora, solicitudes de cambio, procedimientos, libro de control de cambios y chequeo «Control de cambios» en CI) y Release automática de cada versión (SC-009, #34). Decisiones de interfaz de los Sprints 2 y 3 (SC-011, #37).
 - Pruebas: corte del Sprint 1 (#32), ejecución del Sprint 2, re-pruebas, informe de cierre del C1 y sus Word y Excel de entrega (#46, #49, #52 a #55).
 
