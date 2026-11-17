@@ -1,6 +1,6 @@
 # Gestión del proyecto · Seguimiento y control de cambios
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
 
 Aquí se responde, para todo el proyecto, **qué se hizo, cuándo, quién lo hizo, cómo lo hizo y qué se apartó del plan**. Lo que es propio de las pruebas sigue en `docs/pruebas/`.
 
@@ -24,6 +24,8 @@ Aquí se responde, para todo el proyecto, **qué se hizo, cuándo, quién lo hiz
 | `.github/workflows/gestion.yml` + `scripts/gestion/verificar_pr.py` | Falla el PR si falta la historia, si no marca si se desvía del plan, si cita una SC que no está registrada o si no dice qué documentos actualizó |
 | `scripts/gestion/bitacora.py` | Regenera la tabla de PR de la bitácora desde GitHub |
 | `scripts/gestion/libro_excel.py` | Regenera el libro Excel desde estos Markdown |
+| `scripts/gestion/libro_qa_excel.py` | Pasa los resultados del libro de QA en Markdown (`docs/pruebas/libro/`) al libro Excel de QA, sin tocar sus fórmulas |
+| `scripts/gestion/informes_word.py` | Genera los Word de entrega de QA del ciclo (informes, evidencias con capturas y reportes de defecto) desde sus Markdown |
 | `.github/workflows/version.yml` + `scripts/gestion/evidencia_version.py` | Al desplegar cada etiqueta crea la Release de GitHub con notas, evidencia de CI, pruebas, cobertura, frontend y despliegue, y adjunta los artefactos |
 
 ## Flujo en una línea
@@ -35,3 +37,4 @@ Abrir PR con la plantilla → si se desvía, registrar SC-nnn → actualizar los
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión (SC-009) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Herramientas para generar los Excel y Word de QA (`libro_qa_excel.py`, `informes_word.py`) |

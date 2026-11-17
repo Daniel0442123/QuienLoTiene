@@ -1,6 +1,6 @@
 # Documento de evidencias de pruebas · Ciclo 1 (C1)
 
-> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.4 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
@@ -664,6 +664,192 @@ Carpeta `evidencias/C1/2026-11-16/reprueba-def010/`. Pasa: los tres textos con h
 | `reprueba-def010-salida.json` | Los tres textos leídos y las líneas con «..» (ninguna) |
 | `scripts/` | Script de Playwright de la re-prueba |
 
+## 13. Capturas de punta a punta del Sprint 2 y de las re-pruebas
+
+Las capturas de las secciones 10 a 12 dentro del documento, para revisarlas sin abrir las carpetas. Se tomaron con Chromium a 390 × 844 (escala 2) contra el backend real; el detalle de cada caso está en `RECORRIDO-SPRINT-2-20261116.md` y en el `README.md` de cada re-prueba.
+
+### 13.1 Recorrido de punta a punta — 16/11/2026, main 5e8ab98
+
+**Captura 01.** CP-NOT-030-01: panel de Droguería La 5 antes de la pregunta de Ana, con una solicitud anterior esperando respuesta
+
+![01-tienda-sin-solicitudes](../../evidencias/C1/2026-11-16/recorrido/01-tienda-sin-solicitudes.png)
+
+**Captura 02.** Ana toca «Preguntar» con el formulario vacío (estado previo a la corrección de DEF-005)
+
+![02-cliente-publicar-vacio](../../evidencias/C1/2026-11-16/recorrido/02-cliente-publicar-vacio.png)
+
+**Captura 03.** Ana llena «Loratadina 10 mg», Farmacia, su dirección «Casa», domicilio, 2 unidades y urgente
+
+![03-cliente-publicar-lleno](../../evidencias/C1/2026-11-16/recorrido/03-cliente-publicar-lleno.png)
+
+**Captura 04.** Ana espera respuestas: la pantalla dice hasta qué hora pueden responder las tiendas
+
+![04-cliente-esperando-respuestas](../../evidencias/C1/2026-11-16/recorrido/04-cliente-esperando-respuestas.png)
+
+**Captura 05.** CP-NOT-030-01 · CP-SOL-018-01 · CP-SOL-018-02: la solicitud llega sola a La 5, sin datos personales y con la distancia redondeada («a 200 m»)
+
+![05-tienda-solicitud-tiempo-real](../../evidencias/C1/2026-11-16/recorrido/05-tienda-solicitud-tiempo-real.png)
+
+**Captura 06.** CP-SOL-019-01: «Sí lo tengo» sin precio no se envía y marca el campo
+
+![06-tienda-responder-sin-precio](../../evidencias/C1/2026-11-16/recorrido/06-tienda-responder-sin-precio.png)
+
+**Captura 07.** CP-SOL-019-01: La 5 llena «Sí lo tengo» con precio y cantidad
+
+![07-tienda-responder-si-lleno](../../evidencias/C1/2026-11-16/recorrido/07-tienda-responder-si-lleno.png)
+
+**Captura 08.** CP-SOL-019-01: la respuesta de La 5 queda en «Mis respuestas» como «Esperando»
+
+![08-tienda-respuesta-enviada](../../evidencias/C1/2026-11-16/recorrido/08-tienda-respuesta-enviada.png)
+
+**Captura 09.** CP-SOL-019-02: Botica San José elige «Tengo algo parecido» sin descripción y no se envía
+
+![09-tienda-parecido-sin-descripcion](../../evidencias/C1/2026-11-16/recorrido/09-tienda-parecido-sin-descripcion.png)
+
+**Captura 10.** CP-SOL-019-02: Botica envía la alternativa con su descripción
+
+![10-tienda-parecido-enviada](../../evidencias/C1/2026-11-16/recorrido/10-tienda-parecido-enviada.png)
+
+**Captura 11.** CP-SOL-019-03: Farmacia Popular toca «No lo tengo» y la solicitud sale de sus nuevas («Descartaste…», con «Deshacer»)
+
+![11-tienda-no-lo-tengo](../../evidencias/C1/2026-11-16/recorrido/11-tienda-no-lo-tengo.png)
+
+**Captura 12.** CP-SOL-019-04: La 5 vuelve a la solicitud y solo ve «Ya respondiste esta solicitud…»; por API la segunda respuesta da 409 SOL-005
+
+![12-tienda-respuesta-duplicada](../../evidencias/C1/2026-11-16/recorrido/12-tienda-respuesta-duplicada.png)
+
+**Captura 13.** CP-SOL-020-01 · CP-SOL-020-03 · CP-MEN-032-02: Ana ve las 2 respuestas sin recargar; la de «No lo tengo» no aparece
+
+![13-cliente-respuestas-tiempo-real](../../evidencias/C1/2026-11-16/recorrido/13-cliente-respuestas-tiempo-real.png)
+
+**Captura 14.** CP-SOL-020-02: las respuestas ordenadas por precio
+
+![14-cliente-respuestas-por-precio](../../evidencias/C1/2026-11-16/recorrido/14-cliente-respuestas-por-precio.png)
+
+**Captura 15.** Ana abre «Confirmar pedido» con la respuesta de La 5 (los tres medios de pago: DEF-007)
+
+![15-cliente-confirmar-pedido](../../evidencias/C1/2026-11-16/recorrido/15-cliente-confirmar-pedido.png)
+
+**Captura 16.** CP-ORD-024-01: Ana llena modalidad, dirección y medio de pago
+
+![16-cliente-confirmar-lleno](../../evidencias/C1/2026-11-16/recorrido/16-cliente-confirmar-lleno.png)
+
+**Captura 17.** CP-ORD-024-01 · CP-MEN-032-01: el pedido queda confirmado, con el enlace de WhatsApp de la tienda
+
+![17-cliente-pedido-confirmado](../../evidencias/C1/2026-11-16/recorrido/17-cliente-pedido-confirmado.png)
+
+**Captura 18.** CP-SOL-021-02: Botica ve su respuesta como «No elegida»
+
+![18-tienda-no-elegida](../../evidencias/C1/2026-11-16/recorrido/18-tienda-no-elegida.png)
+
+**Captura 19.** CP-SOL-021-02: La 5 ve su respuesta como «Elegida»
+
+![19-tienda-elegida](../../evidencias/C1/2026-11-16/recorrido/19-tienda-elegida.png)
+
+**Captura 20.** La 5 ve el pedido nuevo en «Pedidos»
+
+![20-tienda-pedidos](../../evidencias/C1/2026-11-16/recorrido/20-tienda-pedidos.png)
+
+**Captura 21.** CP-ORD-024-02 · CP-MEN-032-01: la tienda ve nombre, teléfono y dirección de Ana y el botón de WhatsApp
+
+![21-tienda-pedido-datos-cliente](../../evidencias/C1/2026-11-16/recorrido/21-tienda-pedido-datos-cliente.png)
+
+**Captura 22.** CP-ORD-027-01: la tienda pasa el pedido a «Preparando»
+
+![22-tienda-pedido-preparando](../../evidencias/C1/2026-11-16/recorrido/22-tienda-pedido-preparando.png)
+
+**Captura 23.** CP-ORD-027-01: el pedido va «En camino»
+
+![23-tienda-pedido-en-camino](../../evidencias/C1/2026-11-16/recorrido/23-tienda-pedido-en-camino.png)
+
+**Captura 24.** CP-ORD-027-01: la tienda lo marca «Entregado» y espera que el cliente confirme
+
+![24-tienda-pedido-entregado](../../evidencias/C1/2026-11-16/recorrido/24-tienda-pedido-entregado.png)
+
+**Captura 25.** CP-ORD-027-01: Ana ve el pedido entregado y la pregunta «¿Ya lo tienes?» (con el punto doble de DEF-010)
+
+![25-cliente-pedido-entregado](../../evidencias/C1/2026-11-16/recorrido/25-cliente-pedido-entregado.png)
+
+**Captura 26.** CP-ORD-028-01: Ana confirma que lo recibió
+
+![26-cliente-pedido-recibido](../../evidencias/C1/2026-11-16/recorrido/26-cliente-pedido-recibido.png)
+
+**Captura 27.** CP-ORD-024-02: la tienda ve el pedido «Recibido»; los datos del cliente ya no se muestran y el pago dice «Pagas con efectivo a la tienda» (DEF-009)
+
+![27-tienda-pedido-cerrado](../../evidencias/C1/2026-11-16/recorrido/27-tienda-pedido-cerrado.png)
+
+**Captura 28.** CP-NOT-030-02: se publican una urgente y luego una normal; la urgente queda primero (osciladores de la alerta: 2)
+
+![28-tienda-urgente-primero](../../evidencias/C1/2026-11-16/recorrido/28-tienda-urgente-primero.png)
+
+**Captura 29.** Luis abre su solicitud urgente por URL y ve la respuesta de Droguería La 5
+
+![29-cliente-solicitud-urgente-respuestas](../../evidencias/C1/2026-11-16/recorrido/29-cliente-solicitud-urgente-respuestas.png)
+
+**Captura 30.** CP-ORD-024-04 / CP-TIE-012-01: la pantalla ofrece Datáfono aunque La 5 solo acepta efectivo y transferencia; el backend rechaza la orden
+
+![30-cliente-medio-no-aceptado](../../evidencias/C1/2026-11-16/recorrido/30-cliente-medio-no-aceptado.png)
+
+**Captura 31.** Con transferencia la orden se crea (recoger en la tienda)
+
+![31-cliente-pedido-recoger](../../evidencias/C1/2026-11-16/recorrido/31-cliente-pedido-recoger.png)
+
+**Captura 32.** Solicitud normal de Luis abierta, con la respuesta de La 5, antes de vencer
+
+![32-cliente-solicitud-abierta-antes-de-vencer](../../evidencias/C1/2026-11-16/recorrido/32-cliente-solicitud-abierta-antes-de-vencer.png)
+
+**Captura 33.** CP-SOL-021-01: la tarea de vencimiento la pasa a VENCIDA y el cliente lo ve sin recargar; ya no puede elegir
+
+![33-cliente-solicitud-vencida](../../evidencias/C1/2026-11-16/recorrido/33-cliente-solicitud-vencida.png)
+
+**Captura 34.** La tienda ve su respuesta a la solicitud vencida como «Vencida»
+
+![34-tienda-respuesta-vencida](../../evidencias/C1/2026-11-16/recorrido/34-tienda-respuesta-vencida.png)
+
+### 13.2 Re-prueba de DEF-005 a DEF-009 — 16/11/2026, main 55ab5b6
+
+**Captura 01.** DEF-005: un toque en «Preguntar» con todo vacío marca producto y categoría con el resumen
+
+![01-def005-publicar-vacio](../../evidencias/C1/2026-11-16/reprueba/capturas/01-def005-publicar-vacio.png)
+
+**Captura 02.** DEF-007: Droguería La 5 solo ofrece efectivo y transferencia
+
+![02-def007-confirmar-la5](../../evidencias/C1/2026-11-16/reprueba/capturas/02-def007-confirmar-la5.png)
+
+**Captura 03.** DEF-007 · CP-TIE-012-01: Botica San José solo ofrece efectivo y datáfono
+
+![03-def007-confirmar-botica](../../evidencias/C1/2026-11-16/reprueba/capturas/03-def007-confirmar-botica.png)
+
+**Captura 04.** DEF-009: la tienda lee «El cliente paga con efectivo.»
+
+![04-def009-pedido-tienda](../../evidencias/C1/2026-11-16/reprueba/capturas/04-def009-pedido-tienda.png)
+
+**Captura 05.** DEF-009: el cliente sigue leyendo «Pagas con efectivo a la tienda.»
+
+![05-def009-pedido-cliente](../../evidencias/C1/2026-11-16/reprueba/capturas/05-def009-pedido-cliente.png)
+
+**Captura 06.** DEF-008: la solicitud recién publicada, «Esperando respuestas»
+
+![06-def008-esperando](../../evidencias/C1/2026-11-16/reprueba/capturas/06-def008-esperando.png)
+
+**Captura 07.** DEF-008: al vencer, «Tu solicitud venció»; también muestra DEF-010
+
+![07-def008-vencida](../../evidencias/C1/2026-11-16/reprueba/capturas/07-def008-vencida.png)
+
+### 13.3 Re-prueba de DEF-010 — 16/11/2026, main e679ef3
+
+**Captura 01.** La tienda lee «A las … respondiste esta solicitud con …»
+
+![01-def010-ya-respondiste](../../evidencias/C1/2026-11-16/reprueba-def010/capturas/01-def010-ya-respondiste.png)
+
+**Captura 02.** El cliente lee «A las …, Droguería La 5 marcó tu pedido como entregado. ¿Ya lo tienes?»
+
+![02-def010-entregado-pregunta](../../evidencias/C1/2026-11-16/reprueba-def010/capturas/02-def010-entregado-pregunta.png)
+
+**Captura 03.** La solicitud vencida dice «A las … terminó el plazo para responder.»
+
+![03-def010-plazo-terminado](../../evidencias/C1/2026-11-16/reprueba-def010/capturas/03-def010-plazo-terminado.png)
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
@@ -673,3 +859,4 @@ Carpeta `evidencias/C1/2026-11-16/reprueba-def010/`. Pasa: los tres textos con h
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 10 con la evidencia del Sprint 2 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 11 con la re-prueba de DEF-005 a DEF-009 (borrador, pendiente de firma de QA) |
 | 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 12 con la re-prueba de DEF-010 (borrador, pendiente de firma de QA) |
+| 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 13: las 44 capturas del recorrido del Sprint 2 y de las re-pruebas dentro del documento, para la versión Word |
