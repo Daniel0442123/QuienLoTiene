@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.2 · 17/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -45,7 +45,15 @@ Etiqueta sobre `main` después del #55. Primera versión desplegada con el flujo
 
 ### Evidencia de calidad
 
-La agrega quien crea la etiqueta, desde la Release de GitHub que genera `version.yml` al terminar el despliegue (PROCEDIMIENTO-DOCUMENTAL.md, sección 6).
+Tomada de la [Release v0.3.0](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.3.0), que generó `version.yml` el 17/11/2026 00:25 sobre el commit `ed3da54`. La Release guarda también los resultados de las pruebas, el reporte de JaCoCo y el SBOM.
+
+| Verificación | Corrida | Resultado |
+|---|---|---|
+| CI backend: OWASP Dependency-Check, análisis de seguridad, compilar, pruebas y cobertura | [44022342818](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44022342818) · 17/11/2026 00:13 | ✅ Correcto |
+| CI frontend (último cambio del frontend incluido, `e679ef3`) | [44009478982](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44009478982) | ✅ Correcto |
+| Despliegue: pruebas, imágenes con Trivy, GHCR, VPS y verificación HTTPS | [44022656849](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44022656849) · 17/11/2026 00:25 | ✅ Correcto |
+
+Pruebas del backend en esta versión: 333 (278 unitarias y 55 de integración), 0 fallas. Cobertura de líneas: 95,2 % en `domain` y `application` (meta ≥ 70 %, RNF-022) y 60,8 % en total.
 
 ## v0.2.0 · 12/11/2026 · Cierre funcional del Sprint 1
 
@@ -145,3 +153,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: notas de `v0.1.0` a `v0.2.0` reconstruidas desde Git, con la evidencia de calidad de cada versión tomada de GitHub Actions (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.0` (Sprint 2 y cierre del C1) antes de etiquetar |
+| 1.2 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.0` copiada de su Release |
