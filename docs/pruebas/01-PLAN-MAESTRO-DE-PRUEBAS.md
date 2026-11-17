@@ -14,6 +14,7 @@ Instrumentos asociados: Libro de control de QA (`libro/`), plan de pruebas de ca
 | Versión | Fecha | Autor | Cambios |
 |---|---|---|---|
 | 1.0 | 07/11/2026 | Yanimar Burbano Piamba, Francisco José Castro Muñoz | Primera versión: modelo de pruebas priorizando unitarias, tres ciclos ligados a los sprints, gestión de defectos, instrumentos y criterios de liberación. |
+| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | El C1 · Sprint 2 termina el 20/11 en lugar del 15/11 (SC-015, propuesta; la aprueba QA y el dueño del proyecto). |
 
 | Rol | Nombre | Firma | Fecha |
 |---|---|---|---|
@@ -189,7 +190,7 @@ El detalle por caso (nivel, técnica, responsable) está en `libro/02-CASOS.md`.
 |---|---|---|---|
 | Preparación | 07/11 al 08/11 | Plan maestro, libro de control, plan del C1, JaCoCo y Failsafe en el `pom.xml` | Acta de inicio (anexo B) |
 | C1 · corte Sprint 1 | 02/11 al 08/11 | Unitarias de identidad, tiendas, solicitudes, administración; escaneos en CI | Informe de corte del Sprint 1 |
-| C1 · Sprint 2 | 09/11 al 15/11 | Unitarias e integración de respuestas, órdenes, notificaciones y WhatsApp | Informe de cierre C1 (anexo D) y evidencias |
+| C1 · Sprint 2 | 09/11 al 20/11 (SC-015) | Unitarias e integración de respuestas, órdenes, notificaciones y WhatsApp | Informe de cierre C1 (anexo D) y evidencias |
 | C2 · Sprint 3 | 16/11 al 22/11 | Casos del Sprint 3, integración y seguridad, re-prueba de C1 | Informe de cierre C2 y evidencias |
 | C3 · Cierre | 23/11 al 25/11 | Regresión completa, aceptación, E2E, carga, accesibilidad, compatibilidad | Informe de cierre C3, informe final de pruebas |
 | Comité de liberación | 25/11 | Revisión de criterios go / no-go | Acta de liberación (anexo E) |

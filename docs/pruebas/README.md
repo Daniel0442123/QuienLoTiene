@@ -1,6 +1,6 @@
 # Documentación de pruebas · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Responsables de QA: **Yanimar Burbano Piamba** (líder de QA, pruebas funcionales) y **Francisco José Castro Muñoz** (no funcionales y seguridad).
 
@@ -35,7 +35,7 @@ Todo se escribe primero aquí en Markdown, con la estructura y los campos de las
 | Fecha | Qué debe quedar terminado |
 |---|---|
 | 08/11 | Acta de inicio C1, corte del Sprint 1 en el libro, informe de corte |
-| 15/11 | Ejecución C1 completa, evidencias C1, informe de cierre C1, análisis de defectos C1 |
+| 20/11 (antes 15/11, SC-015) | Ejecución C1 completa, evidencias C1, informe de cierre C1, análisis de defectos C1 |
 | 22/11 | Ejecución C2 y re-pruebas, evidencias C2, informe de cierre C2, análisis de defectos C2 |
 | 25/11 | Ejecución C3, evidencias C3, informe de cierre C3, informe final de pruebas, acta de liberación |
 | 26/11 | Pruebas de humo en producción |
@@ -70,3 +70,4 @@ El catálogo (`libro/02-CASOS.md`) y las hojas de ejecución y trazabilidad se g
 |---|---|---|---|
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
+| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Cierre del C1 al 20/11 (SC-015, propuesta) |
