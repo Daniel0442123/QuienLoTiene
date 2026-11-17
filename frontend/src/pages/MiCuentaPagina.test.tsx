@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent, { type UserEvent } from '@testing-library/user-event'
 import { delay, http, HttpResponse } from 'msw'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -109,7 +109,8 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
       direccionEscrita: 'Carrera 9 # 4-12',
       indicaciones: 'Segundo piso',
     })
-    expect(screen.getByRole('heading', { name: 'Mis direcciones' })).toHaveFocus()
+    // El foco vuelve en el siguiente cuadro de animación (requestAnimationFrame): se espera
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Mis direcciones' })).toHaveFocus())
   })
 
   it('CP-CLI-007-02 · sin ubicación en el mapa no envía nada e indica el dato faltante', async () => {
