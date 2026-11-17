@@ -56,7 +56,7 @@ describe('HU-027, HU-028 y HU-032 · El pedido del cliente · CP-ORD-028-01, CP-
     const usuario = userEvent.setup()
     abrir(`/pedidos/${ORDEN_DE_LA_CLIENTA}`)
     expect(
-      await screen.findByText(/Droguería La 5 marcó tu pedido como entregado a las .*\. ¿Ya lo tienes\?/),
+      await screen.findByText(/^A las .*, Droguería La 5 marcó tu pedido como entregado\. ¿Ya lo tienes\?$/),
     ).toBeInTheDocument()
 
     // Cuando

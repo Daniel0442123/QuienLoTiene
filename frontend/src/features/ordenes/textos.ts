@@ -73,8 +73,11 @@ export const textosOrdenes = {
   cerrados: 'Anteriores',
 
   // Recibí mi pedido (HU-028)
+  // DEF-010: la hora va al principio para que su «p. m.» no quede pegado a otro punto
   entregadoPregunta: (tienda: string, hora: string) =>
-    `${tienda} marcó tu pedido como entregado a las ${hora}. ¿Ya lo tienes?`,
+    hora
+      ? `A las ${hora}, ${tienda} marcó tu pedido como entregado. ¿Ya lo tienes?`
+      : `${tienda} marcó tu pedido como entregado. ¿Ya lo tienes?`,
   botonRecibi: 'Recibí mi pedido',
   botonRecibiendo: 'Confirmando…',
   pedidoRecibido: 'Listo, tu pedido quedó recibido. ¡Gracias por usar ¿Quién lo tiene?!',

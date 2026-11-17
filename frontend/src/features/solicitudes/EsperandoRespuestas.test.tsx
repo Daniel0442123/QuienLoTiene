@@ -30,7 +30,7 @@ describe('HU-021 · Esperando respuestas cuando la solicitud vence · DEF-008', 
 
     // Entonces
     expect(await screen.findByRole('heading', { level: 1, name: 'Tu solicitud venció' })).toBeInTheDocument()
-    expect(screen.getByText(/El plazo para responder terminó a las .*\./)).toBeInTheDocument()
+    expect(screen.getByText(/^A las .* terminó el plazo para responder\.$/)).toBeInTheDocument()
     expect(screen.queryByText(/pueden responder/)).not.toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Esperando respuestas' })).not.toBeInTheDocument()
     expect(await screen.findByText('Vencida')).toBeInTheDocument()

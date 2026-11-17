@@ -39,7 +39,8 @@ export const textosSolicitudes = {
   // Confirmación (CU paso 9: «Esperando respuestas»)
   tituloEsperando: 'Esperando respuestas',
   tituloVencida: 'Tu solicitud venció',
-  plazoTerminado: (hora: string) => `El plazo para responder terminó a las ${hora}.`,
+  // DEF-010: la hora ya termina en «a. m.» o «p. m.»; las frases no terminan en ella para no dejar «..»
+  plazoTerminado: (hora: string) => `A las ${hora} terminó el plazo para responder.`,
   preguntamosA: (tiendas: number, producto: string) =>
     tiendas === 1
       ? `Le preguntamos a 1 tienda cercana si tiene «${producto}».`
@@ -131,7 +132,7 @@ export const textosSolicitudes = {
   },
   resumenRespuesta: (tipo: string, precio: string, unidades: string) => `${tipo} · ${precio} · ${unidades}`,
   yaRespondiste: (tipo: string, precio: string, unidades: string, hora: string) =>
-    `Ya respondiste esta solicitud. Tu respuesta fue «${tipo}», ${precio} por ${unidades}, a las ${hora}.`,
+    `A las ${hora} respondiste esta solicitud con «${tipo}», ${precio} por ${unidades}.`,
   tuRespuesta: 'Tu respuesta',
   verElPedido: 'Ver el pedido',
 

@@ -120,9 +120,7 @@ describe('HU-019 · Responder una solicitud', () => {
 
     // Entonces
     expect(
-      await screen.findByText(
-        /Ya respondiste esta solicitud\. Tu respuesta fue «Sí lo tengo», \$\s8\.000 por 1 unidad/,
-      ),
+      await screen.findByText(/A las .* respondiste esta solicitud con «Sí lo tengo», \$\s8\.000 por 1 unidad\./),
     ).toBeInTheDocument()
     expect(screen.getByText('Esperando a que el cliente elija.')).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Enviar respuesta' })).not.toBeInTheDocument()
