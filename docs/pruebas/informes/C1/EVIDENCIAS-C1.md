@@ -1,6 +1,6 @@
 # Documento de evidencias de pruebas · Ciclo 1 (C1)
 
-> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
@@ -652,6 +652,18 @@ Carpeta `evidencias/C1/2026-11-16/reprueba/`. Las cinco re-pruebas pasan; el det
 | `reprueba-salida.json` | Textos y valores leídos en cada paso |
 | `scripts/` | Script de Playwright de la re-prueba |
 
+## 12. Re-prueba de DEF-010 — 2026-11-16, main e679ef3 (borrador)
+
+Carpeta `evidencias/C1/2026-11-16/reprueba-def010/`. Pasa: los tres textos con hora ya no tienen punto doble; el detalle está en su `README.md`.
+
+| Archivo | Qué muestra |
+|---|---|
+| `capturas/01-def010-ya-respondiste.png` | La tienda lee «A las … respondiste esta solicitud con …» |
+| `capturas/02-def010-entregado-pregunta.png` | El cliente lee «A las …, Droguería La 5 marcó tu pedido como entregado. ¿Ya lo tienes?» |
+| `capturas/03-def010-plazo-terminado.png` | La solicitud vencida dice «A las … terminó el plazo para responder.» |
+| `reprueba-def010-salida.json` | Los tres textos leídos y las líneas con «..» (ninguna) |
+| `scripts/` | Script de Playwright de la re-prueba |
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
@@ -660,3 +672,4 @@ Carpeta `evidencias/C1/2026-11-16/reprueba/`. Las cinco re-pruebas pasan; el det
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 10 con la evidencia del Sprint 2 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 11 con la re-prueba de DEF-005 a DEF-009 (borrador, pendiente de firma de QA) |
+| 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 12 con la re-prueba de DEF-010 (borrador, pendiente de firma de QA) |

@@ -1,6 +1,6 @@
 # Hoja «Bitácora» · Sesiones de prueba
 
-> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Una fila por responsable de QA y por día de pruebas. Las ejecuciones automáticas de CI en cada push no se registran aquí; sí las corridas que se usan como evidencia (cierre de historia, corte de sprint, cierre de ciclo, re-prueba).
 
@@ -13,6 +13,7 @@
 | 2026-11-16 | C1 | Sprint 2 | Francisco Castro | 0,5 | Automatizada | main · `5e8ab98` | Pruebas por API contra el backend real (`evidencias/C1/2026-11-16/api-negativos.md`) y CI run #146 · CP-SOL-018-01, CP-ORD-024-02, CP-ORD-024-03, CP-ORD-028-02 y NF-SEG-011 | 4 | 4 | 0 | 0 | 95,5 % | 0 | — | Re-prueba de DEF-002: pasa | 403/404 sin datos para la tienda no elegida y el cliente ajeno. Pendiente la revisión y firma de QA |
 | 2026-11-16 | C1 | Sprint 2 | Yanimar Burbano | 1,5 | Recorrido de punta a punta | main · `5e8ab98` | PWA en local (backend dev + PostGIS + vite), 3 tiendas y 2 clientes; publicar → responder → elegir → pedido → recibido, urgente y vencimiento · ver `informes/C1/RECORRIDO-SPRINT-2-20261116.md` | 23 | 23 | 0 | 0 | — | 4 (DEF-006 a DEF-009) | — | Generar los tipos desde /v3/api-docs (C-04): 35 errores, lista para Monica en `informes/C1/C-04-DIFERENCIAS-TIPOS.md`. Re-prueba de DEF-005: sigue abierto | 34 capturas. Pendiente la revisión y firma de QA |
 | 2026-11-16 | C1 | Sprint 2 | Yanimar Burbano | 0,5 | Re-prueba | main · `55ab5b6` (#46, #47, #48) | PWA en local (backend dev + PostGIS + vite), 3 tiendas y 2 clientes; DEF-005, DEF-007, DEF-008 y DEF-009 en pantalla, DEF-006 contra `/v3/api-docs` en vivo con `npm run api:tipos` y `npm run tipos` · ver `evidencias/C1/2026-11-16/reprueba/` | 5 re-pruebas | 5 | 0 | 0 | — | 1 (DEF-010) | — | QA revisa y cierra DEF-005 a DEF-009; triaje de DEF-010 | Borrador preparado el 16/11 para que QA lo revise y firme. El vencimiento se forzó en la base, como en el recorrido. |
+| 2026-11-16 | C1 | Sprint 2 | Yanimar Burbano | 0,25 | Re-prueba | main · `e679ef3` (#50, #51) | PWA en local (backend dev + PostGIS + vite); los tres textos con hora de DEF-010 en pantalla (tienda que ya respondió, pedido entregado y solicitud vencida) · ver `evidencias/C1/2026-11-16/reprueba-def010/` | 1 re-prueba (3 textos) | 1 | 0 | 0 | — | 0 | — | QA revisa y cierra DEF-010 | Borrador preparado el 16/11 para que QA lo revise y firme. El vencimiento se forzó en la base. |
 
 ## Historial del documento
 
@@ -23,3 +24,4 @@
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del 16/11 del Sprint 2 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (borrador, pendiente de firma de QA) |
+| 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-010 sobre main e679ef3 (borrador, pendiente de firma de QA) |
