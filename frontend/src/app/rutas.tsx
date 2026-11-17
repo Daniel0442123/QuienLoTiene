@@ -104,6 +104,10 @@ export const rutas: RouteObject[] = [
             ),
             children: [
               {
+                index: true,
+                lazy: async () => ({ Component: (await import('@/pages/MisPedidosPagina')).MisPedidosPagina }),
+              },
+              {
                 path: ':ordenId',
                 lazy: async () => ({ Component: (await import('@/pages/PedidoPagina')).PedidoPagina }),
               },
@@ -146,6 +150,24 @@ export const rutas: RouteObject[] = [
                     path: ':solicitudId',
                     lazy: async () => ({
                       Component: (await import('@/pages/ResponderSolicitudPagina')).ResponderSolicitudPagina,
+                    }),
+                  },
+                ],
+              },
+              {
+                // Pedidos de la tienda (HU-027, HU-032)
+                path: 'pedidos',
+                children: [
+                  {
+                    index: true,
+                    lazy: async () => ({
+                      Component: (await import('@/pages/PedidosTiendaPagina')).PedidosTiendaPagina,
+                    }),
+                  },
+                  {
+                    path: ':ordenId',
+                    lazy: async () => ({
+                      Component: (await import('@/pages/PedidoTiendaPagina')).PedidoTiendaPagina,
                     }),
                   },
                 ],

@@ -1,8 +1,9 @@
-import { BadgeCheck, ChevronRight, CircleAlert, Clock, Inbox, Truck, Wallet } from 'lucide-react'
+import { BadgeCheck, ChevronRight, CircleAlert, Clock, Inbox, Package, Truck, Wallet } from 'lucide-react'
 import { Link } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { useMiTienda, type MiTienda } from '@/features/tiendas/api'
 import { InterruptorAperturaTienda } from '@/features/tiendas/InterruptorAperturaTienda'
+import { textosOrdenes } from '@/features/ordenes/textos'
 import { textosSolicitudes } from '@/features/solicitudes/textos'
 import { textosTiendas as textos } from '@/features/tiendas/textos'
 
@@ -12,6 +13,12 @@ const SECCIONES = [
     titulo: textosSolicitudes.seccionSolicitudes,
     descripcion: textosSolicitudes.descripcionSeccionSolicitudes,
     Icono: Inbox,
+  },
+  {
+    ruta: '/tienda/pedidos',
+    titulo: textosOrdenes.seccionPedidos,
+    descripcion: textosOrdenes.descripcionSeccionPedidos,
+    Icono: Package,
   },
   { ruta: '/tienda/perfil', titulo: textos.seccionPerfil, descripcion: textos.descripcionPerfil, Icono: Clock },
   {

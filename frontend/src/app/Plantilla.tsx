@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router'
 import { textosClientes } from '@/features/clientes/textos'
+import { textosOrdenes } from '@/features/ordenes/textos'
 import { BotonCerrarSesion } from '@/features/identidad/BotonCerrarSesion'
 import { useSesion } from '@/hooks/useSesion'
 import { AnunciadorDeRuta } from './AnunciadorDeRuta'
@@ -23,6 +24,14 @@ export function Plantilla() {
           </Link>
           {sesion ? (
             <div className="flex flex-wrap items-center gap-2">
+              {sesion.rol === 'CLIENTE' ? (
+                <Link
+                  to="/pedidos"
+                  className="flex min-h-tactil items-center px-2 font-semibold text-primario underline underline-offset-4 hover:no-underline"
+                >
+                  {textosOrdenes.enlaceMisPedidos}
+                </Link>
+              ) : null}
               {sesion.rol === 'CLIENTE' ? (
                 <Link
                   to="/cuenta"

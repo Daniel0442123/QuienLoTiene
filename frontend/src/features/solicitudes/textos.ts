@@ -131,6 +131,7 @@ export const textosSolicitudes = {
   yaRespondiste: (tipo: string, precio: string, unidades: string, hora: string) =>
     `Ya respondiste esta solicitud. Tu respuesta fue «${tipo}», ${precio} por ${unidades}, a las ${hora}.`,
   tuRespuesta: 'Tu respuesta',
+  verElPedido: 'Ver el pedido',
 
   // Respuestas para el cliente (HU-020) y estado de la solicitud (HU-021)
   tituloRespuestas: 'Respuestas a tu solicitud',
