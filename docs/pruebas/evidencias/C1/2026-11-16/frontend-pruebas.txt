@@ -1,0 +1,26 @@
+
+> quienlotiene-frontend@0.1.0 tipos
+> tsc -b
+
+
+> quienlotiene-frontend@0.1.0 lint
+> oxlint
+
+
+ RUN  v5.1.0 /home/user/quienlotiene/frontend
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+
+ Test Files  34 passed (34)
+      Tests  237 passed (237)
+   Start at  00:21:22
+   Duration  24.40s (tests 41%, environment 28%, import 16%, setup 11%, transform 4%)
+
+Environment  jsdom was created 34 times · 18.79s total, 28% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

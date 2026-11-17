@@ -1,0 +1,6 @@
+# CI run #146 · main 5e8ab98 (tras #43) · 16/11/2026 19:14 hora de Colombia (17/11 00:14 UTC) · conclusión: success
+https://github.com/Daniel0442123/QuienLoTiene/actions/runs/43986005499
+
+Job «Compilar, pruebas y cobertura» ............ success (Construir y probar, reporte de cobertura, resultados de pruebas)
+Job «Análisis de seguridad» ..................... success (SpotBugs/FindSecBugs y SBOM, Trivy dependencias, Gitleaks secretos)
+Job «OWASP Dependency-Check» .................... success (paso «Dependency-Check (falla con CVSS >= 7 sin justificar)»)  ← re-prueba de DEF-002

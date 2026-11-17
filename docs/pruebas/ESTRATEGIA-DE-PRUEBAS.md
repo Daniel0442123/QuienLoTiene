@@ -1,6 +1,6 @@
 # Estrategia de pruebas · Quién lo tiene
 
-> **Control del documento** · Versión 2.2 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (QA funcional) y Francisco José Castro Muñoz (QA no funcional y seguridad) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 2.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (QA funcional) y Francisco José Castro Muñoz (QA no funcional y seguridad) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 ## 1. Qué cambió y por qué
 
@@ -99,7 +99,7 @@ Reglas de negocio que deben tener prueba unitaria sí o sí (vienen del SRS y de
 
 | Ciclo | Sprint | Niveles que se ejecutan | Disparador | Documentación terminada |
 |---|---|---|---|---|
-| C1 | Sprints 1 y 2 (02/11 al 15/11) | Unitarias + arquitectura + escaneos; integración solo en PostGIS, API y SSE | Cada pull request y cada historia terminada | Corte del Sprint 1 (08/11) y cierre C1 (15/11) |
+| C1 | Sprints 1 y 2 (02/11 al 20/11, SC-015) | Unitarias + arquitectura + escaneos; integración solo en PostGIS, API y SSE | Cada pull request y cada historia terminada | Corte del Sprint 1 (08/11) y cierre C1 (15/11) |
 | C2 | Sprint 3 (16/11 al 22/11) | Lo anterior + integración y seguridad entre módulos + re-prueba de C1 | Persistencia y API de los módulos listas | Cierre C2 (22/11) |
 | C3 | Cierre (23/11 al 25/11) | Regresión completa + aceptación Must + punta a punta + carga, accesibilidad y compatibilidad | Varios módulos desplegados juntos en el VPS | Cierre C3, informe final y acta de liberación (25/11) |
 | Producción | 26/11 | Pruebas de humo | Despliegue de v1.0.0 | Registro de humo |
@@ -257,3 +257,4 @@ Con esto, `./mvnw verify` falla si la cobertura de dominio y aplicación baja de
 |---|---|---|---|
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | 2.2 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (el documento declaraba la versión 2.1) (SC-009) |
+| 2.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fechas del C1 al 20/11 (SC-015) |

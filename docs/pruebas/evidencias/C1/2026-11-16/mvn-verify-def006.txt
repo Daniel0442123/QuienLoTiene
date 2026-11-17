@@ -1,0 +1,1240 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=40361 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+[INFO] Scanning for projects...
+[INFO] Loaded 24514 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] -------------------< com.quienlotiene:QuienLoTiene >--------------------
+[INFO] Building QuienLoTiene 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 24514 auto-discovered prefixes for remote repository maven-central (prefixes-maven-central.txt)
+[INFO] 
+[INFO] --- spotless:3.11.0:check (verificar-formato) @ QuienLoTiene ---
+[INFO] Spotless.Java is keeping 405 files clean - 0 needs changes to be clean, 0 were already clean, 405 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- jacoco:0.8.16:prepare-agent (preparar-agente) @ QuienLoTiene ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.16/org.jacoco.agent-0.8.16-runtime.jar=destfile=/home/user/quienlotiene/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ QuienLoTiene ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] Copying 23 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ QuienLoTiene ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ QuienLoTiene ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ QuienLoTiene ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 71 source files with javac [debug parameters release 21] to target/test-classes
+[WARNING] The following options were not recognized by any processor: '[mapstruct.unmappedTargetPolicy, mapstruct.defaultComponentModel]'
+[INFO] /home/user/quienlotiene/src/test/java/com/quienlotiene/shared/infrastructure/web/ConvertidorRecordsOpenApiTest.java: /home/user/quienlotiene/src/test/java/com/quienlotiene/shared/infrastructure/web/ConvertidorRecordsOpenApiTest.java uses unchecked or unsafe operations.
+[INFO] /home/user/quienlotiene/src/test/java/com/quienlotiene/shared/infrastructure/web/ConvertidorRecordsOpenApiTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ QuienLoTiene ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=40361 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+[INFO] Running T-01 Filtro del id de correlaci?n
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.296 s -- in T-01 Filtro del id de correlaci?n
+[INFO] Running com.quienlotiene.shared.infrastructure.web.ConvertidorRecordsOpenApiTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.656 s -- in com.quienlotiene.shared.infrastructure.web.ConvertidorRecordsOpenApiTest
+[INFO] Running T-01 Manejador global de errores con ProblemDetail
+01:31:15.403 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 9.1.5.Final
+01:31:15.776 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:15.776 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:15.780 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 2 ms
+01:31:15.848 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-003 incumplida en /prueba/limite
+01:31:15.968 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:15.968 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:15.969 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.003 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.003 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.003 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.034 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/DATOS_INVALIDOS
+01:31:16.115 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.115 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.115 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.117 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/NO_AUTENTICADO
+01:31:16.134 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.134 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.134 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.135 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/SIN_PERMISO
+01:31:16.149 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.149 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.149 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.151 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/NO_ENCONTRADO
+01:31:16.164 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.164 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.164 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.166 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/CONFLICTO
+01:31:16.179 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.179 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.179 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.181 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/REGLA_NEGOCIO
+01:31:16.194 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.194 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.194 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.196 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-002 incumplida en /prueba/tipo/DEMASIADOS_INTENTOS
+01:31:16.207 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.207 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.207 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.285 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.285 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.285 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.288 [main] WARN org.springframework.web.servlet.PageNotFound -- Request method 'DELETE' is not supported
+01:31:16.301 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.301 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.301 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.302 [main] ERROR com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Error no controlado en GET /prueba/inesperado
+java.lang.IllegalStateException: Falló la consulta a tabla_secreta
+	at com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErroresTest$ControladorDePrueba.fallarInesperadamente(ManejadorGlobalErroresTest.java:236)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
+	at com.quienlotiene.shared.infrastructure.web.FiltroIdCorrelacion.doFilterInternal(FiltroIdCorrelacion.java:40)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199)
+	at com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErroresTest.ocultaElMensajeTecnicoDeUnErrorInesperado(ManejadorGlobalErroresTest.java:141)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701)
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502)
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+01:31:16.325 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.325 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.325 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.464 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.464 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.464 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.466 [main] INFO com.quienlotiene.shared.infrastructure.web.ManejadorGlobalErrores -- Regla de negocio PRU-001 incumplida en /prueba/regla
+01:31:16.479 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.479 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.479 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+01:31:16.491 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+01:31:16.491 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+01:31:16.491 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.685 s -- in T-01 Manejador global de errores con ProblemDetail
+[INFO] Running HU-002 Almac?n de archivos en disco
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in HU-002 Almac?n de archivos en disco
+[INFO] Running T-02 Seguridad con JWT RS256 y roles
+01:31:16.727 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.shared.infrastructure.security.SeguridadConfigTest
+01:31:16.737 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.shared.infrastructure.security.SeguridadConfigTest
+01:31:16.819 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:31:17.239Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.i.security.SeguridadConfigTest     : Starting SeguridadConfigTest using Java 21.0.12.1 with PID 3657 (started by root in /home/user/quienlotiene)
+2026-11-17T01:31:17.241Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.i.security.SeguridadConfigTest     : The following 1 profile is active: "test"
+2026-11-17T01:31:18.508Z  WARN 3657 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:31:18.994Z  INFO 3657 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:31:18.994Z  INFO 3657 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:31:18.996Z  INFO 3657 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-11-17T01:31:19.044Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.i.security.SeguridadConfigTest     : Started SeguridadConfigTest in 2.236 seconds (process running for 6.758)
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-11-17T01:31:19.917Z  WARN 3657 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.572 s -- in T-02 Seguridad con JWT RS256 y roles
+[INFO] Running T-02 Llaves RSA y codificaci?n de frases de contrase?a
+2026-11-17T01:31:20.546Z  WARN 3657 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.517 s -- in T-02 Llaves RSA y codificaci?n de frases de contrase?a
+[INFO] Running T-01 Excepci?n base de reglas de negocio
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in T-01 Excepci?n base de reglas de negocio
+[INFO] Running HU-004 Verificaci?n TOTP y cifrado del secreto
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in HU-004 Verificaci?n TOTP y cifrado del secreto
+[INFO] Running HU-001 Lista de frases comunes
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in HU-001 Lista de frases comunes
+[INFO] Running HU-004 Segundo factor del administrador
+2026-11-17T01:31:21.398Z  INFO 3657 --- [quienlotiene] [           main] [] auditoria                                : El administrador 3e7e5b7f-2d03-4778-b541-86a6c32cfc9e pasó la frase y falta el segundo factor
+[INFO] Running Crear el administrador inicial
+2026-11-17T01:31:21.476Z  INFO 3657 --- [quienlotiene] [           main] [] auditoria                                : Administrador e629994e-5c59-4335-a699-bc2ec7f7a13f creado
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s -- in Crear el administrador inicial
+[INFO] Running Verificar el c?digo
+2026-11-17T01:31:21.555Z  INFO 3657 --- [quienlotiene] [           main] [] auditoria                                : El administrador 40c33e32-5907-49b4-9a8f-9db5b10e8a96 inició sesión con segundo factor
+2026-11-17T01:31:21.569Z  WARN 3657 --- [quienlotiene] [           main] [] auditoria                                : Código TOTP incorrecto del administrador 1d97ae1a-702f-44c5-9c46-b8cbf3a8c346 (intento 3 de 5)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 s -- in Verificar el c?digo
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.895 s -- in HU-004 Segundo factor del administrador
+[INFO] Running HU-003 Iniciar, renovar y cerrar sesi?n
+[INFO] Running Renovar la sesi?n
+2026-11-17T01:31:21.592Z  WARN 3657 --- [quienlotiene] [           main] [] c.q.i.a.usecase.RefrescarSesion          : Reuso de un token de refresco revocado del usuario 483b8ff2-859a-471d-aaaa-d457deb8ae56: se cierran sus sesiones
+2026-11-17T01:31:21.616Z  WARN 3657 --- [quienlotiene] [           main] [] c.q.i.a.usecase.RefrescarSesion          : Reuso de un token de refresco revocado del usuario 363ea57d-6d9d-4d23-84c4-bd297d396e74: se cierran sus sesiones
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in Renovar la sesi?n
+[INFO] Running Cerrar sesi?n
+2026-11-17T01:31:21.635Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.i.application.usecase.CerrarSesion   : Usuario 2cecadfe-b78d-4707-b814-a5f7aa044d12 cerró sesión
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in Cerrar sesi?n
+[INFO] Running Iniciar sesi?n
+2026-11-17T01:31:21.648Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.i.application.usecase.IniciarSesion  : Inicio de sesión fallido para el usuario 825fc992-b835-4b5c-b040-078f4b51cef4
+2026-11-17T01:31:21.659Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.i.application.usecase.IniciarSesion  : Inicio de sesión rechazado: el usuario 68780e2c-a4a7-488f-8a11-915606316598 está suspendido
+2026-11-17T01:31:21.664Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.i.application.usecase.IniciarSesion  : Usuario 5a24271e-d8ab-40a2-8761-ca8ea4004082 inició sesión
+2026-11-17T01:31:21.673Z  WARN 3657 --- [quienlotiene] [           main] [] auditoria                                : El administrador 845c8c1b-2db2-47e7-a4df-f9e70280c23f no tiene segundo factor configurado
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in Iniciar sesi?n
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.096 s -- in HU-003 Iniciar, renovar y cerrar sesi?n
+[INFO] Running HU-007 Perfil del usuario
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-007 Perfil del usuario
+[INFO] Running HU-001 Registrar cliente
+2026-11-17T01:31:21.780Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.i.a.usecase.RegistrarCliente         : Cliente f30b04c7-e014-4abb-b048-0774f5cdbf13 registrado
+2026-11-17T01:31:21.784Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.i.a.usecase.RegistrarCliente         : Cliente ae76e16f-a01d-4c34-aa1e-03d1112e7e54 registrado
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 s -- in HU-001 Registrar cliente
+[INFO] Running HU-005 Autorizaci?n de tratamiento de datos
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in HU-005 Autorizaci?n de tratamiento de datos
+[INFO] Running HU-001 Usuario
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in HU-001 Usuario
+[INFO] Running HU-001 Correo
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in HU-001 Correo
+[INFO] Running HU-003 Token de refresco
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in HU-003 Token de refresco
+[INFO] Running HU-001 Frase de contrase?a
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in HU-001 Frase de contrase?a
+[INFO] Running HU-030 Conexiones SSE
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in HU-030 Conexiones SSE
+[INFO] Running HU-030 Notificar en tiempo real
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 s -- in HU-030 Notificar en tiempo real
+[INFO] Running HU-030 Avisos recientes para reenviar tras una reconexi?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in HU-030 Avisos recientes para reenviar tras una reconexi?n
+[INFO] Running com.quienlotiene.arquitectura.ModulosTest
+2026-11-17T01:31:22.153Z  INFO 3657 --- [quienlotiene] [           main] [] com.tngtech.archunit.core.PluginLoader   : Detected Java version 21.0.12.1
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.736 s -- in com.quienlotiene.arquitectura.ModulosTest
+[INFO] Running HU-024, HU-027 y HU-028 Casos de uso de ?rdenes
+[INFO] Running HU-032 Contacto de la otra parte
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.385 s -- in HU-032 Contacto de la otra parte
+[INFO] Running HU-028 Confirmar recepci?n
+2026-11-17T01:31:26.176Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.o.a.usecase.ConfirmarRecepcion       : Orden 9eac0120-98ea-4c0a-b3a7-c29250a0e9c3 resuelta por su cliente
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in HU-028 Confirmar recepci?n
+[INFO] Running HU-024 Crear orden
+2026-11-17T01:31:26.201Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.o.application.usecase.CrearOrden     : Orden 32668b33-e522-4d1c-97aa-1e62f3054b70 creada para la solicitud 50ebf6c7-07a2-4ee1-9b29-a75aab4d88a1
+2026-11-17T01:31:26.218Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.o.application.usecase.CrearOrden     : Orden 0b8036cd-6d55-4a16-a683-7d8369b11f9d creada para la solicitud 14e6ef45-5dae-4377-9d37-5b981d4b55ac
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in HU-024 Crear orden
+[INFO] Running HU-027 Consultar y cambiar el estado
+2026-11-17T01:31:26.246Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.o.a.usecase.CambiarEstadoOrden       : Orden 6e694b88-7ad1-4571-ab3d-a63d1f76489f pasó a PREPARANDO
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in HU-027 Consultar y cambiar el estado
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.467 s -- in HU-024, HU-027 y HU-028 Casos de uso de ?rdenes
+[INFO] Running HU-024, HU-027 y HU-028 Orden
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in HU-024, HU-027 y HU-028 Orden
+[INFO] Running HU-036 Revisar tienda con auditor?a (m?dulo administracion)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.165 s -- in HU-036 Revisar tienda con auditor?a (m?dulo administracion)
+[INFO] Running HU-032 Contactar por WhatsApp
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s -- in HU-032 Contactar por WhatsApp
+[INFO] Running HU-032 Enlace de WhatsApp
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in HU-032 Enlace de WhatsApp
+[INFO] Running HU-007 Gestionar direcciones del cliente
+2026-11-17T01:31:26.545Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.c.a.usecase.GestionarDirecciones     : Cliente b8cb7348-f5a6-48c3-8de3-269f68ff5a7b borró una dirección
+2026-11-17T01:31:26.551Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.c.a.usecase.GestionarDirecciones     : Cliente b8cb7348-f5a6-48c3-8de3-269f68ff5a7b guardó la dirección b14d8a9b-0607-493f-aa4e-fe401d334077
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in HU-007 Gestionar direcciones del cliente
+[INFO] Running HU-007 Direcci?n del cliente
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-007 Direcci?n del cliente
+[INFO] Running HU-013 Cambiar apertura y buscar tiendas elegibles
+2026-11-17T01:31:26.627Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.CambiarAperturaTienda    : Tienda 4b7a4cef-5b9d-4ad6-ad5f-e01d7edcf992 quedó abierta
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in HU-013 Cambiar apertura y buscar tiendas elegibles
+[INFO] Running HU-010 Configurar domicilio de mi tienda
+2026-11-17T01:31:26.646Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.ConfigurarDomicilio      : Tienda 86c45f60-22f7-4643-bc12-071719cd738e actualizó su domicilio
+2026-11-17T01:31:26.650Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.ConfigurarDomicilio      : Tienda 3ac0e6cf-e7ef-4bd6-a79d-e73df321acc5 actualizó su domicilio
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in HU-010 Configurar domicilio de mi tienda
+[INFO] Running HU-012 Configurar medios de pago de mi tienda
+2026-11-17T01:31:26.660Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.ConfigurarMediosPago     : Tienda a3d3c17a-1260-4bcb-b8db-d345b933e44d actualizó sus medios de pago
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-012 Configurar medios de pago de mi tienda
+[INFO] Running HU-002 Registrar tienda
+2026-11-17T01:31:26.775Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.RegistrarTienda          : Tienda e3d7cf7e-2025-4f22-9699-6be313c56195 registrada por el usuario ae80b9d1-4ab1-4e9b-9fdc-bda67eaa94c3, pendiente de revisión
+2026-11-17T01:31:26.778Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.RegistrarTienda          : Tienda 42d05deb-3a8d-4458-bb4d-c08554293f16 registrada por el usuario 1d90ee32-40e3-4e04-948c-1beb8b8ee9a4, pendiente de revisión
+2026-11-17T01:31:26.781Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.RegistrarTienda          : Tienda 1bcbdea2-841d-4025-a7aa-c77ed9ec3356 registrada por el usuario 1ae19564-71ee-4498-9928-35242feac128, pendiente de revisión
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s -- in HU-002 Registrar tienda
+[INFO] Running HU-009 Consultar y actualizar el perfil de mi tienda
+2026-11-17T01:31:26.790Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.t.a.usecase.ActualizarPerfilTienda   : Tienda c4083eb6-86e2-4f34-a795-c9213578c8b3 actualizó su perfil
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in HU-009 Consultar y actualizar el perfil de mi tienda
+[INFO] Running HU-036 Revisar tiendas (m?dulo tiendas)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in HU-036 Revisar tiendas (m?dulo tiendas)
+[INFO] Running HU-036 Revisi?n de la tienda
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-036 Revisi?n de la tienda
+[INFO] Running HU-009 Horario de atenci?n y perfil de la tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in HU-009 Horario de atenci?n y perfil de la tienda
+[INFO] Running HU-002 Tienda y documentos
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in HU-002 Tienda y documentos
+[INFO] Running HU-013 Abrir o cerrar la tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-013 Abrir o cerrar la tienda
+[INFO] Running HU-012 Medios de pago de la tienda
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in HU-012 Medios de pago de la tienda
+[INFO] Running HU-010 Domicilio con tarifa fija
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-010 Domicilio con tarifa fija
+[INFO] Running HU-002 y HU-016 Listar las categor?as para los formularios
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in HU-002 y HU-016 Listar las categor?as para los formularios
+[INFO] Running HU-019 Responder solicitud (caso de uso)
+2026-11-17T01:31:27.080Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.ResponderSolicitud       : Tienda 6d0cf91b-5829-4fe8-abdb-a209e5fd5a8e respondió NO a la solicitud ea8f18f4-0da6-4c7f-8eb0-635ec0c751c4
+2026-11-17T01:31:27.084Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.ResponderSolicitud       : Tienda 6d0cf91b-5829-4fe8-abdb-a209e5fd5a8e respondió SI a la solicitud 0f309fde-d69d-40b4-aa8a-db42854c0000
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.161 s -- in HU-019 Responder solicitud (caso de uso)
+[INFO] Running HU-024 Elegir una respuesta
+2026-11-17T01:31:27.095Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.ElegirRespuesta          : Solicitud 1e219085-0e87-4b9d-a9e6-2753f8030de5 resuelta con la respuesta 74ca4d50-0925-4cbf-82c1-76fc329cc1e7
+2026-11-17T01:31:27.102Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.ElegirRespuesta          : Solicitud 9e8e194f-4010-49d7-8e17-947074c3772d resuelta con la respuesta 14779edf-6d7a-43ea-b874-689af0099d68
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in HU-024 Elegir una respuesta
+[INFO] Running HU-018, HU-020 y HU-021 Consultas de solicitudes y respuestas
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in HU-018, HU-020 y HU-021 Consultas de solicitudes y respuestas
+[INFO] Running HU-017 Difundir la solicitud a las tiendas elegibles
+2026-11-17T01:31:27.187Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.DifundirSolicitud        : Solicitud a3197ed0-f4bd-494a-8ff2-9da8dfbc1c99 enviada a 0 tiendas
+2026-11-17T01:31:27.189Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.DifundirSolicitud        : Solicitud a2eae9a5-3260-47ec-bac5-9c4560f5343b enviada a 2 tiendas
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in HU-017 Difundir la solicitud a las tiendas elegibles
+[INFO] Running HU-021 Vencer solicitudes sin elecci?n
+2026-11-17T01:31:27.194Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.VencerSolicitudes        : Solicitud 342e6cc5-34dc-41f0-8e14-0106b5b226b6 vencida sin elección
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in HU-021 Vencer solicitudes sin elecci?n
+[INFO] Running HU-016 Publicar solicitud
+2026-11-17T01:31:27.299Z  INFO 3657 --- [quienlotiene] [           main] [] c.q.s.a.usecase.PublicarSolicitud        : Solicitud a7c8444b-8135-4051-a235-9d0c40e2f76c publicada por el cliente b0e4c7f6-dca3-4ba5-ba27-9c45cc750eec
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.110 s -- in HU-016 Publicar solicitud
+[INFO] Running HU-019 Responder una solicitud
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in HU-019 Responder una solicitud
+[INFO] Running HU-021 Ciclo de vida de la solicitud
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in HU-021 Ciclo de vida de la solicitud
+[INFO] Running HU-016 L?mite de 10 solicitudes por hora
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-016 L?mite de 10 solicitudes por hora
+[INFO] Running HU-016 Solicitud
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in HU-016 Solicitud
+[INFO] Running NF-MAN-023 Reglas de arquitectura por capas
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.315 s -- in NF-MAN-023 Reglas de arquitectura por capas
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 278, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jacoco:0.8.16:report (reporte-cobertura) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 311 classes
+[WARNING] Classes in bundle 'QuienLoTiene' do not match with execution data. For report generation the same class files must be used as at runtime.
+[WARNING] Execution data for class com/quienlotiene/tiendas/infrastructure/web/DomicilioController does not match.
+[WARNING] Execution data for class com/quienlotiene/notificaciones/infrastructure/web/EventosController does not match.
+[WARNING] Execution data for class com/quienlotiene/tiendas/infrastructure/web/DomicilioController$SimulacionDomicilioResponse does not match.
+[WARNING] Execution data for class com/quienlotiene/tiendas/infrastructure/web/MediosPagoController does not match.
+[WARNING] Execution data for class com/quienlotiene/tiendas/application/usecase/ConsultarDatosTiendas does not match.
+[WARNING] Execution data for class com/quienlotiene/shared/infrastructure/config/ContratoOpenApiConfig does not match.
+[WARNING] Execution data for class com/quienlotiene/administracion/infrastructure/web/AdministracionTiendasController does not match.
+[WARNING] Execution data for class com/quienlotiene/tiendas/infrastructure/web/MiTiendaController does not match.
+[WARNING] Execution data for class com/quienlotiene/tiendas/infrastructure/web/MediosPagoController$MediosPagoResponse does not match.
+[WARNING] Execution data for class com/quienlotiene/clientes/infrastructure/web/DireccionController does not match.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-identidad) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 45 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-clientes) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 7 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-tiendas) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 41 classes
+[WARNING] Classes in bundle 'QuienLoTiene' do not match with execution data. For report generation the same class files must be used as at runtime.
+[WARNING] Execution data for class com/quienlotiene/tiendas/application/usecase/ConsultarDatosTiendas does not match.
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-catalogo) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 3 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-solicitudes) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 38 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-ordenes) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 26 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-mensajeria) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 4 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-reputacion) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 0 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-notificaciones) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 10 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-administracion) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 3 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-shared) @ QuienLoTiene ---
+[INFO] Loading execution data file /home/user/quienlotiene/target/jacoco.exec
+[INFO] Analyzed bundle 'QuienLoTiene' with 4 classes
+[INFO] All coverage checks have been met.
+[INFO] 
+[INFO] --- jar:3.5.1:jar (default-jar) @ QuienLoTiene ---
+[INFO] Building jar: /home/user/quienlotiene/target/QuienLoTiene-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:4.1.2:repackage (repackage) @ QuienLoTiene ---
+[INFO] Replacing main artifact /home/user/quienlotiene/target/QuienLoTiene-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /home/user/quienlotiene/target/QuienLoTiene-0.0.1-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- failsafe:3.5.6:integration-test (default) @ QuienLoTiene ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=40361 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+01:31:32.031 [main] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 2.0.5
+01:31:32.424 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+01:31:33.117 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+01:31:33.120 [main] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+01:31:33.139 [main] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 29.9.2
+  API Version: 1.56
+  Operating System: Ubuntu 24.04.5 LTS
+  Total Memory: 16087 MB
+01:31:33.160 [main] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+01:31:33.162 [main] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+01:31:33.235 [main] INFO tc.testcontainers/ryuk:0.14.0 -- Creating container for image: testcontainers/ryuk:0.14.0
+01:31:33.242 [main] INFO org.testcontainers.utility.RegistryAuthLocator -- Failure when attempting to lookup auth config. Please ignore if you don't have images in an authenticated registry. Details: (dockerImageName: testcontainers/ryuk:0.14.0, configFile: /root/.docker/config.json, configEnv: DOCKER_AUTH_CONFIG). Falling back to docker-java default behaviour. Exception message: Status 404: No config supplied. Checked in order: /root/.docker/config.json (file not found), DOCKER_AUTH_CONFIG (not set)
+01:31:33.486 [main] INFO tc.testcontainers/ryuk:0.14.0 -- Container testcontainers/ryuk:0.14.0 is starting: 68dbd072b58028c4ccb7f473e4170e5fadd5884c23c7668f384bd20aa1340955
+01:31:33.790 [main] INFO tc.testcontainers/ryuk:0.14.0 -- Container testcontainers/ryuk:0.14.0 started in PT0.554557974S
+01:31:33.795 [main] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+01:31:33.795 [main] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+01:31:33.796 [main] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+[INFO] Running DEF-006 Contrato OpenAPI para generar los tipos del frontend
+01:31:33.907 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.quienlotiene.shared.infrastructure.web.ContratoOpenApiIT]: ContratoOpenApiIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+01:31:34.150 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.shared.infrastructure.web.ContratoOpenApiIT
+01:31:34.265 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.quienlotiene.shared.infrastructure.web.ContratoOpenApiIT]: ContratoOpenApiIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+01:31:34.270 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.shared.infrastructure.web.ContratoOpenApiIT
+01:31:34.370 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:31:34.818Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.s.i.web.ContratoOpenApiIT            : Starting ContratoOpenApiIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:31:34.820Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.s.i.web.ContratoOpenApiIT            : The following 1 profile is active: "test"
+2026-11-17T01:31:36.224Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:31:36.305Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:31:36.947Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:31:36.994Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: 6b28190c59f84fc7bfe755257964d860cd19ee8e965c4e7c10c17ee18d6c21a1
+2026-11-17T01:31:40.100Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.152388564S
+2026-11-17T01:31:40.103Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32774/test?loggerLevel=OFF)
+2026-11-17T01:31:40.599Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32774/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:31:40.670Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:31:40.674Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.024s)
+2026-11-17T01:31:40.699Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:31:40.764Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:31:40.787Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:31:40.793Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:31:40.845Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:31:40.860Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:31:40.873Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:31:40.886Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:31:40.911Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:31:40.923Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:31:40.941Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:31:40.949Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:31:40.959Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:31:40.970Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:31:40.982Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:31:40.993Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:31:41.002Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:31:41.023Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:31:41.035Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:31:41.055Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:31:41.080Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.164s)
+2026-11-17T01:31:41.225Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:31:41.304Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-11-17T01:31:41.318Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:31:41.616Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-17T01:31:41.637Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54b8985
+2026-11-17T01:31:41.639Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-17T01:31:41.713Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32774/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:31:41.972Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:31:43.407Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:31:43.508Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:31:43.604Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-17T01:31:44.844Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:31:47.089Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:31:47.089Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:31:47.100Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:31:47.108Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 19 ms
+2026-11-17T01:31:47.478Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:31:47.484Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.s.i.web.ContratoOpenApiIT            : Started ContratoOpenApiIT in 13.131 seconds (process running for 16.764)
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-11-17T01:31:48.815Z  INFO 3733 --- [quienlotiene] [           main] [f95144b6-d4d0-45fb-b6aa-2f7a9eb690c0] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 816 ms
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.32 s -- in DEF-006 Contrato OpenAPI para generar los tipos del frontend
+[INFO] Running HU-003 Iniciar y cerrar sesi?n por la API
+2026-11-17T01:31:49.125Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.identidad.infrastructure.web.SesionControllerIT]: SesionControllerIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:31:49.141Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.identidad.infrastructure.web.SesionControllerIT
+2026-11-17T01:31:49.142Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.identidad.infrastructure.web.SesionControllerIT]: SesionControllerIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:31:49.153Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.identidad.infrastructure.web.SesionControllerIT
+2026-11-17T01:31:49.167Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:31:49.206Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.web.SesionControllerIT           : Starting SesionControllerIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:31:49.206Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.web.SesionControllerIT           : The following 1 profile is active: "test"
+2026-11-17T01:31:49.411Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:31:49.432Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:31:49.538Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:31:49.671Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: de44e571d1bb625cb2ff1af09753c3a94588b779210ab7f2f067834f6ddb2e13
+2026-11-17T01:31:52.614Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.076488155S
+2026-11-17T01:31:52.615Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32775/test?loggerLevel=OFF)
+2026-11-17T01:31:52.703Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32775/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:31:52.727Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:31:52.728Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.008s)
+2026-11-17T01:31:52.747Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:31:52.769Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:31:52.773Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:31:52.774Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:31:52.807Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:31:52.819Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:31:52.828Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:31:52.838Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:31:52.863Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:31:52.872Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:31:52.885Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:31:52.891Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:31:52.896Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:31:52.905Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:31:52.913Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:31:52.923Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:31:52.930Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:31:52.937Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:31:52.944Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:31:52.955Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:31:52.967Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.117s)
+2026-11-17T01:31:52.991Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:31:52.993Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:31:53.002Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-11-17T01:31:53.010Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@1d5462ac
+2026-11-17T01:31:53.010Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-11-17T01:31:53.016Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32775/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:31:53.022Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:31:53.141Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:31:53.202Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:31:53.360Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:31:53.984Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:31:53.985Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:31:53.990Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:31:53.998Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 13 ms
+2026-11-17T01:31:54.071Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:31:54.072Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.web.SesionControllerIT           : Started SesionControllerIT in 4.905 seconds (process running for 23.352)
+2026-11-17T01:31:54.241Z  INFO 3733 --- [quienlotiene] [           main] [d44cbb6a-37fb-47e2-a030-e6aafe7cdbd5] c.q.i.a.usecase.RegistrarCliente         : Cliente f1bc1f27-1cab-4ed2-bc2a-9ee6d7e47f0b registrado
+2026-11-17T01:31:54.364Z  INFO 3733 --- [quienlotiene] [           main] [a32956e9-9945-42b2-ab76-bda11cf02874] c.q.i.application.usecase.IniciarSesion  : Usuario f1bc1f27-1cab-4ed2-bc2a-9ee6d7e47f0b inició sesión
+2026-11-17T01:31:54.541Z  INFO 3733 --- [quienlotiene] [           main] [5547c496-a6c6-4540-b780-9720a829ebaa] c.q.i.a.usecase.RegistrarCliente         : Cliente d1c1ec52-c0af-4e36-95a2-2137e5d1a6c3 registrado
+2026-11-17T01:31:54.606Z  INFO 3733 --- [quienlotiene] [           main] [8b39153a-fd32-4124-bd44-2536667d002f] c.q.i.application.usecase.IniciarSesion  : Inicio de sesión rechazado: el usuario d1c1ec52-c0af-4e36-95a2-2137e5d1a6c3 está suspendido
+2026-11-17T01:31:54.611Z  INFO 3733 --- [quienlotiene] [           main] [8b39153a-fd32-4124-bd44-2536667d002f] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-009 incumplida en /api/v1/auth/login
+2026-11-17T01:31:54.661Z  INFO 3733 --- [quienlotiene] [           main] [69e0476a-cdf6-4bc2-8fdb-6c89111cbc1d] c.q.i.a.usecase.RegistrarCliente         : Cliente 84262346-d145-4fcf-9597-922dc5c22645 registrado
+2026-11-17T01:31:54.705Z  INFO 3733 --- [quienlotiene] [           main] [427025c7-ccf9-4cf4-a1b8-b6d9816d5484] c.q.i.application.usecase.IniciarSesion  : Usuario 84262346-d145-4fcf-9597-922dc5c22645 inició sesión
+2026-11-17T01:31:54.735Z  INFO 3733 --- [quienlotiene] [           main] [04b462c8-54fc-4564-a062-0846836a66c2] c.q.i.application.usecase.CerrarSesion   : Usuario 84262346-d145-4fcf-9597-922dc5c22645 cerró sesión
+2026-11-17T01:31:54.743Z  WARN 3733 --- [quienlotiene] [           main] [326a3dc9-ea9b-4a40-b3e8-5e8be82b08cd] c.q.i.a.usecase.RefrescarSesion          : Reuso de un token de refresco revocado del usuario 84262346-d145-4fcf-9597-922dc5c22645: se cierran sus sesiones
+2026-11-17T01:31:54.748Z  INFO 3733 --- [quienlotiene] [           main] [326a3dc9-ea9b-4a40-b3e8-5e8be82b08cd] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-010 incumplida en /api/v1/auth/refresco
+2026-11-17T01:31:54.811Z  INFO 3733 --- [quienlotiene] [           main] [f002431e-fc63-4d61-b27a-fcf1e50fa16f] c.q.i.a.usecase.RegistrarCliente         : Cliente 822e4afe-7f1e-4584-81bf-067b550304e2 registrado
+2026-11-17T01:31:54.847Z  INFO 3733 --- [quienlotiene] [           main] [728f31fe-bf9a-47b0-bb11-0e1172c7d1e9] c.q.i.application.usecase.IniciarSesion  : Inicio de sesión fallido para el usuario 822e4afe-7f1e-4584-81bf-067b550304e2
+2026-11-17T01:31:54.849Z  INFO 3733 --- [quienlotiene] [           main] [728f31fe-bf9a-47b0-bb11-0e1172c7d1e9] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-008 incumplida en /api/v1/auth/login
+2026-11-17T01:31:54.885Z  INFO 3733 --- [quienlotiene] [           main] [c2f31cb2-2d8d-4765-bdad-02601e6ce053] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-008 incumplida en /api/v1/auth/login
+2026-11-17T01:31:54.943Z  INFO 3733 --- [quienlotiene] [           main] [3532f546-84f1-4083-9638-e12f59eac092] c.q.i.a.usecase.RegistrarCliente         : Cliente 70c7c100-1345-4400-8c69-129cfc28d83d registrado
+2026-11-17T01:31:54.983Z  INFO 3733 --- [quienlotiene] [           main] [e14229b0-cfef-411b-8605-77b805bfd0c4] c.q.i.application.usecase.IniciarSesion  : Usuario 70c7c100-1345-4400-8c69-129cfc28d83d inició sesión
+2026-11-17T01:31:55.005Z  WARN 3733 --- [quienlotiene] [           main] [3b78ad98-4e15-4d1e-9415-8e9fd0bd543c] c.q.i.a.usecase.RefrescarSesion          : Reuso de un token de refresco revocado del usuario 70c7c100-1345-4400-8c69-129cfc28d83d: se cierran sus sesiones
+2026-11-17T01:31:55.008Z  INFO 3733 --- [quienlotiene] [           main] [3b78ad98-4e15-4d1e-9415-8e9fd0bd543c] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-010 incumplida en /api/v1/auth/refresco
+2026-11-17T01:31:55.014Z  WARN 3733 --- [quienlotiene] [           main] [fcc5a116-99e8-4c73-bee9-a9b67db87a21] c.q.i.a.usecase.RefrescarSesion          : Reuso de un token de refresco revocado del usuario 70c7c100-1345-4400-8c69-129cfc28d83d: se cierran sus sesiones
+2026-11-17T01:31:55.016Z  INFO 3733 --- [quienlotiene] [           main] [fcc5a116-99e8-4c73-bee9-a9b67db87a21] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-010 incumplida en /api/v1/auth/refresco
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.897 s -- in HU-003 Iniciar y cerrar sesi?n por la API
+[INFO] Running HU-004 Segundo factor del administrador por la API
+2026-11-17T01:31:55.024Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.identidad.infrastructure.web.SegundoFactorIT]: SegundoFactorIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:31:55.027Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.identidad.infrastructure.web.SegundoFactorIT
+2026-11-17T01:31:55.027Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.identidad.infrastructure.web.SegundoFactorIT]: SegundoFactorIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:31:55.029Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.identidad.infrastructure.web.SegundoFactorIT
+2026-11-17T01:31:55.039Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:31:55.064Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.web.SegundoFactorIT              : Starting SegundoFactorIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:31:55.064Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.web.SegundoFactorIT              : The following 1 profile is active: "test"
+2026-11-17T01:31:55.309Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:31:55.330Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:31:55.436Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:31:55.573Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: ab121dffe261583ed7734e6fdba12b14db7735ca9ffa4a2bd5d38356b86f5216
+2026-11-17T01:31:58.558Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.122379072S
+2026-11-17T01:31:58.558Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32776/test?loggerLevel=OFF)
+2026-11-17T01:31:58.630Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32776/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:31:58.647Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:31:58.648Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.005s)
+2026-11-17T01:31:58.667Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:31:58.688Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:31:58.691Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:31:58.693Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:31:58.727Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:31:58.737Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:31:58.746Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:31:58.755Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:31:58.776Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:31:58.785Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:31:58.798Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:31:58.804Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:31:58.811Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:31:58.818Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:31:58.825Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:31:58.832Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:31:58.839Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:31:58.846Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:31:58.857Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:31:58.868Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:31:58.882Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.121s)
+2026-11-17T01:31:58.905Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:31:58.908Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:31:58.917Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-11-17T01:31:58.926Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@3ec9c448
+2026-11-17T01:31:58.926Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-11-17T01:31:58.932Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32776/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:31:58.938Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:31:59.041Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:31:59.096Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:31:59.201Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:31:59.698Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:31:59.699Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:31:59.704Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:31:59.712Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 13 ms
+2026-11-17T01:31:59.762Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:31:59.765Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.web.SegundoFactorIT              : Started SegundoFactorIT in 4.725 seconds (process running for 29.045)
+2026-11-17T01:31:59.808Z  INFO 3733 --- [quienlotiene] [           main] [] auditoria                                : Administrador 89374781-f9fe-4efa-8b05-f781ec0b458e creado
+2026-11-17T01:31:59.809Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.i.i.c.CreadorAdministradorInicial    : Se creó el administrador inicial
+2026-11-17T01:31:59.855Z  INFO 3733 --- [quienlotiene] [           main] [a0da3295-f1cf-4e94-a844-3aca3b295def] auditoria                                : El administrador 89374781-f9fe-4efa-8b05-f781ec0b458e pasó la frase y falta el segundo factor
+2026-11-17T01:31:59.914Z  WARN 3733 --- [quienlotiene] [           main] [c66581f9-99cf-4428-9662-7991d2ee5d82] auditoria                                : Código TOTP incorrecto del administrador 89374781-f9fe-4efa-8b05-f781ec0b458e (intento 1 de 5)
+2026-11-17T01:31:59.916Z  INFO 3733 --- [quienlotiene] [           main] [c66581f9-99cf-4428-9662-7991d2ee5d82] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-012 incumplida en /api/v1/auth/totp
+2026-11-17T01:31:59.929Z  WARN 3733 --- [quienlotiene] [           main] [aa4a1f72-6adf-4c47-8e5a-8ccfe51f0177] auditoria                                : Código TOTP incorrecto del administrador 89374781-f9fe-4efa-8b05-f781ec0b458e (intento 2 de 5)
+2026-11-17T01:31:59.930Z  INFO 3733 --- [quienlotiene] [           main] [aa4a1f72-6adf-4c47-8e5a-8ccfe51f0177] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-012 incumplida en /api/v1/auth/totp
+2026-11-17T01:31:59.940Z  WARN 3733 --- [quienlotiene] [           main] [c4bb862e-c59a-49d1-ba5c-dfbd2ccb38f5] auditoria                                : Código TOTP incorrecto del administrador 89374781-f9fe-4efa-8b05-f781ec0b458e (intento 3 de 5)
+2026-11-17T01:31:59.941Z  INFO 3733 --- [quienlotiene] [           main] [c4bb862e-c59a-49d1-ba5c-dfbd2ccb38f5] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-012 incumplida en /api/v1/auth/totp
+2026-11-17T01:31:59.950Z  WARN 3733 --- [quienlotiene] [           main] [14c29748-a4e7-4ba7-82c6-04de7a21e5b2] auditoria                                : Código TOTP incorrecto del administrador 89374781-f9fe-4efa-8b05-f781ec0b458e (intento 4 de 5)
+2026-11-17T01:31:59.951Z  INFO 3733 --- [quienlotiene] [           main] [14c29748-a4e7-4ba7-82c6-04de7a21e5b2] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-012 incumplida en /api/v1/auth/totp
+2026-11-17T01:31:59.961Z  WARN 3733 --- [quienlotiene] [           main] [45c33347-1cae-4764-8b12-c87fd1b9a298] auditoria                                : Código TOTP incorrecto del administrador 89374781-f9fe-4efa-8b05-f781ec0b458e (intento 5 de 5)
+2026-11-17T01:31:59.962Z  INFO 3733 --- [quienlotiene] [           main] [45c33347-1cae-4764-8b12-c87fd1b9a298] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-012 incumplida en /api/v1/auth/totp
+2026-11-17T01:31:59.968Z  INFO 3733 --- [quienlotiene] [           main] [6b196286-9d7f-4e42-b38c-bb168b0cfe88] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-013 incumplida en /api/v1/auth/totp
+2026-11-17T01:32:00.010Z  INFO 3733 --- [quienlotiene] [           main] [8e4f5a85-00ac-4886-ba59-190be1819085] auditoria                                : El administrador 89374781-f9fe-4efa-8b05-f781ec0b458e pasó la frase y falta el segundo factor
+2026-11-17T01:32:00.061Z  INFO 3733 --- [quienlotiene] [           main] [fd58dc52-f9cf-4244-8d99-1d5a0939da2c] auditoria                                : El administrador 89374781-f9fe-4efa-8b05-f781ec0b458e pasó la frase y falta el segundo factor
+2026-11-17T01:32:00.078Z  INFO 3733 --- [quienlotiene] [           main] [f1f02b0c-e052-4eef-9ba4-f60f2c37a969] auditoria                                : El administrador 89374781-f9fe-4efa-8b05-f781ec0b458e inició sesión con segundo factor
+2026-11-17T01:32:00.115Z  INFO 3733 --- [quienlotiene] [           main] [c39ea2af-68b6-4552-b8d0-698c17b12ae7] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-013 incumplida en /api/v1/auth/totp
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.097 s -- in HU-004 Segundo factor del administrador por la API
+[INFO] Running HU-001 Registrar cliente por la API
+2026-11-17T01:32:00.124Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.identidad.infrastructure.web.AutenticacionControllerIT]: AutenticacionControllerIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:00.130Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.identidad.infrastructure.web.AutenticacionControllerIT
+2026-11-17T01:32:00.132Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.identidad.infrastructure.web.AutenticacionControllerIT]: AutenticacionControllerIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:00.134Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.identidad.infrastructure.web.AutenticacionControllerIT
+2026-11-17T01:32:00.179Z  INFO 3733 --- [quienlotiene] [           main] [e8bc0245-55cd-4c2b-8b46-4c995f524060] c.q.i.a.usecase.RegistrarCliente         : Cliente a6b173bf-c56f-4715-8e86-fae45920799a registrado
+2026-11-17T01:32:00.273Z  INFO 3733 --- [quienlotiene] [           main] [db5060a9-cc32-4604-8adc-6960642e3fdc] c.q.i.a.usecase.RegistrarCliente         : Cliente 2b1f9f4e-8582-414f-8e64-066e9b9768d5 registrado
+2026-11-17T01:32:00.287Z  INFO 3733 --- [quienlotiene] [           main] [e8719156-7aab-4adb-881d-52562dc174c1] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-003 incumplida en /api/v1/auth/registro
+2026-11-17T01:32:00.342Z  INFO 3733 --- [quienlotiene] [           main] [2711dc49-8e40-4ba2-9225-e1d32175d18e] c.q.i.a.usecase.RegistrarCliente         : Cliente c34775bd-aee0-4191-8376-0fd365dbca86 registrado
+2026-11-17T01:32:00.352Z  INFO 3733 --- [quienlotiene] [           main] [17c80d96-9b8b-4d78-b1fe-10d0ad7c5d9d] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-001 incumplida en /api/v1/auth/registro
+2026-11-17T01:32:00.363Z  INFO 3733 --- [quienlotiene] [           main] [7572f0bb-a43a-4cb4-84af-abf1ba958ab1] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-007 incumplida en /api/v1/auth/registro
+2026-11-17T01:32:00.382Z  INFO 3733 --- [quienlotiene] [           main] [2a45d109-f915-487c-b04e-9c367cfc21c1] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-002 incumplida en /api/v1/auth/registro
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.264 s -- in HU-001 Registrar cliente por la API
+[INFO] Running Sprint 2 De la solicitud a la orden resuelta por la API
+2026-11-17T01:32:00.389Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.ordenes.infrastructure.web.FlujoSolicitudAOrdenIT]: FlujoSolicitudAOrdenIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:00.400Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.ordenes.infrastructure.web.FlujoSolicitudAOrdenIT
+2026-11-17T01:32:00.400Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.ordenes.infrastructure.web.FlujoSolicitudAOrdenIT]: FlujoSolicitudAOrdenIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:00.402Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.ordenes.infrastructure.web.FlujoSolicitudAOrdenIT
+2026-11-17T01:32:00.842Z  INFO 3733 --- [quienlotiene] [           main] [f683bd21-2bc4-486f-8ed8-3e8b5a2e18f5] c.q.s.a.usecase.DifundirSolicitud        : Solicitud a9d4f59e-9db2-4eff-87ad-70d1a88c46f1 enviada a 2 tiendas
+2026-11-17T01:32:00.842Z  INFO 3733 --- [quienlotiene] [           main] [f683bd21-2bc4-486f-8ed8-3e8b5a2e18f5] c.q.s.a.usecase.PublicarSolicitud        : Solicitud a9d4f59e-9db2-4eff-87ad-70d1a88c46f1 publicada por el cliente e41fbd71-650c-44b0-b6bb-5e8c9c907c81
+2026-11-17T01:32:01.004Z  INFO 3733 --- [quienlotiene] [           main] [eeeda69d-ca0f-4361-b80a-9df5eed4f3d3] c.q.s.a.usecase.ResponderSolicitud       : Tienda d6f4a11a-66ad-4611-881e-658fd35fb02e respondió SI a la solicitud a9d4f59e-9db2-4eff-87ad-70d1a88c46f1
+2026-11-17T01:32:01.029Z  INFO 3733 --- [quienlotiene] [           main] [c16145c9-48ce-4c3d-a27c-0a15f8012030] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio SOL-005 incumplida en /api/v1/solicitudes/a9d4f59e-9db2-4eff-87ad-70d1a88c46f1/respuestas
+2026-11-17T01:32:01.044Z  INFO 3733 --- [quienlotiene] [           main] [e7e88636-be6a-42e6-bddc-d57d1b98cead] c.q.s.a.usecase.ResponderSolicitud       : Tienda 4dd0f063-f9d5-4f37-bc06-3cad892e89e3 respondió NO a la solicitud a9d4f59e-9db2-4eff-87ad-70d1a88c46f1
+2026-11-17T01:32:01.151Z  INFO 3733 --- [quienlotiene] [           main] [a47862f8-8668-49c0-89a4-42e194727be2] c.q.s.a.usecase.ElegirRespuesta          : Solicitud a9d4f59e-9db2-4eff-87ad-70d1a88c46f1 resuelta con la respuesta ead1b356-1e8d-487e-969a-b800764f591b
+2026-11-17T01:32:01.167Z  INFO 3733 --- [quienlotiene] [           main] [a47862f8-8668-49c0-89a4-42e194727be2] c.q.o.application.usecase.CrearOrden     : Orden 8cdfa5fa-3a31-4644-b494-b4750b9b7f7c creada para la solicitud a9d4f59e-9db2-4eff-87ad-70d1a88c46f1
+2026-11-17T01:32:01.234Z  INFO 3733 --- [quienlotiene] [           main] [ffcc7ba3-bc89-4871-920b-65bc679cf603] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio ORD-001 incumplida en /api/v1/ordenes/8cdfa5fa-3a31-4644-b494-b4750b9b7f7c
+2026-11-17T01:32:01.246Z  INFO 3733 --- [quienlotiene] [           main] [21e9d90e-36a5-44f0-ba68-a9eb9a9ada07] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio ORD-002 incumplida en /api/v1/ordenes/8cdfa5fa-3a31-4644-b494-b4750b9b7f7c/estado
+2026-11-17T01:32:01.278Z  INFO 3733 --- [quienlotiene] [           main] [e2aaf35d-cac0-403b-a448-e276a361b737] c.q.o.a.usecase.CambiarEstadoOrden       : Orden 8cdfa5fa-3a31-4644-b494-b4750b9b7f7c pasó a PREPARANDO
+2026-11-17T01:32:01.299Z  INFO 3733 --- [quienlotiene] [           main] [4dc40eb0-ce58-4f37-81b0-0c12eb1ae86a] c.q.o.a.usecase.CambiarEstadoOrden       : Orden 8cdfa5fa-3a31-4644-b494-b4750b9b7f7c pasó a LISTO_PARA_RECOGER
+2026-11-17T01:32:01.317Z  INFO 3733 --- [quienlotiene] [           main] [cb194d8b-1266-404b-8622-de92717e2918] c.q.o.a.usecase.CambiarEstadoOrden       : Orden 8cdfa5fa-3a31-4644-b494-b4750b9b7f7c pasó a ENTREGADO
+2026-11-17T01:32:01.344Z  INFO 3733 --- [quienlotiene] [           main] [3869731a-58ee-4af3-af16-cd3efcac2f1d] c.q.o.a.usecase.ConfirmarRecepcion       : Orden 8cdfa5fa-3a31-4644-b494-b4750b9b7f7c resuelta por su cliente
+2026-11-17T01:32:01.369Z  INFO 3733 --- [quienlotiene] [           main] [7a118ee7-8730-4871-9143-dc0ec1670381] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio MEN-001 incumplida en /api/v1/ordenes/8cdfa5fa-3a31-4644-b494-b4750b9b7f7c/whatsapp
+2026-11-17T01:32:01.429Z  INFO 3733 --- [quienlotiene] [           main] [f2823aeb-eba0-4a0e-9046-eff818459a61] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 7c36e6e3-5b3b-4f7c-aadb-939a3d4c6863 enviada a 1 tiendas
+2026-11-17T01:32:01.429Z  INFO 3733 --- [quienlotiene] [           main] [f2823aeb-eba0-4a0e-9046-eff818459a61] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 7c36e6e3-5b3b-4f7c-aadb-939a3d4c6863 publicada por el cliente 47e54ffa-10ee-4120-8b34-9c2ce398996f
+2026-11-17T01:32:01.445Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.s.a.usecase.VencerSolicitudes        : Solicitud 7c36e6e3-5b3b-4f7c-aadb-939a3d4c6863 vencida sin elección
+2026-11-17T01:32:01.472Z  INFO 3733 --- [quienlotiene] [           main] [e4ce0136-febf-4279-8b50-a94bc16df895] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio SOL-004 incumplida en /api/v1/solicitudes/7c36e6e3-5b3b-4f7c-aadb-939a3d4c6863/respuestas
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.094 s -- in Sprint 2 De la solicitud a la orden resuelta por la API
+[INFO] Running HU-036 Aprobar o rechazar tiendas por la API
+2026-11-17T01:32:01.491Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.administracion.infrastructure.web.AdministracionTiendasIT]: AdministracionTiendasIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:01.505Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.administracion.infrastructure.web.AdministracionTiendasIT
+2026-11-17T01:32:01.506Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.administracion.infrastructure.web.AdministracionTiendasIT]: AdministracionTiendasIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:01.509Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.administracion.infrastructure.web.AdministracionTiendasIT
+2026-11-17T01:32:01.513Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:32:01.542Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.a.i.web.AdministracionTiendasIT      : Starting AdministracionTiendasIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:32:01.542Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.a.i.web.AdministracionTiendasIT      : The following 1 profile is active: "test"
+2026-11-17T01:32:01.749Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:32:01.770Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:32:01.870Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:32:01.985Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: ada3422bb219b82cbea96d1e679167b934c26aab1d48368fbf50a2a4855f7a65
+2026-11-17T01:32:04.909Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.038672713S
+2026-11-17T01:32:04.909Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32777/test?loggerLevel=OFF)
+2026-11-17T01:32:04.983Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32777/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:32:04.996Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:32:04.997Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.005s)
+2026-11-17T01:32:05.015Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:32:05.035Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:32:05.038Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:32:05.039Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:32:05.069Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:32:05.078Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:32:05.086Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:32:05.095Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:32:05.116Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:32:05.125Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:32:05.140Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:32:05.146Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:32:05.153Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:32:05.161Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:32:05.169Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:32:05.177Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:32:05.184Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:32:05.192Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:32:05.199Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:32:05.210Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:32:05.222Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.115s)
+2026-11-17T01:32:05.245Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:32:05.247Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:32:05.257Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2026-11-17T01:32:05.265Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@2ec4932b
+2026-11-17T01:32:05.265Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2026-11-17T01:32:05.271Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32777/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:32:05.277Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:32:05.391Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:32:05.448Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:32:05.560Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:32:05.978Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:32:05.979Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:32:05.984Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:32:05.991Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 12 ms
+2026-11-17T01:32:06.036Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:32:06.038Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.a.i.web.AdministracionTiendasIT      : Started AdministracionTiendasIT in 4.525 seconds (process running for 35.318)
+2026-11-17T01:32:06.106Z  INFO 3733 --- [quienlotiene] [           main] [1273d963-e90d-4d5c-b46e-e76c829cbf67] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda dbbd7885-5fdd-47fc-8fd4-4ece36b86113 registrado
+2026-11-17T01:32:06.126Z  INFO 3733 --- [quienlotiene] [           main] [1273d963-e90d-4d5c-b46e-e76c829cbf67] c.q.t.a.usecase.RegistrarTienda          : Tienda 92f175bf-23bb-47bf-871f-0366bbbc0a54 registrada por el usuario dbbd7885-5fdd-47fc-8fd4-4ece36b86113, pendiente de revisión
+2026-11-17T01:32:06.211Z  INFO 3733 --- [quienlotiene] [           main] [83b8981f-e67f-441e-b4d2-0c7c14ce4318] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda ae254afd-5840-436b-914c-1861f7f04586 registrado
+2026-11-17T01:32:06.215Z  INFO 3733 --- [quienlotiene] [           main] [83b8981f-e67f-441e-b4d2-0c7c14ce4318] c.q.t.a.usecase.RegistrarTienda          : Tienda 69f6fd57-687c-47fb-bc21-3055992b0701 registrada por el usuario ae254afd-5840-436b-914c-1861f7f04586, pendiente de revisión
+2026-11-17T01:32:06.240Z  INFO 3733 --- [quienlotiene] [           main] [6066c4b3-d73a-4c35-8fa4-d035a9a1fac2] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-006 incumplida en /api/v1/admin/tiendas/69f6fd57-687c-47fb-bc21-3055992b0701/documentos/0cdb96ae-db31-432a-8b9f-33de53fa1f7a
+2026-11-17T01:32:06.280Z  INFO 3733 --- [quienlotiene] [           main] [927a26c3-ef59-43c6-99cf-e81ae839879b] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda 1d993966-9969-4c4c-aa95-91a481a008c4 registrado
+2026-11-17T01:32:06.285Z  INFO 3733 --- [quienlotiene] [           main] [927a26c3-ef59-43c6-99cf-e81ae839879b] c.q.t.a.usecase.RegistrarTienda          : Tienda 0f2c2159-446a-420e-bff7-01996e4f3632 registrada por el usuario 1d993966-9969-4c4c-aa95-91a481a008c4, pendiente de revisión
+2026-11-17T01:32:06.334Z  INFO 3733 --- [quienlotiene] [           main] [a060f656-8956-4b2a-ab82-926e9e9ca788] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda 59404633-304e-4793-8b39-af70fb492080 registrado
+2026-11-17T01:32:06.339Z  INFO 3733 --- [quienlotiene] [           main] [a060f656-8956-4b2a-ab82-926e9e9ca788] c.q.t.a.usecase.RegistrarTienda          : Tienda f1a27131-a4da-4e22-9e8a-fe4d56173cbd registrada por el usuario 59404633-304e-4793-8b39-af70fb492080, pendiente de revisión
+2026-11-17T01:32:06.388Z  INFO 3733 --- [quienlotiene] [           main] [c7ea2331-502d-47cd-9960-8445f219244e] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-004 incumplida en /api/v1/admin/tiendas/f1a27131-a4da-4e22-9e8a-fe4d56173cbd/aprobacion
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.914 s -- in HU-036 Aprobar o rechazar tiendas por la API
+[INFO] Running HU-007 Perfil y direcciones del cliente por la API
+2026-11-17T01:32:06.400Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.clientes.infrastructure.web.DireccionesIT]: DireccionesIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:06.408Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.clientes.infrastructure.web.DireccionesIT
+2026-11-17T01:32:06.409Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.clientes.infrastructure.web.DireccionesIT]: DireccionesIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:06.411Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.clientes.infrastructure.web.DireccionesIT
+2026-11-17T01:32:06.456Z  INFO 3733 --- [quienlotiene] [           main] [744b05cf-4713-430a-894f-1106e5c02c2c] c.q.i.a.usecase.RegistrarCliente         : Cliente a0402b5f-c4dc-4b12-b3d9-55ad1d1aecf7 registrado
+2026-11-17T01:32:06.493Z  INFO 3733 --- [quienlotiene] [           main] [ea8b7faa-d433-4679-97a7-e6643074e14d] c.q.i.application.usecase.IniciarSesion  : Usuario a0402b5f-c4dc-4b12-b3d9-55ad1d1aecf7 inició sesión
+2026-11-17T01:32:06.519Z  INFO 3733 --- [quienlotiene] [           main] [f0f5414e-0555-4175-ad5f-9c7333773c2f] c.q.c.a.usecase.GestionarDirecciones     : Cliente a0402b5f-c4dc-4b12-b3d9-55ad1d1aecf7 guardó la dirección a12aa87f-af32-41fb-94ab-26535e402e0f
+2026-11-17T01:32:06.559Z  INFO 3733 --- [quienlotiene] [           main] [2760129d-95a1-4299-9d18-d9b40e9b4736] c.q.c.a.usecase.GestionarDirecciones     : Cliente a0402b5f-c4dc-4b12-b3d9-55ad1d1aecf7 borró una dirección
+2026-11-17T01:32:06.609Z  INFO 3733 --- [quienlotiene] [           main] [4ec1de50-6fa9-4868-a6e0-8d86d2a4126a] c.q.i.a.usecase.RegistrarCliente         : Cliente 6a0a5fc5-4d93-4edd-9c06-8959018da008 registrado
+2026-11-17T01:32:06.652Z  INFO 3733 --- [quienlotiene] [           main] [6ac6fbe6-5a7d-44ce-b093-2109eda45cad] c.q.i.application.usecase.IniciarSesion  : Usuario 6a0a5fc5-4d93-4edd-9c06-8959018da008 inició sesión
+2026-11-17T01:32:06.662Z  INFO 3733 --- [quienlotiene] [           main] [0757c6d9-3b6c-4d2f-a2d8-54d36fee6b58] c.q.c.a.usecase.GestionarDirecciones     : Cliente 6a0a5fc5-4d93-4edd-9c06-8959018da008 guardó la dirección f2cb51e2-4213-40a3-b13e-22c70b93fc9c
+2026-11-17T01:32:06.697Z  INFO 3733 --- [quienlotiene] [           main] [c59025b6-3c2d-41dd-8aef-0394b16bacf3] c.q.i.a.usecase.RegistrarCliente         : Cliente 60cad476-1289-4a94-a5c8-844682c2b92f registrado
+2026-11-17T01:32:06.733Z  INFO 3733 --- [quienlotiene] [           main] [d679356c-ca2e-4094-995a-fef6ddefe140] c.q.i.application.usecase.IniciarSesion  : Usuario 60cad476-1289-4a94-a5c8-844682c2b92f inició sesión
+2026-11-17T01:32:06.742Z  INFO 3733 --- [quienlotiene] [           main] [356dc4b4-a028-488e-bf78-779b36cee86a] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio CLI-003 incumplida en /api/v1/clientes/me/direcciones/f2cb51e2-4213-40a3-b13e-22c70b93fc9c
+2026-11-17T01:32:06.786Z  INFO 3733 --- [quienlotiene] [           main] [c3b3d584-f1bd-4224-a612-08102c4deb09] c.q.i.a.usecase.RegistrarCliente         : Cliente 3dddeccb-96ea-4b07-b1b5-4d5b34db3d57 registrado
+2026-11-17T01:32:06.823Z  INFO 3733 --- [quienlotiene] [           main] [920915d3-d027-4b61-8787-caa8bef09ca6] c.q.i.application.usecase.IniciarSesion  : Usuario 3dddeccb-96ea-4b07-b1b5-4d5b34db3d57 inició sesión
+2026-11-17T01:32:06.900Z  INFO 3733 --- [quienlotiene] [           main] [41755b97-fd82-4dad-9ec4-5c5d0b96c274] c.q.i.a.usecase.RegistrarCliente         : Cliente c67fa0dc-7ab8-4366-a0ec-91df552cce0c registrado
+2026-11-17T01:32:06.938Z  INFO 3733 --- [quienlotiene] [           main] [f3ab08e1-5687-4331-bbf9-b8074a00ba42] c.q.i.application.usecase.IniciarSesion  : Usuario c67fa0dc-7ab8-4366-a0ec-91df552cce0c inició sesión
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.560 s -- in HU-007 Perfil y direcciones del cliente por la API
+[INFO] Running com.quienlotiene.QuienLoTieneApplicationIT
+2026-11-17T01:32:06.961Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.QuienLoTieneApplicationIT]: QuienLoTieneApplicationIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:06.967Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.QuienLoTieneApplicationIT
+2026-11-17T01:32:06.967Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.QuienLoTieneApplicationIT]: QuienLoTieneApplicationIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:06.968Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.QuienLoTieneApplicationIT
+2026-11-17T01:32:06.972Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:32:06.988Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.QuienLoTieneApplicationIT            : Starting QuienLoTieneApplicationIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:32:06.988Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.QuienLoTieneApplicationIT            : The following 1 profile is active: "test"
+2026-11-17T01:32:07.113Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:32:07.130Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:32:07.234Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:32:07.345Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: cc0fc6081d51c41d98cdef9938970965f7de5d965a63a7cc8ddd0bec46e40d79
+2026-11-17T01:32:10.288Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.053300245S
+2026-11-17T01:32:10.288Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32778/test?loggerLevel=OFF)
+2026-11-17T01:32:10.372Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32778/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:32:10.386Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:32:10.386Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.004s)
+2026-11-17T01:32:10.404Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:32:10.423Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:32:10.430Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:32:10.432Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:32:10.473Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:32:10.483Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:32:10.492Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:32:10.500Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:32:10.521Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:32:10.529Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:32:10.541Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:32:10.546Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:32:10.553Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:32:10.560Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:32:10.568Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:32:10.575Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:32:10.582Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:32:10.589Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:32:10.596Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:32:10.606Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:32:10.618Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.122s)
+2026-11-17T01:32:10.638Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:32:10.639Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:32:10.648Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-11-17T01:32:10.656Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@c86bb66
+2026-11-17T01:32:10.656Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-11-17T01:32:10.662Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32778/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:32:10.667Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:32:10.753Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:32:10.807Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:32:10.896Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:32:11.368Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:32:11.389Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:32:11.391Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.QuienLoTieneApplicationIT            : Started QuienLoTieneApplicationIT in 4.419 seconds (process running for 40.671)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.451 s -- in com.quienlotiene.QuienLoTieneApplicationIT
+[INFO] Running HU-013 TiendasApi: tiendas elegibles por radio con PostGIS
+2026-11-17T01:32:11.413Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.tiendas.infrastructure.persistence.TiendasElegiblesIT]: TiendasElegiblesIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:11.422Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.tiendas.infrastructure.persistence.TiendasElegiblesIT
+2026-11-17T01:32:11.423Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.tiendas.infrastructure.persistence.TiendasElegiblesIT]: TiendasElegiblesIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:11.424Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.tiendas.infrastructure.persistence.TiendasElegiblesIT
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.116 s -- in HU-013 TiendasApi: tiendas elegibles por radio con PostGIS
+[INFO] Running HU-009 Perfil y horario de la tienda por la API
+2026-11-17T01:32:11.532Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.tiendas.infrastructure.web.MiTiendaIT]: MiTiendaIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:11.540Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.tiendas.infrastructure.web.MiTiendaIT
+2026-11-17T01:32:11.541Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.tiendas.infrastructure.web.MiTiendaIT]: MiTiendaIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:11.542Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.tiendas.infrastructure.web.MiTiendaIT
+2026-11-17T01:32:11.546Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:32:11.562Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.t.infrastructure.web.MiTiendaIT      : Starting MiTiendaIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:32:11.562Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.t.infrastructure.web.MiTiendaIT      : The following 1 profile is active: "test"
+2026-11-17T01:32:11.684Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:32:11.700Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:32:11.770Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:32:11.892Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: 780e83cc1ca61a482bc169357a24db14ae49bff84243f55343a63d102329c616
+2026-11-17T01:32:14.842Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.072224164S
+2026-11-17T01:32:14.842Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32779/test?loggerLevel=OFF)
+2026-11-17T01:32:14.906Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32779/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:32:14.919Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:32:14.920Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.004s)
+2026-11-17T01:32:14.938Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:32:14.958Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:32:14.961Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:32:14.962Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:32:14.999Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:32:15.009Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:32:15.019Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:32:15.027Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:32:15.055Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:32:15.063Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:32:15.075Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:32:15.080Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:32:15.088Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:32:15.096Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:32:15.103Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:32:15.110Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:32:15.116Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:32:15.123Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:32:15.129Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:32:15.141Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:32:15.153Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.124s)
+2026-11-17T01:32:15.176Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:32:15.178Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:32:15.187Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2026-11-17T01:32:15.195Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@639dfa20
+2026-11-17T01:32:15.195Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2026-11-17T01:32:15.201Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32779/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:32:15.206Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:32:15.293Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:32:15.348Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:32:15.461Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:32:15.972Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:32:15.972Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:32:15.977Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:32:15.985Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 13 ms
+2026-11-17T01:32:16.029Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:32:16.030Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.t.infrastructure.web.MiTiendaIT      : Started MiTiendaIT in 4.484 seconds (process running for 45.31)
+2026-11-17T01:32:16.081Z  INFO 3733 --- [quienlotiene] [           main] [f0cdf910-0408-43f6-a04e-f337b62c5f12] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda 57aa4c81-b925-461c-aa0c-bb0dc65b93be registrado
+2026-11-17T01:32:16.100Z  INFO 3733 --- [quienlotiene] [           main] [f0cdf910-0408-43f6-a04e-f337b62c5f12] c.q.t.a.usecase.RegistrarTienda          : Tienda 911b3ba5-2e86-46df-87f4-b9a0f653fdbc registrada por el usuario 57aa4c81-b925-461c-aa0c-bb0dc65b93be, pendiente de revisión
+2026-11-17T01:32:16.148Z  INFO 3733 --- [quienlotiene] [           main] [0d1aa423-0104-45db-866b-c6706642c28d] c.q.i.application.usecase.IniciarSesion  : Usuario 57aa4c81-b925-461c-aa0c-bb0dc65b93be inició sesión
+2026-11-17T01:32:16.191Z  INFO 3733 --- [quienlotiene] [           main] [f9d0c264-1a8d-452d-821e-b93a8f93cc66] c.q.t.a.usecase.ConfigurarMediosPago     : Tienda 911b3ba5-2e86-46df-87f4-b9a0f653fdbc actualizó sus medios de pago
+2026-11-17T01:32:16.204Z  INFO 3733 --- [quienlotiene] [           main] [45a467d1-09d7-4f6d-852c-48fdb0d15ecc] c.q.t.a.usecase.ConfigurarMediosPago     : Tienda 911b3ba5-2e86-46df-87f4-b9a0f653fdbc actualizó sus medios de pago
+2026-11-17T01:32:16.262Z  INFO 3733 --- [quienlotiene] [           main] [110335c1-a323-4ee9-8ea9-6cfbe023aba5] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda 82e4ab41-7522-4383-9369-684bd3e9ee34 registrado
+2026-11-17T01:32:16.267Z  INFO 3733 --- [quienlotiene] [           main] [110335c1-a323-4ee9-8ea9-6cfbe023aba5] c.q.t.a.usecase.RegistrarTienda          : Tienda 9512158e-fe42-447b-aac8-6c9203915e27 registrada por el usuario 82e4ab41-7522-4383-9369-684bd3e9ee34, pendiente de revisión
+2026-11-17T01:32:16.309Z  INFO 3733 --- [quienlotiene] [           main] [e1052f0e-1b8d-45a8-b9b3-4cd9cfa2a282] c.q.i.application.usecase.IniciarSesion  : Usuario 82e4ab41-7522-4383-9369-684bd3e9ee34 inició sesión
+2026-11-17T01:32:16.338Z  INFO 3733 --- [quienlotiene] [           main] [a1f3808a-7a66-46ef-952a-39d1f4f290dc] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-007 incumplida en /api/v1/tiendas/me/perfil
+2026-11-17T01:32:16.388Z  INFO 3733 --- [quienlotiene] [           main] [dbd8452d-b7b2-4b17-9dd9-e5ec6a4d6ba8] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda 1301d031-0146-40e2-9351-5c6a23e9d436 registrado
+2026-11-17T01:32:16.393Z  INFO 3733 --- [quienlotiene] [           main] [dbd8452d-b7b2-4b17-9dd9-e5ec6a4d6ba8] c.q.t.a.usecase.RegistrarTienda          : Tienda f858949b-ad6b-48d4-97dc-21bc7d017397 registrada por el usuario 1301d031-0146-40e2-9351-5c6a23e9d436, pendiente de revisión
+2026-11-17T01:32:16.430Z  INFO 3733 --- [quienlotiene] [           main] [5714b41a-cc07-4ab2-83ea-1197f967c9ad] c.q.i.application.usecase.IniciarSesion  : Usuario 1301d031-0146-40e2-9351-5c6a23e9d436 inició sesión
+2026-11-17T01:32:16.444Z  INFO 3733 --- [quienlotiene] [           main] [549bb838-0042-41ce-9b09-63dd4d039d5e] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-008 incumplida en /api/v1/tiendas/me/apertura
+2026-11-17T01:32:16.453Z  INFO 3733 --- [quienlotiene] [           main] [7b8d49e4-a82c-4ecb-92a0-f26ba849d4a7] c.q.t.a.usecase.CambiarAperturaTienda    : Tienda f858949b-ad6b-48d4-97dc-21bc7d017397 quedó abierta
+2026-11-17T01:32:16.466Z  INFO 3733 --- [quienlotiene] [           main] [898fd86c-8a5e-4248-b0c9-4cc27d76045d] c.q.t.a.usecase.CambiarAperturaTienda    : Tienda f858949b-ad6b-48d4-97dc-21bc7d017397 quedó cerrada
+2026-11-17T01:32:16.507Z  INFO 3733 --- [quienlotiene] [           main] [7145de08-526e-4e98-ac34-d70cfa50f036] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda f38c7518-4228-456b-99f6-24cd09d53991 registrado
+2026-11-17T01:32:16.511Z  INFO 3733 --- [quienlotiene] [           main] [7145de08-526e-4e98-ac34-d70cfa50f036] c.q.t.a.usecase.RegistrarTienda          : Tienda 73698c1e-239c-4336-bc12-549230e8f5e1 registrada por el usuario f38c7518-4228-456b-99f6-24cd09d53991, pendiente de revisión
+2026-11-17T01:32:16.547Z  INFO 3733 --- [quienlotiene] [           main] [f50a5ef6-494c-4914-94a0-e3f70899f858] c.q.i.application.usecase.IniciarSesion  : Usuario f38c7518-4228-456b-99f6-24cd09d53991 inició sesión
+2026-11-17T01:32:16.577Z  INFO 3733 --- [quienlotiene] [           main] [a4f3464f-2193-4c3f-a713-1dcd2f92a527] c.q.t.a.usecase.ActualizarPerfilTienda   : Tienda 73698c1e-239c-4336-bc12-549230e8f5e1 actualizó su perfil
+2026-11-17T01:32:16.633Z  INFO 3733 --- [quienlotiene] [           main] [81d055a5-5a98-40fa-b21b-979742fa33af] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda caea2da2-df97-4691-abd6-f00cf64f22e2 registrado
+2026-11-17T01:32:16.638Z  INFO 3733 --- [quienlotiene] [           main] [81d055a5-5a98-40fa-b21b-979742fa33af] c.q.t.a.usecase.RegistrarTienda          : Tienda 8f4b7e80-718e-4c20-b90d-e4e641c62d09 registrada por el usuario caea2da2-df97-4691-abd6-f00cf64f22e2, pendiente de revisión
+2026-11-17T01:32:16.673Z  INFO 3733 --- [quienlotiene] [           main] [438f55cc-7f71-4a0c-a73b-6947aae4347c] c.q.i.application.usecase.IniciarSesion  : Usuario caea2da2-df97-4691-abd6-f00cf64f22e2 inició sesión
+2026-11-17T01:32:16.688Z  INFO 3733 --- [quienlotiene] [           main] [13fe9b50-83cc-4000-a44f-6d6f97e0a51b] c.q.t.a.usecase.ConfigurarDomicilio      : Tienda 8f4b7e80-718e-4c20-b90d-e4e641c62d09 actualizó su domicilio
+2026-11-17T01:32:16.725Z  INFO 3733 --- [quienlotiene] [           main] [fa5227b7-1914-45e2-a882-56e6037d55e6] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-010 incumplida en /api/v1/tiendas/me/domicilio/simulacion
+2026-11-17T01:32:16.764Z  INFO 3733 --- [quienlotiene] [           main] [22bb06ca-e7c1-40ba-9af4-5f2aad5ac0b1] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda ccb88941-602c-496f-a594-43e83ff1afb9 registrado
+2026-11-17T01:32:16.768Z  INFO 3733 --- [quienlotiene] [           main] [22bb06ca-e7c1-40ba-9af4-5f2aad5ac0b1] c.q.t.a.usecase.RegistrarTienda          : Tienda 47b0c241-8191-46cf-b10d-283cef5b1f87 registrada por el usuario ccb88941-602c-496f-a594-43e83ff1afb9, pendiente de revisión
+2026-11-17T01:32:16.804Z  INFO 3733 --- [quienlotiene] [           main] [c8215a77-03ea-4220-acc1-7aa584b1fb1f] c.q.i.application.usecase.IniciarSesion  : Usuario ccb88941-602c-496f-a594-43e83ff1afb9 inició sesión
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.289 s -- in HU-009 Perfil y horario de la tienda por la API
+[INFO] Running HU-002 Registrar tienda por la API
+2026-11-17T01:32:16.821Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.tiendas.infrastructure.web.RegistroTiendaIT]: RegistroTiendaIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:16.823Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.tiendas.infrastructure.web.RegistroTiendaIT
+2026-11-17T01:32:16.824Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.tiendas.infrastructure.web.RegistroTiendaIT]: RegistroTiendaIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:16.825Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.tiendas.infrastructure.web.RegistroTiendaIT
+2026-11-17T01:32:16.828Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-17T01:32:16.843Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.t.i.web.RegistroTiendaIT             : Starting RegistroTiendaIT using Java 21.0.12.1 with PID 3733 (started by root in /home/user/quienlotiene)
+2026-11-17T01:32:16.843Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.t.i.web.RegistroTiendaIT             : The following 1 profile is active: "test"
+2026-11-17T01:32:16.973Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-17T01:32:16.989Z  INFO 3733 --- [quienlotiene] [           main] [] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 12 JPA repository interfaces.
+2026-11-17T01:32:17.060Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Creating container for image: postgis/postgis:17-3.5-alpine
+2026-11-17T01:32:17.191Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine is starting: e6e2e18de3c675fd499a49f286676fbfb39650ec14bf76ccd9bd6b5aefa35915
+2026-11-17T01:32:20.081Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container postgis/postgis:17-3.5-alpine started in PT3.020940907S
+2026-11-17T01:32:20.081Z  INFO 3733 --- [quienlotiene] [           main] [] tc.postgis/postgis:17-3.5-alpine         : Container is started (JDBC URL: jdbc:postgresql://localhost:32780/test?loggerLevel=OFF)
+2026-11-17T01:32:20.147Z  INFO 3733 --- [quienlotiene] [           main] [] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:32780/test?loggerLevel=OFF (PostgreSQL 17.11)
+2026-11-17T01:32:20.160Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-11-17T01:32:20.160Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbValidate     : Successfully validated 17 migrations (execution time 00:00.004s)
+2026-11-17T01:32:20.179Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-11-17T01:32:20.196Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-11-17T01:32:20.199Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611072345 - shared crear esquemas extensiones y eventos"
+2026-11-17T01:32:20.200Z  WARN 3733 --- [quienlotiene] [           main] [] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: extension "postgis" already exists, skipping (SQL State: 42710 - Error Code: 0)
+2026-11-17T01:32:20.229Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080005 - identidad crear tabla usuario"
+2026-11-17T01:32:20.239Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080010 - identidad crear tabla autorizacion datos"
+2026-11-17T01:32:20.247Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080015 - identidad crear tabla token refresco"
+2026-11-17T01:32:20.256Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080020 - solicitudes crear tabla solicitud"
+2026-11-17T01:32:20.278Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080025 - identidad agregar segundo factor"
+2026-11-17T01:32:20.286Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080030 - tiendas crear tablas tienda y documentos"
+2026-11-17T01:32:20.299Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080035 - tiendas agregar revision de tienda"
+2026-11-17T01:32:20.303Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080040 - administracion crear tabla auditoria"
+2026-11-17T01:32:20.309Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080045 - tiendas crear tabla horario"
+2026-11-17T01:32:20.316Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080050 - solicitudes crear tabla envio solicitud"
+2026-11-17T01:32:20.322Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080055 - tiendas agregar domicilio"
+2026-11-17T01:32:20.332Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080060 - tiendas crear tabla medio pago tienda"
+2026-11-17T01:32:20.337Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611080065 - clientes crear tabla direccion"
+2026-11-17T01:32:20.343Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611121400 - catalogo crear tabla categoria"
+2026-11-17T01:32:20.349Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161900 - solicitudes crear tabla respuesta"
+2026-11-17T01:32:20.359Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "202611161910 - ordenes crear tablas orden e historial"
+2026-11-17T01:32:20.369Z  INFO 3733 --- [quienlotiene] [           main] [] o.f.core.internal.command.DbMigrate      : Successfully applied 17 migrations to schema "public", now at version v202611161910 (execution time 00:00.103s)
+2026-11-17T01:32:20.411Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-17T01:32:20.412Z  INFO 3733 --- [quienlotiene] [           main] [] o.h.spatial.integration.SpatialService   : HHH80000001: Hibernate Spatial integration enabled: true
+2026-11-17T01:32:20.428Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2026-11-17T01:32:20.439Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@37dddf93
+2026-11-17T01:32:20.440Z  INFO 3733 --- [quienlotiene] [           main] [] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2026-11-17T01:32:20.445Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:32780/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-17T01:32:20.451Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-17T01:32:20.528Z  INFO 3733 --- [quienlotiene] [           main] [] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-17T01:32:20.580Z  INFO 3733 --- [quienlotiene] [           main] [] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-17T01:32:20.675Z  WARN 3733 --- [quienlotiene] [           main] [] c.q.s.i.security.CargadorLlavesRsa       : No hay llaves JWT configuradas: se generan llaves temporales y las sesiones se pierden al reiniciar
+2026-11-17T01:32:21.032Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-17T01:32:21.032Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-17T01:32:21.037Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T01:32:21.045Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 13 ms
+2026-11-17T01:32:21.090Z  INFO 3733 --- [quienlotiene] [           main] [] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-11-17T01:32:21.091Z  INFO 3733 --- [quienlotiene] [           main] [] c.q.t.i.web.RegistroTiendaIT             : Started RegistroTiendaIT in 4.263 seconds (process running for 50.371)
+2026-11-17T01:32:21.108Z  INFO 3733 --- [quienlotiene] [           main] [ac1550e5-3407-474b-9108-117b79572a4c] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-003 incumplida en /api/v1/tiendas/registro
+2026-11-17T01:32:21.120Z  INFO 3733 --- [quienlotiene] [           main] [8dd51f99-e43f-426d-9b70-dbaec3bcfa00] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio TIE-002 incumplida en /api/v1/tiendas/registro
+2026-11-17T01:32:21.164Z  INFO 3733 --- [quienlotiene] [           main] [0ef30b5f-bd04-4f85-9c94-a26af520b398] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda bf1b07a0-0c1a-4d14-af87-a8ba6b02a4fc registrado
+2026-11-17T01:32:21.180Z  INFO 3733 --- [quienlotiene] [           main] [0ef30b5f-bd04-4f85-9c94-a26af520b398] c.q.t.a.usecase.RegistrarTienda          : Tienda 2158bd05-27f2-4894-b473-ab686d03d7d2 registrada por el usuario bf1b07a0-0c1a-4d14-af87-a8ba6b02a4fc, pendiente de revisión
+2026-11-17T01:32:21.188Z  INFO 3733 --- [quienlotiene] [           main] [c8780fe1-3024-4c1b-8d7c-f319d580a0ae] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio IDE-001 incumplida en /api/v1/tiendas/registro
+2026-11-17T01:32:21.242Z  INFO 3733 --- [quienlotiene] [           main] [9c2ad046-f54d-4454-bcc6-7b0478b4fdc6] c.q.i.a.usecase.RegistrarDuenoTienda     : Dueño de tienda 34cb3579-06d4-4ab6-979d-75aa14fbdd00 registrado
+2026-11-17T01:32:21.247Z  INFO 3733 --- [quienlotiene] [           main] [9c2ad046-f54d-4454-bcc6-7b0478b4fdc6] c.q.t.a.usecase.RegistrarTienda          : Tienda 949ba5e1-dad2-4185-93d1-95378e6a6a56 registrada por el usuario 34cb3579-06d4-4ab6-979d-75aa14fbdd00, pendiente de revisión
+2026-11-17T01:32:21.291Z  INFO 3733 --- [quienlotiene] [           main] [29db64f3-5812-4edb-9f14-bffd0910addc] c.q.i.application.usecase.IniciarSesion  : Usuario 34cb3579-06d4-4ab6-979d-75aa14fbdd00 inició sesión
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.482 s -- in HU-002 Registrar tienda por la API
+[INFO] Running HU-002 y HU-016 Categor?as por la API
+2026-11-17T01:32:21.303Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.catalogo.infrastructure.web.CategoriaIT]: CategoriaIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:21.311Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.catalogo.infrastructure.web.CategoriaIT
+2026-11-17T01:32:21.311Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.catalogo.infrastructure.web.CategoriaIT]: CategoriaIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:21.312Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.catalogo.infrastructure.web.CategoriaIT
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in HU-002 y HU-016 Categor?as por la API
+[INFO] Running HU-017 Difundir a tiendas elegibles por la API
+2026-11-17T01:32:21.343Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.solicitudes.infrastructure.web.DifusionSolicitudIT]: DifusionSolicitudIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:21.353Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.solicitudes.infrastructure.web.DifusionSolicitudIT
+2026-11-17T01:32:21.354Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.solicitudes.infrastructure.web.DifusionSolicitudIT]: DifusionSolicitudIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:21.355Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.solicitudes.infrastructure.web.DifusionSolicitudIT
+2026-11-17T01:32:21.370Z  INFO 3733 --- [quienlotiene] [           main] [21fa6cf7-4ad2-485e-b393-852797930b8c] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 12112172-5ca4-46d2-aa90-ecacdea032e3 enviada a 0 tiendas
+2026-11-17T01:32:21.370Z  INFO 3733 --- [quienlotiene] [           main] [21fa6cf7-4ad2-485e-b393-852797930b8c] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 12112172-5ca4-46d2-aa90-ecacdea032e3 publicada por el cliente 19e98916-e94c-4548-9ba9-ab8abf4bfeb8
+2026-11-17T01:32:21.394Z  INFO 3733 --- [quienlotiene] [           main] [dfb76526-612c-45a5-be94-a6e2c857d7ba] c.q.s.a.usecase.DifundirSolicitud        : Solicitud f432d70c-4b03-4eeb-b586-18fa4964e9bf enviada a 1 tiendas
+2026-11-17T01:32:21.394Z  INFO 3733 --- [quienlotiene] [           main] [dfb76526-612c-45a5-be94-a6e2c857d7ba] c.q.s.a.usecase.PublicarSolicitud        : Solicitud f432d70c-4b03-4eeb-b586-18fa4964e9bf publicada por el cliente f22c71ea-d942-4cb7-b1db-60c645d7ce11
+2026-11-17T01:32:21.418Z  INFO 3733 --- [quienlotiene] [           main] [9033c6c7-dbaf-4abf-a8d8-ac49d9171207] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 5f9e14da-f4ce-4ce2-934b-63c36087eabc enviada a 2 tiendas
+2026-11-17T01:32:21.418Z  INFO 3733 --- [quienlotiene] [           main] [9033c6c7-dbaf-4abf-a8d8-ac49d9171207] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 5f9e14da-f4ce-4ce2-934b-63c36087eabc publicada por el cliente 9155a834-8700-4055-b5af-ea3d5b28f6f6
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in HU-017 Difundir a tiendas elegibles por la API
+[INFO] Running HU-016 Publicar solicitud por la API
+2026-11-17T01:32:21.429Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.solicitudes.infrastructure.web.SolicitudControllerIT]: SolicitudControllerIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:21.430Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.solicitudes.infrastructure.web.SolicitudControllerIT
+2026-11-17T01:32:21.431Z  INFO 3733 --- [quienlotiene] [           main] [] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.quienlotiene.solicitudes.infrastructure.web.SolicitudControllerIT]: SolicitudControllerIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-17T01:32:21.432Z  INFO 3733 --- [quienlotiene] [           main] [] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.quienlotiene.QuienLoTieneApplication for test class com.quienlotiene.solicitudes.infrastructure.web.SolicitudControllerIT
+2026-11-17T01:32:21.451Z  INFO 3733 --- [quienlotiene] [           main] [7f6aa00d-2b2a-4d0e-a3f9-e5f36b976994] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 4ea61d68-1df3-403c-86a7-366c07a27cda enviada a 0 tiendas
+2026-11-17T01:32:21.451Z  INFO 3733 --- [quienlotiene] [           main] [7f6aa00d-2b2a-4d0e-a3f9-e5f36b976994] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 4ea61d68-1df3-403c-86a7-366c07a27cda publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.460Z  INFO 3733 --- [quienlotiene] [           main] [f3cb0032-1ef3-4907-8954-49c03402f02d] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 84040798-0b54-4233-8230-dad867048878 enviada a 0 tiendas
+2026-11-17T01:32:21.460Z  INFO 3733 --- [quienlotiene] [           main] [f3cb0032-1ef3-4907-8954-49c03402f02d] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 84040798-0b54-4233-8230-dad867048878 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.470Z  INFO 3733 --- [quienlotiene] [           main] [76abef43-6544-4a01-9154-c47a13e8cba9] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 95dd05be-10c0-489a-a7c1-7219a7e857d0 enviada a 0 tiendas
+2026-11-17T01:32:21.470Z  INFO 3733 --- [quienlotiene] [           main] [76abef43-6544-4a01-9154-c47a13e8cba9] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 95dd05be-10c0-489a-a7c1-7219a7e857d0 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.482Z  INFO 3733 --- [quienlotiene] [           main] [5312614d-3a71-42d3-baa1-1621e409c917] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 16ea6a2e-c106-46f0-8a7e-e63c9beabc37 enviada a 0 tiendas
+2026-11-17T01:32:21.482Z  INFO 3733 --- [quienlotiene] [           main] [5312614d-3a71-42d3-baa1-1621e409c917] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 16ea6a2e-c106-46f0-8a7e-e63c9beabc37 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.491Z  INFO 3733 --- [quienlotiene] [           main] [a0a02337-ad8b-479f-a12b-d03c7aa1a9fe] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 4f1ea036-2b20-4d63-855c-74f3aedb866d enviada a 0 tiendas
+2026-11-17T01:32:21.491Z  INFO 3733 --- [quienlotiene] [           main] [a0a02337-ad8b-479f-a12b-d03c7aa1a9fe] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 4f1ea036-2b20-4d63-855c-74f3aedb866d publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.500Z  INFO 3733 --- [quienlotiene] [           main] [d4a6f99c-cabd-4983-b280-e25eb1eea280] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 442a46c2-8cd2-4796-8a9f-f153068df885 enviada a 0 tiendas
+2026-11-17T01:32:21.500Z  INFO 3733 --- [quienlotiene] [           main] [d4a6f99c-cabd-4983-b280-e25eb1eea280] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 442a46c2-8cd2-4796-8a9f-f153068df885 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.508Z  INFO 3733 --- [quienlotiene] [           main] [ae512c4c-423c-47ce-8130-7a65a42ae1ab] c.q.s.a.usecase.DifundirSolicitud        : Solicitud d66faf2e-5e6d-49f2-9700-5c07db9e32f3 enviada a 0 tiendas
+2026-11-17T01:32:21.508Z  INFO 3733 --- [quienlotiene] [           main] [ae512c4c-423c-47ce-8130-7a65a42ae1ab] c.q.s.a.usecase.PublicarSolicitud        : Solicitud d66faf2e-5e6d-49f2-9700-5c07db9e32f3 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.519Z  INFO 3733 --- [quienlotiene] [           main] [189e6a0d-ff72-4fe5-a23d-47c83dbcbc75] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 17cc3693-45cd-4d0e-9c95-0c74a479bc45 enviada a 0 tiendas
+2026-11-17T01:32:21.519Z  INFO 3733 --- [quienlotiene] [           main] [189e6a0d-ff72-4fe5-a23d-47c83dbcbc75] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 17cc3693-45cd-4d0e-9c95-0c74a479bc45 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.527Z  INFO 3733 --- [quienlotiene] [           main] [50266242-c57f-49ef-b9ab-b4cf8d502c2f] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 50f4bfe0-a5f1-44e6-90ec-9738872eecd7 enviada a 0 tiendas
+2026-11-17T01:32:21.527Z  INFO 3733 --- [quienlotiene] [           main] [50266242-c57f-49ef-b9ab-b4cf8d502c2f] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 50f4bfe0-a5f1-44e6-90ec-9738872eecd7 publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.536Z  INFO 3733 --- [quienlotiene] [           main] [95a8e9d6-9489-4544-88e8-cba0f9d424ea] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 287b9285-b76d-42cb-a012-c0f89647b60c enviada a 0 tiendas
+2026-11-17T01:32:21.536Z  INFO 3733 --- [quienlotiene] [           main] [95a8e9d6-9489-4544-88e8-cba0f9d424ea] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 287b9285-b76d-42cb-a012-c0f89647b60c publicada por el cliente 340ce1d8-4df2-40a3-a2a4-25434d9b6663
+2026-11-17T01:32:21.546Z  INFO 3733 --- [quienlotiene] [           main] [e711013f-56ee-438b-86ba-d4f097a61b5b] c.q.s.i.web.ManejadorGlobalErrores       : Regla de negocio SOL-001 incumplida en /api/v1/solicitudes
+2026-11-17T01:32:21.556Z  INFO 3733 --- [quienlotiene] [           main] [55d2ae12-decf-441a-b443-6ca76ea96fb5] c.q.s.a.usecase.DifundirSolicitud        : Solicitud 0f6d3478-d268-4fca-8f6f-9eb89debede6 enviada a 0 tiendas
+2026-11-17T01:32:21.556Z  INFO 3733 --- [quienlotiene] [           main] [55d2ae12-decf-441a-b443-6ca76ea96fb5] c.q.s.a.usecase.PublicarSolicitud        : Solicitud 0f6d3478-d268-4fca-8f6f-9eb89debede6 publicada por el cliente cdb0a46e-6d55-44d2-890b-18d744517537
+2026-11-17T01:32:21.571Z  INFO 3733 --- [quienlotiene] [           main] [80553d84-b5dc-4c83-9ba8-3e2427b50442] c.q.s.a.usecase.DifundirSolicitud        : Solicitud d74b92c6-e70c-43e2-ad88-66d1910b3244 enviada a 0 tiendas
+2026-11-17T01:32:21.572Z  INFO 3733 --- [quienlotiene] [           main] [80553d84-b5dc-4c83-9ba8-3e2427b50442] c.q.s.a.usecase.PublicarSolicitud        : Solicitud d74b92c6-e70c-43e2-ad88-66d1910b3244 publicada por el cliente 4229faea-7fc5-41b0-b100-78298f6ee55a
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.164 s -- in HU-016 Publicar solicitud por la API
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 55, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- failsafe:3.5.6:verify (default) @ QuienLoTiene ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:17 min
+[INFO] Finished at: 2026-11-17T01:32:24Z
+[INFO] ------------------------------------------------------------------------

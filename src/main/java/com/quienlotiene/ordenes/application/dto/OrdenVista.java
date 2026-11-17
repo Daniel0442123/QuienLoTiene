@@ -76,5 +76,20 @@ public record OrdenVista(
 
     public record Ubicacion(double latitud, double longitud) {}
 
-    public record CambioEstadoOrden(String estado, Instant fecha) {}
+    /** Un paso de la línea de tiempo; el estado es uno de los de la orden (DEF-006, C-04 A3). */
+    public record CambioEstadoOrden(
+            @Schema(
+                    allowableValues = {
+                        "CONFIRMADO",
+                        "PREPARANDO",
+                        "EN_CAMINO",
+                        "LISTO_PARA_RECOGER",
+                        "ENTREGADO",
+                        "RESUELTA",
+                        "CANCELADO",
+                        "VENCIDA"
+                    })
+            String estado,
+
+            Instant fecha) {}
 }

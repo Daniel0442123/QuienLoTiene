@@ -1,6 +1,6 @@
 # Documento de evidencias de pruebas · Ciclo 1 (C1)
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene — Liberación 1.0
 
@@ -620,9 +620,25 @@ La PWA se levantó en local con el backend v0.2.0 y se recorrieron 45 vistas y e
 
 ![14-solicitud-incompleta](../../evidencias/C1/2026-11-12/frontend/14-solicitud-incompleta.png)
 
+## 10. Sprint 2 — sesión 2026-11-16 (borrador)
+
+Versión `main` 5e8ab98. Todo lo de esta sesión está en `evidencias/C1/2026-11-16/`:
+
+| Evidencia | Archivo |
+|---|---|
+| Suite automatizada: 278 unitarias y 49 de integración, 0 fallas | [mvn-verify.txt](../../evidencias/C1/2026-11-16/mvn-verify.txt) · [reportes-junit/](../../evidencias/C1/2026-11-16/reportes-junit/) |
+| Cobertura por módulo (95,5 % en domain + application) | [jacoco.csv](../../evidencias/C1/2026-11-16/jacoco.csv) |
+| Pruebas del frontend (237) | [frontend-pruebas.txt](../../evidencias/C1/2026-11-16/frontend-pruebas.txt) |
+| CI #146 con OWASP Dependency-Check | [ci-run146.txt](../../evidencias/C1/2026-11-16/ci-run146.txt) |
+| Recorrido de punta a punta, 34 capturas | [recorrido/](../../evidencias/C1/2026-11-16/recorrido/) · informe [RECORRIDO-SPRINT-2-20261116.md](RECORRIDO-SPRINT-2-20261116.md) |
+| Pruebas por API (seguridad y transiciones) | [api-negativos.md](../../evidencias/C1/2026-11-16/api-negativos.md) |
+| Contrato y tipos generados (C-04) | [contrato/](../../evidencias/C1/2026-11-16/contrato/) · [C-04-DIFERENCIAS-TIPOS.md](C-04-DIFERENCIAS-TIPOS.md) |
+| Cómo se levantó el ambiente | [scripts/README.md](../../evidencias/C1/2026-11-16/scripts/README.md) |
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sección 10 con la evidencia del Sprint 2 (borrador, pendiente de firma de QA) |

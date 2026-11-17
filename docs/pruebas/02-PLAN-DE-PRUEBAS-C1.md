@@ -1,18 +1,18 @@
 # Plan de pruebas · Ciclo 1 (C1) · Pruebas unitarias de los Sprints 1 y 2
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 | Campo | Valor |
 |---|---|
 | Sistema | Quién lo tiene · Byte Force |
 | Responsables de QA | Yanimar Burbano Piamba (pruebas funcionales) · Francisco José Castro Muñoz (no funcionales y seguridad) |
-| Fechas | 02/11/2026 al 15/11/2026 (corte parcial el 08/11) |
+| Fechas | 02/11/2026 al 20/11/2026 (corte parcial el 08/11, hecho el 12/11; cierre movido del 15/11 al 20/11 por SC-015) |
 | Versión | v0.x.y (se anota la versión real en el acta de inicio) |
 | Documentos relacionados | Plan Maestro de Pruebas · Libro de control (`libro/`) · SRS |
 
 ## 1. Introducción y alcance
 
-Este plan cubre el primer ciclo de pruebas de Quién lo tiene, que va del Sprint 1 al Sprint 2. Siguiendo la recomendación del docente, el ciclo se concentra en las **pruebas unitarias** de las reglas de dominio y de los casos de uso de los módulos construidos en esos sprints: identidad, tiendas, solicitudes, órdenes, notificaciones, mensajería y administración. Las pruebas de integración solo se ejecutan donde la regla depende de la base de datos (consultas por radio con PostGIS), de la capa web (token, privacidad de la respuesta de la API) o del tiempo real (SSE). Al cerrar el Sprint 1 (08/11) se hace un corte parcial con lo que esté implementado; el ciclo se cierra el 15/11.
+Este plan cubre el primer ciclo de pruebas de Quién lo tiene, que va del Sprint 1 al Sprint 2. Siguiendo la recomendación del docente, el ciclo se concentra en las **pruebas unitarias** de las reglas de dominio y de los casos de uso de los módulos construidos en esos sprints: identidad, tiendas, solicitudes, órdenes, notificaciones, mensajería y administración. Las pruebas de integración solo se ejecutan donde la regla depende de la base de datos (consultas por radio con PostGIS), de la capa web (token, privacidad de la respuesta de la API) o del tiempo real (SSE). Al cerrar el Sprint 1 (08/11) se hace un corte parcial con lo que esté implementado; el ciclo se cierra el 20/11 (antes 15/11; SC-015).
 
 Alcance en números: 53 casos funcionales y de seguridad, 8 casos no funcionales.
 
@@ -133,10 +133,10 @@ El ciclo se considera terminado cuando se cumplan todos los siguientes criterios
 | Plan maestro, libro de control y plan del C1 aprobados | 07/11/2026 |
 | JaCoCo y Failsafe en el `pom.xml`; pipeline con `./mvnw verify` | 08/11/2026 |
 | Corte del Sprint 1: ejecución de los casos de las historias del Sprint 1 e informe de corte | 08/11/2026 |
-| Pruebas unitarias por historia del Sprint 2 (en cada pull request) | 09/11 al 14/11/2026 |
-| Integración: PostGIS (CP-SOL-017-*), API y SSE | 12/11 al 14/11/2026 |
-| Re-prueba de defectos corregidos | 14/11 al 15/11/2026 |
-| Cierre del C1: libro, tablero, evidencias e informe de cierre | 15/11/2026 |
+| Pruebas unitarias por historia del Sprint 2 (en cada pull request) | 09/11 al 16/11/2026 (backend fusionado el 16/11: #35) |
+| Integración: PostGIS (CP-SOL-017-*), API y SSE; recorrido de punta a punta del Sprint 2 | 12/11 al 16/11/2026 |
+| Re-prueba de defectos corregidos | 18/11 al 19/11/2026 |
+| Cierre del C1: libro, tablero, evidencias e informe de cierre | 20/11/2026 |
 
 ## 10. Riesgos y contingencias
 
@@ -162,3 +162,4 @@ El ciclo se considera terminado cuando se cumplan todos los siguientes criterios
 |---|---|---|---|
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fechas del C1 movidas: cierre del 15/11 al 20/11 y re-prueba del 18 al 19/11 (SC-015) |

@@ -1,0 +1,11 @@
+# tsc con los tipos generados de /v3/api-docs (PR #46 con DEF-006) sobre la rama del PR #47 (3ca6e4e)
+# Provisionales sustituidos por los generados, como pide B7. Antes: 35 errores. Ahora: 6 (5 de B6 y 1 de B8).
+src/features/tiendas/FormularioDomicilio.tsx(68,25): error TS2345: Argument of type '{ haceDomicilio: true; radioCoberturaEnMetros: number; tarifaFijaEnPesos: number; } | { haceDomicilio: false; radioCoberturaEnMetros: null; tarifaFijaEnPesos: null; }' is not assignable to parameter of type '{ haceDomicilio: boolean; radioCoberturaEnMetros?: number | undefined; tarifaFijaEnPesos?: number | undefined; }'.
+  Type '{ haceDomicilio: false; radioCoberturaEnMetros: null; tarifaFijaEnPesos: null; }' is not assignable to type '{ haceDomicilio: boolean; radioCoberturaEnMetros?: number | undefined; tarifaFijaEnPesos?: number | undefined; }'.
+    Types of property 'radioCoberturaEnMetros' are incompatible.
+      Type 'null' is not assignable to type 'number | undefined'.
+src/features/tiendas/api.ts(40,11): error TS2322: Type 'File' is not assignable to type 'string'.
+src/features/tiendas/api.ts(41,11): error TS2322: Type 'File' is not assignable to type 'string'.
+src/features/tiendas/api.ts(43,28): error TS2339: Property 'datos' does not exist on type '{ datos: { nombreDueno: string; correo: string; telefono: string; fraseContrasena: string; aceptaPoliticaDatos: boolean; versionPoliticaDatos: string; nombreTienda: string; categoriaId: string; ubicacion: { ...; }; }; fotoLocal?: string | undefined; rut?: string | undefined; } | undefined'.
+src/features/tiendas/api.ts(43,47): error TS2339: Property 'fotoLocal' does not exist on type '{ datos: { nombreDueno: string; correo: string; telefono: string; fraseContrasena: string; aceptaPoliticaDatos: boolean; versionPoliticaDatos: string; nombreTienda: string; categoriaId: string; ubicacion: { ...; }; }; fotoLocal?: string | undefined; rut?: string | undefined; } | undefined'.
+src/features/tiendas/api.ts(43,64): error TS2339: Property 'rut' does not exist on type '{ datos: { nombreDueno: string; correo: string; telefono: string; fraseContrasena: string; aceptaPoliticaDatos: boolean; versionPoliticaDatos: string; nombreTienda: string; categoriaId: string; ubicacion: { ...; }; }; fotoLocal?: string | undefined; rut?: string | undefined; } | undefined'.

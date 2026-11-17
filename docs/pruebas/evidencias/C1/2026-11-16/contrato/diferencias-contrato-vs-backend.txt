@@ -1,0 +1,74 @@
+## Operaciones en el contrato y no en el backend
+## Operaciones en el backend y no en el contrato
+- GET /api/v1/admin/tiendas
+- POST /api/v1/admin/tiendas/{tiendaId}/aprobacion
+- GET /api/v1/admin/tiendas/{tiendaId}/documentos/{documentoId}
+- POST /api/v1/admin/tiendas/{tiendaId}/rechazo
+- POST /api/v1/auth/login
+- POST /api/v1/auth/logout
+- POST /api/v1/auth/refresco
+- POST /api/v1/auth/registro
+- POST /api/v1/auth/totp
+- GET /api/v1/categorias
+- GET /api/v1/clientes/me/direcciones
+- POST /api/v1/clientes/me/direcciones
+- DELETE /api/v1/clientes/me/direcciones/{direccionId}
+- PUT /api/v1/clientes/me/direcciones/{direccionId}
+- POST /api/v1/solicitudes
+- GET /api/v1/tiendas/me
+- PATCH /api/v1/tiendas/me/apertura
+- GET /api/v1/tiendas/me/domicilio
+- PUT /api/v1/tiendas/me/domicilio
+- GET /api/v1/tiendas/me/domicilio/simulacion
+- GET /api/v1/tiendas/me/medios-pago
+- PUT /api/v1/tiendas/me/medios-pago
+- PUT /api/v1/tiendas/me/perfil
+- POST /api/v1/tiendas/registro
+- GET /api/v1/usuarios/me
+- PATCH /api/v1/usuarios/me
+## Esquemas solo en el contrato: ['EstadoOrden', 'EstadoRespuesta', 'EstadoSolicitud', 'EventoEstadoOrdenCambiado', 'EventoOrdenCreada', 'EventoRespuestaNoElegida', 'EventoRespuestaRecibida', 'EventoSolicitudCerrada', 'EventoSolicitudNueva', 'EventoSolicitudVencida', 'EventoTiempoReal', 'MedioPago', 'Modalidad', 'Problema', 'TipoRespuesta']
+## Esquemas solo en el backend: ['ActualizarPerfilRequest', 'ActualizarPerfilTiendaRequest', 'CambiarAperturaRequest', 'CategoriaResponse', 'ConfigurarDomicilioRequest', 'ConfigurarMediosPagoRequest', 'DatosDireccion', 'DireccionRequest', 'DocumentoResumen', 'Domicilio', 'Franja', 'FranjaRequest', 'IniciarSesionRequest', 'MediosPagoResponse', 'MiTienda', 'PerfilUsuario', 'PublicarSolicitudRequest', 'RechazarTiendaRequest', 'RegistrarClienteRequest', 'RegistrarTiendaRequest', 'RespuestaInicioSesion', 'SegundoFactorPendienteResponse', 'SesionResponse', 'SimulacionDomicilioResponse', 'SseEmitter', 'TiendaParaRevision', 'TiendaRegistradaResponse', 'UbicacionRequest', 'UbicacionResponse', 'UsuarioRegistradoResponse', 'VerificarSegundoFactorRequest']
+## Diferencias en esquemas comunes
+### CambioEstadoOrden
+- `estado`: backend ('string', (), False, None) / contrato ('EstadoOrden', (), False, None)
+### CrearOrdenRequest
+- `direccionId`: backend ('string', (), False, 'uuid') / contrato ("['string', 'null']", (), True, 'uuid')
+- `medioPago`: backend ('string', ('DATAFONO', 'EFECTIVO', 'TRANSFERENCIA'), False, None) / contrato ('MedioPago', (), False, None)
+- `modalidad`: backend ('string', ('DOMICILIO', 'RECOGER'), False, None) / contrato ('Modalidad', (), False, None)
+### OrdenResponse
+- `cantidad`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `estado`: backend ('string', ('CANCELADO', 'CONFIRMADO', 'ENTREGADO', 'EN_CAMINO', 'LISTO_PARA_RECOGER', 'PREPARANDO', 'RESUELTA', 'VENCIDA'), False, None) / contrato ('EstadoOrden', (), False, None)
+- `medioPago`: backend ('string', ('DATAFONO', 'EFECTIVO', 'TRANSFERENCIA'), False, None) / contrato ('MedioPago', (), False, None)
+- `modalidad`: backend ('string', ('DOMICILIO', 'RECOGER'), False, None) / contrato ('Modalidad', (), False, None)
+### ResponderSolicitudRequest
+- `cantidadDisponible`: backend ('integer', (), False, 'int32') / contrato ("['integer', 'null']", (), True, None)
+- `descripcionAlternativa`: backend ('string', (), False, None) / contrato ("['string', 'null']", (), True, None)
+- `precioEnPesos`: backend ('integer', (), False, 'int64') / contrato ("['integer', 'null']", (), True, 'int64')
+- `tiempoEstimadoEnMinutos`: backend ('integer', (), False, 'int32') / contrato ("['integer', 'null']", (), True, None)
+- `tipo`: backend ('string', ('NO', 'PARECIDO', 'SI'), False, None) / contrato ('TipoRespuesta', (), False, None)
+### RespuestaDeTiendaResponse
+- `cantidadDisponible`: backend ("['integer', 'null']", (), True, 'int32') / contrato ("['integer', 'null']", (), True, None)
+- `cantidadSolicitada`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `estado`: backend ('string', ('ELEGIDA', 'ESPERANDO', 'NO_ELEGIDA', 'VENCIDA'), False, None) / contrato ('EstadoRespuesta', (), False, None)
+- `tiempoEstimadoEnMinutos`: backend ("['integer', 'null']", (), True, 'int32') / contrato ("['integer', 'null']", (), True, None)
+- `tipo`: backend ('string', ('NO', 'PARECIDO', 'SI'), False, None) / contrato ('TipoRespuesta', (), False, None)
+### RespuestaParaClienteResponse
+- `cantidadDisponible`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `distanciaEnMetros`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `tiempoEstimadoEnMinutos`: backend ("['integer', 'null']", (), True, 'int32') / contrato ("['integer', 'null']", (), True, None)
+### RespuestasDeSolicitudResponse
+- `cantidadSolicitada`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `estadoSolicitud`: backend ('string', ('ABIERTA', 'RESUELTA', 'VENCIDA'), False, None) / contrato ('EstadoSolicitud', (), False, None)
+- `respuestasRecibidas`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+### SolicitudDisponibleResponse
+- `cantidad`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `distanciaEnMetros`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `modalidad`: backend ('string', ('DOMICILIO', 'RECOGER'), False, None) / contrato ('Modalidad', (), False, None)
+### SolicitudResponse
+- `cantidad`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `estado`: backend ('string', ('ABIERTA', 'RESUELTA', 'VENCIDA'), False, None) / contrato ('EstadoSolicitud', (), False, None)
+- `modalidad`: backend ('string', ('DOMICILIO', 'RECOGER'), False, None) / contrato ('Modalidad', (), False, None)
+- `radioEnMetros`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `respuestasRecibidas`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `tiendasNotificadas`: backend ('integer', (), False, 'int32') / contrato ('integer', (), False, None)
+- `ubicacion`: backend ('UbicacionResponse', (), False, None) / contrato ('Ubicacion', (), False, None)

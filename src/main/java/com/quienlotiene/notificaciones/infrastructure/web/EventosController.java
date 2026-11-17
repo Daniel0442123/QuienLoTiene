@@ -1,9 +1,12 @@
 package com.quienlotiene.notificaciones.infrastructure.web;
 
+import com.quienlotiene.notificaciones.application.dto.EventosTiempoReal;
 import com.quienlotiene.notificaciones.infrastructure.sse.EmisoresSse;
 import com.quienlotiene.shared.infrastructure.security.UsuarioActual;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
@@ -31,7 +34,24 @@ class EventosController {
                     + "(SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. "
                     + "Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, "
                     + "solicitud-vencida, orden-creada y estado-orden-cambiado (docs/api/contrato-sprint-2.yaml).")
-    @ApiResponse(responseCode = "200", description = "Conexión abierta")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Conexión abierta. Cada evento trae id, event (el tipo) y data (uno de estos JSON).",
+            content =
+                    @Content(
+                            mediaType = MediaType.TEXT_EVENT_STREAM_VALUE,
+                            schema =
+                                    @Schema(
+                                            name = "EventoTiempoReal",
+                                            oneOf = {
+                                                EventosTiempoReal.SolicitudNueva.class,
+                                                EventosTiempoReal.RespuestaRecibida.class,
+                                                EventosTiempoReal.SolicitudCerrada.class,
+                                                EventosTiempoReal.RespuestaNoElegida.class,
+                                                EventosTiempoReal.SolicitudVencida.class,
+                                                EventosTiempoReal.OrdenCreada.class,
+                                                EventosTiempoReal.EstadoOrdenCambiado.class
+                                            })))
     @ApiResponse(responseCode = "401", description = "Sin sesión (GEN-003)")
     @GetMapping(path = "/api/v1/eventos", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     SseEmitter abrir(

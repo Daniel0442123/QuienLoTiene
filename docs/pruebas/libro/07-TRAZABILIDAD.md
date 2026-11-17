@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -21,27 +21,27 @@ Requisito → historia → casos → pruebas automatizadas → resultado. Estado
 | RF-009 | Configurar perfil de tienda | HU-009 | Must | tiendas | Sprint 1 | CP-TIE-009-01, CP-TIE-009-02 | CP-019, CP-020 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-010 | Configurar domicilio con tarifa fija | HU-010 | Must | tiendas | Sprint 1 | CP-TIE-010-01, CP-TIE-010-02 | CP-021, CP-022 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-011 | Tarifas de domicilio avanzadas | HU-011 | Could | tiendas | Cierre | CP-TIE-011-01, CP-TIE-011-02 | CP-023, CP-024 | 2 |  |  |  |  |  |  |  |
-| RF-012 | Configurar medios de pago | HU-012 | Must | tiendas | Sprint 1 | CP-TIE-012-01, CP-TIE-012-02 | CP-025, CP-026 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
+| RF-012 | Configurar medios de pago | HU-012 | Must | tiendas | Sprint 1 | CP-TIE-012-01, CP-TIE-012-02 | CP-025, CP-026 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 1 (DEF-007, S3; re-prueba de punta a punta 16/11) | Verificado con defecto abierto |
 | RF-013 | Abrir o cerrar tienda | HU-013 | Must | tiendas | Sprint 1 | CP-TIE-013-01, CP-TIE-013-02 | CP-027, CP-028 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-014 | Ver detalle de tienda | HU-014 | Should | tiendas | Sprint 3 | CP-TIE-014-01, CP-TIE-014-02 | CP-029, CP-030 | 2 |  |  |  |  |  |  |  |
 | RF-015 | Ver resumen de indicadores | HU-015 | Could | tiendas | Cierre | CP-TIE-015-01, CP-TIE-015-02 | CP-031, CP-032 | 2 |  |  |  |  |  |  |  |
 | RF-016 | Publicar solicitud | HU-016 | Must | solicitudes | Sprint 1 | CP-SOL-016-01, CP-SOL-016-02, CP-SOL-016-03 | CP-033, CP-034, CP-035 | 3 | 15 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
 | RF-017 | Difundir a tiendas elegibles | HU-017 | Must | solicitudes | Sprint 1 | CP-SOL-017-01, CP-SOL-017-02, CP-SOL-017-03 | CP-036, CP-037, CP-038 | 3 | 4 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
-| RF-018 | Ver solicitudes nuevas | HU-018 | Must | solicitudes | Sprint 2 | CP-SOL-018-01, CP-SOL-018-02 | CP-039, CP-040 | 2 |  |  |  |  |  |  |  |
-| RF-019 | Responder solicitud | HU-019 | Must | solicitudes | Sprint 2 | CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-03, CP-SOL-019-04 | CP-041, CP-042, CP-043, CP-044 | 4 |  |  |  |  |  |  |  |
-| RF-020 | Ver y ordenar respuestas | HU-020 | Must | solicitudes | Sprint 2 | CP-SOL-020-01, CP-SOL-020-02, CP-SOL-020-03 | CP-045, CP-046, CP-047 | 3 |  |  |  |  |  |  |  |
-| RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 |  |  |  |  |  |  |  |
+| RF-018 | Ver solicitudes nuevas | HU-018 | Must | solicitudes | Sprint 2 | CP-SOL-018-01, CP-SOL-018-02 | CP-039, CP-040 | 2 | 3 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
+| RF-019 | Responder solicitud | HU-019 | Must | solicitudes | Sprint 2 | CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-03, CP-SOL-019-04 | CP-041, CP-042, CP-043, CP-044 | 4 | 7 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 0 | Verificado (borrador 16/11) |
+| RF-020 | Ver y ordenar respuestas | HU-020 | Must | solicitudes | Sprint 2 | CP-SOL-020-01, CP-SOL-020-02, CP-SOL-020-03 | CP-045, CP-046, CP-047 | 3 | 5 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 3 | 0 | 0 | 0 | Verificado (borrador 16/11) |
+| RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 | 8 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 1 (DEF-008, S4) | Verificado con defectos abiertos (borrador 16/11) |
 | RF-022 | Ampliar radio automáticamente | HU-022 | Could | solicitudes | Cierre | CP-SOL-022-01, CP-SOL-022-02 | CP-050, CP-051 | 2 |  |  |  |  |  |  |  |
 | RF-023 | Advertir productos restringidos | HU-023 | Should | solicitudes | Sprint 3 | CP-SOL-023-01, CP-SOL-023-02 | CP-052, CP-053 | 2 |  |  |  |  |  |  |  |
-| RF-024 | Elegir respuesta y crear orden | HU-024 | Must | ordenes | Sprint 2 | CP-ORD-024-01, CP-ORD-024-02, CP-ORD-024-03, CP-ORD-024-04 | CP-054, CP-055, CP-056, CP-057 | 4 |  |  |  |  |  |  |  |
+| RF-024 | Elegir respuesta y crear orden | HU-024 | Must | ordenes | Sprint 2 | CP-ORD-024-01, CP-ORD-024-02, CP-ORD-024-03, CP-ORD-024-04 | CP-054, CP-055, CP-056, CP-057 | 4 | 6 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 2 (DEF-007 S3, DEF-009 S4) | Verificado con defectos abiertos (borrador 16/11) |
 | RF-025 | Reservar para recogida | HU-025 | Should | ordenes | Sprint 3 | CP-ORD-025-01, CP-ORD-025-02 | CP-058, CP-059 | 2 |  |  |  |  |  |  |  |
 | RF-026 | Ver cómo llegar | HU-026 | Should | ordenes | Sprint 3 | CP-ORD-026-01 | CP-060 | 1 |  |  |  |  |  |  |  |
-| RF-027 | Actualizar estado de la orden | HU-027 | Must | ordenes | Sprint 2 | CP-ORD-027-01, CP-ORD-027-02 | CP-061, CP-062 | 2 |  |  |  |  |  |  |  |
-| RF-028 | Confirmar recepción | HU-028 | Must | ordenes | Sprint 2 | CP-ORD-028-01, CP-ORD-028-02 | CP-063, CP-064 | 2 |  |  |  |  |  |  |  |
+| RF-027 | Actualizar estado de la orden | HU-027 | Must | ordenes | Sprint 2 | CP-ORD-027-01, CP-ORD-027-02 | CP-061, CP-062 | 2 | 4 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
+| RF-028 | Confirmar recepción | HU-028 | Must | ordenes | Sprint 2 | CP-ORD-028-01, CP-ORD-028-02 | CP-063, CP-064 | 2 | 4 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-029 | Cancelar orden | HU-029 | Should | ordenes | Sprint 3 | CP-ORD-029-01, CP-ORD-029-02 | CP-065, CP-066 | 2 |  |  |  |  |  |  |  |
-| RF-030 | Notificar en tiempo real | HU-030 | Must | notificaciones | Sprint 2 | CP-NOT-030-01, CP-NOT-030-02 | CP-067, CP-068 | 2 |  |  |  |  |  |  |  |
+| RF-030 | Notificar en tiempo real | HU-030 | Must | notificaciones | Sprint 2 | CP-NOT-030-01, CP-NOT-030-02 | CP-067, CP-068 | 2 | 2 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-031 | Notificaciones push web | HU-031 | Should | notificaciones | Sprint 3 | CP-NOT-031-01, CP-NOT-031-02 | CP-069, CP-070 | 2 |  |  |  |  |  |  |  |
-| RF-032 | Contactar por WhatsApp | HU-032 | Must | mensajeria | Sprint 2 | CP-MEN-032-01, CP-MEN-032-02 | CP-071, CP-072 | 2 |  |  |  |  |  |  |  |
+| RF-032 | Contactar por WhatsApp | HU-032 | Must | mensajeria | Sprint 2 | CP-MEN-032-01, CP-MEN-032-02 | CP-071, CP-072 | 2 | 5 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-033 | Mini chat | HU-033 | Should | mensajeria | Sprint 3 | CP-MEN-033-01, CP-MEN-033-02 | CP-073, CP-074 | 2 |  |  |  |  |  |  |  |
 | RF-034 | Calificar tienda | HU-034 | Must | reputacion | Sprint 3 | CP-REP-034-01, CP-REP-034-02, CP-REP-034-03 | CP-075, CP-076, CP-077 | 3 |  |  |  |  |  |  |  |
 | RF-035 | Reportar problema | HU-035 | Should | reputacion | Sprint 3 | CP-REP-035-01, CP-REP-035-02 | CP-078, CP-079 | 2 |  |  |  |  |  |  |  |
@@ -94,3 +94,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(front): andamiaje del frontend y decisiones de usabilidad y accesibilidad (#17) |
 | — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Requisitos del Sprint 2 con su resultado del 16/11 y RF-012 con DEF-007 (borrador, pendiente de firma de QA) |

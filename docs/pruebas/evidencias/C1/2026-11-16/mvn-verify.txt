@@ -1,0 +1,202 @@
+# ./mvnw -B clean verify · main (5e8ab98, después de #35–#45) · ambiente QA (contenedor Linux, Java 21, Docker 29.9.2 + Testcontainers postgis/postgis:17-3.5-alpine) · 2026-11-16
+
+[INFO] -------------------< com.quienlotiene:QuienLoTiene >--------------------
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] --- clean:3.5.0:clean (default-clean) @ QuienLoTiene ---
+[INFO] --- spotless:3.11.0:check (verificar-formato) @ QuienLoTiene ---
+[INFO] --- jacoco:0.8.16:prepare-agent (preparar-agente) @ QuienLoTiene ---
+[INFO] --- resources:3.5.0:resources (default-resources) @ QuienLoTiene ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ QuienLoTiene ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ QuienLoTiene ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ QuienLoTiene ---
+[INFO] --- surefire:3.5.6:test (default-test) @ QuienLoTiene ---
+[INFO] -------------------------------------------------------
+[INFO] -------------------------------------------------------
+[INFO] Running T-01 Filtro del id de correlaci?n
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.301 s -- in T-01 Filtro del id de correlaci?n
+[INFO] Running com.quienlotiene.shared.infrastructure.web.ConvertidorRecordsOpenApiTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.711 s -- in com.quienlotiene.shared.infrastructure.web.ConvertidorRecordsOpenApiTest
+[INFO] Running T-01 Manejador global de errores con ProblemDetail
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.164 s -- in T-01 Manejador global de errores con ProblemDetail
+[INFO] Running HU-002 Almac?n de archivos en disco
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in HU-002 Almac?n de archivos en disco
+[INFO] Running T-02 Seguridad con JWT RS256 y roles
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.434 s -- in T-02 Seguridad con JWT RS256 y roles
+[INFO] Running T-02 Llaves RSA y codificaci?n de frases de contrase?a
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.588 s -- in T-02 Llaves RSA y codificaci?n de frases de contrase?a
+[INFO] Running T-01 Excepci?n base de reglas de negocio
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in T-01 Excepci?n base de reglas de negocio
+[INFO] Running HU-004 Verificaci?n TOTP y cifrado del secreto
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in HU-004 Verificaci?n TOTP y cifrado del secreto
+[INFO] Running HU-001 Lista de frases comunes
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-001 Lista de frases comunes
+[INFO] Running HU-004 Segundo factor del administrador
+[INFO] Running Crear el administrador inicial
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 s -- in Crear el administrador inicial
+[INFO] Running Verificar el c?digo
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in Verificar el c?digo
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.883 s -- in HU-004 Segundo factor del administrador
+[INFO] Running HU-003 Iniciar, renovar y cerrar sesi?n
+[INFO] Running Renovar la sesi?n
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in Renovar la sesi?n
+[INFO] Running Cerrar sesi?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in Cerrar sesi?n
+[INFO] Running Iniciar sesi?n
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in Iniciar sesi?n
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 s -- in HU-003 Iniciar, renovar y cerrar sesi?n
+[INFO] Running HU-007 Perfil del usuario
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in HU-007 Perfil del usuario
+[INFO] Running HU-001 Registrar cliente
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 s -- in HU-001 Registrar cliente
+[INFO] Running HU-005 Autorizaci?n de tratamiento de datos
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in HU-005 Autorizaci?n de tratamiento de datos
+[INFO] Running HU-001 Usuario
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in HU-001 Usuario
+[INFO] Running HU-001 Correo
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in HU-001 Correo
+[INFO] Running HU-003 Token de refresco
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in HU-003 Token de refresco
+[INFO] Running HU-001 Frase de contrase?a
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in HU-001 Frase de contrase?a
+[INFO] Running HU-030 Conexiones SSE
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in HU-030 Conexiones SSE
+[INFO] Running HU-030 Notificar en tiempo real
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 s -- in HU-030 Notificar en tiempo real
+[INFO] Running HU-030 Avisos recientes para reenviar tras una reconexi?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in HU-030 Avisos recientes para reenviar tras una reconexi?n
+[INFO] Running com.quienlotiene.arquitectura.ModulosTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.814 s -- in com.quienlotiene.arquitectura.ModulosTest
+[INFO] Running HU-024, HU-027 y HU-028 Casos de uso de ?rdenes
+[INFO] Running HU-032 Contacto de la otra parte
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.280 s -- in HU-032 Contacto de la otra parte
+[INFO] Running HU-028 Confirmar recepci?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in HU-028 Confirmar recepci?n
+[INFO] Running HU-024 Crear orden
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in HU-024 Crear orden
+[INFO] Running HU-027 Consultar y cambiar el estado
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in HU-027 Consultar y cambiar el estado
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.350 s -- in HU-024, HU-027 y HU-028 Casos de uso de ?rdenes
+[INFO] Running HU-024, HU-027 y HU-028 Orden
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-024, HU-027 y HU-028 Orden
+[INFO] Running HU-036 Revisar tienda con auditor?a (m?dulo administracion)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.107 s -- in HU-036 Revisar tienda con auditor?a (m?dulo administracion)
+[INFO] Running HU-032 Contactar por WhatsApp
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 s -- in HU-032 Contactar por WhatsApp
+[INFO] Running HU-032 Enlace de WhatsApp
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in HU-032 Enlace de WhatsApp
+[INFO] Running HU-007 Gestionar direcciones del cliente
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in HU-007 Gestionar direcciones del cliente
+[INFO] Running HU-007 Direcci?n del cliente
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-007 Direcci?n del cliente
+[INFO] Running HU-013 Cambiar apertura y buscar tiendas elegibles
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in HU-013 Cambiar apertura y buscar tiendas elegibles
+[INFO] Running HU-010 Configurar domicilio de mi tienda
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in HU-010 Configurar domicilio de mi tienda
+[INFO] Running HU-012 Configurar medios de pago de mi tienda
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-012 Configurar medios de pago de mi tienda
+[INFO] Running HU-002 Registrar tienda
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in HU-002 Registrar tienda
+[INFO] Running HU-009 Consultar y actualizar el perfil de mi tienda
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in HU-009 Consultar y actualizar el perfil de mi tienda
+[INFO] Running HU-036 Revisar tiendas (m?dulo tiendas)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in HU-036 Revisar tiendas (m?dulo tiendas)
+[INFO] Running HU-036 Revisi?n de la tienda
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in HU-036 Revisi?n de la tienda
+[INFO] Running HU-009 Horario de atenci?n y perfil de la tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in HU-009 Horario de atenci?n y perfil de la tienda
+[INFO] Running HU-002 Tienda y documentos
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in HU-002 Tienda y documentos
+[INFO] Running HU-013 Abrir o cerrar la tienda
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in HU-013 Abrir o cerrar la tienda
+[INFO] Running HU-012 Medios de pago de la tienda
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in HU-012 Medios de pago de la tienda
+[INFO] Running HU-010 Domicilio con tarifa fija
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in HU-010 Domicilio con tarifa fija
+[INFO] Running HU-002 y HU-016 Listar las categor?as para los formularios
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s -- in HU-002 y HU-016 Listar las categor?as para los formularios
+[INFO] Running HU-019 Responder solicitud (caso de uso)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.138 s -- in HU-019 Responder solicitud (caso de uso)
+[INFO] Running HU-024 Elegir una respuesta
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in HU-024 Elegir una respuesta
+[INFO] Running HU-018, HU-020 y HU-021 Consultas de solicitudes y respuestas
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in HU-018, HU-020 y HU-021 Consultas de solicitudes y respuestas
+[INFO] Running HU-017 Difundir la solicitud a las tiendas elegibles
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s -- in HU-017 Difundir la solicitud a las tiendas elegibles
+[INFO] Running HU-021 Vencer solicitudes sin elecci?n
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in HU-021 Vencer solicitudes sin elecci?n
+[INFO] Running HU-016 Publicar solicitud
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.090 s -- in HU-016 Publicar solicitud
+[INFO] Running HU-019 Responder una solicitud
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in HU-019 Responder una solicitud
+[INFO] Running HU-021 Ciclo de vida de la solicitud
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in HU-021 Ciclo de vida de la solicitud
+[INFO] Running HU-016 L?mite de 10 solicitudes por hora
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in HU-016 L?mite de 10 solicitudes por hora
+[INFO] Running HU-016 Solicitud
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in HU-016 Solicitud
+[INFO] Running NF-MAN-023 Reglas de arquitectura por capas
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.412 s -- in NF-MAN-023 Reglas de arquitectura por capas
+[INFO] Results:
+[INFO] Tests run: 278, Failures: 0, Errors: 0, Skipped: 0
+[INFO] --- jacoco:0.8.16:report (reporte-cobertura) @ QuienLoTiene ---
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-identidad) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-clientes) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-tiendas) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-catalogo) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-solicitudes) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-ordenes) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-mensajeria) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-reputacion) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-notificaciones) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-administracion) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jacoco:0.8.16:check (verificar-cobertura-shared) @ QuienLoTiene ---
+[INFO] All coverage checks have been met.
+[INFO] --- jar:3.5.1:jar (default-jar) @ QuienLoTiene ---
+[INFO] --- spring-boot:4.1.2:repackage (repackage) @ QuienLoTiene ---
+[INFO] --- failsafe:3.5.6:integration-test (default) @ QuienLoTiene ---
+[INFO] -------------------------------------------------------
+[INFO] -------------------------------------------------------
+[INFO] Running HU-003 Iniciar y cerrar sesi?n por la API
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.57 s -- in HU-003 Iniciar y cerrar sesi?n por la API
+[INFO] Running HU-004 Segundo factor del administrador por la API
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.188 s -- in HU-004 Segundo factor del administrador por la API
+[INFO] Running HU-001 Registrar cliente por la API
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.229 s -- in HU-001 Registrar cliente por la API
+[INFO] Running Sprint 2 De la solicitud a la orden resuelta por la API
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.088 s -- in Sprint 2 De la solicitud a la orden resuelta por la API
+[INFO] Running HU-036 Aprobar o rechazar tiendas por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.072 s -- in HU-036 Aprobar o rechazar tiendas por la API
+[INFO] Running HU-007 Perfil y direcciones del cliente por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.644 s -- in HU-007 Perfil y direcciones del cliente por la API
+[INFO] Running com.quienlotiene.QuienLoTieneApplicationIT
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.488 s -- in com.quienlotiene.QuienLoTieneApplicationIT
+[INFO] Running HU-013 TiendasApi: tiendas elegibles por radio con PostGIS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.114 s -- in HU-013 TiendasApi: tiendas elegibles por radio con PostGIS
+[INFO] Running HU-009 Perfil y horario de la tienda por la API
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.439 s -- in HU-009 Perfil y horario de la tienda por la API
+[INFO] Running HU-002 Registrar tienda por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.817 s -- in HU-002 Registrar tienda por la API
+[INFO] Running HU-002 y HU-016 Categor?as por la API
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in HU-002 y HU-016 Categor?as por la API
+[INFO] Running HU-017 Difundir a tiendas elegibles por la API
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.087 s -- in HU-017 Difundir a tiendas elegibles por la API
+[INFO] Running HU-016 Publicar solicitud por la API
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.170 s -- in HU-016 Publicar solicitud por la API
+[INFO] Results:
+[INFO] Tests run: 49, Failures: 0, Errors: 0, Skipped: 0
+[INFO] --- failsafe:3.5.6:verify (default) @ QuienLoTiene ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:23 min
+[INFO] ------------------------------------------------------------------------

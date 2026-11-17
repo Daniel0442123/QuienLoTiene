@@ -75,6 +75,7 @@ class AdministracionTiendasController {
     }
 
     @Operation(summary = "Aprobar tienda", description = "HU-036 (CP-ADM-036-01). La tienda queda APROBADA.")
+    @ApiResponse(responseCode = "200", description = "Tienda aprobada")
     @ApiResponse(responseCode = "409", description = "La tienda no está PENDIENTE (TIE-004)")
     @PostMapping("/{tiendaId}/aprobacion")
     TiendaParaRevision aprobar(@PathVariable UUID tiendaId) {
@@ -84,6 +85,7 @@ class AdministracionTiendasController {
     @Operation(
             summary = "Rechazar tienda",
             description = "HU-036 (CP-ADM-036-02). La tienda queda RECHAZADA con el motivo.")
+    @ApiResponse(responseCode = "200", description = "Tienda rechazada")
     @ApiResponse(responseCode = "400", description = "Falta el motivo (GEN-001, TIE-005)")
     @ApiResponse(responseCode = "409", description = "La tienda no está PENDIENTE (TIE-004)")
     @PostMapping("/{tiendaId}/rechazo")
