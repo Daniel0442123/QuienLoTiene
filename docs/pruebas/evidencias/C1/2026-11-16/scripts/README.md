@@ -1,4 +1,4 @@
-# Cómo se levantó el ambiente del recorrido del 17/11/2026
+# Cómo se levantó el ambiente del recorrido del 16/11/2026
 
 Ambiente de QA: contenedor Linux, Java 21, Node 22, Docker 29.9.2, Chromium con Playwright.
 

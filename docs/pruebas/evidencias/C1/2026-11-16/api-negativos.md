@@ -1,4 +1,4 @@
-# Pruebas por API contra el backend real · 17/11/2026
+# Pruebas por API contra el backend real · 16/11/2026
 
 Backend `main` (5e8ab98) en perfil dev con PostGIS 17-3.5, datos creados por API (3 tiendas de Farmacia en Popayán, clientes Ana y Luis). Script: `negativos.py` (copia en `/mnt/project-files/pruebas-sprint2/`). Respuestas recortadas a los campos de ProblemDetail.
 
@@ -14,8 +14,8 @@ Backend `main` (5e8ab98) en perfil dev con PostGIS 17-3.5, datos creados por API
   "modalidad": "RECOGER",
   "esUrgente": true,
   "distanciaEnMetros": 300,
-  "fechaPublicacion": "2026-11-17T00:49:40.272421Z",
-  "fechaVencimiento": "2026-11-17T01:19:40.272421Z",
+  "fechaPublicacion": "2026-11-16T00:49:40.272421Z",
+  "fechaVencimiento": "2026-11-16T01:19:40.272421Z",
   "precioSugeridoEnPesos": null
  },
  {
@@ -26,8 +26,8 @@ Backend `main` (5e8ab98) en perfil dev con PostGIS 17-3.5, datos creados por API
   "modalidad": "RECOGER",
   "esUrgente": false,
   "distanciaEnMetros": 300,
-  "fechaPublicacion": "2026-11-17T00:49:44.175008Z",
-  "fechaVencimiento": "2026-11-17T01:19:44.175008Z",
+  "fechaPublicacion": "2026-11-16T00:49:44.175008Z",
+  "fechaVencimiento": "2026-11-16T01:19:44.175008Z",
   "precioSugeridoEnPesos": null
  }
 ]
@@ -43,7 +43,7 @@ No trae nombre, teléfono, dirección ni coordenadas del cliente; la distancia v
 ### CP-ORD-024-02 · La tienda elegida consulta la orden de Luis (activa)
 `GET /ordenes/74ea87e6-24cc-4bab-99b8-2c37fce88d2f` como **drogueria5** → HTTP 200
 ```json
-{"id": "74ea87e6-24cc-4bab-99b8-2c37fce88d2f", "solicitudId": "6c828ea0-940c-475b-9230-87e85a4a67c1", "respuestaId": "6a262c9a-7bac-44c8-83d6-d897707b58ce", "producto": "Amoxicilina 500 mg", "cantidad": 1, "precioUnitarioEnPesos": 12000, "subtotalEnPesos": 12000, "costoDomicilioEnPesos": 0, "totalEnPesos": 12000, "modalidad": "RECOGER", "medioPago": "TRANSFERENCIA", "estado": "CONFIRMADO", "esActiva": true, "fechaCreacion": "2026-11-17T00:50:03.132621Z", "tienda": {"id": "3ffb7aaf-433a-4daf-9b99-be6b7a48bee8", "nombre": "Droguería La 5"}, "cliente": {"nombre": "Luis Pérez", "telefono": "320555
+{"id": "74ea87e6-24cc-4bab-99b8-2c37fce88d2f", "solicitudId": "6c828ea0-940c-475b-9230-87e85a4a67c1", "respuestaId": "6a262c9a-7bac-44c8-83d6-d897707b58ce", "producto": "Amoxicilina 500 mg", "cantidad": 1, "precioUnitarioEnPesos": 12000, "subtotalEnPesos": 12000, "costoDomicilioEnPesos": 0, "totalEnPesos": 12000, "modalidad": "RECOGER", "medioPago": "TRANSFERENCIA", "estado": "CONFIRMADO", "esActiva": true, "fechaCreacion": "2026-11-16T00:50:03.132621Z", "tienda": {"id": "3ffb7aaf-433a-4daf-9b99-be6b7a48bee8", "nombre": "Droguería La 5"}, "cliente": {"nombre": "Luis Pérez", "telefono": "320555
 ```
 
 ### CP-ORD-024-03 · Botica San José (no elegida) consulta la orden de Luis
@@ -97,7 +97,7 @@ No trae nombre, teléfono, dirección ni coordenadas del cliente; la distancia v
 ### CP-ORD-024-02 · Con la orden de Ana cerrada, La 5 ya no recibe sus datos
 `GET /ordenes/8adeee69-129b-4e24-b0ec-0f125c573145` como **drogueria5** → HTTP 200
 ```json
-{"id": "8adeee69-129b-4e24-b0ec-0f125c573145", "solicitudId": "548fd0fb-9a70-4751-83e2-44d958285e5b", "respuestaId": "1c1149e3-c864-4fc0-952a-b76e1eadc034", "producto": "Loratadina 10 mg", "cantidad": 2, "precioUnitarioEnPesos": 9000, "subtotalEnPesos": 18000, "costoDomicilioEnPesos": 5000, "totalEnPesos": 23000, "modalidad": "DOMICILIO", "medioPago": "EFECTIVO", "estado": "RESUELTA", "esActiva": false, "fechaCreacion": "2026-11-17T00:48:02.893819Z", "tienda": {"id": "3ffb7aaf-433a-4daf-9b99-be6b7a48bee8", "nombre": "Droguería La 5"}, "cliente": null, "historial": [{"estado": "CONFIRMADO", "fe
+{"id": "8adeee69-129b-4e24-b0ec-0f125c573145", "solicitudId": "548fd0fb-9a70-4751-83e2-44d958285e5b", "respuestaId": "1c1149e3-c864-4fc0-952a-b76e1eadc034", "producto": "Loratadina 10 mg", "cantidad": 2, "precioUnitarioEnPesos": 9000, "subtotalEnPesos": 18000, "costoDomicilioEnPesos": 5000, "totalEnPesos": 23000, "modalidad": "DOMICILIO", "medioPago": "EFECTIVO", "estado": "RESUELTA", "esActiva": false, "fechaCreacion": "2026-11-16T00:48:02.893819Z", "tienda": {"id": "3ffb7aaf-433a-4daf-9b99-be6b7a48bee8", "nombre": "Droguería La 5"}, "cliente": null, "historial": [{"estado": "CONFIRMADO", "fe
 ```
 
 ### CP-ORD-027-02 · La 5 intenta mover la orden de Ana ya RESUELTA a PREPARANDO

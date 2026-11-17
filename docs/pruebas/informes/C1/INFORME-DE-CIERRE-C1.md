@@ -1,21 +1,21 @@
 # Informe de Cierre — Ciclo 1 (C1)
 
-> **Control del documento** · Versión 0.1 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 17/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 16/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
 | Campo | Valor |
 |---|---|
 | Campaña | Quién lo tiene — Liberación 1.0 |
-| Ciclo / fechas | C1 · 02/11/2026 al 20/11/2026 (planeado al 15/11; SC-015, propuesta) |
+| Ciclo / fechas | C1 · 02/11/2026 al 20/11/2026 (planeado al 15/11; SC-015) |
 | Versiones | Corte del Sprint 1: v0.2.0 (`ea7351d`) · Sprint 2: `main` 5e8ab98 |
 | Responsables de QA | Yanimar Burbano Piamba (funcionales) · Francisco José Castro Muñoz (no funcionales y seguridad) |
 | Alcance | Historias de los Sprints 1 y 2: 53 casos funcionales y de seguridad, y 8 no funcionales |
-| Instrumento | Libro de control (`libro/`) y evidencias (`evidencias/C1/2026-11-12/` y `evidencias/C1/2026-11-17/`) |
+| Instrumento | Libro de control (`libro/`) y evidencias (`evidencias/C1/2026-11-12/` y `evidencias/C1/2026-11-16/`) |
 
 ## 1. Resumen de ejecución
 
-Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado: 61 aprobados, 0 fallidos y 0 bloqueados (100 % de aprobación sobre los concluyentes). La última corrida completa (`./mvnw verify` sobre `main` 5e8ab98) dio 278 pruebas unitarias y 49 de integración, todas en verde, con 95,5 % de líneas cubiertas en domain y application. Los casos del Sprint 2 se verificaron además de punta a punta con el backend real y la PWA (`informes/C1/RECORRIDO-SPRINT-2-20261117.md`).
+Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado: 61 aprobados, 0 fallidos y 0 bloqueados (100 % de aprobación sobre los concluyentes). La última corrida completa (`./mvnw verify` sobre `main` 5e8ab98) dio 278 pruebas unitarias y 49 de integración, todas en verde, con 95,5 % de líneas cubiertas en domain y application. Los casos del Sprint 2 se verificaron además de punta a punta con el backend real y la PWA (`informes/C1/RECORRIDO-SPRINT-2-20261116.md`).
 
 | Módulo | Responsable | Casos | Aprob. | Fall. | Bloq. | No ejec. | Cobertura |
 |---|---|---|---|---|---|---|---|
@@ -61,35 +61,35 @@ Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado:
 | CP-SOL-017-01 | Difusión solo a tiendas elegibles | Alta | Integración (PostGIS) | Yanimar Burbano | 2026-11-12 | Aprobado | — |
 | CP-SOL-017-02 | Categoría distinta | Alta | Integración (PostGIS) | Yanimar Burbano | 2026-11-12 | Aprobado | — |
 | CP-SOL-017-03 | Tienda suspendida | Alta | Integración (PostGIS) | Yanimar Burbano | 2026-11-12 | Aprobado | — |
-| CP-SOL-018-01 | Privacidad en la tarjeta de solicitud | Alta | Integración (API) | Francisco Castro | 2026-11-17 | Aprobado | — |
-| CP-SOL-018-02 | Distancia aproximada | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-019-01 | Responder Sí lo tengo | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-019-02 | Alternativa sin descripción | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-019-03 | No lo tengo en un toque | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-019-04 | Respuesta duplicada | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-020-01 | Respuestas en tiempo real | Alta | Integración (SSE) | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-020-02 | Ordenar por precio | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-020-03 | Alternativa marcada | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-SOL-021-01 | Vencimiento de la solicitud | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | DEF-008 |
-| CP-SOL-021-02 | Aviso a tiendas no elegidas | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-ORD-024-01 | Crear orden con total correcto | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-ORD-024-02 | La tienda elegida ve los datos del cliente | Alta | Integración (API) | Francisco Castro | 2026-11-17 | Aprobado | — |
-| CP-ORD-024-03 | Una tienda no elegida no ve los datos | Alta | Integración (API) | Francisco Castro | 2026-11-17 | Aprobado | — |
-| CP-ORD-024-04 | Medio de pago no aceptado | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | DEF-007 |
-| CP-ORD-027-01 | Transición válida | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-ORD-027-02 | Transición inválida | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-ORD-028-01 | Confirmar recepción | Alta | Unitaria | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-ORD-028-02 | Confirmar una orden ajena | Alta | Unitaria | Francisco Castro | 2026-11-17 | Aprobado | — |
-| CP-NOT-030-01 | Evento en tiempo real | Alta | Integración (SSE) | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-NOT-030-02 | Solicitud urgente | Alta | Integración (SSE) | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-MEN-032-01 | Botón de WhatsApp con orden activa | Alta | Manual (interfaz) | Yanimar Burbano | 2026-11-17 | Aprobado | — |
-| CP-MEN-032-02 | Sin botón antes de elegir | Alta | Manual (interfaz) | Yanimar Burbano | 2026-11-17 | Aprobado | — |
+| CP-SOL-018-01 | Privacidad en la tarjeta de solicitud | Alta | Integración (API) | Francisco Castro | 2026-11-16 | Aprobado | — |
+| CP-SOL-018-02 | Distancia aproximada | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-019-01 | Responder Sí lo tengo | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-019-02 | Alternativa sin descripción | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-019-03 | No lo tengo en un toque | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-019-04 | Respuesta duplicada | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-020-01 | Respuestas en tiempo real | Alta | Integración (SSE) | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-020-02 | Ordenar por precio | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-020-03 | Alternativa marcada | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-SOL-021-01 | Vencimiento de la solicitud | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | DEF-008 |
+| CP-SOL-021-02 | Aviso a tiendas no elegidas | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-ORD-024-01 | Crear orden con total correcto | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-ORD-024-02 | La tienda elegida ve los datos del cliente | Alta | Integración (API) | Francisco Castro | 2026-11-16 | Aprobado | — |
+| CP-ORD-024-03 | Una tienda no elegida no ve los datos | Alta | Integración (API) | Francisco Castro | 2026-11-16 | Aprobado | — |
+| CP-ORD-024-04 | Medio de pago no aceptado | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | DEF-007 |
+| CP-ORD-027-01 | Transición válida | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-ORD-027-02 | Transición inválida | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-ORD-028-01 | Confirmar recepción | Alta | Unitaria | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-ORD-028-02 | Confirmar una orden ajena | Alta | Unitaria | Francisco Castro | 2026-11-16 | Aprobado | — |
+| CP-NOT-030-01 | Evento en tiempo real | Alta | Integración (SSE) | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-NOT-030-02 | Solicitud urgente | Alta | Integración (SSE) | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-MEN-032-01 | Botón de WhatsApp con orden activa | Alta | Manual (interfaz) | Yanimar Burbano | 2026-11-16 | Aprobado | — |
+| CP-MEN-032-02 | Sin botón antes de elegir | Alta | Manual (interfaz) | Yanimar Burbano | 2026-11-16 | Aprobado | — |
 | CP-ADM-036-01 | Aprobar una tienda | Alta | Unitaria | Yanimar Burbano | 2026-11-12 | Aprobado | — |
 | CP-ADM-036-02 | Rechazar una tienda | Alta | Unitaria | Yanimar Burbano | 2026-11-12 | Aprobado | — |
 
 ## 3. Defectos por severidad y estado
 
-| ID | Severidad | Prioridad | Estado (17/11) | Caso | Qué falla | Versión |
+| ID | Severidad | Prioridad | Estado (16/11) | Caso | Qué falla | Versión |
 |---|---|---|---|---|---|---|
 | DEF-001 | S3 | P3 | En verificación | Exploratoria-20261112 | Contrato OpenAPI sin required, enum ni nullable | v0.2.0 → corregido en #35 |
 | DEF-002 | S3 | P3 | En verificación | NF-SEG-011 | Faltaba OWASP Dependency-Check en el CI | v0.2.0 → corregido en #36 |
@@ -109,7 +109,7 @@ Ver `libro/07-TRAZABILIDAD.md` (versión 1.1). Todos los requisitos de los Sprin
 
 ## 5. Resultados no funcionales
 
-| Caso | Requisito | Meta | Medido (17/11) | Resultado |
+| Caso | Requisito | Meta | Medido (16/11) | Resultado |
 |---|---|---|---|---|
 | NF-SEG-006 | RNF-006 | ≥ 15 caracteres, Argon2id, lista de filtradas | Sin cambios desde el corte | Aprobado |
 | NF-SEG-011 | RNF-011 | 0 críticas y 0 altas sin justificar | CI #146: Trivy y OWASP Dependency-Check en verde | Aprobado |
@@ -133,7 +133,7 @@ Ninguno.
 
 ## 8. Criterios de salida del ciclo
 
-| Criterio (Plan Maestro 6.3 y plan C1 §6) | Estado (17/11) |
+| Criterio (Plan Maestro 6.3 y plan C1 §6) | Estado (16/11) |
 |---|---|
 | 100 % de casos del ciclo ejecutados | Cumple: 53 de 53 y 8 de 8 |
 | Todo Fallido con defecto registrado | Cumple: no hay fallidos; los defectos del recorrido están registrados |
@@ -150,7 +150,7 @@ Recomendaciones para el equipo:
 
 1. Corregir DEF-006 y DEF-007 (S3, P2) antes del cierre, porque afectan C-04 y el flujo de pago de la demo.
 2. Corregir DEF-005, DEF-008 y DEF-009 (S4) en el Sprint 3 si no alcanzan antes del 20/11.
-3. QA cierra DEF-001 a DEF-004 después de revisar la re-prueba del 17/11.
+3. QA cierra DEF-001 a DEF-004 después de revisar la re-prueba del 16/11.
 
 | Elaborado por | Revisado / aprobado por |
 |---|---|
@@ -161,4 +161,4 @@ Recomendaciones para el equipo:
 
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
-| 0.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 17/11; pendiente de la re-prueba final y la firma de QA |
+| 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 16/11; pendiente de la re-prueba final y la firma de QA |

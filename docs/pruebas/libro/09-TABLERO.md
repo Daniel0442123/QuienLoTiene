@@ -1,8 +1,8 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.1 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
-> Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 17/11/2026 sobre main 5e8ab98 (pendiente de firma de QA).
+> Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA).
 >
 > En el Excel se calcula solo con fórmulas sobre las hojas de ejecución y defectos. Aquí se copia el valor al cerrar cada sprint y cada ciclo.
 
@@ -11,13 +11,13 @@
 | Ciclo | Casos planeados | Ejecutados | Aprobados | Fallidos | Bloqueados | % avance | % aprobación | Meta |
 |---|---|---|---|---|---|---|---|---|
 | C1 (Sprints 1 y 2) · corte S1 12/11 | 61 | 38 | 38 | 0 | 0 | 62,3 % | 100 % | 100 % ejecutados |
-| C1 (Sprints 1 y 2) · ejecución S2 17/11 (borrador) | 61 | 61 | 61 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
+| C1 (Sprints 1 y 2) · ejecución S2 16/11 (borrador) | 61 | 61 | 61 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
 | C2 (Sprint 3) | 31 + re-pruebas | | | | | | | 100 % ejecutados |
 | C3 (Cierre, regresión) | 85 + 5 E2E + 13 NF | | | | | | | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
-| Módulo | Corte S1 (08/11) | Cierre C1 (20/11; valor del 17/11) | Cierre C2 (22/11) | Final C3 (25/11) | Meta |
+| Módulo | Corte S1 (08/11) | Cierre C1 (20/11; valor del 16/11) | Cierre C2 (22/11) | Final C3 (25/11) | Meta |
 |---|---|---|---|---|---|
 | identidad | 94,1 % | 93,0 % | | | ≥ 70 % |
 | clientes | 97,9 % | 84,4 % | | | ≥ 70 % |
@@ -60,4 +60,4 @@
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
-| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Valores de la ejecución del Sprint 2 del 17/11 (borrador, pendiente de firma de QA) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Valores de la ejecución del Sprint 2 del 16/11 (borrador, pendiente de firma de QA) |

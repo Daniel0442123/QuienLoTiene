@@ -1,6 +1,6 @@
 # Estrategia de pruebas · Quién lo tiene
 
-> **Control del documento** · Versión 2.3 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (QA funcional) y Francisco José Castro Muñoz (QA no funcional y seguridad) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 2.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (QA funcional) y Francisco José Castro Muñoz (QA no funcional y seguridad) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 ## 1. Qué cambió y por qué
 
@@ -257,4 +257,4 @@ Con esto, `./mvnw verify` falla si la cobertura de dominio y aplicación baja de
 |---|---|---|---|
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | 2.2 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (el documento declaraba la versión 2.1) (SC-009) |
-| 2.3 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fechas del C1 al 20/11 (SC-015, propuesta) |
+| 2.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fechas del C1 al 20/11 (SC-015) |

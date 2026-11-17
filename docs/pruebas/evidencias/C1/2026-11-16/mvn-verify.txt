@@ -1,4 +1,4 @@
-# ./mvnw -B clean verify · main (5e8ab98, después de #35–#45) · ambiente QA (contenedor Linux, Java 21, Docker 29.9.2 + Testcontainers postgis/postgis:17-3.5-alpine) · 2026-11-17
+# ./mvnw -B clean verify · main (5e8ab98, después de #35–#45) · ambiente QA (contenedor Linux, Java 21, Docker 29.9.2 + Testcontainers postgis/postgis:17-3.5-alpine) · 2026-11-16
 
 [INFO] -------------------< com.quienlotiene:QuienLoTiene >--------------------
 [INFO] --------------------------------[ jar ]---------------------------------

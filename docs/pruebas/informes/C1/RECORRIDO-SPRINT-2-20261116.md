@@ -1,12 +1,12 @@
-# Recorrido de punta a punta del Sprint 2 · 17/11/2026
+# Recorrido de punta a punta del Sprint 2 · 16/11/2026
 
-> **Control del documento** · Versión 1.0 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.0 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 | Campo | Valor |
 |---|---|
 | Ciclo | C1 · Sprint 2 |
 | Versión | `main` 5e8ab98 (backend #35, #36, #37, #44; frontend #38 a #43 y #45) |
-| Ambiente | Backend real en perfil dev con PostGIS 17-3.5, PWA con Vite, Chromium a 390 × 844 (ver `evidencias/C1/2026-11-17/scripts/README.md`) |
+| Ambiente | Backend real en perfil dev con PostGIS 17-3.5, PWA con Vite, Chromium a 390 × 844 (ver `evidencias/C1/2026-11-16/scripts/README.md`) |
 | Datos | 3 droguerías de Farmacia en Popayán (Droguería La 5: efectivo y transferencia, domicilio $ 5.000; Botica San José: efectivo y datáfono, domicilio $ 5.000; Farmacia Popular: solo efectivo, sin domicilio). Clientes Ana Gómez y Luis Pérez con la dirección «Casa» |
 | Preparó | Claude Code a pedido de Pedro, para que QA (Yanimar Burbano y Francisco Castro) lo revise, lo complete y lo firme |
 | Duración | 1,5 h |
@@ -48,19 +48,19 @@ El flujo completo del Sprint 2 funciona contra el backend real: Ana pregunta por
 | CP-MEN-032-01 | Aprobado | 17, 21 y API |
 | CP-MEN-032-02 | Aprobado | 13 y API 409 MEN-001 |
 
-Pruebas por API: [api-negativos.md](../../evidencias/C1/2026-11-17/api-negativos.md).
+Pruebas por API: [api-negativos.md](../../evidencias/C1/2026-11-16/api-negativos.md).
 
 ## Capturas
 
 | N.º | Archivo | Qué muestra |
 |---|---|---|
-| 28 | [28-tienda-urgente-primero.png](../../evidencias/C1/2026-11-17/recorrido/28-tienda-urgente-primero.png) | CP-NOT-030-02: se publican una urgente y luego una normal; la urgente queda primero (osciladores de la alerta: 2) |
-| 29 | [29-cliente-solicitud-urgente-respuestas.png](../../evidencias/C1/2026-11-17/recorrido/29-cliente-solicitud-urgente-respuestas.png) | Luis abre su solicitud urgente por URL y ve la respuesta de Droguería La 5 |
-| 30 | [30-cliente-medio-no-aceptado.png](../../evidencias/C1/2026-11-17/recorrido/30-cliente-medio-no-aceptado.png) | CP-ORD-024-04 / CP-TIE-012-01: la pantalla ofrece Datáfono aunque La 5 solo acepta efectivo y transferencia; el backend rechaza la orden |
-| 31 | [31-cliente-pedido-recoger.png](../../evidencias/C1/2026-11-17/recorrido/31-cliente-pedido-recoger.png) | Con transferencia la orden se crea (recoger en la tienda) |
-| 32 | [32-cliente-solicitud-abierta-antes-de-vencer.png](../../evidencias/C1/2026-11-17/recorrido/32-cliente-solicitud-abierta-antes-de-vencer.png) | Solicitud normal de Luis abierta, con la respuesta de La 5, antes de vencer |
-| 33 | [33-cliente-solicitud-vencida.png](../../evidencias/C1/2026-11-17/recorrido/33-cliente-solicitud-vencida.png) | CP-SOL-021-01: la tarea de vencimiento la pasa a VENCIDA y el cliente lo ve sin recargar; ya no puede elegir |
-| 34 | [34-tienda-respuesta-vencida.png](../../evidencias/C1/2026-11-17/recorrido/34-tienda-respuesta-vencida.png) | La tienda ve su respuesta a la solicitud vencida como «Vencida» |
+| 28 | [28-tienda-urgente-primero.png](../../evidencias/C1/2026-11-16/recorrido/28-tienda-urgente-primero.png) | CP-NOT-030-02: se publican una urgente y luego una normal; la urgente queda primero (osciladores de la alerta: 2) |
+| 29 | [29-cliente-solicitud-urgente-respuestas.png](../../evidencias/C1/2026-11-16/recorrido/29-cliente-solicitud-urgente-respuestas.png) | Luis abre su solicitud urgente por URL y ve la respuesta de Droguería La 5 |
+| 30 | [30-cliente-medio-no-aceptado.png](../../evidencias/C1/2026-11-16/recorrido/30-cliente-medio-no-aceptado.png) | CP-ORD-024-04 / CP-TIE-012-01: la pantalla ofrece Datáfono aunque La 5 solo acepta efectivo y transferencia; el backend rechaza la orden |
+| 31 | [31-cliente-pedido-recoger.png](../../evidencias/C1/2026-11-16/recorrido/31-cliente-pedido-recoger.png) | Con transferencia la orden se crea (recoger en la tienda) |
+| 32 | [32-cliente-solicitud-abierta-antes-de-vencer.png](../../evidencias/C1/2026-11-16/recorrido/32-cliente-solicitud-abierta-antes-de-vencer.png) | Solicitud normal de Luis abierta, con la respuesta de La 5, antes de vencer |
+| 33 | [33-cliente-solicitud-vencida.png](../../evidencias/C1/2026-11-16/recorrido/33-cliente-solicitud-vencida.png) | CP-SOL-021-01: la tarea de vencimiento la pasa a VENCIDA y el cliente lo ve sin recargar; ya no puede elegir |
+| 34 | [34-tienda-respuesta-vencida.png](../../evidencias/C1/2026-11-16/recorrido/34-tienda-respuesta-vencida.png) | La tienda ve su respuesta a la solicitud vencida como «Vencida» |
 
 ## Observaciones que no se registraron como defecto
 
@@ -83,4 +83,4 @@ QA decide si alguna merece registro.
 
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
-| 1.0 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador del recorrido de punta a punta del Sprint 2 |
+| 1.0 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador del recorrido de punta a punta del Sprint 2 |

@@ -14,7 +14,7 @@ Instrumentos asociados: Libro de control de QA (`libro/`), plan de pruebas de ca
 | Versión | Fecha | Autor | Cambios |
 |---|---|---|---|
 | 1.0 | 07/11/2026 | Yanimar Burbano Piamba, Francisco José Castro Muñoz | Primera versión: modelo de pruebas priorizando unitarias, tres ciclos ligados a los sprints, gestión de defectos, instrumentos y criterios de liberación. |
-| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | El C1 · Sprint 2 termina el 20/11 en lugar del 15/11 (SC-015, propuesta; la aprueba QA y el dueño del proyecto). |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | El C1 · Sprint 2 termina el 20/11 en lugar del 15/11 (SC-015, aprobada por Pedro el 16/11/2026). |
 
 | Rol | Nombre | Firma | Fecha |
 |---|---|---|---|

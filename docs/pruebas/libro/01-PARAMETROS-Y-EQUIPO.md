@@ -1,13 +1,13 @@
 # Hojas «Parámetros» y «Equipo»
 
-> **Control del documento** · Versión 1.1 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 ## Parámetros de la campaña
 
 | Parámetro | Valor | Nota |
 |---|---|---|
 | Sistema | Quién lo tiene (API REST + PWA) | Monolito modular Spring Boot, 10 módulos |
-| Versión en pruebas | `main` 5e8ab98 (17/11/2026, Sprint 2); antes v0.2.0 (`ea7351d`) | Corte del Sprint 1, 12/11/2026. Se actualiza con cada despliegue en el ambiente de pruebas |
+| Versión en pruebas | `main` 5e8ab98 (16/11/2026, Sprint 2); antes v0.2.0 (`ea7351d`) | Corte del Sprint 1, 12/11/2026. Se actualiza con cada despliegue en el ambiente de pruebas |
 | Versión objetivo de la liberación | v1.0.0 | Producción el 26/11/2026 |
 | Repositorio | GitHub (rama `main`, una rama por historia) | Pull request obligatorio |
 | Ambiente local | Java 21, Maven Wrapper, Docker Compose (`postgis/postgis:17-3.5-alpine`) | Pruebas unitarias e integración |
@@ -50,4 +50,4 @@
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
-| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fecha de cierre del C1 al 20/11 (SC-015, propuesta) y versión en pruebas del Sprint 2 |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fecha de cierre del C1 al 20/11 (SC-015) y versión en pruebas del Sprint 2 |

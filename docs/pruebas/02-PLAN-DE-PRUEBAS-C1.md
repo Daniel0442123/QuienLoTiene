@@ -1,6 +1,6 @@
 # Plan de pruebas · Ciclo 1 (C1) · Pruebas unitarias de los Sprints 1 y 2
 
-> **Control del documento** · Versión 1.1 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 | Campo | Valor |
 |---|---|
@@ -134,7 +134,7 @@ El ciclo se considera terminado cuando se cumplan todos los siguientes criterios
 | JaCoCo y Failsafe en el `pom.xml`; pipeline con `./mvnw verify` | 08/11/2026 |
 | Corte del Sprint 1: ejecución de los casos de las historias del Sprint 1 e informe de corte | 08/11/2026 |
 | Pruebas unitarias por historia del Sprint 2 (en cada pull request) | 09/11 al 16/11/2026 (backend fusionado el 16/11: #35) |
-| Integración: PostGIS (CP-SOL-017-*), API y SSE; recorrido de punta a punta del Sprint 2 | 12/11 al 17/11/2026 |
+| Integración: PostGIS (CP-SOL-017-*), API y SSE; recorrido de punta a punta del Sprint 2 | 12/11 al 16/11/2026 |
 | Re-prueba de defectos corregidos | 18/11 al 19/11/2026 |
 | Cierre del C1: libro, tablero, evidencias e informe de cierre | 20/11/2026 |
 
@@ -162,4 +162,4 @@ El ciclo se considera terminado cuando se cumplan todos los siguientes criterios
 |---|---|---|---|
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
-| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fechas del C1 movidas: cierre del 15/11 al 20/11 y re-prueba del 18 al 19/11 (SC-015, propuesta) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Fechas del C1 movidas: cierre del 15/11 al 20/11 y re-prueba del 18 al 19/11 (SC-015) |

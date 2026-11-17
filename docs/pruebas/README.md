@@ -1,6 +1,6 @@
 # Documentación de pruebas · Quién lo tiene
 
-> **Control del documento** · Versión 1.1 · 17/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Responsables de QA: **Yanimar Burbano Piamba** (líder de QA, pruebas funcionales) y **Francisco José Castro Muñoz** (no funcionales y seguridad).
 
@@ -70,4 +70,4 @@ El catálogo (`libro/02-CASOS.md`) y las hojas de ejecución y trazabilidad se g
 |---|---|---|---|
 | — | 07/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | chore: base técnica del Sprint 0 (#1) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
-| 1.1 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Cierre del C1 al 20/11 (SC-015, propuesta) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Cierre del C1 al 20/11 (SC-015) |
