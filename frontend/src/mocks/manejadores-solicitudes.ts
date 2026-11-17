@@ -1,6 +1,13 @@
 import { http, HttpResponse } from 'msw'
 import { base, type SolicitudSimulada } from './datos'
-import { aSolicitudResponse, respuestasAutomaticas } from './reglas-sprint-2'
+import { emitirEvento } from './eventos'
+import {
+  aSolicitudResponse,
+  distanciaAproximada,
+  distanciaEnMetros,
+  llegoALaTienda,
+  respuestasAutomaticas,
+} from './reglas-sprint-2'
 import { autorizar, leerJson, problema, ubicacionInvalida, vacio, validar } from './utilidades'
 
 /** Solicitudes: publicar «¿quién tiene X?» (HU-016). Máximo 10 por hora; vence a los 30 minutos. */
@@ -18,6 +25,24 @@ interface PublicarSolicitudRequest {
   modalidad: 'RECOGER' | 'DOMICILIO'
   esUrgente?: boolean | null
   ubicacion: { latitud: number; longitud: number }
+}
+
+/** HU-018 y HU-030: cada tienda abierta a la que llegó recibe solicitud-nueva con su distancia aproximada. */
+export function avisarSolicitudNueva(solicitud: SolicitudSimulada): void {
+  for (const tienda of base.tiendas) {
+    if (!tienda.estaAbierta || !llegoALaTienda(solicitud, tienda)) continue
+    emitirEvento([tienda.duenoId], 'solicitud-nueva', {
+      solicitudId: solicitud.id,
+      producto: solicitud.producto,
+      cantidad: solicitud.cantidad,
+      modalidad: solicitud.modalidad,
+      esUrgente: solicitud.esUrgente,
+      distanciaEnMetros: distanciaAproximada(
+        distanciaEnMetros(solicitud.ubicacion, { latitud: tienda.latitud, longitud: tienda.longitud }),
+      ),
+      fechaVencimiento: solicitud.fechaVencimiento,
+    })
+  }
 }
 
 export const manejadoresSolicitudes = [
@@ -84,7 +109,22 @@ export const manejadoresSolicitudes = [
       ordenId: null,
     }
     base.solicitudes.push(solicitud)
-    base.respuestas.push(...respuestasAutomaticas(solicitud, ahora))
+    const automaticas = respuestasAutomaticas(solicitud, ahora)
+    base.respuestas.push(...automaticas)
+    avisarSolicitudNueva(solicitud)
+    for (const respuesta of automaticas) {
+      const tienda = base.tiendas.find((t) => t.id === respuesta.tiendaId)
+      setTimeout(
+        () =>
+          emitirEvento([solicitud.clienteId], 'respuesta-recibida', {
+            solicitudId: solicitud.id,
+            respuestaId: respuesta.id,
+            tipo: respuesta.tipo,
+            nombreTienda: tienda?.nombre ?? '',
+          }),
+        Date.parse(respuesta.fechaRespuesta) - ahora,
+      )
+    }
     return HttpResponse.json(aSolicitudResponse(solicitud), {
       status: 201,
       headers: { Location: `${RUTA}/${solicitud.id}` },

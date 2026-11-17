@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { base, type RespuestaSimulada, type SolicitudSimulada } from './datos'
+import { emitirEvento } from './eventos'
 import { miTienda } from './manejadores-tiendas'
 import {
   actualizarVencimientos,
@@ -198,6 +199,14 @@ export const manejadoresRespuestas = [
       fechaRespuesta: new Date().toISOString(),
     }
     base.respuestas.push(respuesta)
+    if (tipo !== 'NO') {
+      emitirEvento([solicitud.clienteId], 'respuesta-recibida', {
+        solicitudId: solicitud.id,
+        respuestaId: respuesta.id,
+        tipo,
+        nombreTienda: tienda.nombre,
+      })
+    }
     return HttpResponse.json(aRespuestaDeTienda(respuesta, solicitud), {
       status: 201,
       headers: { Location: `/api/v1/tiendas/me/respuestas/${respuesta.id}` },

@@ -1,4 +1,5 @@
 import { setupWorker } from 'msw/browser'
+import { iniciarSolicitudesDeDemostracion } from './demostracion'
 import { manejadores } from './manejadores'
 
 /**
@@ -14,4 +15,5 @@ export async function iniciarSimulacionApi(): Promise<void> {
       if (request && new URL(request.url).pathname.startsWith('/api/')) defaults.warn()
     },
   })
+  iniciarSolicitudesDeDemostracion()
 }

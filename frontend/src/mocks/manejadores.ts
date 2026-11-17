@@ -2,6 +2,7 @@ import { manejadoresAdministracion } from './manejadores-administracion'
 import { manejadoresCatalogo } from './manejadores-catalogo'
 import { manejadoresClientes } from './manejadores-clientes'
 import { manejadoresIdentidad } from './manejadores-identidad'
+import { manejadoresEventos } from './eventos'
 import { manejadoresOrdenes } from './manejadores-ordenes'
 import { manejadoresRespuestas } from './manejadores-respuestas'
 import { manejadoresSolicitudes } from './manejadores-solicitudes'
@@ -20,6 +21,7 @@ export const FRASE_CORRECTA = FRASE_DE_PRUEBA
 
 export const manejadores = [
   ...manejadoresIdentidad,
+  ...manejadoresEventos,
   ...manejadoresCatalogo,
   ...manejadoresClientes,
   ...manejadoresTiendas,
