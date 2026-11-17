@@ -1,6 +1,6 @@
 # C-04 · Tipos generados desde /v3/api-docs · diferencias para Monica
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Compromiso C-04 de la bitácora del proyecto: generar `frontend/src/services/api-tipos.ts` desde el backend y borrar `api-tipos-provisionales.ts` y `api-tipos-sprint-2.ts`.
 
@@ -24,6 +24,8 @@ Compromiso C-04 de la bitácora del proyecto: generar `frontend/src/services/api
 Con el contrato del PR #46 y la rama del PR #47, cambiando los provisionales por los generados, `tsc` pasa de 35 a **6 errores**: 5 de B6 y 1 de B8 ([salida](../../evidencias/C1/2026-11-16/contrato/tsc-def006-con-pr47.txt), [contrato nuevo](../../evidencias/C1/2026-11-16/contrato/api-docs-def006.json)).
 
 Para A6 el backend publica con nombre `Modalidad`, `MedioPago`, `TipoRespuesta`, `EstadoSolicitud`, `EstadoRespuesta`, `EstadoOrden`, `EstadoTienda` y `DiaSemana`, los mismos nombres del contrato del Sprint 2. A5 deja `DatosDireccion.id` y `fechaCreacion` obligatorios y sin `null`. Para A4, los eventos salen como `EventoSolicitudNueva` … `EventoEstadoOrdenCambiado` dentro del `oneOf` de la respuesta de `/api/v1/eventos`.
+
+**Cierre (16/11, 9:45 p. m.):** el #46, el #47 y el #48 están en `main`. En la re-prueba sobre 55ab5b6, `npm run api:tipos` contra el backend en vivo no cambia `api-tipos.ts` y `npm run tipos` da 0 errores. C-04 queda cerrado (`evidencias/C1/2026-11-16/reprueba/`).
 
 ## A. Se corrigen en el backend (DEF-006, Daniel)
 
@@ -67,3 +69,4 @@ Para levantar el backend sin Docker Desktop en el equipo de Monica, los pasos qu
 |---|---|---|---|
 | 1.0 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión, del recorrido del Sprint 2 (C1) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Estado de A1 a A6 (PR #46) y B1 a B5 (PR #47); nueva diferencia B8 |
+| 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Cierre: #46, #47 y #48 en main; api:tipos en vivo sin cambios y tsc en 0 |

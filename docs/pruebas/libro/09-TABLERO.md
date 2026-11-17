@@ -1,6 +1,6 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.2 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA).
 >
@@ -37,8 +37,8 @@
 |---|---|---|---|---|---|
 | S1 Crítica | 0 | 0 | 0 | 0 | 0 abiertos |
 | S2 Alta | 0 | 0 | 0 | 0 | 0 abiertos |
-| S3 Media | 2 (DEF-006, DEF-007) | 2 en verificación (DEF-001, DEF-002) | 0 | 0 | ≤ 5 con plan |
-| S4 Baja | 3 (DEF-005, DEF-008, DEF-009) | 2 en verificación (DEF-003, DEF-004) | 0 | 0 | Sin límite, con plan |
+| S3 Media | 0 | 4 en verificación (DEF-001, DEF-002, DEF-006, DEF-007) | 0 | 0 | ≤ 5 con plan |
+| S4 Baja | 1 (DEF-010) | 5 en verificación (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009) | 0 | 0 | Sin límite, con plan |
 
 ## Indicadores
 
@@ -61,3 +61,4 @@
 | — | 12/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | docs(pruebas): corte del Sprint 1 del ciclo C1 sobre v0.2.0 (#32) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Valores de la ejecución del Sprint 2 del 16/11 (borrador, pendiente de firma de QA) |
+| 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Defectos después de la re-prueba de DEF-005 a DEF-009 (main 55ab5b6) y nuevo DEF-010 |
