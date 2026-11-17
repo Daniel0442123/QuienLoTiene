@@ -14,7 +14,7 @@ import { PublicarSolicitudPagina } from './PublicarSolicitudPagina'
 vi.mock('@/components/MapaUbicacion', () => ({ default: () => null }))
 
 async function publicar(producto: string) {
-  const usuario = userEvent.setup()
+  const usuario = userEvent.setup({ delay: null })
   await screen.findByRole('radio', { name: /Casa/ })
   await usuario.type(screen.getByRole('textbox', { name: '¿Qué estás buscando?' }), producto)
   await usuario.click(await screen.findByRole('radio', { name: 'Farmacia' }))
@@ -93,7 +93,7 @@ describe('HU-016 · Esperando respuestas después de publicar', () => {
   it('RNF-027 · al entrar, el cliente llega directo a preguntar', async () => {
     // Dado
     limpiarSesion()
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(
       <Routes>
         <Route path="/entrar" element={<InicioSesionPagina />} />

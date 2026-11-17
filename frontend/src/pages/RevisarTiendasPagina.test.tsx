@@ -54,7 +54,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
 
   it('CP-ADM-036-01 · aprobar pide confirmar en la tarjeta y deja la tienda APROBADA', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<RevisarTiendasPagina />)
     const ferreteria = await tarjeta('Ferretería El Tornillo')
 
@@ -72,7 +72,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
   })
 
   it('«Cancelar» no aprueba nada', async () => {
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<RevisarTiendasPagina />)
     const ferreteria = await tarjeta('Ferretería El Tornillo')
     await usuario.click(within(ferreteria).getByRole('button', { name: 'Aprobar' }))
@@ -83,7 +83,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
 
   it('CP-ADM-036-02 · rechaza con el motivo «Documento ilegible» y la tienda queda RECHAZADA con ese motivo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<RevisarTiendasPagina />)
     const ferreteria = await tarjeta('Ferretería El Tornillo')
 
@@ -101,7 +101,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
 
   it('TIE-005 · no rechaza con un motivo de menos de 5 caracteres y dice cuántos lleva', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<RevisarTiendasPagina />)
     const ferreteria = await tarjeta('Ferretería El Tornillo')
     await usuario.click(within(ferreteria).getByRole('button', { name: 'Rechazar' }))
@@ -119,7 +119,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
 
   it('TIE-004 · si otra persona ya la revisó, lo avisa y actualiza la lista', async () => {
     // Dado: entre que se cargó la lista y el clic, otra persona aprobó la tienda
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<RevisarTiendasPagina />)
     const ferreteria = await tarjeta('Ferretería El Tornillo')
     pendiente()!.estado = 'APROBADA'
@@ -129,13 +129,14 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
     await usuario.click(within(ferreteria).getByRole('button', { name: 'Sí, aprobar' }))
 
     // Entonces
-    expect(await screen.findByText(/Otra persona ya revisó esta tienda/)).toBeInTheDocument()
+    // El mismo texto llega también a la región de anuncios (role="status"): se busca el mensaje visible
+    expect(await screen.findByText(/Otra persona ya revisó esta tienda/, { selector: 'p' })).toBeVisible()
     expect(await screen.findByText('No hay tiendas pendientes de revisión.')).toBeInTheDocument()
   })
 
   it('descarga un documento con su nombre de archivo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const crearUrl = vi.fn(() => 'blob:documento')
     Object.assign(URL, { createObjectURL: crearUrl, revokeObjectURL: vi.fn() })
     const clic = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined)
@@ -153,7 +154,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
 
   it('cambia de estado con el filtro y lo guarda en la dirección', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<RevisarTiendasPagina />)
     await tarjeta('Ferretería El Tornillo')
 
@@ -184,7 +185,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
 
   it('estado error con reintentar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     let intentos = 0
     servidorSimulado.use(
       http.get('/api/v1/admin/tiendas', () => {
@@ -207,7 +208,7 @@ describe('HU-036 · Revisar, aprobar y rechazar tiendas', () => {
   it('después del código, el administrador llega a revisar tiendas', async () => {
     // Dado
     limpiarSesion()
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(
       <Routes>
         <Route path="/entrar" element={<InicioSesionPagina />} />

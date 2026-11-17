@@ -22,7 +22,7 @@ describe('HU-004 · Paso del inicio de sesión al código', () => {
 
   it('el administrador pasa a la pantalla del código después de escribir su frase', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(rutas(), { ruta: '/entrar' })
 
     // Cuando
@@ -44,7 +44,7 @@ describe('HU-004 · Paso del inicio de sesión al código', () => {
 
   it('«Entrar con otra cuenta» descarta el token temporal', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     await iniciarSesion(CORREOS_DE_PRUEBA.administrador, FRASE_DE_PRUEBA)
     renderizarConProveedores(rutas(), { ruta: '/entrar/codigo' })
 

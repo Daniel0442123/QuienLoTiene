@@ -55,7 +55,7 @@ describe('HU-027 y HU-032 · El pedido de la tienda · CP-ORD-024-02, CP-ORD-027
 
   it('CP-ORD-027-01 · ofrece solo el paso siguiente y al tocarlo avanza el pedido', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir()
 
     // Cuando
@@ -69,7 +69,7 @@ describe('HU-027 y HU-032 · El pedido de la tienda · CP-ORD-024-02, CP-ORD-027
 
   it('CP-ORD-027-02 · si el pedido ya cambió en otro celular, lo dice y muestra el estado real', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir()
     const boton = await screen.findByRole('button', { name: 'Empezar a preparar' })
     ordenEnBase().estado = 'PREPARANDO'

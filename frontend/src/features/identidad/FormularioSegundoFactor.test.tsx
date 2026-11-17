@@ -26,7 +26,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('no tiene violaciones de accesibilidad, ni vacío ni con error', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const { container } = renderizarConProveedores(<FormularioSegundoFactor alVerificar={vi.fn()} />)
     expect(await violacionesDeAccesibilidad(container)).toEqual([])
 
@@ -48,7 +48,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('CP-IDE-004-01 · con un código vigente entrega la sesión de administrador', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alVerificar = vi.fn()
     renderizarConProveedores(<FormularioSegundoFactor alVerificar={alVerificar} />)
 
@@ -63,7 +63,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('acepta el código escrito con espacio, como lo muestran algunas apps', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alVerificar = vi.fn()
     renderizarConProveedores(<FormularioSegundoFactor alVerificar={alVerificar} />)
 
@@ -77,7 +77,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('CP-IDE-004-02 · con un código incorrecto niega el acceso, lo dice en el campo y lo deja listo para otro', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alVerificar = vi.fn()
     renderizarConProveedores(<FormularioSegundoFactor alVerificar={alVerificar} />)
 
@@ -96,7 +96,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('CP-IDE-004-02 · al agotar los intentos explica que venció y ofrece volver a entrar (deshabilitado con razón)', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioSegundoFactor alVerificar={vi.fn()} />)
 
     // Cuando
@@ -117,7 +117,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('con 5 dígitos dice cuántos lleva, sin llamar al backend', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     servidorSimulado.events.on('request:start', peticiones)
     renderizarConProveedores(<FormularioSegundoFactor alVerificar={vi.fn()} />)
@@ -134,7 +134,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('estado enviando · el botón dice que está verificando y no permite otro envío', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(http.post('/api/v1/auth/totp', () => delay('infinite')))
     renderizarConProveedores(<FormularioSegundoFactor alVerificar={vi.fn()} />)
 
@@ -148,7 +148,7 @@ describe('HU-004 · Segundo factor del administrador', () => {
 
   it('estado error · un fallo del servidor muestra qué pasó y el código para soporte', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post('/api/v1/auth/totp', () =>
         HttpResponse.json(

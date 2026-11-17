@@ -34,7 +34,7 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
 
   it('CP-TIE-010-01 · guarda la tarifa fija y muestra cómo la verán los clientes', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioDomicilio domicilio={conDomicilio} />)
 
     // Cuando
@@ -57,7 +57,7 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
 
   it('CP-TIE-010-02 · no acepta una tarifa negativa', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     servidorSimulado.events.on('request:start', ({ request }) => {
       if (request.method === 'PUT') peticiones()
@@ -78,7 +78,7 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
 
   it('CP-TIE-010-02 · si el backend responde TIE-009 lo explica', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.put('/api/v1/tiendas/me/domicilio', () =>
         HttpResponse.json(
@@ -98,7 +98,7 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
 
   it('al apagar el domicilio quita radio y valor y lo guarda así, sin enviarlos en null (C-04 B8)', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const cuerpos: unknown[] = []
     servidorSimulado.events.on('request:start', ({ request }) => {
       if (request.method === 'PUT' && request.url.endsWith('/tiendas/me/domicilio')) {
@@ -123,7 +123,7 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
 
   it('al activarlo pide el radio y el valor', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioDomicilio domicilio={sinDomicilio} />)
 
     // Cuando
@@ -146,7 +146,7 @@ describe('HU-010 · Simular el costo del domicilio (CU-17)', () => {
 
   it('dice cuánto pagaría un cliente dentro de la cobertura', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<SimuladorDomicilio domicilioGuardado={conDomicilio} />)
 
     // Cuando
@@ -158,7 +158,7 @@ describe('HU-010 · Simular el costo del domicilio (CU-17)', () => {
 
   it('TIE-010 · avisa cuando el cliente queda fuera de cobertura', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<SimuladorDomicilio domicilioGuardado={conDomicilio} />)
 
     // Cuando

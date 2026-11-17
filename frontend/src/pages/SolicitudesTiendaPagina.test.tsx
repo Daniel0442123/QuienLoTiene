@@ -53,7 +53,7 @@ describe('HU-018 · Solicitudes nuevas de la tienda', () => {
 
   it('CP-SOL-019-03 · «No lo tengo» la quita en un toque y al cerrar el aviso envía NO', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<SolicitudesTiendaPagina />, { ruta: '/tienda/solicitudes' })
 
     // Cuando
@@ -73,7 +73,7 @@ describe('HU-018 · Solicitudes nuevas de la tienda', () => {
 
   it('«Deshacer» la devuelve a la lista con el foco en ella y no envía nada', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<SolicitudesTiendaPagina />, { ruta: '/tienda/solicitudes' })
     await usuario.click(await screen.findByRole('button', { name: 'No lo tengo: Suero oral sabor a naranja' }))
 
@@ -89,7 +89,7 @@ describe('HU-018 · Solicitudes nuevas de la tienda', () => {
   it('si no se puede enviar «No lo tengo», la solicitud vuelve y lo avisa', async () => {
     // Dado
     servidorSimulado.use(http.post('/api/v1/solicitudes/:id/respuestas', () => HttpResponse.error()))
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<SolicitudesTiendaPagina />, { ruta: '/tienda/solicitudes' })
     await usuario.click(await screen.findByRole('button', { name: 'No lo tengo: Suero oral sabor a naranja' }))
 

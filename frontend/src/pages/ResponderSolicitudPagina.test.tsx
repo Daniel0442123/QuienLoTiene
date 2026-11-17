@@ -38,7 +38,7 @@ describe('HU-019 · Responder una solicitud', () => {
 
   it('CP-SOL-019-01 · «Sí lo tengo» en un toque más: precio y unidades ya vienen llenos (SC-011)', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir()
 
     // Entonces: el último precio de la tienda para este producto y las unidades pedidas
@@ -57,7 +57,7 @@ describe('HU-019 · Responder una solicitud', () => {
 
   it('cambia las unidades con los botones sin pasar de lo que pidió el cliente', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir()
     const agregar = await screen.findByRole('button', { name: 'Agregar una unidad' })
     expect(agregar).toBeDisabled()
@@ -73,7 +73,7 @@ describe('HU-019 · Responder una solicitud', () => {
 
   it('CP-SOL-019-02 · «Tengo algo parecido» sin descripción no se envía: lo dice arriba y en el campo', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir('?tipo=PARECIDO')
     const descripcion = await screen.findByLabelText('¿Qué ofreces en su lugar?')
 
@@ -131,7 +131,7 @@ describe('HU-019 · Responder una solicitud', () => {
 
   it('si la solicitud venció mientras respondía, dice que ya se cerró', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     abrir()
     await screen.findByLabelText('Precio por unidad')
     const solicitud = base.solicitudes.find((s) => s.id === PARACETAMOL)!

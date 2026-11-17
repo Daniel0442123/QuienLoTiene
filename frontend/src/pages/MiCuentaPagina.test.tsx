@@ -36,7 +36,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
   afterEach(() => servidorSimulado.events.removeAllListeners())
 
   it('no tiene violaciones de accesibilidad, ni al ver ni al agregar una dirección', async () => {
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const { container } = renderizarConProveedores(<MiCuentaPagina />)
     await screen.findByRole('heading', { name: 'Casa' })
     expect(await violacionesDeAccesibilidad(container)).toEqual([])
@@ -59,7 +59,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('CU-03 pasos 14 a 16 · guarda el nombre y el celular nuevos', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<MiCuentaPagina />)
     const celular = await screen.findByRole('textbox', { name: 'Celular' })
 
@@ -74,7 +74,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
   })
 
   it('no guarda un celular inválido y explica el formato', async () => {
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<MiCuentaPagina />)
     const celular = await screen.findByRole('textbox', { name: 'Celular' })
     await usuario.clear(celular)
@@ -86,7 +86,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('CP-CLI-007-01 · guarda «Trabajo» con pin, dirección, indicaciones y teléfono, y queda en la lista', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<MiCuentaPagina />)
     const formulario = await abrirNuevaDireccion(usuario)
     expect(screen.getByRole('heading', { name: 'Nueva dirección' })).toHaveFocus()
@@ -115,7 +115,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('CP-CLI-007-02 · sin ubicación en el mapa no envía nada e indica el dato faltante', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     servidorSimulado.events.on('request:start', ({ request }) => {
       if (request.method === 'POST') peticiones()
@@ -138,7 +138,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('edita el nombre de una dirección', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<MiCuentaPagina />)
 
     // Cuando
@@ -155,7 +155,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('borrar pide confirmar en la tarjeta y deja la lista vacía con qué hacer', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<MiCuentaPagina />)
 
     // Cuando
@@ -188,7 +188,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('CLI-002 · si el backend responde que ya hay 10, lo explica en el formulario', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post('/api/v1/clientes/me/direcciones', () =>
         HttpResponse.json(
@@ -219,7 +219,7 @@ describe('HU-007 · Perfil y direcciones del cliente', () => {
 
   it('estado error · las direcciones que no cargan se pueden reintentar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     let intentos = 0
     servidorSimulado.use(
       http.get('/api/v1/clientes/me/direcciones', () => {

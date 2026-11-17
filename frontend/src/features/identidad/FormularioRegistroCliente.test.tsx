@@ -38,7 +38,7 @@ const botonCrear = () => screen.getByRole('button', { name: 'Crear cuenta' })
 describe('HU-001 · HU-005 · Registro de cliente', () => {
   it('no tiene violaciones de accesibilidad, ni vacío ni con errores', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const { container } = renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
     expect(await violacionesDeAccesibilidad(container)).toEqual([])
 
@@ -51,7 +51,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('CP-IDE-001-01 · crea la cuenta y avisa con el correo registrado', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const alRegistrar = vi.fn()
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={alRegistrar} />)
 
@@ -67,7 +67,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('CP-IDE-001-02 · con un correo que ya tiene cuenta lo marca y ofrece entrar', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
 
     // Cuando
@@ -89,7 +89,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('CP-IDE-001-03 · con una frase de 10 caracteres explica el mínimo y cuántos lleva', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
     const campoFrase = screen.getByLabelText('Frase de contraseña')
 
@@ -104,7 +104,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('CP-IDE-001-03 · con una frase común que rechaza el backend (IDE-003) marca el campo de la frase', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
 
     // Cuando
@@ -120,7 +120,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('CP-IDE-005-01 · sin marcar la autorización no envía nada, resalta la casilla y la resume arriba', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     const peticiones = vi.fn()
     servidorSimulado.events.on('request:start', peticiones)
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
@@ -142,7 +142,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('CP-IDE-005-02 · envía la autorización con la versión 1.0 de la política', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     let cuerpo: unknown
     servidorSimulado.use(
       http.post(RUTA_REGISTRO, async ({ request }) => {
@@ -164,7 +164,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('deja leer la política de datos antes de aceptarla', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
 
     // Cuando
@@ -176,7 +176,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('el enlace del resumen lleva el foco al campo con error', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
     await usuario.click(botonCrear())
 
@@ -189,7 +189,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('estado enviando · el botón dice que está creando la cuenta y no permite otro envío', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(http.post(RUTA_REGISTRO, () => delay('infinite')))
     renderizarConProveedores(<FormularioRegistroCliente alRegistrar={vi.fn()} />)
 
@@ -204,7 +204,7 @@ describe('HU-001 · HU-005 · Registro de cliente', () => {
 
   it('estado error · un fallo del servidor muestra qué pasó y el código para soporte', async () => {
     // Dado
-    const usuario = userEvent.setup()
+    const usuario = userEvent.setup({ delay: null })
     servidorSimulado.use(
       http.post(RUTA_REGISTRO, () =>
         HttpResponse.json(
