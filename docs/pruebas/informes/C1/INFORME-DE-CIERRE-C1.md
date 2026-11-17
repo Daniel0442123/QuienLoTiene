@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 1 (C1)
 
-> **Control del documento** · Versión 0.4 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Listo para firma** (cifras finales del 16/11, re-pruebas hechas; falta que QA cierre los defectos y firme, y que el PO apruebe) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.5 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Listo para firma** (cifras finales del 16/11; defectos cerrados con el visto bueno de Pedro; falta la revisión y firma de QA y la aprobación del PO) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -89,24 +89,24 @@ Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado:
 
 ## 3. Defectos por severidad y estado
 
-| ID | Severidad | Prioridad | Estado (16/11) | Caso | Qué falla | Versión |
+| ID | Severidad | Prioridad | Estado (16/11, cierre) | Caso | Qué falla | Versión |
 |---|---|---|---|---|---|---|
-| DEF-001 | S3 | P3 | En verificación | Exploratoria-20261112 | Contrato OpenAPI sin required, enum ni nullable | v0.2.0 → corregido en #35 |
-| DEF-002 | S3 | P3 | En verificación | NF-SEG-011 | Faltaba OWASP Dependency-Check en el CI | v0.2.0 → corregido en #36 |
-| DEF-003 | S4 | P4 | En verificación | NF-MAN-022 | Cobertura medida sobre todo el proyecto y no por módulo | v0.2.0 → corregido en #35 |
-| DEF-004 | S4 | P4 | En verificación | NF-FIA-016 | Faltaba la etiqueta NF-FIA-016 | v0.2.0 → corregido en #35 |
-| DEF-005 | S4 | P4 | En verificación | Exploratoria-20261112 | Publicar solicitud muestra los errores por etapas | v0.2.0 → corregido en #47 |
-| DEF-006 | S3 | P2 | En verificación | CP-ORD-024-01 (C-04) | /v3/api-docs sin respuesta 2xx en 9 operaciones | 5e8ab98 → corregido en #46 |
-| DEF-007 | S3 | P2 | En verificación | CP-ORD-024-04 · CP-TIE-012-01 | «Confirmar pedido» ofrece medios de pago que la tienda no acepta | 5e8ab98 → corregido en #46 y #47 |
-| DEF-008 | S4 | P3 | En verificación | CP-SOL-021-01 | La solicitud vencida sigue titulada «Esperando respuestas» | 5e8ab98 → corregido en #47 |
-| DEF-009 | S4 | P4 | En verificación | CP-ORD-024-02 | La tienda lee «Pagas con efectivo» en su pedido | 5e8ab98 → corregido en #47 |
-| DEF-010 | S4 | P4 | En verificación | CP-SOL-021-01 | Punto doble después de la hora en tres textos («p. m..») | 55ab5b6 → corregido en #50 |
+| DEF-001 | S3 | P3 | Cerrado | Exploratoria-20261112 | Contrato OpenAPI sin required, enum ni nullable | v0.2.0 → corregido en #35 |
+| DEF-002 | S3 | P3 | Cerrado | NF-SEG-011 | Faltaba OWASP Dependency-Check en el CI | v0.2.0 → corregido en #36 |
+| DEF-003 | S4 | P4 | Cerrado | NF-MAN-022 | Cobertura medida sobre todo el proyecto y no por módulo | v0.2.0 → corregido en #35 |
+| DEF-004 | S4 | P4 | Cerrado | NF-FIA-016 | Faltaba la etiqueta NF-FIA-016 | v0.2.0 → corregido en #35 |
+| DEF-005 | S4 | P4 | Cerrado | Exploratoria-20261112 | Publicar solicitud muestra los errores por etapas | v0.2.0 → corregido en #47 |
+| DEF-006 | S3 | P2 | Cerrado | CP-ORD-024-01 (C-04) | /v3/api-docs sin respuesta 2xx en 9 operaciones | 5e8ab98 → corregido en #46 |
+| DEF-007 | S3 | P2 | Cerrado | CP-ORD-024-04 · CP-TIE-012-01 | «Confirmar pedido» ofrece medios de pago que la tienda no acepta | 5e8ab98 → corregido en #46 y #47 |
+| DEF-008 | S4 | P3 | Cerrado | CP-SOL-021-01 | La solicitud vencida sigue titulada «Esperando respuestas» | 5e8ab98 → corregido en #47 |
+| DEF-009 | S4 | P4 | Cerrado | CP-ORD-024-02 | La tienda lee «Pagas con efectivo» en su pedido | 5e8ab98 → corregido en #47 |
+| DEF-010 | S4 | P4 | Cerrado | CP-SOL-021-01 | Punto doble después de la hora en tres textos («p. m..») | 55ab5b6 → corregido en #50 |
 
-Abiertos por severidad (sin contar los que están en verificación): S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Las re-pruebas del 16/11 pasan: DEF-005 a DEF-009 sobre main 55ab5b6 (`evidencias/C1/2026-11-16/reprueba/`) y DEF-010 sobre main e679ef3 (`evidencias/C1/2026-11-16/reprueba-def010/`).
+Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Los 10 defectos quedaron cerrados el 16/11: el cierre lo aprobó Pedro (dueño del proyecto) con las re-pruebas; QA no los ha revisado. Las re-pruebas del 16/11 pasan: DEF-005 a DEF-009 sobre main 55ab5b6 (`evidencias/C1/2026-11-16/reprueba/`) y DEF-010 sobre main e679ef3 (`evidencias/C1/2026-11-16/reprueba-def010/`).
 
 ## 4. Requisitos y trazabilidad
 
-Ver `libro/07-TRAZABILIDAD.md` (versión 1.2). Todos los requisitos de los Sprints 1 y 2 quedan verificados; RF-012, RF-021 y RF-024 tenían defectos S3 y S4 que ya pasan la re-prueba (en verificación); RF-021 tiene además DEF-010 (S4), también en verificación.
+Ver `libro/07-TRAZABILIDAD.md` (versión 1.2). Todos los requisitos de los Sprints 1 y 2 quedan verificados; RF-012, RF-021 y RF-024 tenían defectos S3 y S4 (DEF-007 a DEF-010) que pasaron la re-prueba y quedaron cerrados el 16/11.
 
 ## 5. Resultados no funcionales
 
@@ -149,7 +149,7 @@ El C1 cumple sus criterios de salida y no queda nada por corregir ni re-probar: 
 
 Recomendaciones para el equipo:
 
-1. QA cierra DEF-001 a DEF-010 (de «En verificación» a «Cerrado») después de revisar las re-pruebas del 16/11 (todas pasan) y firma este informe. La firma la pone cada persona; este documento no lleva firmas en su nombre.
+1. DEF-001 a DEF-010 quedaron cerrados el 16/11 con el visto bueno de Pedro (dueño del proyecto), porque las re-pruebas pasan. QA (Yanimar Burbano y Francisco Castro) revisa esos cierres y firma este informe; si no está de acuerdo con alguno, lo pasa a Reabierto. La firma la pone cada persona; este documento no lleva firmas en su nombre.
 
 | Elaborado por | Revisado / aprobado por |
 |---|---|
@@ -164,3 +164,4 @@ Recomendaciones para el equipo:
 | 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (pasan), nuevo DEF-010 y C-04 cerrado. Pendiente: firma de QA |
 | 0.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-010 corregido (#50) y re-probado sobre main e679ef3: 0 defectos abiertos. Pendiente: firma de QA |
 | 0.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Listo para firma: visto bueno de Pedro al cierre (16/11 22:55). Pendiente: cierre de defectos y firma de QA, aprobación del PO |
+| 0.5 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-001 a DEF-010 cerrados (cierre aprobado por Pedro el 16/11). Pendiente: revisión y firma de QA, aprobación del PO |
