@@ -1,16 +1,21 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { ComponentesProvisionales } from '@/services/api-tipos-provisionales'
 import { clienteApi } from '@/services/clienteApi'
 import { VERSION_POLITICA_DATOS } from '@/services/politicaDatos'
 import type { DatosRegistroTienda } from './esquemas'
+import type { components, paths } from '@/services/api-tipos'
+
+type Esquemas = components['schemas']
+type CuerpoRegistroTienda = NonNullable<
+  paths['/api/v1/tiendas/registro']['post']['requestBody']
+>['content']['multipart/form-data']
 
 /** Consultas y mutaciones de tiendas (DECISIONES-FRONTEND sección 4). */
 
-export type MiTienda = ComponentesProvisionales['MiTienda']
-export type Franja = ComponentesProvisionales['Franja']
-export type DiaSemana = ComponentesProvisionales['DiaSemana']
-export type Domicilio = ComponentesProvisionales['Domicilio']
-export type MedioPago = ComponentesProvisionales['MedioPago']
+export type MiTienda = Esquemas['MiTienda']
+export type Franja = Esquemas['Franja']
+export type DiaSemana = Esquemas['DiaSemana']
+export type Domicilio = Esquemas['Domicilio']
+export type MedioPago = Esquemas['MedioPago']
 
 /** Claves de TanStack Query de la tienda del usuario: se invalidan juntas al cerrar sesión. */
 export const clavesTienda = {
@@ -34,19 +39,21 @@ export function useRegistrarTienda() {
     mutationFn: async (datos: DatosRegistroTienda) => {
       const { fotoLocal, rut, ubicacion, ...resto } = datos
       if (!fotoLocal || !rut || !ubicacion) throw new Error('El formulario se envió sin documentos o sin ubicación')
+      const parteDatos: Esquemas['RegistrarTiendaRequest'] = {
+        ...resto,
+        ubicacion,
+        versionPoliticaDatos: VERSION_POLITICA_DATOS,
+      }
+      const formulario = new FormData()
+      formulario.append('datos', new Blob([JSON.stringify(parteDatos)], { type: 'application/json' }))
+      formulario.append('fotoLocal', fotoLocal, fotoLocal instanceof File ? fotoLocal.name : 'foto-local')
+      formulario.append('rut', rut, rut instanceof File ? rut.name : 'rut')
+      // C-04 B6: openapi-typescript tipa las partes binarias del multipart como string (limitación conocida), así que
+      // el cuerpo tipado no puede llevar los archivos. Se arma el FormData aquí y se pasa con una conversión explícita;
+      // el serializador lo entrega tal cual.
       const { data } = await clienteApi.POST('/api/v1/tiendas/registro', {
-        body: {
-          datos: { ...resto, ubicacion, versionPoliticaDatos: VERSION_POLITICA_DATOS },
-          fotoLocal,
-          rut,
-        },
-        bodySerializer: ({ datos: parteDatos, fotoLocal: foto, rut: documento }) => {
-          const formulario = new FormData()
-          formulario.append('datos', new Blob([JSON.stringify(parteDatos)], { type: 'application/json' }))
-          formulario.append('fotoLocal', foto, foto instanceof File ? foto.name : 'foto-local')
-          formulario.append('rut', documento, documento instanceof File ? documento.name : 'rut')
-          return formulario
-        },
+        body: formulario as unknown as CuerpoRegistroTienda,
+        bodySerializer: () => formulario,
       })
       if (!data) throw new Error('El registro no devolvió la tienda creada')
       return data
@@ -89,7 +96,7 @@ export function useCambiarApertura() {
 export function useActualizarPerfilTienda() {
   const clienteConsultas = useQueryClient()
   return useMutation({
-    mutationFn: async (perfil: ComponentesProvisionales['ActualizarPerfilTiendaRequest']) =>
+    mutationFn: async (perfil: Esquemas['ActualizarPerfilTiendaRequest']) =>
       exigirDatos((await clienteApi.PUT('/api/v1/tiendas/me/perfil', { body: perfil })).data),
     onSuccess: (tienda) => clienteConsultas.setQueryData(clavesTienda.miTienda, tienda),
   })
@@ -103,11 +110,28 @@ export function useDomicilio() {
   })
 }
 
+/** Lo que entrega el formulario: sin domicilio, el radio y la tarifa quedan en null. */
+type DatosGuardarDomicilio = {
+  haceDomicilio: boolean
+  radioCoberturaEnMetros: number | null
+  tarifaFijaEnPesos: number | null
+}
+
 export function useGuardarDomicilio() {
   const clienteConsultas = useQueryClient()
   return useMutation({
-    mutationFn: async (domicilio: ComponentesProvisionales['ConfigurarDomicilioRequest']) =>
-      exigirDatos((await clienteApi.PUT('/api/v1/tiendas/me/domicilio', { body: domicilio })).data),
+    // C-04 B8: ConfigurarDomicilioRequest no admite null; sin domicilio solo se envía haceDomicilio
+    mutationFn: async ({ haceDomicilio, radioCoberturaEnMetros, tarifaFijaEnPesos }: DatosGuardarDomicilio) =>
+      exigirDatos(
+        (
+          await clienteApi.PUT('/api/v1/tiendas/me/domicilio', {
+            body:
+              haceDomicilio && radioCoberturaEnMetros !== null && tarifaFijaEnPesos !== null
+                ? { haceDomicilio, radioCoberturaEnMetros, tarifaFijaEnPesos }
+                : { haceDomicilio: false },
+          })
+        ).data,
+      ),
     onSuccess: (domicilio) => clienteConsultas.setQueryData(clavesTienda.domicilio, domicilio),
   })
 }

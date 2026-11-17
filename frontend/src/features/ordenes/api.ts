@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { components } from '@/services/api-tipos-sprint-2'
 import { clienteApi } from '@/services/clienteApi'
 import type { DatosConfirmarPedido } from './esquemas'
+import type { components } from '@/services/api-tipos'
 
 /** Consultas y mutaciones de órdenes (DECISIONES-FRONTEND sección 4). */
 

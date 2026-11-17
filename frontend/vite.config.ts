@@ -81,7 +81,7 @@ export default defineConfig({
       reporter: ['text', 'html', 'lcov'],
       // La meta del 70 % aplica a la lógica, no a los componentes visuales (DECISIONES-FRONTEND sección 12)
       include: ['src/services/**', 'src/hooks/**', 'src/features/**/esquemas.ts', 'src/features/**/use*.ts'],
-      exclude: ['src/services/api-tipos.ts', 'src/services/api-tipos-sprint-2.ts'],
+      exclude: ['src/services/api-tipos.ts'],
       thresholds: { lines: 70 },
     },
   },

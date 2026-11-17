@@ -5,9 +5,9 @@ import { clavesOrdenes } from '@/features/ordenes/api'
 import { clavesSolicitudesTienda } from '@/features/solicitudes/api'
 import { useSesion } from '@/hooks/useSesion'
 import { sonarAlertaUrgente } from '@/services/alertaSonora'
-import type { components } from '@/services/api-tipos-sprint-2'
 import { escucharEventos } from '@/services/eventos'
 import { textosNotificaciones as textos } from './textos'
+import type { components } from '@/services/api-tipos'
 
 type Esquemas = components['schemas']
 

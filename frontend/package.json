@@ -16,7 +16,6 @@
     "formato": "prettier --write .",
     "formato:revisar": "prettier --check .",
     "api:tipos": "openapi-typescript http://localhost:8080/v3/api-docs -o src/services/api-tipos.ts",
-    "api:tipos:contrato": "openapi-typescript ../docs/api/contrato-sprint-2.yaml -o src/services/api-tipos-sprint-2.ts",
     "lighthouse": "npx --yes @lhci/cli@0.16.0 autorun"
   },
   "dependencies": {

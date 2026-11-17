@@ -1,7 +1,5 @@
 import createClient, { type Middleware } from 'openapi-fetch'
 import type { paths } from './api-tipos'
-import type { PathsProvisionales } from './api-tipos-provisionales'
-import type { paths as PathsSprint2 } from './api-tipos-sprint-2'
 import { errorDesdeRespuesta, errorSinConexion } from './errores'
 import { obtenerTokenAcceso, renovarSesion } from './sesion'
 
@@ -47,10 +45,9 @@ const renovacionYErrores: Middleware = {
   },
 }
 
-// PathsProvisionales y PathsSprint2 se quitan cuando api-tipos.ts se genere desde el backend (compromiso C-04).
-// PathsSprint2 sale de docs/api/contrato-sprint-2.yaml con `npm run api:tipos:contrato`.
+// Tipos generados desde /v3/api-docs del backend con `npm run api:tipos` (C-04 cerrado: sin tipos provisionales).
 // El origen de la página: las rutas siguen siendo del mismo origen, pero `Request` en Node (pruebas) exige URL absoluta
-export const clienteApi = createClient<paths & PathsProvisionales & PathsSprint2>({
+export const clienteApi = createClient<paths>({
   baseUrl: globalThis.location?.origin ?? '',
   credentials: 'same-origin',
   // Se busca fetch en cada llamada (no al importar): así lo ven las herramientas que lo envuelven, como MSW en las pruebas

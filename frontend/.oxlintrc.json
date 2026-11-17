@@ -38,5 +38,5 @@
     "jsx-a11y/prefer-tag-over-role": "off",
     "vitest/require-mock-type-parameters": "off"
   },
-  "ignorePatterns": ["dist", "coverage", "src/services/api-tipos.ts", "src/services/api-tipos-sprint-2.ts"]
+  "ignorePatterns": ["dist", "coverage", "src/services/api-tipos.ts"]
 }

@@ -1,14 +1,13 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { ComponentesProvisionales } from '@/services/api-tipos-provisionales'
-import type { components } from '@/services/api-tipos-sprint-2'
 import { clienteApi } from '@/services/clienteApi'
 import type { DatosPublicarSolicitud, DatosResponder } from './esquemas'
+import type { components } from '@/services/api-tipos'
 
 /** Consultas y mutaciones de solicitudes (DECISIONES-FRONTEND sección 4). */
 
 type Esquemas = components['schemas']
 
-export type Solicitud = ComponentesProvisionales['SolicitudResponse']
+export type Solicitud = Esquemas['SolicitudResponse']
 export type SolicitudDisponible = Esquemas['SolicitudDisponibleResponse']
 export type RespuestaDeTienda = Esquemas['RespuestaDeTiendaResponse']
 export type EstadoRespuesta = Esquemas['EstadoRespuesta']
@@ -50,14 +49,7 @@ export function useMisRespuestas() {
 
 export type SolicitudDelCliente = Esquemas['SolicitudResponse']
 export type RespuestasDeSolicitud = Esquemas['RespuestasDeSolicitudResponse']
-export type RespuestaParaCliente = Esquemas['RespuestaParaClienteResponse'] & {
-  /**
-   * DEF-007: medios de pago que la tienda tiene activos. Lo agrega el backend a RespuestaParaClienteResponse (campo
-   * acordado con Daniel); es opcional mientras llega, y sin él «Confirmar pedido» ofrece los tres. Con C-04 sale del
-   * tipo generado y esta intersección se quita.
-   */
-  mediosPagoAceptados?: ('EFECTIVO' | 'TRANSFERENCIA' | 'DATAFONO')[]
-}
+export type RespuestaParaCliente = Esquemas['RespuestaParaClienteResponse']
 export type CriterioOrden = 'precio' | 'distancia' | 'total'
 
 /** Claves de las consultas del cliente sobre su solicitud. */
