@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 1 (C1)
 
-> **Control del documento** · Versión 0.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Borrador** (las cifras son del 16/11; QA las revisa, corre la re-prueba de los defectos corregidos y firma el 20/11) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.4 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Listo para firma** (cifras finales del 16/11, re-pruebas hechas; falta que QA cierre los defectos y firme, y que el PO apruebe) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -145,11 +145,11 @@ Ninguno.
 
 ## 9. Conclusión y recomendación
 
-Borrador: el C1 cumple sus criterios de salida. Se recomienda cerrarlo el 20/11 después de re-probar lo que se corrija entre el 18 y el 19/11.
+El C1 cumple sus criterios de salida y no queda nada por corregir ni re-probar: DEF-001 a DEF-010 pasan la re-prueba y C-04 está cerrado. El 16/11 a las 22:55 (hora de Bogotá) Pedro dio el visto bueno al cierre en el hilo del proyecto. El ciclo queda **cerrado en cuanto firmen QA y el PO**; si firman antes del 20/11, el cierre se adelanta frente a la fecha de SC-015 y se anota en `docs/gestion/CONTROL-DE-CAMBIOS.md`.
 
 Recomendaciones para el equipo:
 
-1. QA cierra DEF-001 a DEF-010 después de revisar las re-pruebas del 16/11 (todas pasan).
+1. QA cierra DEF-001 a DEF-010 (de «En verificación» a «Cerrado») después de revisar las re-pruebas del 16/11 (todas pasan) y firma este informe. La firma la pone cada persona; este documento no lleva firmas en su nombre.
 
 | Elaborado por | Revisado / aprobado por |
 |---|---|
@@ -163,3 +163,4 @@ Recomendaciones para el equipo:
 | 0.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 16/11; pendiente de la re-prueba final y la firma de QA |
 | 0.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (pasan), nuevo DEF-010 y C-04 cerrado. Pendiente: firma de QA |
 | 0.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-010 corregido (#50) y re-probado sobre main e679ef3: 0 defectos abiertos. Pendiente: firma de QA |
+| 0.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Listo para firma: visto bueno de Pedro al cierre (16/11 22:55). Pendiente: cierre de defectos y firma de QA, aprobación del PO |
