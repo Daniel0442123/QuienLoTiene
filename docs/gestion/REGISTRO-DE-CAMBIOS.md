@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -12,10 +12,39 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 
 ## Sin liberar
 
+Nada todavía.
+
+## v0.3.0 · 17/11/2026 · Sprint 2 y cierre del ciclo C1
+
+Etiqueta sobre `main` después del #55. Primera versión desplegada con el flujo completo: el cliente pregunta, las tiendas responden en tiempo real, el cliente elige y la tienda entrega el pedido.
+
 ### Agregado
-- Seguimiento y control de cambios del proyecto: bitácora, registro de solicitudes de cambio, procedimientos, plantilla y libro de control de cambios, chequeo «Control de cambios» en CI (SC-009).
-- Pruebas: corte del Sprint 1 del ciclo C1 sobre `v0.2.0` con informes, defectos DEF-001 a DEF-005 y evidencias (#32).
-- Documentación automática de cada versión: Release de GitHub con notas, evidencia de calidad y artefactos (`version.yml`, SC-009).
+- Backend del Sprint 2: contrato de la API, eventos en tiempo real (SSE), respuestas de las tiendas, órdenes con su historial y enlace de WhatsApp (HU-018 a HU-021, HU-024, HU-027, HU-028, HU-030, HU-032, #35). Migraciones nuevas: `solicitudes.respuesta` y `ordenes.orden` con su historial.
+- Hasta 5 conexiones de tiempo real por usuario (HU-030, SC-014, #44).
+- Frontend: tipos generados desde el contrato y simulación de respuestas y órdenes (#38).
+- Frontend: solicitudes nuevas y responder desde la tienda (HU-018, HU-019, #39).
+- Frontend: respuestas y estado de la solicitud para el cliente (HU-020, HU-021, #40).
+- Frontend: elegir una respuesta y confirmar el pedido (HU-024, #41).
+- Frontend: seguimiento del pedido, recepción y WhatsApp (HU-027, HU-028, HU-032, #42).
+- Frontend: tiempo real con SSE y alerta sonora de las solicitudes urgentes (HU-030, #43).
+- CI: OWASP Dependency-Check junto con Trivy (DEF-002, #36).
+- Gestión: seguimiento y control de cambios del proyecto (bitácora, solicitudes de cambio, procedimientos, libro de control de cambios y chequeo «Control de cambios» en CI) y Release automática de cada versión (SC-009, #34). Decisiones de interfaz de los Sprints 2 y 3 (SC-011, #37).
+- Pruebas: corte del Sprint 1 (#32), ejecución del Sprint 2, re-pruebas, informe de cierre del C1 y sus Word y Excel de entrega (#46, #49, #52 a #55).
+
+### Corregido
+- DEF-001 y DEF-006: el contrato OpenAPI declara las respuestas exitosas, los errores como `application/problem+json`, los enums con nombre y los eventos SSE; el frontend genera sus tipos desde `/v3/api-docs` (C-04, #35, #46, #48).
+- DEF-003: la cobertura mínima de 70 % se exige por módulo (#35).
+- DEF-004: la prueba de transiciones inválidas de la tienda lleva `@Tag("NF-FIA-016")` (#35).
+- DEF-005: «Publicar solicitud» marca todos los datos que faltan al primer intento (#47).
+- DEF-007: «Confirmar pedido» solo ofrece los medios de pago que acepta la tienda (#46, #47).
+- DEF-008: la solicitud vencida ya no dice «Esperando respuestas» (#47).
+- DEF-009: la tienda lee «El cliente paga con…» en su pedido (#47).
+- DEF-010: sin punto doble después de la hora (#50).
+- Pruebas del frontend más estables (#45, #51).
+
+### Evidencia de calidad
+
+La agrega quien crea la etiqueta, desde la Release de GitHub que genera `version.yml` al terminar el despliegue (PROCEDIMIENTO-DOCUMENTAL.md, sección 6).
 
 ## v0.2.0 · 12/11/2026 · Cierre funcional del Sprint 1
 
@@ -114,3 +143,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: notas de `v0.1.0` a `v0.2.0` reconstruidas desde Git, con la evidencia de calidad de cada versión tomada de GitHub Actions (SC-009) |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.0` (Sprint 2 y cierre del C1) antes de etiquetar |

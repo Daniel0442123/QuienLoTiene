@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.8 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.9 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -76,8 +76,11 @@ Fuente: API de GitHub del repositorio `Daniel0442123/QuienLoTiene`, consultada e
 | [#50](https://github.com/Daniel0442123/QuienLoTiene/pull/50) | fix(front): sin punto doble en los textos que terminan en la hora (DEF-010) | Corrección · front | HU-019, HU-021, HU-028 | — | Monica Anyi Cajas Mellizo (@monicacajas-art) | 16/11/2026 22:08 | 16/11/2026 22:20 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | — | Fusionado | Sí |
 | [#51](https://github.com/Daniel0442123/QuienLoTiene/pull/51) | test(front): escribir sin espera entre teclas para que las pruebas no se pasen de 5 s | Pruebas · front | HU-002, HU-007 | — | Monica Anyi Cajas Mellizo (@monicacajas-art) | 16/11/2026 22:15 | 16/11/2026 22:20 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | — | Fusionado | Sí |
 | [#52](https://github.com/Daniel0442123/QuienLoTiene/pull/52) | docs(pruebas): re-prueba de DEF-010 (borrador para firma de QA) | Documentación · pruebas | — | SC-015 | Daniel Montenegro Almendra (@Daniel0442123) | 16/11/2026 22:38 | 16/11/2026 22:42 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | — | Fusionado | Sí |
+| [#53](https://github.com/Daniel0442123/QuienLoTiene/pull/53) | docs: bitácora con los PR #34 a #52 e informe de cierre del C1 listo para firma | Documentación | — | SC-015 | Daniel Montenegro Almendra (@Daniel0442123) | 16/11/2026 22:58 | 16/11/2026 23:10 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | — | Fusionado | Sí |
+| [#54](https://github.com/Daniel0442123/QuienLoTiene/pull/54) | docs(pruebas): Word y Excel de entrega del cierre del C1 con las capturas del Sprint 2 | Documentación · pruebas | — | SC-015 | Daniel Montenegro Almendra (@Daniel0442123) | 16/11/2026 23:19 | 16/11/2026 23:48 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | — | Fusionado | Sí |
+| [#55](https://github.com/Daniel0442123/QuienLoTiene/pull/55) | docs(pruebas): DEF-001 a DEF-010 cerrados con el visto bueno de Pedro (pendiente la revisión de QA) | Documentación · pruebas | — | — | Daniel Montenegro Almendra (@Daniel0442123) | 16/11/2026 23:57 | 16/11/2026 23:59 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | — | Fusionado | Sí |
 
-_Tabla generada el 12/11/2026 23:54 (hora de Bogotá) con `scripts/gestion/bitacora.py`. Filas #34 a #52 agregadas el 16/11/2026 con la misma función `fila()` desde la API de GitHub: ninguno tiene revisiones registradas (se leyeron las de #34, #35, #38, #41, #43 y #44; #46 a #52 se fusionaron sin revisión); «Fusionó» solo se conoce para #46 a #52._
+_Tabla generada el 12/11/2026 23:54 (hora de Bogotá) con `scripts/gestion/bitacora.py`. Filas #34 a #55 agregadas el 16/11/2026 con la misma función `fila()` desde la API de GitHub: ninguno tiene revisiones registradas (se leyeron las de #34, #35, #38, #41, #43 y #44; #46 a #52 se fusionaron sin revisión); «Fusionó» solo se conoce para #46 a #55._
 <!-- fin-bitacora -->
 
 ### Hallazgos de la reconstrucción (13/11/2026)
@@ -154,3 +157,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.6 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-04 cerrado con el #48 (tipos generados, B6 a B8) |
 | 1.7 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | C-04: confirmado `npm run api:tipos` en vivo; C-18 incluye la re-prueba de DEF-005 a DEF-009 y DEF-010 |
 | 1.8 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Tabla de pull requests: filas #34 a #52 (Sprint 2 y cierre del C1) |
+| 1.9 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #53 a #55 antes de etiquetar v0.3.0 |
