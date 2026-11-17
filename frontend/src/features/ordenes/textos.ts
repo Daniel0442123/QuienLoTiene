@@ -52,6 +52,7 @@ export const textosOrdenes = {
   },
   desglose: 'Detalle del pago',
   pagoCon: (medio: string) => `Pagas con ${medio.toLowerCase()} a la tienda.`,
+  pagoDelCliente: (medio: string) => `El cliente paga con ${medio.toLowerCase()}.`,
   entregaDomicilio: 'Domicilio',
   entregaRecoger: 'Recoger en la tienda',
 

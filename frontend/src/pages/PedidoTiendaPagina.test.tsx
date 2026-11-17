@@ -48,6 +48,9 @@ describe('HU-027 y HU-032 · El pedido de la tienda · CP-ORD-024-02, CP-ORD-027
       'href',
       expect.stringMatching(/^https:\/\/wa\.me\/573168889900\?text=/),
     )
+    // DEF-009: el pago se lee desde la tienda
+    expect(screen.getByText(/^El cliente paga con (efectivo|transferencia|datáfono)\.$/)).toBeInTheDocument()
+    expect(screen.queryByText(/^Pagas con/)).not.toBeInTheDocument()
   })
 
   it('CP-ORD-027-01 · ofrece solo el paso siguiente y al tocarlo avanza el pedido', async () => {

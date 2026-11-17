@@ -61,7 +61,11 @@ export function FormularioPublicarSolicitud({ alPublicar }: { alPublicar: (solic
     formState: { errors, isSubmitted },
   } = useForm<EntradaPublicarSolicitud, unknown, DatosPublicarSolicitud>({
     resolver: zodResolver(esquemaPublicarSolicitud),
-    mode: 'onTouched',
+    // DEF-005: el producto tiene el foco al entrar. Con «onTouched», tocar «Preguntar» lo desenfocaba, su error
+    // aparecía, empujaba el botón hacia abajo y el toque se perdía: los errores salían por etapas y sin resumen.
+    // Se valida al enviar (todo a la vez, con el resumen) y después mientras se corrige.
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
     shouldFocusError: false,
     defaultValues: {
       producto: '',

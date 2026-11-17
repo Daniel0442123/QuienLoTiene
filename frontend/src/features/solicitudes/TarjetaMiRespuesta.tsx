@@ -1,10 +1,11 @@
 import { Link } from 'react-router'
 import { CircleCheck, CircleSlash, Hourglass, TimerOff, type LucideIcon } from 'lucide-react'
-import type { EstadoRespuesta, RespuestaDeTienda } from './api'
+import type { RespuestaDeTienda } from './api'
 import { resumenDeRespuesta } from './presentacion'
 import { textosSolicitudes as textos } from './textos'
 
-const PRESENTACION: Record<EstadoRespuesta, { Icono: LucideIcon; color: string }> = {
+// C-04 B5: tipado con el campo de la respuesta, que sigue igual con los tipos generados del backend
+const PRESENTACION: Record<RespuestaDeTienda['estado'], { Icono: LucideIcon; color: string }> = {
   ESPERANDO: { Icono: Hourglass, color: 'text-texto-suave' },
   ELEGIDA: { Icono: CircleCheck, color: 'text-exito' },
   NO_ELEGIDA: { Icono: CircleSlash, color: 'text-texto-suave' },

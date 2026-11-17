@@ -109,6 +109,10 @@ export function FormularioConfirmarPedido({
 
   const domicilio = modalidad === 'DOMICILIO' ? (respuesta.costoDomicilioEnPesos ?? 0) : 0
   const total = respuesta.subtotalEnPesos + domicilio
+  // DEF-007 (CP-TIE-012-01): solo los medios que la tienda acepta. Si la API no los manda, los tres; el backend
+  // igual rechaza uno que no aplique (ORD-003) y el error sale en este grupo.
+  const aceptados = respuesta.mediosPagoAceptados
+  const mediosPago = aceptados?.length ? MEDIOS_PAGO.filter((medio) => aceptados.includes(medio)) : MEDIOS_PAGO
 
   const enfocarPrimerError = (conError: string[]) => {
     const primero = campos.find((campo) => conError.includes(campo))
@@ -211,7 +215,7 @@ export function FormularioConfirmarPedido({
         pista={textos.pistaMedioPago}
         error={errors.medioPago}
       >
-        {MEDIOS_PAGO.map((medio) => (
+        {mediosPago.map((medio) => (
           <label key={medio} className={cn(claseOpcion, errors.medioPago ? 'border-peligro' : 'border-borde')}>
             <input type="radio" value={medio} className="size-5 accent-primario" {...register('medioPago')} />
             {textos.mediosPago[medio]}

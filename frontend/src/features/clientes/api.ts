@@ -18,9 +18,10 @@ function exigirDatos<T>(data: T | undefined): T {
 }
 
 /** DireccionRequest: la ubicación va en un objeto aparte; el formulario ya la trae así. */
-function aPeticion({ ubicacion, ...resto }: DatosDireccionFormulario) {
+// C-04 B2: DireccionRequest.indicaciones no admite null; sin indicaciones el campo no se envía
+function aPeticion({ ubicacion, indicaciones, ...resto }: DatosDireccionFormulario) {
   if (!ubicacion) throw new Error('La dirección se envió sin ubicación')
-  return { ...resto, ubicacion }
+  return { ...resto, ubicacion, ...(indicaciones ? { indicaciones } : {}) }
 }
 
 export function usePerfil() {

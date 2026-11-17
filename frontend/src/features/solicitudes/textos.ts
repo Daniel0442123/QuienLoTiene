@@ -38,6 +38,8 @@ export const textosSolicitudes = {
 
   // Confirmación (CU paso 9: «Esperando respuestas»)
   tituloEsperando: 'Esperando respuestas',
+  tituloVencida: 'Tu solicitud venció',
+  plazoTerminado: (hora: string) => `El plazo para responder terminó a las ${hora}.`,
   preguntamosA: (tiendas: number, producto: string) =>
     tiendas === 1
       ? `Le preguntamos a 1 tienda cercana si tiene «${producto}».`

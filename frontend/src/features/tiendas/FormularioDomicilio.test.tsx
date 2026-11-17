@@ -10,7 +10,12 @@ import { iniciarSesion, limpiarSesion } from '@/services/sesion'
 import { FormularioDomicilio } from './FormularioDomicilio'
 import { SimuladorDomicilio } from './SimuladorDomicilio'
 
-const conDomicilio = { haceDomicilio: true, radioCoberturaEnMetros: 3000, tipoTarifa: 'FIJA', tarifaFijaEnPesos: 4000 }
+const conDomicilio = {
+  haceDomicilio: true,
+  radioCoberturaEnMetros: 3000,
+  tipoTarifa: 'FIJA' as const,
+  tarifaFijaEnPesos: 4000,
+}
 const sinDomicilio = { haceDomicilio: false, radioCoberturaEnMetros: null, tipoTarifa: null, tarifaFijaEnPesos: null }
 const domicilioGuardado = () => base.tiendas.find((t) => t.estado === 'APROBADA')?.domicilio
 const campoTarifa = () => screen.getByRole('textbox', { name: 'Valor del domicilio (pesos)' })

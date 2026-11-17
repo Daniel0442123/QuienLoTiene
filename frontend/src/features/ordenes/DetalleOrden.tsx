@@ -2,8 +2,11 @@ import { formatearPesos, formatearUnidades } from '@/services/formato'
 import type { Orden } from './api'
 import { textosOrdenes as textos } from './textos'
 
-/** Lo que se pidió y el total desglosado: producto, domicilio y total (CP-ORD-024-01). */
-export function DetalleOrden({ orden }: { orden: Orden }) {
+/**
+ * Lo que se pidió y el total desglosado: producto, domicilio y total (CP-ORD-024-01). Lo ven el cliente y la tienda;
+ * el texto del pago depende de quién lo lee (DEF-009).
+ */
+export function DetalleOrden({ orden, vista = 'cliente' }: { orden: Orden; vista?: 'cliente' | 'tienda' }) {
   return (
     <section aria-labelledby={`desglose-${orden.id}`} className="flex flex-col gap-2">
       <h2 id={`desglose-${orden.id}`} className="text-lg font-semibold">
@@ -27,7 +30,9 @@ export function DetalleOrden({ orden }: { orden: Orden }) {
           <dd>{formatearPesos(orden.totalEnPesos)}</dd>
         </div>
       </dl>
-      <p className="text-texto-suave">{textos.pagoCon(textos.mediosPago[orden.medioPago])}</p>
+      <p className="text-texto-suave">
+        {(vista === 'tienda' ? textos.pagoDelCliente : textos.pagoCon)(textos.mediosPago[orden.medioPago])}
+      </p>
     </section>
   )
 }

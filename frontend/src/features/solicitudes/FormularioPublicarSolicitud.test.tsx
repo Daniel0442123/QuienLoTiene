@@ -47,6 +47,28 @@ describe('HU-016 · Publicar solicitud', () => {
     expect(await violacionesDeAccesibilidad(container)).toEqual([])
   })
 
+  it('DEF-005 · vacío, al primer intento marca producto y categoría con el resumen', async () => {
+    // Dado: el producto tiene el foco al entrar
+    const usuario = userEvent.setup()
+    renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)
+    await screen.findByRole('radio', { name: 'Farmacia' })
+    await vi.waitFor(() => expect(campoProducto()).toHaveFocus())
+
+    // Cuando: sale del campo sin escribir (lo que hace tocar el botón)
+    await usuario.tab()
+
+    // Entonces: no aparece ningún error que mueva el botón antes del toque
+    expect(screen.queryByText('Escribe qué estás buscando.')).not.toBeInTheDocument()
+
+    // Cuando
+    await usuario.click(botonPreguntar())
+
+    // Entonces: todo lo que falta, de una vez y con el resumen
+    expect(await screen.findByRole('heading', { name: 'Revisa estos datos antes de preguntar:' })).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Escribe qué estás buscando.' })).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Elige dónde buscamos: farmacia o ferretería.' })).toBeVisible()
+  })
+
   it('RNF-027 · el único campo por escribir recibe el foco y la ubicación ya viene elegida', async () => {
     // Cuando
     renderizarConProveedores(<FormularioPublicarSolicitud alPublicar={vi.fn()} />)

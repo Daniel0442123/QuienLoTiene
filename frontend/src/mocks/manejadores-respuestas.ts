@@ -85,6 +85,10 @@ function aTarjetaParaCliente(respuesta: RespuestaSimulada, solicitud: SolicitudS
     tiempoEstimadoEnMinutos: respuesta.tiempoEstimadoEnMinutos,
     fechaRespuesta: respuesta.fechaRespuesta,
     fueElegida: orden?.respuestaId === respuesta.id,
+    // DEF-007: los medios que la tienda tiene activos, en el orden de MEDIOS_PAGO
+    mediosPagoAceptados: (['EFECTIVO', 'TRANSFERENCIA', 'DATAFONO'] as const).filter((medio) =>
+      tienda?.mediosPago.includes(medio),
+    ),
   }
 }
 

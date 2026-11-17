@@ -127,7 +127,7 @@ export function PedidoTiendaPagina() {
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />
           <AvanzarPedido orden={orden.data} />
           <LineaDeTiempo orden={orden.data} titulo={textos.pasosTienda} />
-          <DetalleOrden orden={orden.data} />
+          <DetalleOrden orden={orden.data} vista="tienda" />
         </>
       )}
     </section>
