@@ -1,15 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { ComponentesProvisionales } from '@/services/api-tipos-provisionales'
 import { clienteApi } from '@/services/clienteApi'
 import { esErrorApi, type ErrorApi } from '@/services/errores'
 import { mensajeParaUsuario } from '@/services/mensajes-error'
 import { textosAdministracion as textos } from './textos'
+import type { components } from '@/services/api-tipos'
+
+type Esquemas = components['schemas']
 
 /** Consultas y mutaciones de administración (DECISIONES-FRONTEND sección 4). */
 
-export type TiendaParaRevision = ComponentesProvisionales['TiendaParaRevision']
+export type TiendaParaRevision = Esquemas['TiendaParaRevision']
 export type EstadoTienda = TiendaParaRevision['estado']
-export type DocumentoResumen = ComponentesProvisionales['DocumentoResumen']
+export type DocumentoResumen = Esquemas['DocumentoResumen']
 
 export const ESTADOS_TIENDA: EstadoTienda[] = ['PENDIENTE', 'APROBADA', 'RECHAZADA', 'SUSPENDIDA']
 

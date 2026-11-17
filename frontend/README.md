@@ -33,7 +33,7 @@ npm run dev:simulado # http://localhost:5173 ; /api lo responde MSW en el navega
     | `suspendido@ejemplo.com`   | Cuenta suspendida (`IDE-009`)                                                                 |
     | `vecina@ejemplo.com`       | Otra clienta: es quien publicó las solicitudes que ve la tienda de prueba                     |
 
-- **Sprint 2** (`manejadores-respuestas.ts`, `manejadores-ordenes.ts`, reglas en `reglas-sprint-2.ts`): cuando el cliente publica una solicitud de Farmacia, «Botica San José» responde «Sí lo tengo» a los 6 s y «Farmacia Popular» «Tengo algo parecido» a los 15 s. La solicitud vence a los 30 min. Botica acepta efectivo y datáfono; Popular no hace domicilio. Los tipos de esas rutas salen del contrato con `npm run api:tipos:contrato` (`src/services/api-tipos-sprint-2.ts`).
+- **Sprint 2** (`manejadores-respuestas.ts`, `manejadores-ordenes.ts`, reglas en `reglas-sprint-2.ts`): cuando el cliente publica una solicitud de Farmacia, «Botica San José» responde «Sí lo tengo» a los 6 s y «Farmacia Popular» «Tengo algo parecido» a los 15 s. La solicitud vence a los 30 min. Botica acepta efectivo y datáfono; Popular no hace domicilio.
 - **Tiempo real (HU-030)**: `src/mocks/eventos.ts` simula `/api/v1/eventos` (una conexión por usuario y reenvío con `Last-Event-ID`). En `dev:simulado`, la vecina publica una solicitud cada 90 s (máximo 5, una de cada dos urgente) para ver llegar solicitudes y oír la alerta en el panel de la tienda sin cambiar de usuario.
 
 - Las categorías (`CATEGORIAS_SIMULADAS`) solo existen en la simulación: el backend aún no publica un endpoint de categorías.
@@ -55,7 +55,6 @@ npm run dev:simulado # http://localhost:5173 ; /api lo responde MSW en el navega
 | Build de producción                     | `npm run build` y `npm run preview`                  |
 | Lighthouse como en CI                   | `npm run build && npm run lighthouse`                |
 | Regenerar tipos de la API               | `npm run api:tipos` (con el backend en perfil `dev`) |
-| Tipos del contrato del Sprint 2         | `npm run api:tipos:contrato`                         |
 
 Antes de abrir un pull request: `npm run formato && npm run lint && npm run tipos && npm test`.
 
@@ -78,7 +77,7 @@ Antes de abrir un pull request: `npm run formato && npm run lint && npm run tipo
 ## Pendiente de tu lado
 
 - Agregar componentes de shadcn/ui a medida que se necesiten: `npx shadcn@latest add dialog` (revisa que queden en `src/components/ui/` y con los tokens).
-- La primera vez que el backend esté arriba: `npm run api:tipos` y subir `src/services/api-tipos.ts`.
+- Cada vez que cambie la API del backend: `npm run api:tipos` y subir `src/services/api-tipos.ts`. Es el único archivo de tipos de la API (C-04).
 
 ## Identidad visual
 

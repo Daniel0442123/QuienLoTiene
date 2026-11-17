@@ -2,5 +2,4 @@ dist
 coverage
 node_modules
 src/services/api-tipos.ts
-src/services/api-tipos-sprint-2.ts
 package-lock.json

@@ -1,13 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { CLAVE_DIRECCIONES } from '@/hooks/useDirecciones'
-import type { ComponentesProvisionales } from '@/services/api-tipos-provisionales'
 import { clienteApi } from '@/services/clienteApi'
 import type { DatosDireccionFormulario, DatosPerfil } from './esquemas'
+import type { components } from '@/services/api-tipos'
+
+type Esquemas = components['schemas']
 
 /** Consultas y mutaciones de clientes (DECISIONES-FRONTEND sección 4). La lista de direcciones es useDirecciones. */
 
-export type Direccion = ComponentesProvisionales['DatosDireccion']
-export type Perfil = ComponentesProvisionales['PerfilUsuario']
+export type Direccion = Esquemas['DatosDireccion']
+export type Perfil = Esquemas['PerfilUsuario']
 
 export const MAXIMO_DIRECCIONES = 10
 const CLAVE_PERFIL = ['usuarios', 'me'] as const

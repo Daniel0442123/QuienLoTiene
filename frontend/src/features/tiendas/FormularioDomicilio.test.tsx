@@ -96,9 +96,18 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
     expect(await screen.findByText(/el radio va de 500 m a 10 km/)).toBeInTheDocument()
   })
 
-  it('al apagar el domicilio quita radio y valor y lo guarda así', async () => {
+  it('al apagar el domicilio quita radio y valor y lo guarda así, sin enviarlos en null (C-04 B8)', async () => {
     // Dado
     const usuario = userEvent.setup()
+    const cuerpos: unknown[] = []
+    servidorSimulado.events.on('request:start', ({ request }) => {
+      if (request.method === 'PUT' && request.url.endsWith('/tiendas/me/domicilio')) {
+        void request
+          .clone()
+          .json()
+          .then((cuerpo) => cuerpos.push(cuerpo))
+      }
+    })
     renderizarConProveedores(<FormularioDomicilio domicilio={conDomicilio} />)
 
     // Cuando
@@ -108,6 +117,8 @@ describe('HU-010 · Domicilio con tarifa fija', () => {
     // Entonces
     expect(screen.queryByRole('textbox', { name: 'Valor del domicilio (pesos)' })).not.toBeInTheDocument()
     await vi.waitFor(() => expect(domicilioGuardado()?.haceDomicilio).toBe(false))
+    expect(cuerpos).toEqual([{ haceDomicilio: false }])
+    servidorSimulado.events.removeAllListeners()
   })
 
   it('al activarlo pide el radio y el valor', async () => {
