@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.2 · 17/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.3 · 17/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -13,6 +13,20 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 ## Sin liberar
 
 Nada todavía.
+
+## v0.3.1 · 17/11/2026 · Corrección encontrada en producción
+
+Etiqueta sobre `main` después del #58.
+
+### Corregido
+- DEF-011: al recargar «Esperando respuestas», el cliente ya no pierde su solicitud ni las respuestas de las tiendas. La solicitud queda en la dirección de la página (`?solicitud=<id>`) y se vuelve a pedir a la API (HU-016, HU-020, #58).
+
+### Documentación
+- Evidencia de calidad de `v0.3.0`, bitácora con el despliegue y la primera limpieza de producción, y SC-016 implementada (#57).
+
+### Evidencia de calidad
+
+La agrega quien crea la etiqueta, desde la Release de GitHub que genera `version.yml` al terminar el despliegue (PROCEDIMIENTO-DOCUMENTAL.md, sección 6).
 
 ## v0.3.0 · 17/11/2026 · Sprint 2 y cierre del ciclo C1
 
@@ -154,3 +168,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión: notas de `v0.1.0` a `v0.2.0` reconstruidas desde Git, con la evidencia de calidad de cada versión tomada de GitHub Actions (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.0` (Sprint 2 y cierre del C1) antes de etiquetar |
 | 1.2 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.0` copiada de su Release |
+| 1.3 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.1` (DEF-011) antes de etiquetar |

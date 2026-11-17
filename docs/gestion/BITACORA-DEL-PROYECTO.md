@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.10 · 17/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.11 · 17/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -80,8 +80,10 @@ Fuente: API de GitHub del repositorio `Daniel0442123/QuienLoTiene`, consultada e
 | [#54](https://github.com/Daniel0442123/QuienLoTiene/pull/54) | docs(pruebas): Word y Excel de entrega del cierre del C1 con las capturas del Sprint 2 | Documentación · pruebas | — | SC-015 | Daniel Montenegro Almendra (@Daniel0442123) | 16/11/2026 23:19 | 16/11/2026 23:48 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | v0.3.0 | Fusionado | Sí |
 | [#55](https://github.com/Daniel0442123/QuienLoTiene/pull/55) | docs(pruebas): DEF-001 a DEF-010 cerrados con el visto bueno de Pedro (pendiente la revisión de QA) | Documentación · pruebas | — | — | Daniel Montenegro Almendra (@Daniel0442123) | 16/11/2026 23:57 | 16/11/2026 23:59 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | v0.3.0 | Fusionado | Sí |
 | [#56](https://github.com/Daniel0442123/QuienLoTiene/pull/56) | Preparar v0.3.0: notas de versión, bitácora y limpieza de datos de prueba en producción (SC-016) | — | — | SC-016 | Daniel Montenegro Almendra (@Daniel0442123) | 17/11/2026 00:00 | 17/11/2026 00:11 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | v0.3.0 | Fusionado | Sí |
+| [#57](https://github.com/Daniel0442123/QuienLoTiene/pull/57) | docs(gestion): evidencia de calidad de v0.3.0, bitácora y primera limpieza de producción (SC-016) | Documentación · gestion | — | SC-016 | Daniel Montenegro Almendra (@Daniel0442123) | 17/11/2026 14:28 | 17/11/2026 14:55 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | Sin liberar | Fusionado | Sí |
+| [#58](https://github.com/Daniel0442123/QuienLoTiene/pull/58) | fix(solicitudes): la solicitud publicada no se pierde al recargar «Esperando respuestas» (DEF-011) | Corrección · solicitudes | HU-016, HU-020 | — | Daniel Montenegro Almendra (@Daniel0442123) | 17/11/2026 17:04 | 17/11/2026 17:11 | Daniel Montenegro Almendra (@Daniel0442123) | No registrada | Sin liberar | Fusionado | Sí |
 
-_Tabla generada el 17/11/2026 14:40 (hora de Bogotá) con `scripts/gestion/bitacora.py`._
+_Tabla generada el 17/11/2026 17:15 (hora de Bogotá) con `scripts/gestion/bitacora.py`._
 <!-- fin-bitacora -->
 
 ### Hallazgos de la reconstrucción (13/11/2026)
@@ -121,6 +123,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 17/11/2026 | Etiqueta `v0.3.0` sobre `ed3da54` y despliegue del Sprint 2 al VPS: pruebas, imágenes, Trivy y verificación HTTPS en verde; Release con evidencia de calidad generada por `version.yml` | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44022656849](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44022656849), [Release v0.3.0](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.3.0) | #56 |
 | 17/11/2026 | Revisión de la base de producción en modo solo lectura: la cuenta ADMIN inicial existe y entra con TOTP; migraciones del Sprint 2 aplicadas (`202611161900` y `202611161910`) | Pedro (dueño del proyecto) | Consulta en el hilo del proyecto | — |
 | 17/11/2026 14:26 | Primera limpieza de producción, modo «total»: Pedro confirmó que las 4 cuentas que no son ADMIN eran de prueba. Respaldo restic previo correcto. Borrados: 4 usuarios, 1 tienda (2 documentos, 6 horarios, 3 medios de pago), 4 solicitudes vencidas, 4 autorizaciones de datos, 21 tokens de refresco y 4 eventos procesados; 0 órdenes, 0 respuestas; 2 documentos borrados del disco. Queda la cuenta ADMIN y las categorías. A las 14:51 se quitó `QLT_LIMPIEZA_TOTAL_PERMITIDA` del `.env` y el modo «total» quedó bloqueado otra vez | Pedro (dueño del proyecto) | `/opt/quienlotiene/limpieza.log` en el VPS | SC-016 |
+| 17/11/2026 17:00 | DEF-011 encontrado por Pedro probando en producción `v0.3.0` con cuentas `@prueba.quienlotiene.tech`: al recargar «Esperando respuestas» se perdían las respuestas; reproducido en local y corregido en el #58 | Pedro (dueño del proyecto) lo encontró; corrección preparada con Claude Code | `docs/pruebas/evidencias/C1/2026-11-17/def011/` | #58 |
 
 ## 4. Compromisos abiertos
 
@@ -163,3 +166,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.8 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Tabla de pull requests: filas #34 a #52 (Sprint 2 y cierre del C1) |
 | 1.9 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #53 a #55 antes de etiquetar v0.3.0 |
 | 1.10 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Columna «Versión» con `v0.3.0` (#32 a #56), fila #56 y fila #33 corregida (se fusionó el 16/11); hechos del despliegue de `v0.3.0`, la revisión de la base de producción y la primera limpieza (SC-016) |
+| 1.11 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #57 y #58 y hecho de DEF-011 antes de etiquetar `v0.3.1` |
