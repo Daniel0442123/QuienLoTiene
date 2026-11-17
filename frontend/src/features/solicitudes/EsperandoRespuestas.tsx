@@ -20,7 +20,8 @@ import { textosSolicitudes as textos } from './textos'
 export function EsperandoRespuestas({ solicitud, alHacerOtra }: { solicitud: Solicitud; alHacerOtra: () => void }) {
   const titulo = useRef<HTMLHeadingElement>(null)
   const ahora = useAhora()
-  const estado = useSolicitud(solicitud.id).data?.estado ?? solicitud.estado
+  const actual = useSolicitud(solicitud.id).data ?? solicitud
+  const estado = actual.estado
   // Pasada la hora ya no se puede responder, aunque la API todavía no haya marcado el vencimiento
   const vencida =
     estado === 'VENCIDA' || (estado === 'ABIERTA' && Date.parse(solicitud.fechaVencimiento) <= ahora.getTime())
@@ -76,6 +77,7 @@ export function EsperandoRespuestas({ solicitud, alHacerOtra }: { solicitud: Sol
           solicitudId={solicitud.id}
           modalidad={solicitud.modalidad}
           fechaVencimiento={solicitud.fechaVencimiento}
+          ordenId={actual.ordenId}
         />
       ) : null}
 

@@ -1,12 +1,13 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { CORREOS_DE_PRUEBA, FRASE_DE_PRUEBA } from '@/mocks/datos'
 import { servidorSimulado } from '@/mocks/servidor'
 import { violacionesDeAccesibilidad } from '@/pruebas/accesibilidad'
 import { renderizarConProveedores } from '@/pruebas/renderizar'
+import { crearSolicitud } from '@/pruebas/solicitudes'
 import { iniciarSesion, limpiarSesion } from '@/services/sesion'
 import { InicioSesionPagina } from './InicioSesionPagina'
 import { PublicarSolicitudPagina } from './PublicarSolicitudPagina'
@@ -76,6 +77,47 @@ describe('HU-016 · Esperando respuestas después de publicar', () => {
     // Entonces
     expect(await screen.findByText(/ninguna tienda abierta de esa categoría está cerca/)).toBeInTheDocument()
     expect(screen.getByText(/Prueba más tarde o cambia la ubicación/)).toBeInTheDocument()
+  })
+
+  it('al publicar, la solicitud queda en la URL para no perderla al recargar', async () => {
+    // Dado
+    let ubicacion = ''
+    function VerUbicacion() {
+      ubicacion = useLocation().search
+      return null
+    }
+    renderizarConProveedores(
+      <>
+        <PublicarSolicitudPagina />
+        <VerUbicacion />
+      </>,
+      { ruta: '/solicitudes/nueva' },
+    )
+
+    // Cuando
+    await publicar('Paracetamol 500 mg')
+
+    // Entonces
+    await screen.findByRole('heading', { level: 1, name: 'Esperando respuestas' })
+    expect(ubicacion).toMatch(/^\?solicitud=[\w-]+$/)
+  })
+
+  it('al recargar con la solicitud en la URL muestra la misma pantalla con las respuestas de las tiendas', async () => {
+    // Dado: la clienta publicó y dos tiendas ya respondieron, una con algo parecido
+    const solicitudId = crearSolicitud()
+
+    // Cuando: la página se abre de nuevo con la misma URL
+    const { container } = renderizarConProveedores(<PublicarSolicitudPagina />, {
+      ruta: `/solicitudes/nueva?solicitud=${solicitudId}`,
+    })
+
+    // Entonces
+    expect(await screen.findByRole('heading', { level: 1, name: 'Esperando respuestas' })).toBeInTheDocument()
+    expect(screen.getByText('Le preguntamos a 3 tiendas cercanas si tienen «Acetaminofén 500 mg».')).toBeInTheDocument()
+    expect(await screen.findByText('2 respuestas')).toBeInTheDocument()
+    expect(screen.getByText('Tengo algo parecido')).toBeInTheDocument()
+    expect(screen.queryByRole('textbox', { name: '¿Qué estás buscando?' })).not.toBeInTheDocument()
+    expect(await violacionesDeAccesibilidad(container)).toEqual([])
   })
 
   it('«Hacer otra pregunta» vuelve al formulario vacío', async () => {
