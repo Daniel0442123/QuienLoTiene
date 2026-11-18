@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.3 · 17/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.4 · 18/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -26,7 +26,16 @@ Etiqueta sobre `main` después del #58.
 
 ### Evidencia de calidad
 
-La agrega quien crea la etiqueta, desde la Release de GitHub que genera `version.yml` al terminar el despliegue (PROCEDIMIENTO-DOCUMENTAL.md, sección 6).
+Tomada de la [Release v0.3.1](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.3.1), que generó `version.yml` el 17/11/2026 17:29 sobre el commit `3ee6b2f`.
+
+| Verificación | Corrida | Resultado |
+|---|---|---|
+| CI backend: OWASP Dependency-Check, análisis de seguridad, compilar, pruebas y cobertura | [44188169927](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44188169927) · 17/11/2026 17:16 | ✅ Correcto |
+| CI frontend (último cambio del frontend incluido, `e0d5d96`) | [44187560958](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44187560958) | ✅ Correcto |
+| Despliegue: pruebas, imágenes con Trivy, GHCR, VPS y verificación HTTPS | [44188894630](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44188894630) · 17/11/2026 17:29 | ✅ Correcto |
+| Prueba de punta a punta en producción, con la re-prueba de DEF-011 | [`evidencias/C1/2026-11-18/produccion/`](../pruebas/evidencias/C1/2026-11-18/produccion/README.md) · 18/11/2026 13:49 | ✅ 8 de 8 pasos |
+
+Pruebas del backend: 333 (278 unitarias y 55 de integración), 0 fallas; cobertura de líneas 95,2 % en `domain` y `application`. Frontend: 248 pruebas en verde (#58).
 
 ## v0.3.0 · 17/11/2026 · Sprint 2 y cierre del ciclo C1
 
@@ -169,3 +178,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.0` (Sprint 2 y cierre del C1) antes de etiquetar |
 | 1.2 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.0` copiada de su Release |
 | 1.3 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.1` (DEF-011) antes de etiquetar |
+| 1.4 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.1` copiada de su Release y prueba en producción |
