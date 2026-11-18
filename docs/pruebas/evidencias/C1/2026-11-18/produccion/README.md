@@ -25,8 +25,8 @@
 
 ## Observaciones (no son defectos de esta versión)
 
-- El panel de la tienda no muestra su categoría ni su ubicación; para saberlas hubo que consultar la base. Propuesta de mejora para el backlog.
-- Si el cliente cierra la app sin elegir, no tiene una pantalla con sus preguntas abiertas (HU-008, Sprint 3).
+- El panel de la tienda no muestra su categoría ni su ubicación; para saberlas hubo que consultar la base. Se corrige con SC-017.
+- Si el cliente cierra la app sin elegir, no tiene una pantalla con sus preguntas abiertas. Queda propuesto para HU-008 en el Sprint 3 (SC-018).
 - Las pestañas del mismo navegador comparten la sesión (cookie de refresco), así que el cliente y la tienda se turnaron en la misma pestaña. Es el comportamiento esperado.
 
 ## Historial del documento

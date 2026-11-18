@@ -1,7 +1,8 @@
-import { BadgeCheck, ChevronRight, CircleAlert, Clock, Inbox, Package, Truck, Wallet } from 'lucide-react'
+import { BadgeCheck, ChevronRight, CircleAlert, Clock, ExternalLink, Inbox, Package, Truck, Wallet } from 'lucide-react'
 import { Link } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { useMiTienda, type MiTienda } from '@/features/tiendas/api'
+import { useCategorias } from '@/hooks/useCategorias'
 import { InterruptorAperturaTienda } from '@/features/tiendas/InterruptorAperturaTienda'
 import { textosOrdenes } from '@/features/ordenes/textos'
 import { textosSolicitudes } from '@/features/solicitudes/textos'
@@ -35,6 +36,29 @@ const SECCIONES = [
   },
 ]
 
+/** Categoría y ubicación con las que quedó registrada: la tienda debe poder verlas sin preguntarle al equipo. */
+function CategoriaYUbicacion({ tienda }: { tienda: MiTienda }) {
+  const categorias = useCategorias()
+  const categoria = categorias.data?.find((c) => c.id === tienda.categoriaId)
+  const { latitud, longitud } = tienda
+  return (
+    <div className="flex flex-col gap-1">
+      {categoria ? <p className="font-medium">{textos.categoriaTienda(categoria.nombre)}</p> : null}
+      <a
+        href={`https://www.openstreetmap.org/?mlat=${latitud}&mlon=${longitud}#map=18/${latitud}/${longitud}`}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex min-h-tactil items-center gap-1 self-start text-primario underline underline-offset-4 hover:no-underline"
+      >
+        {textos.verUbicacionEnMapa}
+        <ExternalLink aria-hidden="true" className="size-4" />
+        <span className="sr-only">{textos.abreEnOtraPestana}</span>
+      </a>
+      <p className="text-sm text-texto-suave">{textos.pistaUbicacionPanel}</p>
+    </div>
+  )
+}
+
 function EstadoDeLaTienda({ tienda }: { tienda: MiTienda }) {
   const aprobada = tienda.estado === 'APROBADA'
   const Icono = aprobada ? BadgeCheck : CircleAlert
@@ -60,7 +84,7 @@ function EstadoDeLaTienda({ tienda }: { tienda: MiTienda }) {
 }
 
 /**
- * /tienda · Panel de la tienda: estado, abrir o cerrar (HU-013), solicitudes nuevas (HU-018) y acceso a la
+ * /tienda · Panel de la tienda: estado, categoría y ubicación, abrir o cerrar (HU-013), solicitudes nuevas (HU-018) y acceso a la
  * configuración (HU-009 a HU-012).
  */
 export function PanelTiendaPagina() {
@@ -77,6 +101,7 @@ export function PanelTiendaPagina() {
       ) : (
         <>
           <EstadoDeLaTienda tienda={miTienda.data} />
+          <CategoriaYUbicacion tienda={miTienda.data} />
           <InterruptorAperturaTienda tienda={miTienda.data} />
           <nav aria-label={textos.navegacionPanel}>
             <ul className="flex flex-col gap-2">

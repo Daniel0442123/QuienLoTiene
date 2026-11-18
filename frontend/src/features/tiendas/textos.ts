@@ -26,6 +26,10 @@ export const textosTiendas = {
     SUSPENDIDA: 'Tu tienda está suspendida y no recibe solicitudes. Escríbenos desde la sección de ayuda.',
   },
   motivoRechazo: (motivo: string) => `Motivo: ${motivo}`,
+  categoriaTienda: (categoria: string) => `Categoría: ${categoria}`,
+  verUbicacionEnMapa: 'Ver dónde quedó tu tienda en el mapa',
+  abreEnOtraPestana: '(se abre en otra pestaña)',
+  pistaUbicacionPanel: 'Te llegan las preguntas de los clientes que buscan cerca de este punto.',
 
   // Abrir o cerrar (HU-013)
   etiquetaApertura: 'Recibir solicitudes',

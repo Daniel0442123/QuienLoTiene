@@ -43,6 +43,18 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
     expect(secciones).toHaveTextContent('Medios de pago')
   })
 
+  it('muestra la categoría de la tienda y un enlace a su ubicación en el mapa', async () => {
+    // Cuando
+    renderizarConProveedores(<PanelTiendaPagina />)
+
+    // Entonces: la tienda ve con qué quedó registrada sin tener que preguntarle al equipo
+    expect(await screen.findByText('Categoría: Farmacia')).toBeInTheDocument()
+    const tienda = tiendaDe(CORREOS_DE_PRUEBA.tienda)!
+    const enlace = screen.getByRole('link', { name: /Ver dónde quedó tu tienda en el mapa/ })
+    expect(enlace).toHaveAttribute('href', expect.stringContaining(`mlat=${tienda.latitud}&mlon=${tienda.longitud}`))
+    expect(enlace).toHaveAttribute('target', '_blank')
+  })
+
   it('CP-TIE-013-01 · con un toque cierra la tienda, lo dice en texto y lo anuncia', async () => {
     // Dado
     const usuario = userEvent.setup({ delay: null })
