@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.11 · 17/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.12 · 18/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -124,6 +124,8 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 17/11/2026 | Revisión de la base de producción en modo solo lectura: la cuenta ADMIN inicial existe y entra con TOTP; migraciones del Sprint 2 aplicadas (`202611161900` y `202611161910`) | Pedro (dueño del proyecto) | Consulta en el hilo del proyecto | — |
 | 17/11/2026 14:26 | Primera limpieza de producción, modo «total»: Pedro confirmó que las 4 cuentas que no son ADMIN eran de prueba. Respaldo restic previo correcto. Borrados: 4 usuarios, 1 tienda (2 documentos, 6 horarios, 3 medios de pago), 4 solicitudes vencidas, 4 autorizaciones de datos, 21 tokens de refresco y 4 eventos procesados; 0 órdenes, 0 respuestas; 2 documentos borrados del disco. Queda la cuenta ADMIN y las categorías. A las 14:51 se quitó `QLT_LIMPIEZA_TOTAL_PERMITIDA` del `.env` y el modo «total» quedó bloqueado otra vez | Pedro (dueño del proyecto) | `/opt/quienlotiene/limpieza.log` en el VPS | SC-016 |
 | 17/11/2026 17:00 | DEF-011 encontrado por Pedro probando en producción `v0.3.0` con cuentas `@prueba.quienlotiene.tech`: al recargar «Esperando respuestas» se perdían las respuestas; reproducido en local y corregido en el #58 | Pedro (dueño del proyecto) lo encontró; corrección preparada con Claude Code | `docs/pruebas/evidencias/C1/2026-11-17/def011/` | #58 |
+| 17/11/2026 17:29 | Etiqueta `v0.3.1` y despliegue de la corrección de DEF-011: CI y despliegue en verde; Release con evidencia de calidad | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44188894630](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44188894630), [Release v0.3.1](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.3.1) | #58, #59 |
+| 18/11/2026 13:49 | Prueba de punta a punta en producción sobre `v0.3.1` con cuentas de prueba: 8 de 8 pasos pasan, incluida la re-prueba de DEF-011 (queda «En verificación»). Dos mejoras anotadas: categoría y ubicación en el panel de la tienda, y lista de preguntas abiertas del cliente (HU-008) | Pedro (dueño del proyecto) con Claude Code en su Chrome | `docs/pruebas/evidencias/C1/2026-11-18/produccion/` | — |
 
 ## 4. Compromisos abiertos
 
@@ -167,3 +169,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.9 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #53 a #55 antes de etiquetar v0.3.0 |
 | 1.10 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Columna «Versión» con `v0.3.0` (#32 a #56), fila #56 y fila #33 corregida (se fusionó el 16/11); hechos del despliegue de `v0.3.0`, la revisión de la base de producción y la primera limpieza (SC-016) |
 | 1.11 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #57 y #58 y hecho de DEF-011 antes de etiquetar `v0.3.1` |
+| 1.12 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hechos del despliegue de `v0.3.1` y de la prueba en producción del 18/11 |
