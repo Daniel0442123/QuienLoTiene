@@ -76,7 +76,8 @@ public class ResponderSolicitud {
                 comando.tiempoEstimadoEnMinutos(),
                 null,
                 ahora);
-        if (respuesta.getTipo().ofreceProducto()) {
+        // HU-023: a un producto restringido no se le cotiza domicilio (CP-SOL-023-02)
+        if (respuesta.getTipo().ofreceProducto() && !solicitud.esRestringida()) {
             var costoDomicilio = datosTiendasApi
                     .cotizarDomicilio(
                             tienda.tiendaId(),

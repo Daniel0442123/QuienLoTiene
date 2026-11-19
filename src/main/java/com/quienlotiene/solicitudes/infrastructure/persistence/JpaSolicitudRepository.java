@@ -41,6 +41,7 @@ class JpaSolicitudRepository implements SolicitudRepository {
                 solicitud.getUbicacion().latitud(),
                 solicitud.getUbicacion().longitud(),
                 solicitud.getRadioEnMetros(),
+                solicitud.esRestringida(),
                 solicitud.getEstado().name(),
                 solicitud.getFechaVencimiento(),
                 solicitud.getFechaPublicacion()));
@@ -87,6 +88,7 @@ class JpaSolicitudRepository implements SolicitudRepository {
                 fila.isUrgente(),
                 new Ubicacion(fila.latitud(), fila.longitud()),
                 fila.getRadioMetros(),
+                fila.isRestringida(),
                 EstadoSolicitud.valueOf(fila.getEstado()),
                 fila.getCreadoEn(),
                 fila.getVenceEn());

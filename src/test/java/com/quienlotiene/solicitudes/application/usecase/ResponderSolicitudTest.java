@@ -116,6 +116,34 @@ class ResponderSolicitudTest {
     }
 
     @Test
+    @Tag("HU-023")
+    @Tag("CP-SOL-023-02")
+    @DisplayName("CP-SOL-023-02 A una solicitud restringida la tienda responde sin domicilio cotizado")
+    void restringidaSinDomicilio() {
+        // Dado
+        solicitud = Solicitud.reconstituir(
+                solicitud.getId(),
+                solicitud.getClienteId(),
+                solicitud.getCategoriaId(),
+                "Amoxicilina 500 mg",
+                2,
+                solicitud.getModalidad(),
+                false,
+                solicitud.getUbicacion(),
+                3_000,
+                true,
+                solicitud.getEstado(),
+                solicitud.getFechaPublicacion(),
+                solicitud.getFechaVencimiento());
+        llegoALaTienda();
+        // Cuando
+        var resultado = responderSolicitud.ejecutar(comando("SI", 8_000L, 2));
+        // Entonces
+        assertThat(resultado.ofreceDomicilio()).isFalse();
+        verify(datosTiendasApi, never()).cotizarDomicilio(any(), anyDouble(), anyDouble(), anyLong());
+    }
+
+    @Test
     @Tag("CP-SOL-019-03")
     @DisplayName("CP-SOL-019-03 No lo tengo se guarda sin cotizar domicilio")
     void respondeNo() {

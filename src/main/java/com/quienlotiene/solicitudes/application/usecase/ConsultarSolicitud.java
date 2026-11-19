@@ -57,6 +57,7 @@ public class ConsultarSolicitud {
                 solicitud.getFechaVencimiento(),
                 envioRepository.listarDe(solicitudId).size(),
                 respuestas.size(),
-                ordenId);
+                ordenId,
+                solicitud.esRestringida());
     }
 }

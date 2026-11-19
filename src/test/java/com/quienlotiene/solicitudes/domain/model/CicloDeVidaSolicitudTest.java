@@ -72,6 +72,7 @@ class CicloDeVidaSolicitudTest {
                 true,
                 POPAYAN,
                 5_000,
+                false,
                 EstadoSolicitud.RESUELTA,
                 AHORA,
                 AHORA.plus(Duration.ofMinutes(30)));

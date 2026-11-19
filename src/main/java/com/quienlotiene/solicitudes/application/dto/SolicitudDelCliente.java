@@ -25,7 +25,8 @@ public record SolicitudDelCliente(
         Instant fechaVencimiento,
         int tiendasNotificadas,
         int respuestasRecibidas,
-        @Nullable UUID ordenId) {
+        @Nullable UUID ordenId,
+        boolean esRestringida) {
 
     @Override
     public String toString() {

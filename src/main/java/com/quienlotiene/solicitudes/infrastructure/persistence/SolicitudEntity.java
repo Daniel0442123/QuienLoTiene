@@ -86,6 +86,7 @@ public class SolicitudEntity {
             double latitud,
             double longitud,
             int radioMetros,
+            boolean restringida,
             String estado,
             Instant venceEn,
             Instant creadoEn) {
@@ -100,7 +101,7 @@ public class SolicitudEntity {
         this.ubicacion = FABRICA_GEOMETRIAS.createPoint(new Coordinate(longitud, latitud));
         this.radioMetros = radioMetros;
         this.fueAmpliado = false;
-        this.restringida = false;
+        this.restringida = restringida;
         this.estado = estado;
         this.venceEn = venceEn;
         this.creadoEn = creadoEn;

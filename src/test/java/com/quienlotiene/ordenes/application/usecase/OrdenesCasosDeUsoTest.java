@@ -26,6 +26,7 @@ import com.quienlotiene.ordenes.domain.model.Orden;
 import com.quienlotiene.ordenes.domain.model.OrdenIncompletaException;
 import com.quienlotiene.ordenes.domain.model.OrdenNoEncontradaException;
 import com.quienlotiene.ordenes.domain.model.OrdenesDePrueba;
+import com.quienlotiene.ordenes.domain.model.ProductoRestringidoSinDomicilioException;
 import com.quienlotiene.ordenes.domain.model.TransicionOrdenInvalidaException;
 import com.quienlotiene.ordenes.domain.port.OrdenRepository;
 import com.quienlotiene.solicitudes.api.RespuestaElegida;
@@ -159,6 +160,23 @@ class OrdenesCasosDeUsoTest {
             assertThat(vista.totalEnPesos()).isEqualTo(16_000);
             assertThat(vista.medioPago()).isEqualTo("TRANSFERENCIA");
             verifyNoInteractions(direccionesApi);
+        }
+
+        @Test
+        @Tag("HU-023")
+        @Tag("CP-SOL-023-02")
+        @DisplayName("CP-SOL-023-02 Un producto restringido no se puede pedir a domicilio (ORD-006)")
+        void restringidoSinDomicilio() {
+            when(solicitudesApi.elegirRespuesta(eq(CLIENTE), eq(respuestaId), any()))
+                    .thenReturn(new RespuestaElegida(
+                            UUID.randomUUID(), respuestaId, tiendaId, DUENO, "Amoxicilina", 1, 9_000, null, true));
+
+            assertThatThrownBy(() -> crearOrden()
+                            .ejecutar(new CrearOrdenComando(
+                                    CLIENTE, respuestaId, "DOMICILIO", UUID.randomUUID(), "EFECTIVO")))
+                    .isInstanceOf(ProductoRestringidoSinDomicilioException.class)
+                    .hasFieldOrPropertyWithValue("codigo", "ORD-006");
+            verify(ordenRepository, never()).guardarNueva(any());
         }
 
         @Test
