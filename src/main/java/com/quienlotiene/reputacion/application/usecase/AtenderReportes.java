@@ -30,10 +30,13 @@ class AtenderReportes implements ReportesApi {
     @Override
     @Transactional(readOnly = true)
     public List<ReporteParaAdministrador> listarPorEstado(String estado) {
+        if (estado == null) {
+            throw new CalificacionInvalidaException("el estado debe ser ABIERTO o RESUELTO");
+        }
         EstadoReporte pedido;
         try {
             pedido = EstadoReporte.valueOf(estado.toUpperCase(Locale.ROOT));
-        } catch (IllegalArgumentException | NullPointerException estadoDesconocido) {
+        } catch (IllegalArgumentException estadoDesconocido) {
             throw new CalificacionInvalidaException("el estado debe ser ABIERTO o RESUELTO");
         }
         var reportes = reporteRepository.listarPorEstado(pedido);

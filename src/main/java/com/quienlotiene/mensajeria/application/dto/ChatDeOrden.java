@@ -8,4 +8,9 @@ import java.util.UUID;
  *
  * @param soloLectura {@code true} cuando la orden ya terminó: se puede leer pero no escribir (MEN-002)
  */
-public record ChatDeOrden(UUID ordenId, boolean soloLectura, List<MensajeVista> mensajes) {}
+public record ChatDeOrden(UUID ordenId, boolean soloLectura, List<MensajeVista> mensajes) {
+
+    public ChatDeOrden {
+        mensajes = List.copyOf(mensajes);
+    }
+}
