@@ -14,7 +14,8 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `GET /api/v1/ordenes/{id}` | CLIENTE, TIENDA | HU-025, HU-029 | Igual que en el Sprint 2, con tres campos nuevos: `reservaVence`, `motivoCancelacion` y `canceladaPor` (`CLIENTE` o `TIENDA`), los tres nulables |
 | `POST /api/v1/ordenes/{id}/resena` | CLIENTE | HU-034 | Calificar con `{ "estrellas": 1..5, "comentario": "..." }` (comentario opcional, hasta 500). Solo orden RESUELTA del cliente y una vez |
 | `GET /api/v1/ordenes/{id}/resena` | CLIENTE, TIENDA | HU-034 | La reseña de esa orden, o `404 REP-003` si todavía no tiene |
-| `GET /api/v1/tiendas/{id}` | todos | HU-014 | Detalle público de una tienda APROBADA: nombre, categoría, teléfono, ubicación, abierta, horario, domicilio, medios de pago, promedio, total de reseñas y las 10 más recientes. Sin RUT ni documentos |
+| `GET /api/v1/tiendas/{id}` | todos | HU-014 | Detalle público de una tienda APROBADA: nombre, categoría, teléfono, ubicación, abierta, horario, domicilio y medios de pago. Sin RUT ni documentos |
+| `GET /api/v1/tiendas/{id}/resenas` | todos | HU-014, HU-034 | Promedio (0 sin reseñas), total y las 10 reseñas más recientes, sin el nombre del cliente |
 | `GET /api/v1/categorias` | todos | HU-038 | Igual que antes, pero solo las categorías activas |
 | `GET /api/v1/catalogo/restriccion?producto=` | CLIENTE | HU-023 | `{ "restringido": true, "aviso": "Este medicamento necesita fórmula médica" }` para avisar antes de publicar |
 | `POST /api/v1/solicitudes` | CLIENTE | HU-023 | Igual que antes; la respuesta trae `restringida` |
@@ -47,7 +48,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `REP-001` | 422 | Calificar una orden que no está RESUELTA o que no es tuya (CP-REP-034-02) |
 | `REP-002` | 409 | Calificar dos veces la misma orden (CP-REP-034-03) |
 | `REP-003` | 404 | La orden todavía no tiene reseña, o el reporte no existe |
-| `REP-004` | 400 | Reporte con motivo OTRO sin descripción |
+| `REP-004` | 400 | Reseña o reporte con datos que no cumplen las reglas: estrellas fuera de 1 a 5, comentario largo o motivo OTRO sin descripción |
 | `REP-005` | 409 | Resolver un reporte que ya está resuelto |
 | `CAT-001` | 404 | Categoría o palabra restringida no encontrada |
 | `CAT-002` | 409 | La palabra restringida ya está en la lista |
@@ -59,7 +60,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 1. **Quién cancela y cuándo** (diagrama 05 y 15): el cliente cancela mientras la orden no salió de la tienda (CONFIRMADO, PREPARANDO y también LISTO_PARA_RECOGER, porque una recogida no ha salido); la tienda solo en CONFIRMADO, antes de empezar a prepararla. En EN_CAMINO o ENTREGADO responde `ORD-005`; en un estado final (RESUELTA, CANCELADO, VENCIDA) responde `ORD-002`. El motivo es texto libre y llega a la otra parte en el aviso.
 2. **La reserva cuenta desde «Listo para recoger»** (HU-025): la nota del diagrama 34 dice que la tienda fija de 30 a 60 minutos en su respuesta y se copian al crear la orden. Eso cambiaría HU-019 (ya cerrada) y haría vencer la reserva mientras la tienda todavía prepara. Se propone: 30 minutos fijos (`quienlotiene.ordenes.minutos-reserva`) desde que la tienda marca LISTO_PARA_RECOGER, que es cuando el cliente puede ir. Una tarea cada minuto pasa a VENCIDA las que pasaron su `reservaVence` y avisa a los dos. Si el comité quiere los 30 a 60 minutos por respuesta, se agrega después sin romper el contrato.
 3. **Reseña por orden, no por tienda** (diagrama 09: `orden_id UNIQUE`): solo el cliente de una orden RESUELTA, una vez. El promedio se calcula al consultar la tienda (con un índice por `tienda_id`), sin columna guardada.
-4. **Detalle de la tienda:** cualquier usuario con sesión puede ver una tienda APROBADA; una PENDIENTE, RECHAZADA o SUSPENDIDA responde `404 TIE-006`. Las reseñas muestran estrellas, comentario y fecha, sin el nombre del cliente.
+4. **Detalle de la tienda en dos rutas:** cualquier usuario con sesión puede ver una tienda APROBADA; una PENDIENTE, RECHAZADA o SUSPENDIDA responde `404 TIE-006`. Las reseñas van en `/resenas`, que sirve el módulo `reputacion`: si `tiendas` pidiera las reseñas a `reputacion` habría un ciclo entre módulos (`reputacion` → `ordenes` → `tiendas` → `reputacion`) y Modulith no lo deja pasar (RNF-021). La pantalla hace las dos consultas en paralelo. Las reseñas muestran estrellas, comentario y fecha, sin el nombre del cliente.
 5. **Restringidos:** la lista es de palabras clave. Un producto es restringido si contiene alguna, sin importar mayúsculas ni tildes («Amoxicilina 500 mg» contiene «amoxicilina»). La marca se guarda en la solicitud al publicarla, así que cambiar la lista no cambia solicitudes viejas. Con la marca, las tiendas no ofrecen domicilio (`ofreceDomicilio = false`) y crear la orden con DOMICILIO responde `ORD-006`.
 6. **Categorías:** una categoría inactiva desaparece de `GET /api/v1/categorias` (HU-016 y HU-002); las tiendas que ya la tienen la conservan.
 7. **Suspender:** suspende la tienda y la cuenta de su dueño, y cierra sus sesiones (los tokens de refresco se revocan). Pide confirmación en la interfaz (SC-011 punto 8). Reportar no suspende solo: lo decide el administrador.

@@ -66,7 +66,7 @@ public class ConfigurarDomicilio {
         return ConfiguracionDomicilio.conDomicilio(radio, new TarifaDomicilio.TarifaFija(tarifa));
     }
 
-    private static Domicilio aDomicilio(ConfiguracionDomicilio configuracion) {
+    static Domicilio aDomicilio(ConfiguracionDomicilio configuracion) {
         if (!configuracion.haceDomicilio()) {
             return new Domicilio(false, null, null, null);
         }

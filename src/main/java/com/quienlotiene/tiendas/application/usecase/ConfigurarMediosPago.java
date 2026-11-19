@@ -58,7 +58,7 @@ public class ConfigurarMediosPago {
         }
     }
 
-    private static List<String> nombres(MediosPagoAceptados aceptados) {
+    static List<String> nombres(MediosPagoAceptados aceptados) {
         return aceptados.medios().stream().map(MedioPago::name).toList();
     }
 }
