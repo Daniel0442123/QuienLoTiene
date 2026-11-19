@@ -24,4 +24,7 @@ public interface UsuarioRepository {
 
     /** Guarda el nombre y el teléfono del perfil (HU-007). */
     void guardarPerfil(Usuario usuario);
+
+    /** HU-037: guarda si la cuenta está ACTIVA o SUSPENDIDA. */
+    void guardarEstado(Usuario usuario);
 }

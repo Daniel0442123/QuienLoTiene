@@ -14,7 +14,7 @@ public final class Usuario {
     private String telefono;
     private final String hashContrasena;
     private final Rol rol;
-    private final EstadoCuenta estado;
+    private EstadoCuenta estado;
     /** Secreto TOTP del administrador, cifrado; {@code null} para clientes y tiendas. */
     private final String secretoTotpCifrado;
 
@@ -119,6 +119,16 @@ public final class Usuario {
         var telefonoValidado = exigirTexto(nuevoTelefono, "telefono");
         this.nombre = nombreValidado.strip();
         this.telefono = telefonoValidado.strip();
+    }
+
+    /** HU-037: la cuenta suspendida no puede iniciar sesión (IDE-009). */
+    public void suspender() {
+        this.estado = EstadoCuenta.SUSPENDIDA;
+    }
+
+    /** HU-037: deshace la suspensión. */
+    public void reactivar() {
+        this.estado = EstadoCuenta.ACTIVA;
     }
 
     public boolean estaActiva() {

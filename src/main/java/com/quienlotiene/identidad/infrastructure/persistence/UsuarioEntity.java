@@ -51,6 +51,11 @@ public class UsuarioEntity {
     private Instant actualizadoEn;
 
     /** Copia en la fila el perfil editado por el usuario (HU-007). */
+    void cambiarEstado(String nuevoEstado, Instant fecha) {
+        this.estado = nuevoEstado;
+        this.actualizadoEn = fecha;
+    }
+
     void actualizarPerfil(String nuevoNombre, String nuevoTelefono, Instant fecha) {
         this.nombre = nuevoNombre;
         this.telefono = nuevoTelefono;

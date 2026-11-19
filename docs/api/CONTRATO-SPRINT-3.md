@@ -53,7 +53,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `CAT-001` | 404 | Categoría o palabra restringida no encontrada |
 | `CAT-002` | 409 | La palabra restringida ya está en la lista |
 | `MEN-002` | 409 | Escribir en el chat de una orden que ya no está activa (CP-MEN-033-02) |
-| `TIE-012` | 409 | Suspender una tienda que no está APROBADA, o reactivar una que no está SUSPENDIDA |
+| `CAT-003` | 400 | Palabra restringida de menos de 2 o más de 80 caracteres |
 
 ## Decisiones tomadas en este contrato
 
@@ -63,7 +63,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 4. **Detalle de la tienda en dos rutas:** cualquier usuario con sesión puede ver una tienda APROBADA; una PENDIENTE, RECHAZADA o SUSPENDIDA responde `404 TIE-006`. Las reseñas van en `/resenas`, que sirve el módulo `reputacion`: si `tiendas` pidiera las reseñas a `reputacion` habría un ciclo entre módulos (`reputacion` → `ordenes` → `tiendas` → `reputacion`) y Modulith no lo deja pasar (RNF-021). La pantalla hace las dos consultas en paralelo. Las reseñas muestran estrellas, comentario y fecha, sin el nombre del cliente.
 5. **Restringidos:** la lista es de palabras clave. Un producto es restringido si contiene alguna, sin importar mayúsculas ni tildes («Amoxicilina 500 mg» contiene «amoxicilina»). La marca se guarda en la solicitud al publicarla, así que cambiar la lista no cambia solicitudes viejas. Con la marca, las tiendas no ofrecen domicilio (`ofreceDomicilio = false`) y crear la orden con DOMICILIO responde `ORD-006`.
 6. **Categorías:** una categoría inactiva desaparece de `GET /api/v1/categorias` (HU-016 y HU-002); las tiendas que ya la tienen la conservan.
-7. **Suspender:** suspende la tienda y la cuenta de su dueño, y cierra sus sesiones (los tokens de refresco se revocan). Pide confirmación en la interfaz (SC-011 punto 8). Reportar no suspende solo: lo decide el administrador.
+7. **Suspender:** suspender una tienda que no está APROBADA, o reactivar una que no está SUSPENDIDA, responde el `TIE-004` que ya existe (transición inválida). Suspende la tienda y la cuenta de su dueño, y cierra sus sesiones (los tokens de refresco se revocan). Pide confirmación en la interfaz (SC-011 punto 8). Reportar no suspende solo: lo decide el administrador.
 8. **Chat:** solo los dos participantes; se guarda en `mensajeria.mensaje`. Con la orden en un estado final queda en solo lectura: se puede leer pero no escribir (`MEN-002`).
 
 ## Historial del documento
