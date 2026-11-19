@@ -7,9 +7,11 @@ import com.quienlotiene.ordenes.domain.model.EstadoOrden;
 import com.quienlotiene.ordenes.domain.model.MedioPagoOrden;
 import com.quienlotiene.ordenes.domain.model.ModalidadEntrega;
 import com.quienlotiene.ordenes.domain.model.Orden;
+import com.quienlotiene.ordenes.domain.model.ParteOrden;
 import com.quienlotiene.ordenes.domain.port.OrdenRepository;
 import jakarta.persistence.EntityManager;
 import java.time.Clock;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -72,7 +74,12 @@ class JpaOrdenRepository implements OrdenRepository {
     @Override
     public void guardarCambioEstado(Orden orden) {
         var fila = ordenJpaRepository.findById(orden.getId()).orElseThrow();
-        fila.cambiarEstado(orden.getEstado().name(), reloj.instant());
+        fila.cambiarEstado(
+                orden.getEstado().name(),
+                orden.getReservaVence(),
+                orden.getMotivoCancelacion(),
+                orden.getCanceladaPor() == null ? null : orden.getCanceladaPor().name(),
+                reloj.instant());
         guardarHistorialNuevo(orden, historialJpaRepository.countByOrdenId(orden.getId()));
     }
 
@@ -97,6 +104,13 @@ class JpaOrdenRepository implements OrdenRepository {
                         .collect(Collectors.groupingBy(HistorialEstadoEntity::getOrdenId));
         return filas.stream()
                 .map(fila -> aDominio(fila, historialPorOrden.getOrDefault(fila.getId(), List.of())))
+                .toList();
+    }
+
+    @Override
+    public List<Orden> tomarReservasVencidas(Instant ahora, int maximo) {
+        return ordenJpaRepository.tomarReservasVencidas(ahora, maximo).stream()
+                .map(fila -> aDominio(fila, historialJpaRepository.findByOrdenIdOrderByCambiadoEnAsc(fila.getId())))
                 .toList();
     }
 
@@ -136,6 +150,10 @@ class JpaOrdenRepository implements OrdenRepository {
                 historial.stream()
                         .map(cambio ->
                                 new CambioEstado(EstadoOrden.valueOf(cambio.getEstado()), cambio.getCambiadoEn()))
-                        .toList());
+                        .toList(),
+                new Orden.Seguimiento(
+                        fila.getReservaVence(),
+                        fila.getMotivoCancelacion(),
+                        fila.getCanceladaPor() == null ? null : ParteOrden.valueOf(fila.getCanceladaPor())));
     }
 }

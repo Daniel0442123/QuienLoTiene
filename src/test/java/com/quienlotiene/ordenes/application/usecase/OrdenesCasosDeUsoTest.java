@@ -202,7 +202,7 @@ class OrdenesCasosDeUsoTest {
         void cambiaEstado() {
             var orden = guardada(ModalidadEntrega.DOMICILIO);
 
-            var vista = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ)
+            var vista = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ, 30)
                     .ejecutar(DUENO, orden.getId(), "PREPARANDO");
 
             assertThat(vista.estado()).isEqualTo("PREPARANDO");
@@ -222,7 +222,7 @@ class OrdenesCasosDeUsoTest {
         @DisplayName("CP-ORD-027-02 Un estado inválido o desconocido se rechaza; otra tienda recibe 404")
         void rechazaCambio() {
             var orden = guardada(ModalidadEntrega.DOMICILIO);
-            var cambiar = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ);
+            var cambiar = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ, 30);
 
             assertThatThrownBy(() -> cambiar.ejecutar(DUENO, orden.getId(), "ENTREGADO"))
                     .isInstanceOf(TransicionOrdenInvalidaException.class);

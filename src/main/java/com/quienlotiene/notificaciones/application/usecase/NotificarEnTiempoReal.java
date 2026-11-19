@@ -108,7 +108,7 @@ public class NotificarEnTiempoReal {
 
     @ApplicationModuleListener
     public void alCambiarEstadoOrden(EstadoOrdenCambiadoEvent evento) {
-        var datos = new EventosTiempoReal.EstadoOrdenCambiado(evento.ordenId(), evento.estado());
+        var datos = new EventosTiempoReal.EstadoOrdenCambiado(evento.ordenId(), evento.estado(), evento.motivo());
         avisar(evento.clienteId(), EventosTiempoReal.EstadoOrdenCambiado.TIPO, datos);
         avisar(evento.duenoTiendaId(), EventosTiempoReal.EstadoOrdenCambiado.TIPO, datos);
     }

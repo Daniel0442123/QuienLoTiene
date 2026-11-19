@@ -180,9 +180,13 @@ class OrdenTest {
                 null,
                 EstadoOrden.PREPARANDO,
                 original.getFechaCreacion(),
-                original.getHistorial());
+                original.getHistorial(),
+                new Orden.Seguimiento(AHORA, "Ya no lo necesito", ParteOrden.CLIENTE));
 
         assertThat(copia.getEstado()).isEqualTo(EstadoOrden.PREPARANDO);
+        assertThat(copia.getReservaVence()).isEqualTo(AHORA);
+        assertThat(copia.getMotivoCancelacion()).isEqualTo("Ya no lo necesito");
+        assertThat(copia.getCanceladaPor()).isEqualTo(ParteOrden.CLIENTE);
         assertThat(copia.getMedioPago()).isEqualTo(MedioPagoOrden.DATAFONO);
         assertThat(copia.getNombreTienda()).isEqualTo("Droguería Central");
         assertThat(copia.getTelefonoTienda()).isEqualTo("3001112233");

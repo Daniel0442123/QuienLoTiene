@@ -1,6 +1,7 @@
 package com.quienlotiene.ordenes.domain.port;
 
 import com.quienlotiene.ordenes.domain.model.Orden;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,4 +18,10 @@ public interface OrdenRepository {
 
     /** Órdenes donde el usuario es el cliente o el dueño de la tienda, de la más reciente a la más antigua. */
     List<Orden> listarDeUsuario(UUID usuarioId, int maximo);
+
+    /**
+     * CU-30: recogidas LISTO_PARA_RECOGER cuya reserva venció en {@code ahora}, bloqueadas para esta transacción y
+     * saltando las que otra instancia ya tomó.
+     */
+    List<Orden> tomarReservasVencidas(Instant ahora, int maximo);
 }

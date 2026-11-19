@@ -11,6 +11,10 @@ import org.jspecify.annotations.Nullable;
  *
  * @param producto lo que se entrega; con PARECIDO, la descripción de la alternativa
  * @param cliente solo para la tienda y solo con la orden activa (CP-ORD-024-02, CP-ORD-028-01)
+ * @param reservaVence HU-025: hasta cuándo se guarda una recogida lista; {@code null} antes de LISTO_PARA_RECOGER y en
+ *     domicilio
+ * @param motivoCancelacion HU-029: {@code null} si no fue cancelada
+ * @param canceladaPor HU-029: {@code CLIENTE} o {@code TIENDA}; {@code null} si no fue cancelada
  */
 @Schema(name = "OrdenResponse")
 public record OrdenVista(
@@ -45,7 +49,12 @@ public record OrdenVista(
         Instant fechaCreacion,
         TiendaDeOrden tienda,
         @Nullable ClienteDeOrden cliente,
-        List<CambioEstadoOrden> historial) {
+        List<CambioEstadoOrden> historial,
+        @Nullable Instant reservaVence,
+        @Nullable String motivoCancelacion,
+
+        @Nullable @Schema(allowableValues = {"CLIENTE", "TIENDA"})
+        String canceladaPor) {
 
     public OrdenVista {
         historial = List.copyOf(historial);

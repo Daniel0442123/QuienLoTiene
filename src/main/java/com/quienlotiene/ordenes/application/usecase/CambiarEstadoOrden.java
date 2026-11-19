@@ -8,15 +8,18 @@ import com.quienlotiene.ordenes.domain.model.OrdenNoEncontradaException;
 import com.quienlotiene.ordenes.domain.model.TransicionOrdenInvalidaException;
 import com.quienlotiene.ordenes.domain.port.OrdenRepository;
 import java.time.Clock;
+import java.time.Duration;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * HU-027 Actualizar estado de la orden (diagrama 04 pasos 10 a 15): solo la tienda de la orden y solo el paso
- * siguiente válido. El cliente se entera con {@link EstadoOrdenCambiadoEvent}.
+ * siguiente válido. El cliente se entera con {@link EstadoOrdenCambiadoEvent}. Al marcar LISTO_PARA_RECOGER empieza la
+ * reserva de HU-025 ({@code quienlotiene.ordenes.minutos-reserva}, 30 por defecto).
  */
 @Slf4j
 @Service
@@ -25,11 +28,17 @@ public class CambiarEstadoOrden {
     private final OrdenRepository ordenRepository;
     private final ApplicationEventPublisher publicadorEventos;
     private final Clock reloj;
+    private final Duration duracionReserva;
 
-    CambiarEstadoOrden(OrdenRepository ordenRepository, ApplicationEventPublisher publicadorEventos, Clock reloj) {
+    CambiarEstadoOrden(
+            OrdenRepository ordenRepository,
+            ApplicationEventPublisher publicadorEventos,
+            Clock reloj,
+            @Value("${quienlotiene.ordenes.minutos-reserva:30}") long minutosReserva) {
         this.ordenRepository = ordenRepository;
         this.publicadorEventos = publicadorEventos;
         this.reloj = reloj;
+        this.duracionReserva = Duration.ofMinutes(minutosReserva);
     }
 
     @Transactional
@@ -39,7 +48,7 @@ public class CambiarEstadoOrden {
                 .filter(encontrada -> encontrada.esDeLaTienda(duenoTiendaId))
                 .orElseThrow(OrdenNoEncontradaException::new);
         var siguiente = estadoDe(estadoNuevo, orden);
-        orden.avanzarPorTienda(siguiente, reloj.instant());
+        orden.avanzarPorTienda(siguiente, reloj.instant(), duracionReserva);
         ordenRepository.guardarCambioEstado(orden);
         publicar(publicadorEventos, orden);
         log.info("Orden {} pasó a {}", orden.getId(), orden.getEstado());
@@ -51,7 +60,8 @@ public class CambiarEstadoOrden {
                 orden.getId(),
                 orden.getClienteId(),
                 orden.getDuenoTiendaId(),
-                orden.getEstado().name()));
+                orden.getEstado().name(),
+                orden.getMotivoCancelacion()));
     }
 
     private static EstadoOrden estadoDe(String estado, Orden orden) {

@@ -84,6 +84,15 @@ public class OrdenEntity {
     @Column(name = "direccion_longitud", updatable = false)
     private Double direccionLongitud;
 
+    @Column(name = "reserva_vence")
+    private Instant reservaVence;
+
+    @Column(name = "motivo_cancelacion", length = 200)
+    private String motivoCancelacion;
+
+    @Column(name = "cancelada_por", length = 10)
+    private String canceladaPor;
+
     @Version
     private long version;
 
@@ -144,8 +153,12 @@ public class OrdenEntity {
         this.actualizadoEn = creadoEn;
     }
 
-    void cambiarEstado(String nuevoEstado, Instant ahora) {
+    void cambiarEstado(
+            String nuevoEstado, Instant reservaVence, String motivoCancelacion, String canceladaPor, Instant ahora) {
         this.estado = nuevoEstado;
+        this.reservaVence = reservaVence;
+        this.motivoCancelacion = motivoCancelacion;
+        this.canceladaPor = canceladaPor;
         this.actualizadoEn = ahora;
     }
 }

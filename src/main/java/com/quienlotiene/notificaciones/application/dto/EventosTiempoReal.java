@@ -3,6 +3,7 @@ package com.quienlotiene.notificaciones.application.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.UUID;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Datos de cada evento del flujo {@code /api/v1/eventos} (contrato del Sprint 2, esquema EventoTiempoReal). El nombre
@@ -74,7 +75,7 @@ public final class EventosTiempoReal {
         public static final String TIPO = "orden-creada";
     }
 
-    /** HU-027 y HU-028: para la otra parte de la orden. */
+    /** HU-025, HU-027, HU-028 y HU-029: para las dos partes de la orden; {@code motivo} solo al cancelar. */
     @Schema(name = "EventoEstadoOrdenCambiado")
     public record EstadoOrdenCambiado(
             UUID ordenId,
@@ -90,7 +91,9 @@ public final class EventosTiempoReal {
                         "CANCELADO",
                         "VENCIDA"
                     })
-            String estado) {
+            String estado,
+
+            @Nullable String motivo) {
         public static final String TIPO = "estado-orden-cambiado";
     }
 }
