@@ -1,6 +1,6 @@
 # Backlog del Sprint 3 del backend · Quién lo tiene
 
-> **Control del documento** · Versión 0.3 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Propuesta para la planning · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.4 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Propuesta para la planning · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Propuesta para la planning del Sprint 3 (la ajustan Wilson como Product Owner y Brayan como Scrum Master).
 
@@ -45,7 +45,7 @@ T-00 va primero: contrato `docs/api/contrato-sprint-3.yaml` (OpenAPI 3.1) y `CON
 
 **Corte si no alcanza:** HU-031 y HU-008 pasan al Cierre; HU-033 es la siguiente candidata. Las historias 1 a 8 son el mínimo del sprint.
 
-**Corte aplicado (19/11/2026):** las historias 1 a 10 entraron en el PR #63. Pedro decidió pasar HU-031 y HU-008 al Cierre y después pidió seguir: HU-031 entró en el mismo PR, sin librerías nuevas. HU-008 espera la decisión del comité sobre SC-018.
+**Corte aplicado (19/11/2026):** las historias 1 a 10 entraron en el PR #63. Pedro decidió pasar HU-031 y HU-008 al Cierre y después pidió seguir: HU-031 y HU-008 entraron en el mismo PR. El backend de HU-008 ya sirve a «Mis preguntas» (SC-018) sin rutas extra; el comité solo decide si la pantalla la muestra.
 
 ## 4. Pruebas que acompañan cada pull request
 
@@ -75,3 +75,4 @@ Pull request aprobado por el arquitecto de software, CI en verde (formato, unita
 | 0.1 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Propuesta del backlog del Sprint 3 del backend para la planning |
 | 0.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte aplicado: HU-031 y HU-008 pasan al Cierre (decisión de Pedro) |
 | 0.3 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-031 entra en el sprint a pedido de Pedro; HU-008 sigue esperando SC-018 |
+| 0.4 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-008 entra en el sprint; SC-018 queda como decisión de pantalla |

@@ -31,4 +31,7 @@ public interface SolicitudRepository {
      * {@code FOR UPDATE SKIP LOCKED} para que dos ejecuciones nunca procesen la misma (D-19).
      */
     List<Solicitud> tomarVencidas(Instant ahora, int limite);
+
+    /** HU-008: solicitudes del cliente de la más reciente a la más antigua, por páginas. */
+    List<Solicitud> listarDelCliente(UUID clienteId, int pagina, int tamano);
 }

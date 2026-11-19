@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 /** Adaptador JPA del puerto {@link SolicitudRepository}. */
@@ -73,6 +74,15 @@ class JpaSolicitudRepository implements SolicitudRepository {
     @Override
     public List<Solicitud> tomarVencidas(Instant ahora, int limite) {
         return solicitudJpaRepository.tomarVencidas(ahora, limite).stream()
+                .map(JpaSolicitudRepository::aDominio)
+                .toList();
+    }
+
+    @Override
+    public List<Solicitud> listarDelCliente(UUID clienteId, int pagina, int tamano) {
+        return solicitudJpaRepository
+                .findByClienteIdOrderByCreadoEnDescIdDesc(clienteId, PageRequest.of(pagina, tamano))
+                .stream()
                 .map(JpaSolicitudRepository::aDominio)
                 .toList();
     }

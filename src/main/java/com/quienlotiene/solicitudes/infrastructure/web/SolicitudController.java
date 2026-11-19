@@ -1,10 +1,12 @@
 package com.quienlotiene.solicitudes.infrastructure.web;
 
 import com.quienlotiene.shared.infrastructure.security.UsuarioActual;
+import com.quienlotiene.solicitudes.application.dto.HistorialSolicitudes;
 import com.quienlotiene.solicitudes.application.dto.ResponderSolicitudComando;
 import com.quienlotiene.solicitudes.application.dto.RespuestaDeTienda;
 import com.quienlotiene.solicitudes.application.dto.RespuestasDeSolicitud;
 import com.quienlotiene.solicitudes.application.dto.SolicitudDisponible;
+import com.quienlotiene.solicitudes.application.usecase.ConsultarHistorial;
 import com.quienlotiene.solicitudes.application.usecase.ConsultarSolicitud;
 import com.quienlotiene.solicitudes.application.usecase.ListarRespuestasDeSolicitud;
 import com.quienlotiene.solicitudes.application.usecase.ListarSolicitudesDisponibles;
@@ -36,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 class SolicitudController {
 
     private final PublicarSolicitud publicarSolicitud;
+    private final ConsultarHistorial consultarHistorial;
     private final ConsultarSolicitud consultarSolicitud;
     private final ListarSolicitudesDisponibles listarSolicitudesDisponibles;
     private final ResponderSolicitud responderSolicitud;
@@ -45,6 +48,7 @@ class SolicitudController {
 
     SolicitudController(
             PublicarSolicitud publicarSolicitud,
+            ConsultarHistorial consultarHistorial,
             ConsultarSolicitud consultarSolicitud,
             ListarSolicitudesDisponibles listarSolicitudesDisponibles,
             ResponderSolicitud responderSolicitud,
@@ -52,6 +56,7 @@ class SolicitudController {
             SolicitudWebMapper solicitudMapper,
             UsuarioActual usuarioActual) {
         this.publicarSolicitud = publicarSolicitud;
+        this.consultarHistorial = consultarHistorial;
         this.consultarSolicitud = consultarSolicitud;
         this.listarSolicitudesDisponibles = listarSolicitudesDisponibles;
         this.responderSolicitud = responderSolicitud;
@@ -88,6 +93,39 @@ class SolicitudController {
     @PreAuthorize("hasRole('TIENDA')")
     List<SolicitudDisponible> listarDisponibles() {
         return listarSolicitudesDisponibles.ejecutar(usuarioActual.id());
+    }
+
+    @Operation(
+            summary = "Ver mi historial de solicitudes",
+            description = "HU-008 y SC-018. De la más reciente a la más antigua, con cuántas respuestas tiene cada "
+                    + "una; estaAbierta marca las de «Mis preguntas». Lista vacía si nunca publicó.")
+    @ApiResponse(responseCode = "200", description = "Una página del historial")
+    @ApiResponse(responseCode = "400", description = "Página negativa o tamaño fuera de 1 a 50 (SOL-002)")
+    @GetMapping("/mias")
+    @PreAuthorize("hasRole('CLIENTE')")
+    HistorialSolicitudes listarMias(
+            @RequestParam(defaultValue = "0") int pagina, @RequestParam(defaultValue = "20") int tamano) {
+        return consultarHistorial.listar(usuarioActual.id(), pagina, tamano);
+    }
+
+    @Operation(
+            summary = "Repetir una solicitud",
+            description = "HU-008. Publica otra con el mismo producto, cantidad, categoría, modalidad y urgencia, en "
+                    + "la ubicación de ahora. Cuenta para el límite de 10 por hora.")
+    @ApiResponse(responseCode = "201", description = "Solicitud nueva ABIERTA")
+    @ApiResponse(responseCode = "404", description = "No existe o es de otro cliente (SOL-003)")
+    @ApiResponse(responseCode = "429", description = "Superó las 10 solicitudes de la última hora (SOL-001)")
+    @PostMapping("/{solicitudId}/repeticion")
+    @PreAuthorize("hasRole('CLIENTE')")
+    ResponseEntity<SolicitudResponse> repetir(
+            @PathVariable UUID solicitudId, @Valid @RequestBody RepetirSolicitudRequest peticion) {
+        var nueva = consultarHistorial.repetir(
+                usuarioActual.id(),
+                solicitudId,
+                peticion.ubicacion().latitud(),
+                peticion.ubicacion().longitud());
+        return ResponseEntity.created(URI.create("/api/v1/solicitudes/" + nueva.id()))
+                .body(solicitudMapper.aResponse(nueva));
     }
 
     @Operation(

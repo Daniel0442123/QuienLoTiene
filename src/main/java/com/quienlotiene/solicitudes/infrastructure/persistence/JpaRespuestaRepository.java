@@ -8,7 +8,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 import java.time.Clock;
 import java.time.Instant;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.domain.Limit;
@@ -84,6 +87,30 @@ class JpaRespuestaRepository implements RespuestaRepository {
     public Optional<Long> buscarUltimoPrecio(UUID tiendaId, String producto) {
         return respuestaJpaRepository.listarPreciosDelProducto(tiendaId, producto, Limit.of(1)).stream()
                 .findFirst();
+    }
+
+    @Override
+    public Map<UUID, Integer> contarPorSolicitud(Collection<UUID> solicitudIds) {
+        if (solicitudIds.isEmpty()) {
+            return Map.of();
+        }
+        var conteos = new HashMap<UUID, Integer>();
+        for (var fila : respuestaJpaRepository.contarPorSolicitud(solicitudIds)) {
+            conteos.put((UUID) fila[0], ((Number) fila[1]).intValue());
+        }
+        return conteos;
+    }
+
+    @Override
+    public Map<UUID, UUID> ordenesPorSolicitud(Collection<UUID> solicitudIds) {
+        if (solicitudIds.isEmpty()) {
+            return Map.of();
+        }
+        var ordenes = new HashMap<UUID, UUID>();
+        for (var fila : respuestaJpaRepository.ordenesPorSolicitud(solicitudIds)) {
+            ordenes.put((UUID) fila[0], (UUID) fila[1]);
+        }
+        return ordenes;
     }
 
     private static Respuesta aDominio(RespuestaEntity fila) {
