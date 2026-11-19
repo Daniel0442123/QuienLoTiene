@@ -85,6 +85,7 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `CAT-001` | 404 | No encontrado | La categoría o la palabra restringida no existe | HU-038 |
 | `CAT-002` | 409 | Ya está en la lista | La palabra restringida ya estaba en la lista (sin importar mayúsculas ni tildes) | HU-038 |
 | `CAT-003` | 400 | Palabra inválida | La palabra restringida tiene menos de 2 o más de 80 caracteres | HU-038 |
+| `NOT-001` | 400 | Suscripción inválida | La suscripción push trae un endpoint que no es HTTPS de un servicio push de navegador conocido, o claves `p256dh` y `auth` de otro tamaño | HU-031 |
 
 ## Historial del documento
 
@@ -106,4 +107,4 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(clientes): gestiona las direcciones y el perfil del cliente (#16) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 2: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004` y `MEN-001` (contrato del Sprint 2) |
-| 1.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 3: `ORD-005`, `ORD-006`, `MEN-002`, `MEN-003`, `REP-001` a `REP-005` y `CAT-001` a `CAT-003`; `TIE-004` y `TIE-006` cubren la suspensión y el detalle público |
+| 1.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 3: `ORD-005`, `ORD-006`, `MEN-002`, `MEN-003`, `REP-001` a `REP-005` y `CAT-001` a `CAT-003` y `NOT-001`; `TIE-004` y `TIE-006` cubren la suspensión y el detalle público |

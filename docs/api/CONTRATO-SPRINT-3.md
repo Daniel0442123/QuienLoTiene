@@ -1,8 +1,8 @@
 # Contrato de la API del Sprint 3 · Quién lo tiene
 
-> **Control del documento** · Versión 0.1 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.2 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
-Acuerdo del «primer día» del backlog del Sprint 3 (`docs/planificacion/BACKLOG-SPRINT-3.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-014, HU-023, HU-025, HU-029, HU-033, HU-034, HU-035, HU-037 y HU-038. HU-026 no necesita rutas nuevas (la orden ya trae la ubicación) y HU-031 se agrega a este contrato cuando entre.
+Acuerdo del «primer día» del backlog del Sprint 3 (`docs/planificacion/BACKLOG-SPRINT-3.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-014, HU-023, HU-025, HU-029, HU-033, HU-034, HU-035, HU-037 y HU-038. HU-026 no necesita rutas nuevas (la orden ya trae la ubicación). HU-031 entró en la versión 0.2.
 
 A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: las historias se construyen en el mismo pull request que este contrato, así que la fuente de verdad es `/v3/api-docs` desde el primer día y Monica genera los tipos con el mismo comando de C-04 (PR #48). Las reglas comunes son las del Sprint 2: JWT en `Authorization`, fechas ISO-8601 en UTC, dinero en pesos enteros, `ProblemDetail` con `codigo` y `404` (no `403`) cuando el recurso es de otro usuario (R-03).
 
@@ -31,6 +31,9 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `POST /api/v1/admin/tiendas/{id}/reactivacion` | ADMIN | HU-037 | Deshace la suspensión. Auditado |
 | `GET /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | Mensajes de la orden, del más antiguo al más reciente (cada uno con `autor` CLIENTE o TIENDA y `esMio`), y `soloLectura` |
 | `POST /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | `{ "texto": "..." }` (1 a 1000). Solo con la orden activa |
+| `GET /api/v1/notificaciones/configuracion-push` | CLIENTE, TIENDA | HU-031 | `{ "habilitado": true, "clavePublica": "B..." }`: la `applicationServerKey` para `PushManager.subscribe`. Con `habilitado: false` el frontend no pide el permiso |
+| `POST /api/v1/notificaciones/suscripciones` | CLIENTE, TIENDA | HU-031 | El `PushSubscription.toJSON()` del navegador: `{ "endpoint": "https://...", "keys": { "p256dh": "...", "auth": "..." } }`. Responde 201 |
+| `DELETE /api/v1/notificaciones/suscripciones?endpoint=` | CLIENTE, TIENDA | HU-031 | Dar de baja este navegador. Responde 204 aunque no exista |
 
 ## Eventos de tiempo real nuevos o con cambios
 
@@ -38,6 +41,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 |---|---|---|
 | `estado-orden-cambiado` | El cliente y la tienda de la orden | Igual que antes y `motivo` (nulable): el motivo cuando se cancela |
 | `mensaje-recibido` | La otra parte de la orden | Orden y mensaje (el frontend pide los mensajes por REST) |
+| Push (no SSE) | La tienda sin la app abierta | `{ "tipo": "solicitud-nueva" \| "orden-creada" \| "estado-orden-cambiado", "id": "..." }`: solo tipo e id (diagrama 28); el service worker muestra la notificación y al tocarla abre la app |
 
 ## Códigos de error nuevos
 
@@ -54,6 +58,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `CAT-002` | 409 | La palabra restringida ya está en la lista |
 | `MEN-002` | 409 | Escribir en el chat de una orden que ya no está activa (CP-MEN-033-02) |
 | `MEN-003` | 400 | Mensaje vacío o de más de 1000 caracteres |
+| `NOT-001` | 400 | Suscripción push con un endpoint que no es de un servicio push conocido o con claves de otro tamaño |
 | `CAT-003` | 400 | Palabra restringida de menos de 2 o más de 80 caracteres |
 
 ## Decisiones tomadas en este contrato
@@ -66,9 +71,11 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 6. **Categorías:** una categoría inactiva desaparece de `GET /api/v1/categorias` (HU-016 y HU-002); las tiendas que ya la tienen la conservan.
 7. **Suspender:** suspender una tienda que no está APROBADA, o reactivar una que no está SUSPENDIDA, responde el `TIE-004` que ya existe (transición inválida). Suspende la tienda y la cuenta de su dueño, y cierra sus sesiones (los tokens de refresco se revocan). Pide confirmación en la interfaz (SC-011 punto 8). Reportar no suspende solo: lo decide el administrador.
 8. **Chat:** solo los dos participantes; se guarda en `mensajeria.mensaje`. Con la orden en un estado final queda en solo lectura: se puede leer pero no escribir (`MEN-002`).
+9. **Push (HU-031):** se envía solo cuando la tienda no tiene ninguna conexión SSE abierta, así que no hay avisos dobles. El servidor cifra (RFC 8291) y firma (VAPID, RFC 8292) con la JDK, sin librerías nuevas. Solo acepta endpoints HTTPS de los servicios push de Chrome, Firefox, Safari y Edge, porque el servidor hace un POST a esa dirección (SSRF, OWASP A10). Una suscripción que el servicio da por vencida (404 o 410) se borra. Sin las claves `QLT_VAPID_CLAVE_PUBLICA` y `QLT_VAPID_CLAVE_PRIVADA` el push queda apagado y lo demás funciona igual.
 
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión del contrato del Sprint 3 |
+| 0.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-031: rutas de suscripción push, `NOT-001` y decisión 9 |

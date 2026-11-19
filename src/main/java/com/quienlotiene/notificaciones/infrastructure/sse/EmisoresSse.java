@@ -99,7 +99,8 @@ public class EmisoresSse implements CanalTiempoReal {
                         && entrada.getValue().estaVacio(ahora));
     }
 
-    boolean estaConectado(UUID usuarioId) {
+    @Override
+    public boolean estaConectado(UUID usuarioId) {
         return conexionesDe(usuarioId) > 0;
     }
 

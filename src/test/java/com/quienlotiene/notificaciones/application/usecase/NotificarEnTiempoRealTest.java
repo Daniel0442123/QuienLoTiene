@@ -42,11 +42,14 @@ class NotificarEnTiempoRealTest {
     @Mock
     CanalTiempoReal canal;
 
+    @Mock
+    AvisarPorPush avisarPorPush;
+
     NotificarEnTiempoReal notificar;
 
     @BeforeEach
     void configurar() {
-        notificar = new NotificarEnTiempoReal(canal, Clock.fixed(AHORA, ZoneOffset.UTC));
+        notificar = new NotificarEnTiempoReal(canal, avisarPorPush, Clock.fixed(AHORA, ZoneOffset.UTC));
     }
 
     private List<Notificacion> enviadas() {
@@ -170,5 +173,20 @@ class NotificarEnTiempoRealTest {
             assertThat(aviso.tipo()).isEqualTo("mensaje-recibido");
             assertThat(aviso.datos()).isEqualTo(new EventosTiempoReal.MensajeRecibido(orden, mensaje));
         });
+    }
+
+    @Test
+    @Tag("HU-031")
+    @Tag("CP-NOT-031-01")
+    @DisplayName(
+            "CP-NOT-031-01 La solicitud nueva, la orden creada y el cambio de estado también van por push a la tienda")
+    void pidePushParaLaTienda() {
+        var orden = UUID.randomUUID();
+        notificar.alCrearOrden(
+                new OrdenCreadaEvent(orden, SOLICITUD, CLIENTE, DUENO_A, "Paracetamol", 21_000, "DOMICILIO"));
+        notificar.alCambiarEstadoOrden(new EstadoOrdenCambiadoEvent(orden, CLIENTE, DUENO_A, "PREPARANDO"));
+
+        verify(avisarPorPush).siNoEstaConectado(DUENO_A, "orden-creada", orden);
+        verify(avisarPorPush).siNoEstaConectado(DUENO_A, "estado-orden-cambiado", orden);
     }
 }
