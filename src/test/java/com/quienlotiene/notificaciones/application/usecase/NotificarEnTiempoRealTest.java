@@ -42,11 +42,14 @@ class NotificarEnTiempoRealTest {
     @Mock
     CanalTiempoReal canal;
 
+    @Mock
+    AvisarPorPush avisarPorPush;
+
     NotificarEnTiempoReal notificar;
 
     @BeforeEach
     void configurar() {
-        notificar = new NotificarEnTiempoReal(canal, Clock.fixed(AHORA, ZoneOffset.UTC));
+        notificar = new NotificarEnTiempoReal(canal, avisarPorPush, Clock.fixed(AHORA, ZoneOffset.UTC));
     }
 
     private List<Notificacion> enviadas() {
@@ -154,5 +157,36 @@ class NotificarEnTiempoRealTest {
                         org.assertj.core.groups.Tuple.tuple(DUENO_A, "orden-creada"),
                         org.assertj.core.groups.Tuple.tuple(CLIENTE, "estado-orden-cambiado"),
                         org.assertj.core.groups.Tuple.tuple(DUENO_A, "estado-orden-cambiado"));
+    }
+
+    @Test
+    @Tag("HU-033")
+    @Tag("CP-MEN-033-01")
+    @DisplayName("CP-MEN-033-01 Solo la otra parte recibe mensaje-recibido, sin el texto")
+    void mensajeRecibido() {
+        var orden = UUID.randomUUID();
+        var mensaje = UUID.randomUUID();
+        notificar.alEnviarMensaje(new com.quienlotiene.mensajeria.api.MensajeEnviadoEvent(orden, mensaje, DUENO_A));
+
+        assertThat(enviadas()).singleElement().satisfies(aviso -> {
+            assertThat(aviso.usuarioId()).isEqualTo(DUENO_A);
+            assertThat(aviso.tipo()).isEqualTo("mensaje-recibido");
+            assertThat(aviso.datos()).isEqualTo(new EventosTiempoReal.MensajeRecibido(orden, mensaje));
+        });
+    }
+
+    @Test
+    @Tag("HU-031")
+    @Tag("CP-NOT-031-01")
+    @DisplayName(
+            "CP-NOT-031-01 La solicitud nueva, la orden creada y el cambio de estado también van por push a la tienda")
+    void pidePushParaLaTienda() {
+        var orden = UUID.randomUUID();
+        notificar.alCrearOrden(
+                new OrdenCreadaEvent(orden, SOLICITUD, CLIENTE, DUENO_A, "Paracetamol", 21_000, "DOMICILIO"));
+        notificar.alCambiarEstadoOrden(new EstadoOrdenCambiadoEvent(orden, CLIENTE, DUENO_A, "PREPARANDO"));
+
+        verify(avisarPorPush).siNoEstaConectado(DUENO_A, "orden-creada", orden);
+        verify(avisarPorPush).siNoEstaConectado(DUENO_A, "estado-orden-cambiado", orden);
     }
 }

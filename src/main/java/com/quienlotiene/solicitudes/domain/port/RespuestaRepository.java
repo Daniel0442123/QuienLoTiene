@@ -2,7 +2,9 @@ package com.quienlotiene.solicitudes.domain.port;
 
 import com.quienlotiene.solicitudes.domain.model.Respuesta;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,4 +35,10 @@ public interface RespuestaRepository {
      * espacios al inicio o al final).
      */
     Optional<Long> buscarUltimoPrecio(UUID tiendaId, String producto);
+
+    /** HU-008: cuántas respuestas tiene cada solicitud (las que no tienen ninguna no aparecen). */
+    Map<UUID, Integer> contarPorSolicitud(Collection<UUID> solicitudIds);
+
+    /** HU-008: la orden creada en cada solicitud RESUELTA (las demás no aparecen). */
+    Map<UUID, UUID> ordenesPorSolicitud(Collection<UUID> solicitudIds);
 }

@@ -26,6 +26,7 @@ import com.quienlotiene.ordenes.domain.model.Orden;
 import com.quienlotiene.ordenes.domain.model.OrdenIncompletaException;
 import com.quienlotiene.ordenes.domain.model.OrdenNoEncontradaException;
 import com.quienlotiene.ordenes.domain.model.OrdenesDePrueba;
+import com.quienlotiene.ordenes.domain.model.ProductoRestringidoSinDomicilioException;
 import com.quienlotiene.ordenes.domain.model.TransicionOrdenInvalidaException;
 import com.quienlotiene.ordenes.domain.port.OrdenRepository;
 import com.quienlotiene.solicitudes.api.RespuestaElegida;
@@ -162,6 +163,23 @@ class OrdenesCasosDeUsoTest {
         }
 
         @Test
+        @Tag("HU-023")
+        @Tag("CP-SOL-023-02")
+        @DisplayName("CP-SOL-023-02 Un producto restringido no se puede pedir a domicilio (ORD-006)")
+        void restringidoSinDomicilio() {
+            when(solicitudesApi.elegirRespuesta(eq(CLIENTE), eq(respuestaId), any()))
+                    .thenReturn(new RespuestaElegida(
+                            UUID.randomUUID(), respuestaId, tiendaId, DUENO, "Amoxicilina", 1, 9_000, null, true));
+
+            assertThatThrownBy(() -> crearOrden()
+                            .ejecutar(new CrearOrdenComando(
+                                    CLIENTE, respuestaId, "DOMICILIO", UUID.randomUUID(), "EFECTIVO")))
+                    .isInstanceOf(ProductoRestringidoSinDomicilioException.class)
+                    .hasFieldOrPropertyWithValue("codigo", "ORD-006");
+            verify(ordenRepository, never()).guardarNueva(any());
+        }
+
+        @Test
         @Tag("CP-ORD-024-04")
         @DisplayName("CP-ORD-024-04 Un medio de pago que la tienda no tiene activo rechaza la orden")
         void rechazaMedioDePago() {
@@ -202,7 +220,7 @@ class OrdenesCasosDeUsoTest {
         void cambiaEstado() {
             var orden = guardada(ModalidadEntrega.DOMICILIO);
 
-            var vista = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ)
+            var vista = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ, 30)
                     .ejecutar(DUENO, orden.getId(), "PREPARANDO");
 
             assertThat(vista.estado()).isEqualTo("PREPARANDO");
@@ -222,7 +240,7 @@ class OrdenesCasosDeUsoTest {
         @DisplayName("CP-ORD-027-02 Un estado inválido o desconocido se rechaza; otra tienda recibe 404")
         void rechazaCambio() {
             var orden = guardada(ModalidadEntrega.DOMICILIO);
-            var cambiar = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ);
+            var cambiar = new CambiarEstadoOrden(ordenRepository, publicadorEventos, RELOJ, 30);
 
             assertThatThrownBy(() -> cambiar.ejecutar(DUENO, orden.getId(), "ENTREGADO"))
                     .isInstanceOf(TransicionOrdenInvalidaException.class);

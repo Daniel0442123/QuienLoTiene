@@ -5,7 +5,8 @@ import java.util.Set;
 
 /**
  * Máquina de estados de la orden (diagrama 05, patrón State del diagrama 04). La tienda avanza un paso a la vez; el
- * cliente cierra con «Recibí mi pedido». CANCELADO (HU-029) y VENCIDA (HU-025) llegan en el Sprint 3.
+ * cliente cierra con «Recibí mi pedido». CANCELADO (HU-029) y VENCIDA (HU-025) los deciden {@link Orden#cancelarPorCliente},
+ * {@link Orden#cancelarPorTienda} y {@link Orden#vencerReserva}.
  */
 public enum EstadoOrden {
     CONFIRMADO("confirmada"),

@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 /** Adaptador JPA del puerto {@link SolicitudRepository}. */
@@ -41,6 +42,7 @@ class JpaSolicitudRepository implements SolicitudRepository {
                 solicitud.getUbicacion().latitud(),
                 solicitud.getUbicacion().longitud(),
                 solicitud.getRadioEnMetros(),
+                solicitud.esRestringida(),
                 solicitud.getEstado().name(),
                 solicitud.getFechaVencimiento(),
                 solicitud.getFechaPublicacion()));
@@ -76,6 +78,15 @@ class JpaSolicitudRepository implements SolicitudRepository {
                 .toList();
     }
 
+    @Override
+    public List<Solicitud> listarDelCliente(UUID clienteId, int pagina, int tamano) {
+        return solicitudJpaRepository
+                .findByClienteIdOrderByCreadoEnDescIdDesc(clienteId, PageRequest.of(pagina, tamano))
+                .stream()
+                .map(JpaSolicitudRepository::aDominio)
+                .toList();
+    }
+
     private static Solicitud aDominio(SolicitudEntity fila) {
         return Solicitud.reconstituir(
                 fila.getId(),
@@ -87,6 +98,7 @@ class JpaSolicitudRepository implements SolicitudRepository {
                 fila.isUrgente(),
                 new Ubicacion(fila.latitud(), fila.longitud()),
                 fila.getRadioMetros(),
+                fila.isRestringida(),
                 EstadoSolicitud.valueOf(fila.getEstado()),
                 fila.getCreadoEn(),
                 fila.getVenceEn());

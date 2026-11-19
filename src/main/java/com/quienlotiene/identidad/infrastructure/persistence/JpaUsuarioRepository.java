@@ -49,6 +49,14 @@ class JpaUsuarioRepository implements UsuarioRepository {
     }
 
     @Override
+    public void guardarEstado(Usuario usuario) {
+        usuarioJpaRepository
+                .findById(usuario.getId())
+                .orElseThrow()
+                .cambiarEstado(usuario.getEstado().name(), Instant.now(reloj));
+    }
+
+    @Override
     public Optional<Usuario> buscarPorCorreo(Correo correo) {
         return usuarioJpaRepository.findByCorreo(correo.valor()).map(usuarioMapper::aDominio);
     }

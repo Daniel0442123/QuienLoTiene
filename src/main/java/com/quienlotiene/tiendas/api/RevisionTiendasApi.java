@@ -22,4 +22,18 @@ public interface RevisionTiendasApi {
 
     /** Rechaza una tienda PENDIENTE con su motivo y publica {@link TiendaRevisadaEvent}. */
     TiendaParaRevision rechazar(UUID tiendaId, String motivo);
+
+    /**
+     * HU-037: suspende una tienda APROBADA (deja de recibir solicitudes y queda cerrada).
+     *
+     * @throws com.quienlotiene.shared.domain.ReglaNegocioException TIE-006 si no existe, TIE-004 si no está APROBADA
+     */
+    TiendaSuspendida suspender(UUID tiendaId);
+
+    /**
+     * HU-037: vuelve a APROBADA una tienda SUSPENDIDA.
+     *
+     * @throws com.quienlotiene.shared.domain.ReglaNegocioException TIE-006 si no existe, TIE-004 si no está SUSPENDIDA
+     */
+    TiendaSuspendida reactivar(UUID tiendaId);
 }

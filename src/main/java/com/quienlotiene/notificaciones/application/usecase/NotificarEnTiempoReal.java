@@ -1,5 +1,6 @@
 package com.quienlotiene.notificaciones.application.usecase;
 
+import com.quienlotiene.mensajeria.api.MensajeEnviadoEvent;
 import com.quienlotiene.notificaciones.application.dto.EventosTiempoReal;
 import com.quienlotiene.notificaciones.domain.model.Notificacion;
 import com.quienlotiene.notificaciones.domain.port.CanalTiempoReal;
@@ -15,9 +16,10 @@ import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Service;
 
 /**
- * HU-030 Notificar en tiempo real (CU-14, diagrama 20, patrón Observer): escucha los eventos de solicitudes y ordenes
+ * HU-030 Notificar en tiempo real (CU-14, diagrama 20, patrón Observer): escucha los eventos de solicitudes, ordenes y mensajeria
  * después de que su transacción se confirma, decide a quién le toca cada aviso y lo entrega por el canal SSE. Los
- * eventos ya traen lo necesario, así que no consulta otros módulos (DECISIONES-BACKEND 4.3).
+ * eventos ya traen lo necesario, así que no consulta otros módulos (DECISIONES-BACKEND 4.3). A la tienda sin la app
+ * abierta le llegan además por push la solicitud nueva, la orden creada y los cambios de estado (HU-031, diagrama 28).
  */
 @Service
 public class NotificarEnTiempoReal {
@@ -27,10 +29,12 @@ public class NotificarEnTiempoReal {
     private static final String NO_LO_TENGO = "NO";
 
     private final CanalTiempoReal canal;
+    private final AvisarPorPush avisarPorPush;
     private final Clock reloj;
 
-    NotificarEnTiempoReal(CanalTiempoReal canal, Clock reloj) {
+    NotificarEnTiempoReal(CanalTiempoReal canal, AvisarPorPush avisarPorPush, Clock reloj) {
         this.canal = canal;
+        this.avisarPorPush = avisarPorPush;
         this.reloj = reloj;
     }
 
@@ -48,6 +52,8 @@ public class NotificarEnTiempoReal {
                             evento.esUrgente(),
                             destinatario.distanciaAproximadaEnMetros(),
                             evento.fechaVencimiento()));
+            avisarPorPush.siNoEstaConectado(
+                    destinatario.duenoId(), EventosTiempoReal.SolicitudNueva.TIPO, evento.solicitudId());
         }
     }
 
@@ -104,13 +110,24 @@ public class NotificarEnTiempoReal {
                         evento.producto(),
                         evento.totalEnPesos(),
                         evento.modalidad()));
+        avisarPorPush.siNoEstaConectado(evento.duenoTiendaId(), EventosTiempoReal.OrdenCreada.TIPO, evento.ordenId());
     }
 
     @ApplicationModuleListener
     public void alCambiarEstadoOrden(EstadoOrdenCambiadoEvent evento) {
-        var datos = new EventosTiempoReal.EstadoOrdenCambiado(evento.ordenId(), evento.estado());
+        var datos = new EventosTiempoReal.EstadoOrdenCambiado(evento.ordenId(), evento.estado(), evento.motivo());
         avisar(evento.clienteId(), EventosTiempoReal.EstadoOrdenCambiado.TIPO, datos);
         avisar(evento.duenoTiendaId(), EventosTiempoReal.EstadoOrdenCambiado.TIPO, datos);
+        avisarPorPush.siNoEstaConectado(
+                evento.duenoTiendaId(), EventosTiempoReal.EstadoOrdenCambiado.TIPO, evento.ordenId());
+    }
+
+    @ApplicationModuleListener
+    public void alEnviarMensaje(MensajeEnviadoEvent evento) {
+        avisar(
+                evento.destinatarioId(),
+                EventosTiempoReal.MensajeRecibido.TIPO,
+                new EventosTiempoReal.MensajeRecibido(evento.ordenId(), evento.mensajeId()));
     }
 
     private void avisar(UUID usuarioId, String tipo, Object datos) {

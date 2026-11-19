@@ -31,4 +31,9 @@ public class CategoriaEntity {
 
     @Column(name = "actualizado_en", nullable = false)
     private Instant actualizadoEn;
+
+    void cambiarActiva(boolean nuevaActiva, Instant ahora) {
+        this.activa = nuevaActiva;
+        this.actualizadoEn = ahora;
+    }
 }

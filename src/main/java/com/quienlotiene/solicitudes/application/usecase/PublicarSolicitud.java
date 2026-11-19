@@ -1,5 +1,6 @@
 package com.quienlotiene.solicitudes.application.usecase;
 
+import com.quienlotiene.catalogo.api.CatalogoApi;
 import com.quienlotiene.shared.domain.Ubicacion;
 import com.quienlotiene.solicitudes.api.SolicitudPublicadaEvent;
 import com.quienlotiene.solicitudes.application.dto.PublicarSolicitudComando;
@@ -29,6 +30,7 @@ public class PublicarSolicitud {
     private final ParametrosSolicitudes parametros;
     private final ApplicationEventPublisher publicadorEventos;
     private final DifundirSolicitud difundirSolicitud;
+    private final CatalogoApi catalogoApi;
     private final Clock reloj;
 
     PublicarSolicitud(
@@ -36,11 +38,13 @@ public class PublicarSolicitud {
             ParametrosSolicitudes parametros,
             ApplicationEventPublisher publicadorEventos,
             DifundirSolicitud difundirSolicitud,
+            CatalogoApi catalogoApi,
             Clock reloj) {
         this.solicitudRepository = solicitudRepository;
         this.parametros = parametros;
         this.publicadorEventos = publicadorEventos;
         this.difundirSolicitud = difundirSolicitud;
+        this.catalogoApi = catalogoApi;
         this.reloj = reloj;
     }
 
@@ -61,6 +65,7 @@ public class PublicarSolicitud {
                 comando.esUrgente(),
                 new Ubicacion(comando.latitud(), comando.longitud()),
                 parametros.radioInicialEnMetros(),
+                comando.producto() != null && catalogoApi.esRestringido(comando.producto()),
                 parametros.vigencia(),
                 ahora);
         solicitudRepository.guardarNueva(solicitud);
@@ -112,6 +117,7 @@ public class PublicarSolicitud {
                 solicitud.getEstado().name(),
                 solicitud.getFechaPublicacion(),
                 solicitud.getFechaVencimiento(),
-                tiendasNotificadas);
+                tiendasNotificadas,
+                solicitud.esRestringida());
     }
 }

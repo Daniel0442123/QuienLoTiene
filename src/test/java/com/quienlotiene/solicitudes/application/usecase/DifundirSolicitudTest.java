@@ -53,6 +53,7 @@ class DifundirSolicitudTest {
                 false,
                 new Ubicacion(2.4448, -76.6147),
                 3_000,
+                false,
                 Duration.ofMinutes(30),
                 AHORA);
     }

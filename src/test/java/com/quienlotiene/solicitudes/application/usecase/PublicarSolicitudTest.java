@@ -7,6 +7,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.quienlotiene.catalogo.api.CatalogoApi;
 import com.quienlotiene.solicitudes.api.SolicitudPublicadaEvent;
 import com.quienlotiene.solicitudes.application.dto.PublicarSolicitudComando;
 import com.quienlotiene.solicitudes.domain.model.LimiteSolicitudesSuperadoException;
@@ -49,6 +50,9 @@ class PublicarSolicitudTest {
     @Mock
     DifundirSolicitud difundirSolicitud;
 
+    @Mock
+    CatalogoApi catalogoApi;
+
     PublicarSolicitud publicarSolicitud;
 
     @BeforeEach
@@ -74,6 +78,7 @@ class PublicarSolicitudTest {
                 parametros,
                 publicadorEventos,
                 difundirSolicitud,
+                catalogoApi,
                 Clock.fixed(AHORA, ZoneOffset.UTC));
     }
 
@@ -107,6 +112,23 @@ class PublicarSolicitudTest {
         assertThat(evento.getValue().categoriaId()).isEqualTo(FARMACIAS);
         assertThat(evento.getValue().radioEnMetros()).isEqualTo(3_000);
         assertThat(evento.getValue().latitud()).isEqualTo(2.4448);
+    }
+
+    @Test
+    @Tag("HU-023")
+    @Tag("CP-SOL-023-01")
+    @DisplayName("CP-SOL-023-01 Una solicitud de un producto restringido queda marcada para mostrar el aviso")
+    void marcaRestringida() {
+        // Dado: "Paracetamol 500 mg" está en la lista (solo para la prueba)
+        when(solicitudRepository.listarFechasPublicacionDesde(any(), any())).thenReturn(List.of());
+        when(catalogoApi.esRestringido("Paracetamol 500 mg")).thenReturn(true);
+        // Cuando
+        var resultado = publicarSolicitud.ejecutar(paracetamol("RECOGER"));
+        // Entonces
+        assertThat(resultado.esRestringida()).isTrue();
+        var guardada = ArgumentCaptor.forClass(Solicitud.class);
+        verify(solicitudRepository).guardarNueva(guardada.capture());
+        assertThat(guardada.getValue().esRestringida()).isTrue();
     }
 
     @Test

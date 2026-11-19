@@ -1,5 +1,6 @@
 package com.quienlotiene.ordenes.domain.model;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,18 @@ public final class Orden {
     private final Instant fechaCreacion;
     private final List<CambioEstado> historial;
     private EstadoOrden estado;
+    private Instant reservaVence;
+    private String motivoCancelacion;
+    private ParteOrden canceladaPor;
+
+    /** HU-025: cuánto dura la reserva desde que la tienda marca LISTO_PARA_RECOGER (contrato del Sprint 3, decisión 2). */
+    public static final Duration RESERVA_POR_DEFECTO = Duration.ofMinutes(30);
+
+    /** Lo que cambia después de crear la orden, además del estado: reserva (HU-025) y cancelación (HU-029). */
+    public record Seguimiento(Instant reservaVence, String motivoCancelacion, ParteOrden canceladaPor) {
+
+        public static final Seguimiento NINGUNO = new Seguimiento(null, null, null);
+    }
 
     private Orden(
             UUID id,
@@ -50,7 +63,8 @@ public final class Orden {
             String telefonoTienda,
             EstadoOrden estado,
             Instant fechaCreacion,
-            List<CambioEstado> historial) {
+            List<CambioEstado> historial,
+            Seguimiento seguimiento) {
         this.id = id;
         this.solicitudId = solicitudId;
         this.respuestaId = respuestaId;
@@ -70,6 +84,9 @@ public final class Orden {
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
         this.historial = new ArrayList<>(historial);
+        this.reservaVence = seguimiento.reservaVence();
+        this.motivoCancelacion = seguimiento.motivoCancelacion();
+        this.canceladaPor = seguimiento.canceladaPor();
     }
 
     /** Datos de la tienda elegida que se copian a la orden. */
@@ -120,7 +137,8 @@ public final class Orden {
                 tienda.telefono(),
                 EstadoOrden.CONFIRMADO,
                 ahora,
-                List.of(new CambioEstado(EstadoOrden.CONFIRMADO, ahora)));
+                List.of(new CambioEstado(EstadoOrden.CONFIRMADO, ahora)),
+                Seguimiento.NINGUNO);
     }
 
     /** Vuelve a armar una orden guardada; solo lo usa el adaptador de persistencia. */
@@ -140,7 +158,8 @@ public final class Orden {
             DireccionDeEntrega direccionEntrega,
             EstadoOrden estado,
             Instant fechaCreacion,
-            List<CambioEstado> historial) {
+            List<CambioEstado> historial,
+            Seguimiento seguimiento) {
         return new Orden(
                 id,
                 solicitudId,
@@ -160,7 +179,8 @@ public final class Orden {
                 tienda.telefono(),
                 estado,
                 fechaCreacion,
-                historial);
+                historial,
+                seguimiento);
     }
 
     /**
@@ -169,10 +189,74 @@ public final class Orden {
      * @throws TransicionOrdenInvalidaException si no es el paso siguiente válido (CP-ORD-027-02, RNF-016)
      */
     public void avanzarPorTienda(EstadoOrden siguiente, Instant ahora) {
+        avanzarPorTienda(siguiente, ahora, RESERVA_POR_DEFECTO);
+    }
+
+    /**
+     * HU-027 y HU-025: igual que {@link #avanzarPorTienda(EstadoOrden, Instant)}; al pasar a LISTO_PARA_RECOGER empieza
+     * la reserva de {@code duracionReserva} (CP-ORD-025-01).
+     */
+    public void avanzarPorTienda(EstadoOrden siguiente, Instant ahora, Duration duracionReserva) {
         if (!estado.tiendaPuedePasarA(siguiente, modalidad)) {
             throw new TransicionOrdenInvalidaException(estado, siguiente);
         }
+        if (siguiente == EstadoOrden.LISTO_PARA_RECOGER) {
+            this.reservaVence = ahora.plus(duracionReserva);
+        }
         cambiarA(siguiente, ahora);
+    }
+
+    /**
+     * HU-029: el cliente cancela mientras la orden no ha salido de la tienda (CP-ORD-029-01). Una recogida lista
+     * todavía no salió, así que también se puede cancelar.
+     *
+     * @throws OrdenYaDespachadaException si va en camino o ya se entregó (CP-ORD-029-02)
+     * @throws TransicionOrdenInvalidaException si ya terminó (RESUELTA, CANCELADO o VENCIDA)
+     */
+    public void cancelarPorCliente(String motivo, Instant ahora) {
+        switch (estado) {
+            case CONFIRMADO, PREPARANDO, LISTO_PARA_RECOGER -> cancelar(ParteOrden.CLIENTE, motivo, ahora);
+            case EN_CAMINO, ENTREGADO -> throw new OrdenYaDespachadaException();
+            default -> throw new TransicionOrdenInvalidaException(estado, EstadoOrden.CANCELADO);
+        }
+    }
+
+    /**
+     * HU-029, diagrama 15 (nota): la tienda solo cancela antes de empezar a preparar.
+     *
+     * @throws TransicionOrdenInvalidaException si la orden ya no está CONFIRMADO
+     */
+    public void cancelarPorTienda(String motivo, Instant ahora) {
+        if (estado != EstadoOrden.CONFIRMADO) {
+            throw new TransicionOrdenInvalidaException(estado, EstadoOrden.CANCELADO);
+        }
+        cancelar(ParteOrden.TIENDA, motivo, ahora);
+    }
+
+    /**
+     * HU-025, CU-30: si la recogida lista pasó su reserva sin entregarse, queda VENCIDA (CP-ORD-025-01).
+     *
+     * @return {@code true} si venció ahora; {@code false} si no le tocaba (ya cambió o la reserva sigue vigente)
+     */
+    public boolean vencerReserva(Instant ahora) {
+        if (estado != EstadoOrden.LISTO_PARA_RECOGER || !reservaVencidaEn(ahora)) {
+            return false;
+        }
+        cambiarA(EstadoOrden.VENCIDA, ahora);
+        return true;
+    }
+
+    private boolean reservaVencidaEn(Instant ahora) {
+        return reservaVence != null && !ahora.isBefore(reservaVence);
+    }
+
+    private void cancelar(ParteOrden quien, String motivo, Instant ahora) {
+        if (motivo == null || motivo.isBlank()) {
+            throw new OrdenIncompletaException("escribe el motivo de la cancelación");
+        }
+        this.motivoCancelacion = motivo.strip();
+        this.canceladaPor = quien;
+        cambiarA(EstadoOrden.CANCELADO, ahora);
     }
 
     /**
@@ -296,6 +380,21 @@ public final class Orden {
 
     public Instant getFechaCreacion() {
         return fechaCreacion;
+    }
+
+    /** {@code null} mientras la recogida no esté lista, y siempre en domicilio. */
+    public Instant getReservaVence() {
+        return reservaVence;
+    }
+
+    /** {@code null} si no fue cancelada. */
+    public String getMotivoCancelacion() {
+        return motivoCancelacion;
+    }
+
+    /** {@code null} si no fue cancelada. */
+    public ParteOrden getCanceladaPor() {
+        return canceladaPor;
     }
 
     public List<CambioEstado> getHistorial() {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /** Contacto por WhatsApp entre el cliente y la tienda de una orden (HU-032). */
-@Tag(name = "Mensajería", description = "Contactar por WhatsApp")
+@Tag(name = "Mensajería", description = "WhatsApp y mini chat de la orden")
 @RestController
 class WhatsappController {
 

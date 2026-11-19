@@ -148,6 +148,30 @@ public final class Tienda {
     }
 
     /**
+     * HU-037 (CP-ADM-037-01): el administrador suspende una tienda APROBADA; deja de recibir solicitudes y queda
+     * cerrada.
+     *
+     * @throws TransicionTiendaInvalidaException si la tienda no está APROBADA
+     */
+    public void suspender(Instant ahora) {
+        exigirEstado(EstadoTienda.APROBADA, "suspender");
+        this.estado = EstadoTienda.SUSPENDIDA;
+        this.estaAbierta = false;
+        this.fechaRevision = ahora;
+    }
+
+    /**
+     * HU-037: deshace la suspensión; la tienda vuelve a APROBADA y su dueño decide cuándo abrir.
+     *
+     * @throws TransicionTiendaInvalidaException si la tienda no está SUSPENDIDA
+     */
+    public void reactivar(Instant ahora) {
+        exigirEstado(EstadoTienda.SUSPENDIDA, "reactivar");
+        this.estado = EstadoTienda.APROBADA;
+        this.fechaRevision = ahora;
+    }
+
+    /**
      * HU-013 (CU-19): con el interruptor en Abierto la tienda entra en la difusión de solicitudes (si además está en su
      * horario). Cerrada deja de recibir solicitudes nuevas; sus órdenes en curso siguen.
      *

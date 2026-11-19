@@ -5,6 +5,7 @@ import com.quienlotiene.tiendas.api.DocumentoDescargable;
 import com.quienlotiene.tiendas.api.RevisionTiendasApi;
 import com.quienlotiene.tiendas.api.TiendaParaRevision;
 import com.quienlotiene.tiendas.api.TiendaRevisadaEvent;
+import com.quienlotiene.tiendas.api.TiendaSuspendida;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
 import com.quienlotiene.tiendas.domain.model.Tienda;
 import com.quienlotiene.tiendas.domain.model.TiendaNoEncontradaException;
@@ -74,6 +75,26 @@ class RevisarTiendas implements RevisionTiendasApi {
     @Transactional
     public TiendaParaRevision rechazar(UUID tiendaId, String motivo) {
         return revisar(tiendaId, tienda -> tienda.rechazar(motivo, reloj.instant()));
+    }
+
+    @Override
+    @Transactional
+    public TiendaSuspendida suspender(UUID tiendaId) {
+        return cambiarSuspension(tiendaId, tienda -> tienda.suspender(reloj.instant()));
+    }
+
+    @Override
+    @Transactional
+    public TiendaSuspendida reactivar(UUID tiendaId) {
+        return cambiarSuspension(tiendaId, tienda -> tienda.reactivar(reloj.instant()));
+    }
+
+    private TiendaSuspendida cambiarSuspension(UUID tiendaId, Consumer<Tienda> cambio) {
+        var tienda = tiendaRepository.buscarPorId(tiendaId).orElseThrow(TiendaNoEncontradaException::new);
+        cambio.accept(tienda);
+        tiendaRepository.guardarRevision(tienda);
+        tiendaRepository.guardarApertura(tienda);
+        return new TiendaSuspendida(aTiendaParaRevision(tienda), tienda.getDuenoId());
     }
 
     private TiendaParaRevision revisar(UUID tiendaId, Consumer<Tienda> decision) {

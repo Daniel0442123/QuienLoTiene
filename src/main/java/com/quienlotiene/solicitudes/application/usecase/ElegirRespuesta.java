@@ -83,6 +83,7 @@ class ElegirRespuesta implements SolicitudesApi {
                         : solicitud.getProducto(),
                 respuesta.getCantidadDisponible(),
                 respuesta.getPrecioEnPesos(),
-                respuesta.getCostoDomicilioEnPesos());
+                respuesta.getCostoDomicilioEnPesos(),
+                solicitud.esRestringida());
     }
 }

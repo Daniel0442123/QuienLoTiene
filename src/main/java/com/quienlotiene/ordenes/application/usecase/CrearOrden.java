@@ -12,6 +12,7 @@ import com.quienlotiene.ordenes.domain.model.MedioPagoOrden;
 import com.quienlotiene.ordenes.domain.model.ModalidadEntrega;
 import com.quienlotiene.ordenes.domain.model.Orden;
 import com.quienlotiene.ordenes.domain.model.OrdenIncompletaException;
+import com.quienlotiene.ordenes.domain.model.ProductoRestringidoSinDomicilioException;
 import com.quienlotiene.ordenes.domain.port.OrdenRepository;
 import com.quienlotiene.solicitudes.api.SolicitudesApi;
 import com.quienlotiene.tiendas.api.DatosTiendasApi;
@@ -71,6 +72,9 @@ public class CrearOrden {
 
         var ordenId = UUID.randomUUID();
         var elegida = solicitudesApi.elegirRespuesta(comando.clienteId(), comando.respuestaId(), ordenId);
+        if (elegida.esRestringida() && modalidad == ModalidadEntrega.DOMICILIO) {
+            throw new ProductoRestringidoSinDomicilioException();
+        }
         if (!datosTiendasApi.aceptaMedioPago(elegida.tiendaId(), medioPago.name())) {
             throw new MedioPagoNoAceptadoException();
         }

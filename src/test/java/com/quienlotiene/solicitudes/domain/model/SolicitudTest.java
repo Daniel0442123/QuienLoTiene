@@ -34,6 +34,7 @@ class SolicitudTest {
                 false,
                 ubicacion,
                 3_000,
+                false,
                 TREINTA_MINUTOS,
                 AHORA);
     }
@@ -110,6 +111,7 @@ class SolicitudTest {
                         true,
                         POPAYAN,
                         3_000,
+                        false,
                         TREINTA_MINUTOS,
                         AHORA))
                 .isInstanceOf(SolicitudIncompletaException.class)

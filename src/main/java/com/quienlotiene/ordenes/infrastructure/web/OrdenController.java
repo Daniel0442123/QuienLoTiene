@@ -3,6 +3,7 @@ package com.quienlotiene.ordenes.infrastructure.web;
 import com.quienlotiene.ordenes.application.dto.CrearOrdenComando;
 import com.quienlotiene.ordenes.application.dto.OrdenVista;
 import com.quienlotiene.ordenes.application.usecase.CambiarEstadoOrden;
+import com.quienlotiene.ordenes.application.usecase.CancelarOrden;
 import com.quienlotiene.ordenes.application.usecase.ConfirmarRecepcion;
 import com.quienlotiene.ordenes.application.usecase.ConsultarOrden;
 import com.quienlotiene.ordenes.application.usecase.CrearOrden;
@@ -25,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Órdenes del cliente y de la tienda (HU-024, HU-027, HU-028; diagrama 04). */
-@Tag(name = "Órdenes", description = "Crear la orden, avanzar su estado y confirmar recepción")
+/** Órdenes del cliente y de la tienda (HU-024, HU-025, HU-027, HU-028, HU-029; diagramas 04 y 15). */
+@Tag(name = "Órdenes", description = "Crear la orden, avanzar su estado, confirmar recepción y cancelar")
 @RestController
 @RequestMapping("/api/v1/ordenes")
 class OrdenController {
@@ -36,6 +37,7 @@ class OrdenController {
     private final ListarMisOrdenes listarMisOrdenes;
     private final CambiarEstadoOrden cambiarEstadoOrden;
     private final ConfirmarRecepcion confirmarRecepcion;
+    private final CancelarOrden cancelarOrden;
     private final UsuarioActual usuarioActual;
 
     OrdenController(
@@ -44,12 +46,14 @@ class OrdenController {
             ListarMisOrdenes listarMisOrdenes,
             CambiarEstadoOrden cambiarEstadoOrden,
             ConfirmarRecepcion confirmarRecepcion,
+            CancelarOrden cancelarOrden,
             UsuarioActual usuarioActual) {
         this.crearOrden = crearOrden;
         this.consultarOrden = consultarOrden;
         this.listarMisOrdenes = listarMisOrdenes;
         this.cambiarEstadoOrden = cambiarEstadoOrden;
         this.confirmarRecepcion = confirmarRecepcion;
+        this.cancelarOrden = cancelarOrden;
         this.usuarioActual = usuarioActual;
     }
 
@@ -115,5 +119,21 @@ class OrdenController {
     @PreAuthorize("hasRole('CLIENTE')")
     OrdenVista confirmarRecepcion(@PathVariable UUID ordenId) {
         return confirmarRecepcion.ejecutar(usuarioActual.id(), ordenId);
+    }
+
+    @Operation(
+            summary = "Cancelar la orden",
+            description = "HU-029. El cliente mientras no haya salido de la tienda (CONFIRMADO, PREPARANDO o "
+                    + "LISTO_PARA_RECOGER); la tienda solo en CONFIRMADO. La otra parte recibe el motivo.")
+    @ApiResponse(responseCode = "200", description = "Orden CANCELADO")
+    @ApiResponse(responseCode = "400", description = "Falta el motivo o es muy largo (GEN-001)")
+    @ApiResponse(responseCode = "404", description = "No existe o no es del usuario (ORD-001)")
+    @ApiResponse(
+            responseCode = "409",
+            description = "Ya va en camino o se entregó (ORD-005), o ya terminó o la tienda ya la prepara (ORD-002)")
+    @PostMapping("/{ordenId}/cancelacion")
+    @PreAuthorize("hasAnyRole('CLIENTE', 'TIENDA')")
+    OrdenVista cancelar(@PathVariable UUID ordenId, @Valid @RequestBody CancelarOrdenRequest peticion) {
+        return cancelarOrden.ejecutar(usuarioActual.id(), ordenId, peticion.motivo());
     }
 }

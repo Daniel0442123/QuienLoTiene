@@ -30,7 +30,10 @@ final class OrdenVistaMapper {
                 orden.getHistorial().stream()
                         .map(cambio ->
                                 new OrdenVista.CambioEstadoOrden(cambio.estado().name(), cambio.fecha()))
-                        .toList());
+                        .toList(),
+                orden.getReservaVence(),
+                orden.getMotivoCancelacion(),
+                orden.getCanceladaPor() == null ? null : orden.getCanceladaPor().name());
     }
 
     private static OrdenVista.ClienteDeOrden clienteDe(Orden orden) {

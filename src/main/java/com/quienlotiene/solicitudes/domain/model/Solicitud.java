@@ -20,6 +20,7 @@ public final class Solicitud {
     private final boolean esUrgente;
     private final Ubicacion ubicacion;
     private final int radioEnMetros;
+    private final boolean esRestringida;
     private EstadoSolicitud estado;
     private final Instant fechaPublicacion;
     private final Instant fechaVencimiento;
@@ -34,6 +35,7 @@ public final class Solicitud {
             boolean esUrgente,
             Ubicacion ubicacion,
             int radioEnMetros,
+            boolean esRestringida,
             EstadoSolicitud estado,
             Instant fechaPublicacion,
             Instant fechaVencimiento) {
@@ -46,6 +48,7 @@ public final class Solicitud {
         this.esUrgente = esUrgente;
         this.ubicacion = ubicacion;
         this.radioEnMetros = radioEnMetros;
+        this.esRestringida = esRestringida;
         this.estado = estado;
         this.fechaPublicacion = fechaPublicacion;
         this.fechaVencimiento = fechaVencimiento;
@@ -54,6 +57,7 @@ public final class Solicitud {
     /**
      * HU-016: publica una solicitud abierta con el radio inicial de búsqueda.
      *
+     * @param esRestringida HU-023: el producto está en la lista de restringidos; las tiendas no le ofrecen domicilio
      * @throws SolicitudIncompletaException si falta el producto, la categoría, la modalidad o la ubicación, o la
      *     cantidad no está entre 1 y 999 (CP-SOL-016-02)
      */
@@ -67,6 +71,7 @@ public final class Solicitud {
             boolean esUrgente,
             Ubicacion ubicacion,
             int radioInicialEnMetros,
+            boolean esRestringida,
             Duration vigencia,
             Instant ahora) {
         if (producto == null || producto.isBlank()) {
@@ -98,6 +103,7 @@ public final class Solicitud {
                 esUrgente,
                 ubicacion,
                 radioInicialEnMetros,
+                esRestringida,
                 EstadoSolicitud.ABIERTA,
                 ahora,
                 ahora.plus(vigencia));
@@ -114,6 +120,7 @@ public final class Solicitud {
             boolean esUrgente,
             Ubicacion ubicacion,
             int radioEnMetros,
+            boolean esRestringida,
             EstadoSolicitud estado,
             Instant fechaPublicacion,
             Instant fechaVencimiento) {
@@ -127,9 +134,15 @@ public final class Solicitud {
                 esUrgente,
                 ubicacion,
                 radioEnMetros,
+                esRestringida,
                 estado,
                 fechaPublicacion,
                 fechaVencimiento);
+    }
+
+    /** HU-023: producto de la lista de restringidos (CP-SOL-023-01); no se entrega a domicilio (CP-SOL-023-02). */
+    public boolean esRestringida() {
+        return esRestringida;
     }
 
     public boolean estaVencida(Instant ahora) {

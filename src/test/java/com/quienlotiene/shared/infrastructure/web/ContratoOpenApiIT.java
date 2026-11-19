@@ -142,7 +142,8 @@ class ContratoOpenApiIT {
                         REFERENCIA + "EventoRespuestaNoElegida",
                         REFERENCIA + "EventoSolicitudVencida",
                         REFERENCIA + "EventoOrdenCreada",
-                        REFERENCIA + "EventoEstadoOrdenCambiado");
+                        REFERENCIA + "EventoEstadoOrdenCambiado",
+                        REFERENCIA + "EventoMensajeRecibido");
         assertThat(esquema("EventoSolicitudNueva")
                         .path("required")
                         .valueStream()
