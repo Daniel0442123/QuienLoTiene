@@ -1,6 +1,6 @@
 # Códigos de error de la API · Quién lo tiene
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.2 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` estable (DECISIONES-BACKEND, sección 8). Todas las respuestas de error traen además `idCorrelacion`, el mismo valor de la cabecera `X-Correlacion-Id`, para buscar la petición en los logs. Un código publicado no cambia nunca: el frontend y las pruebas se apoyan en él. Cada pull request que agregue un código lo registra aquí.
 
@@ -47,9 +47,9 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `TIE-001` | 400 | Tienda incompleta | Falta el nombre, la categoría, el teléfono o la ubicación de la tienda | HU-002 |
 | `TIE-002` | 400 | Documento faltante | El registro llega sin la foto del local o sin el RUT (CP-TIE-002-02) | HU-002 |
 | `TIE-003` | 400 | Archivo no permitido | Un documento pesa más de 5 MB o no es JPEG, PNG, WebP ni PDF (revisado por contenido) | HU-002 |
-| `TIE-004` | 409 | Cambio de estado no permitido | Se intenta aprobar o rechazar una tienda que no está PENDIENTE | HU-036 |
+| `TIE-004` | 409 | Cambio de estado no permitido | Se intenta aprobar o rechazar una tienda que no está PENDIENTE, suspender una que no está APROBADA o reactivar una que no está SUSPENDIDA | HU-036, HU-037 |
 | `TIE-005` | 400 | Motivo de rechazo inválido | El rechazo llega sin motivo o con más de 300 caracteres | HU-036 |
-| `TIE-006` | 404 | Tienda no encontrada | La tienda o el documento pedido no existe | HU-036 |
+| `TIE-006` | 404 | Tienda no encontrada | La tienda o el documento pedido no existe; en el detalle público, también si la tienda no está APROBADA | HU-036, HU-014 |
 | `TIE-007` | 400 | Horario inválido | Un día aparece dos veces o una franja abre después de cerrar | HU-009 |
 | `TIE-008` | 409 | Tienda no aprobada | La tienda intenta abrir o cerrar antes de que el administrador la apruebe | HU-013 |
 | `TIE-009` | 400 | Domicilio inválido | Tarifa negativa, radio fuera de 500 a 10.000 m o domicilio activo sin radio o tarifa (CP-TIE-010-02) | HU-010 |
@@ -73,6 +73,18 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `ORD-003` | 422 | Medio de pago no aceptado | El cliente elige un medio de pago que la tienda no tiene activo (CP-ORD-024-04) | HU-024 |
 | `ORD-004` | 400 | Orden incompleta | Pide domicilio sin elegir la dirección de entrega | HU-024 |
 | `MEN-001` | 409 | Contacto no disponible | Se pide el WhatsApp de una orden que ya no está activa (resuelta, cancelada o vencida) | HU-032 |
+| `ORD-005` | 409 | La orden ya fue despachada | El cliente intenta cancelar una orden EN_CAMINO o ENTREGADO; se le sugiere escribir a la tienda o reportar (CP-ORD-029-02) | HU-029 |
+| `ORD-006` | 422 | Domicilio no disponible | Se pide domicilio en una orden de un producto restringido (CP-SOL-023-02) | HU-023 |
+| `MEN-002` | 409 | Chat en solo lectura | Se escribe en el chat de una orden que ya terminó (resuelta, cancelada o vencida) (CP-MEN-033-02) | HU-033 |
+| `MEN-003` | 400 | Mensaje inválido | El mensaje está vacío o tiene más de 1000 caracteres | HU-033 |
+| `REP-001` | 422 | Calificación no permitida | Se califica una orden que no está RESUELTA o que no es del cliente (CP-REP-034-02) | HU-034 |
+| `REP-002` | 409 | Ya calificaste | El cliente califica dos veces la misma orden (CP-REP-034-03) | HU-034 |
+| `REP-003` | 404 | No encontrado | La orden todavía no tiene reseña, o el reporte no existe | HU-034, HU-037 |
+| `REP-004` | 400 | Datos inválidos | Estrellas fuera de 1 a 5, comentario de más de 500, motivo de reporte desconocido, OTRO sin descripción, descripción de más de 1000, nota de resolución fuera de 3 a 500 o estado de bandeja desconocido | HU-034, HU-035, HU-037 |
+| `REP-005` | 409 | Reporte ya resuelto | El administrador resuelve un reporte que ya estaba RESUELTO | HU-037 |
+| `CAT-001` | 404 | No encontrado | La categoría o la palabra restringida no existe | HU-038 |
+| `CAT-002` | 409 | Ya está en la lista | La palabra restringida ya estaba en la lista (sin importar mayúsculas ni tildes) | HU-038 |
+| `CAT-003` | 400 | Palabra inválida | La palabra restringida tiene menos de 2 o más de 80 caracteres | HU-038 |
 
 ## Historial del documento
 
@@ -94,3 +106,4 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | — | 08/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | feat(clientes): gestiona las direcciones y el perfil del cliente (#16) |
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 2: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004` y `MEN-001` (contrato del Sprint 2) |
+| 1.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 3: `ORD-005`, `ORD-006`, `MEN-002`, `MEN-003`, `REP-001` a `REP-005` y `CAT-001` a `CAT-003`; `TIE-004` y `TIE-006` cubren la suspensión y el detalle público |

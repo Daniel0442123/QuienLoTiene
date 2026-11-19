@@ -155,4 +155,20 @@ class NotificarEnTiempoRealTest {
                         org.assertj.core.groups.Tuple.tuple(CLIENTE, "estado-orden-cambiado"),
                         org.assertj.core.groups.Tuple.tuple(DUENO_A, "estado-orden-cambiado"));
     }
+
+    @Test
+    @Tag("HU-033")
+    @Tag("CP-MEN-033-01")
+    @DisplayName("CP-MEN-033-01 Solo la otra parte recibe mensaje-recibido, sin el texto")
+    void mensajeRecibido() {
+        var orden = UUID.randomUUID();
+        var mensaje = UUID.randomUUID();
+        notificar.alEnviarMensaje(new com.quienlotiene.mensajeria.api.MensajeEnviadoEvent(orden, mensaje, DUENO_A));
+
+        assertThat(enviadas()).singleElement().satisfies(aviso -> {
+            assertThat(aviso.usuarioId()).isEqualTo(DUENO_A);
+            assertThat(aviso.tipo()).isEqualTo("mensaje-recibido");
+            assertThat(aviso.datos()).isEqualTo(new EventosTiempoReal.MensajeRecibido(orden, mensaje));
+        });
+    }
 }

@@ -29,7 +29,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `POST /api/v1/admin/reportes/{id}/resolucion` | ADMIN | HU-037 | `{ "nota": "..." }` (3 a 500). Queda RESUELTO y auditado |
 | `POST /api/v1/admin/tiendas/{id}/suspension` | ADMIN | HU-037 | `{ "motivo": "..." }`. La tienda queda SUSPENDIDA: no recibe solicitudes y su dueño no puede iniciar sesión (IDE-009). Auditado |
 | `POST /api/v1/admin/tiendas/{id}/reactivacion` | ADMIN | HU-037 | Deshace la suspensión. Auditado |
-| `GET /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | Mensajes de la orden, del más antiguo al más reciente, y `soloLectura` |
+| `GET /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | Mensajes de la orden, del más antiguo al más reciente (cada uno con `autor` CLIENTE o TIENDA y `esMio`), y `soloLectura` |
 | `POST /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | `{ "texto": "..." }` (1 a 1000). Solo con la orden activa |
 
 ## Eventos de tiempo real nuevos o con cambios
@@ -53,6 +53,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `CAT-001` | 404 | Categoría o palabra restringida no encontrada |
 | `CAT-002` | 409 | La palabra restringida ya está en la lista |
 | `MEN-002` | 409 | Escribir en el chat de una orden que ya no está activa (CP-MEN-033-02) |
+| `MEN-003` | 400 | Mensaje vacío o de más de 1000 caracteres |
 | `CAT-003` | 400 | Palabra restringida de menos de 2 o más de 80 caracteres |
 
 ## Decisiones tomadas en este contrato

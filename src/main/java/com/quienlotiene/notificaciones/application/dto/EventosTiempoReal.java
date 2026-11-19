@@ -96,4 +96,10 @@ public final class EventosTiempoReal {
             @Nullable String motivo) {
         public static final String TIPO = "estado-orden-cambiado";
     }
+
+    /** HU-033, CP-MEN-033-01: para la otra parte de la orden; el texto se pide por REST. */
+    @Schema(name = "EventoMensajeRecibido")
+    public record MensajeRecibido(UUID ordenId, UUID mensajeId) {
+        public static final String TIPO = "mensaje-recibido";
+    }
 }
