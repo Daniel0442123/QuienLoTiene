@@ -1,6 +1,6 @@
 # Backlog del Sprint 3 del backend · Quién lo tiene
 
-> **Control del documento** · Versión 0.1 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Propuesta para la planning · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.2 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Propuesta para la planning · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Propuesta para la planning del Sprint 3 (la ajustan Wilson como Product Owner y Brayan como Scrum Master).
 
@@ -45,6 +45,8 @@ T-00 va primero: contrato `docs/api/contrato-sprint-3.yaml` (OpenAPI 3.1) y `CON
 
 **Corte si no alcanza:** HU-031 y HU-008 pasan al Cierre; HU-033 es la siguiente candidata. Las historias 1 a 8 son el mínimo del sprint.
 
+**Corte aplicado (19/11/2026):** las historias 1 a 10 entraron en el PR #63. Pedro decidió pasar HU-031 y HU-008 al Cierre.
+
 ## 4. Pruebas que acompañan cada pull request
 
 - Cada `@Test` con `@Tag("HU-xxx")` y `@Tag("CP-xxx")`, y `@DisplayName` que empieza con el ID del caso (plan C2 §5).
@@ -71,3 +73,4 @@ Pull request aprobado por el arquitecto de software, CI en verde (formato, unita
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Propuesta del backlog del Sprint 3 del backend para la planning |
+| 0.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte aplicado: HU-031 y HU-008 pasan al Cierre (decisión de Pedro) |
