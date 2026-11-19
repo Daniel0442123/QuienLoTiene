@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 1 (C1)
 
-> **Control del documento** · Versión 0.5 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Listo para firma** (cifras finales del 16/11; defectos cerrados con el visto bueno de Pedro; falta la revisión y firma de QA y la aprobación del PO) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.0 · 18/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: **Listo para firma** (QA y el PO lo revisaron el 18/11 y están de acuerdo, según Pedro; falta que cada uno firme) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -8,14 +8,16 @@
 |---|---|
 | Campaña | Quién lo tiene — Liberación 1.0 |
 | Ciclo / fechas | C1 · 02/11/2026 al 20/11/2026 (planeado al 15/11; SC-015) |
-| Versiones | Corte del Sprint 1: v0.2.0 (`ea7351d`) · Sprint 2: `main` 5e8ab98 |
+| Versiones | Corte del Sprint 1: v0.2.0 (`ea7351d`) · Sprint 2: `main` 5e8ab98 · Producción: v0.3.0 y v0.3.1 (re-prueba de DEF-011) |
 | Responsables de QA | Yanimar Burbano Piamba (funcionales) · Francisco José Castro Muñoz (no funcionales y seguridad) |
 | Alcance | Historias de los Sprints 1 y 2: 53 casos funcionales y de seguridad, y 8 no funcionales |
-| Instrumento | Libro de control (`libro/`) y evidencias (`evidencias/C1/2026-11-12/` y `evidencias/C1/2026-11-16/`) |
+| Instrumento | Libro de control (`libro/`) y evidencias (`evidencias/C1/2026-11-12/`, `2026-11-16/`, `2026-11-17/def011/` y `2026-11-18/produccion/`) |
 
 ## 1. Resumen de ejecución
 
 Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado: 61 aprobados, 0 fallidos y 0 bloqueados (100 % de aprobación sobre los concluyentes). La última corrida completa (`./mvnw verify` sobre `main` 5e8ab98) dio 278 pruebas unitarias y 49 de integración, todas en verde, con 95,5 % de líneas cubiertas en domain y application. Los casos del Sprint 2 se verificaron además de punta a punta con el backend real y la PWA (`informes/C1/RECORRIDO-SPRINT-2-20261116.md`).
+
+El 17/11 Pedro encontró DEF-011 probando en producción `v0.3.0`; se corrigió en el #58 y salió en `v0.3.1` (CI con 333 pruebas del backend y 248 del frontend en verde). El 18/11 la prueba de punta a punta en producción sobre `v0.3.1` pasó 8 de 8 pasos, incluida la re-prueba de DEF-011 (`evidencias/C1/2026-11-18/produccion/`).
 
 | Módulo | Responsable | Casos | Aprob. | Fall. | Bloq. | No ejec. | Cobertura |
 |---|---|---|---|---|---|---|---|
@@ -89,7 +91,7 @@ Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado:
 
 ## 3. Defectos por severidad y estado
 
-| ID | Severidad | Prioridad | Estado (16/11, cierre) | Caso | Qué falla | Versión |
+| ID | Severidad | Prioridad | Estado (18/11, cierre) | Caso | Qué falla | Versión |
 |---|---|---|---|---|---|---|
 | DEF-001 | S3 | P3 | Cerrado | Exploratoria-20261112 | Contrato OpenAPI sin required, enum ni nullable | v0.2.0 → corregido en #35 |
 | DEF-002 | S3 | P3 | Cerrado | NF-SEG-011 | Faltaba OWASP Dependency-Check en el CI | v0.2.0 → corregido en #36 |
@@ -101,8 +103,9 @@ Los 53 casos funcionales y de seguridad y los 8 no funcionales tienen resultado:
 | DEF-008 | S4 | P3 | Cerrado | CP-SOL-021-01 | La solicitud vencida sigue titulada «Esperando respuestas» | 5e8ab98 → corregido en #47 |
 | DEF-009 | S4 | P4 | Cerrado | CP-ORD-024-02 | La tienda lee «Pagas con efectivo» en su pedido | 5e8ab98 → corregido en #47 |
 | DEF-010 | S4 | P4 | Cerrado | CP-SOL-021-01 | Punto doble después de la hora en tres textos («p. m..») | 55ab5b6 → corregido en #50 |
+| DEF-011 | S2 | P1 | Cerrado | Exploratoria-20261117 | Al recargar «Esperando respuestas» se pierden la solicitud y las respuestas | v0.3.0 (producción) → corregido en #58, v0.3.1 |
 
-Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Los 10 defectos quedaron cerrados el 16/11: el cierre lo aprobó Pedro (dueño del proyecto) con las re-pruebas; QA no los ha revisado. Las re-pruebas del 16/11 pasan: DEF-005 a DEF-009 sobre main 55ab5b6 (`evidencias/C1/2026-11-16/reprueba/`) y DEF-010 sobre main e679ef3 (`evidencias/C1/2026-11-16/reprueba-def010/`).
+Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. DEF-001 a DEF-010 quedaron cerrados el 16/11 y DEF-011 el 18/11, con el visto bueno de Pedro (dueño del proyecto) y las re-pruebas. El 18/11 Pedro informó que QA y el PO revisaron los cierres en su equipo y están de acuerdo. Las re-pruebas pasan: DEF-005 a DEF-009 sobre main 55ab5b6 (`evidencias/C1/2026-11-16/reprueba/`), DEF-010 sobre main e679ef3 (`evidencias/C1/2026-11-16/reprueba-def010/`) y DEF-011 en producción sobre `v0.3.1` (`evidencias/C1/2026-11-18/produccion/`).
 
 ## 4. Requisitos y trazabilidad
 
@@ -141,15 +144,16 @@ Ninguno.
 | Cobertura ≥ 70 % en los módulos del ciclo | Cumple: mínimo 84,4 % (clientes) |
 | 0 defectos S1 y S2 abiertos | Cumple |
 | Pipeline en verde (Modulith, ArchUnit, Trivy, Dependency-Check, secretos) | Cumple: CI #146 |
-| Informes con datos reales del libro | Pendiente: revisión y firma de QA |
+| Informes con datos reales del libro | Cumple en contenido: QA y el PO lo revisaron el 18/11; falta la firma de cada uno |
 
 ## 9. Conclusión y recomendación
 
-El C1 cumple sus criterios de salida y no queda nada por corregir ni re-probar: DEF-001 a DEF-010 pasan la re-prueba y C-04 está cerrado. El 16/11 a las 22:55 (hora de Bogotá) Pedro dio el visto bueno al cierre en el hilo del proyecto. El ciclo queda **cerrado en cuanto firmen QA y el PO**; si firman antes del 20/11, el cierre se adelanta frente a la fecha de SC-015 y se anota en `docs/gestion/CONTROL-DE-CAMBIOS.md`.
+El C1 cumple sus criterios de salida y no queda nada por corregir ni re-probar: DEF-001 a DEF-011 pasan la re-prueba y C-04 está cerrado. El 18/11 a las 3:22 p. m. Pedro informó que QA (Yanimar Burbano y Francisco Castro) y el PO (Wilson Galindez) revisaron este informe en su equipo y están de acuerdo con cerrar. El 16/11 a las 22:55 (hora de Bogotá) Pedro dio el visto bueno al cierre en el hilo del proyecto. El ciclo queda **cerrado en cuanto firmen QA y el PO**; si firman antes del 20/11, el cierre se adelanta frente a la fecha de SC-015 y se anota en `docs/gestion/CONTROL-DE-CAMBIOS.md`.
 
 Recomendaciones para el equipo:
 
-1. DEF-001 a DEF-010 quedaron cerrados el 16/11 con el visto bueno de Pedro (dueño del proyecto), porque las re-pruebas pasan. QA (Yanimar Burbano y Francisco Castro) revisa esos cierres y firma este informe; si no está de acuerdo con alguno, lo pasa a Reabierto. La firma la pone cada persona; este documento no lleva firmas en su nombre.
+1. DEF-001 a DEF-011 quedaron cerrados con el visto bueno de Pedro (dueño del proyecto), porque las re-pruebas pasan, y QA los revisó el 18/11. QA (Yanimar Burbano y Francisco Castro) firma este informe y el PO (Wilson Galindez) lo aprueba; el cierre se adelanta frente a la fecha de SC-015 (20/11).
+2. Mejoras de la prueba en producción: SC-017 (categoría y ubicación en «Mi tienda») quedó implementada en el #61 y sale en la próxima versión; SC-018 (preguntas abiertas en HU-008) la decide el comité en la planning del Sprint 3. La firma la pone cada persona; este documento no lleva firmas en su nombre.
 
 | Elaborado por | Revisado / aprobado por |
 |---|---|
@@ -165,3 +169,4 @@ Recomendaciones para el equipo:
 | 0.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-010 corregido (#50) y re-probado sobre main e679ef3: 0 defectos abiertos. Pendiente: firma de QA |
 | 0.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Listo para firma: visto bueno de Pedro al cierre (16/11 22:55). Pendiente: cierre de defectos y firma de QA, aprobación del PO |
 | 0.5 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-001 a DEF-010 cerrados (cierre aprobado por Pedro el 16/11). Pendiente: revisión y firma de QA, aprobación del PO |
+| 1.0 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-011 (producción, `v0.3.1`) cerrado y prueba en producción del 18/11. QA y el PO lo revisaron y están de acuerdo (informado por Pedro el 18/11 3:22 p. m.). Pendiente: la firma de cada uno |
