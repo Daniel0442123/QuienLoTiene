@@ -138,7 +138,9 @@ class ConsultarHistorialTest {
 
     @Test
     @Tag("SC-018")
-    @DisplayName("SC-018 Marca como abierta solo la que no ha vencido, con sus respuestas y la orden de la resuelta")
+    @Tag("CP-CLI-008-03")
+    @DisplayName(
+            "CP-CLI-008-03 «Mis preguntas»: marca como abierta solo la que no ha vencido, con sus respuestas y la orden de la resuelta")
     void misPreguntas() {
         var abierta = solicitud(EstadoSolicitud.ABIERTA, AHORA.minus(Duration.ofMinutes(10)));
         var sinVencerAun = solicitud(EstadoSolicitud.ABIERTA, AHORA.minus(Duration.ofHours(2)));
