@@ -15,6 +15,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.util.Base64;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +40,7 @@ final class ServicioWebPush implements ServicioPush {
     private final FirmaVapid firma;
     private final String clavePublica;
 
+    @Autowired
     ServicioWebPush(PropiedadesPush propiedades, Clock reloj) throws GeneralSecurityException {
         this(
                 propiedades,
