@@ -103,15 +103,12 @@ export function ChatDelPedido({ ordenId, otraParte }: { ordenId: string; otraPar
       ) : (
         <form
           noValidate
-          onSubmit={handleSubmit(({ texto }) =>
-            envio.mutate(texto, {
-              onSuccess: () => {
-                reset()
-                // Se sigue escribiendo sin volver a buscar el campo (después de que el botón deja de estar ocupado)
-                requestAnimationFrame(() => setFocus('texto'))
-              },
-            }),
-          )}
+          onSubmit={handleSubmit(({ texto }) => {
+            // El foco pasa al campo antes de enviar: el botón queda ocupado (deshabilitado) mientras se envía y, si
+            // el foco se quedara en él, se perdería. Así la persona sigue escribiendo sin volver a buscar el campo.
+            setFocus('texto')
+            envio.mutate(texto, { onSuccess: () => reset() })
+          })}
           className="sticky bottom-0 flex flex-col gap-1 border-t border-borde bg-fondo pt-3"
         >
           <label htmlFor={ID_CAMPO} className="font-semibold">
