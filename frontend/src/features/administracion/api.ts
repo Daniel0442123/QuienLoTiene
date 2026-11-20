@@ -108,3 +108,73 @@ export function useDescargarDocumento() {
     },
   })
 }
+
+export type CategoriaAdministrada = Esquemas['CategoriaAdministrada']
+export type ProductoRestringido = Esquemas['ProductoRestringido']
+
+export const clavesCatalogoAdmin = {
+  categorias: ['admin', 'categorias'] as const,
+  restringidos: ['admin', 'productos-restringidos'] as const,
+}
+
+/** HU-038: todas las categorías, activas e inactivas. */
+export function useCategoriasAdmin() {
+  return useQuery({
+    queryKey: clavesCatalogoAdmin.categorias,
+    queryFn: async () => exigirDatos((await clienteApi.GET('/api/v1/admin/categorias')).data),
+  })
+}
+
+/**
+ * HU-038: activar o desactivar una categoría. Se puede deshacer volviendo a tocarla, así que no pide confirmación.
+ * También se recargan las categorías públicas (las de publicar y registrar tienda).
+ */
+export function useCambiarCategoria() {
+  const clienteConsultas = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ categoriaId, activa }: { categoriaId: string; activa: boolean }) =>
+      exigirDatos(
+        (
+          await clienteApi.PATCH('/api/v1/admin/categorias/{categoriaId}', {
+            params: { path: { categoriaId } },
+            body: { activa },
+          })
+        ).data,
+      ),
+    onSettled: () => {
+      void clienteConsultas.invalidateQueries({ queryKey: clavesCatalogoAdmin.categorias })
+      void clienteConsultas.invalidateQueries({ queryKey: ['categorias'] })
+    },
+  })
+}
+
+/** HU-038: palabras clave de los productos restringidos. */
+export function useRestringidos() {
+  return useQuery({
+    queryKey: clavesCatalogoAdmin.restringidos,
+    queryFn: async () => exigirDatos((await clienteApi.GET('/api/v1/admin/productos-restringidos')).data),
+  })
+}
+
+/** HU-038: agregar una palabra. CAT-002 si ya está y CAT-003 si es muy corta o larga. */
+export function useAgregarRestringido() {
+  const clienteConsultas = useQueryClient()
+  return useMutation({
+    mutationFn: async (palabraClave: string) =>
+      exigirDatos((await clienteApi.POST('/api/v1/admin/productos-restringidos', { body: { palabraClave } })).data),
+    onSuccess: () => void clienteConsultas.invalidateQueries({ queryKey: clavesCatalogoAdmin.restringidos }),
+  })
+}
+
+/** HU-038: quitar una palabra. Lo llama el deshacer cuando pasa el tiempo; CAT-001 si otra persona ya la quitó. */
+export function useQuitarRestringido() {
+  const clienteConsultas = useQueryClient()
+  return useMutation({
+    mutationFn: async (productoRestringidoId: string) => {
+      await clienteApi.DELETE('/api/v1/admin/productos-restringidos/{productoRestringidoId}', {
+        params: { path: { productoRestringidoId } },
+      })
+    },
+    onSettled: () => void clienteConsultas.invalidateQueries({ queryKey: clavesCatalogoAdmin.restringidos }),
+  })
+}

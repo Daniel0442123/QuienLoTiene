@@ -1,27 +1,29 @@
 import { X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { Boton } from '@/components/ui/Boton'
-import { textosSolicitudes as textos } from './textos'
+
+const textos = { deshacer: 'Deshacer', cerrarAviso: 'Cerrar aviso' }
 
 /**
- * Aviso de «No lo tengo» con «Deshacer» y botón para cerrarlo (DECISIONES-FRONTEND §8, regla 7). La tarjeta
- * desaparece, así que el foco pasa a «Deshacer» para no perderse. El texto lo anuncia la región aria-live de la página.
+ * Aviso con «Deshacer» y botón para cerrarlo (DECISIONES-FRONTEND §8, regla 7): «No lo tengo» (HU-018) y quitar un
+ * producto restringido (HU-038). El elemento desaparece, así que el foco pasa a «Deshacer» para no perderse. El texto
+ * lo anuncia la región aria-live de la página. Se usa con useDescartarConDeshacer.
  */
 export function AvisoDeshacer({
-  producto,
+  mensaje,
   alDeshacer,
   alCerrar,
 }: {
-  producto: string
+  mensaje: string
   alDeshacer: () => void
   alCerrar: () => void
 }) {
   const botonDeshacer = useRef<HTMLButtonElement>(null)
-  useEffect(() => botonDeshacer.current?.focus(), [producto])
+  useEffect(() => botonDeshacer.current?.focus(), [mensaje])
 
   return (
     <div className="sticky bottom-4 flex items-center gap-2 rounded-control bg-texto p-2 pl-4 text-fondo shadow-lg">
-      <p className="flex-1 break-words">{textos.descartaste(producto)}</p>
+      <p className="flex-1 break-words">{mensaje}</p>
       <Boton
         ref={botonDeshacer}
         type="button"

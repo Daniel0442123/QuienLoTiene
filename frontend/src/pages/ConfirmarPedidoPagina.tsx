@@ -66,6 +66,7 @@ export function ConfirmarPedidoPagina() {
         <FormularioConfirmarPedido
           respuesta={respuesta}
           modalidadSolicitada={solicitud.data.modalidad}
+          esRestringida={solicitud.data.esRestringida}
           alConfirmar={(orden) => {
             anunciar(textos.pedidoConfirmado(orden.tienda.nombre))
             void navegar(`/pedidos/${orden.id}`, { replace: true })

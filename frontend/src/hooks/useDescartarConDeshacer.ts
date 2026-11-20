@@ -7,9 +7,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 export const DURACION_DESHACER_MS = 8_000
 
 /**
- * «No lo tengo» en un toque con deshacer en vez de diálogo (DECISIONES-FRONTEND §8, decisión 3 del contrato): la
- * solicitud sale de la lista al instante y la respuesta NO se envía cuando pasa el tiempo, cuando se cierra el aviso,
- * cuando se descarta otra o cuando la persona sale de la pantalla. El backend no permite borrar respuestas.
+ * Acción en un toque con deshacer en vez de diálogo (DECISIONES-FRONTEND §8): el elemento sale de la lista al instante
+ * y la petición se envía cuando pasa el tiempo, cuando se cierra el aviso, cuando se descarta otro o cuando la persona
+ * sale de la pantalla. Lo usan «No lo tengo» (HU-018, decisión 3 del contrato del Sprint 2: el backend no permite
+ * borrar respuestas) y quitar un producto restringido (HU-038).
  */
 export function useDescartarConDeshacer<T>(enviar: (elemento: T) => void, duracionMs = DURACION_DESHACER_MS) {
   const [pendiente, setPendiente] = useState<T | null>(null)

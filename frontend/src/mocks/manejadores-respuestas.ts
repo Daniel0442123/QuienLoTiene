@@ -188,7 +188,8 @@ export const manejadoresRespuestas = [
       if (errores.length > 0) return problema(400, 'SOL-006', 'Respuesta incompleta', { errores })
     }
 
-    const costo = tipo === 'NO' ? null : costoDomicilio(tienda, solicitud.ubicacion)
+    // HU-023: a una solicitud restringida no se le ofrece domicilio
+    const costo = tipo === 'NO' || solicitud.esRestringida ? null : costoDomicilio(tienda, solicitud.ubicacion)
     const respuesta: RespuestaSimulada = {
       id: crypto.randomUUID(),
       solicitudId: solicitud.id,

@@ -17,3 +17,10 @@ export const esquemaRechazo = z.object({
 })
 
 export type DatosRechazo = z.infer<typeof esquemaRechazo>
+
+/** HU-038: palabra clave restringida, de 2 a 80 caracteres (AgregarRestringidoRequest, CAT-003). */
+export const esquemaPalabraRestringida = z.object({
+  palabraClave: z.string().trim().min(2, textos.palabraCorta).max(80, textos.palabraLarga),
+})
+
+export type DatosPalabraRestringida = z.infer<typeof esquemaPalabraRestringida>

@@ -127,6 +127,27 @@ export function useResponderSolicitud() {
   })
 }
 
+/** Desde cuántas letras vale la pena preguntar si el producto es restringido. */
+const LARGO_MINIMO_RESTRICCION = 3
+
+/**
+ * HU-023: si el producto que escribe el cliente está en la lista de restringidos, para avisar antes de publicar.
+ * Se pregunta con el texto ya diferido (no en cada tecla) y se mantiene la respuesta anterior mientras llega la nueva.
+ */
+export function useRestriccionProducto(producto: string) {
+  const texto = producto.trim()
+  return useQuery({
+    queryKey: ['catalogo', 'restriccion', texto.toLowerCase()],
+    queryFn: async () =>
+      exigirDatos(
+        (await clienteApi.GET('/api/v1/catalogo/restriccion', { params: { query: { producto: texto } } })).data,
+      ),
+    enabled: texto.length >= LARGO_MINIMO_RESTRICCION,
+    placeholderData: keepPreviousData,
+    staleTime: 5 * 60_000,
+  })
+}
+
 /**
  * HU-016: publica «¿quién tiene X?» para las tiendas cercanas. Sin actualización optimista: el backend puede rechazar
  * con 429 (SOL-001) y mostrar un éxito falso confundiría (DECISIONES-FRONTEND 2.3).

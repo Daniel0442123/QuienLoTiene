@@ -40,6 +40,11 @@ export const rutas: RouteObject[] = [
                 path: 'tiendas',
                 lazy: async () => ({ Component: (await import('@/pages/RevisarTiendasPagina')).RevisarTiendasPagina }),
               },
+              {
+                // Categorías y productos restringidos (HU-038)
+                path: 'catalogo',
+                lazy: async () => ({ Component: (await import('@/pages/CatalogoAdminPagina')).CatalogoAdminPagina }),
+              },
             ],
           },
           {

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { EsqueletoLista, EstadoError, EstadoVacio } from '@/components/Estados'
 import { ESTADOS_TIENDA, useTiendasPorEstado, type EstadoTienda } from '@/features/administracion/api'
+import { NavegacionAdmin } from '@/features/administracion/NavegacionAdmin'
 import { TarjetaTiendaRevision } from '@/features/administracion/TarjetaTiendaRevision'
 import { textosAdministracion as textos } from '@/features/administracion/textos'
 import { useCategorias } from '@/hooks/useCategorias'
@@ -27,6 +28,7 @@ export function RevisarTiendasPagina() {
 
   return (
     <section className="mx-auto flex max-w-2xl flex-col gap-6">
+      <NavegacionAdmin />
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold">{textos.tituloRevision}</h1>
         <p className="text-texto-suave">{textos.introRevision}</p>
