@@ -162,8 +162,8 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
     // Cuando
     await usuario.click(await screen.findByRole('button', { name: 'Reintentar' }, { timeout: 5000 }))
 
-    // Entonces
-    expect(await screen.findByRole('heading', { name: 'Droguería La 5' })).toBeInTheDocument()
+    // Entonces: misma espera que para «Reintentar» (con la suite completa el equipo va más lento)
+    expect(await screen.findByRole('heading', { name: 'Droguería La 5' }, { timeout: 5000 })).toBeInTheDocument()
   })
 
   it('al entrar, el dueño de la tienda llega a su panel', async () => {
