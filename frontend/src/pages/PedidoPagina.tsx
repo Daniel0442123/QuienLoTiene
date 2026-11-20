@@ -1,4 +1,4 @@
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Flag } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
@@ -15,9 +15,23 @@ import { numeroCorto } from '@/features/ordenes/presentacion'
 import { textosOrdenes as textos } from '@/features/ordenes/textos'
 import { useAnunciarCambiosDeEstado } from '@/features/ordenes/useAnunciarCambiosDeEstado'
 import { ResenaDelPedido } from '@/features/reputacion/ResenaDelPedido'
+import { textosReputacion } from '@/features/reputacion/textos'
 import { esErrorApi } from '@/services/errores'
 import { formatearHora, formatearPesos, formatearUnidades } from '@/services/formato'
 import { mensajeParaUsuario } from '@/services/mensajes-error'
+
+/** HU-035: reportar un problema del pedido, en cualquier estado (mockup 02 y 03). */
+function EnlaceReportar({ ruta }: { ruta: string }) {
+  return (
+    <Link
+      to={ruta}
+      className="inline-flex min-h-tactil items-center justify-center gap-2 rounded-control border border-borde bg-fondo px-4 font-semibold text-texto hover:bg-superficie"
+    >
+      <Flag aria-hidden="true" className="size-5" />
+      {textosReputacion.enlaceReportar}
+    </Link>
+  )
+}
 
 /** HU-028: «Recibí mi pedido» cuando la tienda lo marcó como entregado. */
 function ConfirmarRecepcion({ orden }: { orden: Orden }) {
@@ -114,6 +128,7 @@ export function PedidoPagina() {
           <ComoLlegar orden={orden.data} />
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />
           <DetalleOrden orden={orden.data} />
+          <EnlaceReportar ruta={`/pedidos/${orden.data.id}/reportar`} />
           <CancelarPedido orden={orden.data} vista="cliente" />
         </>
       )}

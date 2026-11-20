@@ -41,6 +41,11 @@ export const rutas: RouteObject[] = [
                 lazy: async () => ({ Component: (await import('@/pages/RevisarTiendasPagina')).RevisarTiendasPagina }),
               },
               {
+                // Reportes y suspender tiendas (HU-037)
+                path: 'reportes',
+                lazy: async () => ({ Component: (await import('@/pages/ReportesAdminPagina')).ReportesAdminPagina }),
+              },
+              {
                 // Categorías y productos restringidos (HU-038)
                 path: 'catalogo',
                 lazy: async () => ({ Component: (await import('@/pages/CatalogoAdminPagina')).CatalogoAdminPagina }),
@@ -115,6 +120,13 @@ export const rutas: RouteObject[] = [
               {
                 path: ':ordenId',
                 lazy: async () => ({ Component: (await import('@/pages/PedidoPagina')).PedidoPagina }),
+              },
+              {
+                // Reportar un problema del pedido (HU-035)
+                path: ':ordenId/reportar',
+                lazy: async () => ({
+                  Component: (await import('@/pages/ReportarProblemaPagina')).ReportarProblemaClientePagina,
+                }),
               },
               {
                 // Calificar la tienda de un pedido resuelto (HU-034)
@@ -195,6 +207,13 @@ export const rutas: RouteObject[] = [
                     path: ':ordenId',
                     lazy: async () => ({
                       Component: (await import('@/pages/PedidoTiendaPagina')).PedidoTiendaPagina,
+                    }),
+                  },
+                  {
+                    // Reportar un problema del pedido (HU-035)
+                    path: ':ordenId/reportar',
+                    lazy: async () => ({
+                      Component: (await import('@/pages/ReportarProblemaPagina')).ReportarProblemaTiendaPagina,
                     }),
                   },
                 ],

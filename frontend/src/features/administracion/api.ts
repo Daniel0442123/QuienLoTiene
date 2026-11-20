@@ -178,3 +178,80 @@ export function useQuitarRestringido() {
     onSettled: () => void clienteConsultas.invalidateQueries({ queryKey: clavesCatalogoAdmin.restringidos }),
   })
 }
+
+export type ReporteParaAdministrador = Esquemas['ReporteParaAdministrador']
+export type EstadoReporte = ReporteParaAdministrador['estado']
+export const ESTADOS_REPORTE: EstadoReporte[] = ['ABIERTO', 'RESUELTO']
+
+const claveReportes = (estado: EstadoReporte) => ['admin', 'reportes', estado] as const
+
+/** Mensaje de la bandeja de reportes: REP-005, REP-003 y TIE-004 dicen que la lista se actualizó. */
+export function mensajeReportes(error: unknown): string {
+  if (esErrorApi(error) && textos.erroresReportes[error.codigo]) return textos.erroresReportes[error.codigo]!
+  return mensajeAdministracion(error)
+}
+
+/** HU-037: reportes por estado (ABIERTO por defecto), del más antiguo al más reciente. */
+export function useReportes(estado: EstadoReporte) {
+  return useQuery({
+    queryKey: claveReportes(estado),
+    queryFn: async () =>
+      exigirDatos((await clienteApi.GET('/api/v1/admin/reportes', { params: { query: { estado } } })).data),
+  })
+}
+
+/** CP-ADM-037-02: resolver con nota. REP-005 si ya estaba resuelto: en los dos casos se recargan los reportes. */
+export function useResolverReporte() {
+  const clienteConsultas = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ reporteId, nota }: { reporteId: string; nota: string }) =>
+      exigirDatos(
+        (
+          await clienteApi.POST('/api/v1/admin/reportes/{reporteId}/resolucion', {
+            params: { path: { reporteId } },
+            body: { nota },
+          })
+        ).data,
+      ),
+    onSettled: () => void clienteConsultas.invalidateQueries({ queryKey: ['admin', 'reportes'] }),
+  })
+}
+
+/** Tras suspender o reactivar cambian las listas de tiendas y la información de los reportes. */
+function useRecargarTiendasYReportes() {
+  const clienteConsultas = useQueryClient()
+  return () => {
+    void clienteConsultas.invalidateQueries({ queryKey: ['admin', 'tiendas'] })
+    void clienteConsultas.invalidateQueries({ queryKey: ['admin', 'reportes'] })
+  }
+}
+
+/** CP-ADM-037-01: suspender una tienda APROBADA con motivo (con confirmación, SC-011 punto 8). TIE-004 si no lo está. */
+export function useSuspenderTienda() {
+  const recargar = useRecargarTiendasYReportes()
+  return useMutation({
+    mutationFn: async ({ tiendaId, motivo }: { tiendaId: string; motivo: string }) =>
+      exigirDatos(
+        (
+          await clienteApi.POST('/api/v1/admin/tiendas/{tiendaId}/suspension', {
+            params: { path: { tiendaId } },
+            body: { motivo },
+          })
+        ).data,
+      ),
+    onSettled: recargar,
+  })
+}
+
+/** HU-037: reactivar una tienda SUSPENDIDA (con confirmación). TIE-004 si no lo está. */
+export function useReactivarTienda() {
+  const recargar = useRecargarTiendasYReportes()
+  return useMutation({
+    mutationFn: async (tiendaId: string) =>
+      exigirDatos(
+        (await clienteApi.POST('/api/v1/admin/tiendas/{tiendaId}/reactivacion', { params: { path: { tiendaId } } }))
+          .data,
+      ),
+    onSettled: recargar,
+  })
+}

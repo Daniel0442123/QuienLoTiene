@@ -4,11 +4,12 @@ import { textosAdministracion as textos } from './textos'
 
 const ENLACES = [
   { a: '/admin/tiendas', texto: textos.enlaceTiendas },
+  { a: '/admin/reportes', texto: textos.enlaceReportes },
   { a: '/admin/catalogo', texto: textos.enlaceCatalogo },
 ] as const
 
 /**
- * Secciones del administrador (HU-036, HU-038). La actual va marcada con `aria-current="page"` (lo pone NavLink) y
+ * Secciones del administrador (HU-036, HU-037, HU-038). La actual va marcada con `aria-current="page"` (lo pone NavLink) y
  * con texto en negrita y subrayado, no solo con color.
  */
 export function NavegacionAdmin() {

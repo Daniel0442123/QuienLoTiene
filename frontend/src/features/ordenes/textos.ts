@@ -131,6 +131,7 @@ export const textosOrdenes = {
   motivoCorto: 'Escribe al menos 3 caracteres.',
   motivoLargo: (maximo: number) => `El motivo puede tener máximo ${maximo} caracteres.`,
   yaSalio: 'Cuando el pedido ya salió, escríbele a la tienda o reporta un problema.',
+  enlaceReportarProblema: 'Reportar un problema',
   // Quién canceló, según quién lee (vista del cliente o de la tienda)
   canceladoPor: {
     CLIENTE: {

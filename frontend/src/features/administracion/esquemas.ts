@@ -24,3 +24,25 @@ export const esquemaPalabraRestringida = z.object({
 })
 
 export type DatosPalabraRestringida = z.infer<typeof esquemaPalabraRestringida>
+
+/** HU-037: nota de resolución, de 3 a 500 caracteres (ResolverReporteRequest). */
+export const LARGO_MAXIMO_NOTA = 500
+
+export const esquemaResolverReporte = z.object({
+  nota: z.string().trim().min(3, textos.notaCorta).max(LARGO_MAXIMO_NOTA, textos.notaLarga),
+})
+
+export type DatosResolverReporte = z.infer<typeof esquemaResolverReporte>
+
+/** HU-037: motivo de la suspensión, de 3 a 300 caracteres (SuspenderTiendaRequest). */
+export const LARGO_MAXIMO_MOTIVO_SUSPENSION = 300
+
+export const esquemaSuspender = z.object({
+  motivo: z
+    .string()
+    .trim()
+    .min(3, textos.motivoSuspensionCorto)
+    .max(LARGO_MAXIMO_MOTIVO_SUSPENSION, textos.motivoSuspensionLargo),
+})
+
+export type DatosSuspender = z.infer<typeof esquemaSuspender>

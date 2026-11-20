@@ -19,3 +19,24 @@ export const esquemaCalificar = z.object({
 
 export type EntradaCalificar = z.input<typeof esquemaCalificar>
 export type DatosCalificar = z.output<typeof esquemaCalificar>
+
+/** Reportar (HU-035), con los límites de ReportarRequest: motivo de la lista y descripción hasta 1000, obligatoria con OTRO. */
+export const LARGO_MAXIMO_DESCRIPCION = 1000
+export const MOTIVOS_REPORTE = ['DEMORA_ENTREGA', 'PRODUCTO_DIFERENTE', 'COBRO_DIFERENTE', 'OTRO'] as const
+
+export const esquemaReportar = z
+  .object({
+    // Sin elegir llega null (radios): mismo mensaje en los dos casos
+    motivo: z.enum(MOTIVOS_REPORTE, { error: textos.motivoObligatorio }),
+    descripcion: z.string().trim().max(LARGO_MAXIMO_DESCRIPCION, textos.descripcionLarga(LARGO_MAXIMO_DESCRIPCION)),
+  })
+  .superRefine(({ motivo, descripcion }, contexto) => {
+    if (motivo === 'OTRO' && descripcion === '') {
+      contexto.addIssue({ code: 'custom', path: ['descripcion'], message: textos.descripcionObligatoria })
+    }
+  })
+  // Vacía no se envía (el backend no recibe null en campos opcionales, C-04)
+  .transform(({ motivo, descripcion }) => ({ motivo, ...(descripcion ? { descripcion } : {}) }))
+
+export type EntradaReportar = z.input<typeof esquemaReportar>
+export type DatosReportar = z.output<typeof esquemaReportar>
