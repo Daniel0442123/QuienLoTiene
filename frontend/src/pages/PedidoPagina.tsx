@@ -1,4 +1,4 @@
-import { ChevronLeft, Flag } from 'lucide-react'
+import { ChevronLeft, Flag, MessagesSquare } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
@@ -6,6 +6,7 @@ import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
 import { useConfirmarRecepcion, useOrden, type Orden } from '@/features/ordenes/api'
 import { AvisoCancelado, AvisoReservaVencida, ReservaParaRecoger } from '@/features/ordenes/AvisosPedido'
+import { textosMensajeria } from '@/features/mensajeria/textos'
 import { BotonWhatsapp } from '@/features/ordenes/BotonWhatsapp'
 import { CancelarPedido } from '@/features/ordenes/CancelarPedido'
 import { ComoLlegar } from '@/features/ordenes/ComoLlegar'
@@ -19,6 +20,19 @@ import { textosReputacion } from '@/features/reputacion/textos'
 import { esErrorApi } from '@/services/errores'
 import { formatearHora, formatearPesos, formatearUnidades } from '@/services/formato'
 import { mensajeParaUsuario } from '@/services/mensajes-error'
+
+/** HU-033: el chat del pedido, también para leerlo cuando ya terminó (solo lectura). */
+function EnlaceChat({ ruta }: { ruta: string }) {
+  return (
+    <Link
+      to={ruta}
+      className="inline-flex min-h-tactil items-center justify-center gap-2 rounded-control border border-borde bg-fondo px-4 font-semibold text-texto hover:bg-superficie"
+    >
+      <MessagesSquare aria-hidden="true" className="size-5" />
+      {textosMensajeria.enlaceAbrirChat}
+    </Link>
+  )
+}
 
 /** HU-035: reportar un problema del pedido, en cualquier estado (mockup 02 y 03). */
 function EnlaceReportar({ ruta }: { ruta: string }) {
@@ -127,6 +141,7 @@ export function PedidoPagina() {
           <LineaDeTiempo orden={orden.data} titulo={textos.pasos} />
           <ComoLlegar orden={orden.data} />
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />
+          <EnlaceChat ruta={`/pedidos/${orden.data.id}/chat`} />
           <DetalleOrden orden={orden.data} />
           <EnlaceReportar ruta={`/pedidos/${orden.data.id}/reportar`} />
           <CancelarPedido orden={orden.data} vista="cliente" />

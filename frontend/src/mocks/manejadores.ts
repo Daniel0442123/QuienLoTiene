@@ -2,6 +2,7 @@ import { manejadoresAdministracion } from './manejadores-administracion'
 import { manejadoresCatalogo } from './manejadores-catalogo'
 import { manejadoresClientes } from './manejadores-clientes'
 import { manejadoresIdentidad } from './manejadores-identidad'
+import { manejadoresMensajes } from './manejadores-mensajes'
 import { manejadoresEventos } from './eventos'
 import { manejadoresOrdenes } from './manejadores-ordenes'
 import { manejadoresReputacion } from './manejadores-reputacion'
@@ -32,5 +33,6 @@ export const manejadores = [
   ...manejadoresRespuestas,
   ...manejadoresSolicitudes,
   ...manejadoresOrdenes,
+  ...manejadoresMensajes,
   ...manejadoresAdministracion,
 ]

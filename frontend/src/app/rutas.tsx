@@ -122,6 +122,11 @@ export const rutas: RouteObject[] = [
                 lazy: async () => ({ Component: (await import('@/pages/PedidoPagina')).PedidoPagina }),
               },
               {
+                // Chat del pedido (HU-033)
+                path: ':ordenId/chat',
+                lazy: async () => ({ Component: (await import('@/pages/ChatPedidoPagina')).ChatPedidoClientePagina }),
+              },
+              {
                 // Reportar un problema del pedido (HU-035)
                 path: ':ordenId/reportar',
                 lazy: async () => ({
@@ -207,6 +212,13 @@ export const rutas: RouteObject[] = [
                     path: ':ordenId',
                     lazy: async () => ({
                       Component: (await import('@/pages/PedidoTiendaPagina')).PedidoTiendaPagina,
+                    }),
+                  },
+                  {
+                    // Chat del pedido (HU-033)
+                    path: ':ordenId/chat',
+                    lazy: async () => ({
+                      Component: (await import('@/pages/ChatPedidoPagina')).ChatPedidoTiendaPagina,
                     }),
                   },
                   {

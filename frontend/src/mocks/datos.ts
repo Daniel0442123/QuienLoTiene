@@ -213,6 +213,16 @@ export interface ReporteSimulado {
   fechaResolucion: string | null
 }
 
+/** HU-033: un mensaje del chat de una orden. */
+export interface MensajeSimulado {
+  id: string
+  ordenId: string
+  autor: 'CLIENTE' | 'TIENDA'
+  autorId: string
+  texto: string
+  fecha: string
+}
+
 export interface BaseSimulada {
   categorias: CategoriaSimulada[]
   restringidos: RestringidoSimulado[]
@@ -224,6 +234,7 @@ export interface BaseSimulada {
   ordenes: OrdenSimulada[]
   resenas: ResenaSimulada[]
   reportes: ReporteSimulado[]
+  mensajes: MensajeSimulado[]
   /** Token temporal del segundo factor → administrador, vencimiento (ms) e intentos fallidos. */
   segundosFactoresPendientes: Map<string, { usuarioId: string; vence: number; intentosFallidos: number }>
 }
@@ -422,6 +433,7 @@ function crearBaseInicial(): BaseSimulada {
     ...ejemplosSprint2,
     resenas: crearResenasDeEjemplo(vecina.id),
     reportes: crearReportesDeEjemplo(vecina.id),
+    mensajes: crearMensajesDeEjemplo(vecina.id, duenoAprobada.id),
     segundosFactoresPendientes: new Map(),
   }
 }
@@ -625,6 +637,21 @@ function crearReportesDeEjemplo(vecinaId: string): ReporteSimulado[] {
     fechaResolucion: null,
   })
   return [reporte(1, 'DEMORA_ENTREGA', 'Ya pasó una hora y no ha llegado.', 3), reporte(2, 'COBRO_DIFERENTE', null, 1)]
+}
+
+/** HU-033: la conversación del mockup 02 en el pedido de la vecina con Droguería La 5. */
+function crearMensajesDeEjemplo(vecinaId: string, duenoLa5Id: string): MensajeSimulado[] {
+  const haceMinutos = (minutos: number) => new Date(Date.now() - minutos * 60_000).toISOString()
+  const ordenId = 'e1f2a3b4-0001-4c5d-8e9f-0a1b2c3d4e01'
+  const mensaje = (numero: number, deLaVecina: boolean, texto: string, minutos: number): MensajeSimulado => ({
+    id: `b8c9d0e1-000${numero}-4f5a-8b9c-2d3e4f5a6b7${numero}`,
+    ordenId,
+    autor: deLaVecina ? 'CLIENTE' : 'TIENDA',
+    autorId: deLaVecina ? vecinaId : duenoLa5Id,
+    texto,
+    fecha: haceMinutos(minutos),
+  })
+  return [mensaje(1, true, '¿Tienen cambio de 50.000?', 8), mensaje(2, false, 'Sí, el domiciliario lleva cambio.', 6)]
 }
 
 export let base: BaseSimulada = crearBaseInicial()
