@@ -91,8 +91,12 @@ describe('HU-033 · Chat del pedido · CP-MEN-033-01, CP-MEN-033-02', () => {
     await usuario.click(screen.getByRole('button', { name: 'Enviar' }))
 
     // Entonces
-    const ultimo = (await within(await mensajes()).findAllByRole('listitem')).at(-1)
-    await vi.waitFor(() => expect(ultimo).toHaveTextContent('Perfecto, gracias. Es la casa de la reja verde.'))
+    // Se busca el último en cada intento: el mensaje nuevo llega después del clic
+    await vi.waitFor(async () =>
+      expect((await within(await mensajes()).findAllByRole('listitem')).at(-1)).toHaveTextContent(
+        'Perfecto, gracias. Es la casa de la reja verde.',
+      ),
+    )
     expect(campo()).toHaveValue('')
     await vi.waitFor(() => expect(campo()).toHaveFocus())
     expect(base.mensajes.at(-1)).toMatchObject({
