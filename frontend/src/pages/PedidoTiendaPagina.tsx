@@ -1,4 +1,4 @@
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Flag } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
@@ -13,9 +13,23 @@ import { LineaDeTiempo } from '@/features/ordenes/LineaDeTiempo'
 import { numeroCorto, siguientePasoDeLaTienda } from '@/features/ordenes/presentacion'
 import { textosOrdenes as textos } from '@/features/ordenes/textos'
 import { ResenaDelPedido } from '@/features/reputacion/ResenaDelPedido'
+import { textosReputacion } from '@/features/reputacion/textos'
 import { esErrorApi } from '@/services/errores'
 import { formatearUnidades } from '@/services/formato'
 import { debeMostrarIdCorrelacion, mensajeParaUsuario } from '@/services/mensajes-error'
+
+/** HU-035: reportar un problema del pedido, en cualquier estado (mockup 02 y 03). */
+function EnlaceReportar({ ruta }: { ruta: string }) {
+  return (
+    <Link
+      to={ruta}
+      className="inline-flex min-h-tactil items-center justify-center gap-2 rounded-control border border-borde bg-fondo px-4 font-semibold text-texto hover:bg-superficie"
+    >
+      <Flag aria-hidden="true" className="size-5" />
+      {textosReputacion.enlaceReportar}
+    </Link>
+  )
+}
 
 /** Datos del cliente: solo llegan mientras la orden está activa (CP-ORD-024-02, CP-ORD-028-01). */
 function DatosDelCliente({ orden }: { orden: Orden }) {
@@ -138,6 +152,7 @@ export function PedidoTiendaPagina() {
           <ResenaDelPedido orden={orden.data} vista="tienda" />
           <LineaDeTiempo orden={orden.data} titulo={textos.pasosTienda} />
           <DetalleOrden orden={orden.data} vista="tienda" />
+          <EnlaceReportar ruta={`/tienda/pedidos/${orden.data.id}/reportar`} />
           <CancelarPedido orden={orden.data} vista="tienda" />
         </>
       )}

@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { clienteApi } from '@/services/clienteApi'
 import { esErrorApi } from '@/services/errores'
 import type { components } from '@/services/api-tipos'
+import type { DatosReportar } from './esquemas'
 
 /** Consultas y mutaciones de reputación: reseñas de órdenes y de tiendas (HU-034, HU-014). */
 
@@ -76,6 +77,22 @@ export function useReputacionTienda(tiendaId: string) {
     queryFn: async () =>
       exigirDatos(
         (await clienteApi.GET('/api/v1/tiendas/{tiendaId}/resenas', { params: { path: { tiendaId } } })).data,
+      ),
+  })
+}
+
+export type Reporte = Esquemas['ReporteResponse']
+
+/**
+ * HU-035: reportar un problema de una orden en la que se participa (cliente o tienda). Queda ABIERTO para el
+ * administrador (HU-037). ORD-001 si la orden no es de quien reporta (CP-REP-035-02).
+ */
+export function useReportar(ordenId: string) {
+  return useMutation({
+    mutationFn: async (reporte: DatosReportar) =>
+      exigirDatos(
+        (await clienteApi.POST('/api/v1/ordenes/{ordenId}/reportes', { params: { path: { ordenId } }, body: reporte }))
+          .data,
       ),
   })
 }

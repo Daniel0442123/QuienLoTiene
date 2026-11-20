@@ -196,6 +196,23 @@ export interface RestringidoSimulado {
   palabraClave: string
 }
 
+/** HU-035 y HU-037: un reporte de un participante de la orden. */
+export type MotivoReporteSimulado = 'DEMORA_ENTREGA' | 'PRODUCTO_DIFERENTE' | 'COBRO_DIFERENTE' | 'OTRO'
+
+export interface ReporteSimulado {
+  id: string
+  ordenId: string
+  tiendaId: string
+  autorId: string
+  reportadoPor: 'CLIENTE' | 'TIENDA'
+  motivo: MotivoReporteSimulado
+  descripcion: string | null
+  estado: 'ABIERTO' | 'RESUELTO'
+  fecha: string
+  notaResolucion: string | null
+  fechaResolucion: string | null
+}
+
 export interface BaseSimulada {
   categorias: CategoriaSimulada[]
   restringidos: RestringidoSimulado[]
@@ -206,6 +223,7 @@ export interface BaseSimulada {
   respuestas: RespuestaSimulada[]
   ordenes: OrdenSimulada[]
   resenas: ResenaSimulada[]
+  reportes: ReporteSimulado[]
   /** Token temporal del segundo factor → administrador, vencimiento (ms) e intentos fallidos. */
   segundosFactoresPendientes: Map<string, { usuarioId: string; vence: number; intentosFallidos: number }>
 }
@@ -403,6 +421,7 @@ function crearBaseInicial(): BaseSimulada {
     ],
     ...ejemplosSprint2,
     resenas: crearResenasDeEjemplo(vecina.id),
+    reportes: crearReportesDeEjemplo(vecina.id),
     segundosFactoresPendientes: new Map(),
   }
 }
@@ -584,6 +603,28 @@ function crearResenasDeEjemplo(vecinaId: string): ResenaSimulada[] {
     resena(2, 4, null, 6),
     resena(3, 5, 'Muy amables, me explicaron cómo tomarlo.', 12),
   ]
+}
+
+/**
+ * HU-037: dos reportes ABIERTOS de Droguería La 5 sobre el pedido de la vecina, para ver la bandeja del
+ * administrador en dev:simulado (mockup 07).
+ */
+function crearReportesDeEjemplo(vecinaId: string): ReporteSimulado[] {
+  const haceHoras = (horas: number) => new Date(Date.now() - horas * 60 * 60_000).toISOString()
+  const reporte = (numero: number, motivo: MotivoReporteSimulado, descripcion: string | null, horas: number) => ({
+    id: `a7b8c9d0-000${numero}-4e5f-8a9b-1c2d3e4f5a6${numero}`,
+    ordenId: 'e1f2a3b4-0001-4c5d-8e9f-0a1b2c3d4e01',
+    tiendaId: TIENDAS_SPRINT_2.la5,
+    autorId: vecinaId,
+    reportadoPor: 'CLIENTE' as const,
+    motivo,
+    descripcion,
+    estado: 'ABIERTO' as const,
+    fecha: haceHoras(horas),
+    notaResolucion: null,
+    fechaResolucion: null,
+  })
+  return [reporte(1, 'DEMORA_ENTREGA', 'Ya pasó una hora y no ha llegado.', 3), reporte(2, 'COBRO_DIFERENTE', null, 1)]
 }
 
 export let base: BaseSimulada = crearBaseInicial()

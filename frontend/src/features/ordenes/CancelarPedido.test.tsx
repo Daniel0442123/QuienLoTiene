@@ -119,6 +119,11 @@ describe('HU-029 · Cancelar el pedido · CP-ORD-029-01, CP-ORD-029-02', () => {
     await expect.poll(async () => (await pasoActual())?.textContent).toMatch(/En camino · .*\(estado actual\)/)
     expect(screen.queryByRole('button', { name: 'Cancelar pedido' })).not.toBeInTheDocument()
     expect(await screen.findByRole('link', { name: /Escribir por WhatsApp a Droguería La 5/ })).toBeInTheDocument()
+    // Y el acceso directo para reportar (HU-035)
+    expect(screen.getAllByRole('link', { name: 'Reportar un problema' })[0]).toHaveAttribute(
+      'href',
+      `/pedidos/${ORDEN_DE_LA_VECINA}/reportar`,
+    )
     expect(ordenEnBase(ORDEN_DE_LA_VECINA).estado).toBe('EN_CAMINO')
   })
 

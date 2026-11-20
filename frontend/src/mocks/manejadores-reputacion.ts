@@ -1,7 +1,10 @@
 import { http, HttpResponse } from 'msw'
-import { base, type ResenaSimulada } from './datos'
+import { base, type MotivoReporteSimulado, type ReporteSimulado, type ResenaSimulada } from './datos'
 import { actualizarReservas, ordenDe } from './manejadores-ordenes'
 import { autorizar, leerJson, problema, validar } from './utilidades'
+
+const MOTIVOS: MotivoReporteSimulado[] = ['DEMORA_ENTREGA', 'PRODUCTO_DIFERENTE', 'COBRO_DIFERENTE', 'OTRO']
+const LARGO_MAXIMO_DESCRIPCION = 1000
 
 /**
  * Reputación (HU-034 y HU-014), como CalificarTienda y ConsultarReputacion del backend: una reseña por orden
@@ -23,6 +26,58 @@ function aResenaResponse(resena: ResenaSimulada) {
 }
 
 export const manejadoresReputacion = [
+  // HU-035: reportar un problema de una orden en la que participa (cliente o tienda); queda ABIERTO
+  http.post('/api/v1/ordenes/:ordenId/reportes', async ({ request, params }) => {
+    const usuario = autorizar(request, ['CLIENTE', 'TIENDA'])
+    if (usuario instanceof Response) return usuario
+    const { motivo, descripcion } = await leerJson<{ motivo: string; descripcion?: string | null }>(request)
+    const invalidos = validar([
+      [
+        'motivo',
+        !MOTIVOS.includes(motivo as MotivoReporteSimulado),
+        'El motivo debe ser DEMORA_ENTREGA, PRODUCTO_DIFERENTE, COBRO_DIFERENTE u OTRO',
+      ],
+      [
+        'descripcion',
+        typeof descripcion === 'string' && descripcion.length > LARGO_MAXIMO_DESCRIPCION,
+        'La descripción puede tener hasta 1000 caracteres',
+      ],
+    ])
+    if (invalidos) return invalidos
+    // CP-REP-035-02: una orden ajena responde 404 ORD-001, sin decir que existe
+    const orden = ordenDe(params.ordenId, usuario)
+    if (orden instanceof Response) return orden
+    const limpia = typeof descripcion === 'string' && descripcion.trim() !== '' ? descripcion.trim() : null
+    if (motivo === 'OTRO' && limpia === null) {
+      return problema(400, 'REP-004', 'Datos inválidos', { detail: 'Revisa los datos: cuéntanos qué pasó.' })
+    }
+    const reporte: ReporteSimulado = {
+      id: crypto.randomUUID(),
+      ordenId: orden.id,
+      tiendaId: orden.tiendaId,
+      autorId: usuario.id,
+      reportadoPor: usuario.rol === 'CLIENTE' ? 'CLIENTE' : 'TIENDA',
+      motivo: motivo as MotivoReporteSimulado,
+      descripcion: limpia,
+      estado: 'ABIERTO',
+      fecha: new Date().toISOString(),
+      notaResolucion: null,
+      fechaResolucion: null,
+    }
+    base.reportes.push(reporte)
+    return HttpResponse.json(
+      {
+        id: reporte.id,
+        ordenId: reporte.ordenId,
+        motivo: reporte.motivo,
+        descripcion: reporte.descripcion,
+        estado: reporte.estado,
+        fecha: reporte.fecha,
+      },
+      { status: 201 },
+    )
+  }),
+
   // HU-034: calificar la tienda de una orden RESUELTA, una sola vez
   http.post('/api/v1/ordenes/:ordenId/resena', async ({ request, params }) => {
     const cliente = autorizar(request, ['CLIENTE'])

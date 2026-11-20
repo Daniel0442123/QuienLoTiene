@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useId, useRef, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { Link } from 'react-router'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
 import { cn } from '@/components/ui/utilidades'
@@ -48,6 +49,15 @@ export function CancelarPedido({ orden, vista }: { orden: Orden; vista: VistaOrd
   const alertaError = mensajeError ? (
     <div role="alert" className="rounded-control border border-peligro p-3 font-medium text-peligro">
       <p>{mensajeError}</p>
+      {/* ORD-005: ya salió; el camino es reportar (HU-035) o escribir a la tienda (WhatsApp, más arriba) */}
+      {esErrorApi(errorGeneral) && errorGeneral.codigo === 'ORD-005' ? (
+        <Link
+          to={vista === 'cliente' ? `/pedidos/${orden.id}/reportar` : `/tienda/pedidos/${orden.id}/reportar`}
+          className="mt-2 inline-flex min-h-tactil items-center font-semibold text-primario underline underline-offset-4 hover:no-underline"
+        >
+          {textos.enlaceReportarProblema}
+        </Link>
+      ) : null}
       {esErrorApi(errorGeneral) && debeMostrarIdCorrelacion(errorGeneral) ? (
         <p className="mt-1 text-sm font-normal text-texto-suave">
           {textos.codigoSoporteOrden(errorGeneral.idCorrelacion)}

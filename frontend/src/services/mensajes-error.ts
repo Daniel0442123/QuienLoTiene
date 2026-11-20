@@ -64,6 +64,7 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'CAT-001': 'Eso ya no está en el catálogo. Recarga para ver la lista actual.',
   'CAT-002': 'Esa palabra ya está en la lista de productos restringidos.',
   'CAT-003': 'La palabra debe tener entre 2 y 80 caracteres.',
+  'REP-005': 'Este reporte ya estaba resuelto.',
   'MEN-001': 'El pedido ya se cerró, así que el contacto por WhatsApp ya no está disponible.',
 }
 
