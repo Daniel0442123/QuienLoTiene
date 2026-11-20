@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.4 · 18/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.5 · 20/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -13,6 +13,20 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 ## Sin liberar
 
 Nada todavía.
+
+## v0.4.0 · 20/11/2026 · Backend del Sprint 3
+
+Etiqueta sobre `main` después del #64. Trae el backend completo del Sprint 3; las pantallas de estas historias llegan con el frontend del sprint, así que en esta versión solo se usan desde la API.
+
+### Agregado
+- Backend del Sprint 3 (#63): cancelar la orden (HU-029), reserva para recoger de 30 minutos desde «Listo para recoger» que vence sola (HU-025, SC-019), calificar la tienda (HU-034), detalle público de la tienda (HU-014), categorías y productos restringidos (HU-038, HU-023), reportar un problema y gestionarlo con suspensión de cuentas (HU-035, HU-037), mini chat de la orden (HU-033), avisos Web Push (HU-031) y «Mis preguntas» con repetir (HU-008, SC-018).
+- Migraciones nuevas: `ordenes` (reserva y cancelación), `reputacion.resena`, `catalogo.producto_restringido`, `reputacion.reporte`, `mensajeria.mensaje` y `notificaciones.suscripcion_push`.
+- Configuración: claves VAPID `QLT_VAPID_CLAVE_PUBLICA`, `QLT_VAPID_CLAVE_PRIVADA` y `QLT_VAPID_SUJETO` en el `.env` del VPS; sin ellas el push queda apagado y lo demás funciona igual.
+- «Mi tienda»: categoría y ubicación de la tienda (SC-017, #61).
+- Pruebas: integración del detalle público de la tienda sin RUT ni documentos (CP-TIE-014-02) y caso CP-CLI-008-03 (#64).
+
+### Documentación
+- SC-018 aprobada y SC-019 ratificada por el comité el 19/11/2026 (#64). Prueba en producción de `v0.3.1` e informe de cierre del C1 listo para firma (#60, #62).
 
 ## v0.3.1 · 17/11/2026 · Corrección encontrada en producción
 
@@ -179,3 +193,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.2 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.0` copiada de su Release |
 | 1.3 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.1` (DEF-011) antes de etiquetar |
 | 1.4 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.1` copiada de su Release y prueba en producción |
+| 1.5 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.4.0` (backend del Sprint 3) antes de etiquetar, preparadas con Claude Code |
