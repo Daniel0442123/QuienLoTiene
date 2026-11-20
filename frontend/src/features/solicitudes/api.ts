@@ -1,4 +1,4 @@
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { clienteApi } from '@/services/clienteApi'
 import type { DatosPublicarSolicitud, DatosResponder } from './esquemas'
 import type { components } from '@/services/api-tipos'
@@ -153,12 +153,73 @@ export function useRestriccionProducto(producto: string) {
  * con 429 (SOL-001) y mostrar un éxito falso confundiría (DECISIONES-FRONTEND 2.3).
  */
 export function usePublicarSolicitud() {
+  const clienteConsultas = useQueryClient()
   return useMutation({
     mutationFn: async ({ ubicacion, ...datos }: DatosPublicarSolicitud) => {
       if (!ubicacion) throw new Error('La solicitud se envió sin ubicación')
       const { data } = await clienteApi.POST('/api/v1/solicitudes', { body: { ...datos, ubicacion } })
       if (!data) throw new Error('La API no devolvió la solicitud publicada')
       return data
+    },
+    // HU-008: la nueva aparece en «Mis preguntas» y en el historial
+    onSuccess: () => void clienteConsultas.invalidateQueries({ queryKey: ['solicitudes', 'mias'] }),
+  })
+}
+
+export type SolicitudDelHistorial = Esquemas['SolicitudDelHistorial']
+
+/** Cuántas se piden por página en el historial (el backend acepta de 1 a 50). */
+export const TAMANO_PAGINA_HISTORIAL = 20
+
+export const clavesHistorial = {
+  todas: ['solicitudes', 'mias'] as const,
+}
+
+/**
+ * HU-008 y SC-018: las solicitudes del cliente, de la más reciente a la más antigua, por páginas («Ver más» mientras
+ * `hayMas`). La primera página también sirve para «Mis preguntas» (las que traen `estaAbierta`).
+ */
+export function useMisSolicitudes() {
+  return useInfiniteQuery({
+    queryKey: clavesHistorial.todas,
+    queryFn: async ({ pageParam }) =>
+      exigirDatos(
+        (
+          await clienteApi.GET('/api/v1/solicitudes/mias', {
+            params: { query: { pagina: pageParam, tamano: TAMANO_PAGINA_HISTORIAL } },
+          })
+        ).data,
+      ),
+    initialPageParam: 0,
+    getNextPageParam: (ultima) => (ultima.hayMas ? ultima.pagina + 1 : undefined),
+  })
+}
+
+/**
+ * HU-008, CP-CLI-008-01: publica otra igual con la ubicación de ahora. Cuenta para el límite de 10 por hora (SOL-001).
+ * La nueva queda en caché para mostrarla de una vez en «Esperando respuestas».
+ */
+export function useRepetirSolicitud() {
+  const clienteConsultas = useQueryClient()
+  return useMutation({
+    mutationFn: async ({
+      solicitudId,
+      ubicacion,
+    }: {
+      solicitudId: string
+      ubicacion: { latitud: number; longitud: number }
+    }) =>
+      exigirDatos(
+        (
+          await clienteApi.POST('/api/v1/solicitudes/{solicitudId}/repeticion', {
+            params: { path: { solicitudId } },
+            body: { ubicacion },
+          })
+        ).data,
+      ),
+    onSuccess: (nueva) => {
+      clienteConsultas.setQueryData(clavesSolicitudCliente.solicitud(nueva.id), nueva)
+      void clienteConsultas.invalidateQueries({ queryKey: clavesHistorial.todas })
     },
   })
 }

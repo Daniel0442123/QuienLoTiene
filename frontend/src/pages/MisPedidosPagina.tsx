@@ -3,6 +3,7 @@ import { Boton } from '@/components/ui/Boton'
 import { useOrdenes, type Orden } from '@/features/ordenes/api'
 import { TarjetaOrden } from '@/features/ordenes/TarjetaOrden'
 import { textosOrdenes as textos } from '@/features/ordenes/textos'
+import { MisPreguntasAbiertas } from '@/features/solicitudes/MisPreguntasAbiertas'
 import { Link } from 'react-router'
 
 function Grupo({ titulo, ordenes }: { titulo: string; ordenes: Orden[] }) {
@@ -21,12 +22,16 @@ function Grupo({ titulo, ordenes }: { titulo: string; ordenes: Orden[] }) {
   )
 }
 
-/** /pedidos · HU-027: los pedidos del cliente, primero los que están en curso. */
+/**
+ * /pedidos · HU-027: los pedidos del cliente, primero los que están en curso. Arriba, «Mis preguntas» (SC-018): las
+ * preguntas abiertas para volver a sus respuestas y el enlace al historial (HU-008).
+ */
 export function MisPedidosPagina() {
   const ordenes = useOrdenes()
   return (
     <section className="mx-auto flex max-w-xl flex-col gap-6">
       <h1 className="text-2xl font-bold">{textos.tituloMisPedidos}</h1>
+      <MisPreguntasAbiertas />
       {ordenes.isPending ? (
         <EsqueletoLista filas={3} etiqueta={textos.cargandoPedido} />
       ) : ordenes.isError ? (
