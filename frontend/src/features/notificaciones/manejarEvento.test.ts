@@ -43,4 +43,11 @@ describe('HU-030 · Qué hace cada evento del flujo', () => {
     expect(claves()).toEqual([['solicitudes', 's'], ['ordenes']])
     expect(anunciar).not.toHaveBeenCalled()
   })
+
+  it('HU-033 · mensaje-recibido: refresca solo el chat de esa orden, sin anunciar (lo lee su región role="log")', () => {
+    const { consultas, anunciar, claves } = preparar()
+    manejarEvento('mensaje-recibido', { ordenId: 'o-1', mensajeId: 'm-1' }, consultas, anunciar)
+    expect(claves()).toEqual([['ordenes', 'o-1', 'mensajes']])
+    expect(anunciar).not.toHaveBeenCalled()
+  })
 })

@@ -1,6 +1,7 @@
 import { useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'
 import { useAnunciar } from '@/components/RegionAnuncios'
+import { clavesMensajes } from '@/features/mensajeria/api'
 import { clavesOrdenes } from '@/features/ordenes/api'
 import { clavesSolicitudesTienda } from '@/features/solicitudes/api'
 import { useSesion } from '@/hooks/useSesion'
@@ -54,6 +55,12 @@ export function manejarEvento(tipo: string, datos: unknown, consultas: QueryClie
       // El prefijo ['ordenes'] refresca la lista y el detalle de esa orden
       invalidar(clavesOrdenes.todas)
       return
+    case 'mensaje-recibido': {
+      // HU-033: el evento trae solo los ids; el chat pide los mensajes por REST y los lee su región role="log"
+      const evento = datos as Esquemas['EventoMensajeRecibido']
+      invalidar(clavesMensajes.chat(evento.ordenId))
+      return
+    }
     default:
     // Un tipo nuevo del backend no rompe nada: se ignora hasta que el frontend lo conozca
   }
