@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
   formatearDistancia,
+  formatearFecha,
+  formatearHoraDelDia,
   formatearFechaHora,
   formatearHace,
   formatearPesos,
@@ -46,5 +48,15 @@ describe('Formato para Colombia', () => {
     expect(formatearTamano(200)).toBe('1 KB')
     expect(formatearTamano(850 * 1024)).toBe('850 KB')
     expect(formatearTamano(1.25 * 1024 * 1024)).toMatch(/^1,[23] MB$/)
+  })
+
+  it('HU-014 · las horas del horario se leen como el reloj, sin cambiar de zona', () => {
+    expect(formatearHoraDelDia('08:00')).toMatch(/^8:00\sa\.\s?m\.$/)
+    expect(formatearHoraDelDia('18:30')).toMatch(/^6:30\sp\.\s?m\.$/)
+  })
+
+  it('HU-014 · la fecha de una reseña es la de Colombia', () => {
+    // 3:00 a. m. del 17 en UTC son las 10:00 p. m. del 16 en Colombia
+    expect(formatearFecha('2026-11-17T03:00:00Z')).toBe('16/11/2026')
   })
 })

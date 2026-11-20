@@ -36,13 +36,13 @@ interface CrearOrdenRequest {
 }
 
 /** ¿El usuario es el cliente o el dueño de la tienda de la orden? */
-function esParteDeLaOrden(orden: OrdenSimulada, usuario: UsuarioSimulado): boolean {
+export function esParteDeLaOrden(orden: OrdenSimulada, usuario: UsuarioSimulado): boolean {
   if (usuario.rol === 'CLIENTE') return orden.clienteId === usuario.id
   return base.tiendas.some((t) => t.id === orden.tiendaId && t.duenoId === usuario.id)
 }
 
 /** La orden si el usuario es parte; si no, 404 ORD-001 sin datos (CP-ORD-024-03). */
-function ordenDe(id: unknown, usuario: UsuarioSimulado): OrdenSimulada | Response {
+export function ordenDe(id: unknown, usuario: UsuarioSimulado): OrdenSimulada | Response {
   const orden = base.ordenes.find((o) => o.id === id)
   return orden && esParteDeLaOrden(orden, usuario) ? orden : problema(404, 'ORD-001', 'Orden no encontrada')
 }

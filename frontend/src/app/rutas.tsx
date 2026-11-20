@@ -111,6 +111,28 @@ export const rutas: RouteObject[] = [
                 path: ':ordenId',
                 lazy: async () => ({ Component: (await import('@/pages/PedidoPagina')).PedidoPagina }),
               },
+              {
+                // Calificar la tienda de un pedido resuelto (HU-034)
+                path: ':ordenId/calificar',
+                lazy: async () => ({
+                  Component: (await import('@/pages/CalificarPedidoPagina')).CalificarPedidoPagina,
+                }),
+              },
+            ],
+          },
+          {
+            // Detalle público de una tienda (HU-014): para el cliente que compara respuestas o sigue su pedido
+            path: 'tiendas/:tiendaId',
+            element: (
+              <RutaProtegida roles={['CLIENTE']}>
+                <Outlet />
+              </RutaProtegida>
+            ),
+            children: [
+              {
+                index: true,
+                lazy: async () => ({ Component: (await import('@/pages/DetalleTiendaPagina')).DetalleTiendaPagina }),
+              },
             ],
           },
           {

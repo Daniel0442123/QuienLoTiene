@@ -13,8 +13,8 @@ export const ORDEN_DE_LA_VECINA = 'e1f2a3b4-0001-4c5d-8e9f-0a1b2c3d4e01'
 
 const MINUTO = 60_000
 const PASOS: Record<OrdenSimulada['modalidad'], EstadoOrdenSimulado[]> = {
-  RECOGER: ['CONFIRMADO', 'PREPARANDO', 'LISTO_PARA_RECOGER', 'ENTREGADO'],
-  DOMICILIO: ['CONFIRMADO', 'PREPARANDO', 'EN_CAMINO', 'ENTREGADO'],
+  RECOGER: ['CONFIRMADO', 'PREPARANDO', 'LISTO_PARA_RECOGER', 'ENTREGADO', 'RESUELTA'],
+  DOMICILIO: ['CONFIRMADO', 'PREPARANDO', 'EN_CAMINO', 'ENTREGADO', 'RESUELTA'],
 }
 
 export const ordenEnBase = (ordenId: string) => base.ordenes.find((o) => o.id === ordenId)!

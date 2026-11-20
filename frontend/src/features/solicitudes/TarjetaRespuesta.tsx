@@ -1,5 +1,6 @@
 import { CircleCheck, Clock, Repeat } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
 import { formatearDistancia, formatearPesos } from '@/services/formato'
 import type { RespuestaParaCliente } from './api'
 import { textosSolicitudes as textos } from './textos'
@@ -42,9 +43,20 @@ export function TarjetaRespuesta({
           : 'flex flex-col gap-2 rounded-control border border-borde p-4'
       }
     >
-      <h3 id={idTitulo} className="text-lg font-semibold break-words">
-        {respuesta.nombreTienda}
-      </h3>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+        <h3 id={idTitulo} className="text-lg font-semibold break-words">
+          {respuesta.nombreTienda}
+        </h3>
+        {/* HU-014: horario, ubicación, reseñas y medios de pago antes de elegir */}
+        {/* El nombre accesible empieza con el texto visible (WCAG 2.5.3) y dice de qué tienda es */}
+        <Link
+          to={`/tiendas/${respuesta.tiendaId}`}
+          aria-label={textos.verTiendaDe(respuesta.nombreTienda)}
+          className="inline-flex min-h-tactil items-center text-primario underline underline-offset-4 hover:no-underline"
+        >
+          {textos.verTienda}
+        </Link>
+      </div>
       {respuesta.esAlternativa ? (
         <p className="flex items-center gap-2 font-semibold text-acento">
           <Repeat aria-hidden="true" className="size-5 shrink-0" />

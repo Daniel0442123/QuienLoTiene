@@ -57,6 +57,10 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
     'Tu pedido ya salió de la tienda, así que ya no se puede cancelar. Escríbele a la tienda o reporta un problema.',
   'ORD-006':
     'Este producto necesita fórmula médica, así que no se puede pedir a domicilio. Elige recoger en la tienda.',
+  'REP-001': 'Solo puedes calificar un pedido tuyo después de confirmar que lo recibiste.',
+  'REP-002': 'Ya calificaste este pedido. Solo se puede calificar una vez.',
+  'REP-003': 'Este pedido todavía no tiene calificación.',
+  'REP-004': 'Hay datos por corregir. Revisa los campos marcados.',
   'MEN-001': 'El pedido ya se cerró, así que el contacto por WhatsApp ya no está disponible.',
 }
 

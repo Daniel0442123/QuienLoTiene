@@ -152,6 +152,8 @@ export const textosSolicitudes = {
   llegoRespuesta: (tienda: string) => `Llegó una respuesta de ${tienda}.`,
   tipoSi: 'Sí lo tengo',
   tipoParecido: 'Tengo algo parecido',
+  verTienda: 'Ver la tienda',
+  verTiendaDe: (tienda: string) => `Ver la tienda ${tienda}`,
   ofrece: (descripcion: string) => `Ofrece: ${descripcion}`,
   tieneDe: (tiene: number, pedidas: number) => `Tiene ${tiene} de ${pedidas}`,
   aDistancia: (distancia: string) => `a ${distancia}`,

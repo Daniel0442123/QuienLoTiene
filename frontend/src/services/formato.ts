@@ -15,6 +15,11 @@ const formatoFechaHora = new Intl.DateTimeFormat(IDIOMA, {
   timeZone: ZONA_HORARIA,
 })
 
+const formatoFecha = new Intl.DateTimeFormat(IDIOMA, { dateStyle: 'medium', timeZone: ZONA_HORARIA })
+
+// Horas del horario de una tienda («08:00»): ya son hora de Colombia, así que se formatean sin cambiar de zona
+const formatoHoraDelDia = new Intl.DateTimeFormat(IDIOMA, { hour: 'numeric', minute: '2-digit', timeZone: 'UTC' })
+
 const formatoHora = new Intl.DateTimeFormat(IDIOMA, {
   hour: 'numeric',
   minute: '2-digit',
@@ -48,6 +53,17 @@ export function formatearHora(fechaIso: string): string {
 export function minutosHasta(fechaIso: string, ahora: Date = new Date()): number {
   const diferenciaEnMilisegundos = new Date(fechaIso).getTime() - ahora.getTime()
   return Math.max(0, Math.ceil(diferenciaEnMilisegundos / 60_000))
+}
+
+/** Solo la fecha, en hora de Colombia: "16/11/2026". */
+export function formatearFecha(fechaIso: string): string {
+  return formatoFecha.format(new Date(fechaIso))
+}
+
+/** Hora de un horario: "08:00" → "8:00 a. m."; "18:00" → "6:00 p. m.". */
+export function formatearHoraDelDia(horaMinutos: string): string {
+  const [hora = 0, minutos = 0] = horaMinutos.split(':').map(Number)
+  return formatoHoraDelDia.format(new Date(Date.UTC(2026, 0, 1, hora, minutos)))
 }
 
 /** Hace cuánto pasó algo: "hace un momento", "hace 4 min", "hace 2 h". */
