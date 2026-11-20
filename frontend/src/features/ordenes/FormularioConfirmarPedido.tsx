@@ -69,15 +69,18 @@ function GrupoOpciones({
 export function FormularioConfirmarPedido({
   respuesta,
   modalidadSolicitada,
+  esRestringida = false,
   alConfirmar,
 }: {
   respuesta: RespuestaParaCliente
   modalidadSolicitada: 'RECOGER' | 'DOMICILIO'
+  /** HU-023, CP-SOL-023-02: producto restringido, solo para recoger (ORD-006 si se pidiera domicilio). */
+  esRestringida?: boolean
   alConfirmar: (orden: Orden) => void
 }) {
   const creacion = useCrearOrden()
   const direcciones = useDirecciones()
-  const conDomicilio = respuesta.ofreceDomicilio && respuesta.costoDomicilioEnPesos !== null
+  const conDomicilio = !esRestringida && respuesta.ofreceDomicilio && respuesta.costoDomicilioEnPesos !== null
   const campos = Object.keys(ids) as Campo[]
 
   const {
@@ -168,7 +171,7 @@ export function FormularioConfirmarPedido({
             {textos.modalidadDomicilio(formatearPesos(respuesta.costoDomicilioEnPesos ?? 0))}
           </label>
         ) : (
-          <p className="text-texto-suave">{textos.sinDomicilio}</p>
+          <p className="text-texto-suave">{esRestringida ? textos.sinDomicilioRestringido : textos.sinDomicilio}</p>
         )}
         <label className={cn(claseOpcion, 'border-borde')}>
           <input type="radio" value="RECOGER" className="size-5 accent-primario" {...register('modalidad')} />

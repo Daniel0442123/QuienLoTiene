@@ -13,6 +13,7 @@ export const textosOrdenes = {
   modalidadDomicilio: (costo: string) => `Domicilio · ${costo}`,
   modalidadRecoger: 'Recoger en la tienda',
   sinDomicilio: 'Esta tienda no hace domicilio hasta tu ubicación.',
+  sinDomicilioRestringido: 'Este medicamento necesita fórmula médica: solo se puede recoger en la tienda.',
   etiquetaDireccion: '¿A dónde lo llevamos?',
   cargandoDirecciones: 'Cargando tus direcciones…',
   sinDirecciones: 'No tienes direcciones guardadas.',

@@ -1,16 +1,19 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Controller, useForm, type FieldPath } from 'react-hook-form'
+import { Controller, useForm, useWatch, type FieldPath } from 'react-hook-form'
 import { CasillaVerificacion } from '@/components/CasillaVerificacion'
 import { enfocarCampo } from '@/components/enfocarCampo'
 import { EstadoError, EstadoVacio } from '@/components/Estados'
+import { useAnunciar } from '@/components/RegionAnuncios'
 import { ResumenErrores } from '@/components/ResumenErrores'
 import { Boton } from '@/components/ui/Boton'
 import { cn } from '@/components/ui/utilidades'
 import { useCategorias } from '@/hooks/useCategorias'
+import { useValorDiferido } from '@/hooks/useValorDiferido'
 import { esErrorApi } from '@/services/errores'
 import { debeMostrarIdCorrelacion, mensajeParaUsuario } from '@/services/mensajes-error'
-import { usePublicarSolicitud, type Solicitud } from './api'
+import { usePublicarSolicitud, useRestriccionProducto, type Solicitud } from './api'
+import { AvisoRestringido } from './AvisoRestringido'
 import {
   esquemaPublicarSolicitud,
   MODALIDADES,
@@ -33,6 +36,7 @@ const ID_CAMPO = {
 } as const satisfies Record<CampoPrincipal, string>
 const CAMPOS = Object.keys(ID_CAMPO) as CampoPrincipal[]
 const ID_TITULO = 'solicitud-titulo'
+const ID_AVISO_RESTRINGIDO = 'solicitud-aviso-restringido'
 
 function campoDelBackend(campo: string): CampoPrincipal | null {
   const principal = campo.split('.')[0] ?? ''
@@ -58,6 +62,8 @@ export function FormularioPublicarSolicitud({ alPublicar }: { alPublicar: (solic
     control,
     handleSubmit,
     setError,
+    setValue,
+    getValues,
     formState: { errors, isSubmitted },
   } = useForm<EntradaPublicarSolicitud, unknown, DatosPublicarSolicitud>({
     resolver: zodResolver(esquemaPublicarSolicitud),
@@ -77,6 +83,21 @@ export function FormularioPublicarSolicitud({ alPublicar }: { alPublicar: (solic
     },
   })
   const { ref: refProducto, ...registroProducto } = register('producto')
+
+  // HU-023, CP-SOL-023-01: avisar antes de publicar si el producto necesita fórmula médica. Se pregunta cuando deja
+  // de escribir medio segundo. Con el aviso, «Domicilio» no se ofrece: las tiendas no lo llevan (decisión 5).
+  const anunciar = useAnunciar()
+  const productoEscrito = useWatch({ control, name: 'producto' }) ?? ''
+  const restriccion = useRestriccionProducto(useValorDiferido(productoEscrito))
+  const restringido = productoEscrito.trim().length >= 3 && restriccion.data?.restringido === true
+  const anuncioRestringido = useRef(false)
+  useEffect(() => {
+    if (restringido && !anuncioRestringido.current) {
+      anunciar(`${restriccion.data?.aviso ?? textos.avisoRestringidoTitulo}. ${textos.avisoRestringidoDetalle}`)
+    }
+    anuncioRestringido.current = restringido
+    if (restringido && getValues('modalidad') === 'DOMICILIO') setValue('modalidad', 'RECOGER')
+  }, [restringido, restriccion.data?.aviso, anunciar, getValues, setValue])
 
   // Foco en el campo al entrar (DECISIONES-FRONTEND 8). Después del AnunciadorDeRuta, que enfoca el h1: el h1 es la
   // etiqueta de este campo, así que el lector de pantalla lee la misma pregunta.
@@ -139,7 +160,11 @@ export function FormularioPublicarSolicitud({ alPublicar }: { alPublicar: (solic
           autoComplete="off"
           aria-labelledby={ID_TITULO}
           aria-invalid={errors.producto ? true : undefined}
-          aria-describedby={[`${ID_CAMPO.producto}-pista`, errors.producto ? `${ID_CAMPO.producto}-error` : null]
+          aria-describedby={[
+            `${ID_CAMPO.producto}-pista`,
+            errors.producto ? `${ID_CAMPO.producto}-error` : null,
+            restringido ? ID_AVISO_RESTRINGIDO : null,
+          ]
             .filter(Boolean)
             .join(' ')}
           className={cn(
@@ -157,6 +182,7 @@ export function FormularioPublicarSolicitud({ alPublicar }: { alPublicar: (solic
             {errors.producto.message}
           </p>
         ) : null}
+        {restringido ? <AvisoRestringido id={ID_AVISO_RESTRINGIDO} aviso={restriccion.data?.aviso} /> : null}
       </div>
 
       <ResumenErrores titulo={textos.tituloResumenErrores} errores={erroresResumen} />
@@ -224,12 +250,21 @@ export function FormularioPublicarSolicitud({ alPublicar }: { alPublicar: (solic
       <fieldset id={ID_CAMPO.modalidad} className="flex flex-col gap-2">
         <legend className="mb-1 font-semibold">{textos.etiquetaModalidad}</legend>
         <div className="flex flex-wrap gap-2">
-          {MODALIDADES.map((modalidad) => (
-            <label key={modalidad} className={claseOpcion}>
-              <input type="radio" value={modalidad} className="size-5 accent-primario" {...register('modalidad')} />
-              {textos.modalidades[modalidad]}
-            </label>
-          ))}
+          {MODALIDADES.map((modalidad) => {
+            const bloqueada = restringido && modalidad === 'DOMICILIO'
+            return (
+              <label key={modalidad} className={cn(claseOpcion, bloqueada && 'cursor-not-allowed text-texto-suave')}>
+                <input
+                  type="radio"
+                  value={modalidad}
+                  disabled={bloqueada}
+                  className="size-5 accent-primario"
+                  {...register('modalidad')}
+                />
+                {bloqueada ? textos.domicilioNoPorRestringido : textos.modalidades[modalidad]}
+              </label>
+            )
+          })}
         </div>
       </fieldset>
 

@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
+import { AvisoDeshacer } from '@/components/AvisoDeshacer'
 import { EsqueletoLista, EstadoError, EstadoVacio } from '@/components/Estados'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { useResponderSolicitud, useSolicitudesDisponibles, type SolicitudDisponible } from '@/features/solicitudes/api'
-import { AvisoDeshacer } from '@/features/solicitudes/AvisoDeshacer'
 import { PestanasSolicitudesTienda } from '@/features/solicitudes/PestanasSolicitudesTienda'
 import { idTarjetaSolicitud } from '@/features/solicitudes/presentacion'
 import { TarjetaSolicitudDisponible } from '@/features/solicitudes/TarjetaSolicitudDisponible'
 import { textosSolicitudes as textos } from '@/features/solicitudes/textos'
-import { useDescartarConDeshacer } from '@/features/solicitudes/useDescartarConDeshacer'
 import { EncabezadoSeccionTienda } from '@/features/tiendas/EncabezadoSeccionTienda'
 import { useAhora } from '@/hooks/useAhora'
+import { useDescartarConDeshacer } from '@/hooks/useDescartarConDeshacer'
 
 /**
  * /tienda/solicitudes · HU-018: solicitudes nuevas de la tienda, urgentes primero. «No lo tengo» en 1 toque con
@@ -89,7 +89,7 @@ export function SolicitudesTiendaPagina() {
 
       {pendiente ? (
         <AvisoDeshacer
-          producto={pendiente.producto}
+          mensaje={textos.descartaste(pendiente.producto)}
           alDeshacer={() => {
             const devuelta = deshacer()
             if (devuelta) {

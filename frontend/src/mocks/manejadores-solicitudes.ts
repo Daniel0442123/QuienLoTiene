@@ -5,6 +5,7 @@ import {
   aSolicitudResponse,
   distanciaAproximada,
   distanciaEnMetros,
+  esProductoRestringido,
   llegoALaTienda,
   respuestasAutomaticas,
 } from './reglas-sprint-2'
@@ -107,6 +108,8 @@ export const manejadoresSolicitudes = [
       fechaVencimiento: new Date(ahora + TREINTA_MINUTOS_MS).toISOString(),
       tiendasNotificadas,
       ordenId: null,
+      // HU-023: la marca queda en la solicitud; cambiar la lista después no la cambia (decisión 5)
+      esRestringida: esProductoRestringido(completos.producto),
     }
     base.solicitudes.push(solicitud)
     const automaticas = respuestasAutomaticas(solicitud, ahora)

@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { useSolicitud } from '@/features/solicitudes/api'
+import { AvisoRestringido } from '@/features/solicitudes/AvisoRestringido'
 import { RespuestasDeSolicitud } from '@/features/solicitudes/RespuestasDeSolicitud'
 import { textosSolicitudes as textos } from '@/features/solicitudes/textos'
 import { useAhora } from '@/hooks/useAhora'
@@ -42,6 +43,8 @@ export function SolicitudClientePagina() {
           </p>
         ) : null}
       </div>
+
+      {solicitud.data?.esRestringida ? <AvisoRestringido /> : null}
 
       {solicitud.isPending ? (
         <EsqueletoLista filas={2} etiqueta={textos.cargandoRespuestas} />

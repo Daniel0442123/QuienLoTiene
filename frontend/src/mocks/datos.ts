@@ -123,6 +123,8 @@ export interface SolicitudSimulada {
   fechaVencimiento: string
   tiendasNotificadas: number
   ordenId: string | null
+  /** HU-023: el producto estaba en la lista de restringidos al publicar. */
+  esRestringida?: boolean
 }
 
 export type MedioPagoSimulado = 'EFECTIVO' | 'TRANSFERENCIA' | 'DATAFONO'
@@ -181,7 +183,22 @@ export interface ResenaSimulada {
   fecha: string
 }
 
+/** HU-038: categoría con su estado (las inactivas no salen al publicar). */
+export interface CategoriaSimulada {
+  id: string
+  nombre: string
+  activa: boolean
+}
+
+/** HU-038: palabra clave de un producto restringido, guardada normalizada (minúsculas, sin tildes). */
+export interface RestringidoSimulado {
+  id: string
+  palabraClave: string
+}
+
 export interface BaseSimulada {
+  categorias: CategoriaSimulada[]
+  restringidos: RestringidoSimulado[]
   usuarios: UsuarioSimulado[]
   tiendas: TiendaSimulada[]
   direcciones: DireccionSimulada[]
@@ -291,6 +308,13 @@ function crearBaseInicial(): BaseSimulada {
   const ejemplosSprint2 = crearEjemplosSprint2(cliente.id, vecina.id)
 
   return {
+    categorias: CATEGORIAS_SIMULADAS.map((categoria) => ({ ...categoria, activa: true })),
+    // Las del mockup 07 (HU-038)
+    restringidos: [
+      { id: 'd1e2f3a4-0001-4b5c-8d9e-0f1a2b3c4d01', palabraClave: 'amoxicilina' },
+      { id: 'd1e2f3a4-0002-4b5c-8d9e-0f1a2b3c4d02', palabraClave: 'clonazepam' },
+      { id: 'd1e2f3a4-0003-4b5c-8d9e-0f1a2b3c4d03', palabraClave: 'tramadol' },
+    ],
     usuarios: [cliente, duenoAprobada, duenoPendiente, administrador, suspendido, vecina, duenoBotica, duenoPopular],
     tiendas: [
       {

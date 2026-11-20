@@ -88,7 +88,22 @@ export function llegoALaTienda(solicitud: SolicitudSimulada, tienda: TiendaSimul
 /** SolicitudResponse: la solicitud como la ve su cliente (sin `clienteId`). */
 export function aSolicitudResponse(solicitud: SolicitudSimulada) {
   const { clienteId: _clienteId, ...datos } = solicitud
-  return { ...datos, respuestasRecibidas: respuestasVisibles(solicitud.id).length }
+  return {
+    ...datos,
+    esRestringida: solicitud.esRestringida ?? false,
+    respuestasRecibidas: respuestasVisibles(solicitud.id).length,
+  }
+}
+
+/** Como PalabraRestringida.normalizar del backend: sin tildes, en minúsculas y con un solo espacio. */
+export function normalizarTexto(texto: string): string {
+  return texto.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim().replace(/\s+/g, ' ')
+}
+
+/** HU-023: el producto contiene alguna palabra de la lista («Amoxicilina 500 mg» contiene «amoxicilina»). */
+export function esProductoRestringido(producto: string): boolean {
+  const normalizado = normalizarTexto(producto)
+  return base.restringidos.some((r) => normalizado.includes(r.palabraClave))
 }
 
 /** Mismo producto: mismo texto sin importar mayúsculas ni espacios (SC-011). */
@@ -157,7 +172,8 @@ export function respuestasAutomaticas(solicitud: SolicitudSimulada, ahora = Date
   return plan.flatMap(({ tiendaId, segundos, ...datos }) => {
     const tienda = base.tiendas.find((t) => t.id === tiendaId)
     if (!tienda?.estaAbierta || !llegoALaTienda(solicitud, tienda)) return []
-    const costo = costoDomicilio(tienda, solicitud.ubicacion)
+    // HU-023: a una solicitud restringida las tiendas no le ofrecen domicilio (ResponderSolicitud del backend)
+    const costo = solicitud.esRestringida ? null : costoDomicilio(tienda, solicitud.ubicacion)
     return [
       {
         id: crypto.randomUUID(),

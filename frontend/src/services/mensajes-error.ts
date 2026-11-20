@@ -61,6 +61,9 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'REP-002': 'Ya calificaste este pedido. Solo se puede calificar una vez.',
   'REP-003': 'Este pedido todavía no tiene calificación.',
   'REP-004': 'Hay datos por corregir. Revisa los campos marcados.',
+  'CAT-001': 'Eso ya no está en el catálogo. Recarga para ver la lista actual.',
+  'CAT-002': 'Esa palabra ya está en la lista de productos restringidos.',
+  'CAT-003': 'La palabra debe tener entre 2 y 80 caracteres.',
   'MEN-001': 'El pedido ya se cerró, así que el contacto por WhatsApp ya no está disponible.',
 }
 

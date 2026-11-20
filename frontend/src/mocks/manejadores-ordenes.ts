@@ -191,6 +191,13 @@ export const manejadoresOrdenes = [
     const tienda = base.tiendas.find((t) => t.id === respuesta.tiendaId)
     if (!tienda) return problema(404, 'SOL-007', 'Respuesta no encontrada')
 
+    // HU-023: producto restringido solo para recoger (ORD-006), antes que el medio de pago, como CrearOrden
+    if (solicitud.esRestringida && pedido.modalidad === 'DOMICILIO') {
+      return problema(422, 'ORD-006', 'Domicilio no disponible', {
+        detail: 'Este producto necesita fórmula médica: solo se puede recoger en la tienda.',
+      })
+    }
+
     // Mismo orden que CrearOrden del backend: medio de pago (ORD-003) antes que la cobertura (TIE-010)
     if (!tienda.mediosPago.includes(pedido.medioPago)) {
       return problema(422, 'ORD-003', 'Medio de pago no aceptado', {

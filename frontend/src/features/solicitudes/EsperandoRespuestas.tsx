@@ -5,6 +5,7 @@ import { Boton } from '@/components/ui/Boton'
 import { useAhora } from '@/hooks/useAhora'
 import { formatearDistancia, formatearHora, minutosHasta } from '@/services/formato'
 import { useSolicitud, type Solicitud } from './api'
+import { AvisoRestringido } from './AvisoRestringido'
 import { RespuestasDeSolicitud } from './RespuestasDeSolicitud'
 import { textosSolicitudes as textos } from './textos'
 
@@ -46,6 +47,9 @@ export function EsperandoRespuestas({ solicitud, alHacerOtra }: { solicitud: Sol
       <h1 ref={titulo} tabIndex={-1} className="text-2xl font-bold">
         {textoTitulo}
       </h1>
+
+      {/* HU-023: la marca que guardó el backend al publicar */}
+      {solicitud.esRestringida ? <AvisoRestringido /> : null}
 
       {hayTiendas ? (
         <ul className="flex flex-col gap-3">

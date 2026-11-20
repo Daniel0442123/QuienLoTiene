@@ -80,8 +80,6 @@ export const textosSolicitudes = {
   botonParecidoDe: (producto: string) => `Tengo algo parecido: ${producto}`,
   descartaste: (producto: string) => `Descartaste «${producto}».`,
   descartasteAnuncio: (producto: string) => `Descartaste «${producto}». Puedes deshacerlo durante unos segundos.`,
-  deshacer: 'Deshacer',
-  cerrarAviso: 'Cerrar aviso',
   restaurada: (producto: string) => `«${producto}» volvió a la lista.`,
   errorDescartar: (producto: string) => `No pudimos enviar «No lo tengo» para «${producto}». Volvió a la lista.`,
 
@@ -153,6 +151,10 @@ export const textosSolicitudes = {
   tipoSi: 'Sí lo tengo',
   tipoParecido: 'Tengo algo parecido',
   verTienda: 'Ver la tienda',
+  // Producto restringido (HU-023; texto del aviso aprobado en SC-011 punto 7, lo manda el backend)
+  avisoRestringidoTitulo: 'Este medicamento necesita fórmula médica',
+  avisoRestringidoDetalle: 'Las tiendas no lo llevan a domicilio: recógelo en la tienda con tu fórmula médica.',
+  domicilioNoPorRestringido: 'Domicilio (no disponible: necesita fórmula médica)',
   verTiendaDe: (tienda: string) => `Ver la tienda ${tienda}`,
   ofrece: (descripcion: string) => `Ofrece: ${descripcion}`,
   tieneDe: (tiene: number, pedidas: number) => `Tiene ${tiene} de ${pedidas}`,
