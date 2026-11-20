@@ -12,6 +12,7 @@ import { DetalleOrden } from '@/features/ordenes/DetalleOrden'
 import { LineaDeTiempo } from '@/features/ordenes/LineaDeTiempo'
 import { numeroCorto, siguientePasoDeLaTienda } from '@/features/ordenes/presentacion'
 import { textosOrdenes as textos } from '@/features/ordenes/textos'
+import { ResenaDelPedido } from '@/features/reputacion/ResenaDelPedido'
 import { esErrorApi } from '@/services/errores'
 import { formatearUnidades } from '@/services/formato'
 import { debeMostrarIdCorrelacion, mensajeParaUsuario } from '@/services/mensajes-error'
@@ -134,6 +135,7 @@ export function PedidoTiendaPagina() {
           <DatosDelCliente orden={orden.data} />
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />
           <AvanzarPedido orden={orden.data} />
+          <ResenaDelPedido orden={orden.data} vista="tienda" />
           <LineaDeTiempo orden={orden.data} titulo={textos.pasosTienda} />
           <DetalleOrden orden={orden.data} vista="tienda" />
           <CancelarPedido orden={orden.data} vista="tienda" />

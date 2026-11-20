@@ -170,6 +170,17 @@ export interface OrdenSimulada {
   canceladaPor?: 'CLIENTE' | 'TIENDA' | null
 }
 
+/** HU-034: una reseña por orden RESUELTA, del cliente de esa orden. */
+export interface ResenaSimulada {
+  id: string
+  ordenId: string
+  tiendaId: string
+  clienteId: string
+  estrellas: number
+  comentario: string | null
+  fecha: string
+}
+
 export interface BaseSimulada {
   usuarios: UsuarioSimulado[]
   tiendas: TiendaSimulada[]
@@ -177,6 +188,7 @@ export interface BaseSimulada {
   solicitudes: SolicitudSimulada[]
   respuestas: RespuestaSimulada[]
   ordenes: OrdenSimulada[]
+  resenas: ResenaSimulada[]
   /** Token temporal del segundo factor → administrador, vencimiento (ms) e intentos fallidos. */
   segundosFactoresPendientes: Map<string, { usuarioId: string; vence: number; intentosFallidos: number }>
 }
@@ -366,6 +378,7 @@ function crearBaseInicial(): BaseSimulada {
       },
     ],
     ...ejemplosSprint2,
+    resenas: crearResenasDeEjemplo(vecina.id),
     segundosFactoresPendientes: new Map(),
   }
 }
@@ -525,6 +538,28 @@ function crearEjemplosSprint2(clienteId: string, vecinaId: string) {
   ]
 
   return { solicitudes, respuestas, ordenes }
+}
+
+/**
+ * HU-014 y HU-034: tres reseñas de Droguería La 5 de pedidos anteriores de la vecina (promedio 4,7), para que el
+ * detalle de la tienda tenga promedio y comentarios. Las órdenes de estas reseñas no están en la simulación.
+ */
+function crearResenasDeEjemplo(vecinaId: string): ResenaSimulada[] {
+  const haceDias = (dias: number) => new Date(Date.now() - dias * 24 * 60 * 60_000).toISOString()
+  const resena = (numero: number, estrellas: number, comentario: string | null, dias: number): ResenaSimulada => ({
+    id: `f1a2b3c4-000${numero}-4d5e-8f9a-0b1c2d3e4f5${numero}`,
+    ordenId: `e1f2a3b4-009${numero}-4c5d-8e9f-0a1b2c3d4e9${numero}`,
+    tiendaId: TIENDAS_SPRINT_2.la5,
+    clienteId: vecinaId,
+    estrellas,
+    comentario,
+    fecha: haceDias(dias),
+  })
+  return [
+    resena(1, 5, 'Tenían el medicamento y llegó rápido.', 2),
+    resena(2, 4, null, 6),
+    resena(3, 5, 'Muy amables, me explicaron cómo tomarlo.', 12),
+  ]
 }
 
 export let base: BaseSimulada = crearBaseInicial()

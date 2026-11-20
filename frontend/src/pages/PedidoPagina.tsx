@@ -14,6 +14,7 @@ import { LineaDeTiempo } from '@/features/ordenes/LineaDeTiempo'
 import { numeroCorto } from '@/features/ordenes/presentacion'
 import { textosOrdenes as textos } from '@/features/ordenes/textos'
 import { useAnunciarCambiosDeEstado } from '@/features/ordenes/useAnunciarCambiosDeEstado'
+import { ResenaDelPedido } from '@/features/reputacion/ResenaDelPedido'
 import { esErrorApi } from '@/services/errores'
 import { formatearHora, formatearPesos, formatearUnidades } from '@/services/formato'
 import { mensajeParaUsuario } from '@/services/mensajes-error'
@@ -87,7 +88,13 @@ export function PedidoPagina() {
           <div className="flex flex-col gap-1">
             <p className="text-xl font-semibold">{textos.estados[orden.data.estado]}</p>
             <p className="break-words">
-              {orden.data.tienda.nombre} ·{' '}
+              <Link
+                to={`/tiendas/${orden.data.tienda.id}`}
+                className="text-primario underline underline-offset-4 hover:no-underline"
+              >
+                {orden.data.tienda.nombre}
+              </Link>{' '}
+              ·{' '}
               {textos.resumenPedido(
                 orden.data.producto,
                 formatearUnidades(orden.data.cantidad),
@@ -102,6 +109,7 @@ export function PedidoPagina() {
           <AvisoReservaVencida orden={orden.data} vista="cliente" />
           <ReservaParaRecoger orden={orden.data} vista="cliente" />
           {orden.data.estado === 'ENTREGADO' ? <ConfirmarRecepcion orden={orden.data} /> : null}
+          <ResenaDelPedido orden={orden.data} vista="cliente" />
           <LineaDeTiempo orden={orden.data} titulo={textos.pasos} />
           <ComoLlegar orden={orden.data} />
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />

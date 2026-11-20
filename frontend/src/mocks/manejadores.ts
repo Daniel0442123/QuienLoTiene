@@ -4,6 +4,7 @@ import { manejadoresClientes } from './manejadores-clientes'
 import { manejadoresIdentidad } from './manejadores-identidad'
 import { manejadoresEventos } from './eventos'
 import { manejadoresOrdenes } from './manejadores-ordenes'
+import { manejadoresReputacion } from './manejadores-reputacion'
 import { manejadoresRespuestas } from './manejadores-respuestas'
 import { manejadoresSolicitudes } from './manejadores-solicitudes'
 import { manejadoresTiendas } from './manejadores-tiendas'
@@ -24,6 +25,8 @@ export const manejadores = [
   ...manejadoresEventos,
   ...manejadoresCatalogo,
   ...manejadoresClientes,
+  // /tiendas/:tiendaId/resenas antes que /tiendas/:tiendaId (MSW no las confunde, pero así se lee mejor)
+  ...manejadoresReputacion,
   ...manejadoresTiendas,
   // Rutas de solicitudes del Sprint 2 antes que las del Sprint 1 (/disponibles antes de /:solicitudId)
   ...manejadoresRespuestas,

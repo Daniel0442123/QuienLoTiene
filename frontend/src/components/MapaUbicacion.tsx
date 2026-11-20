@@ -14,6 +14,8 @@ const ZOOM_INICIAL = 16
 
 const textos = {
   etiquetaMapa: 'Mapa. Con las flechas mueves el mapa y con + y − cambias el acercamiento.',
+  etiquetaMapaSoloLectura: (lugar: string) =>
+    `Mapa con la ubicación de ${lugar}. Con las flechas mueves el mapa y con + y − cambias el acercamiento.`,
   marcarCentro: 'Marcar el centro del mapa',
   atribucion: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
 }
@@ -29,15 +31,20 @@ const iconoPin = L.divIcon({
 /**
  * Mapa de OpenStreetMap con Leaflet directo (Tabla 18: sin react-leaflet ni Google Maps). Se carga con `lazy` solo en
  * las pantallas que lo usan. Para no depender de arrastrar (WCAG 2.5.7): un toque pone el pin, y con el teclado se
- * mueve el mapa con las flechas y se marca el centro con el botón.
+ * mueve el mapa con las flechas y se marca el centro con el botón. Sin `alCambiar` es de solo lectura (HU-014): muestra
+ * el pin de `lugar` y no se puede mover.
  */
 export default function MapaUbicacion({
   valor,
   alCambiar,
+  lugar,
 }: {
   valor: Coordenadas | null
-  alCambiar: (coordenadas: Coordenadas) => void
+  alCambiar?: (coordenadas: Coordenadas) => void
+  /** Nombre de lo que marca el pin, para la etiqueta del mapa de solo lectura. */
+  lugar?: string
 }) {
+  const soloLectura = !alCambiar
   const contenedor = useRef<HTMLDivElement>(null)
   const mapa = useRef<L.Map | null>(null)
   const pin = useRef<L.Marker | null>(null)
@@ -61,9 +68,11 @@ export default function MapaUbicacion({
       attribution: textos.atribucion,
     }).addTo(instancia)
     instancia.attributionControl.setPrefix(false)
-    instancia.on('click', (evento: L.LeafletMouseEvent) =>
-      alCambiarActual.current({ latitud: evento.latlng.lat, longitud: evento.latlng.lng }),
-    )
+    if (!soloLectura) {
+      instancia.on('click', (evento: L.LeafletMouseEvent) =>
+        alCambiarActual.current?.({ latitud: evento.latlng.lat, longitud: evento.latlng.lng }),
+      )
+    }
     mapa.current = instancia
     return () => {
       instancia.remove()
@@ -82,34 +91,36 @@ export default function MapaUbicacion({
     if (pin.current) {
       pin.current.setLatLng(punto)
     } else {
-      pin.current = L.marker(punto, { icon: iconoPin, draggable: true, keyboard: false }).addTo(instancia)
+      pin.current = L.marker(punto, { icon: iconoPin, draggable: !soloLectura, keyboard: false }).addTo(instancia)
       pin.current.on('dragend', () => {
         const posicion = pin.current?.getLatLng()
-        if (posicion) alCambiarActual.current({ latitud: posicion.lat, longitud: posicion.lng })
+        if (posicion) alCambiarActual.current?.({ latitud: posicion.lat, longitud: posicion.lng })
       })
     }
     if (!instancia.getBounds().contains(punto)) instancia.setView(punto)
-  }, [valor])
+  }, [valor, soloLectura])
 
   return (
     <div className="flex flex-col gap-2">
       <div
         ref={contenedor}
         role="region"
-        aria-label={textos.etiquetaMapa}
+        aria-label={soloLectura ? textos.etiquetaMapaSoloLectura(lugar ?? '') : textos.etiquetaMapa}
         className="z-0 h-64 w-full rounded-control border border-borde"
       />
-      <Boton
-        type="button"
-        variante="secundario"
-        className="self-start"
-        onClick={() => {
-          const centro = mapa.current?.getCenter()
-          if (centro) alCambiarActual.current({ latitud: centro.lat, longitud: centro.lng })
-        }}
-      >
-        {textos.marcarCentro}
-      </Boton>
+      {soloLectura ? null : (
+        <Boton
+          type="button"
+          variante="secundario"
+          className="self-start"
+          onClick={() => {
+            const centro = mapa.current?.getCenter()
+            if (centro) alCambiarActual.current?.({ latitud: centro.lat, longitud: centro.lng })
+          }}
+        >
+          {textos.marcarCentro}
+        </Boton>
+      )}
     </div>
   )
 }
