@@ -14,6 +14,9 @@ RUN npm run build
 # La imagen oficial trae golang.org/x/net con una vulnerabilidad alta ya corregida (CVE-2026-78661) y Trivy bloquea
 # el despliegue (RNF-011). Al subir de versión de Caddy, quitar el --replace si la imagen oficial ya trae la corrección.
 FROM caddy:2.11-builder-alpine AS caddy
+# CVE-2026-97054 (net/http de la librería estándar de Go, alta) se corrige en Go 1.27.4: se compila con esa versión
+# aunque la imagen builder traiga otra. Quitar cuando la imagen builder ya use 1.27.4 o superior.
+ENV GOTOOLCHAIN=go1.27.4
 RUN xcaddy build v2.11.9 --replace golang.org/x/net=golang.org/x/net@v0.62.0 --output /usr/bin/caddy
 
 # --- Caddy: TLS de Let's Encrypt, la PWA en / y la API en /api ---

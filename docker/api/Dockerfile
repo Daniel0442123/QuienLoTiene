@@ -7,7 +7,11 @@ FROM eclipse-temurin:21-jdk AS compilacion
 WORKDIR /fuente
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
-RUN --mount=type=cache,target=/root/.m2 ./mvnw -B -q dependency:go-offline
+# El wrapper descarga Maven con wget sin reintentos y a veces falla en los runners de GitHub: se reintenta dos veces
+RUN --mount=type=cache,target=/root/.m2 for intento in 1 2 3; do \
+        ./mvnw -B -q dependency:go-offline && exit 0; \
+        echo "Descarga de Maven o dependencias falló (intento $intento), se reintenta en 15 s"; sleep 15; \
+    done; exit 1
 COPY src/ src/
 # Las pruebas ya corren en el workflow de despliegue antes de construir la imagen
 RUN --mount=type=cache,target=/root/.m2 ./mvnw -B -q -DskipTests -Dspotless.check.skip=true package \
@@ -16,7 +20,9 @@ RUN --mount=type=cache,target=/root/.m2 ./mvnw -B -q -DskipTests -Dspotless.chec
 
 # --- Ejecución: solo el JRE, con un usuario sin privilegios ---
 FROM eclipse-temurin:21-jre
-RUN groupadd --system quienlotiene \
+# La base Ubuntu 26.04 trae pebble (gestor de servicios en Go) con CVE-2026-97054 en su stdlib; la API no lo usa
+RUN rm -f /usr/bin/pebble \
+    && groupadd --system quienlotiene \
     && useradd --system --gid quienlotiene --home-dir /app --shell /usr/sbin/nologin quienlotiene \
     && mkdir -p /datos/archivos \
     && chown quienlotiene:quienlotiene /datos/archivos

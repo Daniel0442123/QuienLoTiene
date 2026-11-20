@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.5 · 20/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.6 · 20/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -14,9 +14,20 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 
 Nada todavía.
 
+## v0.4.1 · 20/11/2026 · Imágenes sin la vulnerabilidad que bloqueó v0.4.0
+
+Etiqueta sobre `main` después de este PR. Mismo código que `v0.4.0`, que no llegó a desplegarse: Trivy bloqueó la imagen de la API (RNF-011).
+
+### Seguridad
+- Imagen de la API: se quita `/usr/bin/pebble`, que trae la base Ubuntu 26.04 de `eclipse-temurin:21-jre` y la API no usa, con CVE-2026-97054 (alta) en la librería estándar de Go.
+- Imagen de Caddy: se compila con Go 1.27.4, que corrige CVE-2026-97054 en `net/http`.
+
+### Corregido
+- La construcción de la imagen de la API reintenta hasta tres veces la descarga de Maven, que falló tres veces el 20/11/2026 en los runners de GitHub.
+
 ## v0.4.0 · 20/11/2026 · Backend del Sprint 3
 
-Etiqueta sobre `main` después del #64. Trae el backend completo del Sprint 3; las pantallas de estas historias llegan con el frontend del sprint, así que en esta versión solo se usan desde la API.
+Etiqueta sobre `main` después del #64. **No llegó a desplegarse:** Trivy encontró CVE-2026-97054 en la imagen de la API y el despliegue se detuvo antes de publicar; se libera como `v0.4.1`. Trae el backend completo del Sprint 3; las pantallas de estas historias llegan con el frontend del sprint, así que en esta versión solo se usan desde la API.
 
 ### Agregado
 - Backend del Sprint 3 (#63): cancelar la orden (HU-029), reserva para recoger de 30 minutos desde «Listo para recoger» que vence sola (HU-025, SC-019), calificar la tienda (HU-034), detalle público de la tienda (HU-014), categorías y productos restringidos (HU-038, HU-023), reportar un problema y gestionarlo con suspensión de cuentas (HU-035, HU-037), mini chat de la orden (HU-033), avisos Web Push (HU-031) y «Mis preguntas» con repetir (HU-008, SC-018).
@@ -194,3 +205,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.3 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.3.1` (DEF-011) antes de etiquetar |
 | 1.4 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.1` copiada de su Release y prueba en producción |
 | 1.5 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.4.0` (backend del Sprint 3) antes de etiquetar, preparadas con Claude Code |
+| 1.6 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `v0.4.0` no se desplegó (Trivy); notas de `v0.4.1` con la corrección de las imágenes, preparadas con Claude Code |
