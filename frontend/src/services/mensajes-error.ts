@@ -67,6 +67,7 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'REP-005': 'Este reporte ya estaba resuelto.',
   'MEN-002': 'El pedido ya terminó, así que el chat quedó de solo lectura.',
   'MEN-003': 'El mensaje no puede estar vacío ni pasar de 1000 caracteres.',
+  'NOT-001': 'Este navegador no se pudo registrar para recibir avisos. Inténtalo de nuevo o usa otro navegador.',
   'MEN-001': 'El pedido ya se cerró, así que el contacto por WhatsApp ya no está disponible.',
 }
 
