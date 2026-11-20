@@ -163,6 +163,11 @@ export interface OrdenSimulada {
   estado: EstadoOrdenSimulado
   fechaCreacion: string
   historial: Array<{ estado: EstadoOrdenSimulado; fecha: string }>
+  /** HU-025: hasta cuándo se guarda una recogida LISTO_PARA_RECOGER (SC-019). */
+  reservaVence?: string | null
+  /** HU-029: motivo y quién canceló. */
+  motivoCancelacion?: string | null
+  canceladaPor?: 'CLIENTE' | 'TIENDA' | null
 }
 
 export interface BaseSimulada {

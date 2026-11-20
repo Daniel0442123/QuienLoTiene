@@ -17,11 +17,16 @@ import {
 } from './reglas-sprint-2'
 import { autorizar, leerJson, problema, validar, vacio } from './utilidades'
 
-/** Órdenes (HU-024, HU-027 y HU-028) y contacto por WhatsApp (HU-032), según docs/api/contrato-sprint-2.yaml. */
+/**
+ * Órdenes (HU-024, HU-027 y HU-028), contacto por WhatsApp (HU-032), cancelar (HU-029) y reserva para recoger
+ * (HU-025), con la forma de /v3/api-docs y las reglas de Orden.java del backend.
+ */
 
 const MEDIOS_PAGO: MedioPagoSimulado[] = ['EFECTIVO', 'TRANSFERENCIA', 'DATAFONO']
 const ESTADOS_DE_LA_TIENDA: EstadoOrdenSimulado[] = ['PREPARANDO', 'EN_CAMINO', 'LISTO_PARA_RECOGER', 'ENTREGADO']
 const MAXIMO_ORDENES = 50
+/** HU-025, SC-019: 30 minutos fijos desde que la tienda marca LISTO_PARA_RECOGER (quienlotiene.ordenes.minutos-reserva). */
+const MINUTOS_RESERVA = 30
 
 interface CrearOrdenRequest {
   respuestaId: string
@@ -81,14 +86,57 @@ function aOrdenResponse(orden: OrdenSimulada, usuario: UsuarioSimulado) {
         }
       : null,
     historial: orden.historial,
+    reservaVence: orden.reservaVence ?? null,
+    motivoCancelacion: orden.motivoCancelacion ?? null,
+    canceladaPor: orden.canceladaPor ?? null,
   }
 }
 
-function cambiarEstado(orden: OrdenSimulada, estado: EstadoOrdenSimulado): void {
+function cambiarEstado(
+  orden: OrdenSimulada,
+  estado: EstadoOrdenSimulado,
+  { fecha = new Date().toISOString(), motivo = null }: { fecha?: string; motivo?: string | null } = {},
+): void {
   orden.estado = estado
-  orden.historial.push({ estado, fecha: new Date().toISOString() })
+  orden.historial.push({ estado, fecha })
+  if (estado === 'LISTO_PARA_RECOGER') {
+    orden.reservaVence = new Date(Date.parse(fecha) + MINUTOS_RESERVA * 60_000).toISOString()
+  }
   // Llega a las dos partes, así se actualiza también la pestaña de quien hizo el cambio
-  emitirEvento([orden.clienteId, ...duenoDe(orden.tiendaId)], 'estado-orden-cambiado', { ordenId: orden.id, estado })
+  emitirEvento([orden.clienteId, ...duenoDe(orden.tiendaId)], 'estado-orden-cambiado', {
+    ordenId: orden.id,
+    estado,
+    motivo,
+  })
+}
+
+/**
+ * HU-025, CU-30: las recogidas listas que pasaron su reserva quedan VENCIDA. El backend lo hace cada minuto; aquí
+ * se revisa al consultar, sin temporizadores (como las solicitudes en actualizarVencimientos).
+ */
+export function actualizarReservas(ahora = Date.now()): void {
+  for (const orden of base.ordenes) {
+    if (orden.estado === 'LISTO_PARA_RECOGER' && orden.reservaVence && Date.parse(orden.reservaVence) <= ahora) {
+      cambiarEstado(orden, 'VENCIDA', { fecha: orden.reservaVence })
+    }
+  }
+}
+
+/** HU-029: el cliente cancela mientras no salió; la tienda, solo en CONFIRMADO (decisión 1 del contrato). */
+function errorAlCancelar(orden: OrdenSimulada, rol: UsuarioSimulado['rol']): Response | null {
+  const puede =
+    rol === 'CLIENTE'
+      ? ['CONFIRMADO', 'PREPARANDO', 'LISTO_PARA_RECOGER'].includes(orden.estado)
+      : orden.estado === 'CONFIRMADO'
+  if (puede) return null
+  if (rol === 'CLIENTE' && (orden.estado === 'EN_CAMINO' || orden.estado === 'ENTREGADO')) {
+    return problema(409, 'ORD-005', 'La orden ya fue despachada', {
+      detail: 'La orden ya salió de la tienda: escribe a la tienda o reporta un problema.',
+    })
+  }
+  return problema(409, 'ORD-002', 'Cambio de estado no permitido', {
+    detail: 'La orden no puede pasar a ese estado desde el actual.',
+  })
 }
 
 /** Teléfono colombiano en formato internacional sin «+», como lo pide wa.me. */
@@ -207,6 +255,7 @@ export const manejadoresOrdenes = [
   http.get('/api/v1/ordenes', ({ request }) => {
     const usuario = autorizar(request, ['CLIENTE', 'TIENDA'])
     if (usuario instanceof Response) return usuario
+    actualizarReservas()
     const mias = base.ordenes
       .filter((o) => esParteDeLaOrden(o, usuario))
       .sort(
@@ -222,8 +271,32 @@ export const manejadoresOrdenes = [
   http.get('/api/v1/ordenes/:ordenId', ({ request, params }) => {
     const usuario = autorizar(request, ['CLIENTE', 'TIENDA'])
     if (usuario instanceof Response) return usuario
+    actualizarReservas()
     const orden = ordenDe(params.ordenId, usuario)
     if (orden instanceof Response) return orden
+    return HttpResponse.json(aOrdenResponse(orden, usuario))
+  }),
+
+  // HU-029: cancelar con motivo (3 a 200)
+  http.post('/api/v1/ordenes/:ordenId/cancelacion', async ({ request, params }) => {
+    const usuario = autorizar(request, ['CLIENTE', 'TIENDA'])
+    if (usuario instanceof Response) return usuario
+    actualizarReservas()
+    const { motivo } = await leerJson<{ motivo: string }>(request)
+    const texto = typeof motivo === 'string' ? motivo.trim() : ''
+    const largo = texto.length
+    const invalidos = validar([
+      ['motivo', vacio(motivo), 'Escribe el motivo de la cancelación'],
+      ['motivo', !vacio(motivo) && (largo < 3 || largo > 200), 'El motivo debe tener entre 3 y 200 caracteres'],
+    ])
+    if (invalidos) return invalidos
+    const orden = ordenDe(params.ordenId, usuario)
+    if (orden instanceof Response) return orden
+    const rechazo = errorAlCancelar(orden, usuario.rol)
+    if (rechazo) return rechazo
+    orden.motivoCancelacion = texto
+    orden.canceladaPor = usuario.rol === 'CLIENTE' ? 'CLIENTE' : 'TIENDA'
+    cambiarEstado(orden, 'CANCELADO', { motivo: orden.motivoCancelacion })
     return HttpResponse.json(aOrdenResponse(orden, usuario))
   }),
 
@@ -236,6 +309,7 @@ export const manejadoresOrdenes = [
       ['estado', !ESTADOS_DE_LA_TIENDA.includes(estado as EstadoOrdenSimulado), 'Elige el estado nuevo'],
     ])
     if (invalidos) return invalidos
+    actualizarReservas()
     const orden = ordenDe(params.ordenId, usuario)
     if (orden instanceof Response) return orden
     if (!siguienteEstadoValido(orden, estado as EstadoOrdenSimulado)) {
@@ -251,6 +325,7 @@ export const manejadoresOrdenes = [
   http.post('/api/v1/ordenes/:ordenId/recepcion', ({ request, params }) => {
     const cliente = autorizar(request, ['CLIENTE'])
     if (cliente instanceof Response) return cliente
+    actualizarReservas()
     const orden = ordenDe(params.ordenId, cliente)
     if (orden instanceof Response) return orden
     if (orden.estado !== 'ENTREGADO') {

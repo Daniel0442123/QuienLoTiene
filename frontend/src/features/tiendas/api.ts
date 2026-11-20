@@ -22,6 +22,7 @@ export const clavesTienda = {
   miTienda: ['tiendas', 'me'] as const,
   domicilio: ['tiendas', 'me', 'domicilio'] as const,
   mediosPago: ['tiendas', 'me', 'medios-pago'] as const,
+  publica: (tiendaId: string) => ['tiendas', 'publica', tiendaId] as const,
 }
 
 /** El middleware de clienteApi lanza ErrorApi en cualquier respuesta fallida: aquí solo falta un cuerpo vacío. */
@@ -58,6 +59,22 @@ export function useRegistrarTienda() {
       if (!data) throw new Error('El registro no devolvió la tienda creada')
       return data
     },
+  })
+}
+
+export type TiendaPublica = Esquemas['TiendaPublicaResponse']
+
+/**
+ * HU-014 y HU-026: detalle público de una tienda APROBADA (404 TIE-006 si no). La orden no trae la ubicación de la
+ * tienda (solo id y nombre), así que «Cómo llegar» la toma de aquí.
+ */
+export function useTiendaPublica(tiendaId: string, habilitado = true) {
+  return useQuery({
+    queryKey: clavesTienda.publica(tiendaId),
+    queryFn: async () =>
+      exigirDatos((await clienteApi.GET('/api/v1/tiendas/{tiendaId}', { params: { path: { tiendaId } } })).data),
+    enabled: habilitado,
+    staleTime: 5 * 60_000,
   })
 }
 

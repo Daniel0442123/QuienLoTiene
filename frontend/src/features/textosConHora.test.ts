@@ -14,6 +14,15 @@ function textosConHora(hora: string) {
     vencio: textosSolicitudes.vencio(hora),
     vence: textosSolicitudes.vence(hora, 12),
     entregadoPregunta: textosOrdenes.entregadoPregunta('Droguería La 5', hora),
+    // Sprint 3: HU-029 y HU-025
+    canceloCliente: textosOrdenes.canceladoPor.CLIENTE.cliente(hora),
+    canceloClienteVistoPorTienda: textosOrdenes.canceladoPor.CLIENTE.tienda(hora),
+    canceloTienda: textosOrdenes.canceladoPor.TIENDA.cliente(hora, 'Droguería La 5'),
+    canceloTiendaVistoPorTienda: textosOrdenes.canceladoPor.TIENDA.tienda(hora),
+    reservaHasta: textosOrdenes.reservaHasta(hora),
+    reservaHastaTienda: textosOrdenes.reservaHastaTienda(hora),
+    reservaVencidaCliente: textosOrdenes.reservaVencidaCliente(hora),
+    reservaVencidaTienda: textosOrdenes.reservaVencidaTienda(hora),
   }
 }
 
