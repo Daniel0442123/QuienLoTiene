@@ -5,7 +5,9 @@ import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
 import { useCambiarEstadoOrden, useOrden, type Orden } from '@/features/ordenes/api'
+import { AvisoCancelado, AvisoReservaVencida, ReservaParaRecoger } from '@/features/ordenes/AvisosPedido'
 import { BotonWhatsapp } from '@/features/ordenes/BotonWhatsapp'
+import { CancelarPedido } from '@/features/ordenes/CancelarPedido'
 import { DetalleOrden } from '@/features/ordenes/DetalleOrden'
 import { LineaDeTiempo } from '@/features/ordenes/LineaDeTiempo'
 import { numeroCorto, siguientePasoDeLaTienda } from '@/features/ordenes/presentacion'
@@ -82,7 +84,10 @@ function AvanzarPedido({ orden }: { orden: Orden }) {
   )
 }
 
-/** /tienda/pedidos/:ordenId · HU-027 y HU-032: el pedido de la tienda, sus datos de entrega y el paso siguiente. */
+/**
+ * /tienda/pedidos/:ordenId · HU-025, HU-027, HU-029 y HU-032: el pedido de la tienda, sus datos de entrega, el paso
+ * siguiente y, solo en CONFIRMADO, cancelar.
+ */
 export function PedidoTiendaPagina() {
   const { ordenId = '' } = useParams()
   const orden = useOrden(ordenId)
@@ -123,11 +128,15 @@ export function PedidoTiendaPagina() {
               {orden.data.modalidad === 'DOMICILIO' ? textos.entregaDomicilio : textos.entregaRecoger}
             </p>
           </div>
+          <AvisoCancelado orden={orden.data} vista="tienda" />
+          <AvisoReservaVencida orden={orden.data} vista="tienda" />
+          <ReservaParaRecoger orden={orden.data} vista="tienda" />
           <DatosDelCliente orden={orden.data} />
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />
           <AvanzarPedido orden={orden.data} />
           <LineaDeTiempo orden={orden.data} titulo={textos.pasosTienda} />
           <DetalleOrden orden={orden.data} vista="tienda" />
+          <CancelarPedido orden={orden.data} vista="tienda" />
         </>
       )}
     </section>

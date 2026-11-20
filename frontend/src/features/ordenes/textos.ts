@@ -111,4 +111,55 @@ export const textosOrdenes = {
   estadoGuardado: (estado: string) => `Pedido ahora en «${estado}». El cliente ya lo ve.`,
   esperandoCliente: 'Esperando a que el cliente confirme que lo recibió.',
   codigoSoporteOrden: (idCorrelacion?: string) => `Código para soporte: ${idCorrelacion ?? ''}`,
+
+  // Cancelar (HU-029). Las frases no terminan en la hora: su «p. m.» ya trae punto (DEF-010)
+  botonCancelar: 'Cancelar pedido',
+  etiquetaMotivo: '¿Por qué cancelas el pedido?',
+  pistaMotivoCliente: 'La tienda verá lo que escribas.',
+  pistaMotivoTienda: 'El cliente verá lo que escribas.',
+  contadorMotivo: (largo: number, maximo: number) => `${largo} de ${maximo} caracteres`,
+  avisoCancelarCliente: 'La tienda deja de preparar tu pedido. No se puede deshacer.',
+  avisoCancelarTienda: 'El cliente recibe el aviso con tu motivo. No se puede deshacer.',
+  botonConfirmarCancelacion: 'Sí, cancelar el pedido',
+  botonNoCancelar: 'No, volver',
+  cancelando: 'Cancelando…',
+  errorCancelar: 'No pudimos cancelar el pedido. Inténtalo de nuevo.',
+  pedidoCanceladoCliente: 'Cancelaste el pedido. La tienda ya recibió el aviso.',
+  pedidoCanceladoTienda: 'Cancelaste el pedido. El cliente ya recibió el aviso.',
+  motivoObligatorio: 'Escribe por qué cancelas.',
+  motivoCorto: 'Escribe al menos 3 caracteres.',
+  motivoLargo: (maximo: number) => `El motivo puede tener máximo ${maximo} caracteres.`,
+  yaSalio: 'Cuando el pedido ya salió, escríbele a la tienda o reporta un problema.',
+  // Quién canceló, según quién lee (vista del cliente o de la tienda)
+  canceladoPor: {
+    CLIENTE: {
+      cliente: (hora: string) => `A las ${hora}, cancelaste el pedido.`,
+      tienda: (hora: string) => `A las ${hora}, el cliente canceló el pedido.`,
+    },
+    TIENDA: {
+      cliente: (hora: string, tienda: string) => `A las ${hora}, ${tienda} canceló el pedido.`,
+      tienda: (hora: string) => `A las ${hora}, cancelaste el pedido.`,
+    },
+  },
+  motivoCancelacion: (motivo: string) => `Motivo: «${motivo}»`,
+  noLoPrepares: 'No lo prepares ni lo envíes.',
+  pasoCancelado: { CLIENTE: 'Cancelado por el cliente', TIENDA: 'Cancelado por la tienda' },
+
+  // Reserva para recoger (HU-025, SC-019)
+  reservaHasta: (hora: string) => `Te lo guardan hasta las ${hora}`,
+  reservaHastaTienda: (hora: string) => `El cliente tiene hasta las ${hora} para recogerlo`,
+  minutosRestantes: (minutos: number) => (minutos <= 1 ? 'Menos de 1 min' : `${minutos} min`),
+  quedanMinutos: (minutos: number) => `Quedan ${minutos} minutos`,
+  reservaExplicaCliente: 'Si no llegas, la reserva vence y la tienda puede venderlo.',
+  reservaExplicaTienda: 'Si no llega a tiempo, el pedido vence solo.',
+  avisoCincoMinutos: 'Quedan 5 minutos de tu reserva para recoger el pedido.',
+  reservaVencidaCliente: (hora: string) =>
+    `A las ${hora} venció la reserva. La tienda ya puede vender el producto; si todavía lo necesitas, pregunta de nuevo.`,
+  reservaVencidaTienda: (hora: string) =>
+    `A las ${hora} venció la reserva: el cliente no llegó. Ya puedes vender el producto.`,
+  tituloReservaVencida: 'La reserva venció',
+
+  // Cómo llegar (HU-026)
+  botonComoLlegar: 'Cómo llegar',
+  seAbreMapas: '(se abre la app de mapas)',
 } as const

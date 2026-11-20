@@ -108,6 +108,28 @@ export function useConfirmarRecepcion(ordenId: string) {
   })
 }
 
+/**
+ * HU-029: cancelar con motivo. Sin actualización optimista: si la orden ya salió (ORD-005) o cambió en otro celular
+ * (ORD-002), se vuelve a pedir para mostrar el estado real.
+ */
+export function useCancelarOrden(ordenId: string) {
+  const clienteConsultas = useQueryClient()
+  const guardar = useGuardarOrden()
+  return useMutation({
+    mutationFn: async (motivo: string) =>
+      exigirDatos(
+        (
+          await clienteApi.POST('/api/v1/ordenes/{ordenId}/cancelacion', {
+            params: { path: { ordenId } },
+            body: { motivo },
+          })
+        ).data,
+      ),
+    onSuccess: guardar,
+    onError: () => void clienteConsultas.invalidateQueries({ queryKey: clavesOrdenes.orden(ordenId) }),
+  })
+}
+
 /** HU-032: enlace wa.me de la otra parte; solo se pide con la orden activa (MEN-001 si no). */
 export function useContactoWhatsapp(ordenId: string, habilitado: boolean) {
   return useQuery({

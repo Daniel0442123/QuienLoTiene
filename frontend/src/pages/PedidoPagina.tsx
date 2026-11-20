@@ -5,7 +5,10 @@ import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
 import { useConfirmarRecepcion, useOrden, type Orden } from '@/features/ordenes/api'
+import { AvisoCancelado, AvisoReservaVencida, ReservaParaRecoger } from '@/features/ordenes/AvisosPedido'
 import { BotonWhatsapp } from '@/features/ordenes/BotonWhatsapp'
+import { CancelarPedido } from '@/features/ordenes/CancelarPedido'
+import { ComoLlegar } from '@/features/ordenes/ComoLlegar'
 import { DetalleOrden } from '@/features/ordenes/DetalleOrden'
 import { LineaDeTiempo } from '@/features/ordenes/LineaDeTiempo'
 import { numeroCorto } from '@/features/ordenes/presentacion'
@@ -44,7 +47,10 @@ function ConfirmarRecepcion({ orden }: { orden: Orden }) {
   )
 }
 
-/** /pedidos/:ordenId · HU-024, HU-027, HU-028 y HU-032: el pedido del cliente, cómo va y qué puede hacer. */
+/**
+ * /pedidos/:ordenId · HU-024, HU-025, HU-026, HU-027, HU-028, HU-029 y HU-032: el pedido del cliente, cómo va y qué
+ * puede hacer. Cancelar va al final, separado de las acciones del día a día (mockup 02).
+ */
 export function PedidoPagina() {
   const { ordenId = '' } = useParams()
   const orden = useOrden(ordenId)
@@ -92,10 +98,15 @@ export function PedidoPagina() {
               {orden.data.modalidad === 'DOMICILIO' ? textos.entregaDomicilio : textos.entregaRecoger}
             </p>
           </div>
+          <AvisoCancelado orden={orden.data} vista="cliente" />
+          <AvisoReservaVencida orden={orden.data} vista="cliente" />
+          <ReservaParaRecoger orden={orden.data} vista="cliente" />
           {orden.data.estado === 'ENTREGADO' ? <ConfirmarRecepcion orden={orden.data} /> : null}
           <LineaDeTiempo orden={orden.data} titulo={textos.pasos} />
+          <ComoLlegar orden={orden.data} />
           <BotonWhatsapp ordenId={orden.data.id} esActiva={orden.data.esActiva} />
           <DetalleOrden orden={orden.data} />
+          <CancelarPedido orden={orden.data} vista="cliente" />
         </>
       )}
     </section>

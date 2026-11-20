@@ -28,6 +28,11 @@ export function LineaDeTiempo({ orden, titulo }: { orden: Orden; titulo: string 
           const esActual = indice === actual
           const Icono = hecho ? CircleCheck : esActual ? CircleDot : Circle
           const hora = horaDe.get(estado)
+          // HU-029: «Cancelado por el cliente» o «por la tienda» (mockup 09)
+          const nombre =
+            estado === 'CANCELADO' && orden.canceladaPor
+              ? textos.pasoCancelado[orden.canceladaPor]
+              : textos.estados[estado]
           return (
             <li
               key={estado}
@@ -39,7 +44,7 @@ export function LineaDeTiempo({ orden, titulo }: { orden: Orden; titulo: string 
             >
               <Icono aria-hidden="true" className="size-5 shrink-0" />
               <span>
-                {hora ? textos.paso(textos.estados[estado], formatearHora(hora)) : textos.estados[estado]}
+                {hora ? textos.paso(nombre, formatearHora(hora)) : nombre}
                 {esActual ? <span className="sr-only"> {textos.estadoActual}</span> : null}
               </span>
             </li>

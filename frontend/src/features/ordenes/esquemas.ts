@@ -29,5 +29,18 @@ export const esquemaConfirmarPedido = z
     medioPago: medioPago as (typeof MEDIOS_PAGO)[number],
   }))
 
+/** HU-029: motivo de la cancelación, de 3 a 200 caracteres (CancelarOrdenRequest). */
+export const LARGO_MAXIMO_MOTIVO = 200
+
+export const esquemaCancelar = z.object({
+  motivo: z
+    .string()
+    .trim()
+    .min(1, textos.motivoObligatorio)
+    .pipe(z.string().min(3, textos.motivoCorto).max(LARGO_MAXIMO_MOTIVO, textos.motivoLargo(LARGO_MAXIMO_MOTIVO))),
+})
+
+export type DatosCancelar = z.output<typeof esquemaCancelar>
+
 export type EntradaConfirmarPedido = z.input<typeof esquemaConfirmarPedido>
 export type DatosConfirmarPedido = z.output<typeof esquemaConfirmarPedido>

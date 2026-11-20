@@ -53,6 +53,10 @@ const MENSAJES_POR_CODIGO: Record<string, string> = {
   'ORD-002': 'El pedido no puede pasar a ese estado ahora. Recarga para ver cómo va.',
   'ORD-003': 'La tienda no recibe ese medio de pago. Elige otro.',
   'ORD-004': 'Elige la dirección a donde llevamos tu pedido.',
+  'ORD-005':
+    'Tu pedido ya salió de la tienda, así que ya no se puede cancelar. Escríbele a la tienda o reporta un problema.',
+  'ORD-006':
+    'Este producto necesita fórmula médica, así que no se puede pedir a domicilio. Elige recoger en la tienda.',
   'MEN-001': 'El pedido ya se cerró, así que el contacto por WhatsApp ya no está disponible.',
 }
 

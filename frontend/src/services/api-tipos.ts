@@ -148,6 +148,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/solicitudes/{solicitudId}/repeticion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Repetir una solicitud
+         * @description HU-008. Publica otra con el mismo producto, cantidad, categoría, modalidad y urgencia, en la ubicación de ahora. Cuenta para el límite de 10 por hora.
+         */
+        post: operations["repetir"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/ordenes": {
         parameters: {
             query?: never;
@@ -166,6 +186,50 @@ export interface paths {
          * @description HU-024. Total = precio × unidades + domicilio. Una sola elección por solicitud.
          */
         post: operations["crear"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ordenes/{ordenId}/resena": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Ver la reseña de la orden
+         * @description HU-034. Para el cliente y la tienda de la orden.
+         */
+        get: operations["obtener"];
+        put?: never;
+        /**
+         * Calificar la tienda
+         * @description HU-034. Solo el cliente de una orden RESUELTA y una vez por orden.
+         */
+        post: operations["calificar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ordenes/{ordenId}/reportes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reportar un problema
+         * @description HU-035. El cliente o la tienda de la orden. Queda ABIERTO para el administrador.
+         */
+        post: operations["reportar"];
         delete?: never;
         options?: never;
         head?: never;
@@ -192,6 +256,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/ordenes/{ordenId}/mensajes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Leer el chat de la orden
+         * @description HU-033. Del más antiguo al más reciente; soloLectura cuando la orden ya terminó.
+         */
+        get: operations["listar_1"];
+        put?: never;
+        /**
+         * Escribir en el chat de la orden
+         * @description HU-033. Solo con la orden activa; la otra parte recibe el evento mensaje-recibido.
+         */
+        post: operations["enviar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ordenes/{ordenId}/cancelacion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Cancelar la orden
+         * @description HU-029. El cliente mientras no haya salido de la tienda (CONFIRMADO, PREPARANDO o LISTO_PARA_RECOGER); la tienda solo en CONFIRMADO. La otra parte recibe el motivo.
+         */
+        post: operations["cancelar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notificaciones/suscripciones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Suscribir este navegador a los avisos push
+         * @description HU-031. Recibe PushSubscription.toJSON(). Si el endpoint ya estaba, se reemplaza.
+         */
+        post: operations["suscribir"];
+        /**
+         * Dar de baja este navegador
+         * @description HU-031. Idempotente: si no existe o es de otro usuario, responde 204 igual.
+         */
+        delete: operations["cancelar_1"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/clientes/me/direcciones": {
         parameters: {
             query?: never;
@@ -200,7 +332,7 @@ export interface paths {
             cookie?: never;
         };
         /** Listar mis direcciones */
-        get: operations["listar_1"];
+        get: operations["listar_2"];
         put?: never;
         /**
          * Guardar una dirección
@@ -313,6 +445,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/admin/tiendas/{tiendaId}/suspension": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Suspender una tienda
+         * @description HU-037. No recibe solicitudes y su dueño no puede iniciar sesión. La interfaz pide confirmación (SC-011). Queda auditado con el motivo.
+         */
+        post: operations["suspender"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/admin/tiendas/{tiendaId}/rechazo": {
         parameters: {
             query?: never;
@@ -333,6 +485,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/admin/tiendas/{tiendaId}/reactivacion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reactivar una tienda
+         * @description HU-037. Vuelve a APROBADA. Queda auditado.
+         */
+        post: operations["reactivar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/admin/tiendas/{tiendaId}/aprobacion": {
         parameters: {
             query?: never;
@@ -347,6 +519,50 @@ export interface paths {
          * @description HU-036 (CP-ADM-036-01). La tienda queda APROBADA.
          */
         post: operations["aprobar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/reportes/{reporteId}/resolucion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Resolver un reporte
+         * @description HU-037. Queda RESUELTO con la nota y auditado.
+         */
+        post: operations["resolver"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/productos-restringidos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Listar productos restringidos
+         * @description HU-038. Palabras clave ordenadas.
+         */
+        get: operations["listarRestringidos"];
+        put?: never;
+        /**
+         * Agregar un producto restringido
+         * @description HU-038. Se guarda en minúsculas y sin tildes. Queda auditado.
+         */
+        post: operations["agregarRestringido"];
         delete?: never;
         options?: never;
         head?: never;
@@ -414,6 +630,66 @@ export interface paths {
         patch: operations["cambiarEstado"];
         trace?: never;
     };
+    "/api/v1/admin/categorias/{categoriaId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Activar o desactivar una categoría
+         * @description HU-038. Una inactiva deja de salir al publicar y al registrar tiendas. Queda auditado.
+         */
+        patch: operations["cambiarCategoria"];
+        trace?: never;
+    };
+    "/api/v1/tiendas/{tiendaId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Ver el detalle de una tienda
+         * @description HU-014. Horario, ubicación, teléfono, domicilio y medios de pago de una tienda APROBADA. Sin RUT ni documentos. Las reseñas están en /api/v1/tiendas/{tiendaId}/resenas.
+         */
+        get: operations["obtener_1"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/tiendas/{tiendaId}/resenas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Ver la calificación de una tienda
+         * @description HU-014. Promedio, total y las 10 reseñas más recientes, sin el nombre del cliente.
+         */
+        get: operations["obtener_2"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/tiendas/me": {
         parameters: {
             query?: never;
@@ -445,7 +721,7 @@ export interface paths {
          * Ver mis respuestas
          * @description HU-021. Respuestas SI y PARECIDO de las últimas 24 horas con su estado.
          */
-        get: operations["listar_2"];
+        get: operations["listar_3"];
         put?: never;
         post?: never;
         delete?: never;
@@ -485,7 +761,27 @@ export interface paths {
          * Ver mi solicitud
          * @description HU-020 y HU-021. Estado, respuestas recibidas y la orden si ya eligió.
          */
-        get: operations["obtener"];
+        get: operations["obtener_3"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/solicitudes/mias": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Ver mi historial de solicitudes
+         * @description HU-008 y SC-018. De la más reciente a la más antigua, con cuántas respuestas tiene cada una; estaAbierta marca las de «Mis preguntas». Lista vacía si nunca publicó.
+         */
+        get: operations["listarMias"];
         put?: never;
         post?: never;
         delete?: never;
@@ -525,7 +821,7 @@ export interface paths {
          * Ver una orden
          * @description HU-024 y HU-027. La tienda ve los datos del cliente solo mientras la orden está activa.
          */
-        get: operations["obtener_1"];
+        get: operations["obtener_4"];
         put?: never;
         post?: never;
         delete?: never;
@@ -545,7 +841,27 @@ export interface paths {
          * Obtener el enlace de WhatsApp de la otra parte
          * @description HU-032. Solo con la orden activa; el cliente recibe el número de la tienda y la tienda el del cliente.
          */
-        get: operations["obtener_2"];
+        get: operations["obtener_5"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notificaciones/configuracion-push": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Configuración de Web Push
+         * @description HU-031. La clave pública VAPID para PushManager.subscribe; si habilitado es false, el frontend no pide el permiso.
+         */
+        get: operations["configuracion"];
         put?: never;
         post?: never;
         delete?: never;
@@ -563,7 +879,7 @@ export interface paths {
         };
         /**
          * Abrir el flujo de eventos en tiempo real
-         * @description HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario (SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, solicitud-vencida, orden-creada y estado-orden-cambiado (docs/api/contrato-sprint-2.yaml).
+         * @description HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario (SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, solicitud-vencida, orden-creada, estado-orden-cambiado y mensaje-recibido (docs/api/contrato-sprint-2.yaml y CONTRATO-SPRINT-3.md).
          */
         get: operations["abrir"];
         put?: never;
@@ -585,7 +901,27 @@ export interface paths {
          * Listar categorías
          * @description HU-002 y HU-016. Categorías activas ordenadas por nombre. No pide sesión.
          */
-        get: operations["listar_3"];
+        get: operations["listar_4"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalogo/restriccion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Consultar si un producto es restringido
+         * @description HU-023. Compara sin mayúsculas ni tildes con la lista de restringidos de HU-038.
+         */
+        get: operations["consultar_4"];
         put?: never;
         post?: never;
         delete?: never;
@@ -605,7 +941,7 @@ export interface paths {
          * Listar tiendas por estado
          * @description HU-036. Por defecto, las PENDIENTE de revisión.
          */
-        get: operations["listar_4"];
+        get: operations["listar_5"];
         put?: never;
         post?: never;
         delete?: never;
@@ -629,6 +965,66 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/reportes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Listar reportes
+         * @description HU-037. Por defecto, los ABIERTO del más antiguo al nuevo.
+         */
+        get: operations["listarReportes"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/categorias": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Listar todas las categorías
+         * @description HU-038. Activas e inactivas.
+         */
+        get: operations["listarCategorias"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/productos-restringidos/{productoRestringidoId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Quitar un producto restringido
+         * @description HU-038. Queda auditado.
+         */
+        delete: operations["quitarRestringido"];
         options?: never;
         head?: never;
         patch?: never;
@@ -779,6 +1175,7 @@ export interface components {
             respuestasRecibidas: number;
             /** Format: uuid */
             ordenId: string | null;
+            esRestringida: boolean;
         };
         UbicacionResponse: {
             /** Format: double */
@@ -820,6 +1217,9 @@ export interface components {
             fechaRespuesta: string;
             /** Format: uuid */
             ordenId: string | null;
+        };
+        RepetirSolicitudRequest: {
+            ubicacion: components["schemas"]["UbicacionRequest"];
         };
         CrearOrdenRequest: {
             /** Format: uuid */
@@ -872,6 +1272,11 @@ export interface components {
             tienda: components["schemas"]["TiendaDeOrden"];
             cliente: components["schemas"]["ClienteDeOrden"] | null;
             historial: components["schemas"]["CambioEstadoOrden"][];
+            /** Format: date-time */
+            reservaVence: string | null;
+            motivoCancelacion: string | null;
+            /** @enum {string|null} */
+            canceladaPor: "CLIENTE" | "TIENDA" | null;
         };
         TiendaDeOrden: {
             /** Format: uuid */
@@ -883,6 +1288,65 @@ export interface components {
             latitud: number;
             /** Format: double */
             longitud: number;
+        };
+        CalificarRequest: {
+            /** Format: int32 */
+            estrellas: number;
+            comentario?: string;
+        };
+        ResenaResponse: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            ordenId: string;
+            /** Format: uuid */
+            tiendaId: string;
+            /** Format: int32 */
+            estrellas: number;
+            comentario: string | null;
+            /** Format: date-time */
+            fecha: string;
+        };
+        ReportarRequest: {
+            motivo: string;
+            descripcion?: string;
+        };
+        ReporteResponse: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            ordenId: string;
+            /** @enum {string} */
+            motivo: "DEMORA_ENTREGA" | "PRODUCTO_DIFERENTE" | "COBRO_DIFERENTE" | "OTRO";
+            descripcion: string | null;
+            /** @enum {string} */
+            estado: "ABIERTO" | "RESUELTO";
+            /** Format: date-time */
+            fecha: string;
+        };
+        EnviarMensajeRequest: {
+            texto: string;
+        };
+        MensajeVista: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            autor: "CLIENTE" | "TIENDA";
+            esMio: boolean;
+            texto: string;
+            /** Format: date-time */
+            fecha: string;
+        };
+        CancelarOrdenRequest: {
+            motivo: string;
+        };
+        Claves: {
+            p256dh: string;
+            auth: string;
+        };
+        SuscribirPushRequest: {
+            endpoint: string;
+            keys: components["schemas"]["Claves"];
         };
         VerificarSegundoFactorRequest: {
             tokenSegundoFactor: string;
@@ -929,7 +1393,7 @@ export interface components {
             correo: string;
             fraseContrasena: string;
         };
-        RechazarTiendaRequest: {
+        SuspenderTiendaRequest: {
             motivo: string;
         };
         DocumentoResumen: {
@@ -960,6 +1424,42 @@ export interface components {
             fechaRevision: string | null;
             documentos: components["schemas"]["DocumentoResumen"][];
         };
+        RechazarTiendaRequest: {
+            motivo: string;
+        };
+        ResolverReporteRequest: {
+            nota: string;
+        };
+        ReporteParaAdministrador: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            ordenId: string;
+            /** Format: uuid */
+            tiendaId: string;
+            /** @enum {string} */
+            reportadoPor: "CLIENTE" | "TIENDA";
+            /** @enum {string} */
+            motivo: "DEMORA_ENTREGA" | "PRODUCTO_DIFERENTE" | "COBRO_DIFERENTE" | "OTRO";
+            descripcion: string | null;
+            /** @enum {string} */
+            estado: "ABIERTO" | "RESUELTO";
+            /** Format: date-time */
+            fecha: string;
+            notaResolucion: string | null;
+            /** Format: date-time */
+            fechaResolucion: string | null;
+            /** Format: int64 */
+            reportesDeLaTienda: number;
+        };
+        AgregarRestringidoRequest: {
+            palabraClave: string;
+        };
+        ProductoRestringido: {
+            /** Format: uuid */
+            id: string;
+            palabraClave: string;
+        };
         ActualizarPerfilRequest: {
             nombre: string;
             telefono: string;
@@ -979,6 +1479,47 @@ export interface components {
         CambiarEstadoOrdenRequest: {
             /** @enum {string} */
             estado: "PREPARANDO" | "EN_CAMINO" | "LISTO_PARA_RECOGER" | "ENTREGADO";
+        };
+        CambiarCategoriaRequest: {
+            activa: boolean;
+        };
+        CategoriaAdministrada: {
+            /** Format: uuid */
+            id: string;
+            nombre: string;
+            activa: boolean;
+        };
+        TiendaPublicaResponse: {
+            /** Format: uuid */
+            id: string;
+            nombre: string;
+            telefono: string;
+            /** Format: uuid */
+            categoriaId: string;
+            /** Format: double */
+            latitud: number;
+            /** Format: double */
+            longitud: number;
+            estaAbierta: boolean;
+            horario: components["schemas"]["Franja"][];
+            domicilio: components["schemas"]["Domicilio"];
+            mediosPago: components["schemas"]["MedioPago"];
+        };
+        ReputacionTiendaResponse: {
+            /** Format: uuid */
+            tiendaId: string;
+            /** Format: double */
+            promedio: number;
+            /** Format: int64 */
+            totalResenas: number;
+            recientes: components["schemas"]["ResenaPublica"][];
+        };
+        ResenaPublica: {
+            /** Format: int32 */
+            estrellas: number;
+            comentario: string | null;
+            /** Format: date-time */
+            fecha: string;
         };
         SimulacionDomicilioResponse: {
             /** Format: int64 */
@@ -1025,6 +1566,34 @@ export interface components {
             respuestasRecibidas: number;
             respuestas: components["schemas"]["RespuestaParaClienteResponse"][];
         };
+        HistorialSolicitudes: {
+            solicitudes: components["schemas"]["SolicitudDelHistorial"][];
+            /** Format: int32 */
+            pagina: number;
+            hayMas: boolean;
+        };
+        SolicitudDelHistorial: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            categoriaId: string;
+            producto: string;
+            /** Format: int32 */
+            cantidad: number;
+            modalidad: components["schemas"]["Modalidad"];
+            esUrgente: boolean;
+            estado: components["schemas"]["EstadoSolicitud"];
+            estaAbierta: boolean;
+            /** Format: date-time */
+            fechaPublicacion: string;
+            /** Format: date-time */
+            fechaVencimiento: string;
+            /** Format: int32 */
+            respuestasRecibidas: number;
+            /** Format: uuid */
+            ordenId: string | null;
+            esRestringida: boolean;
+        };
         SolicitudDisponibleResponse: {
             /** Format: uuid */
             id: string;
@@ -1048,6 +1617,16 @@ export interface components {
             nombre: string;
             telefono: string;
             enlace: string;
+        };
+        ChatDeOrden: {
+            /** Format: uuid */
+            ordenId: string;
+            soloLectura: boolean;
+            mensajes: components["schemas"]["MensajeVista"][];
+        };
+        ConfiguracionPush: {
+            habilitado: boolean;
+            clavePublica: string | null;
         };
         /** @description Mismos datos de la tarjeta de HU-018, sin datos del cliente. */
         EventoSolicitudNueva: {
@@ -1104,6 +1683,13 @@ export interface components {
             /** Format: uuid */
             ordenId: string;
             estado: components["schemas"]["EstadoOrden"];
+            motivo: string | null;
+        };
+        EventoMensajeRecibido: {
+            /** Format: uuid */
+            ordenId: string;
+            /** Format: uuid */
+            mensajeId: string;
         };
         SseEmitter: {
             /** Format: int64 */
@@ -1114,22 +1700,26 @@ export interface components {
             id: string;
             nombre: string;
         };
-        /** @enum {string} */
-        EstadoRespuesta: "ESPERANDO" | "ELEGIDA" | "NO_ELEGIDA" | "VENCIDA";
-        /** @enum {string} */
-        Modalidad: "RECOGER" | "DOMICILIO";
-        /** @enum {string} */
-        MedioPago: "EFECTIVO" | "TRANSFERENCIA" | "DATAFONO";
+        RestriccionResponse: {
+            restringido: boolean;
+            aviso: string | null;
+        };
         /** @enum {string} */
         TipoRespuesta: "SI" | "PARECIDO" | "NO";
         /** @enum {string} */
-        EstadoSolicitud: "ABIERTA" | "RESUELTA" | "VENCIDA";
+        MedioPago: "EFECTIVO" | "TRANSFERENCIA" | "DATAFONO";
         /** @enum {string} */
-        EstadoTienda: "PENDIENTE" | "APROBADA" | "RECHAZADA" | "SUSPENDIDA";
+        Modalidad: "RECOGER" | "DOMICILIO";
+        /** @enum {string} */
+        EstadoRespuesta: "ESPERANDO" | "ELEGIDA" | "NO_ELEGIDA" | "VENCIDA";
+        /** @enum {string} */
+        DiaSemana: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
         /** @enum {string} */
         EstadoOrden: "CONFIRMADO" | "PREPARANDO" | "EN_CAMINO" | "LISTO_PARA_RECOGER" | "ENTREGADO" | "RESUELTA" | "CANCELADO" | "VENCIDA";
         /** @enum {string} */
-        DiaSemana: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
+        EstadoTienda: "PENDIENTE" | "APROBADA" | "RECHAZADA" | "SUSPENDIDA";
+        /** @enum {string} */
+        EstadoSolicitud: "ABIERTA" | "RESUELTA" | "VENCIDA";
         /** @description Un campo que no pasó la validación (GEN-001). */
         ErrorDeCampo: {
             campo: string;
@@ -1563,6 +2153,50 @@ export interface operations {
             };
         };
     };
+    repetir: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                solicitudId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RepetirSolicitudRequest"];
+            };
+        };
+        responses: {
+            /** @description Solicitud nueva ABIERTA */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SolicitudResponse"];
+                };
+            };
+            /** @description No existe o es de otro cliente (SOL-003) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description Superó las 10 solicitudes de la última hora (SOL-001) */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
     listar: {
         parameters: {
             query?: never;
@@ -1643,6 +2277,143 @@ export interface operations {
             };
         };
     };
+    obtener: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                ordenId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description La reseña */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ResenaResponse"];
+                };
+            };
+            /** @description La orden no es del usuario (ORD-001) o todavía no tiene reseña (REP-003) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    calificar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                ordenId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CalificarRequest"];
+            };
+        };
+        responses: {
+            /** @description Reseña publicada */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ResenaResponse"];
+                };
+            };
+            /** @description Estrellas fuera de 1 a 5 o comentario largo (GEN-001) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description La orden no existe o no es del usuario (ORD-001) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description La orden ya tiene reseña (REP-002) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description La orden no está RESUELTA (REP-001) */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    reportar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                ordenId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReportarRequest"];
+            };
+        };
+        responses: {
+            /** @description Reporte ABIERTO */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReporteResponse"];
+                };
+            };
+            /** @description Motivo desconocido, OTRO sin descripción o descripción larga (GEN-001, REP-004) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description La orden no existe o el usuario no participa (ORD-001) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
     confirmarRecepcion: {
         parameters: {
             query?: never;
@@ -1684,6 +2455,194 @@ export interface operations {
         };
     };
     listar_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                ordenId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Mensajes de la orden */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChatDeOrden"];
+                };
+            };
+            /** @description La orden no existe o el usuario no participa (ORD-001) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    enviar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                ordenId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EnviarMensajeRequest"];
+            };
+        };
+        responses: {
+            /** @description Mensaje guardado */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MensajeVista"];
+                };
+            };
+            /** @description Mensaje vacío o de más de 1000 caracteres (GEN-001, MEN-003) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description La orden no existe o el usuario no participa (ORD-001) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description La orden ya terminó: chat en solo lectura (MEN-002) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    cancelar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                ordenId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CancelarOrdenRequest"];
+            };
+        };
+        responses: {
+            /** @description Orden CANCELADO */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrdenResponse"];
+                };
+            };
+            /** @description Falta el motivo o es muy largo (GEN-001) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description No existe o no es del usuario (ORD-001) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description Ya va en camino o se entregó (ORD-005), o ya terminó o la tienda ya la prepara (ORD-002) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    suscribir: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SuscribirPushRequest"];
+            };
+        };
+        responses: {
+            /** @description Suscripción guardada */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Endpoint que no es de un servicio push conocido o claves inválidas (GEN-001, NOT-001) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    cancelar_1: {
+        parameters: {
+            query: {
+                endpoint: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Suscripción borrada */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    listar_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -1913,6 +2872,50 @@ export interface operations {
             };
         };
     };
+    suspender: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tiendaId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SuspenderTiendaRequest"];
+            };
+        };
+        responses: {
+            /** @description Tienda SUSPENDIDA */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TiendaParaRevision"];
+                };
+            };
+            /** @description No existe (TIE-006) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description No está APROBADA (TIE-004) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
     rechazar: {
         parameters: {
             query?: never;
@@ -1957,6 +2960,46 @@ export interface operations {
             };
         };
     };
+    reactivar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tiendaId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Tienda APROBADA */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TiendaParaRevision"];
+                };
+            };
+            /** @description No existe (TIE-006) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description No está SUSPENDIDA (TIE-004) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
     aprobar: {
         parameters: {
             query?: never;
@@ -1978,6 +3021,112 @@ export interface operations {
                 };
             };
             /** @description La tienda no está PENDIENTE (TIE-004) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    resolver: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                reporteId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResolverReporteRequest"];
+            };
+        };
+        responses: {
+            /** @description Reporte RESUELTO */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReporteParaAdministrador"];
+                };
+            };
+            /** @description No existe (REP-003) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description Ya estaba resuelto (REP-005) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    listarRestringidos: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductoRestringido"][];
+                };
+            };
+        };
+    };
+    agregarRestringido: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AgregarRestringidoRequest"];
+            };
+        };
+        responses: {
+            /** @description La palabra agregada */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductoRestringido"];
+                };
+            };
+            /** @description Muy corta o muy larga (GEN-001, CAT-003) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+            /** @description Ya está en la lista (CAT-002) */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -2109,6 +3258,94 @@ export interface operations {
             };
         };
     };
+    cambiarCategoria: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                categoriaId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CambiarCategoriaRequest"];
+            };
+        };
+        responses: {
+            /** @description La categoría con su estado nuevo */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CategoriaAdministrada"];
+                };
+            };
+            /** @description No existe (CAT-001) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    obtener_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tiendaId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Detalle de la tienda */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TiendaPublicaResponse"];
+                };
+            };
+            /** @description No existe o no está aprobada (TIE-006) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    obtener_2: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tiendaId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Calificación; promedio 0 si no tiene reseñas */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReputacionTiendaResponse"];
+                };
+            };
+        };
+    };
     consultar_3: {
         parameters: {
             query?: never;
@@ -2138,7 +3375,7 @@ export interface operations {
             };
         };
     };
-    listar_2: {
+    listar_3: {
         parameters: {
             query?: never;
             header?: never;
@@ -2190,7 +3427,7 @@ export interface operations {
             };
         };
     };
-    obtener: {
+    obtener_3: {
         parameters: {
             query?: never;
             header?: never;
@@ -2212,6 +3449,38 @@ export interface operations {
             };
             /** @description No existe o es de otro cliente (SOL-003) */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    listarMias: {
+        parameters: {
+            query?: {
+                pagina?: number;
+                tamano?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Una página del historial */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HistorialSolicitudes"];
+                };
+            };
+            /** @description Página negativa o tamaño fuera de 1 a 50 (SOL-002) */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2259,7 +3528,7 @@ export interface operations {
             };
         };
     };
-    obtener_1: {
+    obtener_4: {
         parameters: {
             query?: never;
             header?: never;
@@ -2290,7 +3559,7 @@ export interface operations {
             };
         };
     };
-    obtener_2: {
+    obtener_5: {
         parameters: {
             query?: never;
             header?: never;
@@ -2330,6 +3599,26 @@ export interface operations {
             };
         };
     };
+    configuracion: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Configuración */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ConfiguracionPush"];
+                };
+            };
+        };
+    };
     abrir: {
         parameters: {
             query?: never;
@@ -2348,7 +3637,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "text/event-stream": components["schemas"]["EventoSolicitudNueva"] | components["schemas"]["EventoRespuestaRecibida"] | components["schemas"]["EventoSolicitudCerrada"] | components["schemas"]["EventoRespuestaNoElegida"] | components["schemas"]["EventoSolicitudVencida"] | components["schemas"]["EventoOrdenCreada"] | components["schemas"]["EventoEstadoOrdenCambiado"];
+                    "text/event-stream": components["schemas"]["EventoSolicitudNueva"] | components["schemas"]["EventoRespuestaRecibida"] | components["schemas"]["EventoSolicitudCerrada"] | components["schemas"]["EventoRespuestaNoElegida"] | components["schemas"]["EventoSolicitudVencida"] | components["schemas"]["EventoOrdenCreada"] | components["schemas"]["EventoEstadoOrdenCambiado"] | components["schemas"]["EventoMensajeRecibido"];
                 };
             };
             /** @description Sin sesión (GEN-003) */
@@ -2362,7 +3651,7 @@ export interface operations {
             };
         };
     };
-    listar_3: {
+    listar_4: {
         parameters: {
             query?: never;
             header?: never;
@@ -2382,7 +3671,38 @@ export interface operations {
             };
         };
     };
-    listar_4: {
+    consultar_4: {
+        parameters: {
+            query: {
+                producto: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Si es restringido y el aviso que se muestra */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RestriccionResponse"];
+                };
+            };
+            /** @description Falta el producto (GEN-001) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    listar_5: {
         parameters: {
             query?: {
                 estado?: string;
@@ -2426,6 +3746,77 @@ export interface operations {
                 };
             };
             /** @description La tienda o el documento no existe (TIE-006) */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
+    listarReportes: {
+        parameters: {
+            query?: {
+                estado?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReporteParaAdministrador"][];
+                };
+            };
+        };
+    };
+    listarCategorias: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CategoriaAdministrada"][];
+                };
+            };
+        };
+    };
+    quitarRestringido: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                productoRestringidoId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Quitado */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description No existe (CAT-001) */
             404: {
                 headers: {
                     [name: string]: unknown;

@@ -12,7 +12,10 @@ import {
   leerJson,
 } from './utilidades'
 
-/** Tiendas: registro con documentos, perfil y horario, apertura, domicilio y medios de pago (HU-002, 009 a 013). */
+/**
+ * Tiendas: registro con documentos, perfil y horario, apertura, domicilio y medios de pago (HU-002, 009 a 013) y el
+ * detalle público (HU-014).
+ */
 
 const RUTA = '/api/v1/tiendas'
 const CINCO_MB = 5 * 1024 * 1024
@@ -309,5 +312,27 @@ export const manejadoresTiendas = [
     if (invalidos) return invalidos
     tienda.mediosPago = [...new Set(mediosPago as string[])]
     return HttpResponse.json({ mediosPago: tienda.mediosPago })
+  }),
+
+  // HU-014 (y HU-026 para «Cómo llegar»): detalle público de una tienda APROBADA, sin RUT ni documentos. Va al
+  // final para que /tiendas/me no caiga aquí. mediosPago es una lista, como lo manda el backend (TiendaPublica.java),
+  // aunque /v3/api-docs lo publique como un solo valor.
+  http.get(`${RUTA}/:tiendaId`, ({ request, params }) => {
+    const usuario = autorizar(request, ['CLIENTE', 'TIENDA', 'ADMIN'])
+    if (usuario instanceof Response) return usuario
+    const tienda = base.tiendas.find((t) => t.id === params.tiendaId && t.estado === 'APROBADA')
+    if (!tienda) return problema(404, 'TIE-006', 'Tienda no encontrada')
+    return HttpResponse.json({
+      id: tienda.id,
+      nombre: tienda.nombre,
+      telefono: tienda.telefono,
+      categoriaId: tienda.categoriaId,
+      latitud: tienda.latitud,
+      longitud: tienda.longitud,
+      estaAbierta: tienda.estaAbierta,
+      horario: tienda.horario,
+      domicilio: aDomicilio(tienda),
+      mediosPago: tienda.mediosPago,
+    })
   }),
 ]
