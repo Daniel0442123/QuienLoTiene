@@ -58,6 +58,8 @@ export default defineConfig({
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [],
+        // HU-031: manejadores de push y notificationclick (public/sw-push.js); no guarda nada en caché
+        importScripts: ['sw-push.js'],
       },
     }),
   ],

@@ -235,6 +235,8 @@ export interface BaseSimulada {
   resenas: ResenaSimulada[]
   reportes: ReporteSimulado[]
   mensajes: MensajeSimulado[]
+  /** HU-031: suscripciones push de este navegador por usuario. */
+  suscripcionesPush: Array<{ usuarioId: string; endpoint: string }>
   /** Token temporal del segundo factor → administrador, vencimiento (ms) e intentos fallidos. */
   segundosFactoresPendientes: Map<string, { usuarioId: string; vence: number; intentosFallidos: number }>
 }
@@ -434,6 +436,7 @@ function crearBaseInicial(): BaseSimulada {
     resenas: crearResenasDeEjemplo(vecina.id),
     reportes: crearReportesDeEjemplo(vecina.id),
     mensajes: crearMensajesDeEjemplo(vecina.id, duenoAprobada.id),
+    suscripcionesPush: [],
     segundosFactoresPendientes: new Map(),
   }
 }

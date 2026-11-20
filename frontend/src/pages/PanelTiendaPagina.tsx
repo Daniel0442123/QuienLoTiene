@@ -1,6 +1,7 @@
 import { BadgeCheck, ChevronRight, CircleAlert, Clock, ExternalLink, Inbox, Package, Truck, Wallet } from 'lucide-react'
 import { Link } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
+import { TarjetaAvisosPush } from '@/features/notificaciones/TarjetaAvisosPush'
 import { useMiTienda, type MiTienda } from '@/features/tiendas/api'
 import { useCategorias } from '@/hooks/useCategorias'
 import { InterruptorAperturaTienda } from '@/features/tiendas/InterruptorAperturaTienda'
@@ -103,6 +104,8 @@ export function PanelTiendaPagina() {
           <EstadoDeLaTienda tienda={miTienda.data} />
           <CategoriaYUbicacion tienda={miTienda.data} />
           <InterruptorAperturaTienda tienda={miTienda.data} />
+          {/* HU-031: solo una tienda aprobada recibe solicitudes y pedidos que avisar */}
+          {miTienda.data.estado === 'APROBADA' ? <TarjetaAvisosPush /> : null}
           <nav aria-label={textos.navegacionPanel}>
             <ul className="flex flex-col gap-2">
               {SECCIONES.map(({ ruta, titulo, descripcion, Icono }) => (
