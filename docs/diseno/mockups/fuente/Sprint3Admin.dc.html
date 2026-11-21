@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Sprint 3 · Administrador: confirmar y deshacer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+a{color:#0b6e63}a:hover{color:#08564d}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12);position:relative}
+.barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
+.marca{margin:0;font-weight:700;font-size:18px}
+.nav{display:flex;gap:8px;padding:12px 16px 0}
+.nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid #6a7d76;border-radius:12px;text-decoration:none;color:#13261f;font-size:16px}
+.nav a.actual{border-color:#0b6e63;background:#f2f7f5;font-weight:700;text-decoration:underline}
+.cont{box-sizing:border-box;flex:1;overflow:hidden;padding:16px;display:flex;flex-direction:column;gap:10px}
+.h1{margin:0;font-size:26px;line-height:1.2;font-weight:700}
+.h2{margin:0;font-size:18px;line-height:1.3;font-weight:700}
+.p{margin:0;font-size:16px;line-height:1.45}
+.suave{color:#4b5d56}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.tarjeta{box-sizing:border-box;border:1px solid #6a7d76;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.chip{display:inline-flex;align-items:center;font-size:16px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid #b45309;color:#b45309;width:fit-content}
+.btn2{box-sizing:border-box;min-height:44px;border-radius:12px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center}
+.btn-peligro{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#b3261e;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px}
+.form-peligro{box-sizing:border-box;border:2px solid #b3261e;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+textarea{box-sizing:border-box;width:100%;min-height:64px;border:1px solid #6a7d76;border-radius:12px;font:inherit;font-size:16px;padding:10px 12px;resize:none}
+.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.lista li{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:52px;border-bottom:1px solid #dce7e2;font-size:16px}
+.deshacer{position:absolute;left:16px;right:16px;bottom:20px;box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#13261f;color:#ffffff;border-radius:12px;padding:8px 8px 8px 16px;box-shadow:0 8px 20px rgba(19,38,31,0.3)}
+.deshacer .btn-osc{min-height:44px;border-radius:10px;border:1px solid #ffffff;background:#13261f;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 12px}
+.deshacer .cerrar{min-height:44px;min-width:44px;border:0;background:transparent;color:#ffffff;font-size:20px}
+.a11y{font-size:16px;color:#08564d}
+</style>
+</helmet>
+<div class="tablero" style="width:932px;height:1060px">
+
+<div class="col">
+<p class="etq">HU-037 · Confirmar antes de suspender</p>
+<p class="etq-nota">SC-011 punto 8: motivo y confirmación, con lo que va a pasar dicho antes del botón. <span class="a11y">El foco va al motivo; «No, volver» lo devuelve.</span></p>
+<div class="tel">
+<div class="barra"><p class="marca">Administración</p></div>
+<nav class="nav" aria-label="Administración"><a href="#">Tiendas</a><a class="actual" href="#" aria-current="page">Reportes</a><a href="#">Catálogo</a></nav>
+<div class="cont">
+<div class="fila"><h1 class="h1">Demora en la entrega</h1><span class="chip">Abierto</span></div>
+<p class="p suave">Reportado por un cliente · 20/11/2026, 5:10 p. m. · Pedido E1F2A3B4</p>
+<div class="tarjeta"><p class="h2">Droguería La 5</p><p class="p">2 reportes en total</p><p class="p suave">«Ya pasó una hora y no ha llegado.»</p></div>
+<div class="form-peligro">
+<label class="p" for="motivo-susp" style="font-weight:700">¿Por qué la suspendes?</label>
+<p class="p suave">De 3 a 300 caracteres. Queda en el registro de auditoría.</p>
+<textarea id="motivo-susp">Tres reportes de demora en una semana</textarea>
+<p class="p" style="font-weight:700">Droguería La 5 no podrá iniciar sesión ni recibirá solicitudes, y se cierran sus sesiones abiertas. Puedes reactivarla después.</p>
+<div class="fila" style="justify-content:flex-start"><button class="btn-peligro" type="button">Sí, suspender a Droguería La 5</button><button class="btn2" type="button">No, volver</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-038 · Quitar con deshacer</p>
+<p class="etq-nota">Sin diálogo: la palabra sale de la lista y se puede deshacer 8 s (§8, regla 7). <span class="a11y">El foco pasa a «Deshacer»; se anuncia «Quitaste…».</span></p>
+<div class="tel">
+<div class="barra"><p class="marca">Administración</p></div>
+<nav class="nav" aria-label="Administración"><a href="#">Tiendas</a><a href="#">Reportes</a><a class="actual" href="#" aria-current="page">Catálogo</a></nav>
+<div class="cont">
+<h1 class="h1">Catálogo</h1>
+<p class="h2">Productos restringidos</p>
+<p class="p suave">Una solicitud es restringida si el producto contiene alguna de estas palabras, sin importar mayúsculas ni tildes.</p>
+<ul class="lista">
+<li>Amoxicilina<button class="btn2" type="button" aria-label="Quitar amoxicilina">Quitar</button></li>
+<li>Clonazepam<button class="btn2" type="button" aria-label="Quitar clonazepam">Quitar</button></li>
+</ul>
+</div>
+<div class="deshacer" role="status"><p class="p" style="flex:1">Quitaste «tramadol».</p><button class="btn-osc" type="button">Deshacer</button><button class="cerrar" type="button" aria-label="Cerrar aviso">×</button></div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":932,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
