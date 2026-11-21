@@ -8,7 +8,7 @@ import { manejadoresEventos } from './eventos'
 import { manejadoresOrdenes } from './manejadores-ordenes'
 import { manejadoresReputacion } from './manejadores-reputacion'
 import { manejadoresRespuestas } from './manejadores-respuestas'
-import { manejadoresSolicitudes } from './manejadores-solicitudes'
+import { manejadoresHistorial, manejadoresSolicitudes } from './manejadores-solicitudes'
 import { manejadoresTiendas } from './manejadores-tiendas'
 import { CORREOS_DE_PRUEBA, FRASE_DE_PRUEBA } from './datos'
 
@@ -30,7 +30,9 @@ export const manejadores = [
   // /tiendas/:tiendaId/resenas antes que /tiendas/:tiendaId (MSW no las confunde, pero así se lee mejor)
   ...manejadoresReputacion,
   ...manejadoresTiendas,
-  // Rutas de solicitudes del Sprint 2 antes que las del Sprint 1 (/disponibles antes de /:solicitudId)
+  // Rutas de solicitudes del Sprint 2 antes que las del Sprint 1 (/disponibles antes de /:solicitudId), y /mias
+  // (HU-008) antes que todas
+  ...manejadoresHistorial,
   ...manejadoresRespuestas,
   ...manejadoresSolicitudes,
   ...manejadoresOrdenes,

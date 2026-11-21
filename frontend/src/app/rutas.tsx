@@ -83,6 +83,13 @@ export const rutas: RouteObject[] = [
             ),
             children: [
               {
+                // Historial de preguntas y «Repetir» (HU-008, SC-018)
+                index: true,
+                lazy: async () => ({
+                  Component: (await import('@/pages/HistorialSolicitudesPagina')).HistorialSolicitudesPagina,
+                }),
+              },
+              {
                 path: 'nueva',
                 lazy: async () => ({
                   Component: (await import('@/pages/PublicarSolicitudPagina')).PublicarSolicitudPagina,

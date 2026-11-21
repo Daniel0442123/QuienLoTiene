@@ -147,23 +147,25 @@ describe('HU-013 · Panel de la tienda y abrir o cerrar', () => {
   it('estado error con reintentar', async () => {
     // Dado
     const usuario = userEvent.setup({ delay: null })
-    let intentos = 0
+    // Falla hasta que la persona toca «Reintentar»: si TanStack Query vuelve a pedir solo (por ejemplo al recuperar el
+    // foco la ventana), el botón no desaparece antes de tiempo
+    let fallar = true
     servidorSimulado.use(
-      http.get('/api/v1/tiendas/me', () => {
-        intentos += 1
-        if (intentos === 1) {
-          return HttpResponse.json({ title: 'Error', status: 500, codigo: 'GEN-008', errores: [] }, { status: 500 })
-        }
-        return undefined
-      }),
+      http.get('/api/v1/tiendas/me', () =>
+        fallar
+          ? HttpResponse.json({ title: 'Error', status: 500, codigo: 'GEN-008', errores: [] }, { status: 500 })
+          : undefined,
+      ),
     )
     renderizarConProveedores(<PanelTiendaPagina />)
 
     // Cuando
-    await usuario.click(await screen.findByRole('button', { name: 'Reintentar' }, { timeout: 5000 }))
+    const reintentar = await screen.findByRole('button', { name: 'Reintentar' }, { timeout: 5000 })
+    fallar = false
+    await usuario.click(reintentar)
 
-    // Entonces
-    expect(await screen.findByRole('heading', { name: 'Droguería La 5' })).toBeInTheDocument()
+    // Entonces: misma espera que para «Reintentar» (con la suite completa el equipo va más lento)
+    expect(await screen.findByRole('heading', { name: 'Droguería La 5' }, { timeout: 5000 })).toBeInTheDocument()
   })
 
   it('al entrar, el dueño de la tienda llega a su panel', async () => {
