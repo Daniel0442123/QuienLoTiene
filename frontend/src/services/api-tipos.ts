@@ -979,7 +979,7 @@ export interface paths {
         };
         /**
          * Listar reportes
-         * @description HU-037. Por defecto, los ABIERTO del más antiguo al nuevo.
+         * @description HU-037. Por defecto, los ABIERTO del más antiguo al nuevo, con el nombre y el estado de la tienda.
          */
         get: operations["listarReportes"];
         put?: never;
@@ -1308,7 +1308,8 @@ export interface components {
             fecha: string;
         };
         ReportarRequest: {
-            motivo: string;
+            /** @enum {string} */
+            motivo: "DEMORA_ENTREGA" | "PRODUCTO_DIFERENTE" | "COBRO_DIFERENTE" | "OTRO";
             descripcion?: string;
         };
         ReporteResponse: {
@@ -1325,7 +1326,7 @@ export interface components {
             fecha: string;
         };
         EnviarMensajeRequest: {
-            texto: string;
+            texto?: string;
         };
         MensajeVista: {
             /** Format: uuid */
@@ -1437,6 +1438,8 @@ export interface components {
             ordenId: string;
             /** Format: uuid */
             tiendaId: string;
+            nombreTienda: string | null;
+            estadoTienda: components["schemas"]["EstadoTienda"] | null;
             /** @enum {string} */
             reportadoPor: "CLIENTE" | "TIENDA";
             /** @enum {string} */
@@ -1503,7 +1506,7 @@ export interface components {
             estaAbierta: boolean;
             horario: components["schemas"]["Franja"][];
             domicilio: components["schemas"]["Domicilio"];
-            mediosPago: components["schemas"]["MedioPago"];
+            mediosPago: components["schemas"]["MedioPago"][];
         };
         ReputacionTiendaResponse: {
             /** Format: uuid */
@@ -1705,21 +1708,21 @@ export interface components {
             aviso: string | null;
         };
         /** @enum {string} */
-        TipoRespuesta: "SI" | "PARECIDO" | "NO";
-        /** @enum {string} */
-        MedioPago: "EFECTIVO" | "TRANSFERENCIA" | "DATAFONO";
+        EstadoRespuesta: "ESPERANDO" | "ELEGIDA" | "NO_ELEGIDA" | "VENCIDA";
         /** @enum {string} */
         Modalidad: "RECOGER" | "DOMICILIO";
         /** @enum {string} */
-        EstadoRespuesta: "ESPERANDO" | "ELEGIDA" | "NO_ELEGIDA" | "VENCIDA";
+        MedioPago: "EFECTIVO" | "TRANSFERENCIA" | "DATAFONO";
         /** @enum {string} */
-        DiaSemana: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
+        TipoRespuesta: "SI" | "PARECIDO" | "NO";
         /** @enum {string} */
-        EstadoOrden: "CONFIRMADO" | "PREPARANDO" | "EN_CAMINO" | "LISTO_PARA_RECOGER" | "ENTREGADO" | "RESUELTA" | "CANCELADO" | "VENCIDA";
+        EstadoSolicitud: "ABIERTA" | "RESUELTA" | "VENCIDA";
         /** @enum {string} */
         EstadoTienda: "PENDIENTE" | "APROBADA" | "RECHAZADA" | "SUSPENDIDA";
         /** @enum {string} */
-        EstadoSolicitud: "ABIERTA" | "RESUELTA" | "VENCIDA";
+        EstadoOrden: "CONFIRMADO" | "PREPARANDO" | "EN_CAMINO" | "LISTO_PARA_RECOGER" | "ENTREGADO" | "RESUELTA" | "CANCELADO" | "VENCIDA";
+        /** @enum {string} */
+        DiaSemana: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
         /** @description Un campo que no pasó la validación (GEN-001). */
         ErrorDeCampo: {
             campo: string;

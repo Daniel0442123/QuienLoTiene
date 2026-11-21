@@ -2,6 +2,7 @@ import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { base, CODIGO_TOTP_DE_PRUEBA, CORREOS_DE_PRUEBA, FRASE_DE_PRUEBA, TIENDAS_SPRINT_2 } from '@/mocks/datos'
+import { servidorSimulado } from '@/mocks/servidor'
 import { violacionesDeAccesibilidad } from '@/pruebas/accesibilidad'
 import { renderizarConProveedores } from '@/pruebas/renderizar'
 import { esErrorApi } from '@/services/errores'
@@ -171,5 +172,34 @@ describe('HU-037 · Reportes y suspender tiendas · CP-ADM-037-01, CP-ADM-037-02
     // Entonces
     expect(await tarjeta.findByText('La tienda ya cambió de estado. Actualizamos la información.')).toBeInTheDocument()
     expect((await screen.findAllByText('Tienda suspendida')).length).toBeGreaterThan(0)
+  })
+
+  it('el nombre y el estado de la tienda vienen en el reporte: no se piden las tiendas aparte (#74)', async () => {
+    // Dado: se cuentan las peticiones a la lista de tiendas
+    const pedidasLasTiendas: string[] = []
+    servidorSimulado.events.on('request:start', ({ request }) => {
+      if (new URL(request.url).pathname === '/api/v1/admin/tiendas') pedidasLasTiendas.push(request.url)
+    })
+
+    // Cuando
+    renderizarConProveedores(<ReportesAdminPagina />)
+
+    // Entonces
+    expect((await primera()).getByText('Droguería La 5')).toBeInTheDocument()
+    expect(pedidasLasTiendas).toEqual([])
+    servidorSimulado.events.removeAllListeners()
+  })
+
+  it('si la tienda ya no existe (nombreTienda null), muestra su número y no ofrece suspender', async () => {
+    // Dado
+    base.tiendas = base.tiendas.filter((t) => t.id !== TIENDAS_SPRINT_2.la5)
+
+    // Cuando
+    renderizarConProveedores(<ReportesAdminPagina />)
+
+    // Entonces
+    const tarjeta = await primera()
+    expect(tarjeta.getByText(`Tienda ${TIENDAS_SPRINT_2.la5.slice(0, 8).toUpperCase()}`)).toBeInTheDocument()
+    expect(tarjeta.queryByRole('button', { name: /^Suspender a / })).not.toBeInTheDocument()
   })
 })

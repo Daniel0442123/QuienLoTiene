@@ -43,10 +43,17 @@ function tiendaPendiente(tiendaId: unknown): TiendaSimulada | Response {
   return tienda
 }
 
-/** HU-037: ReporteParaAdministrador, con cuántos reportes tiene en total la tienda. */
+/** HU-037: ReporteParaAdministrador (ReporteEnPanel), con la tienda y cuántos reportes tiene en total. */
 function aReporteParaAdministrador(reporte: ReporteSimulado) {
   const { autorId: _autorId, ...datos } = reporte
-  return { ...datos, reportesDeLaTienda: base.reportes.filter((r) => r.tiendaId === reporte.tiendaId).length }
+  const tienda = base.tiendas.find((t) => t.id === reporte.tiendaId)
+  return {
+    ...datos,
+    // null solo si la tienda ya no existe
+    nombreTienda: tienda?.nombre ?? null,
+    estadoTienda: tienda?.estado ?? null,
+    reportesDeLaTienda: base.reportes.filter((r) => r.tiendaId === reporte.tiendaId).length,
+  }
 }
 
 /** HU-037 (decisión 7): suspender solo una APROBADA y reactivar solo una SUSPENDIDA; si no, el TIE-004 de siempre. */
