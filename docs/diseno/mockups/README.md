@@ -1,6 +1,6 @@
 # Mockups de las historias pendientes
 
-> **Control del documento** · Versión 0.2 · 16/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
+> **Control del documento** · Versión 0.3 · 21/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
 
 Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Sprint 2 en adelante). Las pantallas del Sprint 1 ya están construidas en `frontend/`.
 
@@ -12,7 +12,7 @@ Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Spri
 ## Fuente
 
 - **`fuente/`** guarda el lienzo editable: un archivo `.dc.html` por tablero y `canvas.json` con su posición. Es la fuente de verdad; los PNG se generan desde ahí.
-- Los PNG de esta versión (0.2) salieron de los archivos de `fuente/` de este mismo commit, capturados con Edge sin interfaz al tamaño de cada tablero.
+- Los PNG salieron de los archivos de `fuente/` de su versión, capturados con Edge sin interfaz al tamaño de cada tablero (los 01 a 10 en la 0.2 y los 11 a 13 en la 0.3).
 - Los `.dc.html` necesitan el editor de lienzo para verse con sus marcos; abiertos solos en el navegador muestran el contenido sin estilos de marco.
 
 ## Tableros
@@ -29,6 +29,11 @@ Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Spri
 | [08 · Cliente: estados del Sprint 2](08-cliente-estados-sprint-2.png) | HU-020 sin respuestas (estado vacío), HU-021 solicitud vencida | 2 |
 | [09 · Tienda: estados del Sprint 2](09-tienda-estados-sprint-2.png) | HU-021 respuesta «No elegida», HU-027 pedido en camino y pedido cancelado | 2 |
 | [10 · Tienda: solicitudes a 320 px](10-tienda-solicitudes-320px.png) | HU-018 y HU-019 a 320 px (reflujo, WCAG 1.4.10) | 2 |
+| [11 · Cliente: tienda, restringido y cancelar (Sprint 3)](11-cliente-sprint-3-tienda-restringido-y-cancelar.png) | HU-014 detalle con mapa y teléfono, HU-023 aviso al publicar, HU-029 confirmar antes de cancelar y pedido en camino sin «Cancelar» | 3 |
+| [12 · Cliente: reserva, chat e historial (Sprint 3)](12-cliente-sprint-3-reserva-chat-e-historial.png) | HU-025 reserva vencida, HU-033 chat en solo lectura, HU-008 «Mis preguntas» (SC-018) e historial vacío | 3 |
+| [13 · Administrador (Sprint 3)](13-administrador-sprint-3.png) | HU-037 confirmar antes de suspender, HU-038 quitar con deshacer | 3 |
+
+Los tableros 11 a 13 usan los textos de las pantallas ya construidas (PR #67 a #73). Donde difieren de los tableros 01 a 04 y 07, mandan ellos: HU-014 sin foto ni «Ver las 38 reseñas» (la API no las trae), HU-023 avisa al escribir el producto y no solo al confirmar, y HU-025 se confirma con la tienda (no hay «Ya lo recogí»).
 
 HU-017 (difundir) es un proceso del sistema sin pantalla propia. Los efectos visibles de HU-021 (vencer solicitudes) y HU-022 (ampliar el radio) están en los tableros 01, 08 y 09.
 
@@ -54,13 +59,17 @@ Afinan la interfaz sin cambiar los criterios de aceptación:
 7. **HU-021:** la tienda ve sus respuestas en una pestaña «Mis respuestas» con su estado (Esperando, Elegida, No elegida, Vencida).
 8. **HU-027 y HU-029:** cuando el cliente cancela, la tienda deja de ver sus datos.
 
-## Pendiente para un PR siguiente (Sprint 3 y cierre)
+## Revisión del 13/11/2026: qué quedó (versión 0.3, C-15)
 
-De la revisión del 13/11/2026:
+Hecho en los tableros 11 a 13:
 
 - HU-014 con mapa y teléfono; HU-023 en la pantalla de publicar; HU-025 reserva vencida; HU-029 pedido en camino sin «Cancelar»; HU-033 chat en solo lectura; HU-008 historial vacío.
-- Diálogos de confirmación de HU-029 (cancelar pedido, DECISIONES-FRONTEND §2: «confirmar antes de cancelar una orden») y HU-037, y deshacer en HU-038.
-- Anotaciones de accesibilidad: nombre accesible de cada botón repetido («Repetir Paracetamol 500 mg»), qué anuncia `aria-live` en HU-018, HU-020, HU-027 y HU-033, remitente y hora en cada mensaje del chat, enlace de ayuda en el mismo lugar en todas las pantallas (3.2.6) y `scroll-padding` bajo las barras fijas (2.4.11).
+- Confirmación de HU-029 (cancelar con motivo) y de HU-037 (suspender con motivo), en el mismo lugar y sin diálogo, y deshacer en HU-038.
+- Anotaciones de accesibilidad: nombre accesible de los botones repetidos («Repetir Paracetamol 500 mg»), qué anuncia cada pantalla nueva (aviso de HU-023 asociado al campo, «quedan 5 minutos» en HU-025, `role="log"` en HU-033, «Quitaste…» en HU-038), remitente y hora en cada mensaje del chat, y a dónde va el foco al confirmar.
+
+Sigue pendiente:
+
+- Anotar qué anuncia `aria-live` en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05), el enlace de ayuda en el mismo lugar en todas las pantallas (3.2.6) y `scroll-padding` bajo las barras fijas (2.4.11).
 - Columna «Mockup» en `docs/pruebas/libro/07-TRAZABILIDAD.md` para los casos manuales de interfaz, cuando se aprueben estos mockups.
 
 ## Accesibilidad en el diseño
@@ -73,3 +82,4 @@ Textos de 16 px o más, zonas para tocar de 44 × 44 px o más con 8 px entre el
 |---|---|---|---|
 | 0.1 | 12/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Primera versión: 7 tableros con 21 pantallas de 27 historias (PR #33) |
 | 0.2 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Cambios de la revisión del 13/11/2026: tableros 08 a 10 (estados del Sprint 2 y 320 px), HU-019 con «Tengo algo parecido» y respuesta duplicada, HU-020 vacío, HU-021 vencida y no elegida, HU-027 en camino y cancelado, textos de HU-006 y desglose de HU-023, aviso con cierre en HU-018, lienzo fuente en `fuente/`, encabezado de control y decisiones separadas en aprobadas y por aprobar (PR #33) |
+| 0.3 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Tableros 11 a 13 del Sprint 3 (C-15): HU-014 con mapa, HU-023 al publicar, HU-025 vencida, HU-029 confirmar y en camino, HU-033 solo lectura, HU-008 «Mis preguntas» y vacío, confirmar en HU-037 y deshacer en HU-038, con anotaciones de accesibilidad |

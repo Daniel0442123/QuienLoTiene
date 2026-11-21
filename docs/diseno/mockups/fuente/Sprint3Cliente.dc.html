@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Sprint 3 · Cliente: tienda, restringido y cancelar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+a{color:#0b6e63}a:hover{color:#08564d}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
+.barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
+.marca{margin:0;font-weight:700;font-size:18px}
+.volver{min-height:44px;min-width:44px;border:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:#0b6e63;display:inline-flex;align-items:center;gap:4px;padding:0 8px 0 0}
+.cont{box-sizing:border-box;flex:1;overflow:hidden;padding:18px 16px;display:flex;flex-direction:column;gap:12px}
+.h1{margin:0;font-size:26px;line-height:1.2;font-weight:700}
+.h2{margin:0;font-size:18px;line-height:1.3;font-weight:700}
+.p{margin:0;font-size:16px;line-height:1.45}
+.suave{color:#4b5d56}
+.fila{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:16px;font-weight:700;padding:2px 12px;border-radius:999px;border:1px solid #6a7d76;background:#ffffff;width:fit-content}
+.chip-ok{border-color:#1b7a3a;color:#1b7a3a}
+.btn{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#0b6e63;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn2{box-sizing:border-box;min-height:48px;border-radius:12px;border:1px solid #6a7d76;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn-peligro{box-sizing:border-box;min-height:48px;border-radius:12px;border:0;background:#b3261e;color:#ffffff;font:inherit;font-weight:700;font-size:16px;padding:0 16px}
+.btn-borde-peligro{box-sizing:border-box;min-height:48px;border-radius:12px;border:1px solid #b3261e;background:#ffffff;color:#b3261e;font:inherit;font-weight:700;font-size:16px;padding:0 16px}
+.seccion{display:flex;flex-direction:column;gap:4px;padding-bottom:10px;border-bottom:1px solid #dce7e2}
+.horario{display:grid;grid-template-columns:auto 1fr;gap:2px 16px;margin:0;font-size:16px}
+.horario dt{margin:0}.horario dd{margin:0}
+.mapa{position:relative;height:120px;border-radius:12px;border:1px solid #c9d6d0;background:#eef3f0;overflow:hidden}
+.calle{position:absolute;background:#ffffff}
+.pin{position:absolute;left:180px;top:36px;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#0b6e63;border:2px solid #ffffff}
+.aviso-adv{box-sizing:border-box;display:flex;gap:10px;border:2px solid #b45309;border-radius:12px;padding:10px 12px}
+.campo{box-sizing:border-box;min-height:52px;border:1px solid #6a7d76;border-radius:12px;padding:0 12px;display:flex;align-items:center;font-size:18px}
+.opcion{box-sizing:border-box;min-height:48px;border:1px solid #6a7d76;border-radius:12px;padding:0 12px;display:flex;align-items:center;gap:10px;font-size:16px}
+.opcion-sel{border-color:#0b6e63;background:#f2f7f5;font-weight:700}
+.opcion-off{color:#4b5d56;border-style:dashed}
+.radio{width:18px;height:18px;border-radius:50%;border:2px solid #6a7d76;flex:none}
+.radio-sel{border-color:#0b6e63;box-shadow:inset 0 0 0 4px #ffffff;background:#0b6e63}
+.form-peligro{box-sizing:border-box;border:2px solid #b3261e;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+textarea{box-sizing:border-box;width:100%;min-height:72px;border:1px solid #6a7d76;border-radius:12px;font:inherit;font-size:16px;padding:10px 12px;resize:none}
+.pasos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.pasos li{display:flex;align-items:center;gap:10px;font-size:16px}
+.punto{width:22px;height:22px;border-radius:50%;flex:none;border:2px solid #6a7d76}
+.hecho{background:#0b6e63;border-color:#0b6e63}
+.actual{border:3px solid #0b6e63}
+.pie{box-sizing:border-box;flex:none;padding:12px 16px 20px;border-top:1px solid #dce7e2;display:flex;flex-direction:column;gap:8px}
+.a11y{font-size:16px;color:#08564d}
+</style>
+</helmet>
+<div class="tablero" style="width:1824px;height:1060px">
+
+<div class="col">
+<p class="etq">HU-014 · Detalle de la tienda</p>
+<p class="etq-nota">Mapa de solo lectura y «Cómo llegar». Sin RUT ni documentos (CP-TIE-014-02). <span class="a11y">Lector: el mapa es una región con nombre; las estrellas, «4,7 de 5».</span></p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button">‹ Volver</button><p class="marca">¿Quién lo tiene?</p></div>
+<div class="cont">
+<h1 class="h1">Droguería La 5</h1>
+<p class="p suave">Farmacia</p>
+<div class="fila"><span class="chip">★★★★★ 4,7 de 5 · 3 reseñas</span><span class="chip chip-ok">Abierta ahora</span></div>
+<div class="seccion"><p class="h2">Horario</p>
+<dl class="horario"><dt>lunes a viernes</dt><dd>8:00 a. m. a 6:00 p. m.</dd><dt>sábado</dt><dd>9:00 a. m. a 1:00 p. m.</dd><dt>domingo</dt><dd class="suave">Cerrado</dd></dl></div>
+<div class="seccion"><p class="h2">Teléfono</p><a class="p" href="#" style="min-height:44px;display:inline-flex;align-items:center">300 123 4567</a></div>
+<div class="seccion"><p class="h2">Ubicación</p>
+<div class="mapa" role="region" aria-label="Mapa con la ubicación de Droguería La 5"><div class="calle" style="left:0;top:52px;width:390px;height:10px"></div><div class="calle" style="left:120px;top:0;width:10px;height:120px"></div><div class="calle" style="left:250px;top:0;width:10px;height:120px"></div><div class="pin"></div></div>
+<a class="btn2" href="#">Cómo llegar <span style="font-weight:400">(se abre la app de mapas)</span></a></div>
+<div class="seccion"><p class="h2">Domicilio</p><p class="p">Hasta 3 km a la redonda · $ 4.000</p></div>
+<p class="h2">Reseñas</p>
+<p class="p">★★★★★ «Tenían el medicamento y llegó rápido.»</p>
+</div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-023 · Producto restringido</p>
+<p class="etq-nota">Al escribir se consulta la lista: aviso de SC-011 y domicilio deshabilitado (CP-SOL-023-01). <span class="a11y">El aviso va en aria-describedby del campo y se anuncia una vez.</span></p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button">‹ Inicio</button><p class="marca">¿Quién lo tiene?</p></div>
+<div class="cont">
+<h1 class="h1">¿Qué estás buscando?</h1>
+<p class="p suave">Por ejemplo: Acetaminofén 500 mg, o tornillos de 2 pulgadas.</p>
+<div class="campo">Amoxicilina 500 mg</div>
+<div class="aviso-adv" role="note"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M12 3 2 20h20L12 3z" fill="none" stroke="#b45309" stroke-width="2" stroke-linejoin="round"></path><path d="M12 10v4M12 17h.01" stroke="#b45309" stroke-width="2" stroke-linecap="round"></path></svg><div><p class="p" style="font-weight:700">Este medicamento necesita fórmula médica</p><p class="p">Las tiendas no lo llevan a domicilio: recógelo en la tienda con tu fórmula médica.</p></div></div>
+<p class="h2">¿Dónde buscamos?</p>
+<div class="opcion opcion-sel"><span class="radio radio-sel"></span>Farmacia</div>
+<p class="h2">¿Cómo lo quieres?</p>
+<div class="opcion opcion-sel"><span class="radio radio-sel"></span>Lo recojo en la tienda</div>
+<div class="opcion opcion-off"><span class="radio"></span>Domicilio (no disponible: necesita fórmula médica)</div>
+</div>
+<div class="pie"><button class="btn" type="button">Preguntar</button></div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-029 · Confirmar antes de cancelar</p>
+<p class="etq-nota">Se abre en el mismo lugar, sin diálogo (DECISIONES-FRONTEND §2). <span class="a11y">El foco va al motivo; «No, volver» lo devuelve al botón.</span></p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button">‹ Mis pedidos</button><p class="marca">¿Quién lo tiene?</p></div>
+<div class="cont">
+<h1 class="h1">Tu pedido</h1>
+<p class="p" style="font-weight:700;font-size:20px">Preparando</p>
+<p class="p">Droguería La 5 · Acetaminofén 500 mg · 1 caja · $ 10.500</p>
+<ol class="pasos"><li><span class="punto hecho"></span>Confirmado · 3:58 p. m.</li><li><span class="punto actual"></span><b>Preparando · 4:01 p. m.</b></li><li><span class="punto"></span>En camino</li></ol>
+<div class="form-peligro">
+<label class="p" for="motivo" style="font-weight:700">¿Por qué cancelas el pedido?</label>
+<p class="p suave" style="font-size:16px">La tienda verá lo que escribas. 25 de 200 caracteres</p>
+<textarea id="motivo">Ya lo conseguí en otra parte</textarea>
+<p class="p">La tienda deja de preparar tu pedido. No se puede deshacer.</p>
+<div class="fila"><button class="btn-peligro" type="button">Sí, cancelar el pedido</button><button class="btn2" type="button">No, volver</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col">
+<p class="etq">HU-029 · En camino: ya no se cancela</p>
+<p class="etq-nota">Salió de la tienda: no se ofrece «Cancelar» (CP-ORD-029-02). Quedan escribir y reportar.</p>
+<div class="tel">
+<div class="barra"><button class="volver" type="button">‹ Mis pedidos</button><p class="marca">¿Quién lo tiene?</p></div>
+<div class="cont">
+<h1 class="h1">Tu pedido</h1>
+<p class="p" style="font-weight:700;font-size:20px">En camino</p>
+<p class="p">Droguería La 5 · Acetaminofén 500 mg · 1 caja · $ 10.500</p>
+<ol class="pasos"><li><span class="punto hecho"></span>Confirmado · 3:58 p. m.</li><li><span class="punto hecho"></span>Preparando · 4:01 p. m.</li><li><span class="punto actual"></span><b>En camino · 4:12 p. m. (estado actual)</b></li><li><span class="punto"></span>Entregado</li></ol>
+<button class="btn2" type="button">Abrir chat en la app</button>
+<a class="btn2" href="#">Escribir por WhatsApp a Droguería La 5</a>
+</div>
+<div class="pie"><a class="btn2" href="#">Reportar un problema</a></div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1824,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
