@@ -9,7 +9,7 @@ import { useReputacionTienda } from '@/features/reputacion/api'
 import { Estrellas } from '@/features/reputacion/Estrellas'
 import { textosReputacion } from '@/features/reputacion/textos'
 import { useTiendaPublica } from '@/features/tiendas/api'
-import { horarioPorDia, mediosDePago } from '@/features/tiendas/presentacion'
+import { horarioPorDia } from '@/features/tiendas/presentacion'
 import { textosTiendas as textos } from '@/features/tiendas/textos'
 import { useCategorias } from '@/hooks/useCategorias'
 import { esErrorApi } from '@/services/errores'
@@ -123,7 +123,7 @@ export function DetalleTiendaPagina() {
 
   const datos = tienda.data
   const categoria = categorias.data?.find((c) => c.id === datos.categoriaId)?.nombre
-  const medios = mediosDePago(datos)
+  const medios = datos.mediosPago
   const { haceDomicilio, radioCoberturaEnMetros, tarifaFijaEnPesos } = datos.domicilio
   const promedio = reputacion.data
 

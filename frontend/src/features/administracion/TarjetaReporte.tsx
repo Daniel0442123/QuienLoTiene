@@ -24,7 +24,7 @@ import {
 } from './esquemas'
 import { textosAdministracion as textos } from './textos'
 
-/** La tienda del reporte: el reporte trae solo su id, así que nombre y estado salen de las listas de tiendas. */
+/** La tienda del reporte: nombre y estado vienen en el reporte (nombreTienda, estadoTienda). */
 export interface TiendaDelReporte {
   nombre: string
   estado: EstadoTienda | null
