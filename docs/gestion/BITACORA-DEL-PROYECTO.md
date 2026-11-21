@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.13 · 18/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.14 · 21/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -151,11 +151,12 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-12 | Agregar el endpoint de categorías a la trazabilidad y a los casos (`docs/pruebas/libro/`) cuando se fusione #32 | SC-007 | Yanimar Burbano Piamba | Después de #32 | Abierto | |
 | C-13 | Agregar encabezado de control e historial a los archivos de `docs/pruebas/libro/`, defectos e informes del C1, y versión al Excel del libro de QA | H-05 | Daniel Montenegro Almendra | Después de #32 | Cerrado | 13/11/2026, PR #34 |
 | C-14 | Ejecutar «Documentar versión» (`version.yml`, Run workflow) para `v0.1.0`, `v0.1.1`, `v0.1.2` y `v0.2.0`, antes de que venzan sus artefactos de pruebas | Este PR | Daniel Montenegro Almendra | 25/11/2026 | Abierto | |
-| C-15 | Mockups de Sprint 3 y cierre que dejó la revisión del #33: HU-014 con mapa y teléfono, HU-023 al publicar, HU-025 vencida, HU-029 en camino, HU-033 solo lectura, HU-008 vacío, confirmaciones de HU-029 y HU-037, deshacer en HU-038 y anotaciones de accesibilidad | PR #33 | Monica Anyi Cajas Mellizo | Sprint 3 | Abierto | |
+| C-15 | Mockups de Sprint 3 y cierre que dejó la revisión del #33: HU-014 con mapa y teléfono, HU-023 al publicar, HU-025 vencida, HU-029 en camino, HU-033 solo lectura, HU-008 vacío, confirmaciones de HU-029 y HU-037, deshacer en HU-038 y anotaciones de accesibilidad. 21/11/2026: tableros 11 a 13 y README de mockups 0.3; las anotaciones que faltaron pasan a C-20 | PR #33, #75 | Monica Anyi Cajas Mellizo | Sprint 3 | Cerrado | 21/11/2026, PR #75 |
 | C-16 | Aprobar las 8 decisiones de interfaz de `docs/diseno/mockups/README.md` (sección «Para que apruebe el Product Owner») | PR #33 | Wilson Javier Galindez Certuche | Antes de construir el Sprint 2 | Abierto | |
 | C-17 | Agregar la columna «Mockup» en `docs/pruebas/libro/07-TRAZABILIDAD.md` para los casos manuales de interfaz | PR #33 | Yanimar Burbano Piamba | Después de C-16 | Abierto | |
 | C-18 | Revisar, completar y firmar el borrador de la ejecución del Sprint 2 (libro, recorrido, DEF-006 a DEF-009, la re-prueba del 16/11 de DEF-005 a DEF-009 con el nuevo DEF-010, e informe de cierre del C1) y regenerar el Excel y los Word del libro de QA | Este PR | Yanimar Burbano Piamba, Francisco José Castro Muñoz | 20/11/2026 | Abierto | 18/11/2026: QA y el PO revisaron y están de acuerdo (informado por Pedro); falta la firma de cada uno en el informe de cierre |
 | C-19 | Decidir SC-015 (cierre del C1 el 20/11) | Este PR | Pedro (dueño del proyecto) | 18/11/2026 | Cerrado | 16/11/2026: aprobada por Pedro en el hilo del proyecto |
+| C-20 | Anotar en los mockups qué anuncia `aria-live` en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05), el enlace de ayuda en el mismo lugar en todas las pantallas (WCAG 3.2.6) y el `scroll-padding` bajo las barras fijas (WCAG 2.4.11) | C-15, PR #75 | Monica Anyi Cajas Mellizo | Cierre | Abierto | |
 
 ## Historial del documento
 
@@ -175,3 +176,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.11 | 17/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #57 y #58 y hecho de DEF-011 antes de etiquetar `v0.3.1` |
 | 1.12 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hechos del despliegue de `v0.3.1` y de la prueba en producción del 18/11 |
 | 1.13 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Filas #59 a #61; #57 y #58 salieron en `v0.3.1`; hecho del 18/11 (QA y PO de acuerdo con el cierre del C1, DEF-011 cerrado); C-18 actualizado |
+| 1.14 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-15 cerrado con los mockups del Sprint 3 (#75); C-20 nuevo con las anotaciones de accesibilidad que faltaron |
