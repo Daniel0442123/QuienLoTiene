@@ -25,6 +25,7 @@
     "titulo-tienda": { "x": 0, "y": 2340, "text": "Tienda", "kind": "title1", "maxW": 3728 },
     "titulo-admin": { "x": 0, "y": 4980, "text": "Administrador", "kind": "title1", "maxW": 932 },
     "titulo-sprint3": { "x": 0, "y": 6500, "text": "Sprint 3 (C-15)", "kind": "title1", "maxW": 4740 },
+    "nota-a11y-todas": { "x": 4820, "y": 6800, "w": 360, "fill": "blue", "text": "Accesibilidad en todas las pantallas (C-20). Ayuda en el mismo lugar (WCAG 3.2.6): hoy la app no tiene un mecanismo de ayuda; si se agrega (contacto o soporte), va en el mismo sitio del pie en todas las pantallas. Foco no tapado (2.4.11): la barra inferior fija reserva su alto con scroll-padding-bottom, así un campo enfocado nunca queda debajo de ella." },
     "nota-alcance": { "x": 3482, "y": 1180, "w": 360, "fill": "teal", "text": "Mockups de las historias que faltan (Sprint 2 en adelante), con la paleta Verde botica y Atkinson Hyperlegible. Las del Sprint 1 ya están construidas en la app. Los datos de ejemplo (tiendas, precios, reseñas) son inventados para el mockup." }
   },
   "designSystems": []
