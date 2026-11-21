@@ -12,11 +12,13 @@ import com.quienlotiene.reputacion.api.ReporteParaAdministrador;
 import com.quienlotiene.reputacion.api.ReportesApi;
 import com.quienlotiene.tiendas.api.RevisionTiendasApi;
 import com.quienlotiene.tiendas.api.TiendaParaRevision;
+import com.quienlotiene.tiendas.api.TiendaResumen;
 import com.quienlotiene.tiendas.api.TiendaSuspendida;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -117,5 +119,37 @@ class GestionarReportesYSuspensionesTest {
         assertThat(registro.accion()).isEqualTo(AccionAuditada.REPORTE_RESUELTO);
         assertThat(registro.recursoId()).isEqualTo(reporte);
         assertThat(gestionar().listarReportes("ABIERTO")).isEmpty();
+    }
+
+    @Test
+    @Tag("CP-ADM-037-02")
+    @DisplayName("La bandeja trae el nombre y el estado de la tienda de cada reporte")
+    void bandejaConLaTienda() {
+        // Dado
+        var reporte = new ReporteParaAdministrador(
+                UUID.randomUUID(),
+                UUID.randomUUID(),
+                TIENDA,
+                "CLIENTE",
+                "DEMORA_ENTREGA",
+                null,
+                "ABIERTO",
+                AHORA,
+                null,
+                null,
+                2);
+        when(reportesApi.listarPorEstado("ABIERTO")).thenReturn(List.of(reporte));
+        when(revisionTiendasApi.resumenDe(List.of(TIENDA)))
+                .thenReturn(Map.of(TIENDA, new TiendaResumen(TIENDA, "Central", "SUSPENDIDA")));
+
+        // Cuando
+        var bandeja = gestionar().listarReportes("ABIERTO");
+
+        // Entonces
+        assertThat(bandeja).singleElement().satisfies(enPanel -> {
+            assertThat(enPanel.nombreTienda()).isEqualTo("Central");
+            assertThat(enPanel.estadoTienda()).isEqualTo("SUSPENDIDA");
+            assertThat(enPanel.reportesDeLaTienda()).isEqualTo(2);
+        });
     }
 }

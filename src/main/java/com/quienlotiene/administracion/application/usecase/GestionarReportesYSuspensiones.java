@@ -1,5 +1,6 @@
 package com.quienlotiene.administracion.application.usecase;
 
+import com.quienlotiene.administracion.application.dto.ReporteEnPanel;
 import com.quienlotiene.administracion.domain.model.AccionAuditada;
 import com.quienlotiene.administracion.domain.model.RegistroAuditoria;
 import com.quienlotiene.administracion.domain.port.AuditoriaRepository;
@@ -41,17 +42,24 @@ public class GestionarReportesYSuspensiones {
         this.reloj = reloj;
     }
 
+    /** Con el nombre y el estado de cada tienda, para que la bandeja no tenga que pedirlos aparte. */
     @Transactional(readOnly = true)
-    public List<ReporteParaAdministrador> listarReportes(String estado) {
-        return reportesApi.listarPorEstado(estado);
+    public List<ReporteEnPanel> listarReportes(String estado) {
+        var reportes = reportesApi.listarPorEstado(estado);
+        var tiendas = revisionTiendasApi.resumenDe(
+                reportes.stream().map(ReporteParaAdministrador::tiendaId).toList());
+        return reportes.stream()
+                .map(reporte -> ReporteEnPanel.de(reporte, tiendas.get(reporte.tiendaId())))
+                .toList();
     }
 
     /** CP-ADM-037-02: el reporte queda RESUELTO y la acción queda auditada. */
     @Transactional
-    public ReporteParaAdministrador resolverReporte(UUID administradorId, UUID reporteId, String nota) {
+    public ReporteEnPanel resolverReporte(UUID administradorId, UUID reporteId, String nota) {
         var reporte = reportesApi.resolver(reporteId, nota);
         auditar(administradorId, AccionAuditada.REPORTE_RESUELTO, reporteId, reporte.notaResolucion());
-        return reporte;
+        var tienda = revisionTiendasApi.resumenDe(List.of(reporte.tiendaId())).get(reporte.tiendaId());
+        return ReporteEnPanel.de(reporte, tienda);
     }
 
     /** CP-ADM-037-01: la tienda no recibe solicitudes y su dueño no puede iniciar sesión. */

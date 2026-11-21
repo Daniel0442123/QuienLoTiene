@@ -1,6 +1,6 @@
 # Contrato de la API del Sprint 3 · Quién lo tiene
 
-> **Control del documento** · Versión 0.4 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.5 · 21/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Acuerdo del «primer día» del backlog del Sprint 3 (`docs/planificacion/BACKLOG-SPRINT-3.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-014, HU-023, HU-025, HU-029, HU-033, HU-034, HU-035, HU-037 y HU-038. HU-026 no necesita rutas nuevas (la orden ya trae la ubicación). HU-031 entró en la versión 0.2 y HU-008 en la 0.3.
 
@@ -14,23 +14,23 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `GET /api/v1/ordenes/{id}` | CLIENTE, TIENDA | HU-025, HU-029 | Igual que en el Sprint 2, con tres campos nuevos: `reservaVence`, `motivoCancelacion` y `canceladaPor` (`CLIENTE` o `TIENDA`), los tres nulables |
 | `POST /api/v1/ordenes/{id}/resena` | CLIENTE | HU-034 | Calificar con `{ "estrellas": 1..5, "comentario": "..." }` (comentario opcional, hasta 500). Solo orden RESUELTA del cliente y una vez |
 | `GET /api/v1/ordenes/{id}/resena` | CLIENTE, TIENDA | HU-034 | La reseña de esa orden, o `404 REP-003` si todavía no tiene |
-| `GET /api/v1/tiendas/{id}` | todos | HU-014 | Detalle público de una tienda APROBADA: nombre, categoría, teléfono, ubicación, abierta, horario, domicilio y medios de pago. Sin RUT ni documentos |
+| `GET /api/v1/tiendas/{id}` | todos | HU-014 | Detalle público de una tienda APROBADA: nombre, categoría, teléfono, ubicación, abierta, horario, domicilio y medios de pago (`mediosPago`, lista de `MedioPago`). Sin RUT ni documentos |
 | `GET /api/v1/tiendas/{id}/resenas` | todos | HU-014, HU-034 | Promedio (0 sin reseñas), total y las 10 reseñas más recientes, sin el nombre del cliente |
 | `GET /api/v1/categorias` | todos | HU-038 | Igual que antes, pero solo las categorías activas |
 | `GET /api/v1/catalogo/restriccion?producto=` | CLIENTE | HU-023 | `{ "restringido": true, "aviso": "Este medicamento necesita fórmula médica" }` para avisar antes de publicar |
-| `POST /api/v1/solicitudes` | CLIENTE | HU-023 | Igual que antes; la respuesta trae `restringida` |
+| `POST /api/v1/solicitudes` | CLIENTE | HU-023 | Igual que antes; la respuesta trae `esRestringida` |
 | `GET /api/v1/admin/categorias` | ADMIN | HU-038 | Todas, activas e inactivas |
 | `PATCH /api/v1/admin/categorias/{id}` | ADMIN | HU-038 | `{ "activa": false }` para desactivar (y `true` para deshacer). Queda auditado |
 | `GET /api/v1/admin/productos-restringidos` | ADMIN | HU-038 | Lista de palabras clave |
 | `POST /api/v1/admin/productos-restringidos` | ADMIN | HU-038 | `{ "palabraClave": "amoxicilina" }` (2 a 80). Queda auditado |
 | `DELETE /api/v1/admin/productos-restringidos/{id}` | ADMIN | HU-038 | Quitar una palabra. Queda auditado |
 | `POST /api/v1/ordenes/{id}/reportes` | CLIENTE, TIENDA | HU-035 | `{ "motivo": "DEMORA_ENTREGA" \| "PRODUCTO_DIFERENTE" \| "COBRO_DIFERENTE" \| "OTRO", "descripcion": "..." }`; la descripción es obligatoria con OTRO (hasta 1000). Queda ABIERTO |
-| `GET /api/v1/admin/reportes?estado=ABIERTO` | ADMIN | HU-037 | Reportes con la orden, quién reportó (rol), la tienda y cuántos reportes tiene la tienda |
+| `GET /api/v1/admin/reportes?estado=ABIERTO` | ADMIN | HU-037 | Reportes con la orden, quién reportó (rol), la tienda (`tiendaId`, `nombreTienda` y `estadoTienda`) y cuántos reportes tiene la tienda (`reportesDeLaTienda`). La resolución responde el mismo objeto |
 | `POST /api/v1/admin/reportes/{id}/resolucion` | ADMIN | HU-037 | `{ "nota": "..." }` (3 a 500). Queda RESUELTO y auditado |
 | `POST /api/v1/admin/tiendas/{id}/suspension` | ADMIN | HU-037 | `{ "motivo": "..." }`. La tienda queda SUSPENDIDA: no recibe solicitudes y su dueño no puede iniciar sesión (IDE-009). Auditado |
 | `POST /api/v1/admin/tiendas/{id}/reactivacion` | ADMIN | HU-037 | Deshace la suspensión. Auditado |
 | `GET /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | Mensajes de la orden, del más antiguo al más reciente (cada uno con `autor` CLIENTE o TIENDA y `esMio`), y `soloLectura` |
-| `POST /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | `{ "texto": "..." }` (1 a 1000). Solo con la orden activa |
+| `POST /api/v1/ordenes/{id}/mensajes` | CLIENTE, TIENDA | HU-033 | `{ "texto": "..." }` (1 a 1000; si no, `MEN-003`). Solo con la orden activa |
 | `GET /api/v1/solicitudes/mias?pagina=0&tamano=20` | CLIENTE | HU-008, SC-018 | Historial de la más reciente a la más antigua (tamaño 1 a 50) con `respuestasRecibidas`, `ordenId` y `estaAbierta`; `hayMas` dice si hay otra página. Vacío si nunca publicó |
 | `POST /api/v1/solicitudes/{id}/repeticion` | CLIENTE | HU-008 | `{ "ubicacion": { "latitud": ..., "longitud": ... } }`. Publica otra con el mismo producto, cantidad, categoría, modalidad y urgencia. Responde 201 como `POST /solicitudes` y cuenta para el límite de 10 por hora |
 | `GET /api/v1/notificaciones/configuracion-push` | CLIENTE, TIENDA | HU-031 | `{ "habilitado": true, "clavePublica": "B..." }`: la `applicationServerKey` para `PushManager.subscribe`. Con `habilitado: false` el frontend no pide el permiso |
@@ -84,3 +84,4 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | 0.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-031: rutas de suscripción push, `NOT-001` y decisión 9 |
 | 0.3 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-008: historial, repetir y decisión 10 (SC-018) |
 | 0.4 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Decisión 2 ratificada (SC-019) y SC-018 aprobada |
+| 0.5 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Ajustes que pidió el frontend en los PR #67 a #73: `esRestringida`, `mediosPago` como lista, `nombreTienda` y `estadoTienda` en la bandeja de reportes, `motivo` como enum y `MEN-003` para el texto del chat |

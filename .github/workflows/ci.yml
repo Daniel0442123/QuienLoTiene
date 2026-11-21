@@ -29,6 +29,23 @@ jobs:
           java-version: '21'
           cache: maven
 
+      # El wrapper descarga Maven con wget sin reintentos y a veces falla en los runners (#69 y #71 del 20/11):
+      # se guarda en caché y, si no está, se descarga con hasta tres intentos antes de construir
+      - name: Caché de Maven del wrapper
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/wrapper
+          key: maven-wrapper-${{ hashFiles('.mvn/wrapper/maven-wrapper.properties') }}
+
+      - name: Descargar Maven del wrapper
+        run: |
+          for intento in 1 2 3; do
+            ./mvnw -B -q -v && exit 0
+            echo "La descarga de Maven falló (intento $intento), se reintenta en 15 s"
+            sleep 15
+          done
+          exit 1
+
       # validate: formato (Spotless) · test: unitarias, Modulith, ArchUnit y JaCoCo >= 70 %
       # integration-test: *IT con Testcontainers + PostGIS (el runner trae Docker)
       - name: Construir y probar
@@ -66,6 +83,23 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
+
+      # El wrapper descarga Maven con wget sin reintentos y a veces falla en los runners (#69 y #71 del 20/11):
+      # se guarda en caché y, si no está, se descarga con hasta tres intentos antes de construir
+      - name: Caché de Maven del wrapper
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/wrapper
+          key: maven-wrapper-${{ hashFiles('.mvn/wrapper/maven-wrapper.properties') }}
+
+      - name: Descargar Maven del wrapper
+        run: |
+          for intento in 1 2 3; do
+            ./mvnw -B -q -v && exit 0
+            echo "La descarga de Maven falló (intento $intento), se reintenta en 15 s"
+            sleep 15
+          done
+          exit 1
 
       # SpotBugs + FindSecBugs y SBOM CycloneDX (perfil seguridad del pom.xml)
       - name: SpotBugs, FindSecBugs y SBOM
@@ -106,6 +140,23 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
+
+      # El wrapper descarga Maven con wget sin reintentos y a veces falla en los runners (#69 y #71 del 20/11):
+      # se guarda en caché y, si no está, se descarga con hasta tres intentos antes de construir
+      - name: Caché de Maven del wrapper
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/wrapper
+          key: maven-wrapper-${{ hashFiles('.mvn/wrapper/maven-wrapper.properties') }}
+
+      - name: Descargar Maven del wrapper
+        run: |
+          for intento in 1 2 3; do
+            ./mvnw -B -q -v && exit 0
+            echo "La descarga de Maven falló (intento $intento), se reintenta en 15 s"
+            sleep 15
+          done
+          exit 1
 
       - name: Fecha para la caché de la base del NVD
         id: fecha

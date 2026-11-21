@@ -1,6 +1,8 @@
 package com.quienlotiene.tiendas.api;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -36,4 +38,7 @@ public interface RevisionTiendasApi {
      * @throws com.quienlotiene.shared.domain.ReglaNegocioException TIE-006 si no existe, TIE-004 si no está SUSPENDIDA
      */
     TiendaSuspendida reactivar(UUID tiendaId);
+
+    /** HU-037: nombre y estado de las tiendas pedidas, por id; las que no existen se omiten. */
+    Map<UUID, TiendaResumen> resumenDe(Collection<UUID> tiendaIds);
 }

@@ -1,5 +1,6 @@
 package com.quienlotiene.tiendas.application.dto;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +21,7 @@ public record TiendaPublica(
         List<MiTienda.Franja> horario,
         Domicilio domicilio,
 
-        @Schema(allowableValues = {"EFECTIVO", "TRANSFERENCIA", "DATAFONO"})
+        @ArraySchema(schema = @Schema(allowableValues = {"EFECTIVO", "TRANSFERENCIA", "DATAFONO"}))
         List<String> mediosPago) {
 
     public TiendaPublica {
