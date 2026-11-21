@@ -1,7 +1,7 @@
 package com.quienlotiene.administracion.infrastructure.web;
 
+import com.quienlotiene.administracion.application.dto.ReporteEnPanel;
 import com.quienlotiene.administracion.application.usecase.GestionarReportesYSuspensiones;
-import com.quienlotiene.reputacion.api.ReporteParaAdministrador;
 import com.quienlotiene.shared.infrastructure.security.UsuarioActual;
 import com.quienlotiene.tiendas.api.TiendaParaRevision;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,9 +35,12 @@ class AdministracionReportesController {
         this.usuarioActual = usuarioActual;
     }
 
-    @Operation(summary = "Listar reportes", description = "HU-037. Por defecto, los ABIERTO del más antiguo al nuevo.")
+    @Operation(
+            summary = "Listar reportes",
+            description =
+                    "HU-037. Por defecto, los ABIERTO del más antiguo al nuevo, con el nombre y el estado de la tienda.")
     @GetMapping("/reportes")
-    List<ReporteParaAdministrador> listarReportes(
+    List<ReporteEnPanel> listarReportes(
             @RequestParam(defaultValue = "ABIERTO")
                     @Pattern(regexp = "ABIERTO|RESUELTO", message = "El estado debe ser ABIERTO o RESUELTO")
                     String estado) {
@@ -49,8 +52,7 @@ class AdministracionReportesController {
     @ApiResponse(responseCode = "404", description = "No existe (REP-003)")
     @ApiResponse(responseCode = "409", description = "Ya estaba resuelto (REP-005)")
     @PostMapping("/reportes/{reporteId}/resolucion")
-    ReporteParaAdministrador resolver(
-            @PathVariable UUID reporteId, @Valid @RequestBody ResolverReporteRequest peticion) {
+    ReporteEnPanel resolver(@PathVariable UUID reporteId, @Valid @RequestBody ResolverReporteRequest peticion) {
         return gestionar.resolverReporte(usuarioActual.id(), reporteId, peticion.nota());
     }
 

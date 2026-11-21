@@ -4,6 +4,7 @@ import com.quienlotiene.shared.domain.AlmacenArchivos;
 import com.quienlotiene.tiendas.api.DocumentoDescargable;
 import com.quienlotiene.tiendas.api.RevisionTiendasApi;
 import com.quienlotiene.tiendas.api.TiendaParaRevision;
+import com.quienlotiene.tiendas.api.TiendaResumen;
 import com.quienlotiene.tiendas.api.TiendaRevisadaEvent;
 import com.quienlotiene.tiendas.api.TiendaSuspendida;
 import com.quienlotiene.tiendas.domain.model.EstadoTienda;
@@ -11,8 +12,12 @@ import com.quienlotiene.tiendas.domain.model.Tienda;
 import com.quienlotiene.tiendas.domain.model.TiendaNoEncontradaException;
 import com.quienlotiene.tiendas.domain.port.TiendaRepository;
 import java.time.Clock;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 import org.springframework.context.ApplicationEventPublisher;
@@ -87,6 +92,23 @@ class RevisarTiendas implements RevisionTiendasApi {
     @Transactional
     public TiendaSuspendida reactivar(UUID tiendaId) {
         return cambiarSuspension(tiendaId, tienda -> tienda.reactivar(reloj.instant()));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Map<UUID, TiendaResumen> resumenDe(Collection<UUID> tiendaIds) {
+        var resumenes = new LinkedHashMap<UUID, TiendaResumen>();
+        for (var tiendaId : new LinkedHashSet<>(tiendaIds)) {
+            tiendaRepository
+                    .buscarPorId(tiendaId)
+                    .ifPresent(tienda -> resumenes.put(
+                            tienda.getId(),
+                            new TiendaResumen(
+                                    tienda.getId(),
+                                    tienda.getNombre(),
+                                    tienda.getEstado().name())));
+        }
+        return resumenes;
     }
 
     private TiendaSuspendida cambiarSuspension(UUID tiendaId, Consumer<Tienda> cambio) {

@@ -183,6 +183,32 @@ class ContratoOpenApiIT {
                 .isEqualTo(REFERENCIA + "MedioPago");
     }
 
+    @Test
+    @Tag("HU-014")
+    @DisplayName("Sprint 3 Los medios de pago del detalle público de la tienda salen como lista")
+    void mediosPagoDeLaTiendaComoLista() {
+        // Cuando
+        var mediosPago = esquema("TiendaPublicaResponse").at("/properties/mediosPago");
+
+        // Entonces
+        assertThat(mediosPago.path("type").asString()).isEqualTo("array");
+        assertThat(mediosPago.at("/items/$ref").asString()).isEqualTo(REFERENCIA + "MedioPago");
+    }
+
+    @Test
+    @Tag("HU-035")
+    @Tag("HU-037")
+    @DisplayName("Sprint 3 El motivo del reporte es un enum y la bandeja trae el nombre y el estado de la tienda")
+    void reportesTipados() {
+        // Cuando
+        var motivoPedido = esquema("ReportarRequest").at("/properties/motivo");
+        var enPanel = esquema("ReporteParaAdministrador").path("properties");
+
+        // Entonces
+        assertThat(motivoPedido.toString()).contains("DEMORA_ENTREGA", "PRODUCTO_DIFERENTE", "COBRO_DIFERENTE", "OTRO");
+        assertThat(enPanel.propertyNames()).contains("nombreTienda", "estadoTienda", "reportesDeLaTienda");
+    }
+
     private JsonNode esquema(String nombre) {
         var esquema = contrato.path("components").path("schemas").path(nombre);
         assertThat(esquema.isMissingNode()).as("esquema %s", nombre).isFalse();
