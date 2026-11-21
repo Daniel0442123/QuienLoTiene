@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.6 · 20/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.7 · 21/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -13,6 +13,27 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 ## Sin liberar
 
 Nada todavía.
+
+## v0.5.0 · 21/11/2026 · Frontend del Sprint 3
+
+Etiqueta sobre `main` después del #74. Trae las pantallas de las 12 historias del Sprint 3, que en `v0.4.1` solo se usaban desde la API, y los ajustes del contrato que pidió el frontend.
+
+### Agregado
+- Cancelar el pedido, reserva para recoger con cuenta regresiva y vencimiento, y «Cómo llegar» con la app de mapas (HU-029, HU-025, HU-026, SC-019, #67).
+- Calificar la tienda y detalle público de la tienda con horario, mapa, medios de pago y reseñas recientes (HU-034, HU-014, #68).
+- `/admin/catalogo` para categorías y productos restringidos, y aviso «Este medicamento necesita fórmula médica» sin domicilio (HU-038, HU-023, #69).
+- Reportar un problema y bandeja `/admin/reportes` para resolver, suspender y reactivar tiendas (HU-035, HU-037, #70).
+- Chat del pedido en tiempo real, de solo lectura con el pedido terminado (HU-033, #71).
+- Avisos push para la tienda con la app cerrada, con el service worker `sw-push.js` (HU-031, #72). Necesitan las claves VAPID en el `.env` del VPS.
+- «Mis preguntas», historial de preguntas y «Repetir» (HU-008, SC-018, #73).
+- Bandeja de reportes con `nombreTienda` y `estadoTienda` (HU-037, #74).
+
+### Cambiado
+- `/v3/api-docs`: `mediosPago` del detalle de la tienda como lista de `MedioPago` y `motivo` del reporte con sus cuatro valores; el texto vacío o muy largo del chat responde `MEN-003` (#74). `CONTRATO-SPRINT-3.md` 0.5.
+
+### Corregido
+- CI: el Maven del wrapper se guarda en caché y se descarga con hasta tres intentos; la descarga falló en el #69 y en el #71 (#74).
+- Dos pruebas del frontend que fallaban a veces con la suite completa: panel de la tienda (HU-013) y «Esperando respuestas» (HU-016) (#73).
 
 ## v0.4.1 · 20/11/2026 · Imágenes sin la vulnerabilidad que bloqueó v0.4.0
 
@@ -206,3 +227,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.4 | 18/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Evidencia de calidad de `v0.3.1` copiada de su Release y prueba en producción |
 | 1.5 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.4.0` (backend del Sprint 3) antes de etiquetar, preparadas con Claude Code |
 | 1.6 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `v0.4.0` no se desplegó (Trivy); notas de `v0.4.1` con la corrección de las imágenes, preparadas con Claude Code |
+| 1.7 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.0` (frontend del Sprint 3, #67 a #74) antes de etiquetar, preparadas con Claude Code |
