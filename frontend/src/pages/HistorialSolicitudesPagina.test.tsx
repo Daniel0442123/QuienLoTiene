@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Route, Routes } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { base, CORREOS_DE_PRUEBA, FRASE_DE_PRUEBA } from '@/mocks/datos'
+import { base, CORREOS_DE_PRUEBA, FRASE_DE_PRUEBA, TIENDAS_SPRINT_2 } from '@/mocks/datos'
 import { violacionesDeAccesibilidad } from '@/pruebas/accesibilidad'
 import { renderizarConProveedores } from '@/pruebas/renderizar'
 import { crearSolicitud, MINUTO } from '@/pruebas/solicitudes'
@@ -43,7 +43,7 @@ function gps(resultado: 'aqui' | 'negado') {
   })
 }
 
-describe('HU-008 · Historial, repetir y «Mis preguntas» · CP-CLI-008-01, CP-CLI-008-02', () => {
+describe('HU-008 · Historial, repetir y «Mis preguntas» · CP-CLI-008-01, CP-CLI-008-02, CP-CLI-008-03', () => {
   beforeEach(async () => {
     limpiarSesion()
     await iniciarSesion(CORREOS_DE_PRUEBA.cliente, FRASE_DE_PRUEBA)
@@ -201,5 +201,42 @@ describe('HU-008 · Historial, repetir y «Mis preguntas» · CP-CLI-008-01, CP-
       'href',
       '/solicitudes',
     )
+  })
+
+  it('CP-CLI-008-03 · vuelve a una pregunta abierta desde «Mis pedidos» y ve sus 3 respuestas', async () => {
+    // Dado: publicó «Paracetamol 500 mg» hace 10 minutos, tiene 3 respuestas y salió de la pantalla sin elegir
+    const usuario = userEvent.setup({ delay: null })
+    const id = crearSolicitud({
+      producto: 'Paracetamol 500 mg',
+      fechaPublicacion: new Date(Date.now() - 10 * MINUTO).toISOString(),
+      fechaVencimiento: new Date(Date.now() + 20 * MINUTO).toISOString(),
+    })
+    // A las dos tiendas simuladas que ya respondieron se suma Droguería La 5
+    base.respuestas.push({
+      id: crypto.randomUUID(),
+      solicitudId: id,
+      tiendaId: TIENDAS_SPRINT_2.la5,
+      tipo: 'SI',
+      precioEnPesos: 900,
+      cantidadDisponible: 1,
+      descripcionAlternativa: null,
+      tiempoEstimadoEnMinutos: null,
+      ofreceDomicilio: false,
+      costoDomicilioEnPesos: null,
+      fechaRespuesta: new Date(Date.now() - 5 * MINUTO).toISOString(),
+    })
+
+    // Cuando: abre «Mis pedidos», sección «Mis preguntas», y toca la pregunta
+    abrir('/pedidos')
+    const seccion = await screen.findByRole('region', { name: 'Mis preguntas' })
+    const pregunta = within(seccion).getByRole('link', { name: /Paracetamol 500 mg · 1 unidad/ })
+    expect(pregunta).toHaveTextContent(/3 respuestas · Vence en (19|20) min/)
+    await usuario.click(pregunta)
+
+    // Entonces: vuelve a la pantalla de respuestas de esa pregunta, con las 3
+    expect(await screen.findByRole('heading', { level: 1, name: 'Esperando respuestas' })).toBeInTheDocument()
+    expect(await screen.findByText('Droguería La 5')).toBeInTheDocument()
+    expect(screen.getByText('Botica San José')).toBeInTheDocument()
+    expect(screen.getByText('Farmacia Popular')).toBeInTheDocument()
   })
 })
