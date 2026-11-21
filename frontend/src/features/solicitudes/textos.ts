@@ -151,6 +151,40 @@ export const textosSolicitudes = {
   tipoSi: 'Sí lo tengo',
   tipoParecido: 'Tengo algo parecido',
   verTienda: 'Ver la tienda',
+
+  // Mis preguntas e historial (HU-008, SC-018; mockup 03)
+  tituloMisPreguntas: 'Mis preguntas',
+  introMisPreguntas: 'Las que todavía reciben respuestas. Toca una para ver qué te respondieron.',
+  respuestasRecibidas: (cantidad: number) =>
+    cantidad === 0 ? 'Sin respuestas todavía' : cantidad === 1 ? '1 respuesta' : `${cantidad} respuestas`,
+  verRespuestas: 'Ver respuestas',
+  verRespuestasDe: (producto: string) => `Ver respuestas de ${producto}`,
+  enlaceHistorial: 'Ver todas mis preguntas',
+  tituloHistorial: 'Historial de preguntas',
+  introHistorial:
+    'Todas tus preguntas, de la más reciente a la más antigua. «Repetir» la publica de nuevo desde donde estás.',
+  cargandoHistorial: 'Cargando tus preguntas…',
+  sinHistorial: 'Todavía no has hecho ninguna pregunta.',
+  sinHistorialAyuda: 'Pregunta quién tiene lo que buscas y las tiendas cercanas te responden.',
+  primeraPregunta: 'Hacer mi primera pregunta',
+  estadosHistorial: { ABIERTA: 'Abierta', RESUELTA: 'Resuelta', VENCIDA: 'Vencida' },
+  publicadaEl: (fecha: string) => `Publicada el ${fecha}`,
+  conPedido: 'Elegiste una tienda',
+  verPedido: 'Ver el pedido',
+  verMas: 'Ver más preguntas',
+  cargandoMas: 'Cargando…',
+  cargadasMas: (cantidad: number) =>
+    cantidad === 1 ? 'Se cargó 1 pregunta más.' : `Se cargaron ${cantidad} preguntas más.`,
+  botonRepetir: 'Repetir',
+  repetirDe: (producto: string) => `Repetir ${producto}`,
+  buscandoUbicacion: 'Buscando tu ubicación…',
+  repitiendo: 'Publicando…',
+  repetidaConGps: 'Publicamos la pregunta de nuevo desde donde estás.',
+  repetidaConDireccion: (nombre: string) =>
+    `No pudimos usar tu ubicación, así que publicamos la pregunta desde «${nombre}».`,
+  sinUbicacionParaRepetir:
+    'No pudimos saber dónde estás y no tienes direcciones guardadas. Permite la ubicación o pregunta desde «Preguntar quién lo tiene».',
+  errorRepetir: 'No pudimos repetir la pregunta. Inténtalo de nuevo.',
   // Producto restringido (HU-023; texto del aviso aprobado en SC-011 punto 7, lo manda el backend)
   avisoRestringidoTitulo: 'Este medicamento necesita fórmula médica',
   avisoRestringidoDetalle: 'Las tiendas no lo llevan a domicilio: recógelo en la tienda con tu fórmula médica.',
