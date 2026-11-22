@@ -1,6 +1,6 @@
 # Mockups de las historias pendientes
 
-> **Control del documento** · Versión 0.3 · 21/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
+> **Control del documento** · Versión 0.4 · 21/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
 
 Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Sprint 2 en adelante). Las pantallas del Sprint 1 ya están construidas en `frontend/`.
 
@@ -12,7 +12,7 @@ Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Spri
 ## Fuente
 
 - **`fuente/`** guarda el lienzo editable: un archivo `.dc.html` por tablero y `canvas.json` con su posición. Es la fuente de verdad; los PNG se generan desde ahí.
-- Los PNG salieron de los archivos de `fuente/` de su versión, capturados con Edge sin interfaz al tamaño de cada tablero (los 01 a 10 en la 0.2 y los 11 a 13 en la 0.3).
+- Los PNG salieron de los archivos de `fuente/` de su versión, capturados con Edge sin interfaz al tamaño de cada tablero (los 01 a 10 en la 0.2, los 11 a 13 en la 0.3 y los 01, 02 y 05 de nuevo en la 0.4).
 - Los `.dc.html` necesitan el editor de lienzo para verse con sus marcos; abiertos solos en el navegador muestran el contenido sin estilos de marco.
 
 ## Tableros
@@ -67,9 +67,15 @@ Hecho en los tableros 11 a 13:
 - Confirmación de HU-029 (cancelar con motivo) y de HU-037 (suspender con motivo), en el mismo lugar y sin diálogo, y deshacer en HU-038.
 - Anotaciones de accesibilidad: nombre accesible de los botones repetidos («Repetir Paracetamol 500 mg»), qué anuncia cada pantalla nueva (aviso de HU-023 asociado al campo, «quedan 5 minutos» en HU-025, `role="log"` en HU-033, «Quitaste…» en HU-038), remitente y hora en cada mensaje del chat, y a dónde va el foco al confirmar.
 
+Hecho en la versión 0.4 (C-20):
+
+- Qué anuncia el lector de pantalla, sin mover el foco, en los tableros 01, 02 y 05 (texto en verde bajo el título): HU-020 «Llegó una respuesta de Droguería La 5.», HU-027 «Tu pedido ahora está: En camino.» y HU-018 «Solicitud urgente: «Salbutamol inhalador». Está primero en tu lista.». Son los mismos textos de la app.
+- Nota «Accesibilidad en todas las pantallas» en el lienzo, junto a los tableros del Sprint 3:
+  - **3.2.6 Ayuda en el mismo lugar:** la app todavía no tiene un mecanismo de ayuda. Si se agrega (contacto o soporte), va en el mismo sitio del pie en todas las pantallas.
+  - **2.4.11 Foco no tapado:** ya está en la app. `html { scroll-padding-bottom: var(--alto-barra-inferior) }` en `frontend/src/styles/index.css` reserva el alto de la barra inferior fija, así un campo enfocado no queda debajo de ella.
+
 Sigue pendiente:
 
-- Anotar qué anuncia `aria-live` en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05), el enlace de ayuda en el mismo lugar en todas las pantallas (3.2.6) y `scroll-padding` bajo las barras fijas (2.4.11).
 - Columna «Mockup» en `docs/pruebas/libro/07-TRAZABILIDAD.md` para los casos manuales de interfaz, cuando se aprueben estos mockups.
 
 ## Accesibilidad en el diseño
@@ -83,3 +89,4 @@ Textos de 16 px o más, zonas para tocar de 44 × 44 px o más con 8 px entre el
 | 0.1 | 12/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Primera versión: 7 tableros con 21 pantallas de 27 historias (PR #33) |
 | 0.2 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Cambios de la revisión del 13/11/2026: tableros 08 a 10 (estados del Sprint 2 y 320 px), HU-019 con «Tengo algo parecido» y respuesta duplicada, HU-020 vacío, HU-021 vencida y no elegida, HU-027 en camino y cancelado, textos de HU-006 y desglose de HU-023, aviso con cierre en HU-018, lienzo fuente en `fuente/`, encabezado de control y decisiones separadas en aprobadas y por aprobar (PR #33) |
 | 0.3 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Tableros 11 a 13 del Sprint 3 (C-15): HU-014 con mapa, HU-023 al publicar, HU-025 vencida, HU-029 confirmar y en camino, HU-033 solo lectura, HU-008 «Mis preguntas» y vacío, confirmar en HU-037 y deshacer en HU-038, con anotaciones de accesibilidad |
+| 0.4 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-20: qué anuncia el lector en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05) y nota de ayuda en el mismo lugar (3.2.6) y foco no tapado (2.4.11) (PR #77) |

@@ -16,6 +16,7 @@ a{color:#0b6e63}a:hover{color:#08564d}
 .col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
 .etq{margin:0;font-size:22px;font-weight:700}
 .etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.a11y{color:#08564d}
 .tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
 .barra{box-sizing:border-box;height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 16px;border-bottom:1px solid #dce7e2}
 .marca{margin:0;font-weight:700;font-size:18px}
@@ -53,7 +54,7 @@ input[type=text]{box-sizing:border-box;min-height:48px;border:1px solid #6a7d76;
 
 <div class="col">
 <p class="etq">HU-027, HU-029, HU-032 · Pedido en curso</p>
-<p class="etq-nota">El cliente ve cada cambio de estado. Puede cancelar mientras no haya salido y escribir por WhatsApp solo después de elegir.</p>
+<p class="etq-nota">Cada cambio llega sin recargar. Cancelar mientras no haya salido. <span class="a11y">Lector (aria-live, sin mover el foco): «Tu pedido ahora está: En camino.»</span></p>
 <div class="tel">
 <div class="barra"><button class="volver" type="button" aria-label="Volver a mis pedidos">‹ Mis pedidos</button><p class="marca">¿Quién lo tiene?</p></div>
 <div class="cont">
