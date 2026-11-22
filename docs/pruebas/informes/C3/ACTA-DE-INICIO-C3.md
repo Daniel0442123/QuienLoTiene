@@ -17,7 +17,7 @@
 
 **Pendientes o excepciones:**
 
-1. Las historias Could HU-006, HU-011, HU-015 y HU-022 no se implementaron: no tienen código ni pruebas en `main`. Sus 8 casos (CP-IDE-006, CP-TIE-011, CP-TIE-015 y CP-SOL-022, dos de cada uno) quedan «No aplica» y no cuentan en el porcentaje de aprobación. El plan del C3 solo incluye las Could «que se hayan implementado».
+1. Las historias Could HU-006 (verificar correo), HU-011 (tarifas de domicilio avanzadas), HU-015 (resumen de indicadores de la tienda) y HU-022 (ampliar el radio automáticamente) están planeadas para el Sprint de Cierre (23/11 al 25/11), pero todavía no se han implementado. Sus 8 casos se ejecutan cuando se implementen. Si el equipo decide no hacerlas, quedan «No aplica» con esa decisión registrada, como permite el objetivo 4 del plan del C3.
 2. HU-008 se adelantó al Sprint 3 por SC-018. CP-CLI-008-01 a 03 ya se aprobaron en el C2 y en el C3 entran a la regresión.
 3. DEF-012 (S4, «Elegida · Prepara el pedido.» en pedidos cerrados) sigue abierto. El triaje decide si se corrige en el C3 o se difiere con plan.
 4. Todavía no existen las pruebas de punta a punta con Playwright ni los guiones de carga con k6. Se escriben en este ciclo.

@@ -13,7 +13,7 @@
 | C1 (Sprints 1 y 2) · corte S1 12/11 | 61 | 38 | 38 | 0 | 0 | 62,3 % | 100 % | 100 % ejecutados |
 | C1 (Sprints 1 y 2) · ejecución S2 16/11 (borrador) | 61 | 61 | 61 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
 | C2 (Sprint 3) · corte 22/11 (borrador) | 34 (31 + 3 de HU-008 por SC-018; sin re-pruebas) | 34 | 34 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
-| C3 (Cierre, regresión) · avance 22/11 (borrador) | 96 (78 de regresión aplicables + 5 E2E + 13 NF; 8 Could «No aplica») | 77 | 77 | 0 | 0 | 80,2 % | 100 % | ≥ 95 % aprobados |
+| C3 (Cierre, regresión) · avance 22/11 (borrador) | 104 (86 de regresión y Could + 5 E2E + 13 NF) | 77 | 77 | 0 | 0 | 74,0 % | 100 % | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
