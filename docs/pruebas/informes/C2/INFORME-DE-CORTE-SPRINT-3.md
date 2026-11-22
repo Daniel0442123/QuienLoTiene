@@ -1,6 +1,6 @@
 # Informe de corte · Sprint 3 · Ciclo C2
 
-> **Control del documento** · Versión 1.1 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.2 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Anexo C del Plan Maestro (informe de avance). Preparado con Claude Code a partir de `libro/04-EJECUCION-C2.md`; QA lo revisa y lo firma.
 
@@ -19,7 +19,7 @@
 
 Los 34 casos son los 22 del Sprint 3, los 3 de HU-008 que pasaron a este sprint por SC-018 y los 9 no funcionales del C2. No hay re-pruebas del C1: ningún caso quedó Fallido ni Bloqueado.
 
-Los 7 no funcionales que el 21/11 no tenían una prueba etiquetada (NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015) se ejecutaron el 22/11 con pruebas nuevas o etiquetadas, sobre main `d92847a` más las correcciones de DEF-013, DEF-014 y DEF-015. Los tres de seguridad fallaban en v0.5.2 y pasan con la corrección; falta re-probarlos en producción después de desplegar.
+Los 7 no funcionales que el 21/11 no tenían una prueba etiquetada (NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015) se ejecutaron el 22/11 con pruebas nuevas o etiquetadas, sobre main `d92847a` más las correcciones de DEF-013, DEF-014 y DEF-015. Los tres de seguridad fallaban en v0.5.2, pasan con la corrección y el 22/11 se re-probaron en producción sobre `v0.5.3` ([evidencia](../../evidencias/C2/2026-11-22/produccion-v0.5.3/)). En producción, el sexto inicio de sesión en un minuto recibe 429. La foto guardada ya no trae EXIF. El log «auditoria» registra cuándo la tienda ve los datos del cliente o pide su contacto, solo con ids.
 
 Avance del ciclo: 34 / 34 = 100 %. Aprobación sobre lo ejecutado: 100 %. Los 25 casos de las historias del sprint están aprobados, incluido el push, que se probó en un celular Android real.
 
@@ -79,14 +79,15 @@ Detalle y 49 capturas en [`evidencias/C2/2026-11-22/produccion/`](../../evidenci
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla |
 |---|---|---|---|---|---|
 | DEF-012 | S4 Baja | P4 Baja | Abierto | Humo producción (CP-ORD-029-01) | En «Mis respuestas» de la tienda, los pedidos ya cancelados o recibidos siguen diciendo «Elegida · Prepara el pedido.» |
-| DEF-013 | S3 Media | P2 Alta | En corrección | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta (RNF-009 pide 5 por minuto) |
-| DEF-014 | S3 Media | P2 Alta | En corrección | NF-SEG-012 | La foto del local se guarda con su EXIF (GPS y modelo del celular) |
-| DEF-015 | S3 Media | P3 Normal | En corrección | NF-SEG-013 | Cuando la tienda ve los datos del cliente de una orden no queda registro de auditoría |
+| DEF-013 | S3 Media | P2 Alta | En verificación (corregido en v0.5.3) | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta (RNF-009 pide 5 por minuto) |
+| DEF-014 | S3 Media | P2 Alta | En verificación (corregido en v0.5.3) | NF-SEG-012 | La foto del local se guarda con su EXIF (GPS y modelo del celular) |
+| DEF-015 | S3 Media | P3 Normal | En verificación (corregido en v0.5.3) | NF-SEG-013 | Cuando la tienda ve los datos del cliente de una orden no queda registro de auditoría |
 
 Observaciones que no se registran como defecto:
 
 - Al enviar un reporte no aparece un mensaje de confirmación.
 - La cuenta regresiva de la reserva muestra 31 minutos en la tienda y 30 en el cliente.
+- En producción el formulario reduce la foto en el navegador y eso ya le quita el EXIF, así que la re-prueba de NF-SEG-012 no llega al limpiador del servidor. Ese limpiador queda cubierto por las pruebas automáticas.
 - La búsqueda completa de tiendas tardó 220 ms con 79 tiendas en el radio porque carga cada tienda una por una. RNF-003 mide la consulta (2 ms) y pasa, pero conviene revisarlo en la prueba de carga del C3.
 
 ## 5. Bloqueos y acciones
@@ -98,7 +99,7 @@ Observaciones que no se registran como defecto:
 ## 6. Plan para el siguiente sprint
 
 1. Triaje de DEF-012 y corrección en el C3.
-2. Desplegar las correcciones de DEF-013, DEF-014 y DEF-015 y re-probar NF-SEG-009, 012 y 013 en producción.
+2. QA cierra DEF-013, DEF-014 y DEF-015, ya re-probados en producción sobre `v0.5.3`.
 3. Correr la regresión completa del C3 (85 casos + 5 E2E + 13 NF), con los 7 no funcionales ya etiquetados.
 4. Cerrar el C2 con la firma de QA de este informe y de `04-EJECUCION-C2.md`.
 
@@ -108,3 +109,4 @@ Observaciones que no se registran como defecto:
 |---|---|---|---|
 | 1.0 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte del Sprint 3 sobre `v0.5.2`, preparado con Claude Code para que QA lo revise y firme |
 | 1.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 7 no funcionales que faltaban, ejecutados y aprobados el 22/11; DEF-013 a DEF-015 en corrección; observación sobre la búsqueda completa |
+| 1.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba en producción de NF-SEG-009, 012 y 013 sobre `v0.5.3`: pasan; DEF-013 a DEF-015 en verificación |
