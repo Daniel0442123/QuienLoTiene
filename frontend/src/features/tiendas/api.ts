@@ -16,12 +16,15 @@ export type Franja = Esquemas['Franja']
 export type DiaSemana = Esquemas['DiaSemana']
 export type Domicilio = Esquemas['Domicilio']
 export type MedioPago = Esquemas['MedioPago']
+export type IndicadoresTienda = Esquemas['IndicadoresTienda']
+export type PeriodoIndicadores = '7' | '30'
 
 /** Claves de TanStack Query de la tienda del usuario: se invalidan juntas al cerrar sesión. */
 export const clavesTienda = {
   miTienda: ['tiendas', 'me'] as const,
   domicilio: ['tiendas', 'me', 'domicilio'] as const,
   mediosPago: ['tiendas', 'me', 'medios-pago'] as const,
+  indicadores: (periodo: PeriodoIndicadores) => ['tiendas', 'me', 'indicadores', periodo] as const,
   publica: (tiendaId: string) => ['tiendas', 'publica', tiendaId] as const,
 }
 
@@ -177,5 +180,14 @@ export function useGuardarMediosPago() {
     mutationFn: async (mediosPago: MedioPago[]) =>
       exigirDatos((await clienteApi.PUT('/api/v1/tiendas/me/medios-pago', { body: { mediosPago } })).data),
     onSuccess: (respuesta) => clienteConsultas.setQueryData(clavesTienda.mediosPago, respuesta),
+  })
+}
+
+/** HU-015: «Tu resumen» de los últimos 7 o 30 días (SC-011 punto 6). */
+export function useIndicadores(periodo: PeriodoIndicadores) {
+  return useQuery({
+    queryKey: clavesTienda.indicadores(periodo),
+    queryFn: async () =>
+      exigirDatos((await clienteApi.GET('/api/v1/tiendas/me/indicadores', { params: { query: { periodo } } })).data),
   })
 }

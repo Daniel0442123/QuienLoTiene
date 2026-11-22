@@ -235,6 +235,35 @@ export const manejadoresRespuestas = [
     return HttpResponse.json(mias)
   }),
 
+  // HU-015: «Tu resumen» con la fórmula de SC-011 punto 6; sin denominador el porcentaje es null
+  http.get('/api/v1/tiendas/me/indicadores', ({ request }) => {
+    const tienda = miTienda(request)
+    if (tienda instanceof Response) return tienda
+    const periodo = new URL(request.url).searchParams.get('periodo') ?? '30'
+    if (periodo !== '7' && periodo !== '30') {
+      return problema(400, 'GEN-001', 'Datos inválidos', {
+        errores: [{ campo: 'periodo', mensaje: 'el periodo debe ser 7 o 30 días' }],
+      })
+    }
+    const ahora = Date.now()
+    const desde = ahora - Number(periodo) * 24 * 60 * 60 * 1000
+    const enPeriodo = (fecha: string) => Date.parse(fecha) >= desde && Date.parse(fecha) <= ahora
+    const recibidas = base.solicitudes.filter((s) => enPeriodo(s.fechaPublicacion) && llegoALaTienda(s, tienda)).length
+    const mias = base.respuestas.filter((r) => r.tiendaId === tienda.id && enPeriodo(r.fechaRespuesta))
+    const respuestasConProducto = mias.filter((r) => r.tipo !== 'NO').length
+    const ganadas = mias.filter((r) => base.ordenes.some((o) => o.respuestaId === r.id)).length
+    const porcentaje = (parte: number, total: number) => (total === 0 ? null : Math.round((100 * parte) / total))
+    return HttpResponse.json({
+      periodoEnDias: Number(periodo),
+      recibidas,
+      respondidas: mias.length,
+      respuestasConProducto,
+      ganadas,
+      porcentajeRespondiste: porcentaje(mias.length, recibidas),
+      porcentajeTeEligieron: porcentaje(ganadas, respuestasConProducto),
+    })
+  }),
+
   // HU-020 y HU-021: mi solicitud con su estado
   http.get('/api/v1/solicitudes/:solicitudId', ({ request, params }) => {
     const cliente = autorizar(request, ['CLIENTE'])

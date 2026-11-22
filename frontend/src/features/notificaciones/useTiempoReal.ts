@@ -7,6 +7,7 @@ import { clavesSolicitudesTienda } from '@/features/solicitudes/api'
 import { useSesion } from '@/hooks/useSesion'
 import { sonarAlertaUrgente } from '@/services/alertaSonora'
 import { escucharEventos } from '@/services/eventos'
+import { formatearDistancia } from '@/services/formato'
 import { textosNotificaciones as textos } from './textos'
 import type { components } from '@/services/api-tipos'
 
@@ -37,6 +38,13 @@ export function manejarEvento(tipo: string, datos: unknown, consultas: QueryClie
     case 'solicitud-vencida': {
       const evento = datos as Esquemas['EventoRespuestaRecibida'] | Esquemas['EventoSolicitudVencida']
       invalidar(['solicitudes', evento.solicitudId])
+      return
+    }
+    case 'radio-ampliado': {
+      // HU-022 (diagrama 35 paso 8): la pantalla de espera vuelve a pedir la solicitud y muestra el radio nuevo
+      const evento = datos as Esquemas['EventoRadioAmpliado']
+      invalidar(['solicitudes', evento.solicitudId])
+      anunciar(textos.radioAmpliado(formatearDistancia(evento.radioEnMetros)))
       return
     }
     case 'solicitud-cerrada':

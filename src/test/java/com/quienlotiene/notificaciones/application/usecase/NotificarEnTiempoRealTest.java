@@ -10,6 +10,7 @@ import com.quienlotiene.notificaciones.domain.model.Notificacion;
 import com.quienlotiene.notificaciones.domain.port.CanalTiempoReal;
 import com.quienlotiene.ordenes.api.EstadoOrdenCambiadoEvent;
 import com.quienlotiene.ordenes.api.OrdenCreadaEvent;
+import com.quienlotiene.solicitudes.api.RadioAmpliadoEvent;
 import com.quienlotiene.solicitudes.api.RespuestaElegidaEvent;
 import com.quienlotiene.solicitudes.api.RespuestaRecibidaEvent;
 import com.quienlotiene.solicitudes.api.SolicitudDifundidaEvent;
@@ -188,5 +189,22 @@ class NotificarEnTiempoRealTest {
 
         verify(avisarPorPush).siNoEstaConectado(DUENO_A, "orden-creada", orden);
         verify(avisarPorPush).siNoEstaConectado(DUENO_A, "estado-orden-cambiado", orden);
+    }
+
+    @Test
+    @Tag("HU-022")
+    @Tag("CP-SOL-022-01")
+    @DisplayName("CP-SOL-022-01 Al ampliar el radio solo el cliente recibe radio-ampliado, sin push")
+    void avisaAlClienteQueSeAmplioLaBusqueda() {
+        // Cuando
+        notificar.alAmpliarRadio(new RadioAmpliadoEvent(SOLICITUD, CLIENTE, 5_000, 2));
+
+        // Entonces
+        assertThat(enviadas()).singleElement().satisfies(aviso -> {
+            assertThat(aviso.usuarioId()).isEqualTo(CLIENTE);
+            assertThat(aviso.tipo()).isEqualTo(EventosTiempoReal.RadioAmpliado.TIPO);
+            assertThat(aviso.datos()).isEqualTo(new EventosTiempoReal.RadioAmpliado(SOLICITUD, 5_000, 2));
+        });
+        verifyNoInteractions(avisarPorPush);
     }
 }

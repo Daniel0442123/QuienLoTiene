@@ -65,6 +65,12 @@ class JpaSolicitudRepository implements SolicitudRepository {
     }
 
     @Override
+    public void guardarRadio(Solicitud solicitud) {
+        var fila = solicitudJpaRepository.findById(solicitud.getId()).orElseThrow();
+        fila.ampliarRadio(solicitud.getRadioEnMetros(), reloj.instant());
+    }
+
+    @Override
     public List<SolicitudParaTienda> listarDisponiblesParaTienda(UUID tiendaId, Instant ahora) {
         return solicitudJpaRepository.listarDisponiblesParaTienda(tiendaId, ahora).stream()
                 .map(fila -> new SolicitudParaTienda(aDominio((SolicitudEntity) fila[0]), (Integer) fila[1]))
@@ -74,6 +80,13 @@ class JpaSolicitudRepository implements SolicitudRepository {
     @Override
     public List<Solicitud> tomarVencidas(Instant ahora, int limite) {
         return solicitudJpaRepository.tomarVencidas(ahora, limite).stream()
+                .map(JpaSolicitudRepository::aDominio)
+                .toList();
+    }
+
+    @Override
+    public List<Solicitud> tomarParaAmpliar(Instant publicadasHasta, Instant ahora, int limite) {
+        return solicitudJpaRepository.tomarParaAmpliar(publicadasHasta, ahora, limite).stream()
                 .map(JpaSolicitudRepository::aDominio)
                 .toList();
     }
@@ -98,6 +111,7 @@ class JpaSolicitudRepository implements SolicitudRepository {
                 fila.isUrgente(),
                 new Ubicacion(fila.latitud(), fila.longitud()),
                 fila.getRadioMetros(),
+                fila.isFueAmpliado(),
                 fila.isRestringida(),
                 EstadoSolicitud.valueOf(fila.getEstado()),
                 fila.getCreadoEn(),

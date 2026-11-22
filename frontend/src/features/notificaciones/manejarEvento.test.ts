@@ -44,6 +44,13 @@ describe('HU-030 · Qué hace cada evento del flujo', () => {
     expect(anunciar).not.toHaveBeenCalled()
   })
 
+  it('HU-022 · radio-ampliado: refresca la solicitud del cliente y le anuncia el radio nuevo', () => {
+    const { consultas, anunciar, claves } = preparar()
+    manejarEvento('radio-ampliado', { solicitudId: 's', radioEnMetros: 5000, tiendasNuevas: 2 }, consultas, anunciar)
+    expect(claves()).toEqual([['solicitudes', 's']])
+    expect(anunciar).toHaveBeenCalledWith('Nadie ha respondido aún. Ampliamos la búsqueda a 5 km.')
+  })
+
   it('HU-033 · mensaje-recibido: refresca solo el chat de esa orden, sin anunciar (lo lee su región role="log")', () => {
     const { consultas, anunciar, claves } = preparar()
     manejarEvento('mensaje-recibido', { ordenId: 'o-1', mensajeId: 'm-1' }, consultas, anunciar)

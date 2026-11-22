@@ -72,6 +72,7 @@ class ConsultarHistorialTest {
                 new Ubicacion(2.4448, -76.6147),
                 3_000,
                 false,
+                false,
                 estado,
                 publicada,
                 publicada.plus(Duration.ofMinutes(30)));

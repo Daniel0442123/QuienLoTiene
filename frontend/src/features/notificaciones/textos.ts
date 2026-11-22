@@ -3,6 +3,7 @@ export const textosNotificaciones = {
   solicitudNueva: (producto: string) => `Solicitud nueva: «${producto}».`,
   solicitudUrgente: (producto: string) => `Solicitud urgente: «${producto}». Está primero en tu lista.`,
   pedidoNuevo: (producto: string) => `Te eligieron: pedido nuevo de «${producto}».`,
+  radioAmpliado: (distancia: string) => `Nadie ha respondido aún. Ampliamos la búsqueda a ${distancia}.`,
 
   // Avisos push (HU-031)
   tituloAvisos: 'Avisos con la app cerrada',

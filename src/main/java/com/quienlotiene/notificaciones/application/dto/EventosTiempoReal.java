@@ -62,6 +62,12 @@ public final class EventosTiempoReal {
         public static final String TIPO = "solicitud-vencida";
     }
 
+    /** HU-022, diagrama 35 paso 8: para el cliente, «Ampliamos la búsqueda a 5 km». */
+    @Schema(name = "EventoRadioAmpliado")
+    public record RadioAmpliado(UUID solicitudId, int radioEnMetros, int tiendasNuevas) {
+        public static final String TIPO = "radio-ampliado";
+    }
+
     /** HU-024, diagrama 04 paso 9: para la tienda elegida. */
     @Schema(name = "EventoOrdenCreada")
     public record OrdenCreada(

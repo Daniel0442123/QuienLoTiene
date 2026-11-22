@@ -32,6 +32,15 @@ public interface SolicitudRepository {
      */
     List<Solicitud> tomarVencidas(Instant ahora, int limite);
 
+    /**
+     * CU-31: toma hasta {@code limite} solicitudes ABIERTAS sin vencer en {@code ahora}, publicadas hasta
+     * {@code publicadasHasta}, que no se han ampliado y no tienen ninguna respuesta, con {@code FOR UPDATE SKIP LOCKED}.
+     */
+    List<Solicitud> tomarParaAmpliar(Instant publicadasHasta, Instant ahora, int limite);
+
+    /** HU-022: guarda el radio ampliado y la marca de que ya se amplió, con bloqueo optimista. */
+    void guardarRadio(Solicitud solicitud);
+
     /** HU-008: solicitudes del cliente de la más reciente a la más antigua, por páginas. */
     List<Solicitud> listarDelCliente(UUID clienteId, int pagina, int tamano);
 }

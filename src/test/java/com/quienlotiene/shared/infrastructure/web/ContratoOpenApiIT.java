@@ -141,6 +141,7 @@ class ContratoOpenApiIT {
                         REFERENCIA + "EventoSolicitudCerrada",
                         REFERENCIA + "EventoRespuestaNoElegida",
                         REFERENCIA + "EventoSolicitudVencida",
+                        REFERENCIA + "EventoRadioAmpliado",
                         REFERENCIA + "EventoOrdenCreada",
                         REFERENCIA + "EventoEstadoOrdenCambiado",
                         REFERENCIA + "EventoMensajeRecibido");

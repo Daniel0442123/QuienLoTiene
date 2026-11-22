@@ -62,6 +62,9 @@ quienlotiene:
     vigencia: 30m
     maximo-por-hora: 10
     radio-inicial-en-metros: 3000
+    # HU-022 (CU-31): sin respuestas a los 10 minutos se amplía una sola vez a 5 km
+    radio-ampliado-en-metros: 5000
+    espera-para-ampliar: 10m
   ordenes:
     # HU-025: minutos que la tienda guarda una recogida desde que la marca lista (contrato del Sprint 3, decisión 2)
     minutos-reserva: 30
