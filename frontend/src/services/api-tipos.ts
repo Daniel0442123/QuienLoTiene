@@ -1326,7 +1326,7 @@ export interface components {
             fecha: string;
         };
         EnviarMensajeRequest: {
-            texto?: string;
+            texto: string;
         };
         MensajeVista: {
             /** Format: uuid */

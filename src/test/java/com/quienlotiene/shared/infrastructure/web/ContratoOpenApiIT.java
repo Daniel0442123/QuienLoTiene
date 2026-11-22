@@ -209,6 +209,19 @@ class ContratoOpenApiIT {
         assertThat(enPanel.propertyNames()).contains("nombreTienda", "estadoTienda", "reportesDeLaTienda");
     }
 
+    @Test
+    @Tag("HU-033")
+    @DisplayName("Sprint 3 El texto del mensaje del chat es obligatorio en el contrato")
+    void textoDelMensajeObligatorio() {
+        // Cuando
+        var pedido = esquema("EnviarMensajeRequest");
+
+        // Entonces
+        assertThat(pedido.path("required").valueStream().map(JsonNode::asString))
+                .contains("texto");
+        assertThat(pedido.at("/properties/texto/maxLength").asInt()).isEqualTo(1000);
+    }
+
     private JsonNode esquema(String nombre) {
         var esquema = contrato.path("components").path("schemas").path(nombre);
         assertThat(esquema.isMissingNode()).as("esquema %s", nombre).isFalse();

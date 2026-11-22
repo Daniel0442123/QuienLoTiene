@@ -8,4 +8,5 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * la validación genérica.
  */
 record EnviarMensajeRequest(
-        @Schema(minLength = 1, maxLength = 1000) String texto) {}
+        @Schema(requiredMode = Schema.RequiredMode.REQUIRED, minLength = 1, maxLength = 1000)
+        String texto) {}
