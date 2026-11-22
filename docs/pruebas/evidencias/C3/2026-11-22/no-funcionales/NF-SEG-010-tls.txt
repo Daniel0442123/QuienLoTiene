@@ -1,0 +1,38 @@
+# NF-SEG-010 · TLS y HSTS en https://quienlotiene.tech (v0.5.4)
+# 2026-11-22T21:02:50Z desde el entorno de pruebas (openssl 3.0.13, túnel CONNECT)
+
+## -tls1
+error:0A00042E:SSL routines:ssl3_read_bytes:tlsv1 alert protocol version:../ssl/record/rec_layer_s3.c:1599:SSL alert number 70
+New, (NONE), Cipher is (NONE)
+    Protocol  : TLSv1
+
+## -tls1_1
+error:0A00042E:SSL routines:ssl3_read_bytes:tlsv1 alert protocol version:../ssl/record/rec_layer_s3.c:1599:SSL alert number 70
+New, (NONE), Cipher is (NONE)
+    Protocol  : TLSv1.1
+
+## -tls1_2
+subject=CN = quienlotiene.tech
+issuer=C = US, O = Let's Encrypt, CN = YE1
+New, TLSv1.2, Cipher is ECDHE-ECDSA-AES128-GCM-SHA256
+    Protocol  : TLSv1.2
+
+## -tls1_3
+subject=CN = quienlotiene.tech
+issuer=C = US, O = Let's Encrypt, CN = YE1
+New, TLSv1.3, Cipher is TLS_AES_128_GCM_SHA256
+    Protocol  : TLSv1.3
+
+## Encabezados
+HTTP/2 200 
+permissions-policy: camera=(), microphone=(), geolocation=(self)
+referrer-policy: strict-origin-when-cross-origin
+strict-transport-security: max-age=31536000; includeSubDomains
+x-content-type-options: nosniff
+x-frame-options: DENY
+
+
+## SSL Labs (https://www.ssllabs.com/ssltest/analyze.html?d=quienlotiene.tech&hideResults=on)
+Evaluado el Sun, 22 Nov 2026 21:46:47 UTC, resultados ocultos del tablero público
+1  2a02:4780:95:a5d3::1  srv2125810.hstgr.cloud  Ready  21:44:53 UTC  57,5 s  A+
+2  179.66.132.95         srv2125810.hstgr.cloud  Ready  21:45:50 UTC  56,9 s  A+

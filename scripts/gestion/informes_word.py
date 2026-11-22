@@ -58,6 +58,13 @@ DOCUMENTOS = [
     # Ciclo C3
     (Path("docs/pruebas/informes/C3/ACTA-DE-INICIO-C3.md"), "../C3/Acta-de-Inicio-C3-QuienLoTiene.docx",
      "Quién lo tiene · Acta de inicio · Ciclo 3"),
+    (Path("docs/pruebas/informes/C3/INFORME-DE-CIERRE-C3.md"), "../C3/Informe-de-Cierre-C3-QuienLoTiene.docx",
+     "Quién lo tiene · Informe de cierre · Ciclo 3"),
+    # Informe final de la campaña y acta de liberación
+    (Path("docs/pruebas/informes/INFORME-DE-PRUEBAS.md"), "../Informe-de-Pruebas-QuienLoTiene.docx",
+     "Quién lo tiene · Informe de pruebas · Liberación 1.0"),
+    (Path("docs/pruebas/informes/ACTA-DE-LIBERACION.md"), "../Acta-de-Liberacion-QuienLoTiene.docx",
+     "Quién lo tiene · Acta de liberación · v1.0.0"),
 ]
 
 TOKENS = re.compile(

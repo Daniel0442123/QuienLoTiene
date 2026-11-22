@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.9 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.10 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -30,7 +30,7 @@ Requisito → historia → casos → pruebas automatizadas → resultado. Estado
 | RF-018 | Ver solicitudes nuevas | HU-018 | Must | solicitudes | Sprint 2 | CP-SOL-018-01, CP-SOL-018-02 | CP-039, CP-040 | 2 | 3 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-019 | Responder solicitud | HU-019 | Must | solicitudes | Sprint 2 | CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-03, CP-SOL-019-04 | CP-041, CP-042, CP-043, CP-044 | 4 | 7 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-020 | Ver y ordenar respuestas | HU-020 | Must | solicitudes | Sprint 2 | CP-SOL-020-01, CP-SOL-020-02, CP-SOL-020-03 | CP-045, CP-046, CP-047 | 3 | 5 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 3 | 0 | 0 | 0 | Verificado (borrador 16/11) |
-| RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 | 8 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 2 (DEF-008 y DEF-010, S4; cerrados el 16/11, sus re-pruebas pasan) | Verificado |
+| RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 | 8 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11; E2E-05 en el C3 | Sí | 2 | 0 | 0 | 1 (S4) DEF-016 (E2E-05, 22/11); DEF-008 y DEF-010 cerrados el 16/11 | Verificado |
 | RF-022 | Ampliar radio automáticamente | HU-022 | Could | solicitudes | Cierre | CP-SOL-022-01, CP-SOL-022-02 | CP-050, CP-051 | 2 | 9 pruebas JUnit y 1 de Vitest (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-023 | Advertir productos restringidos | HU-023 | Should | solicitudes | Sprint 3 | CP-SOL-023-01, CP-SOL-023-02 | CP-052, CP-053 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-024 | Elegir respuesta y crear orden | HU-024 | Must | ordenes | Sprint 2 | CP-ORD-024-01, CP-ORD-024-02, CP-ORD-024-03, CP-ORD-024-04 | CP-054, CP-055, CP-056, CP-057 | 4 | 6 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 2 (DEF-007 S3, DEF-009 S4; cerrados el 16/11, la re-prueba pasa) | Verificado |
@@ -55,35 +55,35 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 
 | Requisito | Caso | Criterio | Ciclo | Resultado | Defectos abiertos | Estado |
 |---|---|---|---|---|---|---|
-| RNF-001 | NF-REN-001 | p95 menor o igual a 500 ms en prueba de carga con k6 o JMeter. | C3 |  |  |  |
-| RNF-002 | NF-REN-002 | p95 menor o igual a 3 s. | C3 |  |  |  |
+| RNF-001 | NF-REN-001 | p95 menor o igual a 500 ms en prueba de carga con k6 o JMeter. | C3 | Aprobado | 0 | Verificado (producción, v0.5.4) |
+| RNF-002 | NF-REN-002 | p95 menor o igual a 3 s. | C3 | Aprobado | 0 | Verificado (producción, v0.5.4) |
 | RNF-003 | NF-REN-003 | Menor o igual a 200 ms usando índice GiST. | C2 | Aprobado | 0 | Verificado |
-| RNF-004 | NF-REN-004 | API como máximo 640 MB y todo el stack como máximo 2 GB de los 4 GB del VPS. | C3 |  |  |  |
-| RNF-005 | NF-REN-005 | Mayor o igual a 80 y primera carga de 3 s o menos en 4G simulado. | C3 |  |  |  |
+| RNF-004 | NF-REN-004 | API como máximo 640 MB y todo el stack como máximo 2 GB de los 4 GB del VPS. | C3 | Aprobado | 0 | Verificado (Caddy cerca de su límite, ver DEF-018) |
+| RNF-005 | NF-REN-005 | Mayor o igual a 80 y primera carga de 3 s o menos en 4G simulado. | C3 | Aprobado | 0 | Verificado (producción, v0.5.4) |
 | RNF-006 | NF-SEG-006 | Mínimo 15 caracteres, hash Argon2id o bcrypt, rechazo de contraseñas de la lista de filtradas. | C1 | Aprobado | 0 | Verificado |
 | RNF-007 | NF-SEG-007 | 0 accesos indebidos; cada endpoint con datos personales tiene prueba negativa. | C2 | Aprobado | 0 | Verificado |
 | RNF-008 | NF-SEG-008 | JWT de 15 minutos; refresco rotativo en cookie HttpOnly, Secure y SameSite=Strict. | C2 | Aprobado | 0 | Verificado |
 | RNF-009 | NF-SEG-009 | Máximo 5 intentos de inicio de sesión por minuto por cuenta y 10 solicitudes por hora por cliente; el exceso recibe HTTP 429. | C2 | Aprobado | 0 | Verificado (también en producción sobre v0.5.3) |
-| RNF-010 | NF-SEG-010 | Solo TLS 1.2 y 1.3, HSTS activo y calificación A o superior. | C3 |  |  |  |
+| RNF-010 | NF-SEG-010 | Solo TLS 1.2 y 1.3, HSTS activo y calificación A o superior. | C3 | Aprobado | 0 | Verificado (SSL Labs A+) |
 | RNF-011 | NF-SEG-011 | 0 críticas y 0 altas sin justificar en el build de entrega. | C1 | Aprobado | 1 (S3) | Verificado |
 | RNF-012 | NF-SEG-012 | Solo JPEG, PNG, WebP y PDF de hasta 5 MB, tipo verificado por contenido y metadatos EXIF eliminados. | C2 | Aprobado | 0 | Verificado (también en producción sobre v0.5.3) |
 | RNF-013 | NF-SEG-013 | 100 % registrados con usuario, fecha y acción, sin datos personales en los logs. | C2 | Aprobado | 0 | Verificado (también en producción sobre v0.5.3) |
 | RNF-014 | NF-SEG-014 | 100 % con fecha y versión de la política aceptada. | C1 | Aprobado | 0 | Verificado |
 | RNF-015 | NF-FIA-015 | 0 eventos perdidos en la prueba de reinicio. | C2 | Aprobado | 0 | Verificado |
 | RNF-016 | NF-FIA-016 | 0 aceptadas; todas las combinaciones probadas. | C1 | Aprobado | 1 (S4) | Verificado parcialmente |
-| RNF-017 | NF-FIA-017 | RPO de 24 h, RTO de 4 h y una restauración probada antes de la entrega. | C3 |  |  |  |
-| RNF-018 | NF-DIS-018 | Mayor o igual a 99 % entre el 16/11/2026 y el 26/11/2026. | C3 |  |  |  |
-| RNF-019 | NF-DIS-019 | Como máximo 60 s por despliegue. | C3 |  |  |  |
-| RNF-020 | NF-ESC-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | C3 |  |  |  |
+| RNF-017 | NF-FIA-017 | RPO de 24 h, RTO de 4 h y una restauración probada antes de la entrega. | C3 | Aprobado | 0 | Verificado (restauración de prueba en 22 s) |
+| RNF-018 | NF-DIS-018 | Mayor o igual a 99 % entre el 16/11/2026 y el 26/11/2026. | C3 | No ejecutado | 0 | Sin ejecutar (monitor desde el 22/11; se cierra el 26/11) |
+| RNF-019 | NF-DIS-019 | Como máximo 60 s por despliegue. | C3 | Aprobado | 0 | Verificado (28,3 s) |
+| RNF-020 | NF-ESC-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | C3 | Fallido | 1 (S3) DEF-018 | Con fallas |
 | RNF-021 | NF-ESC-021 | 0 violaciones de dependencias entre módulos. | C1 | Aprobado | 0 | Verificado |
 | RNF-022 | NF-MAN-022 | Mayor o igual a 70 %. | C1 | Aprobado | 1 (S4) | Verificado |
 | RNF-023 | NF-MAN-023 | 0 violaciones en el pipeline. | C1 | Aprobado | 0 | Verificado |
 | RNF-024 | NF-MAN-024 | 100 % de endpoints documentados. | C2 | Aprobado | 0 | Verificado |
 | RNF-025 | NF-COM-025 | JSON sobre HTTPS con prefijo /api/v1. | C2 | Aprobado | 0 | Verificado |
-| RNF-026 | NF-COM-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | C3 |  |  |  |
-| RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 |  |  |  |
-| RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 |  |  |  |
-| RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 |  |  |  |
+| RNF-026 | NF-COM-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | C3 | No ejecutado | 0 | Sin ejecutar (asignado para el 24/11) |
+| RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 | No ejecutado | 0 | Sin ejecutar (asignado para el 24/11) |
+| RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 | Fallido | 1 (S4) DEF-017 | Con fallas |
+| RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 | No ejecutado | 0 | Sin ejecutar (asignado para el 24/11) |
 | RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 | Aprobado | 0 | Verificado |
 
 ## Historial del documento
@@ -103,3 +103,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-009, 012 y 013 re-probados en producción sobre `v0.5.3`; DEF-013 a DEF-015 en verificación |
 | 1.8 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-009, 012 y 013 sin defectos abiertos: DEF-013 a DEF-015 cerrados |
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-015 y RF-022 verificados en el C3; RF-006 y RF-011 fuera de alcance por SC-021 (pendiente del comité) |
+| 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Resultados de los no funcionales del C3 sobre `v0.5.4` (9 aprobados, 2 fallidos con DEF-017 y DEF-018, 4 sin ejecutar) y DEF-016 en RF-021 (borrador, pendiente de firma de QA) |

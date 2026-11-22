@@ -1,0 +1,9 @@
+# NF-DIS-019 · Tiempo sin servicio al recrear la API y Caddy con la v0.5.4 (docker compose up -d --force-recreate, corrido por Pedro en el VPS)
+# Monitor externo: scripts/carga/disponibilidad.mjs, GET / (espera 200) y GET /api/v1/usuarios/me (espera 401) cada segundo de 21:37:43Z a 21:44:43Z
+2026-11-22T21:37:58.828Z SIN SERVICIO (PWA 200, API 502)
+2026-11-22T21:38:27.115Z vuelve el servicio tras 28.3 s
+caídas: 1; tiempo total sin servicio: 28.3 s; la más larga: 28.3 s
+
+# Salida en el VPS:
+#  ✔ Container quienlotiene-api-1   Healthy 33.0s · real 0m33.404s
+# Resultado: 28,3 s sin API (Caddy respondía la PWA y devolvía 502 en /api). Criterio ≤ 60 s.

@@ -1,0 +1,47 @@
+# NF-FIA-017 · Respaldo y restauración de prueba en el VPS, corrido por Pedro el 22/11/2026 (≈ 21:35Z). Copia textual.
+$ systemctl list-timers quienlotiene-respaldo.timer
+NEXT                        LEFT LAST                         PASSED UNIT                        ACTIVATES
+Mon 2026-11-23 08:06:50 UTC  10h Sun 2026-11-22 08:04:36 UTC 13h ago quienlotiene-respaldo.timer quienlotiene-respaldo.service
+
+1 timers listed.
+
+$ sudo bash -c 'set -a; source /opt/quienlotiene/respaldo.env; restic snapshots --latest 3'
+repository 51776790 opened (version 2, compression level auto)
+ID        Time                 Host          Tags        Paths                                               Size
+-----------------------------------------------------------------------------------------------------------------------
+d801bea9  2026-11-20 08:12:37  quienlotiene  base        /quienlotiene.dump                                  75.556 KiB
+aafa86d5  2026-11-20 08:12:44  quienlotiene  archivos    /var/lib/docker/volumes/quienlotiene_uploads/_data  2.694 MiB
+8818b583  2026-11-21 08:09:11  quienlotiene  base        /quienlotiene.dump                                  75.556 KiB
+0cb261d3  2026-11-21 08:09:20  quienlotiene  archivos    /var/lib/docker/volumes/quienlotiene_uploads/_data  2.694 MiB
+f03ea778  2026-11-22 08:04:36  quienlotiene  base        /quienlotiene.dump                                  88.641 KiB
+9834d8ef  2026-11-22 08:04:44  quienlotiene  archivos    /var/lib/docker/volumes/quienlotiene_uploads/_data  4.138 MiB
+-----------------------------------------------------------------------------------------------------------------------
+6 snapshots
+
+$ time sudo /opt/quienlotiene/respaldo/restaurar.sh probar
+Restaurando el último respaldo de la base en un contenedor temporal
+Tablas restauradas por esquema:
+    esquema     | tablas
+----------------+--------
+ administracion |      1
+ catalogo       |      2
+ clientes       |      1
+ identidad      |      4
+ mensajeria     |      1
+ notificaciones |      1
+ ordenes        |      2
+ public         |      6
+ reputacion     |      2
+ solicitudes    |      3
+ tiendas        |      4
+(11 rows)
+
+Documentos en el último respaldo de archivos: 24 rutas
+Prueba de restauración terminada
+
+real    0m22.194s
+user    0m0.010s
+sys     0m0.003s
+
+# Resultado: respaldo diario (último 13 h antes, RPO ≤ 24 h); restauración de prueba de la base en 22 s (RTO ≤ 4 h).
+# La restauración de producción (restaurar.sh produccion) no se ejecutó: «probar» restaura en un contenedor aparte.

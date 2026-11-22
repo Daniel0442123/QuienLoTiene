@@ -1,0 +1,4 @@
+2026-11-22T21:12:39.764Z abiertas: 50 de 50
+2026-11-22T21:15:59.765Z tras 200 s siguen abiertas: 42 de 50
+errores: 8 (16.0 %)
+eventos recibidos (incluye latidos): 442

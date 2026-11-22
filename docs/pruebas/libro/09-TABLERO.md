@@ -1,8 +1,8 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.10 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.11 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
-> Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3.
+> Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3. Avance del C3 registrado como borrador el 22/11/2026 sobre `v0.5.4` (`f22f20c`): punta a punta, no funcionales sobre el VPS y «Cómo llegar».
 >
 > En el Excel se calcula solo con fórmulas sobre las hojas de ejecución y defectos. Aquí se copia el valor al cerrar cada sprint y cada ciclo.
 
@@ -15,6 +15,7 @@
 | C2 (Sprint 3) · corte 22/11 (borrador) | 34 (31 + 3 de HU-008 por SC-018; sin re-pruebas) | 34 | 34 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
 | C3 (Cierre, regresión) · avance 22/11 (borrador) | 104 (86 de regresión y Could + 5 E2E + 13 NF) | 77 | 77 | 0 | 0 | 74,0 % | 100 % | ≥ 95 % aprobados |
 | C3 (Cierre, regresión) · avance 22/11 con HU-015 y HU-022 (borrador) | 100 (104 − 4 «No aplica» por SC-021) | 81 | 81 | 0 | 0 | 81,0 % | 100 % | ≥ 95 % aprobados |
+| C3 (Cierre) · avance 22/11 sobre v0.5.4 con E2E y no funcionales (borrador) | 100 | 96 | 94 | 2 | 0 | 96,0 % | 97,9 % | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
@@ -30,29 +31,32 @@
 | reputacion | — (sin código) |  | 97,9 % | 97,9 % | ≥ 70 % |
 | notificaciones | — (sin código) | 100 % | 100 % | 100 % | ≥ 70 % |
 | administracion | 100 % | 100 % | 97,9 % | 97,9 % | ≥ 70 % |
-| **Total** | 97,2 % (incluye shared) | 95,5 % (shared 77,4 %) | 95,3 % (shared 77,4 %) | 95,4 % (shared 77,4 %) | ≥ 70 % |
+| **Total** | 97,2 % (incluye shared) | 95,5 % (shared 77,4 %) | 95,3 % (shared 77,4 %) | 95,5 % (shared 77,4 %; 22/11 con HU-015 y HU-022) | ≥ 70 % |
 
 ## Defectos
 
 | Severidad | Abiertos | Corregidos | Cerrados | Diferidos | Meta al liberar |
 |---|---|---|---|---|---|
 | S1 Crítica | 0 | 0 | 0 | 0 | 0 abiertos |
-| S2 Alta | 0 | 0 | 0 | 0 | 0 abiertos |
-| S3 Media | 0 | 0 | 7 (DEF-001, DEF-002, DEF-006, DEF-007, DEF-013, DEF-014, DEF-015) | 0 | ≤ 5 con plan |
-| S4 Baja | 1 (DEF-012) | 0 | 6 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010) | 0 | Sin límite, con plan |
+| S2 Alta | 0 | 0 | 1 (DEF-011) | 0 | 0 abiertos |
+| S3 Media | 1 (DEF-018) | 0 | 7 (DEF-001, DEF-002, DEF-006, DEF-007, DEF-013, DEF-014, DEF-015) | 0 | ≤ 5 con plan |
+| S4 Baja | 3 (DEF-012, DEF-016, DEF-017) | 0 | 6 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010) | 0 | Sin límite, con plan |
 
 ## Indicadores
 
+Valores del 22/11/2026 (avance del C3 sobre `v0.5.4`, borrador). Los del corte del Sprint 1 están en la versión 1.0 de esta hoja.
+
 | Indicador | Fórmula | Valor |
 |---|---|---|
-| Avance de ejecución | Casos ejecutados / casos planeados | 38 / 61 = 62,3 % (corte S1) |
-| Tasa de aprobación | Aprobados / (ejecutados − No aplica) | 38 / 38 = 100 % |
-| Casos Alta ejecutados | Casos Alta con resultado / casos Alta | 28 / 51 = 54,9 % (los 23 restantes son del Sprint 2) |
-| Cobertura de requisitos | Requisitos con todos sus casos ejecutados / 38 | 13 / 38 = 34,2 % (todas las RF del Sprint 1) |
-| Densidad de defectos | Defectos confirmados / requisitos del módulo | 5 defectos / 30 requisitos del ciclo (22 RF + 8 RNF) = 0,17 (ninguno en la lógica de negocio) |
-| Defectos reabiertos | Reabiertos / corregidos | 0 / 0 |
-| Cobertura de código | Líneas cubiertas / líneas de domain + application | 1130 / 1163 = 97,2 % |
-| Pruebas automatizadas | Total `@Test` (unitarias + integración) · pasan | 256 (209 unitarias + 47 de integración) · 256 pasan |
+| Avance de ejecución (C3) | Casos ejecutados / casos planeados | 96 / 100 = 96,0 % (faltan NF-COM-026, NF-USA-027, NF-POR-029 y NF-DIS-018) |
+| Tasa de aprobación (C3) | Aprobados / (ejecutados − No aplica) | 94 / 96 = 97,9 % |
+| Tasa de aprobación (campaña, resultado final) | Aprobados / concluyentes | 111 / 113 = 98,2 % (86 funcionales y de seguridad, 30 no funcionales y 5 E2E; 4 No aplica y 4 sin ejecutar) |
+| Casos Alta ejecutados | Casos Alta con resultado / casos Alta | 54 / 54 = 100 % (y E2E-01 a E2E-03) |
+| Cobertura de requisitos | Requisitos con todos sus casos ejecutados / requisitos en alcance | 36 RF de 36 (RF-006 y RF-011 fuera por SC-021) y 26 RNF de 30 |
+| Densidad de defectos | Defectos registrados / requisitos en alcance | 18 / 66 (36 RF + 30 RNF) = 0,27 |
+| Defectos reabiertos | Reabiertos / corregidos | 0 / 14 |
+| Cobertura de código | Líneas cubiertas / líneas de domain + application | 2753 / 2884 = 95,5 % |
+| Pruebas automatizadas | Total `@Test` (unitarias + integración) · pasan | 470 (398 unitarias + 72 de integración) · 470 pasan; además 361 de Vitest y 5 de Playwright |
 
 ## Historial del documento
 
@@ -71,3 +75,4 @@
 | 1.8 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 cerrados |
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 al 22/11 (regresión automatizada) y cobertura por módulo sobre `v0.5.3` |
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 con HU-015 y HU-022 aprobadas y HU-006 y HU-011 fuera por SC-021: 81 de 100 |
+| 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 sobre `v0.5.4` (96 de 100, 97,9 %), defectos con DEF-016 a DEF-018 y DEF-011 en S2, e indicadores al 22/11 (borrador, pendiente de firma de QA) |

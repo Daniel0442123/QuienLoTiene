@@ -1,0 +1,13 @@
+
+Running 5 tests using 1 worker
+
+  ✓  1 pruebas/e2e-01-publicar-y-recibir-respuesta.spec.ts:9:1 › E2E-01 · la respuesta de la tienda aparece al cliente sin recargar @E2E-01 @HU-016 @HU-019 @HU-020 (2.6s)
+  ✓  2 pruebas/e2e-02-elegir-y-entregar-a-domicilio.spec.ts:9:1 › E2E-02 · el pedido a domicilio va de Confirmado a Recibido @E2E-02 @HU-024 @HU-027 @HU-028 (4.0s)
+  ✓  3 pruebas/e2e-03-aprobar-tienda-con-segundo-factor.spec.ts:9:1 › E2E-03 · la tienda aprobada por el administrador con TOTP recibe solicitudes @E2E-03 @HU-002 @HU-004 @HU-036 (2.9s)
+  ✓  4 pruebas/e2e-04-calificar-despues-de-la-entrega.spec.ts:9:1 › E2E-04 · la calificación del cliente se ve en el detalle de la tienda @E2E-04 @HU-028 @HU-034 (4.1s)
+  ✓  5 pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts:17:1 › E2E-05 · sin respuestas el radio pasa a 5 km una vez y la solicitud vence @E2E-05 @HU-021 @HU-022 (31.0m)
+
+  Slow test file: pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts (31.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  5 passed (31.3m)
+exit 0
