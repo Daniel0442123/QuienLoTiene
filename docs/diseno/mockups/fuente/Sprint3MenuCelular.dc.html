@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Navegación · Menú abierto en el celular (SC-020)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;color:#13261f}
+.tablero{box-sizing:border-box;padding:32px 48px;display:flex;gap:56px;background:#e8eeeb;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:12px;width:390px;height:996px}
+.col.ancha{width:1024px}
+.etq{margin:0;font-size:22px;font-weight:700}
+.etq-nota{margin:0;font-size:16px;line-height:1.4;color:#4b5d56;min-height:44px}
+.a11y{color:#08564d}
+.tel{margin-top:auto;flex:none;box-sizing:border-box;width:390px;height:844px;background:#ffffff;border-radius:36px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12);position:relative}
+.esc{margin-top:auto;flex:none;box-sizing:border-box;width:1024px;height:720px;background:#ffffff;border-radius:12px;border:1px solid #c9d6d0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(19,38,31,0.12)}
+.ventana{flex:none;height:28px;background:#dce7e2;display:flex;align-items:center;gap:6px;padding:0 12px}
+.ventana i{width:10px;height:10px;border-radius:50%;background:#a9b9b2;display:block}
+.enc{box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid #dce7e2}
+.esc .enc{padding:12px 24px}
+.marca{min-height:44px;display:flex;align-items:center;font-size:18px;font-weight:700;color:#13261f;text-decoration:none}
+.btn-menu{box-sizing:border-box;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #6a7d76;border-radius:8px;background:#ffffff;color:#13261f;font:inherit;font-weight:700;font-size:16px;padding:0 12px}
+.foco{outline:2px solid #0b6e63;outline-offset:2px}
+.ico{width:20px;height:20px;flex:none}
+.ico-g{width:24px;height:24px;flex:none;color:#0b6e63}
+.nav{box-sizing:border-box;flex:none;display:flex;flex-direction:column;gap:16px;padding:16px;border-bottom:1px solid #dce7e2;background:#ffffff}
+.esc .nav{width:256px;border-bottom:0;border-right:1px solid #dce7e2;padding:24px 16px;align-self:stretch}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.nav a{box-sizing:border-box;min-height:44px;display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:8px;border-left:4px solid transparent;color:#13261f;text-decoration:none;font-size:16px}
+.nav a.actual{border-left-color:#0b6e63;background:#f2f7f5;font-weight:700;color:#0b6e63}
+.nav .salir{border-top:1px solid #dce7e2;padding-top:16px}
+.btn{box-sizing:border-box;min-height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font:inherit;font-weight:700;font-size:16px;padding:0 16px;text-decoration:none;width:fit-content}
+.btn.p{background:#0b6e63;color:#ffffff;border:0}
+.btn.s{background:#ffffff;color:#13261f;border:1px solid #6a7d76}
+.cuerpo{flex:1;display:flex;min-height:0}
+.main{box-sizing:border-box;flex:1;min-width:0;overflow:hidden;padding:24px 16px;display:flex;flex-direction:column;gap:32px}
+.esc .main{padding:24px 32px}
+.sec{display:flex;flex-direction:column;gap:16px}
+.sec.c{gap:12px}
+h1,h2,h3,p{margin:0}
+.h1g{font-size:30px;line-height:1.2;font-weight:700}
+.h1{font-size:24px;line-height:1.25;font-weight:700}
+.h2{font-size:20px;line-height:1.3;font-weight:700}
+.t{font-size:16px;line-height:1.5}
+.tl{font-size:18px;line-height:1.5}
+.suave{color:#4b5d56}
+.fila{display:flex;flex-wrap:wrap;gap:12px}
+.accesos{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.esc .accesos{grid-template-columns:1fr 1fr}
+.acceso{box-sizing:border-box;min-height:44px;height:100%;display:flex;align-items:center;gap:12px;border:1px solid #6a7d76;border-radius:8px;padding:16px;color:#13261f;text-decoration:none}
+.acceso span.tx{flex:1;display:flex;flex-direction:column}
+.acceso b{font-size:16px;line-height:1.5}
+.acceso small{font-size:14px;line-height:1.45;color:#4b5d56}
+.pasos{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.esc .pasos{grid-template-columns:1fr 1fr 1fr}
+.paso{border-radius:8px;background:#f2f7f5;padding:16px;display:flex;flex-direction:column;gap:8px}
+.paso .num{display:flex;align-items:center;gap:8px}
+.paso .num span{width:32px;height:32px;border-radius:50%;background:#0b6e63;color:#ffffff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.paso h3{font-size:16px;font-weight:700;line-height:1.5}
+.tiendas{border:1px solid #6a7d76;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.tiendas h2{display:flex;align-items:center;gap:8px}
+.enlace{min-height:44px;display:inline-flex;align-items:center;font-weight:700;color:#0b6e63;text-decoration:underline;text-underline-offset:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</helmet>
+<div class="tablero" style="width:1378px;height:1060px">
+
+<div class="col">
+<p class="etq">Cliente · Menú abierto</p>
+<p class="etq-nota">Se abre con «Menú» arriba y empuja la pantalla hacia abajo. La opción actual va en negrita, con fondo y borde. <span class="a11y">El foco sigue en «Menú» (aria-expanded="true"); Tab entra al menú y Escape lo cierra y devuelve el foco.</span></p>
+<div class="tel"><header class="enc"><a class="marca" href="#">¿Quién lo tiene?</a><button class="btn-menu foco" type="button" aria-expanded="true" aria-controls="menu-principal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Menú</button></header><nav class="nav" aria-label="Menú principal"><ul><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Inicio</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><span>Preguntar</span></a></li><li><a href="#" class="actual" aria-current="page"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg><span>Mis preguntas</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg><span>Mis pedidos</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.925 20.056a6 6 0 0 0-11.851.001"/><circle cx="12" cy="11" r="4"/><circle cx="12" cy="12" r="10"/></svg><span>Mi cuenta</span></a></li></ul><div class="salir"><button class="btn s" type="button">Cerrar sesión</button></div></nav><main class="main"><section class="sec"><h1 class="h1">Mis preguntas</h1><p class="t suave">Las que todavía reciben respuestas. Toca una para ver qué te respondieron.</p></section></main></div>
+</div>
+<div class="col">
+<p class="etq">Tienda · Menú abierto</p>
+<p class="etq-nota">Las siete secciones de la tienda, con ícono y texto. Al tocar una, el menú se cierra en la pantalla nueva. <span class="a11y">La actual lleva aria-current="page".</span></p>
+<div class="tel"><header class="enc"><a class="marca" href="#">¿Quién lo tiene?</a><button class="btn-menu foco" type="button" aria-expanded="true" aria-controls="menu-principal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Menú</button></header><nav class="nav" aria-label="Menú principal"><ul><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Inicio</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></svg><span>Mi tienda</span></a></li><li><a href="#" class="actual" aria-current="page"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span>Solicitudes nuevas</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg><span>Pedidos</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Perfil y horario</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg><span>Domicilio</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><span>Medios de pago</span></a></li></ul><div class="salir"><button class="btn s" type="button">Cerrar sesión</button></div></nav><main class="main"><section class="sec"><h1 class="h1">Solicitudes nuevas</h1><p class="t suave">3 esperando respuesta</p></section></main></div>
+</div>
+<div class="col">
+<p class="etq">Administrador · Menú abierto</p>
+<p class="etq-nota">Inicio, Tiendas, Reportes y Catálogo. «Cerrar sesión» va al final del menú, separado por una línea.</p>
+<div class="tel"><header class="enc"><a class="marca" href="#">¿Quién lo tiene?</a><button class="btn-menu foco" type="button" aria-expanded="true" aria-controls="menu-principal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Menú</button></header><nav class="nav" aria-label="Menú principal"><ul><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Inicio</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></svg><span>Tiendas</span></a></li><li><a href="#" class="actual" aria-current="page"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"/></svg><span>Reportes</span></a></li><li><a href="#"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z"/><path d="M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"/><circle cx="10.5" cy="6.5" r=".5" fill="currentColor"/></svg><span>Catálogo</span></a></li></ul><div class="salir"><button class="btn s" type="button">Cerrar sesión</button></div></nav><main class="main"><section class="sec"><h1 class="h1">Reportes</h1></section></main></div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1378,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

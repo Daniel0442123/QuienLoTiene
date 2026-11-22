@@ -17,14 +17,18 @@
     "Admin.dc.html": { "x": 0, "y": 5280, "w": 932, "h": 1060, "title": "Administrador (HU-037, HU-038)" },
     "Sprint3Cliente.dc.html": { "x": 0, "y": 6800, "w": 1824, "h": 1060, "title": "Sprint 3 · Cliente: tienda, restringido y cancelar (HU-014, HU-023, HU-029)" },
     "Sprint3Seguimiento.dc.html": { "x": 1904, "y": 6800, "w": 1824, "h": 1060, "title": "Sprint 3 · Cliente: reserva, chat e historial (HU-025, HU-033, HU-008)" },
-    "Sprint3Admin.dc.html": { "x": 3808, "y": 6800, "w": 932, "h": 1060, "title": "Sprint 3 · Administrador: confirmar y deshacer (HU-037, HU-038)" }
+    "Sprint3Admin.dc.html": { "x": 3808, "y": 6800, "w": 932, "h": 1060, "title": "Sprint 3 · Administrador: confirmar y deshacer (HU-037, HU-038)" },
+    "Sprint3MenuCelular.dc.html": { "x": 0, "y": 8460, "w": 1378, "h": 1060, "title": "Navegación · Menú abierto en el celular por rol (SC-020)" },
+    "Sprint3Inicio.dc.html": { "x": 1458, "y": 8460, "w": 2270, "h": 1060, "title": "Inicio · Sin sesión y con sesión por rol, menú cerrado (SC-020)" },
+    "Sprint3Escritorio.dc.html": { "x": 0, "y": 9600, "w": 3280, "h": 1060, "title": "Navegación · Menú lateral en escritorio por rol (SC-020)" }
   },
-  "order": ["Main.dc.html", "ClienteOrden.dc.html", "ClienteDespues.dc.html", "ClienteAvisos.dc.html", "ClienteEstados.dc.html", "TiendaSolicitudes.dc.html", "TiendaGestion.dc.html", "TiendaEstados.dc.html", "TiendaSolicitudes320.dc.html", "Admin.dc.html", "Sprint3Cliente.dc.html", "Sprint3Seguimiento.dc.html", "Sprint3Admin.dc.html"],
+  "order": ["Main.dc.html", "ClienteOrden.dc.html", "ClienteDespues.dc.html", "ClienteAvisos.dc.html", "ClienteEstados.dc.html", "TiendaSolicitudes.dc.html", "TiendaGestion.dc.html", "TiendaEstados.dc.html", "TiendaSolicitudes320.dc.html", "Admin.dc.html", "Sprint3Cliente.dc.html", "Sprint3Seguimiento.dc.html", "Sprint3Admin.dc.html", "Sprint3MenuCelular.dc.html", "Sprint3Inicio.dc.html", "Sprint3Escritorio.dc.html"],
   "notes": {
     "titulo-cliente": { "x": 0, "y": -300, "text": "Cliente", "kind": "title1", "maxW": 3282 },
     "titulo-tienda": { "x": 0, "y": 2340, "text": "Tienda", "kind": "title1", "maxW": 3728 },
     "titulo-admin": { "x": 0, "y": 4980, "text": "Administrador", "kind": "title1", "maxW": 932 },
     "titulo-sprint3": { "x": 0, "y": 6500, "text": "Sprint 3 (C-15)", "kind": "title1", "maxW": 4740 },
+    "titulo-navegacion": { "x": 0, "y": 8160, "text": "Navegación e inicio (SC-020, C-21)", "kind": "title1", "maxW": 3280 },
     "nota-a11y-todas": { "x": 4820, "y": 6800, "w": 360, "fill": "blue", "text": "Accesibilidad en todas las pantallas (C-20). Ayuda en el mismo lugar (WCAG 3.2.6): hoy la app no tiene un mecanismo de ayuda; si se agrega (contacto o soporte), va en el mismo sitio del pie en todas las pantallas. Foco no tapado (2.4.11): la barra inferior fija reserva su alto con scroll-padding-bottom, así un campo enfocado nunca queda debajo de ella." },
     "nota-alcance": { "x": 3482, "y": 1180, "w": 360, "fill": "teal", "text": "Mockups de las historias que faltan (Sprint 2 en adelante), con la paleta Verde botica y Atkinson Hyperlegible. Las del Sprint 1 ya están construidas en la app. Los datos de ejemplo (tiendas, precios, reseñas) son inventados para el mockup." }
   },
