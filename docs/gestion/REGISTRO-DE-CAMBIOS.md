@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.7 · 21/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.8 · 21/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -12,7 +12,11 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 
 ## Sin liberar
 
-Nada todavía.
+Para `v0.5.1` (Sprint 3). Solo frontend; la API no cambia.
+
+### Cambiado
+- Menú principal según el rol, con ícono y texto por módulo: barra lateral fija en escritorio y botón «Menú» que lo abre en celular. El cliente ve Inicio, Preguntar, Mis preguntas, Mis pedidos y Mi cuenta; la tienda, su panel, solicitudes nuevas, pedidos, perfil y horario, domicilio y medios de pago; el administrador, tiendas, reportes y catálogo. El módulo actual va marcado y «Cerrar sesión» pasa al final del menú (SC-020).
+- Página de inicio con contenido: sin sesión explica qué hace la app con «Cómo funciona» en tres pasos y la invitación a registrar la tienda; con sesión muestra un saludo y accesos rápidos según el rol (SC-020).
 
 ## v0.5.0 · 21/11/2026 · Frontend del Sprint 3
 
@@ -228,3 +232,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.5 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.4.0` (backend del Sprint 3) antes de etiquetar, preparadas con Claude Code |
 | 1.6 | 20/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `v0.4.0` no se desplegó (Trivy); notas de `v0.4.1` con la corrección de las imágenes, preparadas con Claude Code |
 | 1.7 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.0` (frontend del Sprint 3, #67 a #74) antes de etiquetar, preparadas con Claude Code |
+| 1.8 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | «Sin liberar»: menú lateral por rol y página de inicio para `v0.5.1` (SC-020), preparado con Claude Code |
