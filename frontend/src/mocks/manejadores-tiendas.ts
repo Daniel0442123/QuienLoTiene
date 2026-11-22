@@ -315,8 +315,7 @@ export const manejadoresTiendas = [
   }),
 
   // HU-014 (y HU-026 para «Cómo llegar»): detalle público de una tienda APROBADA, sin RUT ni documentos. Va al
-  // final para que /tiendas/me no caiga aquí. mediosPago es una lista, como lo manda el backend (TiendaPublica.java),
-  // aunque /v3/api-docs lo publique como un solo valor.
+  // final para que /tiendas/me no caiga aquí.
   http.get(`${RUTA}/:tiendaId`, ({ request, params }) => {
     const usuario = autorizar(request, ['CLIENTE', 'TIENDA', 'ADMIN'])
     if (usuario instanceof Response) return usuario
