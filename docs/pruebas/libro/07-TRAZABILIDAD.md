@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.6 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.7 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -63,11 +63,11 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-006 | NF-SEG-006 | Mínimo 15 caracteres, hash Argon2id o bcrypt, rechazo de contraseñas de la lista de filtradas. | C1 | Aprobado | 0 | Verificado |
 | RNF-007 | NF-SEG-007 | 0 accesos indebidos; cada endpoint con datos personales tiene prueba negativa. | C2 | Aprobado | 0 | Verificado |
 | RNF-008 | NF-SEG-008 | JWT de 15 minutos; refresco rotativo en cookie HttpOnly, Secure y SameSite=Strict. | C2 | Aprobado | 0 | Verificado |
-| RNF-009 | NF-SEG-009 | Máximo 5 intentos de inicio de sesión por minuto por cuenta y 10 solicitudes por hora por cliente; el exceso recibe HTTP 429. | C2 | Aprobado | 1 (S3) DEF-013, en corrección | Verificado (falta re-probar en producción) |
+| RNF-009 | NF-SEG-009 | Máximo 5 intentos de inicio de sesión por minuto por cuenta y 10 solicitudes por hora por cliente; el exceso recibe HTTP 429. | C2 | Aprobado | 1 (S3) DEF-013, en verificación | Verificado (también en producción sobre v0.5.3) |
 | RNF-010 | NF-SEG-010 | Solo TLS 1.2 y 1.3, HSTS activo y calificación A o superior. | C3 |  |  |  |
 | RNF-011 | NF-SEG-011 | 0 críticas y 0 altas sin justificar en el build de entrega. | C1 | Aprobado | 1 (S3) | Verificado |
-| RNF-012 | NF-SEG-012 | Solo JPEG, PNG, WebP y PDF de hasta 5 MB, tipo verificado por contenido y metadatos EXIF eliminados. | C2 | Aprobado | 1 (S3) DEF-014, en corrección | Verificado (falta re-probar en producción) |
-| RNF-013 | NF-SEG-013 | 100 % registrados con usuario, fecha y acción, sin datos personales en los logs. | C2 | Aprobado | 1 (S3) DEF-015, en corrección | Verificado (falta re-probar en producción) |
+| RNF-012 | NF-SEG-012 | Solo JPEG, PNG, WebP y PDF de hasta 5 MB, tipo verificado por contenido y metadatos EXIF eliminados. | C2 | Aprobado | 1 (S3) DEF-014, en verificación | Verificado (también en producción sobre v0.5.3) |
+| RNF-013 | NF-SEG-013 | 100 % registrados con usuario, fecha y acción, sin datos personales en los logs. | C2 | Aprobado | 1 (S3) DEF-015, en verificación | Verificado (también en producción sobre v0.5.3) |
 | RNF-014 | NF-SEG-014 | 100 % con fecha y versión de la política aceptada. | C1 | Aprobado | 0 | Verificado |
 | RNF-015 | NF-FIA-015 | 0 eventos perdidos en la prueba de reinicio. | C2 | Aprobado | 0 | Verificado |
 | RNF-016 | NF-FIA-016 | 0 aceptadas; todas las combinaciones probadas. | C1 | Aprobado | 1 (S4) | Verificado parcialmente |
@@ -100,3 +100,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-012, RF-021 y RF-024 sin defectos abiertos: DEF-007 a DEF-010 cerrados el 16/11 (cierre aprobado por Pedro) |
 | 1.5 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-008 con CP-CLI-008-03 (SC-018 aprobada) y en el Sprint 3; pruebas automatizadas de RF-008 y RF-014. Los resultados los diligencia QA en el C2 |
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Resultados del C2: requisitos del Sprint 3 y RNF-003, 007, 008, 009, 012, 013, 015, 024 y 025 verificados; DEF-012 a DEF-015 (borrador, pendiente de firma de QA) |
+| 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-009, 012 y 013 re-probados en producción sobre `v0.5.3`; DEF-013 a DEF-015 en verificación |

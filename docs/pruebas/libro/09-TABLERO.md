@@ -1,8 +1,8 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.6 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.7 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
-> Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones.
+> Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3.
 >
 > En el Excel se calcula solo con fórmulas sobre las hojas de ejecución y defectos. Aquí se copia el valor al cerrar cada sprint y cada ciclo.
 
@@ -37,7 +37,7 @@
 |---|---|---|---|---|---|
 | S1 Crítica | 0 | 0 | 0 | 0 | 0 abiertos |
 | S2 Alta | 0 | 0 | 0 | 0 | 0 abiertos |
-| S3 Media | 3 en corrección (DEF-013, DEF-014, DEF-015) | 0 | 4 (DEF-001, DEF-002, DEF-006, DEF-007) | 0 | ≤ 5 con plan |
+| S3 Media | 3 en verificación (DEF-013, DEF-014, DEF-015; corregidos en v0.5.3) | 0 | 4 (DEF-001, DEF-002, DEF-006, DEF-007) | 0 | ≤ 5 con plan |
 | S4 Baja | 1 (DEF-012) | 0 | 6 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010) | 0 | Sin límite, con plan |
 
 ## Indicadores
@@ -66,3 +66,4 @@
 | 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 10 defectos del C1 pasan a Cerrados (cierre aprobado por Pedro el 16/11) |
 | 1.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte del Sprint 3 (C2) sobre v0.5.2: avance, cobertura por módulo y DEF-012 abierto (borrador, pendiente de firma de QA) |
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | C2 con 34 de 34 casos ejecutados, cobertura del 22/11 y DEF-013 a DEF-015 en corrección (borrador, pendiente de firma de QA) |
+| 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 en verificación tras la re-prueba en producción sobre `v0.5.3` |
