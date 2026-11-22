@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.11 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.12 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -13,6 +13,17 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 ## Sin liberar
 
 Nada todavía.
+
+## v0.5.4 · 22/11/2026 · Indicadores de la tienda y radio ampliado (Sprint de Cierre)
+
+Etiqueta sobre `main` después de este PR. Trae las dos historias Could del Sprint de Cierre que se hicieron (#89). HU-006 y HU-011 salen del alcance por SC-021, aprobada por el Product Owner (#90).
+
+### Agregado
+- **HU-022, ampliar el radio automáticamente (CU-31).** Si una solicitud abierta lleva 10 minutos sin ninguna respuesta, el radio de búsqueda pasa de 3 a 5 km, una sola vez. La solicitud llega solo a las tiendas que no la tenían, con el aviso de siempre (SSE o push). El cliente recibe el evento nuevo `radio-ampliado`: su pantalla de espera muestra el radio nuevo y anuncia «Nadie ha respondido aún. Ampliamos la búsqueda a 5 km». Los dos valores se configuran con `quienlotiene.solicitudes.radio-ampliado-en-metros` y `espera-para-ampliar`. No hay migración: la columna `fue_ampliado` ya existía.
+- **HU-015, resumen de indicadores (CU-23).** Ruta nueva `GET /api/v1/tiendas/me/indicadores?periodo=7|30` y pantalla «Tu resumen» en el panel de la tienda (`/tienda/resumen`, mockup 06). Muestra las solicitudes recibidas, respondidas y ganadas, con «Respondiste» y «Te eligieron» según la fórmula de SC-011 punto 6. Cuando no hay datos muestra «—».
+
+### Pruebas
+- 398 unitarias y 72 de integración, 0 fallas; cobertura de `domain` y `application` del 95,5 %. Frontend: 361 pruebas. CP-TIE-015-01/02 y CP-SOL-022-01/02 aprobados en el C3 (#89).
 
 ## v0.5.3 · 22/11/2026 · Seguridad de los no funcionales del C2
 
@@ -266,3 +277,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de «Sin liberar» pasadas a `v0.5.1` (#78), preparado con Claude Code |
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.2` (#79, #81 y #82) antes de etiquetar, preparadas con Claude Code |
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.3` (#85: DEF-013, DEF-014, DEF-015 y pruebas de los no funcionales del C2) antes de etiquetar, preparadas con Claude Code |
+| 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.4` (#89: HU-015 y HU-022; #90: SC-021) antes de etiquetar, preparadas con Claude Code |
