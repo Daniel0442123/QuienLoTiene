@@ -14,4 +14,4 @@ Resultado: **Aprobado**. La foto guardada no conserva metadatos.
 
 Nota: el formulario reduce la foto en el navegador (`frontend/src/services/archivos.ts`, `reducirFoto`) y la pasa por un canvas, lo que ya descarta el EXIF antes de enviarla. Esta re-prueba verifica el recorrido de punta a punta, no el limpiador del servidor (`LimpiadorMetadatos`). El limpiador queda cubierto por `LimpiadorMetadatosTest` y `AdministracionTiendasIT#guardaLaFotoSinMetadatos` sobre el mismo código de v0.5.3. Cubre el caso en que el navegador conserva la foto original porque la versión reducida no pesa menos.
 
-Las tiendas de prueba «Tienda Prueba EXIF» y «Tienda Prueba EXIF 2» se rechazan después de la prueba.
+Las tiendas de prueba «Tienda Prueba EXIF» y «Tienda Prueba EXIF 2» se rechazaron el 22/11 a las 9:55 a. m. con el motivo «Tienda de prueba de QA (re-prueba de NF-SEG-012 sobre v0.5.3)».
