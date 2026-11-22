@@ -55,6 +55,9 @@ DOCUMENTOS = [
     # Ciclo C2: el nombre lleva la carpeta porque SALIDA es la del C1
     (Path("docs/pruebas/informes/C2/INFORME-DE-CORTE-SPRINT-3.md"), "../C2/Informe-de-Corte-Sprint-3-QuienLoTiene.docx",
      "Quién lo tiene · Informe de corte · Sprint 3"),
+    # Ciclo C3
+    (Path("docs/pruebas/informes/C3/ACTA-DE-INICIO-C3.md"), "../C3/Acta-de-Inicio-C3-QuienLoTiene.docx",
+     "Quién lo tiene · Acta de inicio · Ciclo 3"),
 ]
 
 TOKENS = re.compile(

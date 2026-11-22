@@ -1,4 +1,15 @@
-import { BadgeCheck, ChevronRight, CircleAlert, Clock, ExternalLink, Inbox, Package, Truck, Wallet } from 'lucide-react'
+import {
+  BadgeCheck,
+  ChartColumn,
+  ChevronRight,
+  CircleAlert,
+  Clock,
+  ExternalLink,
+  Inbox,
+  Package,
+  Truck,
+  Wallet,
+} from 'lucide-react'
 import { Link } from 'react-router'
 import { EsqueletoLista, EstadoError } from '@/components/Estados'
 import { TarjetaAvisosPush } from '@/features/notificaciones/TarjetaAvisosPush'
@@ -21,6 +32,12 @@ const SECCIONES = [
     titulo: textosOrdenes.seccionPedidos,
     descripcion: textosOrdenes.descripcionSeccionPedidos,
     Icono: Package,
+  },
+  {
+    ruta: '/tienda/resumen',
+    titulo: textos.seccionResumen,
+    descripcion: textos.descripcionResumen,
+    Icono: ChartColumn,
   },
   { ruta: '/tienda/perfil', titulo: textos.seccionPerfil, descripcion: textos.descripcionPerfil, Icono: Clock },
   {

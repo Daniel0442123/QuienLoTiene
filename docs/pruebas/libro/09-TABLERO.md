@@ -1,6 +1,6 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.8 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.10 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3.
 >
@@ -13,23 +13,24 @@
 | C1 (Sprints 1 y 2) · corte S1 12/11 | 61 | 38 | 38 | 0 | 0 | 62,3 % | 100 % | 100 % ejecutados |
 | C1 (Sprints 1 y 2) · ejecución S2 16/11 (borrador) | 61 | 61 | 61 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
 | C2 (Sprint 3) · corte 22/11 (borrador) | 34 (31 + 3 de HU-008 por SC-018; sin re-pruebas) | 34 | 34 | 0 | 0 | 100 % | 100 % | 100 % ejecutados |
-| C3 (Cierre, regresión) | 85 + 5 E2E + 13 NF | | | | | | | ≥ 95 % aprobados |
+| C3 (Cierre, regresión) · avance 22/11 (borrador) | 104 (86 de regresión y Could + 5 E2E + 13 NF) | 77 | 77 | 0 | 0 | 74,0 % | 100 % | ≥ 95 % aprobados |
+| C3 (Cierre, regresión) · avance 22/11 con HU-015 y HU-022 (borrador) | 100 (104 − 4 «No aplica» por SC-021) | 81 | 81 | 0 | 0 | 81,0 % | 100 % | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
 | Módulo | Corte S1 (08/11) | Cierre C1 (20/11; valor del 16/11) | Cierre C2 (22/11) | Final C3 (25/11) | Meta |
 |---|---|---|---|---|---|
-| identidad | 94,1 % | 93,0 % | 94,0 % |  | ≥ 70 % |
-| clientes | 97,9 % | 84,4 % | 84,4 % |  | ≥ 70 % |
-| tiendas | 98,4 % | 92,8 % | 90,5 % |  | ≥ 70 % |
-| catalogo | 100 % | 100 % | 100 % |  | ≥ 70 % |
-| solicitudes | 100 % | 99,6 % | 99,7 % |  | ≥ 70 % |
-| ordenes | — (sin código) | 99,0 % | 96,8 % |  | ≥ 70 % |
-| mensajeria | — (sin código) | 100 % | 100 % |  | ≥ 70 % |
-| reputacion | — (sin código) |  | 97,9 % |  | ≥ 70 % |
-| notificaciones | — (sin código) | 100 % | 100 % |  | ≥ 70 % |
-| administracion | 100 % | 100 % | 97,9 % |  | ≥ 70 % |
-| **Total** | 97,2 % (incluye shared) | 95,5 % (shared 77,4 %) | 95,3 % (shared 77,4 %) |  | ≥ 70 % |
+| identidad | 94,1 % | 93,0 % | 94,0 % | 94,0 % | ≥ 70 % |
+| clientes | 97,9 % | 84,4 % | 84,4 % | 84,4 % | ≥ 70 % |
+| tiendas | 98,4 % | 92,8 % | 90,5 % | 90,5 % | ≥ 70 % |
+| catalogo | 100 % | 100 % | 100 % | 100 % | ≥ 70 % |
+| solicitudes | 100 % | 99,6 % | 99,7 % | 99,7 % | ≥ 70 % |
+| ordenes | — (sin código) | 99,0 % | 96,8 % | 96,8 % | ≥ 70 % |
+| mensajeria | — (sin código) | 100 % | 100 % | 100 % | ≥ 70 % |
+| reputacion | — (sin código) |  | 97,9 % | 97,9 % | ≥ 70 % |
+| notificaciones | — (sin código) | 100 % | 100 % | 100 % | ≥ 70 % |
+| administracion | 100 % | 100 % | 97,9 % | 97,9 % | ≥ 70 % |
+| **Total** | 97,2 % (incluye shared) | 95,5 % (shared 77,4 %) | 95,3 % (shared 77,4 %) | 95,4 % (shared 77,4 %) | ≥ 70 % |
 
 ## Defectos
 
@@ -68,3 +69,5 @@
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | C2 con 34 de 34 casos ejecutados, cobertura del 22/11 y DEF-013 a DEF-015 en corrección (borrador, pendiente de firma de QA) |
 | 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 en verificación tras la re-prueba en producción sobre `v0.5.3` |
 | 1.8 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 cerrados |
+| 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 al 22/11 (regresión automatizada) y cobertura por módulo sobre `v0.5.3` |
+| 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 con HU-015 y HU-022 aprobadas y HU-006 y HU-011 fuera por SC-021: 81 de 100 |

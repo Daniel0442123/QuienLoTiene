@@ -1,0 +1,13 @@
+ RUN  v5.1.0 /home/user/quienlotiene/frontend
+ ✓ src/features/notificaciones/manejarEvento.test.ts > HU-030 · Qué hace cada evento del flujo > orden-creada: refresca los pedidos y «Mis respuestas» y avisa a la tienda que la eligieron 6ms
+ ✓ src/features/notificaciones/manejarEvento.test.ts > HU-030 · Qué hace cada evento del flujo > solicitud-cerrada y respuesta-no-elegida: refrescan las listas de la tienda sin anunciar 2ms
+ ✓ src/features/notificaciones/manejarEvento.test.ts > HU-030 · Qué hace cada evento del flujo > solicitud-vencida y estado-orden-cambiado refrescan lo suyo; un tipo desconocido no hace nada 1ms
+ ✓ src/features/notificaciones/manejarEvento.test.ts > HU-030 · Qué hace cada evento del flujo > HU-022 · radio-ampliado: refresca la solicitud del cliente y le anuncia el radio nuevo 2ms
+ ✓ src/features/notificaciones/manejarEvento.test.ts > HU-030 · Qué hace cada evento del flujo > HU-033 · mensaje-recibido: refresca solo el chat de esa orden, sin anunciar (lo lee su región role="log") 1ms
+ ✓ src/pages/ResumenTiendaPagina.test.tsx > HU-015 · Tu resumen de la tienda > no tiene violaciones de accesibilidad detectables 155ms
+ ✓ src/pages/ResumenTiendaPagina.test.tsx > HU-015 · Tu resumen de la tienda > CP-TIE-015-01 · con 10 recibidas, 8 respondidas y 3 ganadas en 7 días muestra esos conteos y porcentajes 35ms
+ ✓ src/pages/ResumenTiendaPagina.test.tsx > HU-015 · Tu resumen de la tienda > CP-TIE-015-02 · una tienda sin actividad en 30 días ve todo en cero y «—», sin errores 42ms
+ Test Files  2 passed (2)
+      Tests  8 passed (8)
+   Start at  15:42:46
+   Duration  1.15s (environment 37%, import 21%, setup 17%, tests 16%, transform 8%)

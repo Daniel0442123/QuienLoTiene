@@ -114,6 +114,13 @@ public class SolicitudEntity {
         this.actualizadoEn = ahora;
     }
 
+    /** HU-022: el radio nuevo de la única ampliación; el bloqueo optimista lo da {@code @Version}. */
+    void ampliarRadio(int nuevoRadioMetros, Instant ahora) {
+        this.radioMetros = nuevoRadioMetros;
+        this.fueAmpliado = true;
+        this.actualizadoEn = ahora;
+    }
+
     double latitud() {
         return ubicacion.getY();
     }

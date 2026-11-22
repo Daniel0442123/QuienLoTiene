@@ -131,6 +131,7 @@ class ResponderSolicitudTest {
                 false,
                 solicitud.getUbicacion(),
                 3_000,
+                false,
                 true,
                 solicitud.getEstado(),
                 solicitud.getFechaPublicacion(),

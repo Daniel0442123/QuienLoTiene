@@ -5,7 +5,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
 
-/** Lo que el cliente publica: "¿quién tiene X?" (glosario). Nace ABIERTA y vence a los 30 minutos. */
+/**
+ * Lo que el cliente publica: "¿quién tiene X?" (glosario). Nace ABIERTA con radio de 3 km, puede ampliarse una vez a
+ * 5 km si nadie responde (HU-022) y vence a los 30 minutos.
+ */
 public final class Solicitud {
 
     public static final int LONGITUD_MAXIMA_PRODUCTO = 150;
@@ -19,7 +22,8 @@ public final class Solicitud {
     private final Modalidad modalidad;
     private final boolean esUrgente;
     private final Ubicacion ubicacion;
-    private final int radioEnMetros;
+    private int radioEnMetros;
+    private boolean fueAmpliado;
     private final boolean esRestringida;
     private EstadoSolicitud estado;
     private final Instant fechaPublicacion;
@@ -35,6 +39,7 @@ public final class Solicitud {
             boolean esUrgente,
             Ubicacion ubicacion,
             int radioEnMetros,
+            boolean fueAmpliado,
             boolean esRestringida,
             EstadoSolicitud estado,
             Instant fechaPublicacion,
@@ -48,6 +53,7 @@ public final class Solicitud {
         this.esUrgente = esUrgente;
         this.ubicacion = ubicacion;
         this.radioEnMetros = radioEnMetros;
+        this.fueAmpliado = fueAmpliado;
         this.esRestringida = esRestringida;
         this.estado = estado;
         this.fechaPublicacion = fechaPublicacion;
@@ -103,6 +109,7 @@ public final class Solicitud {
                 esUrgente,
                 ubicacion,
                 radioInicialEnMetros,
+                false,
                 esRestringida,
                 EstadoSolicitud.ABIERTA,
                 ahora,
@@ -120,6 +127,7 @@ public final class Solicitud {
             boolean esUrgente,
             Ubicacion ubicacion,
             int radioEnMetros,
+            boolean fueAmpliado,
             boolean esRestringida,
             EstadoSolicitud estado,
             Instant fechaPublicacion,
@@ -134,6 +142,7 @@ public final class Solicitud {
                 esUrgente,
                 ubicacion,
                 radioEnMetros,
+                fueAmpliado,
                 esRestringida,
                 estado,
                 fechaPublicacion,
@@ -184,6 +193,26 @@ public final class Solicitud {
         }
         this.estado = EstadoSolicitud.VENCIDA;
         return true;
+    }
+
+    /**
+     * HU-022 (CU-31, diagrama 35 paso 4): nadie respondió a tiempo y la búsqueda se agranda. Solo una vez por solicitud
+     * y solo mientras siga recibiendo respuestas; si no se puede, no hace nada.
+     *
+     * @param nuevoRadioEnMetros debe ser mayor que el radio actual
+     * @return {@code true} si el radio cambió
+     */
+    public boolean ampliarRadio(int nuevoRadioEnMetros, Instant ahora) {
+        if (fueAmpliado || !recibeRespuestas(ahora) || nuevoRadioEnMetros <= radioEnMetros) {
+            return false;
+        }
+        this.radioEnMetros = nuevoRadioEnMetros;
+        this.fueAmpliado = true;
+        return true;
+    }
+
+    public boolean fueAmpliado() {
+        return fueAmpliado;
     }
 
     public boolean esDe(UUID posibleCliente) {

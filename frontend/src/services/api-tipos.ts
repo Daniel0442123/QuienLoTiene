@@ -730,6 +730,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/tiendas/me/indicadores": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Ver mi resumen de indicadores
+         * @description HU-015. Solicitudes recibidas, respondidas y ganadas en los últimos 7 o 30 días, con los porcentajes «Respondiste» y «Te eligieron» (SC-011 punto 6). Un porcentaje es null cuando su denominador es 0.
+         */
+        get: operations["consultar_4"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/tiendas/me/domicilio/simulacion": {
         parameters: {
             query?: never;
@@ -879,7 +899,7 @@ export interface paths {
         };
         /**
          * Abrir el flujo de eventos en tiempo real
-         * @description HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario (SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, solicitud-vencida, orden-creada, estado-orden-cambiado y mensaje-recibido (docs/api/contrato-sprint-2.yaml y CONTRATO-SPRINT-3.md).
+         * @description HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario (SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, solicitud-vencida, radio-ampliado, orden-creada, estado-orden-cambiado y mensaje-recibido (docs/api/contrato-sprint-2.yaml y CONTRATO-SPRINT-3.md).
          */
         get: operations["abrir"];
         put?: never;
@@ -921,7 +941,7 @@ export interface paths {
          * Consultar si un producto es restringido
          * @description HU-023. Compara sin mayúsculas ni tildes con la lista de restringidos de HU-038.
          */
-        get: operations["consultar_4"];
+        get: operations["consultar_5"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1524,6 +1544,22 @@ export interface components {
             /** Format: date-time */
             fecha: string;
         };
+        IndicadoresTienda: {
+            /** Format: int32 */
+            periodoEnDias: number;
+            /** Format: int32 */
+            recibidas: number;
+            /** Format: int32 */
+            respondidas: number;
+            /** Format: int32 */
+            respuestasConProducto: number;
+            /** Format: int32 */
+            ganadas: number;
+            /** Format: int32 */
+            porcentajeRespondiste: number | null;
+            /** Format: int32 */
+            porcentajeTeEligieron: number | null;
+        };
         SimulacionDomicilioResponse: {
             /** Format: int64 */
             costoDomicilioEnPesos: number;
@@ -1672,6 +1708,14 @@ export interface components {
             /** Format: int32 */
             respuestasRecibidas: number;
         };
+        EventoRadioAmpliado: {
+            /** Format: uuid */
+            solicitudId: string;
+            /** Format: int32 */
+            radioEnMetros: number;
+            /** Format: int32 */
+            tiendasNuevas: number;
+        };
         EventoOrdenCreada: {
             /** Format: uuid */
             ordenId: string;
@@ -1708,21 +1752,21 @@ export interface components {
             aviso: string | null;
         };
         /** @enum {string} */
-        EstadoRespuesta: "ESPERANDO" | "ELEGIDA" | "NO_ELEGIDA" | "VENCIDA";
-        /** @enum {string} */
         Modalidad: "RECOGER" | "DOMICILIO";
         /** @enum {string} */
-        MedioPago: "EFECTIVO" | "TRANSFERENCIA" | "DATAFONO";
+        EstadoRespuesta: "ESPERANDO" | "ELEGIDA" | "NO_ELEGIDA" | "VENCIDA";
         /** @enum {string} */
-        TipoRespuesta: "SI" | "PARECIDO" | "NO";
-        /** @enum {string} */
-        EstadoSolicitud: "ABIERTA" | "RESUELTA" | "VENCIDA";
-        /** @enum {string} */
-        EstadoTienda: "PENDIENTE" | "APROBADA" | "RECHAZADA" | "SUSPENDIDA";
+        DiaSemana: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
         /** @enum {string} */
         EstadoOrden: "CONFIRMADO" | "PREPARANDO" | "EN_CAMINO" | "LISTO_PARA_RECOGER" | "ENTREGADO" | "RESUELTA" | "CANCELADO" | "VENCIDA";
         /** @enum {string} */
-        DiaSemana: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
+        EstadoTienda: "PENDIENTE" | "APROBADA" | "RECHAZADA" | "SUSPENDIDA";
+        /** @enum {string} */
+        EstadoSolicitud: "ABIERTA" | "RESUELTA" | "VENCIDA";
+        /** @enum {string} */
+        TipoRespuesta: "SI" | "PARECIDO" | "NO";
+        /** @enum {string} */
+        MedioPago: "EFECTIVO" | "TRANSFERENCIA" | "DATAFONO";
         /** @description Un campo que no pasó la validación (GEN-001). */
         ErrorDeCampo: {
             campo: string;
@@ -3407,6 +3451,38 @@ export interface operations {
             };
         };
     };
+    consultar_4: {
+        parameters: {
+            query?: {
+                /** @description Días hacia atrás */
+                periodo?: "7" | "30";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Indicadores del periodo; una tienda nueva recibe todo en cero */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IndicadoresTienda"];
+                };
+            };
+            /** @description El periodo no es 7 ni 30 (GEN-001) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["ProblemDetail"];
+                };
+            };
+        };
+    };
     simular: {
         parameters: {
             query: {
@@ -3649,7 +3725,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "text/event-stream": components["schemas"]["EventoSolicitudNueva"] | components["schemas"]["EventoRespuestaRecibida"] | components["schemas"]["EventoSolicitudCerrada"] | components["schemas"]["EventoRespuestaNoElegida"] | components["schemas"]["EventoSolicitudVencida"] | components["schemas"]["EventoOrdenCreada"] | components["schemas"]["EventoEstadoOrdenCambiado"] | components["schemas"]["EventoMensajeRecibido"];
+                    "text/event-stream": components["schemas"]["EventoSolicitudNueva"] | components["schemas"]["EventoRespuestaRecibida"] | components["schemas"]["EventoSolicitudCerrada"] | components["schemas"]["EventoRespuestaNoElegida"] | components["schemas"]["EventoSolicitudVencida"] | components["schemas"]["EventoRadioAmpliado"] | components["schemas"]["EventoOrdenCreada"] | components["schemas"]["EventoEstadoOrdenCambiado"] | components["schemas"]["EventoMensajeRecibido"];
                 };
             };
             /** @description Sin sesión (GEN-003) */
@@ -3683,7 +3759,7 @@ export interface operations {
             };
         };
     };
-    consultar_4: {
+    consultar_5: {
         parameters: {
             query: {
                 producto: string;

@@ -6,6 +6,7 @@ import com.quienlotiene.notificaciones.domain.model.Notificacion;
 import com.quienlotiene.notificaciones.domain.port.CanalTiempoReal;
 import com.quienlotiene.ordenes.api.EstadoOrdenCambiadoEvent;
 import com.quienlotiene.ordenes.api.OrdenCreadaEvent;
+import com.quienlotiene.solicitudes.api.RadioAmpliadoEvent;
 import com.quienlotiene.solicitudes.api.RespuestaElegidaEvent;
 import com.quienlotiene.solicitudes.api.RespuestaRecibidaEvent;
 import com.quienlotiene.solicitudes.api.SolicitudDifundidaEvent;
@@ -97,6 +98,16 @@ public class NotificarEnTiempoReal {
                     EventosTiempoReal.SolicitudCerrada.TIPO,
                     new EventosTiempoReal.SolicitudCerrada(evento.solicitudId(), VENCIDA));
         }
+    }
+
+    /** HU-022: a las tiendas nuevas les llega la solicitud por {@link #alDifundirSolicitud}; aquí solo el cliente. */
+    @ApplicationModuleListener
+    public void alAmpliarRadio(RadioAmpliadoEvent evento) {
+        avisar(
+                evento.clienteId(),
+                EventosTiempoReal.RadioAmpliado.TIPO,
+                new EventosTiempoReal.RadioAmpliado(
+                        evento.solicitudId(), evento.radioEnMetros(), evento.tiendasNuevas()));
     }
 
     @ApplicationModuleListener

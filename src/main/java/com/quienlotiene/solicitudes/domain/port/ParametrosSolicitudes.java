@@ -13,4 +13,10 @@ public interface ParametrosSolicitudes {
 
     /** Radio inicial de difusión (3 000 metros). */
     int radioInicialEnMetros();
+
+    /** HU-022: radio al que se amplía una solicitud sin respuestas (5 000 metros). */
+    int radioAmpliadoEnMetros();
+
+    /** HU-022: cuánto se espera sin respuestas antes de ampliar el radio (10 minutos). */
+    Duration esperaParaAmpliar();
 }

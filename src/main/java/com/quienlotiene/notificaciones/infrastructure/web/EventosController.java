@@ -33,8 +33,8 @@ class EventosController {
             description = "HU-030. text/event-stream con el JWT en Authorization. Hasta 5 conexiones por usuario "
                     + "(SC-014), latido ':latido' cada 25 s y reenvío de lo perdido en 5 minutos con Last-Event-ID. "
                     + "Tipos: solicitud-nueva, respuesta-recibida, solicitud-cerrada, respuesta-no-elegida, "
-                    + "solicitud-vencida, orden-creada, estado-orden-cambiado y mensaje-recibido (docs/api/contrato-sprint-2.yaml "
-                    + "y CONTRATO-SPRINT-3.md).")
+                    + "solicitud-vencida, radio-ampliado, orden-creada, estado-orden-cambiado y mensaje-recibido "
+                    + "(docs/api/contrato-sprint-2.yaml y CONTRATO-SPRINT-3.md).")
     @ApiResponse(
             responseCode = "200",
             description = "Conexión abierta. Cada evento trae id, event (el tipo) y data (uno de estos JSON).",
@@ -50,6 +50,7 @@ class EventosController {
                                                 EventosTiempoReal.SolicitudCerrada.class,
                                                 EventosTiempoReal.RespuestaNoElegida.class,
                                                 EventosTiempoReal.SolicitudVencida.class,
+                                                EventosTiempoReal.RadioAmpliado.class,
                                                 EventosTiempoReal.OrdenCreada.class,
                                                 EventosTiempoReal.EstadoOrdenCambiado.class,
                                                 EventosTiempoReal.MensajeRecibido.class

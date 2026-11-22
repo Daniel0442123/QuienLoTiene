@@ -1,6 +1,6 @@
 # Hoja «Bitácora» · Sesiones de prueba
 
-> **Control del documento** · Versión 1.6 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.8 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Una fila por responsable de QA y por día de pruebas. Las ejecuciones automáticas de CI en cada push no se registran aquí; sí las corridas que se usan como evidencia (cierre de historia, corte de sprint, cierre de ciclo, re-prueba).
 
@@ -20,6 +20,8 @@
 | 2026-11-22 | C2 | Sprint 3 | Francisco Castro | 0,75 | Automatizada | main `d92847a` + correcciones del PR | `./mvnw -B verify` (386 unitarias + 67 integración con Testcontainers) · NF-SEG-007, 008, 009, 012 y 013 | 5 | 5 | 0 | 0 | 95,3 % | 3 (DEF-013, DEF-014, DEF-015) | En v0.5.2 faltaban el límite de intentos de inicio de sesión, la limpieza del EXIF y la auditoría del acceso a datos del cliente | Corregidos en el mismo PR; re-probar en producción después de desplegar | Preparado con Claude Code; pendiente la revisión y firma de QA |
 | 2026-11-22 | C2 | Sprint 3 | Yanimar Burbano | 0,25 | Automatizada | main `d92847a` + correcciones del PR | `./mvnw -B verify` · NF-REN-003 (RendimientoBusquedaTiendasIT) y NF-FIA-015 (RegistroDeEventosIT); filas de CP-CLI-008 en el Excel del libro | 2 | 2 | 0 | 0 | 95,3 % | 0 | — | Revisar en el C3 la búsqueda completa: 220 ms con 79 tiendas en el radio porque carga cada tienda una por una | Preparado con Claude Code; pendiente la revisión y firma de QA |
 | 2026-11-22 | C2 | Sprint 3 | Francisco Castro | 0,5 | Re-prueba en producción | v0.5.3 · `ff9ac6d` (producción) | https://quienlotiene.tech: 6 inicios de sesión seguidos, registro de «Tienda Prueba EXIF 2» con una foto con EXIF y descarga como administrador, pedido F5305EE7 como tienda1 y log del VPS · ver `evidencias/C2/2026-11-22/produccion-v0.5.3/` | 3 | 3 | 0 | 0 | — | 0 | El formulario reduce la foto en el navegador y le quita el EXIF antes de enviarla, así que en producción no se ve el limpiador del servidor | Tiendas de prueba «Tienda Prueba EXIF» y «Tienda Prueba EXIF 2» rechazadas el 22/11; QA cierra DEF-013 a DEF-015 | Hecho por Pedro con Claude Code el 21/11 de 11:55 p. m. a 12:05 a. m. y el 22/11 de 9:47 a. m. a 9:50 a. m.; pendiente la revisión y firma de QA |
+| 2026-11-22 | C3 | Cierre | Yanimar Burbano | 0,5 | Automatizada | v0.5.3 · `ff9ac6d` | `./mvnw -B verify` (386 unitarias + 67 integración con Testcontainers) · regresión completa de los casos con prueba etiquetada | 77 | 77 | 0 | 0 | 95,4 % | 0 | Las historias Could HU-006, 011, 015 y 022 del Cierre todavía no están implementadas; no hay pruebas de punta a punta ni guiones de carga | Decidir si se implementan en el Cierre o quedan «No aplica»; escribir Playwright y k6 en este ciclo | Preparado con Claude Code; pendiente la revisión y firma de QA |
+| 2026-11-22 | C3 | Cierre | Yanimar Burbano | 0,25 | Automatizada | rama de HU-015 y HU-022 (PR #89) | `./mvnw -B verify` (398 unitarias + 72 integración con Testcontainers) y `npm test` (361) · CP-TIE-015-01/02 y CP-SOL-022-01/02 | 4 | 4 | 0 | 0 | 95,5 % | 0 | HU-006 y HU-011 salen por SC-021, que todavía no aprueba el comité | Aprobar SC-021 antes de fusionar; escribir Playwright y k6 en este ciclo | Preparado con Claude Code; pendiente la revisión y firma de QA |
 
 ## Historial del documento
 
@@ -34,3 +36,5 @@
 | 1.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del corte del Sprint 3 (C2) sobre v0.5.2: automatizadas y recorrido en producción (borrador, pendiente de firma de QA) |
 | 1.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del 22/11: los 7 no funcionales del C2 con prueba y DEF-013 a DEF-015 (borrador, pendiente de firma de QA) |
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba en producción de NF-SEG-009, 012 y 013 sobre `v0.5.3` |
+| 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera sesión del C3: regresión automatizada sobre `v0.5.3` |
+| 1.8 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesión del C3 con los casos de HU-015 y HU-022 |

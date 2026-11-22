@@ -1,8 +1,8 @@
 # Contrato de la API del Sprint 3 · Quién lo tiene
 
-> **Control del documento** · Versión 0.5 · 21/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.6 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: En revisión · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
-Acuerdo del «primer día» del backlog del Sprint 3 (`docs/planificacion/BACKLOG-SPRINT-3.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-014, HU-023, HU-025, HU-029, HU-033, HU-034, HU-035, HU-037 y HU-038. HU-026 no necesita rutas nuevas (la orden ya trae la ubicación). HU-031 entró en la versión 0.2 y HU-008 en la 0.3.
+Acuerdo del «primer día» del backlog del Sprint 3 (`docs/planificacion/BACKLOG-SPRINT-3.md`): rutas, cuerpos, códigos de error y eventos de tiempo real de HU-014, HU-023, HU-025, HU-029, HU-033, HU-034, HU-035, HU-037 y HU-038. HU-026 no necesita rutas nuevas (la orden ya trae la ubicación). HU-031 entró en la versión 0.2, HU-008 en la 0.3 y las Could del Sprint de Cierre HU-015 y HU-022 en la 0.6.
 
 A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: las historias se construyen en el mismo pull request que este contrato, así que la fuente de verdad es `/v3/api-docs` desde el primer día y Monica genera los tipos con el mismo comando de C-04 (PR #48). Las reglas comunes son las del Sprint 2: JWT en `Authorization`, fechas ISO-8601 en UTC, dinero en pesos enteros, `ProblemDetail` con `codigo` y `404` (no `403`) cuando el recurso es de otro usuario (R-03).
 
@@ -36,6 +36,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | `GET /api/v1/notificaciones/configuracion-push` | CLIENTE, TIENDA | HU-031 | `{ "habilitado": true, "clavePublica": "B..." }`: la `applicationServerKey` para `PushManager.subscribe`. Con `habilitado: false` el frontend no pide el permiso |
 | `POST /api/v1/notificaciones/suscripciones` | CLIENTE, TIENDA | HU-031 | El `PushSubscription.toJSON()` del navegador: `{ "endpoint": "https://...", "keys": { "p256dh": "...", "auth": "..." } }`. Responde 201 |
 | `DELETE /api/v1/notificaciones/suscripciones?endpoint=` | CLIENTE, TIENDA | HU-031 | Dar de baja este navegador. Responde 204 aunque no exista |
+| `GET /api/v1/tiendas/me/indicadores?periodo=7` | TIENDA | HU-015, SC-011 | «Tu resumen»: `periodoEnDias`, `recibidas`, `respondidas`, `respuestasConProducto`, `ganadas`, `porcentajeRespondiste` y `porcentajeTeEligieron` (nulables). `periodo` es 7 o 30 (30 por defecto); otro valor responde `GEN-001` |
 
 ## Eventos de tiempo real nuevos o con cambios
 
@@ -43,6 +44,7 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 |---|---|---|
 | `estado-orden-cambiado` | El cliente y la tienda de la orden | Igual que antes y `motivo` (nulable): el motivo cuando se cancela |
 | `mensaje-recibido` | La otra parte de la orden | Orden y mensaje (el frontend pide los mensajes por REST) |
+| `radio-ampliado` | El cliente de la solicitud | `solicitudId`, `radioEnMetros` y `tiendasNuevas` (HU-022, diagrama 35 paso 8). A las tiendas nuevas les llega el `solicitud-nueva` de siempre |
 | Push (no SSE) | La tienda sin la app abierta | `{ "tipo": "solicitud-nueva" \| "orden-creada" \| "estado-orden-cambiado", "id": "..." }`: solo tipo e id (diagrama 28); el service worker muestra la notificación y al tocarla abre la app |
 
 ## Códigos de error nuevos
@@ -75,6 +77,8 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 8. **Chat:** solo los dos participantes; se guarda en `mensajeria.mensaje`. Con la orden en un estado final queda en solo lectura: se puede leer pero no escribir (`MEN-002`).
 9. **Push (HU-031):** se envía solo cuando la tienda no tiene ninguna conexión SSE abierta, así que no hay avisos dobles. El servidor cifra (RFC 8291) y firma (VAPID, RFC 8292) con la JDK, sin librerías nuevas. Solo acepta endpoints HTTPS de los servicios push de Chrome, Firefox, Safari y Edge, porque el servidor hace un POST a esa dirección (SSRF, OWASP A10). Una suscripción que el servicio da por vencida (404 o 410) se borra. Sin las claves `QLT_VAPID_CLAVE_PUBLICA` y `QLT_VAPID_CLAVE_PRIVADA` el push queda apagado y lo demás funciona igual.
 10. **Historial y «Mis preguntas» (HU-008, SC-018):** un solo endpoint sirve a las dos pantallas. «Mis preguntas» son las que traen `estaAbierta: true`: ABIERTAS y sin vencer, aunque la tarea de vencimiento todavía no las haya pasado a VENCIDA. El comité aprobó SC-018 el 19/11/2026, así que el frontend muestra las dos secciones. Repetir usa la ubicación del momento, no la de la solicitud original.
+11. **Ampliar el radio (HU-022, CU-31):** una tarea cada minuto toma las solicitudes ABIERTAS sin vencer, publicadas hace 10 minutos o más, que no se han ampliado y no tienen ninguna respuesta (una «No lo tengo» también cuenta, como dice CP-SOL-022-02). Pasa el radio de 3 a 5 km una sola vez (`fue_ampliado`), envía la solicitud solo a las tiendas que no la tenían y avisa al cliente con `radio-ampliado`. Los dos valores son configurables (`quienlotiene.solicitudes.radio-ampliado-en-metros` y `espera-para-ampliar`). No hay código de error nuevo: si la solicitud ya se amplió o se cerró, la tarea no hace nada.
+12. **Indicadores (HU-015, CU-23):** la ruta está en `/tiendas/me/` pero la sirve el módulo `solicitudes`, porque los conteos son de su esquema y `tiendas` no puede depender de `solicitudes` sin un ciclo entre módulos (lo mismo que «Mis respuestas»). Esto cambia el diagrama 27, que la ponía en `tiendas`. Fórmula de SC-011 punto 6: «Respondiste» = respuestas de cualquier tipo ÷ solicitudes que le llegaron; «Te eligieron» = respuestas elegidas ÷ respuestas «Sí lo tengo» o «Tengo algo parecido». Todo se cuenta por la fecha del envío o de la respuesta dentro del periodo, con porcentajes redondeados al entero. Sin denominador el porcentaje es `null` y la pantalla muestra «—».
 
 ## Historial del documento
 
@@ -85,3 +89,4 @@ A diferencia del Sprint 2, no hay un `contrato-sprint-3.yaml` escrito a mano: la
 | 0.3 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-008: historial, repetir y decisión 10 (SC-018) |
 | 0.4 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Decisión 2 ratificada (SC-019) y SC-018 aprobada |
 | 0.5 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Ajustes que pidió el frontend en los PR #67 a #73: `esRestringida`, `mediosPago` como lista, `nombreTienda` y `estadoTienda` en la bandeja de reportes, `motivo` como enum y `MEN-003` para el texto del chat |
+| 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sprint de Cierre: HU-015 (ruta de indicadores y decisión 12) y HU-022 (evento `radio-ampliado` y decisión 11) |

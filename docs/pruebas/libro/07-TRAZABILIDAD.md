@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.8 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.9 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -15,23 +15,23 @@ Requisito → historia → casos → pruebas automatizadas → resultado. Estado
 | RF-003 | Iniciar y cerrar sesión | HU-003 | Must | identidad | Sprint 1 | CP-IDE-003-01, CP-IDE-003-02, CP-IDE-003-03 | CP-006, CP-007, CP-008 | 3 | 9 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
 | RF-004 | Segundo factor del administrador | HU-004 | Should | identidad | Sprint 1 | CP-IDE-004-01, CP-IDE-004-02 | CP-009, CP-010 | 2 | 7 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-005 | Aceptar política de datos | HU-005 | Must | identidad | Sprint 1 | CP-IDE-005-01, CP-IDE-005-02 | CP-011, CP-012 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
-| RF-006 | Verificar correo | HU-006 | Could | identidad | Cierre | CP-IDE-006-01, CP-IDE-006-02 | CP-013, CP-014 | 2 |  |  |  |  |  |  |  |
+| RF-006 | Verificar correo | HU-006 | Could | identidad | Cierre | CP-IDE-006-01, CP-IDE-006-02 | CP-013, CP-014 | 2 | — | No aplica | 0 | 0 | 0 | 0 | Fuera de alcance (SC-021) |
 | RF-007 | Gestionar perfil y direcciones | HU-007 | Must | clientes | Sprint 1 | CP-CLI-007-01, CP-CLI-007-02 | CP-015, CP-016 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-008 | Consultar historial y repetir | HU-008 | Could | clientes | Sprint 3 | CP-CLI-008-01, CP-CLI-008-02, CP-CLI-008-03 | CP-017, CP-018, SC-018 | 3 | 5 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
 | RF-009 | Configurar perfil de tienda | HU-009 | Must | tiendas | Sprint 1 | CP-TIE-009-01, CP-TIE-009-02 | CP-019, CP-020 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-010 | Configurar domicilio con tarifa fija | HU-010 | Must | tiendas | Sprint 1 | CP-TIE-010-01, CP-TIE-010-02 | CP-021, CP-022 | 2 | 6 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
-| RF-011 | Tarifas de domicilio avanzadas | HU-011 | Could | tiendas | Cierre | CP-TIE-011-01, CP-TIE-011-02 | CP-023, CP-024 | 2 |  |  |  |  |  |  |  |
+| RF-011 | Tarifas de domicilio avanzadas | HU-011 | Could | tiendas | Cierre | CP-TIE-011-01, CP-TIE-011-02 | CP-023, CP-024 | 2 | — | No aplica | 0 | 0 | 0 | 0 | Fuera de alcance (SC-021) |
 | RF-012 | Configurar medios de pago | HU-012 | Must | tiendas | Sprint 1 | CP-TIE-012-01, CP-TIE-012-02 | CP-025, CP-026 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 1 (DEF-007, S3; cerrado el 16/11, la re-prueba sobre 55ab5b6 pasa) | Verificado |
 | RF-013 | Abrir o cerrar tienda | HU-013 | Must | tiendas | Sprint 1 | CP-TIE-013-01, CP-TIE-013-02 | CP-027, CP-028 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-014 | Ver detalle de tienda | HU-014 | Should | tiendas | Sprint 3 | CP-TIE-014-01, CP-TIE-014-02 | CP-029, CP-030 | 2 | 3 pruebas JUnit y 2 de integración (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
-| RF-015 | Ver resumen de indicadores | HU-015 | Could | tiendas | Cierre | CP-TIE-015-01, CP-TIE-015-02 | CP-031, CP-032 | 2 |  |  |  |  |  |  |  |
+| RF-015 | Ver resumen de indicadores | HU-015 | Could | tiendas | Cierre | CP-TIE-015-01, CP-TIE-015-02 | CP-031, CP-032 | 2 | 8 pruebas JUnit y 3 de Vitest (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-016 | Publicar solicitud | HU-016 | Must | solicitudes | Sprint 1 | CP-SOL-016-01, CP-SOL-016-02, CP-SOL-016-03 | CP-033, CP-034, CP-035 | 3 | 15 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
 | RF-017 | Difundir a tiendas elegibles | HU-017 | Must | solicitudes | Sprint 1 | CP-SOL-017-01, CP-SOL-017-02, CP-SOL-017-03 | CP-036, CP-037, CP-038 | 3 | 4 pruebas JUnit (ver «Casos») | Sí | 3 | 0 | 0 | 0 | Verificado |
 | RF-018 | Ver solicitudes nuevas | HU-018 | Must | solicitudes | Sprint 2 | CP-SOL-018-01, CP-SOL-018-02 | CP-039, CP-040 | 2 | 3 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-019 | Responder solicitud | HU-019 | Must | solicitudes | Sprint 2 | CP-SOL-019-01, CP-SOL-019-02, CP-SOL-019-03, CP-SOL-019-04 | CP-041, CP-042, CP-043, CP-044 | 4 | 7 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-020 | Ver y ordenar respuestas | HU-020 | Must | solicitudes | Sprint 2 | CP-SOL-020-01, CP-SOL-020-02, CP-SOL-020-03 | CP-045, CP-046, CP-047 | 3 | 5 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 3 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-021 | Vencer y cerrar solicitudes | HU-021 | Must | solicitudes | Sprint 2 | CP-SOL-021-01, CP-SOL-021-02 | CP-048, CP-049 | 2 | 8 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 2 | 0 | 0 | 2 (DEF-008 y DEF-010, S4; cerrados el 16/11, sus re-pruebas pasan) | Verificado |
-| RF-022 | Ampliar radio automáticamente | HU-022 | Could | solicitudes | Cierre | CP-SOL-022-01, CP-SOL-022-02 | CP-050, CP-051 | 2 |  |  |  |  |  |  |  |
+| RF-022 | Ampliar radio automáticamente | HU-022 | Could | solicitudes | Cierre | CP-SOL-022-01, CP-SOL-022-02 | CP-050, CP-051 | 2 | 9 pruebas JUnit y 1 de Vitest (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-023 | Advertir productos restringidos | HU-023 | Should | solicitudes | Sprint 3 | CP-SOL-023-01, CP-SOL-023-02 | CP-052, CP-053 | 2 | 4 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
 | RF-024 | Elegir respuesta y crear orden | HU-024 | Must | ordenes | Sprint 2 | CP-ORD-024-01, CP-ORD-024-02, CP-ORD-024-03, CP-ORD-024-04 | CP-054, CP-055, CP-056, CP-057 | 4 | 6 pruebas JUnit (ver «Casos») y recorrido de punta a punta 16/11 | Sí | 4 | 0 | 0 | 2 (DEF-007 S3, DEF-009 S4; cerrados el 16/11, la re-prueba pasa) | Verificado |
 | RF-025 | Reservar para recogida | HU-025 | Should | ordenes | Sprint 3 | CP-ORD-025-01, CP-ORD-025-02 | CP-058, CP-059 | 2 | 3 pruebas JUnit (ver «Casos») | Sí | 2 | 0 | 0 | 0 | Verificado |
@@ -102,3 +102,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Resultados del C2: requisitos del Sprint 3 y RNF-003, 007, 008, 009, 012, 013, 015, 024 y 025 verificados; DEF-012 a DEF-015 (borrador, pendiente de firma de QA) |
 | 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-009, 012 y 013 re-probados en producción sobre `v0.5.3`; DEF-013 a DEF-015 en verificación |
 | 1.8 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-009, 012 y 013 sin defectos abiertos: DEF-013 a DEF-015 cerrados |
+| 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-015 y RF-022 verificados en el C3; RF-006 y RF-011 fuera de alcance por SC-021 (pendiente del comité) |

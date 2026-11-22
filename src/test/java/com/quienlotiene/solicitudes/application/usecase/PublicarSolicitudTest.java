@@ -72,6 +72,16 @@ class PublicarSolicitudTest {
             public int radioInicialEnMetros() {
                 return 3_000;
             }
+
+            @Override
+            public int radioAmpliadoEnMetros() {
+                return 5_000;
+            }
+
+            @Override
+            public Duration esperaParaAmpliar() {
+                return Duration.ofMinutes(10);
+            }
         };
         publicarSolicitud = new PublicarSolicitud(
                 solicitudRepository,

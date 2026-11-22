@@ -248,6 +248,13 @@ export const rutas: RouteObject[] = [
                 }),
               },
               {
+                // «Tu resumen» de indicadores (HU-015)
+                path: 'resumen',
+                lazy: async () => ({
+                  Component: (await import('@/pages/ResumenTiendaPagina')).ResumenTiendaPagina,
+                }),
+              },
+              {
                 path: 'medios-pago',
                 lazy: async () => ({
                   Component: (await import('@/pages/MediosPagoTiendaPagina')).MediosPagoTiendaPagina,

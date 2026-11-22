@@ -41,4 +41,23 @@ interface SolicitudJpaRepository extends JpaRepository<SolicitudEntity, UUID> {
                     for update skip locked
                     """, nativeQuery = true)
     List<SolicitudEntity> tomarVencidas(@Param("ahora") Instant ahora, @Param("limite") int limite);
+
+    /**
+     * CU-31 (diagrama 35 paso 2): ABIERTAS sin vencer, publicadas hasta {@code publicadasHasta}, sin ampliar y sin
+     * ninguna respuesta. {@code FOR UPDATE SKIP LOCKED} como en el vencimiento (D-19).
+     */
+    @Query(value = """
+                    select * from solicitudes.solicitud solicitud
+                    where solicitud.estado = 'ABIERTA' and solicitud.vence_en > :ahora
+                      and not solicitud.fue_ampliado and solicitud.creado_en <= :publicadasHasta
+                      and not exists (
+                          select 1 from solicitudes.respuesta respuesta where respuesta.solicitud_id = solicitud.id)
+                    order by solicitud.creado_en
+                    limit :limite
+                    for update skip locked
+                    """, nativeQuery = true)
+    List<SolicitudEntity> tomarParaAmpliar(
+            @Param("publicadasHasta") Instant publicadasHasta,
+            @Param("ahora") Instant ahora,
+            @Param("limite") int limite);
 }
