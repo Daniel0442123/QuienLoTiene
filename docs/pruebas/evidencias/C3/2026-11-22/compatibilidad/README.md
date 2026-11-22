@@ -1,6 +1,6 @@
 # NF-COM-026 · Compatibilidad (en curso, 22/11/2026)
 
-## iPhone 17 Pro Max (Safari y Chrome), 5:03 p. m. a 5:07 p. m.
+## iPhone 17 Pro Max con iOS 27.2.1 (Safari y Chrome), 5:03 p. m. a 5:25 p. m.
 
 Capturas de Pedro en producción (`v0.5.4`), como cliente:
 
@@ -29,4 +29,6 @@ Resultado en iPhone 17 Pro Max: Safari y Chrome cumplen el flujo del cliente (pu
 estados en vivo, «Cómo llegar» y cancelación). La tienda se manejó desde el navegador integrado de la app de escritorio
 (Chromium).
 
-Pendiente: versión de iOS, push con la app en la pantalla de inicio, Android, Edge y Firefox.
+iOS 27.2.1 (Configuración › General › Información, 22/11 5:37 p. m.).
+
+Pendiente: push con la app en la pantalla de inicio, Android, Edge y Firefox.
