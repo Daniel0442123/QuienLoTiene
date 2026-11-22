@@ -15,7 +15,9 @@ export function AnunciadorDeRuta() {
   useEffect(() => {
     const titulo = document.querySelector('main h1')
     if (titulo instanceof HTMLElement) {
-      document.title = `${titulo.textContent} · ${NOMBRE_APP}`
+      const texto = titulo.textContent?.trim() ?? ''
+      // El inicio sin sesión se titula como la app: no se repite «¿Quién lo tiene? · ¿Quién lo tiene?»
+      document.title = texto && texto !== NOMBRE_APP ? `${texto} · ${NOMBRE_APP}` : NOMBRE_APP
       // En la primera carga el navegador ya ubica el foco al inicio; no se mueve para no saltar el enlace "Ir al contenido"
       if (!esPrimeraCarga.current) {
         titulo.setAttribute('tabindex', '-1')
