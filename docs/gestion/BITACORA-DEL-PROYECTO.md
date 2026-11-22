@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.23 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.24 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -137,6 +137,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 21/11/2026 23:43 | Etiqueta `v0.5.3` sobre `ff9ac6d` (#86) y despliegue del límite de inicio de sesión, las imágenes sin EXIF y la auditoría del acceso a datos del cliente: pruebas, imágenes, Trivy y verificación HTTPS en verde | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44986293432](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44986293432), [Release v0.5.3](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.5.3) | #85, #86 |
 | 22/11/2026 09:50 | Re-prueba en producción sobre `v0.5.3` de NF-SEG-009, 012 y 013: pasan. DEF-013 a DEF-015 quedan «En verificación» | Pedro (dueño del proyecto) con Claude Code en su navegador y el VPS | `docs/pruebas/evidencias/C2/2026-11-22/produccion-v0.5.3/` | #85 |
 | 22/11/2026 10:12 | Pedro aprueba cerrar DEF-013, DEF-014 y DEF-015 después de la re-prueba en producción sobre `v0.5.3`; QA lo revisa al firmar el corte del Sprint 3 | Pedro (dueño del proyecto); documentos preparados con Claude Code | `docs/pruebas/libro/06-DEFECTOS.md` 1.13 | #85, #87 |
+| 22/11/2026 10:22 | Inicio del C3 (Cierre) sobre `v0.5.3`: acta de inicio en borrador y regresión automatizada con `./mvnw verify` (453 pruebas, 0 fallas, 95,4 %). 77 casos aprobados y 8 «No aplica» porque HU-006, 011, 015 y 022 no se implementaron | Pedro (dueño del proyecto) con Claude Code | `docs/pruebas/informes/C3/ACTA-DE-INICIO-C3.md`, `docs/pruebas/libro/05-EJECUCION-C3.md` | — |
 
 ## 4. Compromisos abiertos
 
@@ -166,6 +167,7 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-20 | Anotar en los mockups qué anuncia `aria-live` en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05), el enlace de ayuda en el mismo lugar en todas las pantallas (WCAG 3.2.6) y el `scroll-padding` bajo las barras fijas (WCAG 2.4.11). 21/11/2026: anotados en los tableros 01, 02 y 05 y en una nota del lienzo; 2.4.11 ya estaba en la app y 3.2.6 queda como regla para cuando haya ayuda (README de mockups 0.4) | C-15, PR #75, #77 | Monica Anyi Cajas Mellizo | Cierre | Cerrado | 21/11/2026, PR #77 |
 | C-21 | Pasar a los mockups el menú lateral por rol y la página de inicio nueva, y revisarlos a 390 y 320 px. 22/11/2026: tableros 14 a 16 y README de mockups 0.5; revisión con teclado a 390 y 320 px con los tres roles, sin desplazamiento horizontal (hallazgos en el PR) | SC-020, PR #81 | Monica Anyi Cajas Mellizo | Cierre | Cerrado | 22/11/2026, PR #81 |
 | C-22 | Revisar y firmar el borrador del corte del Sprint 3 (`04-EJECUCION-C2.md`, informe de corte y DEF-012), agregar al Excel del libro las 3 filas de CP-CLI-008 (HU-008, SC-018) y escribir o etiquetar las pruebas de NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015 para el C3 | Corte del Sprint 3 | Yanimar Burbano Piamba, Francisco José Castro Muñoz | 24/11/2026 | En curso | 22/11: las 3 filas de CP-CLI-008 ya están en el Excel y los 7 no funcionales tienen prueba y pasan (DEF-013 a DEF-015 corregidos en el mismo PR y re-probados en producción sobre `v0.5.3`). DEF-013 a DEF-015 cerrados el 22/11. Falta que QA firme (las tiendas de prueba «Tienda Prueba EXIF» y «Tienda Prueba EXIF 2» ya se rechazaron) |
+| C-23 | Completar el C3: recorrido de punta a punta (CP-ORD-026-01), E2E-01 a E2E-05 con Playwright, los 13 no funcionales sobre el VPS, triaje de DEF-012, informe de cierre del C3, informe final de pruebas y acta de liberación con humo del 26/11; firmar el acta de inicio | Inicio del C3 | Yanimar Burbano Piamba, Francisco José Castro Muñoz, Wilson Javier Galindez Certuche | 26/11/2026 | Abierto | |
 
 ## Historial del documento
 
@@ -195,3 +197,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.21 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del despliegue de `v0.5.2` antes de etiquetar `v0.5.3` |
 | 1.22 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hechos del despliegue de `v0.5.3` y de la re-prueba en producción de NF-SEG-009, 012 y 013; avance de C-22 |
 | 1.23 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del cierre de DEF-013 a DEF-015 y avance de C-22 |
+| 1.24 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del inicio del C3 y nuevo C-23 (lo que falta del C3 para la entrega) |
