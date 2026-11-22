@@ -32,7 +32,8 @@ public class ConsultarOrden {
                 .orElseThrow(OrdenNoEncontradaException::new);
         var vista = OrdenVistaMapper.aVista(orden, usuarioId);
         if (vista.cliente() != null && !orden.esDelCliente(usuarioId)) {
-            AUDITORIA.info("La tienda del usuario {} vio los datos del cliente de la orden {}", usuarioId, ordenId);
+            AUDITORIA.info(
+                    "La tienda del usuario {} vio los datos del cliente de la orden {}", usuarioId, orden.getId());
         }
         return vista;
     }

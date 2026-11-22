@@ -59,7 +59,8 @@ class ConsultarContactoDeOrden implements OrdenesApi {
                     orden.getProducto());
         }
         // NF-SEG-013: la tienda recibe el celular del cliente (WhatsApp, HU-032)
-        AUDITORIA.info("La tienda del usuario {} pidió el contacto del cliente de la orden {}", usuarioId, ordenId);
+        AUDITORIA.info(
+                "La tienda del usuario {} pidió el contacto del cliente de la orden {}", usuarioId, orden.getId());
         return new ContactoDeOrden(
                 orden.getId(),
                 orden.esActiva(),
