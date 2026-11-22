@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.9 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.10 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -13,6 +13,17 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 ## Sin liberar
 
 Nada todavía.
+
+## v0.5.2 · 22/11/2026 · Contrato del chat y título del inicio
+
+Etiqueta sobre `main` después de este PR. Trae las correcciones fusionadas después de `v0.5.1`.
+
+### Corregido
+- Contrato de la API: el texto del mensaje del chat vuelve a ser obligatorio en `/v3/api-docs` (`texto` de `EnviarMensajeRequest` con `requiredMode REQUIRED`) y `api-tipos.ts` del frontend se regeneró; una prueba de contrato lo cuida. El dominio sigue respondiendo `MEN-003` (HU-033, #79).
+- El título de la pestaña en el inicio sin sesión ya no repite el nombre de la app (SC-020, #82).
+
+### Documentación
+- Mockups del menú lateral por rol y del inicio nuevo (tableros 14 a 16) y cierre de C-21 (SC-020, #81).
 
 ## v0.5.1 · 22/11/2026 · Menú lateral por rol e inicio
 
@@ -238,3 +249,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.7 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.0` (frontend del Sprint 3, #67 a #74) antes de etiquetar, preparadas con Claude Code |
 | 1.8 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | «Sin liberar»: menú lateral por rol y página de inicio para `v0.5.1` (SC-020), preparado con Claude Code |
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de «Sin liberar» pasadas a `v0.5.1` (#78), preparado con Claude Code |
+| 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.2` (#79, #81 y #82) antes de etiquetar, preparadas con Claude Code |

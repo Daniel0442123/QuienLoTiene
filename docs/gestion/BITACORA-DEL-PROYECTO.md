@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.17 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.18 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -131,6 +131,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 18/11/2026 13:49 | Prueba de punta a punta en producción sobre `v0.3.1` con cuentas de prueba: 8 de 8 pasos pasan, incluida la re-prueba de DEF-011 (queda «En verificación»). Dos mejoras anotadas: categoría y ubicación en el panel de la tienda, y lista de preguntas abiertas del cliente (HU-008) | Pedro (dueño del proyecto) con Claude Code en su Chrome | `docs/pruebas/evidencias/C1/2026-11-18/produccion/` | — |
 | 18/11/2026 15:22 | Pedro informa que QA (Yanimar Burbano Piamba y Francisco José Castro Muñoz) y el PO (Wilson Javier Galindez Certuche) revisaron en su equipo el cierre del C1 y DEF-011 y están de acuerdo. DEF-011 pasa a Cerrado y el informe de cierre del C1 queda en 1.0, listo para que cada uno firme | Pedro (dueño del proyecto); documentos preparados con Claude Code | `docs/pruebas/informes/C1/INFORME-DE-CIERRE-C1.md` 1.0 | SC-015 |
 | 21/11/2026 | Pedro pide, al ver `v0.5.0` en producción, un menú lateral con íconos por rol y una página de inicio que explique la app; decide hacerlo dentro del Sprint 3 como `v0.5.1` | Pedro (dueño del proyecto) | Hilo del proyecto | SC-020 |
+| 21/11/2026 20:14 | Etiqueta `v0.5.1` sobre `a222eed` (#80) y despliegue del menú lateral por rol y el inicio nuevo: pruebas, imágenes, Trivy y verificación HTTPS en verde; Release con evidencia de calidad | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44969800495](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44969800495), [Release v0.5.1](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.5.1) | SC-020, #78, #80 |
 
 ## 4. Compromisos abiertos
 
@@ -182,3 +183,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.15 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-20 cerrado con las anotaciones de accesibilidad de los tableros 01, 02 y 05 (#77) |
 | 1.16 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del 21/11 (SC-020, menú lateral e inicio para `v0.5.1`) y compromiso C-21 |
 | 1.17 | 22/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-21 cerrado con los mockups del menú lateral y el inicio de SC-020 (#81) |
+| 1.18 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del despliegue de `v0.5.1` antes de etiquetar `v0.5.2` |
