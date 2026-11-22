@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 @Tag("HU-016")
 @Tag("CP-SOL-016-03")
+@Tag("NF-SEG-009")
 @DisplayName("HU-016 Límite de 10 solicitudes por hora")
 class LimitePublicacionTest {
 

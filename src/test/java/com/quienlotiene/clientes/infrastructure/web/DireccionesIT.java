@@ -129,6 +129,7 @@ class DireccionesIT {
     }
 
     @Test
+    @Tag("NF-SEG-007")
     @DisplayName("Otro cliente no puede editar ni borrar la dirección (404 CLI-003)")
     void otroClienteNoVeLaDireccion() throws Exception {
         var direccionId = crearCasa(clienteConSesion());

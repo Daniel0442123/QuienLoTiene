@@ -77,6 +77,9 @@ class AutenticacionController {
             responseCode = "401",
             description = "Correo o frase incorrectos (IDE-008); administrador sin segundo factor (IDE-011)")
     @ApiResponse(responseCode = "403", description = "Cuenta suspendida (IDE-009)")
+    @ApiResponse(
+            responseCode = "429",
+            description = "Más de 5 intentos de la misma cuenta en un minuto (IDE-015), con Retry-After")
     @PostMapping("/login")
     ResponseEntity<RespuestaInicioSesion> iniciarSesion(@Valid @RequestBody IniciarSesionRequest peticion) {
         var resultado = iniciarSesion.ejecutar(identidadMapper.aComando(peticion));

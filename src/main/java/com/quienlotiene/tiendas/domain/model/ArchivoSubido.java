@@ -1,8 +1,8 @@
 package com.quienlotiene.tiendas.domain.model;
 
 /**
- * Documento que llegó en el registro, ya validado: no está vacío, pesa máximo 5 MB y es JPEG, PNG, WebP o PDF de
- * verdad (RNF-012).
+ * Documento que llegó en el registro, ya validado: no está vacío, pesa máximo 5 MB, es JPEG, PNG, WebP o PDF de
+ * verdad y, si es imagen, ya no trae metadatos EXIF (RNF-012).
  */
 public record ArchivoSubido(TipoDocumento tipoDocumento, TipoArchivo tipoArchivo, byte[] contenido) {
 
@@ -10,7 +10,7 @@ public record ArchivoSubido(TipoDocumento tipoDocumento, TipoArchivo tipoArchivo
 
     /**
      * @throws DocumentoFaltanteException si no llegó o llegó vacío (CP-TIE-002-02)
-     * @throws ArchivoNoPermitidoException si pesa más de 5 MB o no es un formato permitido
+     * @throws ArchivoNoPermitidoException si pesa más de 5 MB, no es un formato permitido o su estructura está dañada
      */
     public static ArchivoSubido validar(TipoDocumento tipoDocumento, byte[] contenido) {
         if (contenido == null || contenido.length == 0) {
@@ -21,7 +21,11 @@ public record ArchivoSubido(TipoDocumento tipoDocumento, TipoArchivo tipoArchivo
         }
         var tipoArchivo =
                 TipoArchivo.detectar(contenido).orElseThrow(() -> new ArchivoNoPermitidoException(tipoDocumento));
-        return new ArchivoSubido(tipoDocumento, tipoArchivo, contenido);
+        try {
+            return new ArchivoSubido(tipoDocumento, tipoArchivo, LimpiadorMetadatos.limpiar(tipoArchivo, contenido));
+        } catch (IllegalArgumentException estructuraDanada) {
+            throw new ArchivoNoPermitidoException(tipoDocumento);
+        }
     }
 
     /** Copia del contenido: el archivo no comparte su arreglo con nadie. */

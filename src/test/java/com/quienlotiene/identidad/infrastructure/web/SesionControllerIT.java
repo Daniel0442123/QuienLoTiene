@@ -16,8 +16,11 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
@@ -53,6 +56,7 @@ class SesionControllerIT {
 
     @Test
     @Tag("CP-IDE-003-01")
+    @Tag("NF-SEG-008")
     @DisplayName("CP-IDE-003-01 Recibe un token de 15 minutos que abre las rutas protegidas y una cookie HttpOnly")
     void iniciaSesionYUsaElToken() throws Exception {
         // Dado: un cliente con cuenta activa
@@ -122,6 +126,7 @@ class SesionControllerIT {
     }
 
     @Test
+    @Tag("NF-SEG-008")
     @DisplayName("El refresco rota la cookie y reusar la vieja cierra todas las sesiones")
     void rotaElRefrescoYDetectaElReuso() throws Exception {
         // Dado
@@ -133,6 +138,10 @@ class SesionControllerIT {
         var cookieRotada = mockMvc.perform(post("/api/v1/auth/refresco").cookie(cookieInicial))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.tokenAcceso").isNotEmpty())
+                // NF-SEG-008: la cookie nueva conserva HttpOnly, Secure y SameSite=Strict
+                .andExpect(cookie().httpOnly(CookieTokenRefresco.NOMBRE, true))
+                .andExpect(cookie().secure(CookieTokenRefresco.NOMBRE, true))
+                .andExpect(cookie().sameSite(CookieTokenRefresco.NOMBRE, "Strict"))
                 .andReturn()
                 .getResponse()
                 .getCookie(CookieTokenRefresco.NOMBRE);
@@ -143,6 +152,50 @@ class SesionControllerIT {
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.codigo").value("IDE-010"));
         mockMvc.perform(post("/api/v1/auth/refresco").cookie(cookieRotada)).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @Tag("NF-SEG-009")
+    @DisplayName("NF-SEG-009 El sexto intento de la misma cuenta en un minuto responde 429 IDE-015 con Retry-After")
+    void limitaLosIntentosDeInicioDeSesion() throws Exception {
+        // Dado: cinco intentos con la frase equivocada
+        var correo = registrarCliente();
+        for (int intento = 0; intento < 5; intento++) {
+            iniciarSesion(correo, "frase equivocada cualquiera").andExpect(status().isUnauthorized());
+        }
+
+        // Cuando / Entonces: el sexto se niega aunque la frase sea correcta
+        iniciarSesion(correo, FRASE)
+                .andExpect(status().isTooManyRequests())
+                .andExpect(jsonPath("$.codigo").value("IDE-015"))
+                .andExpect(header().exists(HttpHeaders.RETRY_AFTER))
+                .andExpect(cookie().doesNotExist(CookieTokenRefresco.NOMBRE));
+    }
+
+    @Test
+    @Tag("NF-SEG-013")
+    @ExtendWith(OutputCaptureExtension.class)
+    @DisplayName(
+            "NF-SEG-013 Los inicios de sesión, exitosos o fallidos, quedan en la auditoría con el id y sin el correo")
+    void auditaLosIniciosDeSesion(CapturedOutput salida) throws Exception {
+        // Dado
+        var correo = registrarCliente();
+        var usuarioId = jdbcClient
+                .sql("select id from identidad.usuario where correo = :correo")
+                .param("correo", correo)
+                .query(UUID.class)
+                .single();
+
+        // Cuando
+        iniciarSesion(correo, "frase equivocada cualquiera").andExpect(status().isUnauthorized());
+        iniciarSesion(correo, FRASE).andExpect(status().isOk());
+
+        // Entonces: logger «auditoria», con fecha y hora, el id del usuario y la acción; nunca el correo ni la frase
+        assertThat(salida.getOut())
+                .containsPattern("\\d{4}-\\d{2}-\\d{2}.*auditoria.*Inicio de sesión fallido del usuario " + usuarioId)
+                .containsPattern("\\d{4}-\\d{2}-\\d{2}.*auditoria.*El usuario " + usuarioId + " inició sesión")
+                .doesNotContain(correo)
+                .doesNotContain(FRASE);
     }
 
     @Test

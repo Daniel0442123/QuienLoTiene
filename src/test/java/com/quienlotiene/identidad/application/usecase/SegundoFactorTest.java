@@ -17,6 +17,7 @@ import com.quienlotiene.identidad.domain.model.Correo;
 import com.quienlotiene.identidad.domain.model.DesafioSegundoFactor;
 import com.quienlotiene.identidad.domain.model.EstadoCuenta;
 import com.quienlotiene.identidad.domain.model.FraseContrasenaComunException;
+import com.quienlotiene.identidad.domain.model.IntentosInicioSesion;
 import com.quienlotiene.identidad.domain.model.Rol;
 import com.quienlotiene.identidad.domain.model.SecretoTotp;
 import com.quienlotiene.identidad.domain.model.SecretoTotpInvalidoException;
@@ -107,8 +108,13 @@ class SegundoFactorTest {
         var admin = administrador(EstadoCuenta.ACTIVA);
         when(usuarioRepository.buscarPorCorreo(any())).thenReturn(Optional.of(admin));
         when(codificadorFrases.coincide(FRASE, HASH)).thenReturn(true);
-        var iniciarSesion =
-                new IniciarSesion(usuarioRepository, codificadorFrases, emisorSesion, desafioRepository, reloj);
+        var iniciarSesion = new IniciarSesion(
+                usuarioRepository,
+                codificadorFrases,
+                emisorSesion,
+                desafioRepository,
+                reloj,
+                new IntentosInicioSesion());
 
         // Cuando
         var resultado = iniciarSesion.ejecutar(new IniciarSesionComando("admin@quienlotiene.app", FRASE));

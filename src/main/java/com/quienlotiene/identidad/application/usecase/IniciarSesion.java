@@ -8,6 +8,7 @@ import com.quienlotiene.identidad.domain.model.CorreoInvalidoException;
 import com.quienlotiene.identidad.domain.model.CredencialesIncorrectasException;
 import com.quienlotiene.identidad.domain.model.CuentaSuspendidaException;
 import com.quienlotiene.identidad.domain.model.DesafioSegundoFactor;
+import com.quienlotiene.identidad.domain.model.IntentosInicioSesion;
 import com.quienlotiene.identidad.domain.model.SegundoFactorRequeridoException;
 import com.quienlotiene.identidad.domain.model.Usuario;
 import com.quienlotiene.identidad.domain.model.ValorTokenOpaco;
@@ -18,7 +19,6 @@ import java.time.Clock;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
  * HU-003 Iniciar sesión (CU-02) para clientes y tiendas. Con credenciales correctas entrega un token de acceso de 15
  * minutos y un token de refresco; el administrador recibe primero un token temporal para el código TOTP (HU-004,
  * CU-25). El error de credenciales no dice si falló el correo o la frase; la suspensión solo
- * se informa cuando las credenciales son correctas (CP-IDE-003-03).
+ * se informa cuando las credenciales son correctas (CP-IDE-003-03). Cada cuenta tiene 5 intentos por minuto (NF-SEG-009).
  */
-@Slf4j
 @Service
 public class IniciarSesion {
 
@@ -41,22 +40,26 @@ public class IniciarSesion {
     private final EmisorSesion emisorSesion;
     private final DesafioSegundoFactorRepository desafioRepository;
     private final Clock reloj;
+    private final IntentosInicioSesion intentos;
 
     IniciarSesion(
             UsuarioRepository usuarioRepository,
             CodificadorFrasesContrasena codificadorFrases,
             EmisorSesion emisorSesion,
             DesafioSegundoFactorRepository desafioRepository,
-            Clock reloj) {
+            Clock reloj,
+            IntentosInicioSesion intentos) {
         this.usuarioRepository = usuarioRepository;
         this.codificadorFrases = codificadorFrases;
         this.emisorSesion = emisorSesion;
         this.desafioRepository = desafioRepository;
         this.reloj = reloj;
+        this.intentos = intentos;
     }
 
     @Transactional
     public ResultadoInicioSesion ejecutar(IniciarSesionComando comando) {
+        intentos.registrar(comando.correo(), reloj.instant());
         var usuarioEncontrado = buscarUsuario(comando.correo());
         if (usuarioEncontrado.isEmpty()) {
             codificadorFrases.verificarContraHashFicticio(comando.fraseContrasena());
@@ -64,11 +67,11 @@ public class IniciarSesion {
         }
         var usuario = usuarioEncontrado.get();
         if (!codificadorFrases.coincide(comando.fraseContrasena(), usuario.getHashContrasena())) {
-            log.info("Inicio de sesión fallido para el usuario {}", usuario.getId());
+            AUDITORIA.info("Inicio de sesión fallido del usuario {}", usuario.getId());
             throw new CredencialesIncorrectasException();
         }
         if (!usuario.estaActiva()) {
-            log.info("Inicio de sesión rechazado: el usuario {} está suspendido", usuario.getId());
+            AUDITORIA.info("Inicio de sesión rechazado: el usuario {} está suspendido", usuario.getId());
             throw new CuentaSuspendidaException();
         }
         var ahora = reloj.instant();
@@ -77,7 +80,7 @@ public class IniciarSesion {
         }
 
         var sesion = emisorSesion.emitirPara(usuario, ahora);
-        log.info("Usuario {} inició sesión", usuario.getId());
+        AUDITORIA.info("El usuario {} inició sesión", usuario.getId());
         return sesion;
     }
 

@@ -1,6 +1,6 @@
 # Hoja «Bitácora» · Sesiones de prueba
 
-> **Control del documento** · Versión 1.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.5 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Una fila por responsable de QA y por día de pruebas. Las ejecuciones automáticas de CI en cada push no se registran aquí; sí las corridas que se usan como evidencia (cierre de historia, corte de sprint, cierre de ciclo, re-prueba).
 
@@ -17,6 +17,8 @@
 | 2026-11-21 | C2 | Sprint 3 | Yanimar Burbano | 0,5 | Automatizada | v0.5.2 · `8d64314` | `./mvnw -B clean verify` (374 unitarias + 60 integración con Testcontainers) y CI run #253 · casos del Sprint 3, CP-CLI-008 (SC-018) y NF-MAN-024 | 20 | 20 | 0 | 0 | 95,2 % | 0 | — | NF-REN-003 y NF-FIA-015 sin prueba etiquetada: pasan al C3 | 434 pruebas, 0 fallas (`evidencias/C2/2026-11-22/mvn-verify.txt`). Ejecución preparada con Claude Code; pendiente la revisión y firma de QA |
 | 2026-11-21 | C2 | Sprint 3 | Francisco Castro | 0,25 | Automatizada | v0.5.2 · `8d64314` | `./mvnw -B clean verify` · CP-TIE-014-02, CP-REP-035-02, CP-ADM-037-01 y NF-SEG-013 (parcial) | 3 | 3 | 0 | 0 | 95,2 % | 0 | 5 no funcionales de seguridad sin prueba etiquetada | Etiquetar o escribir las pruebas de NF-SEG-007, 008, 009, 012 y 013 para el C3 | Pendiente la revisión y firma de QA |
 | 2026-11-21 | C2 | Sprint 3 | Yanimar Burbano | 1,25 | Recorrido de punta a punta | v0.5.2 · `8d64314` (producción) | https://quienlotiene.tech con usuario1, tienda1 y ADMIN, 3 pedidos, y push en un Android real · ver `evidencias/C2/2026-11-22/produccion/README.md` | 20 | 20 | 0 | 0 | — | 1 (DEF-012) | Tienda Uno estaba fuera de horario un sábado de noche | Se amplió el horario para la prueba y se devolvió al terminar (10:52 p. m.) | 49 capturas. Hecho por Pedro con Claude Code de 9:40 p. m. a 10:48 p. m.; pendiente la revisión y firma de QA |
+| 2026-11-22 | C2 | Sprint 3 | Francisco Castro | 0,75 | Automatizada | main `d92847a` + correcciones del PR | `./mvnw -B verify` (386 unitarias + 67 integración con Testcontainers) · NF-SEG-007, 008, 009, 012 y 013 | 5 | 5 | 0 | 0 | 95,3 % | 3 (DEF-013, DEF-014, DEF-015) | En v0.5.2 faltaban el límite de intentos de inicio de sesión, la limpieza del EXIF y la auditoría del acceso a datos del cliente | Corregidos en el mismo PR; re-probar en producción después de desplegar | Preparado con Claude Code; pendiente la revisión y firma de QA |
+| 2026-11-22 | C2 | Sprint 3 | Yanimar Burbano | 0,25 | Automatizada | main `d92847a` + correcciones del PR | `./mvnw -B verify` · NF-REN-003 (RendimientoBusquedaTiendasIT) y NF-FIA-015 (RegistroDeEventosIT); filas de CP-CLI-008 en el Excel del libro | 2 | 2 | 0 | 0 | 95,3 % | 0 | — | Revisar en el C3 la búsqueda completa: 220 ms con 79 tiendas en el radio porque carga cada tienda una por una | Preparado con Claude Code; pendiente la revisión y firma de QA |
 
 ## Historial del documento
 
@@ -29,3 +31,4 @@
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (borrador, pendiente de firma de QA) |
 | 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-010 sobre main e679ef3 (borrador, pendiente de firma de QA) |
 | 1.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del corte del Sprint 3 (C2) sobre v0.5.2: automatizadas y recorrido en producción (borrador, pendiente de firma de QA) |
+| 1.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del 22/11: los 7 no funcionales del C2 con prueba y DEF-013 a DEF-015 (borrador, pendiente de firma de QA) |

@@ -107,6 +107,7 @@ class SolicitudControllerIT {
 
     @Test
     @Tag("CP-SOL-016-03")
+    @Tag("NF-SEG-009")
     @DisplayName("CP-SOL-016-03 Con 10 en la última hora responde 429 con Retry-After")
     void aplicaElLimitePorHora() throws Exception {
         // Dado: un cliente que publicó 10 solicitudes; la más vieja hace 48 minutos
