@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.10 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.11 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -13,6 +13,21 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 ## Sin liberar
 
 Nada todavía.
+
+## v0.5.3 · 22/11/2026 · Seguridad de los no funcionales del C2
+
+Etiqueta sobre `main` después de este PR. Trae las correcciones que salieron al escribir las pruebas de los no funcionales del C2 (#85).
+
+### Agregado
+- Límite de 5 intentos de inicio de sesión por minuto por cuenta: el sexto responde 429 con el código nuevo `IDE-015` y `Retry-After` (RNF-009, DEF-013). El frontend ya muestra el mensaje genérico de «demasiados intentos».
+
+### Corregido
+- Las fotos y documentos de imagen que sube la tienda se guardan sin metadatos: se quitan EXIF y XMP de JPEG, PNG y WebP, y una imagen dañada se rechaza con `TIE-003` (RNF-012, DEF-014). Las fotos que ya estaban guardadas no se modifican.
+- Auditoría: cuando la tienda ve el nombre y el celular del cliente de una orden, o pide su contacto de WhatsApp, queda un registro en el log `auditoria` con los ids; los inicios de sesión (correctos, fallidos y de cuentas suspendidas) también pasan a ese log (RNF-013, DEF-015).
+
+### Pruebas
+- Pruebas nuevas o etiquetadas para NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015: 386 unitarias y 67 de integración, 0 fallas; cobertura de `domain` y `application` 95,3 % (#85).
+- Las 3 filas de CP-CLI-008 (HU-008, SC-018) en el Excel de control de QA (#85).
 
 ## v0.5.2 · 22/11/2026 · Contrato del chat y título del inicio
 
@@ -250,3 +265,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.8 | 21/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | «Sin liberar»: menú lateral por rol y página de inicio para `v0.5.1` (SC-020), preparado con Claude Code |
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de «Sin liberar» pasadas a `v0.5.1` (#78), preparado con Claude Code |
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.2` (#79, #81 y #82) antes de etiquetar, preparadas con Claude Code |
+| 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.3` (#85: DEF-013, DEF-014, DEF-015 y pruebas de los no funcionales del C2) antes de etiquetar, preparadas con Claude Code |

@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.20 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.21 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -132,6 +132,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 18/11/2026 15:22 | Pedro informa que QA (Yanimar Burbano Piamba y Francisco José Castro Muñoz) y el PO (Wilson Javier Galindez Certuche) revisaron en su equipo el cierre del C1 y DEF-011 y están de acuerdo. DEF-011 pasa a Cerrado y el informe de cierre del C1 queda en 1.0, listo para que cada uno firme | Pedro (dueño del proyecto); documentos preparados con Claude Code | `docs/pruebas/informes/C1/INFORME-DE-CIERRE-C1.md` 1.0 | SC-015 |
 | 21/11/2026 | Pedro pide, al ver `v0.5.0` en producción, un menú lateral con íconos por rol y una página de inicio que explique la app; decide hacerlo dentro del Sprint 3 como `v0.5.1` | Pedro (dueño del proyecto) | Hilo del proyecto | SC-020 |
 | 21/11/2026 20:14 | Etiqueta `v0.5.1` sobre `a222eed` (#80) y despliegue del menú lateral por rol y el inicio nuevo: pruebas, imágenes, Trivy y verificación HTTPS en verde; Release con evidencia de calidad | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44969800495](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44969800495), [Release v0.5.1](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.5.1) | SC-020, #78, #80 |
+| 21/11/2026 21:44 | Etiqueta `v0.5.2` sobre `8d64314` (#83) y despliegue del contrato del chat y el título del inicio: pruebas, imágenes, Trivy y verificación HTTPS en verde; Release con evidencia de calidad | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44977476530](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44977476530), [Release v0.5.2](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.5.2) | #79, #82, #83 |
 | 21/11/2026 22:48 | Corte del Sprint 3 (C2) sobre `v0.5.2`: `./mvnw verify` (434 pruebas, 0 fallas, 95,2 %) y recorrido en producción con cliente, tienda, administrador y push en un Android real, de 9:40 p. m. a 10:48 p. m. 27 de 34 casos aprobados, 0 fallidos, nuevo DEF-012 (S4). El horario de Tienda Uno se amplió para la prueba y se devolvió a las 10:52 p. m. | Pedro (dueño del proyecto) con Claude Code | `docs/pruebas/evidencias/C2/2026-11-22/`, `docs/pruebas/informes/C2/INFORME-DE-CORTE-SPRINT-3.md` | SC-018, SC-019, SC-020 |
 
 ## 4. Compromisos abiertos
@@ -188,3 +189,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.18 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del despliegue de `v0.5.1` antes de etiquetar `v0.5.2` |
 | 1.19 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del corte del Sprint 3 sobre `v0.5.2` y nuevo C-22 (firma de QA, filas de HU-008 en el Excel y no funcionales para el C3) |
 | 1.20 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance de C-22: filas de HU-008 en el Excel y pruebas de los 7 no funcionales; queda la firma de QA |
+| 1.21 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del despliegue de `v0.5.2` antes de etiquetar `v0.5.3` |
