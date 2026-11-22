@@ -74,6 +74,7 @@ class TiendaTest {
     }
 
     @Test
+    @Tag("NF-SEG-012")
     @DisplayName("Reconoce JPEG, PNG, WebP y PDF por su contenido")
     void reconoceLosFormatosPermitidos() {
         assertThat(ArchivoSubido.validar(TipoDocumento.FOTO_LOCAL, ArchivosDePrueba.unJpeg())
@@ -89,11 +90,12 @@ class TiendaTest {
         assertThat(rut.tipoArchivo()).isEqualTo(TipoArchivo.PDF);
         assertThat(rut.tipoArchivo().extension()).isEqualTo("pdf");
         assertThat(rut.tipoArchivo().tipoContenido()).isEqualTo("application/pdf");
-        assertThat(rut.tamanoEnBytes()).isEqualTo(64);
+        assertThat(rut.tamanoEnBytes()).isEqualTo(ArchivosDePrueba.unPdf().length);
         assertThat(rut.toString()).contains("PDF");
     }
 
     @Test
+    @Tag("NF-SEG-012")
     @DisplayName("Rechaza un ejecutable disfrazado de PDF y un archivo de más de 5 MB")
     void rechazaArchivosNoPermitidos() {
         assertThatThrownBy(() -> ArchivoSubido.validar(TipoDocumento.RUT, ArchivosDePrueba.unEjecutableDisfrazado()))

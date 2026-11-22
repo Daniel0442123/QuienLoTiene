@@ -1,6 +1,6 @@
 # Códigos de error de la API · Quién lo tiene
 
-> **Control del documento** · Versión 1.2 · 19/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` estable (DECISIONES-BACKEND, sección 8). Todas las respuestas de error traen además `idCorrelacion`, el mismo valor de la cabecera `X-Correlacion-Id`, para buscar la petición en los logs. Un código publicado no cambia nunca: el frontend y las pruebas se apoyan en él. Cada pull request que agregue un código lo registra aquí.
 
@@ -44,6 +44,7 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | `IDE-012` | 401 | Código incorrecto | El código TOTP no es válido o ya venció (CP-IDE-004-02) | HU-004 |
 | `IDE-013` | 401 | Verificación vencida | El token del segundo factor no existe, venció (5 minutos), ya se usó o agotó sus 5 intentos | HU-004 |
 | `IDE-014` | 400 | Secreto TOTP inválido | El secreto del administrador inicial no está en Base32 o tiene menos de 26 caracteres | HU-004 |
+| `IDE-015` | 429 | Demasiados intentos | La misma cuenta hizo más de 5 intentos de inicio de sesión en un minuto (RNF-009, NF-SEG-009); va con `Retry-After` | HU-003 |
 | `TIE-001` | 400 | Tienda incompleta | Falta el nombre, la categoría, el teléfono o la ubicación de la tienda | HU-002 |
 | `TIE-002` | 400 | Documento faltante | El registro llega sin la foto del local o sin el RUT (CP-TIE-002-02) | HU-002 |
 | `TIE-003` | 400 | Archivo no permitido | Un documento pesa más de 5 MB o no es JPEG, PNG, WebP ni PDF (revisado por contenido) | HU-002 |
@@ -108,3 +109,4 @@ Cada error de negocio responde con `ProblemDetail` (RFC 9457) y un `codigo` esta
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega el control del documento (encabezado e historial). Las filas anteriores se reconstruyeron desde Git; esos cambios no tenían número de versión (SC-009) |
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 2: `SOL-003` a `SOL-008`, `ORD-001` a `ORD-004` y `MEN-001` (contrato del Sprint 2) |
 | 1.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Códigos del Sprint 3: `ORD-005`, `ORD-006`, `MEN-002`, `MEN-003`, `REP-001` a `REP-005` y `CAT-001` a `CAT-003` y `NOT-001`; `TIE-004` y `TIE-006` cubren la suspensión y el detalle público |
+| 1.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | `IDE-015` (429) para el límite de intentos de inicio de sesión de RNF-009 (DEF-013) |

@@ -47,6 +47,7 @@ class GestionarCatalogoAdministradoTest {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @Tag("CP-CAT-038-01")
     @DisplayName("CP-CAT-038-01 Desactivar una categoría queda auditado con quién y cuándo")
     void auditaCategoria() {
@@ -64,6 +65,7 @@ class GestionarCatalogoAdministradoTest {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @Tag("CP-CAT-038-02")
     @DisplayName("CP-CAT-038-02 Agregar y quitar un restringido quedan auditados")
     void auditaRestringidos() {
@@ -75,6 +77,7 @@ class GestionarCatalogoAdministradoTest {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @DisplayName("Quitar un restringido y reactivar una categoría también se auditan")
     void auditaQuitarYActivar() {
         var producto = new ProductoRestringido(UUID.randomUUID(), "amoxicilina");

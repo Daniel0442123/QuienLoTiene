@@ -7,12 +7,16 @@ import com.quienlotiene.ordenes.domain.model.Orden;
 import com.quienlotiene.ordenes.domain.model.OrdenNoEncontradaException;
 import com.quienlotiene.ordenes.domain.port.OrdenRepository;
 import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /** Implementa {@link OrdenesApi} para mensajeria y reputacion (HU-032 a HU-035, diagrama 18 pasos 6 y 7). */
 @Service
 class ConsultarContactoDeOrden implements OrdenesApi {
+
+    private static final Logger AUDITORIA = LoggerFactory.getLogger("auditoria");
 
     private final OrdenRepository ordenRepository;
 
@@ -54,6 +58,9 @@ class ConsultarContactoDeOrden implements OrdenesApi {
                     orden.getTelefonoTienda(),
                     orden.getProducto());
         }
+        // NF-SEG-013: la tienda recibe el celular del cliente (WhatsApp, HU-032)
+        AUDITORIA.info(
+                "La tienda del usuario {} pidió el contacto del cliente de la orden {}", usuarioId, orden.getId());
         return new ContactoDeOrden(
                 orden.getId(),
                 orden.esActiva(),

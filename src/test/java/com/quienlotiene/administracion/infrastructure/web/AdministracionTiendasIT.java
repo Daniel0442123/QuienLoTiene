@@ -77,6 +77,10 @@ class AdministracionTiendasIT {
 
     /** Registra una tienda por la API pública y devuelve su id (queda PENDIENTE). */
     private UUID registrarTiendaPendiente() throws Exception {
+        return registrarTiendaPendiente(ArchivosDePrueba.unJpeg());
+    }
+
+    private UUID registrarTiendaPendiente(byte[] fotoLocal) throws Exception {
         var json = """
                 {"nombreDueno": "Carlos Muñoz", "correo": "tienda-%s@correo.com", "telefono": "3001234567",
                  "fraseContrasena": "mi tienda vende de todo un poco", "aceptaPoliticaDatos": true,
@@ -85,7 +89,7 @@ class AdministracionTiendasIT {
                 """.formatted(UUID.randomUUID(), UUID.randomUUID());
         var respuesta = mockMvc.perform(multipart("/api/v1/tiendas/registro")
                         .file(new MockMultipartFile("datos", "", MediaType.APPLICATION_JSON_VALUE, json.getBytes()))
-                        .file(new MockMultipartFile("fotoLocal", "f.jpg", "image/jpeg", ArchivosDePrueba.unJpeg()))
+                        .file(new MockMultipartFile("fotoLocal", "f.jpg", "image/jpeg", fotoLocal))
                         .file(new MockMultipartFile("rut", "r.pdf", "application/pdf", ArchivosDePrueba.unPdf())))
                 .andExpect(status().isCreated())
                 .andReturn();
@@ -110,6 +114,7 @@ class AdministracionTiendasIT {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @Tag("CP-ADM-036-01")
     @DisplayName("CP-ADM-036-01 La tienda pendiente queda Aprobada, se avisa al dueño y queda auditado")
     void apruebaLaTienda() throws Exception {
@@ -146,6 +151,7 @@ class AdministracionTiendasIT {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @Tag("CP-ADM-036-02")
     @DisplayName("CP-ADM-036-02 Rechazada con el motivo \"Documento ilegible\"")
     void rechazaLaTiendaConMotivo() throws Exception {
@@ -171,6 +177,7 @@ class AdministracionTiendasIT {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @DisplayName("El administrador descarga el documento como adjunto y queda auditado")
     void descargaElDocumento() throws Exception {
         // Dado
@@ -194,6 +201,33 @@ class AdministracionTiendasIT {
                         .header(HttpHeaders.AUTHORIZATION, tokenCon("ADMIN")))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.codigo").value("TIE-006"));
+    }
+
+    @Test
+    @Tag("NF-SEG-012")
+    @DisplayName("NF-SEG-012 La foto del local se guarda sin EXIF: el administrador la descarga sin los metadatos")
+    void guardaLaFotoSinMetadatos() throws Exception {
+        // Dado: la foto llega con EXIF (GPS y modelo del celular)
+        var tiendaId = registrarTiendaPendiente(ArchivosDePrueba.unJpegConExif());
+        var documentoId = jdbcClient
+                .sql("select id from tiendas.documento_verificacion where tienda_id = :id and tipo = 'FOTO_LOCAL'")
+                .param("id", tiendaId)
+                .query(UUID.class)
+                .single();
+
+        // Cuando
+        var descargada = mockMvc.perform(get("/api/v1/admin/tiendas/{id}/documentos/{doc}", tiendaId, documentoId)
+                        .header(HttpHeaders.AUTHORIZATION, tokenCon("ADMIN")))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("image/jpeg"))
+                .andReturn()
+                .getResponse()
+                .getContentAsByteArray();
+
+        // Entonces: es la misma imagen, sin el texto del EXIF
+        assertThat(descargada).isEqualTo(ArchivosDePrueba.unJpeg());
+        assertThat(new String(descargada, java.nio.charset.StandardCharsets.ISO_8859_1))
+                .doesNotContain(ArchivosDePrueba.METADATO);
     }
 
     @Test

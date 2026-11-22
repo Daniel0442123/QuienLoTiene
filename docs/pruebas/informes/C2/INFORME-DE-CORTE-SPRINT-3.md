@@ -1,6 +1,6 @@
 # Informe de corte · Sprint 3 · Ciclo C2
 
-> **Control del documento** · Versión 1.0 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.1 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Anexo C del Plan Maestro (informe de avance). Preparado con Claude Code a partir de `libro/04-EJECUCION-C2.md`; QA lo revisa y lo firma.
 
@@ -13,18 +13,15 @@
 
 | Responsable | Casos planeados | Ejecutados | Aprobados | Fallidos | Bloqueados | No ejecutados |
 |---|---|---|---|---|---|---|
-| Yanimar Burbano Piamba | 26 | 24 | 24 | 0 | 0 | 2 |
-| Francisco José Castro Muñoz | 8 | 3 | 3 | 0 | 0 | 5 |
-| **Total** | **34** | **27** | **27** | **0** | **0** | **7** |
+| Yanimar Burbano Piamba | 26 | 26 | 26 | 0 | 0 | 0 |
+| Francisco José Castro Muñoz | 8 | 8 | 8 | 0 | 0 | 0 |
+| **Total** | **34** | **34** | **34** | **0** | **0** | **0** |
 
 Los 34 casos son los 22 del Sprint 3, los 3 de HU-008 que pasaron a este sprint por SC-018 y los 9 no funcionales del C2. No hay re-pruebas del C1: ningún caso quedó Fallido ni Bloqueado.
 
-Los 7 «No ejecutado» son no funcionales:
+Los 7 no funcionales que el 21/11 no tenían una prueba etiquetada (NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015) se ejecutaron el 22/11 con pruebas nuevas o etiquetadas, sobre main `d92847a` más las correcciones de DEF-013, DEF-014 y DEF-015. Los tres de seguridad fallaban en v0.5.2 y pasan con la corrección; falta re-probarlos en producción después de desplegar.
 
-- **NF-REN-003, NF-SEG-007, NF-SEG-008, NF-SEG-009, NF-SEG-012 y NF-FIA-015:** todavía no tienen una prueba etiquetada con su ID.
-- **NF-SEG-013:** solo tiene cobertura parcial (la auditoría de la revisión de tiendas).
-
-Avance del ciclo: 27 / 34 = 79,4 %. Aprobación sobre lo ejecutado: 100 %. Los 25 casos de las historias del sprint están aprobados, incluido el push, que se probó en un celular Android real.
+Avance del ciclo: 34 / 34 = 100 %. Aprobación sobre lo ejecutado: 100 %. Los 25 casos de las historias del sprint están aprobados, incluido el push, que se probó en un celular Android real.
 
 ## 2. Pruebas automatizadas
 
@@ -33,6 +30,7 @@ Avance del ciclo: 27 / 34 = 79,4 %. Aprobación sobre lo ejecutado: 100 %. Los 2
 | Comando | `./mvnw -B clean verify` sobre `v0.5.2` (Java 21, Docker con Testcontainers PostGIS) · [`mvn-verify.txt`](../../evidencias/C2/2026-11-22/mvn-verify.txt) |
 | Tests run / Failures / Errors / Skipped | Unitarias 374 / 0 / 0 / 0 · Integración 60 / 0 / 0 / 0 · **Total 434 / 0 / 0 / 0** |
 | Cobertura de líneas domain + application (total) | 95,2 % (2570 de 2700 líneas, incluye shared) · identidad 93,6 %, clientes 84,4 %, tiendas 89,2 %, catalogo 100 %, solicitudes 99,7 %, ordenes 96,7 %, mensajeria 100 %, reputacion 97,9 %, notificaciones 100 %, administracion 97,9 %, shared 77,4 % · [`jacoco.csv`](../../evidencias/C2/2026-11-22/jacoco.csv) |
+| No funcionales (22/11) | `./mvnw -B verify` sobre la rama de las correcciones: unitarias 386 / 0 / 0 / 0 · integración 67 / 0 / 0 / 0 · **total 453 / 0 / 0 / 0** · cobertura 95,3 % (2686 de 2817; identidad 94,0 %, tiendas 90,5 %, ordenes 96,8 %) · [`mvn-verify-no-funcionales.txt`](../../evidencias/C2/2026-11-22/mvn-verify-no-funcionales.txt), [`jacoco-no-funcionales.csv`](../../evidencias/C2/2026-11-22/jacoco-no-funcionales.csv) |
 | Módulos por debajo del 70 % | Ninguno |
 | Pipeline de GitHub Actions (enlace) | [CI run #253 sobre `8d64314`](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44976316882): en verde |
 
@@ -54,6 +52,18 @@ Avance del ciclo: 27 / 34 = 79,4 %. Aprobación sobre lo ejecutado: 100 %. Los 2
 | HU-038 | CP-CAT-038-01, CP-CAT-038-02 | 4 en verde | 2 de 2 aprobados | Sí |
 | SC-020 (menú por rol) | Humo | — | Cada rol ve su menú en producción | Sí |
 
+### No funcionales del C2
+
+| Caso | Prueba | Resultado |
+|---|---|---|
+| NF-REN-003 | RendimientoBusquedaTiendasIT | Aprobado: 2 ms con 1.000 tiendas, usa el índice GiST |
+| NF-SEG-007 | AutorizacionPorObjetoIT, DireccionesIT | Aprobado: 403 o 404 en 14 endpoints de órdenes y solicitudes, sin datos del cliente |
+| NF-SEG-008 | SesionControllerIT | Aprobado: token de 15 minutos y cookie HttpOnly, Secure, SameSite=Strict que rota |
+| NF-SEG-009 | IntentosInicioSesionTest, SesionesTest, SesionControllerIT, SolicitudControllerIT | Aprobado con la corrección de DEF-013 |
+| NF-SEG-012 | LimpiadorMetadatosTest, TiendaTest, AdministracionTiendasIT | Aprobado con la corrección de DEF-014 |
+| NF-SEG-013 | SesionControllerIT, AutorizacionPorObjetoIT y las pruebas de administración | Aprobado con la corrección de DEF-015 |
+| NF-FIA-015 | RegistroDeEventosIT | Aprobado: el evento que falla queda pendiente y se procesa al reenviarlo, 0 perdidos |
+
 ### Recorrido en producción
 
 El 21/11, de 9:40 p. m. a 10:48 p. m., Pedro y Claude Code recorrieron la app en https://quienlotiene.tech con usuario1, tienda1 y la cuenta de administrador. Cubrieron 3 pedidos y el push en un celular Android:
@@ -64,32 +74,37 @@ El 21/11, de 9:40 p. m. a 10:48 p. m., Pedro y Claude Code recorrieron la app en
 
 Detalle y 49 capturas en [`evidencias/C2/2026-11-22/produccion/`](../../evidencias/C2/2026-11-22/produccion/README.md).
 
-## 4. Defectos nuevos (S1 0 / S2 0 / S3 0 / S4 1)
+## 4. Defectos nuevos (S1 0 / S2 0 / S3 3 / S4 1)
 
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla |
 |---|---|---|---|---|---|
 | DEF-012 | S4 Baja | P4 Baja | Abierto | Humo producción (CP-ORD-029-01) | En «Mis respuestas» de la tienda, los pedidos ya cancelados o recibidos siguen diciendo «Elegida · Prepara el pedido.» |
+| DEF-013 | S3 Media | P2 Alta | En corrección | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta (RNF-009 pide 5 por minuto) |
+| DEF-014 | S3 Media | P2 Alta | En corrección | NF-SEG-012 | La foto del local se guarda con su EXIF (GPS y modelo del celular) |
+| DEF-015 | S3 Media | P3 Normal | En corrección | NF-SEG-013 | Cuando la tienda ve los datos del cliente de una orden no queda registro de auditoría |
 
 Observaciones que no se registran como defecto:
 
 - Al enviar un reporte no aparece un mensaje de confirmación.
 - La cuenta regresiva de la reserva muestra 31 minutos en la tienda y 30 en el cliente.
+- La búsqueda completa de tiendas tardó 220 ms con 79 tiendas en el radio porque carga cada tienda una por una. RNF-003 mide la consulta (2 ms) y pasa, pero conviene revisarlo en la prueba de carga del C3.
 
 ## 5. Bloqueos y acciones
 
 | Bloqueo | Casos afectados | Acción acordada | Responsable | Fecha |
 |---|---|---|---|---|
-| 7 no funcionales del C2 no tienen una prueba etiquetada con su ID | NF-REN-003, NF-SEG-007, NF-SEG-008, NF-SEG-009, NF-SEG-012, NF-SEG-013, NF-FIA-015 | Etiquetar o escribir sus pruebas y ejecutarlas en la regresión del C3 | Francisco Castro | 2026-11-24 |
 | Para probar un sábado de noche se amplió el horario de Tienda Uno | Recorrido en producción | Hecho: se devolvió a lunes a sábado de 07:00 a 18:00 y domingo cerrado el 21/11 a las 10:52 p. m. | Pedro | 2026-11-21 |
 
 ## 6. Plan para el siguiente sprint
 
 1. Triaje de DEF-012 y corrección en el C3.
-2. Completar las pruebas de los 7 no funcionales pendientes y correrlas con la regresión completa del C3 (85 casos + 5 E2E + 13 NF).
-3. Cerrar el C2 con la firma de QA de este informe y de `04-EJECUCION-C2.md`.
+2. Desplegar las correcciones de DEF-013, DEF-014 y DEF-015 y re-probar NF-SEG-009, 012 y 013 en producción.
+3. Correr la regresión completa del C3 (85 casos + 5 E2E + 13 NF), con los 7 no funcionales ya etiquetados.
+4. Cerrar el C2 con la firma de QA de este informe y de `04-EJECUCION-C2.md`.
 
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 1.0 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte del Sprint 3 sobre `v0.5.2`, preparado con Claude Code para que QA lo revise y firme |
+| 1.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 7 no funcionales que faltaban, ejecutados y aprobados el 22/11; DEF-013 a DEF-015 en corrección; observación sobre la búsqueda completa |

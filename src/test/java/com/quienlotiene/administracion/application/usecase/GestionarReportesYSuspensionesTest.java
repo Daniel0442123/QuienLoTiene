@@ -67,6 +67,7 @@ class GestionarReportesYSuspensionesTest {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @Tag("CP-ADM-037-01")
     @DisplayName("CP-ADM-037-01 Suspender la tienda suspende la cuenta del dueño y queda auditado con el motivo")
     void suspende() {
@@ -84,6 +85,7 @@ class GestionarReportesYSuspensionesTest {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @DisplayName("Reactivar devuelve la tienda a APROBADA, reactiva la cuenta y queda auditado")
     void reactiva() {
         when(revisionTiendasApi.reactivar(TIENDA)).thenReturn(new TiendaSuspendida(tienda("APROBADA"), DUENO));
@@ -94,6 +96,7 @@ class GestionarReportesYSuspensionesTest {
     }
 
     @Test
+    @Tag("NF-SEG-013")
     @Tag("CP-ADM-037-02")
     @DisplayName("CP-ADM-037-02 Resolver un reporte queda auditado con la nota")
     void resuelveReporte() {

@@ -13,7 +13,9 @@ import com.quienlotiene.identidad.application.dto.SesionIniciada;
 import com.quienlotiene.identidad.domain.model.Correo;
 import com.quienlotiene.identidad.domain.model.CredencialesIncorrectasException;
 import com.quienlotiene.identidad.domain.model.CuentaSuspendidaException;
+import com.quienlotiene.identidad.domain.model.DemasiadosIntentosInicioSesionException;
 import com.quienlotiene.identidad.domain.model.EstadoCuenta;
+import com.quienlotiene.identidad.domain.model.IntentosInicioSesion;
 import com.quienlotiene.identidad.domain.model.Rol;
 import com.quienlotiene.identidad.domain.model.SegundoFactorRequeridoException;
 import com.quienlotiene.identidad.domain.model.SesionVencidaException;
@@ -88,8 +90,13 @@ class SesionesTest {
 
         @BeforeEach
         void configurar() {
-            iniciarSesion =
-                    new IniciarSesion(usuarioRepository, codificadorFrases, emisorSesion, desafioRepository, reloj);
+            iniciarSesion = new IniciarSesion(
+                    usuarioRepository,
+                    codificadorFrases,
+                    emisorSesion,
+                    desafioRepository,
+                    reloj,
+                    new IntentosInicioSesion());
         }
 
         @Test
@@ -117,6 +124,27 @@ class SesionesTest {
             assertThat(tokenGuardado.getValue().getUsuarioId()).isEqualTo(cliente.getId());
             assertThat(tokenGuardado.getValue().getHashToken())
                     .isEqualTo(new ValorTokenOpaco(sesion.tokenRefresco()).calcularHash());
+        }
+
+        @Test
+        @Tag("NF-SEG-009")
+        @DisplayName("NF-SEG-009 El sexto intento en un minuto se niega sin revisar la frase")
+        void limitaLosIntentosPorCuenta() {
+            // Dado: cinco intentos fallidos de la misma cuenta
+            var cliente = usuario(Rol.CLIENTE, EstadoCuenta.ACTIVA);
+            when(usuarioRepository.buscarPorCorreo(any())).thenReturn(Optional.of(cliente));
+            when(codificadorFrases.coincide("frase equivocada cualquiera", HASH))
+                    .thenReturn(false);
+            for (int intento = 0; intento < 5; intento++) {
+                assertThatThrownBy(() -> iniciarSesion.ejecutar(
+                                new IniciarSesionComando("ana@correo.com", "frase equivocada cualquiera")))
+                        .isInstanceOf(CredencialesIncorrectasException.class);
+            }
+
+            // Cuando / Entonces: el sexto, aun con la frase correcta, responde 429
+            assertThatThrownBy(() -> iniciarSesion.ejecutar(new IniciarSesionComando("ana@correo.com", FRASE)))
+                    .isInstanceOf(DemasiadosIntentosInicioSesionException.class);
+            verify(codificadorFrases, never()).coincide(FRASE, HASH);
         }
 
         @Test
