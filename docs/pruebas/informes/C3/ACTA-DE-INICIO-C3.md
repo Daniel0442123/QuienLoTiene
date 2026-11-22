@@ -1,6 +1,6 @@
 # Acta de inicio del ciclo C3
 
-> **Control del documento** · Versión 0.2 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA y del Product Owner) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.3 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA y del Product Owner) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Anexo B del Plan Maestro. Preparada con Claude Code para que QA y el Product Owner la revisen y la firmen. El plan del ciclo fija el inicio el 23/11. El acta y la regresión automatizada se adelantan al 22/11 porque la versión candidata ya está desplegada.
 
@@ -17,7 +17,7 @@
 
 **Pendientes o excepciones:**
 
-1. Las historias Could HU-006 (verificar correo), HU-011 (tarifas de domicilio avanzadas), HU-015 (resumen de indicadores de la tienda) y HU-022 (ampliar el radio automáticamente) están planeadas para el Sprint de Cierre (23/11 al 25/11), pero no estaban implementadas al hacer la regresión. El mismo 22/11 Pedro decidió hacer HU-015 y HU-022 y sacar HU-006 y HU-011 (SC-021, pendiente del comité). HU-015 y HU-022 se implementaron y sus 4 casos se ejecutan en este ciclo. Los 4 de HU-006 y HU-011 quedan «No aplica» por SC-021, como permite el objetivo 4 del plan del C3.
+1. Las historias Could HU-006 (verificar correo), HU-011 (tarifas de domicilio avanzadas), HU-015 (resumen de indicadores de la tienda) y HU-022 (ampliar el radio automáticamente) están planeadas para el Sprint de Cierre (23/11 al 25/11), pero no estaban implementadas al hacer la regresión. El mismo 22/11 Pedro decidió hacer HU-015 y HU-022 y sacar HU-006 y HU-011 (SC-021, aprobada por el Product Owner el mismo día). HU-015 y HU-022 se implementaron y sus 4 casos se ejecutan en este ciclo. Los 4 de HU-006 y HU-011 quedan «No aplica» por SC-021, como permite el objetivo 4 del plan del C3.
 2. HU-008 se adelantó al Sprint 3 por SC-018. CP-CLI-008-01 a 03 ya se aprobaron en el C2 y en el C3 entran a la regresión.
 3. DEF-012 (S4, «Elegida · Prepara el pedido.» en pedidos cerrados) sigue abierto. El triaje decide si se corrige en el C3 o se difiere con plan.
 4. Todavía no existen las pruebas de punta a punta con Playwright ni los guiones de carga con k6. Se escriben en este ciclo.
@@ -35,3 +35,4 @@
 |---|---|---|---|
 | 0.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador del acta de inicio del C3 sobre `v0.5.3`, preparado con Claude Code para que QA y el Product Owner lo revisen y firmen |
 | 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Excepción 1: HU-015 y HU-022 implementadas; HU-006 y HU-011 salen por SC-021 |
+| 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-021 aprobada |
