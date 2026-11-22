@@ -31,4 +31,15 @@ estados en vivo, «Cómo llegar» y cancelación). La tienda se manejó desde el
 
 iOS 27.2.1 (Configuración › General › Información, 22/11 5:37 p. m.).
 
-Pendiente: push con la app en la pantalla de inicio, Android, Edge y Firefox.
+## Push en iPhone con la app instalada (HU-031), 5:57 p. m. a 5:58 p. m.
+
+| Captura | Qué se ve |
+|---|---|
+| `iphone-17-pro-max/14-app-instalada-avisos-activados.png` | App agregada a la pantalla de inicio, sesión de Tienda Uno: «Los avisos están activados en este dispositivo.» |
+| `iphone-17-pro-max/15-push-con-app-cerrada.png` | Con la app cerrada llega «Solicitud nueva · Un vecino pregunta si tienes un producto. Toca para responder.», con sonido |
+
+La solicitud «Prueba de aviso push iPhone» se publicó a las 5:58 p. m. con una cuenta de cliente de la prueba de carga
+(`scripts/carga/publicar-una.mjs`) junto a Tienda Uno: 1 tienda notificada. El aviso no lleva el producto ni datos del
+cliente, como pide HU-031. iOS agrega «from Quién lo tiene» en inglés: es texto del sistema, no de la app.
+
+Pendiente: Android, Edge y Firefox.
