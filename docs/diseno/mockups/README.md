@@ -1,6 +1,6 @@
 # Mockups de las historias pendientes
 
-> **Control del documento** · Versión 0.4 · 21/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
+> **Control del documento** · Versión 0.5 · 22/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
 
 Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Sprint 2 en adelante). Las pantallas del Sprint 1 ya están construidas en `frontend/`.
 
@@ -12,7 +12,7 @@ Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Spri
 ## Fuente
 
 - **`fuente/`** guarda el lienzo editable: un archivo `.dc.html` por tablero y `canvas.json` con su posición. Es la fuente de verdad; los PNG se generan desde ahí.
-- Los PNG salieron de los archivos de `fuente/` de su versión, capturados con Edge sin interfaz al tamaño de cada tablero (los 01 a 10 en la 0.2, los 11 a 13 en la 0.3 y los 01, 02 y 05 de nuevo en la 0.4).
+- Los PNG salieron de los archivos de `fuente/` de su versión, capturados con Edge sin interfaz al tamaño de cada tablero (los 01 a 10 en la 0.2, los 11 a 13 en la 0.3, los 01, 02 y 05 de nuevo en la 0.4 y los 14 a 16 en la 0.5). Los de celular miden 390 × 844 y los de escritorio 1024 × 720.
 - Los `.dc.html` necesitan el editor de lienzo para verse con sus marcos; abiertos solos en el navegador muestran el contenido sin estilos de marco.
 
 ## Tableros
@@ -32,8 +32,13 @@ Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Spri
 | [11 · Cliente: tienda, restringido y cancelar (Sprint 3)](11-cliente-sprint-3-tienda-restringido-y-cancelar.png) | HU-014 detalle con mapa y teléfono, HU-023 aviso al publicar, HU-029 confirmar antes de cancelar y pedido en camino sin «Cancelar» | 3 |
 | [12 · Cliente: reserva, chat e historial (Sprint 3)](12-cliente-sprint-3-reserva-chat-e-historial.png) | HU-025 reserva vencida, HU-033 chat en solo lectura, HU-008 «Mis preguntas» (SC-018) e historial vacío | 3 |
 | [13 · Administrador (Sprint 3)](13-administrador-sprint-3.png) | HU-037 confirmar antes de suspender, HU-038 quitar con deshacer | 3 |
+| [14 · Navegación: menú abierto en el celular](14-navegacion-menu-abierto-en-celular.png) | SC-020: menú con ícono y texto para cliente, tienda y administrador, abierto con «Menú» y con la opción actual marcada | Cierre |
+| [15 · Inicio sin sesión y por rol](15-inicio-sin-sesion-y-por-rol.png) | SC-020: inicio sin sesión («Cómo funciona», crear cuenta, entrar y registrar la tienda) e inicio de cliente, tienda y administrador con el menú cerrado | Cierre |
+| [16 · Navegación en escritorio](16-navegacion-en-escritorio.png) | SC-020: menú lateral fijo para cada rol desde 1024 px | Cierre |
 
 Los tableros 11 a 13 usan los textos de las pantallas ya construidas (PR #67 a #73). Donde difieren de los tableros 01 a 04 y 07, mandan ellos: HU-014 sin foto ni «Ver las 38 reseñas» (la API no las trae), HU-023 avisa al escribir el producto y no solo al confirmar, y HU-025 se confirma con la tienda (no hay «Ya lo recogí»).
+
+**Navegación (SC-020):** los tableros 01 a 13 muestran el encabezado viejo, con enlaces en fila o el nombre de la sección. Desde la 0.5 manda el menú de los tableros 14 a 16: ícono y texto por opción, según el rol, fijo a la izquierda desde 1024 px y detrás del botón «Menú» en el celular. Los textos e íconos son los de `frontend/src/app/navegacion.ts` y `features/inicio/textos.ts`.
 
 HU-017 (difundir) es un proceso del sistema sin pantalla propia. Los efectos visibles de HU-021 (vencer solicitudes) y HU-022 (ampliar el radio) están en los tableros 01, 08 y 09.
 
@@ -90,3 +95,4 @@ Textos de 16 px o más, zonas para tocar de 44 × 44 px o más con 8 px entre el
 | 0.2 | 16/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Cambios de la revisión del 13/11/2026: tableros 08 a 10 (estados del Sprint 2 y 320 px), HU-019 con «Tengo algo parecido» y respuesta duplicada, HU-020 vacío, HU-021 vencida y no elegida, HU-027 en camino y cancelado, textos de HU-006 y desglose de HU-023, aviso con cierre en HU-018, lienzo fuente en `fuente/`, encabezado de control y decisiones separadas en aprobadas y por aprobar (PR #33) |
 | 0.3 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | Tableros 11 a 13 del Sprint 3 (C-15): HU-014 con mapa, HU-023 al publicar, HU-025 vencida, HU-029 confirmar y en camino, HU-033 solo lectura, HU-008 «Mis preguntas» y vacío, confirmar en HU-037 y deshacer en HU-038, con anotaciones de accesibilidad |
 | 0.4 | 21/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-20: qué anuncia el lector en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05) y nota de ayuda en el mismo lugar (3.2.6) y foco no tapado (2.4.11) (PR #77) |
+| 0.5 | 22/11/2026 | Monica Anyi Cajas Mellizo (@monicacajas-art) | C-21: tableros 14 a 16 con el menú lateral por rol (celular y escritorio) y el inicio sin sesión y por rol de SC-020; los tableros 01 a 13 quedan con el encabezado viejo y mandan los nuevos (PR #81) |
