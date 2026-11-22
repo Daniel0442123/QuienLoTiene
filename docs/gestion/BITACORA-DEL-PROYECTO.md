@@ -1,6 +1,6 @@
 # Bitácora del proyecto · Quién lo tiene
 
-> **Control del documento** · Versión 1.22 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
+> **Control del documento** · Versión 1.23 · 22/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Estado: Vigente · Procedimiento: [`PROCEDIMIENTO-DE-SEGUIMIENTO.md`](PROCEDIMIENTO-DE-SEGUIMIENTO.md)
 
 Registro cronológico de **qué se hizo, cuándo y quién lo hizo** en el proyecto. Cubre los pull requests (sección 2, generada), los hechos que no pasan por un pull request (sección 3) y los compromisos que quedaron abiertos (sección 4). Las desviaciones del plan no se describen aquí: se registran como solicitudes de cambio en [`CONTROL-DE-CAMBIOS.md`](CONTROL-DE-CAMBIOS.md) y aquí solo se cita su número.
 
@@ -136,6 +136,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 21/11/2026 22:48 | Corte del Sprint 3 (C2) sobre `v0.5.2`: `./mvnw verify` (434 pruebas, 0 fallas, 95,2 %) y recorrido en producción con cliente, tienda, administrador y push en un Android real, de 9:40 p. m. a 10:48 p. m. 27 de 34 casos aprobados, 0 fallidos, nuevo DEF-012 (S4). El horario de Tienda Uno se amplió para la prueba y se devolvió a las 10:52 p. m. | Pedro (dueño del proyecto) con Claude Code | `docs/pruebas/evidencias/C2/2026-11-22/`, `docs/pruebas/informes/C2/INFORME-DE-CORTE-SPRINT-3.md` | SC-018, SC-019, SC-020 |
 | 21/11/2026 23:43 | Etiqueta `v0.5.3` sobre `ff9ac6d` (#86) y despliegue del límite de inicio de sesión, las imágenes sin EXIF y la auditoría del acceso a datos del cliente: pruebas, imágenes, Trivy y verificación HTTPS en verde | Pedro (dueño del proyecto) creó la etiqueta | [Despliegue 44986293432](https://github.com/Daniel0442123/QuienLoTiene/actions/runs/44986293432), [Release v0.5.3](https://github.com/Daniel0442123/QuienLoTiene/releases/tag/v0.5.3) | #85, #86 |
 | 22/11/2026 09:50 | Re-prueba en producción sobre `v0.5.3` de NF-SEG-009, 012 y 013: pasan. DEF-013 a DEF-015 quedan «En verificación» | Pedro (dueño del proyecto) con Claude Code en su navegador y el VPS | `docs/pruebas/evidencias/C2/2026-11-22/produccion-v0.5.3/` | #85 |
+| 22/11/2026 10:12 | Pedro aprueba cerrar DEF-013, DEF-014 y DEF-015 después de la re-prueba en producción sobre `v0.5.3`; QA lo revisa al firmar el corte del Sprint 3 | Pedro (dueño del proyecto); documentos preparados con Claude Code | `docs/pruebas/libro/06-DEFECTOS.md` 1.13 | #85, #87 |
 
 ## 4. Compromisos abiertos
 
@@ -164,7 +165,7 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | C-19 | Decidir SC-015 (cierre del C1 el 20/11) | Este PR | Pedro (dueño del proyecto) | 18/11/2026 | Cerrado | 16/11/2026: aprobada por Pedro en el hilo del proyecto |
 | C-20 | Anotar en los mockups qué anuncia `aria-live` en HU-018, HU-020 y HU-027 (tableros 01, 02 y 05), el enlace de ayuda en el mismo lugar en todas las pantallas (WCAG 3.2.6) y el `scroll-padding` bajo las barras fijas (WCAG 2.4.11). 21/11/2026: anotados en los tableros 01, 02 y 05 y en una nota del lienzo; 2.4.11 ya estaba en la app y 3.2.6 queda como regla para cuando haya ayuda (README de mockups 0.4) | C-15, PR #75, #77 | Monica Anyi Cajas Mellizo | Cierre | Cerrado | 21/11/2026, PR #77 |
 | C-21 | Pasar a los mockups el menú lateral por rol y la página de inicio nueva, y revisarlos a 390 y 320 px. 22/11/2026: tableros 14 a 16 y README de mockups 0.5; revisión con teclado a 390 y 320 px con los tres roles, sin desplazamiento horizontal (hallazgos en el PR) | SC-020, PR #81 | Monica Anyi Cajas Mellizo | Cierre | Cerrado | 22/11/2026, PR #81 |
-| C-22 | Revisar y firmar el borrador del corte del Sprint 3 (`04-EJECUCION-C2.md`, informe de corte y DEF-012), agregar al Excel del libro las 3 filas de CP-CLI-008 (HU-008, SC-018) y escribir o etiquetar las pruebas de NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015 para el C3 | Corte del Sprint 3 | Yanimar Burbano Piamba, Francisco José Castro Muñoz | 24/11/2026 | En curso | 22/11: las 3 filas de CP-CLI-008 ya están en el Excel y los 7 no funcionales tienen prueba y pasan (DEF-013 a DEF-015 corregidos en el mismo PR y re-probados en producción sobre `v0.5.3`). Falta que QA firme y cierre DEF-013 a DEF-015 (las tiendas de prueba «Tienda Prueba EXIF» y «Tienda Prueba EXIF 2» ya se rechazaron) |
+| C-22 | Revisar y firmar el borrador del corte del Sprint 3 (`04-EJECUCION-C2.md`, informe de corte y DEF-012), agregar al Excel del libro las 3 filas de CP-CLI-008 (HU-008, SC-018) y escribir o etiquetar las pruebas de NF-REN-003, NF-SEG-007, 008, 009, 012, 013 y NF-FIA-015 para el C3 | Corte del Sprint 3 | Yanimar Burbano Piamba, Francisco José Castro Muñoz | 24/11/2026 | En curso | 22/11: las 3 filas de CP-CLI-008 ya están en el Excel y los 7 no funcionales tienen prueba y pasan (DEF-013 a DEF-015 corregidos en el mismo PR y re-probados en producción sobre `v0.5.3`). DEF-013 a DEF-015 cerrados el 22/11. Falta que QA firme (las tiendas de prueba «Tienda Prueba EXIF» y «Tienda Prueba EXIF 2» ya se rechazaron) |
 
 ## Historial del documento
 
@@ -193,3 +194,4 @@ Lo que un PR, una reunión o una revisión dejó pendiente. Se cierra con la fec
 | 1.20 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance de C-22: filas de HU-008 en el Excel y pruebas de los 7 no funcionales; queda la firma de QA |
 | 1.21 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del despliegue de `v0.5.2` antes de etiquetar `v0.5.3` |
 | 1.22 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hechos del despliegue de `v0.5.3` y de la re-prueba en producción de NF-SEG-009, 012 y 013; avance de C-22 |
+| 1.23 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Hecho del cierre de DEF-013 a DEF-015 y avance de C-22 |
