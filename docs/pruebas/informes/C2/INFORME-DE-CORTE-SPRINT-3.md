@@ -1,6 +1,6 @@
 # Informe de corte · Sprint 3 · Ciclo C2
 
-> **Control del documento** · Versión 1.2 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de revisión y firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Anexo C del Plan Maestro (informe de avance). Preparado con Claude Code a partir de `libro/04-EJECUCION-C2.md`; QA lo revisa y lo firma.
 
@@ -79,9 +79,9 @@ Detalle y 49 capturas en [`evidencias/C2/2026-11-22/produccion/`](../../evidenci
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla |
 |---|---|---|---|---|---|
 | DEF-012 | S4 Baja | P4 Baja | Abierto | Humo producción (CP-ORD-029-01) | En «Mis respuestas» de la tienda, los pedidos ya cancelados o recibidos siguen diciendo «Elegida · Prepara el pedido.» |
-| DEF-013 | S3 Media | P2 Alta | En verificación (corregido en v0.5.3) | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta (RNF-009 pide 5 por minuto) |
-| DEF-014 | S3 Media | P2 Alta | En verificación (corregido en v0.5.3) | NF-SEG-012 | La foto del local se guarda con su EXIF (GPS y modelo del celular) |
-| DEF-015 | S3 Media | P3 Normal | En verificación (corregido en v0.5.3) | NF-SEG-013 | Cuando la tienda ve los datos del cliente de una orden no queda registro de auditoría |
+| DEF-013 | S3 Media | P2 Alta | Cerrado (corregido en v0.5.3, 22/11) | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta (RNF-009 pide 5 por minuto) |
+| DEF-014 | S3 Media | P2 Alta | Cerrado (corregido en v0.5.3, 22/11) | NF-SEG-012 | La foto del local se guarda con su EXIF (GPS y modelo del celular) |
+| DEF-015 | S3 Media | P3 Normal | Cerrado (corregido en v0.5.3, 22/11) | NF-SEG-013 | Cuando la tienda ve los datos del cliente de una orden no queda registro de auditoría |
 
 Observaciones que no se registran como defecto:
 
@@ -99,7 +99,7 @@ Observaciones que no se registran como defecto:
 ## 6. Plan para el siguiente sprint
 
 1. Triaje de DEF-012 y corrección en el C3.
-2. QA cierra DEF-013, DEF-014 y DEF-015, ya re-probados en producción sobre `v0.5.3`.
+2. DEF-013, DEF-014 y DEF-015 quedaron cerrados el 22/11 con el visto bueno de Pedro, después de pasar la re-prueba en producción sobre `v0.5.3`. QA lo revisa al firmar este informe.
 3. Correr la regresión completa del C3 (85 casos + 5 E2E + 13 NF), con los 7 no funcionales ya etiquetados.
 4. Cerrar el C2 con la firma de QA de este informe y de `04-EJECUCION-C2.md`.
 
@@ -110,3 +110,4 @@ Observaciones que no se registran como defecto:
 | 1.0 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte del Sprint 3 sobre `v0.5.2`, preparado con Claude Code para que QA lo revise y firme |
 | 1.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 7 no funcionales que faltaban, ejecutados y aprobados el 22/11; DEF-013 a DEF-015 en corrección; observación sobre la búsqueda completa |
 | 1.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba en producción de NF-SEG-009, 012 y 013 sobre `v0.5.3`: pasan; DEF-013 a DEF-015 en verificación |
+| 1.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 cerrados el 22/11 con el visto bueno de Pedro |
