@@ -51,6 +51,10 @@ DOCUMENTOS = [
     (DEFECTOS / f"DEF-{n:03d}.md", f"Reporte-de-Defecto-DEF-{n:03d}-QuienLoTiene.docx",
      "Quién lo tiene · Reporte de defecto")
     for n in range(1, 11)
+] + [
+    # Ciclo C2: el nombre lleva la carpeta porque SALIDA es la del C1
+    (Path("docs/pruebas/informes/C2/INFORME-DE-CORTE-SPRINT-3.md"), "../C2/Informe-de-Corte-Sprint-3-QuienLoTiene.docx",
+     "Quién lo tiene · Informe de corte · Sprint 3"),
 ]
 
 TOKENS = re.compile(
@@ -284,6 +288,7 @@ def main() -> int:
         if opciones.solo and opciones.solo not in nombre:
             continue
         salida = SALIDA / nombre
+        salida.parent.mkdir(parents=True, exist_ok=True)
         Generador(fuente, encabezado).convertir(salida)
         print(f"{fuente} → {salida}")
     return 0

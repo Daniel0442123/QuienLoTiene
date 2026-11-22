@@ -1,6 +1,6 @@
 # Hoja «Bitácora» · Sesiones de prueba
 
-> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Una fila por responsable de QA y por día de pruebas. Las ejecuciones automáticas de CI en cada push no se registran aquí; sí las corridas que se usan como evidencia (cierre de historia, corte de sprint, cierre de ciclo, re-prueba).
 
@@ -14,6 +14,9 @@
 | 2026-11-16 | C1 | Sprint 2 | Yanimar Burbano | 1,5 | Recorrido de punta a punta | main · `5e8ab98` | PWA en local (backend dev + PostGIS + vite), 3 tiendas y 2 clientes; publicar → responder → elegir → pedido → recibido, urgente y vencimiento · ver `informes/C1/RECORRIDO-SPRINT-2-20261116.md` | 23 | 23 | 0 | 0 | — | 4 (DEF-006 a DEF-009) | — | Generar los tipos desde /v3/api-docs (C-04): 35 errores, lista para Monica en `informes/C1/C-04-DIFERENCIAS-TIPOS.md`. Re-prueba de DEF-005: sigue abierto | 34 capturas. Pendiente la revisión y firma de QA |
 | 2026-11-16 | C1 | Sprint 2 | Yanimar Burbano | 0,5 | Re-prueba | main · `55ab5b6` (#46, #47, #48) | PWA en local (backend dev + PostGIS + vite), 3 tiendas y 2 clientes; DEF-005, DEF-007, DEF-008 y DEF-009 en pantalla, DEF-006 contra `/v3/api-docs` en vivo con `npm run api:tipos` y `npm run tipos` · ver `evidencias/C1/2026-11-16/reprueba/` | 5 re-pruebas | 5 | 0 | 0 | — | 1 (DEF-010) | — | QA revisa y cierra DEF-005 a DEF-009; triaje de DEF-010 | Borrador preparado el 16/11 para que QA lo revise y firme. El vencimiento se forzó en la base, como en el recorrido. |
 | 2026-11-16 | C1 | Sprint 2 | Yanimar Burbano | 0,25 | Re-prueba | main · `e679ef3` (#50, #51) | PWA en local (backend dev + PostGIS + vite); los tres textos con hora de DEF-010 en pantalla (tienda que ya respondió, pedido entregado y solicitud vencida) · ver `evidencias/C1/2026-11-16/reprueba-def010/` | 1 re-prueba (3 textos) | 1 | 0 | 0 | — | 0 | — | QA revisa y cierra DEF-010 | Borrador preparado el 16/11 para que QA lo revise y firme. El vencimiento se forzó en la base. |
+| 2026-11-21 | C2 | Sprint 3 | Yanimar Burbano | 0,5 | Automatizada | v0.5.2 · `8d64314` | `./mvnw -B clean verify` (374 unitarias + 60 integración con Testcontainers) y CI run #253 · casos del Sprint 3, CP-CLI-008 (SC-018) y NF-MAN-024 | 20 | 20 | 0 | 0 | 95,2 % | 0 | — | NF-REN-003 y NF-FIA-015 sin prueba etiquetada: pasan al C3 | 434 pruebas, 0 fallas (`evidencias/C2/2026-11-22/mvn-verify.txt`). Ejecución preparada con Claude Code; pendiente la revisión y firma de QA |
+| 2026-11-21 | C2 | Sprint 3 | Francisco Castro | 0,25 | Automatizada | v0.5.2 · `8d64314` | `./mvnw -B clean verify` · CP-TIE-014-02, CP-REP-035-02, CP-ADM-037-01 y NF-SEG-013 (parcial) | 3 | 3 | 0 | 0 | 95,2 % | 0 | 5 no funcionales de seguridad sin prueba etiquetada | Etiquetar o escribir las pruebas de NF-SEG-007, 008, 009, 012 y 013 para el C3 | Pendiente la revisión y firma de QA |
+| 2026-11-21 | C2 | Sprint 3 | Yanimar Burbano | 1,25 | Recorrido de punta a punta | v0.5.2 · `8d64314` (producción) | https://quienlotiene.tech con usuario1, tienda1 y ADMIN, 3 pedidos, y push en un Android real · ver `evidencias/C2/2026-11-22/produccion/README.md` | 20 | 20 | 0 | 0 | — | 1 (DEF-012) | Tienda Uno estaba fuera de horario un sábado de noche | Se amplió el horario para la prueba y se devolvió al terminar (10:52 p. m.) | 49 capturas. Hecho por Pedro con Claude Code de 9:40 p. m. a 10:48 p. m.; pendiente la revisión y firma de QA |
 
 ## Historial del documento
 
@@ -25,3 +28,4 @@
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del 16/11 del Sprint 2 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-005 a DEF-009 sobre main 55ab5b6 (borrador, pendiente de firma de QA) |
 | 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-010 sobre main e679ef3 (borrador, pendiente de firma de QA) |
+| 1.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del corte del Sprint 3 (C2) sobre v0.5.2: automatizadas y recorrido en producción (borrador, pendiente de firma de QA) |
