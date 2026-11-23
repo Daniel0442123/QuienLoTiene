@@ -5,8 +5,8 @@
 Fuentes: idea-negocio.pdf (Byte Force, Ingeniería del Software 3) y documento de arquitectura
 (https://claude.ai/artifact/685QgQCQEEASFZfMkQSApV).
 
-## Respuestas de Pedro
-- Equipo: 7 personas. Roles pendientes (Pedro los enviará).
+## Respuestas de Daniel Montenegro
+- Equipo: 7 personas. Roles pendientes (Daniel Montenegro los enviará).
 - Fecha de entrega final: 26/11/2026 (aprox. 4,5 semanas desde el 26/10/2026).
 - Entregable del 26/11: app funcional + documentación completa + batería de pruebas, todo funcionando.
 - Uso: demo con datos de prueba ante el profesor (no piloto con tiendas reales por ahora).
@@ -22,7 +22,7 @@ Fuentes: idea-negocio.pdf (Byte Force, Ingeniería del Software 3) y documento d
 ## Entregables
 - SRS completo (21 secciones + anexos): https://claude.ai/artifact/QgeXSyJwMLhgsNJNmU3V2T
 - Diagramas .drawio: /mnt/project-files/requisitos/diagramas/ (00 a 09)
-- Pendiente de Pedro: roles de las 7 personas y rúbrica del profesor.
+- Pendiente de Daniel Montenegro: roles de las 7 personas y rúbrica del profesor.
 
 ## Historial del documento
 

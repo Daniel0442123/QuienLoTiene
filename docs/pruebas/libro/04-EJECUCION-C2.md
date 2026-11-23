@@ -4,7 +4,7 @@
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
-> Ejecución del corte del Sprint 3 registrada como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`): `./mvnw -B clean verify` y recorrido en producción del 21/11 de 10:00 p. m. a 10:40 p. m. (hora de Bogotá), hecho por Pedro con Claude Code. Pendiente la revisión y firma de QA.
+> Ejecución del corte del Sprint 3 registrada como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`): `./mvnw -B clean verify` y recorrido en producción del 21/11 de 10:00 p. m. a 10:40 p. m. (hora de Bogotá), hecho por Daniel Montenegro con Claude Code. Pendiente la revisión y firma de QA.
 >
 > 22/11/2026: los 7 no funcionales que quedaban sin prueba etiquetada se ejecutaron sobre la rama del PR (main `d92847a` más las correcciones de DEF-013, DEF-014 y DEF-015), con `./mvnw verify` (453 pruebas, 0 fallas).
 

@@ -6,8 +6,8 @@
 |---|---|
 | Versión | `v0.3.1` en https://quienlotiene.tech (commit `3ee6b2f`) |
 | Ambiente | Producción (producción-pruebas, SC-016). Chrome en Windows con Claude in Chrome |
-| Cuentas | usuario1 y tienda1 `@prueba.quienlotiene.tech` («Tienda Uno», Farmacia, aprobada y abierta). Pedro escribió las credenciales; Claude hizo los clics |
-| Hizo | Pedro (dueño del proyecto) con Claude Code, de 1:39 p. m. a 1:49 p. m. (hora de Bogotá) |
+| Cuentas | usuario1 y tienda1 `@prueba.quienlotiene.tech` («Tienda Uno», Farmacia, aprobada y abierta). Daniel Montenegro escribió las credenciales; Claude hizo los clics |
+| Hizo | Daniel Montenegro (dueño del proyecto) con Claude Code, de 1:39 p. m. a 1:49 p. m. (hora de Bogotá) |
 | Objetivo | Re-probar DEF-011 en producción y recorrer el flujo del Sprint 2 |
 
 ## Pasos y resultado

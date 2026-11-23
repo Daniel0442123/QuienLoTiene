@@ -1,4 +1,4 @@
-# NF-FIA-017 · Respaldo y restauración de prueba en el VPS, corrido por Pedro el 22/11/2026 (≈ 21:35Z). Copia textual.
+# NF-FIA-017 · Respaldo y restauración de prueba en el VPS, corrido por Daniel Montenegro el 22/11/2026 (≈ 21:35Z). Copia textual.
 $ systemctl list-timers quienlotiene-respaldo.timer
 NEXT                        LEFT LAST                         PASSED UNIT                        ACTIVATES
 Mon 2026-11-23 08:06:50 UTC  10h Sun 2026-11-22 08:04:36 UTC 13h ago quienlotiene-respaldo.timer quienlotiene-respaldo.service

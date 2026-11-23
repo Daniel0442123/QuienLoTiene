@@ -14,7 +14,7 @@ Instrumentos asociados: Libro de control de QA (`libro/`), plan de pruebas de ca
 | Versión | Fecha | Autor | Cambios |
 |---|---|---|---|
 | 1.0 | 07/11/2026 | Yanimar Burbano Piamba, Francisco José Castro Muñoz | Primera versión: modelo de pruebas priorizando unitarias, tres ciclos ligados a los sprints, gestión de defectos, instrumentos y criterios de liberación. |
-| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | El C1 · Sprint 2 termina el 20/11 en lugar del 15/11 (SC-015, aprobada por Pedro el 16/11/2026). |
+| 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | El C1 · Sprint 2 termina el 20/11 en lugar del 15/11 (SC-015, aprobada por Daniel Montenegro el 16/11/2026). |
 
 | Rol | Nombre | Firma | Fecha |
 |---|---|---|---|
@@ -316,7 +316,7 @@ Al cerrar cada ciclo se analiza cada defecto con la ficha error → defecto → 
 
 ### 10.1 Accesibilidad
 
-Meta WCAG 2.2 AA (aprobada por Pedro el 08/11/2026; incluye todos los criterios de la 2.1) y RNF-028 (Lighthouse ≥ 90, texto base ≥ 16 px, botones ≥ 44 × 44 px). Francisco revisa con axe DevTools y Lighthouse las pantallas de cliente, tienda y administrador y diligencia el anexo G.
+Meta WCAG 2.2 AA (aprobada por Daniel Montenegro el 08/11/2026; incluye todos los criterios de la 2.1) y RNF-028 (Lighthouse ≥ 90, texto base ≥ 16 px, botones ≥ 44 × 44 px). Francisco revisa con axe DevTools y Lighthouse las pantallas de cliente, tienda y administrador y diligencia el anexo G.
 
 ### 10.2 Móvil y navegadores
 

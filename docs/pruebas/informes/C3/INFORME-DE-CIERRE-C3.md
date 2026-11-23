@@ -17,7 +17,7 @@
 
 ## 1. Resumen de ejecución
 
-De los 98 casos planeados, 97 tienen resultado: 97 aprobados, 0 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 97 / 97 = **100 %**. NF-ESC-020 y NF-USA-028 fallaron sobre `v0.5.4` y se aprobaron en la re-prueba sobre `v0.5.5`, desplegada el 22/11 a las 10:51 p. m. con las correcciones de DEF-016 a DEF-018 (#92). La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. La prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029) no se ejecutan en esta liberación por SC-022, propuesta por Pedro y aprobada por el Product Owner el 22/11. Falta la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
+De los 98 casos planeados, 97 tienen resultado: 97 aprobados, 0 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 97 / 97 = **100 %**. NF-ESC-020 y NF-USA-028 fallaron sobre `v0.5.4` y se aprobaron en la re-prueba sobre `v0.5.5`, desplegada el 22/11 a las 10:51 p. m. con las correcciones de DEF-016 a DEF-018 (#92). La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. La prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029) no se ejecutan en esta liberación por SC-022, propuesta por Daniel Montenegro y aprobada por el Product Owner el 22/11. Falta la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
 
 - **Regresión.** `./mvnw -B verify` sobre la rama de HU-015 y HU-022: 398 pruebas unitarias y 72 de integración, 0 fallas, y 361 pruebas del frontend con Vitest. Cobertura de líneas de domain y application del 95,5 % (2753 de 2884, incluye shared); el módulo más bajo es clientes con 84,4 %. Los 86 casos tienen resultado: 82 aprobados y 4 «No aplica» de HU-006 y HU-011 (SC-021).
 - **Producción.** El 22/11 se comprobaron en `v0.5.4` «Tu resumen» de la tienda (HU-015) y la ampliación del radio de 3 a 5 km a los 11,9 minutos (HU-022) ([evidencia](../../evidencias/C3/2026-11-22/produccion-v0.5.4/README.md)). El recorrido manual de «Cómo llegar» (CP-ORD-026-01) pasó con el pedido 40233FE4 ([evidencia](../../evidencias/C3/2026-11-22/como-llegar/recorrido.txt)).
@@ -157,7 +157,7 @@ De los 98 casos planeados, 97 tienen resultado: 97 aprobados, 0 fallidos y 0 blo
 | NF-DIS-018 | Disponibilidad del servicio en el periodo de evaluación | — | No funcional (Monitor externo (UptimeRobot)) | Francisco Castro | 2026-11-22 | No ejecutado | — |
 | NF-DIS-019 | Despliegues sin interrumpir la demo | — | No funcional (Script de despliegue + monitor) | Francisco Castro | 2026-11-22 | Aprobado | — |
 | NF-ESC-020 | Capacidad en el servidor actual | — | No funcional (k6) | Francisco Castro | 2026-11-22 | Aprobado (re-prueba en v0.5.5) | DEF-018 |
-| NF-COM-026 | Navegadores y dispositivos soportados | — | No funcional (Manual (matriz de navegadores)) | Pedro | 2026-11-22 | Aprobado | — |
+| NF-COM-026 | Navegadores y dispositivos soportados | — | No funcional (Manual (matriz de navegadores)) | Daniel Montenegro | 2026-11-22 | Aprobado | — |
 | NF-USA-027 | Rapidez para publicar y responder | — | No funcional (Prueba con 5 usuarios) | — | 2026-11-22 | No aplica | — |
 | NF-USA-028 | Accesibilidad para usuarios poco técnicos | — | No funcional (Lighthouse + axe + checklist WCAG) | Francisco Castro | 2026-11-22 | Aprobado (re-prueba en v0.5.5) | DEF-017 |
 | NF-POR-029 | Despliegue reproducible | — | No funcional (Manual de despliegue en servidor limpio) | — | 2026-11-22 | No aplica | — |
@@ -173,7 +173,7 @@ Se listan los defectos abiertos y los nuevos del ciclo. DEF-001 a DEF-011 (C1) y
 | DEF-017 | S4 Baja | P4 Baja | Cerrado (corregido en v0.5.5; re-prueba aprobada) | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px | v0.5.4 |
 | DEF-018 | S3 Media | P3 Normal | Cerrado (corregido en v0.5.5; re-prueba aprobada) | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones SSE se cerraron antes de terminar (causa sin confirmar) | v0.5.4 |
 
-Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Diferido: DEF-012 (S4), aceptado en el acta el 23/11 con plan para `v1.0.1`. Cerrados tras la re-prueba sobre `v0.5.5`: DEF-016, DEF-017 y DEF-018 (visto bueno de Pedro; QA los revisa al firmar)
+Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Diferido: DEF-012 (S4), aceptado en el acta el 23/11 con plan para `v1.0.1`. Cerrados tras la re-prueba sobre `v0.5.5`: DEF-016, DEF-017 y DEF-018 (visto bueno de Daniel Montenegro; QA los revisa al firmar)
 
 ## 4. Requisitos y trazabilidad
 
@@ -226,7 +226,7 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 - Los escenarios de punta a punta corrieron contra una pila local (PostGIS, la API y la PWA construidas desde la etiqueta `v0.5.4`) y no contra el VPS. E2E-03 necesita el segundo factor de un administrador, y el de producción es personal; así tampoco quedan pedidos ni calificaciones de prueba en producción. El catálogo (`02-CASOS.md` §3) pedía el VPS: se registra como desviación para que QA la acepte o pida repetirlos allí.
 - Las pruebas de carga se lanzaron desde el entorno de pruebas contra `https://quienlotiene.tech`, así que los tiempos incluyen la red hasta el VPS. Con 100 usuarios el p95 de la API varió entre 280 y 547 ms en las 3 corridas.
 - Caddy llegó a 126,5 de sus 128 MiB de límite de memoria durante la carga (NF-REN-004). Con 256 MiB llegó a 170,8 MiB (67 %), así que estaba limitado por memoria (DEF-018). El stack quedó en unos 810 MiB.
-- El flujo de despliegue de `v0.5.5` falló dos veces por la red entre GitHub y el VPS (una descarga de imagen detenida y un SSH sin respuesta). Pedro terminó el despliegue a mano con los mismos comandos. Conviene dar más tiempo al paso de descarga o reintentarlo.
+- El flujo de despliegue de `v0.5.5` falló dos veces por la red entre GitHub y el VPS (una descarga de imagen detenida y un SSH sin respuesta). Daniel Montenegro terminó el despliegue a mano con los mismos comandos. Conviene dar más tiempo al paso de descarga o reintentarlo.
 - En la corrida 5 (2 minutos después de reiniciar la API) el p95 de la API fue 1,5 s; en la 6 volvió a 296 ms. Con 100 usuarios el p95 no es criterio, pero conviene correr la carga con la API ya caliente.
 - La PWA usa `registerType: 'prompt'`: un navegador sigue con la versión anterior hasta que el usuario acepta el aviso de actualización. Al comprobar `v0.5.4` en producción hubo que activar el service worker nuevo.
 - En producción quedaron datos de prueba: cuentas `@prueba.quienlotiene.tech` (50 clientes de carga y los de las comprobaciones), «Tienda de prueba de carga», solicitudes abiertas y el pedido 40233FE4. Se borran con `limpiar.sh pruebas` cuando QA lo indique.
@@ -250,7 +250,7 @@ El C3 cumple hoy los criterios de calidad (100 % de aprobación, 0 S1 y S2, cobe
 
 Recomendaciones para el equipo:
 
-1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Los tres pasaron la re-prueba (DEF-016 con una solicitud que venció en producción a las 11:36 p. m.). Se cerraron el 22/11 con el visto bueno de Pedro; QA lo revisa al firmar, junto con DEF-012, que Pedro aceptó en el acta el 23/11 como S4 con plan para `v1.0.1`.
+1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Los tres pasaron la re-prueba (DEF-016 con una solicitud que venció en producción a las 11:36 p. m.). Se cerraron el 22/11 con el visto bueno de Daniel Montenegro; QA lo revisa al firmar, junto con DEF-012, que Daniel Montenegro aceptó en el acta el 23/11 como S4 con plan para `v1.0.1`.
 2. NF-ESC-020 se repitió 3 veces con Caddy en 256 MiB (una sobre `v0.5.4` con el cambio aplicado a mano y dos sobre `v0.5.5`) y las 3 cumplen. Queda pendiente repetirla desde otra red para separar la red del servidor.
 3. El 26/11 se toma la captura de UptimeRobot para NF-DIS-018. NF-USA-027 y NF-POR-029 quedan para una liberación posterior (SC-022).
 4. Las pruebas de humo del 26/11 se hacen después del despliegue final con `plantillas/PRUEBAS-DE-HUMO.md`, y después se borran los datos de prueba de producción.
@@ -270,5 +270,5 @@ Recomendaciones para el equipo:
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica»; 98 casos planeados y solo NF-DIS-018 pendiente |
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; 97 de 97 (100 %) y DEF-016 a DEF-018 en verificación |
-| 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
+| 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Daniel Montenegro) |
 | 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 diferido: aceptado en el acta con plan para `v1.0.1` |

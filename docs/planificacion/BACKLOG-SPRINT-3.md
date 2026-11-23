@@ -45,7 +45,7 @@ T-00 va primero: contrato `docs/api/contrato-sprint-3.yaml` (OpenAPI 3.1) y `CON
 
 **Corte si no alcanza:** HU-031 y HU-008 pasan al Cierre; HU-033 es la siguiente candidata. Las historias 1 a 8 son el mínimo del sprint.
 
-**Corte aplicado (19/11/2026):** las historias 1 a 10 entraron en el PR #63. Pedro decidió pasar HU-031 y HU-008 al Cierre y después pidió seguir: HU-031 y HU-008 entraron en el mismo PR. El backend de HU-008 ya sirve a «Mis preguntas» (SC-018) sin rutas extra; el comité aprobó SC-018 y ratificó la reserva (SC-019) el 19/11/2026.
+**Corte aplicado (19/11/2026):** las historias 1 a 10 entraron en el PR #63. Daniel Montenegro decidió pasar HU-031 y HU-008 al Cierre y después pidió seguir: HU-031 y HU-008 entraron en el mismo PR. El backend de HU-008 ya sirve a «Mis preguntas» (SC-018) sin rutas extra; el comité aprobó SC-018 y ratificó la reserva (SC-019) el 19/11/2026.
 
 ## 4. Pruebas que acompañan cada pull request
 
@@ -73,7 +73,7 @@ Pull request aprobado por el arquitecto de software, CI en verde (formato, unita
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Propuesta del backlog del Sprint 3 del backend para la planning |
-| 0.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte aplicado: HU-031 y HU-008 pasan al Cierre (decisión de Pedro) |
-| 0.3 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-031 entra en el sprint a pedido de Pedro; HU-008 sigue esperando SC-018 |
+| 0.2 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte aplicado: HU-031 y HU-008 pasan al Cierre (decisión de Daniel Montenegro) |
+| 0.3 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-031 entra en el sprint a pedido de Daniel Montenegro; HU-008 sigue esperando SC-018 |
 | 0.4 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | HU-008 entra en el sprint; SC-018 queda como decisión de pantalla |
 | 0.5 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-018 aprobada y SC-019 ratificada por el comité |

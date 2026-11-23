@@ -1,6 +1,6 @@
 # Mockups de las historias pendientes
 
-> **Control del documento** · Versión 0.5 · 22/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Pedro, 13/11/2026 (PR #33)
+> **Control del documento** · Versión 0.5 · 22/11/2026 · Responsable: Monica Anyi Cajas Mellizo (UX · frontend) · Estado: En revisión · Revisión: Daniel Montenegro, 13/11/2026 (PR #33)
 
 Mockups en alta fidelidad de las historias que todavía no tienen pantalla (Sprint 2 en adelante). Las pantallas del Sprint 1 ya están construidas en `frontend/`.
 

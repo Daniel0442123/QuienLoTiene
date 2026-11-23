@@ -2,7 +2,7 @@
 
 ## HU-015 · «Tu resumen» de la tienda
 
-- 4:14 p. m.: Pedro entró como «tienda 1» en el navegador integrado; `/tienda/resumen` carga.
+- 4:14 p. m.: Daniel Montenegro entró como «tienda 1» en el navegador integrado; `/tienda/resumen` carga.
 - Muestra: 7 recibidas, 5 respondidas, 4 ganadas; «Respondiste 5 de 7 (71 %)» y «Te eligieron 4 de 5 (80 %)».
 - `GET /api/v1/tiendas/me/indicadores?periodo=7` → 200 y `?periodo=30` → 200 (registro de red del navegador). Los dos
   periodos dan lo mismo porque toda la actividad de la tienda es de esta semana.

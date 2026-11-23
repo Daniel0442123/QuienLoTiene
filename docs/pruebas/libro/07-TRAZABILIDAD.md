@@ -97,7 +97,7 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Requisitos del Sprint 2 con su resultado del 16/11 y RF-012 con DEF-007 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba de DEF-007, DEF-008 y DEF-009 (pasa) y nuevo DEF-010 en RF-021 (borrador, pendiente de firma de QA) |
 | 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-021: DEF-010 corregido y re-probado (borrador, pendiente de firma de QA) |
-| 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-012, RF-021 y RF-024 sin defectos abiertos: DEF-007 a DEF-010 cerrados el 16/11 (cierre aprobado por Pedro) |
+| 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-012, RF-021 y RF-024 sin defectos abiertos: DEF-007 a DEF-010 cerrados el 16/11 (cierre aprobado por Daniel Montenegro) |
 | 1.5 | 19/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-008 con CP-CLI-008-03 (SC-018 aprobada) y en el Sprint 3; pruebas automatizadas de RF-008 y RF-014. Los resultados los diligencia QA en el C2 |
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Resultados del C2: requisitos del Sprint 3 y RNF-003, 007, 008, 009, 012, 013, 015, 024 y 025 verificados; DEF-012 a DEF-015 (borrador, pendiente de firma de QA) |
 | 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-009, 012 y 013 re-probados en producción sobre `v0.5.3`; DEF-013 a DEF-015 en verificación |

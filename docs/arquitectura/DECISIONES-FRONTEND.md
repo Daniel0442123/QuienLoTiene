@@ -1,8 +1,8 @@
 # Decisiones técnicas y convenciones del frontend · Quién lo tiene
 
-Versión 1.4 (aprobada por Pedro) · 16/11/2026
+Versión 1.4 (aprobada por Daniel Montenegro) · 16/11/2026
 
-Este documento hace para el frontend lo mismo que `DECISIONES-BACKEND.md` hace para el backend: deja por escrito cómo se construye la PWA para que Monica (y quien la apoye) escriba todo de la misma forma. Nace de analizar una lista de estándares de usabilidad y accesibilidad contra lo que el proyecto ya tiene documentado y contra el plazo real. Pedro aprobó todas las decisiones el 08/11/2026; lo que queda abierto es del equipo de backend (sección 15.2).
+Este documento hace para el frontend lo mismo que `DECISIONES-BACKEND.md` hace para el backend: deja por escrito cómo se construye la PWA para que Monica (y quien la apoye) escriba todo de la misma forma. Nace de analizar una lista de estándares de usabilidad y accesibilidad contra lo que el proyecto ya tiene documentado y contra el plazo real. Daniel Montenegro aprobó todas las decisiones el 08/11/2026; lo que queda abierto es del equipo de backend (sección 15.2).
 
 Documentos que mandan sobre este: `Arquitectura-de-software-QuienLoTiene` (DA-06 React + Vite como PWA, DA-07 SSE y push web, Tabla 17 de la pila y Tabla 18 de componentes que se evitan), los RNF del plan de proyecto, `docs/pruebas/ESTRATEGIA-DE-PRUEBAS.md` y `docs/arquitectura/DECISIONES-BACKEND.md` (glosario, convenciones de la API y códigos de error).
 
@@ -32,29 +32,29 @@ La última fila es la que más pesa en el análisis: todo lo que se adopte tiene
 
 | # | Tema | Decisión | Estado |
 |---|---|---|---|
-| F-01 | Lenguaje | TypeScript en modo estricto | Decidida (Pedro, 08/11) |
-| F-02 | Andamiaje | Vite 8 + React 19, TypeScript 5.9, Node 24 LTS, npm; React Router 8 en modo librería (sin modo *framework*) | Decidida (Pedro, 08/11) |
+| F-01 | Lenguaje | TypeScript en modo estricto | Decidida (Daniel Montenegro, 08/11) |
+| F-02 | Andamiaje | Vite 8 + React 19, TypeScript 5.9, Node 24 LTS, npm; React Router 8 en modo librería (sin modo *framework*) | Decidida (Daniel Montenegro, 08/11) |
 | F-03 | Datos del servidor | TanStack Query para todo lo que viene de la API; sin Redux | Decidida (arquitectura) |
-| F-04 | Contrato con la API | Tipos generados desde OpenAPI (`openapi-typescript`) y cliente `openapi-fetch` | Decidida (Pedro, 08/11) |
-| F-05 | Origen único | En desarrollo, proxy de Vite `/api → localhost:8080`; en producción Caddy sirve la PWA y la API en el mismo dominio | Decidida (Pedro, 08/11) |
-| F-06 | Sesión | Token de acceso solo en memoria; renovación silenciosa con `/auth/refresco` | Decidida (Pedro, 08/11) |
-| F-07 | Errores | `ProblemDetail` → mensaje por `codigo`; errores de campo al formulario; `idCorrelacion` visible en errores graves | Decidida (Pedro, 08/11) |
-| F-08 | Accesibilidad | WCAG 2.2 AA (incluye todo 2.1 AA); APG como especificación de componentes | Decidida (Pedro, 08/11) |
-| F-09 | Componentes base | shadcn/ui sobre Radix + Tailwind CSS v4 | Decidida (Pedro, 08/11) |
-| F-10 | Tokens de diseño | Variables CSS en un solo archivo; sin Style Dictionary | Decidida (Pedro, 08/11) |
-| F-11 | Formularios | React Hook Form + Zod, validación al salir del campo | Decidida (Pedro, 08/11) |
-| F-12 | Textos e idioma | Español (`es-CO`), textos centralizados por funcionalidad, formato con `Intl`; sin librería de i18n | Decidida (Pedro, 08/11) |
-| F-13 | PWA | `vite-plugin-pwa` (Workbox); el service worker **no** guarda respuestas de la API | Decidida (Pedro, 08/11) |
-| F-14 | Tiempo real | SSE con `fetch` (cabecera `Authorization`), una conexión por pestaña; el backend acepta hasta 5 por usuario (SC-014) | Decidida (Pedro, 08/11); depende del backend (15.2) |
+| F-04 | Contrato con la API | Tipos generados desde OpenAPI (`openapi-typescript`) y cliente `openapi-fetch` | Decidida (Daniel Montenegro, 08/11) |
+| F-05 | Origen único | En desarrollo, proxy de Vite `/api → localhost:8080`; en producción Caddy sirve la PWA y la API en el mismo dominio | Decidida (Daniel Montenegro, 08/11) |
+| F-06 | Sesión | Token de acceso solo en memoria; renovación silenciosa con `/auth/refresco` | Decidida (Daniel Montenegro, 08/11) |
+| F-07 | Errores | `ProblemDetail` → mensaje por `codigo`; errores de campo al formulario; `idCorrelacion` visible en errores graves | Decidida (Daniel Montenegro, 08/11) |
+| F-08 | Accesibilidad | WCAG 2.2 AA (incluye todo 2.1 AA); APG como especificación de componentes | Decidida (Daniel Montenegro, 08/11) |
+| F-09 | Componentes base | shadcn/ui sobre Radix + Tailwind CSS v4 | Decidida (Daniel Montenegro, 08/11) |
+| F-10 | Tokens de diseño | Variables CSS en un solo archivo; sin Style Dictionary | Decidida (Daniel Montenegro, 08/11) |
+| F-11 | Formularios | React Hook Form + Zod, validación al salir del campo | Decidida (Daniel Montenegro, 08/11) |
+| F-12 | Textos e idioma | Español (`es-CO`), textos centralizados por funcionalidad, formato con `Intl`; sin librería de i18n | Decidida (Daniel Montenegro, 08/11) |
+| F-13 | PWA | `vite-plugin-pwa` (Workbox); el service worker **no** guarda respuestas de la API | Decidida (Daniel Montenegro, 08/11) |
+| F-14 | Tiempo real | SSE con `fetch` (cabecera `Authorization`), una conexión por pestaña; el backend acepta hasta 5 por usuario (SC-014) | Decidida (Daniel Montenegro, 08/11); depende del backend (15.2) |
 | F-15 | Mapas | Leaflet directo, cargado solo en las pantallas que lo usan | Decidida (arquitectura) |
-| F-16 | Rendimiento | Core Web Vitals como meta interna, división por ruta, *skeletons* en listas | Decidida (Pedro, 08/11) |
-| F-17 | Pruebas | Vitest + Testing Library (por rol) + axe-core; Playwright + `@axe-core/playwright` en los flujos del Cierre | Decidida (Pedro, 08/11) |
-| F-18 | Calidad estática | oxlint con las reglas de `jsx-a11y`, Prettier, `tsc -b` en CI | Decidida (Pedro, 08/11) |
-| F-19 | Lighthouse CI | Accesibilidad ≥ 90 bloquea; rendimiento ≥ 80 solo avisa | Decidida (Pedro, 08/11) |
-| F-20 | Revisión manual | Teclado + NVDA (Windows) + TalkBack (Android) una vez por ciclo; heurísticas de Nielsen en cada pantalla nueva | Decidida (Pedro, 08/11) |
-| F-21 | Usabilidad | ISO 9241-11 para definir la prueba con 5 usuarios de RNF-027 (eficacia, eficiencia y satisfacción con SUS) | Decidida (Pedro, 08/11) |
-| F-22 | Fuera del MVP | Storybook, TanStack Virtual, modo oscuro, Style Dictionary, librería de i18n, lenguaje de diseño completo (Material, Fluent, Carbon) | Decidida (Pedro, 08/11) |
-| F-23 | Git y CI | Mismo flujo que el backend; trabajo de CI propio para `frontend/`; el arquitecto de software (Daniel) aprueba los pull requests del frontend | Decidida (Pedro, 08/11) |
+| F-16 | Rendimiento | Core Web Vitals como meta interna, división por ruta, *skeletons* en listas | Decidida (Daniel Montenegro, 08/11) |
+| F-17 | Pruebas | Vitest + Testing Library (por rol) + axe-core; Playwright + `@axe-core/playwright` en los flujos del Cierre | Decidida (Daniel Montenegro, 08/11) |
+| F-18 | Calidad estática | oxlint con las reglas de `jsx-a11y`, Prettier, `tsc -b` en CI | Decidida (Daniel Montenegro, 08/11) |
+| F-19 | Lighthouse CI | Accesibilidad ≥ 90 bloquea; rendimiento ≥ 80 solo avisa | Decidida (Daniel Montenegro, 08/11) |
+| F-20 | Revisión manual | Teclado + NVDA (Windows) + TalkBack (Android) una vez por ciclo; heurísticas de Nielsen en cada pantalla nueva | Decidida (Daniel Montenegro, 08/11) |
+| F-21 | Usabilidad | ISO 9241-11 para definir la prueba con 5 usuarios de RNF-027 (eficacia, eficiencia y satisfacción con SUS) | Decidida (Daniel Montenegro, 08/11) |
+| F-22 | Fuera del MVP | Storybook, TanStack Virtual, modo oscuro, Style Dictionary, librería de i18n, lenguaje de diseño completo (Material, Fluent, Carbon) | Decidida (Daniel Montenegro, 08/11) |
+| F-23 | Git y CI | Mismo flujo que el backend; trabajo de CI propio para `frontend/`; el arquitecto de software (Daniel) aprueba los pull requests del frontend | Decidida (Daniel Montenegro, 08/11) |
 
 ---
 
@@ -64,7 +64,7 @@ Cada punto de la lista se compara con lo ya documentado. **Adoptar** = tal cual.
 
 ### 2.1 Estándares de referencia
 
-| Decidida (Pedro, 08/11) | Recomendación | Por qué |
+| Decidida (Daniel Montenegro, 08/11) | Recomendación | Por qué |
 |---|---|---|
 | WCAG 2.2 AA | **Adoptar** y actualizar los documentos (aprobado) | El proyecto ya pide WCAG **2.1** AA (RNF-028, Plan Maestro 10.1, anexo G). La 2.2 contiene toda la 2.1 y agrega pocos criterios, y varios nos tocan de lleno: **2.4.11** foco no tapado (las barras fijas abajo en el celular suelen tapar el campo enfocado), **2.5.7** alternativa a arrastrar (el pin del mapa debe poder ubicarse sin arrastrar: «Usar mi ubicación» o elegir una dirección guardada), **2.5.8** tamaño de objetivo (ya lo cumplimos con 44 px), **3.3.7** no pedir dos veces el mismo dato (direcciones guardadas, repetir solicitud), **3.3.8** autenticación accesible (permitir pegar la frase de contraseña y usar el gestor de contraseñas; nada de captchas cognitivos). Es barato: son cinco filas más en el anexo G. Nota: la European Accessibility Act no aplica en Colombia; si se quiere un respaldo local, la Resolución 1519 de 2020 de MinTIC exige WCAG 2.1 AA a las entidades públicas (no a nosotros, pero sirve de referencia) |
 | WAI-ARIA APG | **Adoptar como especificación**, sin trabajo extra | Si la librería base ya implementa los patrones (F-09), Monica solo abre el APG cuando tenga que construir algo que la librería no trae. Se cita en la revisión del pull request: «este combobox se comporta como dice el APG» |
@@ -73,7 +73,7 @@ Cada punto de la lista se compara con lo ya documentado. **Adoptar** = tal cual.
 
 ### 2.2 Sistema de diseño
 
-| Decidida (Pedro, 08/11) | Recomendación | Por qué |
+| Decidida (Daniel Montenegro, 08/11) | Recomendación | Por qué |
 |---|---|---|
 | Design tokens con Style Dictionary o variables CSS | **Adaptar: solo variables CSS** | Style Dictionary sirve cuando los tokens salen de una herramienta de diseño hacia varias plataformas (web, iOS, Android). Aquí hay una sola plataforma y una sola persona que diseña y programa. Un archivo `tokens.css` con variables (`--color-primario`, `--espacio-3`, `--texto-base: 1rem`) da el mismo beneficio. Tailwind v4 lee esas variables directamente con `@theme` |
 | Componentes accesibles de base (React Aria, Radix, Ariakit, shadcn/ui) | **Adoptar uno: shadcn/ui sobre Radix** (aprobado) | Construir desde cero un modal, un menú o un selector accesibles es justo lo que no cabe en el plazo. shadcn/ui copia el código de cada componente al repositorio (Monica lo puede leer y ajustar), trae los colores como variables CSS (encaja con el punto anterior), tiene la mayor cantidad de ejemplos y es MIT. React Aria es técnicamente más fuerte en móvil y ya trae textos en español, pero su curva de aprendizaje es mayor. Ariakit tiene menos ejemplos. Se elige **una** y no se mezclan |
@@ -82,7 +82,7 @@ Cada punto de la lista se compara con lo ya documentado. **Adoptar** = tal cual.
 
 ### 2.3 Rendimiento percibido
 
-| Decidida (Pedro, 08/11) | Recomendación | Por qué |
+| Decidida (Daniel Montenegro, 08/11) | Recomendación | Por qué |
 |---|---|---|
 | Core Web Vitals (LCP < 2,5 s, INP < 200 ms, CLS < 0,1) | **Adoptar como meta interna** | El requisito formal es RNF-005 (Lighthouse ≥ 80 y ≤ 3 s en 4G). Los Core Web Vitals son lo que ese puntaje mide por dentro, así que sirven para saber qué arreglar. Ojo: INP solo se mide con usuarios reales; en Lighthouse se usa su equivalente de laboratorio (TBT, tiempo de bloqueo). No se agrega un requisito nuevo |
 | Code splitting por ruta | **Adoptar** | Ya está en la arquitectura. Con React Router se hace con `lazy` en cada ruta. Las tres zonas (cliente, tienda, administrador) quedan en paquetes separados: un cliente nunca descarga el panel del administrador. Leaflet se carga solo en las pantallas con mapa |
@@ -92,7 +92,7 @@ Cada punto de la lista se compara con lo ya documentado. **Adoptar** = tal cual.
 
 ### 2.4 Patrones de una SPA en React
 
-| Decidida (Pedro, 08/11) | Recomendación | Por qué |
+| Decidida (Daniel Montenegro, 08/11) | Recomendación | Por qué |
 |---|---|---|
 | Gestión del foco al cambiar de ruta | **Adoptar** | Barato y necesario: React Router no lo hace solo. Un componente `AnunciadorDeRuta` mueve el foco al `h1` de cada pantalla y actualiza `document.title` |
 | Regiones `aria-live` para notificaciones | **Adoptar, con prioridad** | Es el corazón de la app: las respuestas y las solicitudes nuevas llegan por SSE sin que el usuario haga nada. Ya está en el anexo G (punto 8, criterio 4.1.3). Una región `polite` para avisos («Llegó una respuesta de Droguería La 5») y una `assertive` solo para errores que bloquean |
@@ -104,7 +104,7 @@ Cada punto de la lista se compara con lo ya documentado. **Adoptar** = tal cual.
 
 ### 2.5 Control de calidad automatizado
 
-| Decidida (Pedro, 08/11) | Recomendación | Por qué |
+| Decidida (Daniel Montenegro, 08/11) | Recomendación | Por qué |
 |---|---|---|
 | `eslint-plugin-jsx-a11y` | **Adoptar sus reglas, con oxlint** | Gratis una vez configurado; atrapa imágenes sin `alt`, botones sin nombre, `onClick` en un `div`. Al crear el andamiaje se vio que `eslint-plugin-jsx-a11y` todavía no soporta ESLint 10; oxlint (el linter que trae la plantilla actual de Vite) implementa las mismas reglas de `jsx-a11y` y es mucho más rápido |
 | Testing Library con `getByRole` | **Adoptar**, con Vitest | Es la prueba unitaria del frontend que pide la estrategia ("Monica en frontend"). Vitest es el corredor natural con Vite. Buscar por rol obliga a usar HTML semántico, que es medio camino de la accesibilidad |
@@ -370,7 +370,7 @@ Convenciones (las mismas del backend, adaptadas):
 
 ## 15. Decisiones pendientes
 
-### 15.1 Respuestas de Pedro (08/11/2026)
+### 15.1 Respuestas de Daniel Montenegro (08/11/2026)
 
 1. TypeScript estricto (F-01).
 2. WCAG 2.2 AA pasa a ser el requisito: se actualizan el Plan Maestro (10.1), el anexo G y el caso NF-USA-028. RNF-028 en la SRS y en el plan de proyecto (Word y PDF) debe decir también 2.2 en su próxima versión.
@@ -390,7 +390,7 @@ Convenciones (las mismas del backend, adaptadas):
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 0.1 | 08/11/2026 | Primera propuesta: análisis de la lista de estándares contra lo documentado y decisiones F-01 a F-23 |
-| 1.0 | 08/11/2026 | Pedro aprueba todas las decisiones: TypeScript, WCAG 2.2 AA, shadcn/ui con Tailwind; Monica define prototipos y paleta; Daniel aprueba los pull requests del frontend |
+| 1.0 | 08/11/2026 | Daniel Montenegro aprueba todas las decisiones: TypeScript, WCAG 2.2 AA, shadcn/ui con Tailwind; Monica define prototipos y paleta; Daniel aprueba los pull requests del frontend |
 | 1.1 | 08/11/2026 | Ajustes al crear el andamiaje: oxlint en lugar de ESLint (mismas reglas `jsx-a11y`), TypeScript 5.9 en lugar de 7, axe-core directo en lugar de `vitest-axe`, flujo de CI propio `frontend.yml` |
 | 1.2 | 08/11/2026 | Sección 13.1: manejo de dependencias vulnerables; `overrides` de `glob` para la alerta de `minimatch` y justificación de `deepmerge` |
 | 1.3 | 16/11/2026 | SC-011: la alternativa se llama «Tengo algo parecido» en todas las pantallas (§8, regla 3); el precio precargado de «Sí lo tengo» es el último que dio la tienda para el mismo producto |
