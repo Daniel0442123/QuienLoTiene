@@ -1,6 +1,6 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.13 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.14 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3. Avance del C3 registrado como borrador el 22/11/2026 sobre `v0.5.4` (`f22f20c`): punta a punta, no funcionales sobre el VPS y «Cómo llegar».
 >
@@ -18,6 +18,7 @@
 | C3 (Cierre) · avance 22/11 sobre v0.5.4 con E2E y no funcionales (borrador) | 100 | 96 | 94 | 2 | 0 | 96,0 % | 97,9 % | ≥ 95 % aprobados |
 | C3 (Cierre) · avance 22/11 con la matriz de navegadores (borrador) | 100 | 97 | 95 | 2 | 0 | 97,0 % | 97,9 % | ≥ 95 % aprobados |
 | C3 (Cierre) · 22/11 con SC-022 (borrador) | 98 (100 − NF-USA-027 y NF-POR-029 «No aplica») | 97 | 95 | 2 | 0 | 99,0 % | 97,9 % | ≥ 95 % aprobados |
+| C3 (Cierre) · 22/11 con la re-prueba sobre v0.5.5 (borrador) | 98 | 97 | 97 | 0 | 0 | 99,0 % | 100 % | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
@@ -41,22 +42,22 @@
 |---|---|---|---|---|---|
 | S1 Crítica | 0 | 0 | 0 | 0 | 0 abiertos |
 | S2 Alta | 0 | 0 | 1 (DEF-011) | 0 | 0 abiertos |
-| S3 Media | 1 (DEF-018) | 0 | 7 (DEF-001, DEF-002, DEF-006, DEF-007, DEF-013, DEF-014, DEF-015) | 0 | ≤ 5 con plan |
-| S4 Baja | 3 (DEF-012, DEF-016, DEF-017) | 0 | 6 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010) | 0 | Sin límite, con plan |
+| S3 Media | 0 | 1 (DEF-018, en verificación) | 7 (DEF-001, DEF-002, DEF-006, DEF-007, DEF-013, DEF-014, DEF-015) | 0 | ≤ 5 con plan |
+| S4 Baja | 1 (DEF-012) | 2 (DEF-016 y DEF-017, en verificación) | 6 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010) | 0 | Sin límite, con plan |
 
 ## Indicadores
 
-Valores del 22/11/2026 (avance del C3 sobre `v0.5.4`, borrador). Los del corte del Sprint 1 están en la versión 1.0 de esta hoja.
+Valores del 22/11/2026 (avance del C3 con la re-prueba sobre `v0.5.5`, borrador). Los del corte del Sprint 1 están en la versión 1.0 de esta hoja.
 
 | Indicador | Fórmula | Valor |
 |---|---|---|
 | Avance de ejecución (C3) | Casos ejecutados / casos planeados | 97 / 98 = 99,0 % (falta NF-DIS-018; NF-USA-027 y NF-POR-029 «No aplica» por SC-022) |
-| Tasa de aprobación (C3) | Aprobados / (ejecutados − No aplica) | 95 / 97 = 97,9 % |
-| Tasa de aprobación (campaña, resultado final) | Aprobados / concluyentes | 112 / 114 = 98,2 % (86 funcionales y de seguridad, 30 no funcionales y 5 E2E; 6 No aplica y 1 sin ejecutar) |
+| Tasa de aprobación (C3) | Aprobados / (ejecutados − No aplica) | 97 / 97 = 100 % |
+| Tasa de aprobación (campaña, resultado final) | Aprobados / concluyentes | 114 / 114 = 100 % (86 funcionales y de seguridad, 30 no funcionales y 5 E2E; 6 No aplica y 1 sin ejecutar) |
 | Casos Alta ejecutados | Casos Alta con resultado / casos Alta | 54 / 54 = 100 % (y E2E-01 a E2E-03) |
 | Cobertura de requisitos | Requisitos con todos sus casos ejecutados / requisitos en alcance | 36 RF de 36 (RF-006 y RF-011 fuera por SC-021) y 27 RNF de 28 (RNF-027 y RNF-029 fuera por SC-022) |
 | Densidad de defectos | Defectos registrados / requisitos en alcance | 18 / 66 (36 RF + 30 RNF) = 0,27 |
-| Defectos reabiertos | Reabiertos / corregidos | 0 / 14 |
+| Defectos reabiertos | Reabiertos / corregidos | 0 / 17 |
 | Cobertura de código | Líneas cubiertas / líneas de domain + application | 2753 / 2884 = 95,5 % |
 | Pruebas automatizadas | Total `@Test` (unitarias + integración) · pasan | 470 (398 unitarias + 72 de integración) · 470 pasan; además 361 de Vitest y 5 de Playwright |
 
@@ -80,3 +81,4 @@ Valores del 22/11/2026 (avance del C3 sobre `v0.5.4`, borrador). Los del corte d
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 sobre `v0.5.4` (96 de 100, 97,9 %), defectos con DEF-016 a DEF-018 y DEF-011 en S2, e indicadores al 22/11 (borrador, pendiente de firma de QA) |
 | 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado: avance del C3 en 97 de 100 (97,9 %) y campaña en 112 de 114 (98,2 %) (borrador, pendiente de firma de QA) |
 | 1.13 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022: NF-USA-027 y NF-POR-029 «No aplica»; avance del C3 en 97 de 98 |
+| 1.14 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; C3 en 97 de 97 (100 %) y campaña en 114 de 114; DEF-016 a DEF-018 en verificación |
