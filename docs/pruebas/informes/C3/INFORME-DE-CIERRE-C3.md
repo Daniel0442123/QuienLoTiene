@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 3 (C3)
 
-> **Control del documento** · Versión 0.6 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018, del triaje de DEF-012 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.7 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -168,12 +168,12 @@ Se listan los defectos abiertos y los nuevos del ciclo. DEF-001 a DEF-011 (C1) y
 
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla | Versión |
 |---|---|---|---|---|---|---|
-| DEF-012 | S4 Baja | P4 Baja | Abierto (sin triaje) | Humo 21/11 (CP-ORD-029-01) | En «Mis respuestas» de la tienda, las respuestas cuyo pedido ya se canceló o se recibió siguen diciendo «Elegida» | v0.5.2 |
+| DEF-012 | S4 Baja | P4 Baja | Diferido (aceptado en el acta, plan `v1.0.1`) | Humo 21/11 (CP-ORD-029-01) | En «Mis respuestas» de la tienda, las respuestas cuyo pedido ya se canceló o se recibió siguen diciendo «Elegida» | v0.5.2 |
 | DEF-016 | S4 Baja | P4 Baja | Cerrado (corregido en v0.5.5; re-prueba aprobada) | E2E-05 | Al vencer la solicitud, la pantalla dice que venció y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
 | DEF-017 | S4 Baja | P4 Baja | Cerrado (corregido en v0.5.5; re-prueba aprobada) | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px | v0.5.4 |
 | DEF-018 | S3 Media | P3 Normal | Cerrado (corregido en v0.5.5; re-prueba aprobada) | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones SSE se cerraron antes de terminar (causa sin confirmar) | v0.5.4 |
 
-Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 1 (DEF-012). Cerrados tras la re-prueba sobre `v0.5.5`: DEF-016, DEF-017 y DEF-018 (visto bueno de Pedro; QA los revisa al firmar)
+Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 0. Diferido: DEF-012 (S4), aceptado en el acta el 23/11 con plan para `v1.0.1`. Cerrados tras la re-prueba sobre `v0.5.5`: DEF-016, DEF-017 y DEF-018 (visto bueno de Pedro; QA los revisa al firmar)
 
 ## 4. Requisitos y trazabilidad
 
@@ -181,7 +181,7 @@ Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 est�
 
 | Requisito | Nombre | Casos | Apr. | Fall. | Bloq. | Defectos | Estado |
 |---|---|---|---|---|---|---|---|
-| RF-001 a RF-038 (salvo RF-006 y RF-011) | 36 requisitos funcionales | 82 | 82 | 0 | 0 | 2 abiertos S4 (DEF-012 en RF-029, DEF-016 en RF-021) | Verificado |
+| RF-001 a RF-038 (salvo RF-006 y RF-011) | 36 requisitos funcionales | 82 | 82 | 0 | 0 | 1 diferido S4 (DEF-012 en RF-029, aceptado en el acta); DEF-016 en RF-021 cerrado | Verificado |
 | RF-006 | Verificar correo | 2 | 0 | 0 | 0 | — | Fuera de alcance (SC-021) |
 | RF-011 | Tarifas de domicilio avanzadas | 2 | 0 | 0 | 0 | — | Fuera de alcance (SC-021) |
 | RF-015 | Ver resumen de indicadores | 2 | 2 | 0 | 0 | — | Verificado (nuevo en el C3, comprobado en producción) |
@@ -246,11 +246,11 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 
 ## 9. Conclusión y recomendación
 
-El C3 cumple hoy los criterios de calidad (100 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, el triaje de DEF-012 y la firma de QA.
+El C3 cumple hoy los criterios de calidad (100 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018 y la firma de QA. DEF-012 quedó aceptado en el acta el 23/11 con plan para `v1.0.1`.
 
 Recomendaciones para el equipo:
 
-1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Los tres pasaron la re-prueba (DEF-016 con una solicitud que venció en producción a las 11:36 p. m.). Se cerraron el 22/11 con el visto bueno de Pedro; QA lo revisa al firmar y hace el triaje de DEF-012, que se acepta en el acta como S4 con plan.
+1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Los tres pasaron la re-prueba (DEF-016 con una solicitud que venció en producción a las 11:36 p. m.). Se cerraron el 22/11 con el visto bueno de Pedro; QA lo revisa al firmar, junto con DEF-012, que Pedro aceptó en el acta el 23/11 como S4 con plan para `v1.0.1`.
 2. NF-ESC-020 se repitió 3 veces con Caddy en 256 MiB (una sobre `v0.5.4` con el cambio aplicado a mano y dos sobre `v0.5.5`) y las 3 cumplen. Queda pendiente repetirla desde otra red para separar la red del servidor.
 3. El 26/11 se toma la captura de UptimeRobot para NF-DIS-018. NF-USA-027 y NF-POR-029 quedan para una liberación posterior (SC-022).
 4. Las pruebas de humo del 26/11 se hacen después del despliegue final con `plantillas/PRUEBAS-DE-HUMO.md`, y después se borran los datos de prueba de producción.
@@ -271,3 +271,4 @@ Recomendaciones para el equipo:
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; 97 de 97 (100 %) y DEF-016 a DEF-018 en verificación |
 | 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
+| 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 diferido: aceptado en el acta con plan para `v1.0.1` |
