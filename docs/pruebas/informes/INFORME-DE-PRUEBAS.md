@@ -237,7 +237,7 @@ Orden de atención recomendado y justificación:
 |---|---|---|---|---|
 | 1 | DEF-018 | S3 / P3 | Toca un requisito de escalabilidad (RNF-020) y puede volver a pasar con más carga; la causa no está confirmada | Hecho en `v0.5.5`: Caddy con 256 MiB; NF-ESC-020 cumple en 3 corridas seguidas. Falta repetirla desde otra red |
 | 2 | DEF-017 | S4 / P4 | Los botones + y − del mapa de 30 px dificultan tocarlos en el celular (RNF-028); el mapa también se mueve con los dedos | Hecho en `v0.5.5`: + y − de 44 × 44 px, comprobado en producción |
-| 3 | DEF-016 | S4 / P4 | Mensaje contradictorio durante menos de un minuto al vencer una solicitud; el estado final es correcto | Hecho en `v0.5.5`: la lista trata como vencida la solicitud cuyo plazo ya pasó; falta verlo en producción |
+| 3 | DEF-016 | S4 / P4 | Mensaje contradictorio durante menos de un minuto al vencer una solicitud; el estado final es correcto | Hecho en `v0.5.5`: la lista trata como vencida la solicitud cuyo plazo ya pasó; comprobado en producción |
 | 4 | DEF-012 | S4 / P4 | La tienda ve «Elegida» en respuestas cuyo pedido ya se canceló o se recibió; no cambia lo que puede hacer | Mostrar el estado del pedido en «Mis respuestas», o aceptarlo en el acta con plan |
 
 Observaciones sin defecto:

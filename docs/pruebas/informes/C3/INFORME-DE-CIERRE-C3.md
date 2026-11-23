@@ -169,7 +169,7 @@ Se listan los defectos abiertos y los nuevos del ciclo. DEF-001 a DEF-011 (C1) y
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla | Versión |
 |---|---|---|---|---|---|---|
 | DEF-012 | S4 Baja | P4 Baja | Abierto (sin triaje) | Humo 21/11 (CP-ORD-029-01) | En «Mis respuestas» de la tienda, las respuestas cuyo pedido ya se canceló o se recibió siguen diciendo «Elegida» | v0.5.2 |
-| DEF-016 | S4 Baja | P4 Baja | En verificación (corregido en v0.5.5) | E2E-05 | Al vencer la solicitud, la pantalla dice que venció y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
+| DEF-016 | S4 Baja | P4 Baja | En verificación (corregido en v0.5.5; re-prueba aprobada) | E2E-05 | Al vencer la solicitud, la pantalla dice que venció y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
 | DEF-017 | S4 Baja | P4 Baja | En verificación (corregido en v0.5.5; re-prueba aprobada) | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px | v0.5.4 |
 | DEF-018 | S3 Media | P3 Normal | En verificación (corregido en v0.5.5; re-prueba aprobada) | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones SSE se cerraron antes de terminar (causa sin confirmar) | v0.5.4 |
 
@@ -246,11 +246,11 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 
 ## 9. Conclusión y recomendación
 
-El C3 cumple hoy los criterios de calidad (100 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, la verificación de DEF-016 en producción, el cierre de DEF-016 a DEF-018, el triaje de DEF-012 y la firma de QA.
+El C3 cumple hoy los criterios de calidad (100 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, el cierre de DEF-016 a DEF-018, el triaje de DEF-012 y la firma de QA.
 
 Recomendaciones para el equipo:
 
-1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). DEF-017 y DEF-018 pasaron la re-prueba; DEF-016 se verifica en producción dejando vencer una solicitud. QA los cierra y hace el triaje de DEF-012, que se acepta en el acta como S4 con plan.
+1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Los tres pasaron la re-prueba (DEF-016 con una solicitud que venció en producción a las 11:36 p. m.). QA los cierra y hace el triaje de DEF-012, que se acepta en el acta como S4 con plan.
 2. NF-ESC-020 se repitió 3 veces con Caddy en 256 MiB (una sobre `v0.5.4` con el cambio aplicado a mano y dos sobre `v0.5.5`) y las 3 cumplen. Queda pendiente repetirla desde otra red para separar la red del servidor.
 3. El 26/11 se toma la captura de UptimeRobot para NF-DIS-018. NF-USA-027 y NF-POR-029 quedan para una liberación posterior (SC-022).
 4. Las pruebas de humo del 26/11 se hacen después del despliegue final con `plantillas/PRUEBAS-DE-HUMO.md`, y después se borran los datos de prueba de producción.

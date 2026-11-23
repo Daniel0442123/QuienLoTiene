@@ -153,6 +153,7 @@ Decisiones, aprobaciones, despliegues, etiquetas y reuniones que no quedan en un
 | 22/11/2026 22:17 | Se fusiona el #92 (cierre del C3 y correcciones de DEF-016 a DEF-018) con la revisión de Monica todavía en «cambios pedidos» y sin la confirmación escrita de la líder de QA sobre SC-022 | Cuenta del repositorio (@Daniel0442123) | #92 | C-23 |
 | 22/11/2026 22:22 | Pedro crea la etiqueta `v0.5.5` (`2d6a71a`). El flujo de despliegue falla dos veces por la red entre GitHub y el VPS (descarga detenida y SSH sin respuesta) y Pedro termina el despliegue a mano con los mismos comandos a las 22:51 | Pedro (dueño del proyecto) | `docs/gestion/REGISTRO-DE-CAMBIOS.md`, Despliegue #15 | #92 |
 | 22/11/2026 23:00 | Re-pruebas sobre `v0.5.5`: NF-USA-028 aprobado (botones del mapa de 44 × 44 px, DEF-017) y NF-ESC-020 aprobado (corridas 5 y 6 sin fallas, DEF-018). C3 en 97 de 97 | Pedro (dueño del proyecto) con Claude Code | `docs/pruebas/evidencias/C3/2026-11-22/v0.5.5/` | C-23 |
+| 22/11/2026 23:37 | Re-prueba de DEF-016 en producción: la solicitud «Prueba DEF-16» vence a las 11:36 p. m. sin respuestas y la pantalla del cliente muestra «Vencida» sin el mensaje de espera. Para la prueba se amplió el cierre del domingo de Tienda Uno a las 11:59 p. m. (se devuelve a las 9:00 p. m.) | Pedro (dueño del proyecto) con Claude Code | `docs/pruebas/evidencias/C3/2026-11-22/v0.5.5/` | C-23 |
 
 ## 4. Compromisos abiertos
 
