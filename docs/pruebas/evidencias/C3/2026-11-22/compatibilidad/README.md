@@ -37,6 +37,10 @@ iOS 27.2.1 (Configuración › General › Información, 22/11 5:37 p. m.).
 |---|---|
 | `iphone-17-pro-max/14-app-instalada-avisos-activados.png` | App agregada a la pantalla de inicio, sesión de Tienda Uno: «Los avisos están activados en este dispositivo.» |
 | `iphone-17-pro-max/15-push-con-app-cerrada.png` | Con la app cerrada llega «Solicitud nueva · Un vecino pregunta si tienes un producto. Toca para responder.», con sonido |
+| `iphone-17-pro-max/16-tienda-panel-abierta.png` | 8:15 p. m., app instalada como Tienda Uno: aprobada, Farmacia, abierta, avisos con la app cerrada |
+| `iphone-17-pro-max/17-tienda-solicitudes-nuevas.png` | Bandeja «Nuevas»: 9 esperando respuesta, dos «Acetaminofén - prueba_navegador_Chrome» urgentes a 3,8 km |
+| `iphone-17-pro-max/18-tienda-responder-precio-sugerido.png` | Responder «Sí lo tengo» con el precio sugerido de $ 2.000 («Es el último precio que diste para este producto») |
+| `iphone-17-pro-max/19-tienda-mis-respuestas.png` | 8:16 p. m., «Mis respuestas»: las dos respuestas de $ 2.000 esperando a que el cliente elija |
 
 La solicitud «Prueba de aviso push iPhone» se publicó a las 5:58 p. m. con una cuenta de cliente de la prueba de carga
 (`scripts/carga/publicar-una.mjs`) junto a Tienda Uno: 1 tienda notificada. El aviso no lleva el producto ni datos del
@@ -55,5 +59,7 @@ cliente, como pide HU-031. iOS agrega «from Quién lo tiene» en inglés: es te
 | `android/7-chrome-esperando-1-tienda.png` | Chrome | 8:01 p. m., «Prueba solicitud 1» con el pin bien puesto: se preguntó a 1 tienda, radio 3 km, cierre 8:27 p. m. |
 
 En Android se probó publicar y la pantalla de espera. A las 7:51 p. m. una solicitud publicada por guion desde el punto exacto de Tienda Uno sí la notificó, lo que confirmó que la tienda estaba abierta y que el fallo de las 7:49 p. m. fue la ubicación del pin, no Android. Con el pin bien puesto, a las 8:01 p. m. la solicitud llegó a Tienda Uno.
+
+Teléfono Android: Samsung Galaxy A57 5G (SM-A576B).
 
 Pendiente: versión de Android, respuesta en vivo en Android y Edge en un computador.
