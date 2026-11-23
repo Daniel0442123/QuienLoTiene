@@ -62,8 +62,8 @@ cliente, como pide HU-031. iOS agrega «from Quién lo tiene» en inglés: es te
 
 En Android se probó publicar y la pantalla de espera. A las 7:51 p. m. una solicitud publicada por guion desde el punto exacto de Tienda Uno sí la notificó, lo que confirmó que la tienda estaba abierta y que el fallo de las 7:49 p. m. fue la ubicación del pin, no Android. Con el pin bien puesto, a las 8:01 p. m. la solicitud llegó a Tienda Uno.
 
-Teléfono Android: Samsung Galaxy A57 5G (SM-A576B).
+Teléfono Android: Samsung Galaxy A57 5G (SM-A576B), Android 17, One UI 9.0.
 
 A las 8:16 p. m. Tienda Uno respondió desde la app del iPhone y la respuesta apareció en vivo en Chrome de Android, después de la ampliación del radio a 5 km (HU-022).
 
-Pendiente: versión de Android, respuesta en vivo en Firefox de Android y Edge en un computador.
+Pendiente: respuesta en vivo en Firefox de Android y Edge en un computador.
