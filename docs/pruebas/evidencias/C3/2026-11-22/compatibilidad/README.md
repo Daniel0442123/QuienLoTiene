@@ -50,7 +50,10 @@ cliente, como pide HU-031. iOS agrega «from Quién lo tiene» en inglés: es te
 | `android/2-chrome-sin-tiendas-abiertas.png` | Chrome | Publicada «Tornillo - prueba_navegador_chrome»: sin ferreterías abiertas cerca (domingo) |
 | `android/3-firefox-preguntar.png` | Firefox | Formulario con el punto marcado en el mapa |
 | `android/4-firefox-sin-tiendas-abiertas.png` | Firefox | Publicada «Tornillos - prueba_navegador_Firefox»: mismo mensaje |
+| `android/5-chrome-farmacia-centro.png` | Chrome | Farmacia con el pin cerca del centro (7:49 p. m.) |
+| `android/6-chrome-farmacia-sin-tiendas.png` | Chrome | Esa solicitud no encontró tiendas: el pin quedó fuera de los 3 km de Tienda Uno |
+| `android/7-chrome-esperando-1-tienda.png` | Chrome | 8:01 p. m., «Prueba solicitud 1» con el pin bien puesto: se preguntó a 1 tienda, radio 3 km, cierre 8:27 p. m. |
 
-En Android se probó publicar y la pantalla de espera; la respuesta en vivo no, porque no había ferreterías abiertas.
+En Android se probó publicar y la pantalla de espera. A las 7:51 p. m. una solicitud publicada por guion desde el punto exacto de Tienda Uno sí la notificó, lo que confirmó que la tienda estaba abierta y que el fallo de las 7:49 p. m. fue la ubicación del pin, no Android. Con el pin bien puesto, a las 8:01 p. m. la solicitud llegó a Tienda Uno.
 
 Pendiente: versión de Android, respuesta en vivo en Android y Edge en un computador.
