@@ -1,0 +1,80 @@
+# NF-REN-004 · Memoria en el VPS durante la carga de 100 usuarios y 50 conexiones SSE (21:29:37Z a 21:33:37Z)
+# Corrido por Pedro en el VPS el 22/11/2026 (docker stats --no-stream cada 10 s y free -m). Copia textual.
+21:29:48
+quienlotiene-caddy-1 78.59MiB / 128MiB 22.86%
+quienlotiene-api-1 582.7MiB / 640MiB 52.15%
+quienlotiene-db-1 107.9MiB / 512MiB 9.76%
+21:30:01
+quienlotiene-caddy-1 84.4MiB / 128MiB 57.73%
+quienlotiene-api-1 597.7MiB / 640MiB 60.71%
+quienlotiene-db-1 107.9MiB / 512MiB 17.05%
+21:30:14
+quienlotiene-caddy-1 82.67MiB / 128MiB 26.65%
+quienlotiene-api-1 597.1MiB / 640MiB 39.30%
+quienlotiene-db-1 108MiB / 512MiB 10.48%
+21:30:26
+quienlotiene-caddy-1 86.99MiB / 128MiB 28.34%
+quienlotiene-api-1 597.7MiB / 640MiB 42.12%
+quienlotiene-db-1 107.9MiB / 512MiB 12.88%
+21:30:38
+quienlotiene-caddy-1 97.12MiB / 128MiB 24.81%
+quienlotiene-api-1 598.2MiB / 640MiB 35.55%
+quienlotiene-db-1 108MiB / 512MiB 11.30%
+21:30:50
+quienlotiene-caddy-1 115MiB / 128MiB 37.92%
+quienlotiene-api-1 606.9MiB / 640MiB 37.48%
+quienlotiene-db-1 108MiB / 512MiB 6.02%
+21:31:02
+quienlotiene-caddy-1 119.8MiB / 128MiB 32.47%
+quienlotiene-api-1 598.4MiB / 640MiB 39.14%
+quienlotiene-db-1 108MiB / 512MiB 12.44%
+21:31:14
+quienlotiene-caddy-1 122.6MiB / 128MiB 24.52%
+quienlotiene-api-1 597.9MiB / 640MiB 44.04%
+quienlotiene-db-1 108MiB / 512MiB 10.02%
+21:31:27
+quienlotiene-caddy-1 125.2MiB / 128MiB 25.73%
+quienlotiene-api-1 597.9MiB / 640MiB 37.05%
+quienlotiene-db-1 108MiB / 512MiB 10.53%
+21:31:39
+quienlotiene-caddy-1 125.3MiB / 128MiB 27.02%
+quienlotiene-api-1 598MiB / 640MiB 40.28%
+quienlotiene-db-1 108MiB / 512MiB 11.70%
+21:31:51
+quienlotiene-caddy-1 125.8MiB / 128MiB 25.02%
+quienlotiene-api-1 597.9MiB / 640MiB 38.46%
+quienlotiene-db-1 108MiB / 512MiB 10.26%
+21:32:03
+quienlotiene-caddy-1 125.6MiB / 128MiB 29.34%
+quienlotiene-api-1 598.1MiB / 640MiB 43.75%
+quienlotiene-db-1 108MiB / 512MiB 10.39%
+21:32:15
+quienlotiene-caddy-1 126.4MiB / 128MiB 27.17%
+quienlotiene-api-1 598.3MiB / 640MiB 41.50%
+quienlotiene-db-1 108MiB / 512MiB 10.73%
+21:32:27
+quienlotiene-caddy-1 126.5MiB / 128MiB 27.98%
+quienlotiene-api-1 598.3MiB / 640MiB 44.03%
+quienlotiene-db-1 103.3MiB / 512MiB 11.22%
+21:32:39
+quienlotiene-caddy-1 121MiB / 128MiB 25.29%
+quienlotiene-api-1 598.2MiB / 640MiB 38.91%
+quienlotiene-db-1 102.7MiB / 512MiB 14.37%
+21:32:51
+quienlotiene-caddy-1 121.3MiB / 128MiB 22.34%
+quienlotiene-api-1 598.1MiB / 640MiB 37.44%
+quienlotiene-db-1 103.1MiB / 512MiB 13.44%
+21:33:04
+quienlotiene-caddy-1 120.9MiB / 128MiB 26.92%
+quienlotiene-api-1 598.2MiB / 640MiB 42.29%
+quienlotiene-db-1 103.1MiB / 512MiB 9.87%
+21:33:16
+quienlotiene-caddy-1 122.6MiB / 128MiB 27.61%
+quienlotiene-api-1 598.1MiB / 640MiB 37.62%
+quienlotiene-db-1 103.1MiB / 512MiB 11.21%
+               total        used        free      shared  buff/cache   available
+Mem:            3920        1460         232          36        2546        2460
+Swap:           2047           5        2042
+
+# Máximos: API 606,9 MiB (criterio ≤ 640 MB) · Caddy 126,5 MiB de su límite de 128 MiB (98,8 %) · base 108 MiB
+# Stack: ≈ 833 MiB en el pico (criterio ≤ 2 GB); el VPS usaba 1.460 MiB de 3.920 en total.

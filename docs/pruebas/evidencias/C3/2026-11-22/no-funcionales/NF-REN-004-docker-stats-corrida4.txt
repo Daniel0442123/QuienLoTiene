@@ -1,0 +1,138 @@
+# NF-REN-004 · Memoria en el VPS durante la corrida 4 de NF-ESC-020 (DEF-018), con Caddy en mem_limit 256m
+# Carga de 100 usuarios (k6, 03:02:05Z a 03:06:05Z) y 50 conexiones SSE (03:01:46Z a 03:06:06Z), 23/11/2026 UTC (22/11, 10:01 p. m. en Bogotá).
+# Corrido por Pedro en el VPS (docker stats --no-stream cada 10 s y free -m). Copia textual; horas del VPS en UTC.
+03:01:40
+quienlotiene-caddy-1 16.09MiB / 256MiB 0.00%
+quienlotiene-api-1 509.7MiB / 640MiB 0.18%
+quienlotiene-db-1 65.54MiB / 512MiB 0.01%
+03:01:52
+quienlotiene-caddy-1 63.81MiB / 256MiB 0.00%
+quienlotiene-api-1 509.9MiB / 640MiB 0.20%
+quienlotiene-db-1 65.54MiB / 512MiB 0.00%
+03:02:04
+quienlotiene-caddy-1 90.55MiB / 256MiB 25.28%
+quienlotiene-api-1 509.9MiB / 640MiB 0.22%
+quienlotiene-db-1 72.59MiB / 512MiB 22.94%
+03:02:16
+quienlotiene-caddy-1 133.2MiB / 256MiB 16.58%
+quienlotiene-api-1 539.6MiB / 640MiB 66.22%
+quienlotiene-db-1 81.4MiB / 512MiB 5.52%
+03:02:29
+quienlotiene-caddy-1 164.5MiB / 256MiB 21.14%
+quienlotiene-api-1 541.9MiB / 640MiB 58.78%
+quienlotiene-db-1 81.69MiB / 512MiB 8.64%
+03:02:41
+quienlotiene-caddy-1 164.8MiB / 256MiB 18.15%
+quienlotiene-api-1 539.1MiB / 640MiB 73.30%
+quienlotiene-db-1 82.09MiB / 512MiB 20.15%
+03:02:53
+quienlotiene-caddy-1 165.3MiB / 256MiB 20.34%
+quienlotiene-api-1 544.9MiB / 640MiB 68.69%
+quienlotiene-db-1 81.86MiB / 512MiB 7.72%
+03:03:05
+quienlotiene-caddy-1 165.8MiB / 256MiB 26.47%
+quienlotiene-api-1 542.6MiB / 640MiB 60.78%
+quienlotiene-db-1 82.05MiB / 512MiB 7.81%
+03:03:17
+quienlotiene-caddy-1 165.8MiB / 256MiB 17.90%
+quienlotiene-api-1 546MiB / 640MiB 64.54%
+quienlotiene-db-1 82.19MiB / 512MiB 7.67%
+03:03:30
+quienlotiene-caddy-1 165.8MiB / 256MiB 20.80%
+quienlotiene-api-1 548.7MiB / 640MiB 67.70%
+quienlotiene-db-1 82.36MiB / 512MiB 7.52%
+03:03:42
+quienlotiene-caddy-1 164.9MiB / 256MiB 23.96%
+quienlotiene-api-1 556.5MiB / 640MiB 50.55%
+quienlotiene-db-1 82.41MiB / 512MiB 10.00%
+03:03:54
+quienlotiene-caddy-1 164.7MiB / 256MiB 22.19%
+quienlotiene-api-1 549.9MiB / 640MiB 41.31%
+quienlotiene-db-1 82.49MiB / 512MiB 9.81%
+03:04:06
+quienlotiene-caddy-1 164.5MiB / 256MiB 26.52%
+quienlotiene-api-1 551.2MiB / 640MiB 46.77%
+quienlotiene-db-1 82.49MiB / 512MiB 11.67%
+03:04:18
+quienlotiene-caddy-1 164.3MiB / 256MiB 24.73%
+quienlotiene-api-1 550.5MiB / 640MiB 44.43%
+quienlotiene-db-1 82.51MiB / 512MiB 10.78%
+03:04:30
+quienlotiene-caddy-1 164MiB / 256MiB 22.76%
+quienlotiene-api-1 550.7MiB / 640MiB 39.82%
+quienlotiene-db-1 82.5MiB / 512MiB 9.70%
+03:04:42
+quienlotiene-caddy-1 163.9MiB / 256MiB 23.32%
+quienlotiene-api-1 550.7MiB / 640MiB 37.32%
+quienlotiene-db-1 82.5MiB / 512MiB 22.95%
+03:04:54
+quienlotiene-caddy-1 162.1MiB / 256MiB 24.78%
+quienlotiene-api-1 550.9MiB / 640MiB 40.49%
+quienlotiene-db-1 82.51MiB / 512MiB 10.65%
+03:05:07
+quienlotiene-caddy-1 163.5MiB / 256MiB 30.50%
+quienlotiene-api-1 551.3MiB / 640MiB 47.40%
+quienlotiene-db-1 82.51MiB / 512MiB 14.13%
+03:05:19
+quienlotiene-caddy-1 165.9MiB / 256MiB 24.57%
+quienlotiene-api-1 551MiB / 640MiB 41.01%
+quienlotiene-db-1 82.5MiB / 512MiB 9.95%
+03:05:31
+quienlotiene-caddy-1 170.4MiB / 256MiB 22.75%
+quienlotiene-api-1 556.1MiB / 640MiB 43.26%
+quienlotiene-db-1 82.56MiB / 512MiB 10.43%
+03:05:43
+quienlotiene-caddy-1 170.5MiB / 256MiB 24.07%
+quienlotiene-api-1 551.1MiB / 640MiB 39.61%
+quienlotiene-db-1 82.57MiB / 512MiB 11.43%
+03:05:55
+quienlotiene-caddy-1 170.2MiB / 256MiB 25.93%
+quienlotiene-api-1 551MiB / 640MiB 40.16%
+quienlotiene-db-1 82.57MiB / 512MiB 10.51%
+03:06:07
+quienlotiene-caddy-1 169.9MiB / 256MiB 0.00%
+quienlotiene-api-1 551MiB / 640MiB 0.20%
+quienlotiene-db-1 82.52MiB / 512MiB 0.01%
+03:06:19
+quienlotiene-caddy-1 168.9MiB / 256MiB 0.00%
+quienlotiene-api-1 551.1MiB / 640MiB 0.17%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+03:06:31
+quienlotiene-caddy-1 168.8MiB / 256MiB 0.00%
+quienlotiene-api-1 551.1MiB / 640MiB 0.16%
+quienlotiene-db-1 82.52MiB / 512MiB 0.16%
+03:06:44
+quienlotiene-caddy-1 170.8MiB / 256MiB 0.00%
+quienlotiene-api-1 551.1MiB / 640MiB 0.18%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+03:06:56
+quienlotiene-caddy-1 170.7MiB / 256MiB 0.02%
+quienlotiene-api-1 550.8MiB / 640MiB 0.28%
+quienlotiene-db-1 82.53MiB / 512MiB 4.24%
+03:07:08
+quienlotiene-caddy-1 170.5MiB / 256MiB 0.00%
+quienlotiene-api-1 524.6MiB / 640MiB 0.17%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+03:07:20
+quienlotiene-caddy-1 170.5MiB / 256MiB 0.00%
+quienlotiene-api-1 524.5MiB / 640MiB 0.17%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+03:07:32
+quienlotiene-caddy-1 170.5MiB / 256MiB 0.00%
+quienlotiene-api-1 524.5MiB / 640MiB 0.15%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+03:07:44
+quienlotiene-caddy-1 170.5MiB / 256MiB 0.00%
+quienlotiene-api-1 524.4MiB / 640MiB 0.15%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+03:07:56
+quienlotiene-caddy-1 170.5MiB / 256MiB 0.03%
+quienlotiene-api-1 524.2MiB / 640MiB 0.16%
+quienlotiene-db-1 82.52MiB / 512MiB 5.20%
+03:08:08
+quienlotiene-caddy-1 170.5MiB / 256MiB 0.00%
+quienlotiene-api-1 524.2MiB / 640MiB 0.16%
+quienlotiene-db-1 82.52MiB / 512MiB 0.00%
+               total        used        free      shared  buff/cache   available
+Mem:            3920        1437         249          36        2608        2482
+Swap:           2047           0        2047

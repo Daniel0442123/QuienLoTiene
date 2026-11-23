@@ -1,6 +1,6 @@
 # Registro de cambios por versión · Quién lo tiene
 
-> **Control del documento** · Versión 1.12 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
+> **Control del documento** · Versión 1.13 · 22/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Estado: Vigente
 
 Notas de versión del producto: qué trae cada etiqueta `v*` que se despliega. Sigue el formato de *Keep a Changelog* y las versiones SemVer de D-22. El detalle de cada PR (autor, fechas, aprobación) está en la [bitácora](BITACORA-DEL-PROYECTO.md); las desviaciones, en el [control de cambios](CONTROL-DE-CAMBIOS.md).
 
@@ -12,7 +12,15 @@ Normas que atiende: ISO/IEC/IEEE 12207:2017 (6.4.10 transición, 6.3.5 gestión 
 
 ## Sin liberar
 
-Nada todavía.
+Correcciones para la `v0.5.5`, en el #92. Se etiqueta después de fusionarlo.
+
+### Corregido
+- **DEF-016 (S4).** Al vencer la solicitud, la lista de respuestas ya no dice «Te avisamos en esta pantalla apenas una tienda conteste» mientras la API todavía no marca el vencimiento. Desde la hora de vencimiento muestra el aviso de vencida y quita «Elegir», como ya hacía el título (`RespuestasDeSolicitud.tsx`).
+- **DEF-017 (S4).** Los botones + y − del mapa miden 44 × 44 px (RNF-028); antes medían 30 × 30 px (`styles/index.css`).
+- **DEF-018 (S3).** El `mem_limit` de Caddy sube de 128 a 256 MiB en `compose.prod.yaml`; con 100 usuarios llegó a 126,5 MiB. El stack queda en 1.408 MiB como máximo, dentro de los 2 GB de RNF-004. Falta repetir NF-ESC-020 después del despliegue.
+
+### Pruebas
+- Frontend: 363 pruebas con Vitest en verde, 2 nuevas para DEF-016 (`SolicitudVencidaPorReloj.test.tsx`), que fallan sin la corrección. Botones del mapa medidos en Chromium a 375 px: 44 × 44.
 
 ## v0.5.4 · 22/11/2026 · Indicadores de la tienda y radio ampliado (Sprint de Cierre)
 
@@ -278,3 +286,4 @@ Commits directos a `main` (`289b02f` a `d0a19d2`): estructura inicial, paquete `
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.2` (#79, #81 y #82) antes de etiquetar, preparadas con Claude Code |
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.3` (#85: DEF-013, DEF-014, DEF-015 y pruebas de los no funcionales del C2) antes de etiquetar, preparadas con Claude Code |
 | 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Notas de `v0.5.4` (#89: HU-015 y HU-022; #90: SC-021) antes de etiquetar, preparadas con Claude Code |
+| 1.13 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sin liberar: correcciones de DEF-016, DEF-017 y DEF-018 para la `v0.5.5` |

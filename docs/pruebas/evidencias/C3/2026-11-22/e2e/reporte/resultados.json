@@ -1,0 +1,343 @@
+{
+  "config": {
+    "argv": [
+      "/opt/node22/bin/node",
+      "/home/user/quienlotiene/e2e/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/home/user/quienlotiene/e2e/playwright.config.ts",
+    "rootDir": "/home/user/quienlotiene/e2e/pruebas",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/user/quienlotiene/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/user/quienlotiene/e2e/pruebas",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "reporte"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reporte/resultados.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "e2e-01-publicar-y-recibir-respuesta.spec.ts",
+      "file": "e2e-01-publicar-y-recibir-respuesta.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E2E-01 · la respuesta de la tienda aparece al cliente sin recargar",
+          "ok": true,
+          "tags": [
+            "E2E-01",
+            "HU-016",
+            "HU-019",
+            "HU-020"
+          ],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2568,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-22T21:33:52.296Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28c5d3a7e4e813fab451-3d4869741e4fcfb0d187",
+          "file": "e2e-01-publicar-y-recibir-respuesta.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e2e-02-elegir-y-entregar-a-domicilio.spec.ts",
+      "file": "e2e-02-elegir-y-entregar-a-domicilio.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E2E-02 · el pedido a domicilio va de Confirmado a Recibido",
+          "ok": true,
+          "tags": [
+            "E2E-02",
+            "HU-024",
+            "HU-027",
+            "HU-028"
+          ],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3970,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-22T21:33:54.932Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b21c252b6c0ea9d65c59-052ba0c9832b363c5cb0",
+          "file": "e2e-02-elegir-y-entregar-a-domicilio.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e2e-03-aprobar-tienda-con-segundo-factor.spec.ts",
+      "file": "e2e-03-aprobar-tienda-con-segundo-factor.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E2E-03 · la tienda aprobada por el administrador con TOTP recibe solicitudes",
+          "ok": true,
+          "tags": [
+            "E2E-03",
+            "HU-002",
+            "HU-004",
+            "HU-036"
+          ],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2915,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-22T21:33:58.913Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e202fdc441ecf1d52146-a427bdfc06d3c2e57e2a",
+          "file": "e2e-03-aprobar-tienda-con-segundo-factor.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e2e-04-calificar-despues-de-la-entrega.spec.ts",
+      "file": "e2e-04-calificar-despues-de-la-entrega.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E2E-04 · la calificación del cliente se ve en el detalle de la tienda",
+          "ok": true,
+          "tags": [
+            "E2E-04",
+            "HU-028",
+            "HU-034"
+          ],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4142,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-22T21:34:01.840Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b93a0ca017d7cfc578d0-6506cc5fb2f7eb887f1c",
+          "file": "e2e-04-calificar-despues-de-la-entrega.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e2e-05-ampliar-radio-y-vencer.spec.ts",
+      "file": "e2e-05-ampliar-radio-y-vencer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E2E-05 · sin respuestas el radio pasa a 5 km una vez y la solicitud vence",
+          "ok": true,
+          "tags": [
+            "E2E-05",
+            "HU-021",
+            "HU-022"
+          ],
+          "tests": [
+            {
+              "timeout": 2100000,
+              "annotations": [
+                {
+                  "type": "ampliación",
+                  "description": "a los 11.0 min"
+                },
+                {
+                  "type": "vencimiento",
+                  "description": "a los 30.0 min"
+                },
+                {
+                  "type": "estado VENCIDA en pantalla",
+                  "description": "a los 31.0 min"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1861529,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-22T21:34:05.996Z",
+                  "annotations": [
+                    {
+                      "type": "ampliación",
+                      "description": "a los 11.0 min"
+                    },
+                    {
+                      "type": "vencimiento",
+                      "description": "a los 30.0 min"
+                    },
+                    {
+                      "type": "estado VENCIDA en pantalla",
+                      "description": "a los 31.0 min"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4db1f76f0f2c61f025c2-a37c5fda0354edc68041",
+          "file": "e2e-05-ampliar-radio-y-vencer.spec.ts",
+          "line": 17,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-22T21:33:51.953Z",
+    "duration": 1875742.407,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

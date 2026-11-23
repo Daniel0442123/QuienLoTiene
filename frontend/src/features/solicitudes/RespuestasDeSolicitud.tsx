@@ -5,6 +5,7 @@ import { EsqueletoLista, EstadoError, EstadoVacio } from '@/components/Estados'
 import { useAnunciar } from '@/components/RegionAnuncios'
 import { Boton } from '@/components/ui/Boton'
 import { textosOrdenes } from '@/features/ordenes/textos'
+import { useAhora } from '@/hooks/useAhora'
 import { formatearHora } from '@/services/formato'
 import { useRespuestasDeSolicitud, type CriterioOrden } from './api'
 import { TarjetaRespuesta } from './TarjetaRespuesta'
@@ -15,6 +16,9 @@ const CRITERIOS: CriterioOrden[] = ['precio', 'distancia', 'total']
 /**
  * Respuestas de una solicitud para su cliente (HU-020) y lo que pasa cuando vence o ya se eligió (HU-021). Las
  * respuestas nuevas se anuncian por la región aria-live sin mover el foco (WCAG 4.1.3).
+ *
+ * DEF-016: pasada la hora de vencimiento se muestra como vencida aunque la API todavía diga ABIERTA (la marca con
+ * un minuto de retraso), igual que el encabezado de «Esperando respuestas». Así no invita a esperar ni a elegir.
  */
 export function RespuestasDeSolicitud({
   solicitudId,
@@ -29,9 +33,14 @@ export function RespuestasDeSolicitud({
   ordenId?: string | null
 }) {
   const anunciar = useAnunciar()
+  const ahora = useAhora()
   const [orden, setOrden] = useState<CriterioOrden>('precio')
   const respuestas = useRespuestasDeSolicitud(solicitudId, orden)
   const datos = respuestas.data
+  const estadoVisible =
+    datos?.estadoSolicitud === 'ABIERTA' && Date.parse(fechaVencimiento) <= ahora.getTime()
+      ? 'VENCIDA'
+      : datos?.estadoSolicitud
 
   // Anuncia las que llegan después de la primera carga y el vencimiento (antes estaba abierta)
   const vistas = useRef<Set<string> | null>(null)
@@ -43,17 +52,18 @@ export function RespuestasDeSolicitud({
         if (!vistas.current.has(respuesta.id)) anunciar(textos.llegoRespuesta(respuesta.nombreTienda))
       }
     }
-    if (estadoAnterior.current === 'ABIERTA' && datos.estadoSolicitud === 'VENCIDA') anunciar(textos.vencioAnuncio)
+    if (estadoAnterior.current === 'ABIERTA' && estadoVisible === 'VENCIDA') anunciar(textos.vencioAnuncio)
     vistas.current = new Set(datos.respuestas.map((r) => r.id))
-    estadoAnterior.current = datos.estadoSolicitud
-  }, [datos, anunciar])
+    estadoAnterior.current = estadoVisible ?? null
+  }, [datos, estadoVisible, anunciar])
 
   if (respuestas.isPending) return <EsqueletoLista filas={2} etiqueta={textos.cargandoRespuestas} />
   if (respuestas.isError) {
     return <EstadoError error={respuestas.error} alReintentar={() => void respuestas.refetch()} />
   }
 
-  const { estadoSolicitud, respuestasRecibidas, cantidadSolicitada } = respuestas.data
+  const { respuestasRecibidas, cantidadSolicitada } = respuestas.data
+  const estadoSolicitud = estadoVisible
   const tarjetas = respuestas.data.respuestas
   const abierta = estadoSolicitud === 'ABIERTA'
   const elegida = tarjetas.find((r) => r.fueElegida)

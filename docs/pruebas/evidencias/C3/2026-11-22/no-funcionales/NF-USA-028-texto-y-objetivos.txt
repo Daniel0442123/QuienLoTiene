@@ -1,0 +1,68 @@
+# NF-USA-028 · Tamaño del texto y de los objetivos táctiles en producción (v0.5.4), móvil 375x812, 2026-11-22T21:45:45Z
+# Mide font-size de p/li/label/input/button/a en <main> y el rectángulo de botones, enlaces y campos (o su label).
+
+## / (https://quienlotiene.tech/)
+texto base: 16px · elementos de texto: 13 · menores a 16 px: 0
+objetivos táctiles: 5 · menores a 44x44: 0
+
+## /entrar (https://quienlotiene.tech/entrar)
+texto base: 16px · elementos de texto: 9 · menores a 16 px: 1
+   texto P:14px:La que escribiste al crear tu 
+objetivos táctiles: 7 · menores a 44x44: 1
+   objetivo A 120x20 «Crear una cuenta»
+
+## /crear-cuenta (https://quienlotiene.tech/crear-cuenta)
+texto base: 16px · elementos de texto: 22 · menores a 16 px: 3
+   texto P:14px:Como quieres que te llamen las
+   texto P:14px:Solo números, por ejemplo 3001
+   texto P:14px:Mínimo 15 caracteres; puedes u
+objetivos táctiles: 10 · menores a 44x44: 1
+   objetivo A 42x20 «Entrar»
+
+## /registrar-tienda (https://quienlotiene.tech/registrar-tienda)
+texto base: 16px · elementos de texto: 42 · menores a 16 px: 8
+   texto P:14px:Solo números, por ejemplo 3001
+   texto P:14px:Mínimo 15 caracteres; puedes u
+   texto P:14px:Como aparece en el aviso del l
+   texto P:14px:Si estás en el local, usa tu u
+   texto A:12px:OpenStreetMap contributors
+   texto P:14px:Todavía no has marcado la ubic
+   texto P:14px:Una foto de la fachada o del i
+   texto P:14px:RUT o certificado de existenci
+objetivos táctiles: 20 · menores a 44x44: 3
+   objetivo A 30x30 «+»
+   objetivo A 30x30 «−»
+   objetivo A 42x20 «Entrar»
+
+## /solicitudes/nueva (https://quienlotiene.tech/solicitudes/nueva)
+texto base: 16px · elementos de texto: 25 · menores a 16 px: 7
+   texto P:14px:Por ejemplo: Acetaminofén 500 
+   texto P:14px:Usa tu ubicación o toca el map
+   texto A:14px:Guardar mis direcciones
+   texto P:14px:Buscamos tiendas a unos 3 km d
+   texto A:12px:OpenStreetMap contributors
+   texto P:14px:Todavía no has marcado la ubic
+   texto P:14px:
+objetivos táctiles: 17 · menores a 44x44: 3
+   objetivo A 322x37 «Guardar mis direcciones»
+   objetivo A 30x30 «+»
+   objetivo A 30x30 «−»
+
+## /solicitudes (https://quienlotiene.tech/solicitudes)
+texto base: 16px · elementos de texto: 31 · menores a 16 px: 5
+   texto P:14px:Abierta
+   texto P:14px:Abierta
+   texto P:14px:Abierta
+   texto P:14px:Abierta
+   texto P:14px:Abierta
+objetivos táctiles: 13 · menores a 44x44: 0
+
+## /pedidos (https://quienlotiene.tech/pedidos)
+texto base: 16px · elementos de texto: 15 · menores a 16 px: 0
+objetivos táctiles: 10 · menores a 44x44: 0
+
+## /cuenta (https://quienlotiene.tech/cuenta)
+texto base: 16px · elementos de texto: 12 · menores a 16 px: 2
+   texto P:14px:Con este correo entras. No se 
+   texto P:14px:Las tiendas lo usan para coord
+objetivos táctiles: 8 · menores a 44x44: 0

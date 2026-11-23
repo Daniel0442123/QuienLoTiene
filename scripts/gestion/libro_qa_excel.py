@@ -103,7 +103,7 @@ def ejecucion(libro, ciclo: str) -> int:
     archivo = LIBRO_MD / f"0{int(ciclo[1:]) + 2}-EJECUCION-{ciclo}.md"
     for tabla in tablas(archivo):
         for fila in tabla:
-            caso = limpiar(fila.get("ID del caso", ""))
+            caso = limpiar(fila.get("ID del caso") or fila.get("ID", ""))  # la tabla de punta a punta usa «ID»
             if caso not in filas_por_id:
                 continue
             for campo in ("Probador", "Fecha", "Resultado", "Defecto(s)", "Evidencia (enlace)", "Observaciones",

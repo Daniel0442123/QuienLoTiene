@@ -65,3 +65,13 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* DEF-017 (RNF-028): los botones + y − del mapa miden 44 × 44 px como el resto. Leaflet los deja en 30 px;
+   este selector tiene más especificidad que el de leaflet.css, que se carga después. */
+.leaflet-touch .leaflet-bar.leaflet-control-zoom a,
+.leaflet-bar.leaflet-control-zoom a {
+  width: var(--tamano-tactil);
+  height: var(--tamano-tactil);
+  line-height: var(--tamano-tactil);
+  font-size: 1.5rem;
+}

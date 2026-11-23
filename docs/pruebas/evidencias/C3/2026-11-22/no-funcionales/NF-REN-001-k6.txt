@@ -1,0 +1,599 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: carga.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 50 max VUs, 3m30s max duration (incl. graceful stop):
+              * rendimiento: 50 looping VUs for 3m0s (gracefulStop: 30s)
+
+
+running (0m01.0s), 50/50 VUs, 0 complete and 0 interrupted iterations
+rendimiento   [   1% ] 50 VUs  0m01.0s/3m0s
+
+running (0m02.0s), 50/50 VUs, 0 complete and 0 interrupted iterations
+rendimiento   [   1% ] 50 VUs  0m02.0s/3m0s
+
+running (0m03.0s), 50/50 VUs, 16 complete and 0 interrupted iterations
+rendimiento   [   2% ] 50 VUs  0m03.0s/3m0s
+
+running (0m04.0s), 50/50 VUs, 63 complete and 0 interrupted iterations
+rendimiento   [   2% ] 50 VUs  0m04.0s/3m0s
+
+running (0m05.0s), 50/50 VUs, 83 complete and 0 interrupted iterations
+rendimiento   [   3% ] 50 VUs  0m05.0s/3m0s
+
+running (0m06.0s), 50/50 VUs, 130 complete and 0 interrupted iterations
+rendimiento   [   3% ] 50 VUs  0m06.0s/3m0s
+
+running (0m07.0s), 50/50 VUs, 178 complete and 0 interrupted iterations
+rendimiento   [   4% ] 50 VUs  0m07.0s/3m0s
+
+running (0m08.0s), 50/50 VUs, 210 complete and 0 interrupted iterations
+rendimiento   [   4% ] 50 VUs  0m08.0s/3m0s
+
+running (0m09.0s), 50/50 VUs, 241 complete and 0 interrupted iterations
+rendimiento   [   5% ] 50 VUs  0m09.0s/3m0s
+
+running (0m10.0s), 50/50 VUs, 281 complete and 0 interrupted iterations
+rendimiento   [   6% ] 50 VUs  0m10.0s/3m0s
+
+running (0m11.0s), 50/50 VUs, 325 complete and 0 interrupted iterations
+rendimiento   [   6% ] 50 VUs  0m11.0s/3m0s
+
+running (0m12.0s), 50/50 VUs, 350 complete and 0 interrupted iterations
+rendimiento   [   7% ] 50 VUs  0m12.0s/3m0s
+
+running (0m13.0s), 50/50 VUs, 397 complete and 0 interrupted iterations
+rendimiento   [   7% ] 50 VUs  0m13.0s/3m0s
+
+running (0m14.0s), 50/50 VUs, 426 complete and 0 interrupted iterations
+rendimiento   [   8% ] 50 VUs  0m14.0s/3m0s
+
+running (0m15.0s), 50/50 VUs, 474 complete and 0 interrupted iterations
+rendimiento   [   8% ] 50 VUs  0m15.0s/3m0s
+
+running (0m16.0s), 50/50 VUs, 509 complete and 0 interrupted iterations
+rendimiento   [   9% ] 50 VUs  0m16.0s/3m0s
+
+running (0m17.0s), 50/50 VUs, 558 complete and 0 interrupted iterations
+rendimiento   [   9% ] 50 VUs  0m17.0s/3m0s
+
+running (0m18.0s), 50/50 VUs, 598 complete and 0 interrupted iterations
+rendimiento   [  10% ] 50 VUs  0m18.0s/3m0s
+
+running (0m19.0s), 50/50 VUs, 642 complete and 0 interrupted iterations
+rendimiento   [  11% ] 50 VUs  0m19.0s/3m0s
+
+running (0m20.0s), 50/50 VUs, 686 complete and 0 interrupted iterations
+rendimiento   [  11% ] 50 VUs  0m20.0s/3m0s
+
+running (0m21.0s), 50/50 VUs, 729 complete and 0 interrupted iterations
+rendimiento   [  12% ] 50 VUs  0m21.0s/3m0s
+
+running (0m22.0s), 50/50 VUs, 770 complete and 0 interrupted iterations
+rendimiento   [  12% ] 50 VUs  0m22.0s/3m0s
+
+running (0m23.0s), 50/50 VUs, 815 complete and 0 interrupted iterations
+rendimiento   [  13% ] 50 VUs  0m23.0s/3m0s
+
+running (0m24.0s), 50/50 VUs, 863 complete and 0 interrupted iterations
+rendimiento   [  13% ] 50 VUs  0m24.0s/3m0s
+
+running (0m25.0s), 50/50 VUs, 910 complete and 0 interrupted iterations
+rendimiento   [  14% ] 50 VUs  0m25.0s/3m0s
+
+running (0m26.0s), 50/50 VUs, 953 complete and 0 interrupted iterations
+rendimiento   [  14% ] 50 VUs  0m26.0s/3m0s
+
+running (0m27.0s), 50/50 VUs, 999 complete and 0 interrupted iterations
+rendimiento   [  15% ] 50 VUs  0m27.0s/3m0s
+
+running (0m28.0s), 50/50 VUs, 1042 complete and 0 interrupted iterations
+rendimiento   [  16% ] 50 VUs  0m28.0s/3m0s
+
+running (0m29.0s), 50/50 VUs, 1087 complete and 0 interrupted iterations
+rendimiento   [  16% ] 50 VUs  0m29.0s/3m0s
+
+running (0m30.0s), 50/50 VUs, 1125 complete and 0 interrupted iterations
+rendimiento   [  17% ] 50 VUs  0m30.0s/3m0s
+
+running (0m31.0s), 50/50 VUs, 1168 complete and 0 interrupted iterations
+rendimiento   [  17% ] 50 VUs  0m31.0s/3m0s
+
+running (0m32.0s), 50/50 VUs, 1173 complete and 0 interrupted iterations
+rendimiento   [  18% ] 50 VUs  0m32.0s/3m0s
+
+running (0m33.0s), 50/50 VUs, 1196 complete and 0 interrupted iterations
+rendimiento   [  18% ] 50 VUs  0m33.0s/3m0s
+
+running (0m34.0s), 50/50 VUs, 1239 complete and 0 interrupted iterations
+rendimiento   [  19% ] 50 VUs  0m34.0s/3m0s
+
+running (0m35.0s), 50/50 VUs, 1287 complete and 0 interrupted iterations
+rendimiento   [  19% ] 50 VUs  0m35.0s/3m0s
+
+running (0m36.0s), 50/50 VUs, 1336 complete and 0 interrupted iterations
+rendimiento   [  20% ] 50 VUs  0m36.0s/3m0s
+
+running (0m37.0s), 50/50 VUs, 1374 complete and 0 interrupted iterations
+rendimiento   [  21% ] 50 VUs  0m37.0s/3m0s
+
+running (0m38.0s), 50/50 VUs, 1417 complete and 0 interrupted iterations
+rendimiento   [  21% ] 50 VUs  0m38.0s/3m0s
+
+running (0m39.0s), 50/50 VUs, 1458 complete and 0 interrupted iterations
+rendimiento   [  22% ] 50 VUs  0m39.0s/3m0s
+
+running (0m40.0s), 50/50 VUs, 1504 complete and 0 interrupted iterations
+rendimiento   [  22% ] 50 VUs  0m40.0s/3m0s
+
+running (0m41.0s), 50/50 VUs, 1549 complete and 0 interrupted iterations
+rendimiento   [  23% ] 50 VUs  0m41.0s/3m0s
+
+running (0m42.0s), 50/50 VUs, 1593 complete and 0 interrupted iterations
+rendimiento   [  23% ] 50 VUs  0m42.0s/3m0s
+
+running (0m43.0s), 50/50 VUs, 1636 complete and 0 interrupted iterations
+rendimiento   [  24% ] 50 VUs  0m43.0s/3m0s
+
+running (0m44.0s), 50/50 VUs, 1683 complete and 0 interrupted iterations
+rendimiento   [  24% ] 50 VUs  0m44.0s/3m0s
+
+running (0m45.0s), 50/50 VUs, 1726 complete and 0 interrupted iterations
+rendimiento   [  25% ] 50 VUs  0m45.0s/3m0s
+
+running (0m46.0s), 50/50 VUs, 1770 complete and 0 interrupted iterations
+rendimiento   [  26% ] 50 VUs  0m46.0s/3m0s
+
+running (0m47.0s), 50/50 VUs, 1815 complete and 0 interrupted iterations
+rendimiento   [  26% ] 50 VUs  0m47.0s/3m0s
+
+running (0m48.0s), 50/50 VUs, 1861 complete and 0 interrupted iterations
+rendimiento   [  27% ] 50 VUs  0m48.0s/3m0s
+
+running (0m49.0s), 50/50 VUs, 1906 complete and 0 interrupted iterations
+rendimiento   [  27% ] 50 VUs  0m49.0s/3m0s
+
+running (0m50.0s), 50/50 VUs, 1950 complete and 0 interrupted iterations
+rendimiento   [  28% ] 50 VUs  0m50.0s/3m0s
+
+running (0m51.0s), 50/50 VUs, 1995 complete and 0 interrupted iterations
+rendimiento   [  28% ] 50 VUs  0m51.0s/3m0s
+
+running (0m52.0s), 50/50 VUs, 2040 complete and 0 interrupted iterations
+rendimiento   [  29% ] 50 VUs  0m52.0s/3m0s
+
+running (0m53.0s), 50/50 VUs, 2085 complete and 0 interrupted iterations
+rendimiento   [  29% ] 50 VUs  0m53.0s/3m0s
+
+running (0m54.0s), 50/50 VUs, 2132 complete and 0 interrupted iterations
+rendimiento   [  30% ] 50 VUs  0m54.0s/3m0s
+
+running (0m55.0s), 50/50 VUs, 2177 complete and 0 interrupted iterations
+rendimiento   [  31% ] 50 VUs  0m55.0s/3m0s
+
+running (0m56.0s), 50/50 VUs, 2221 complete and 0 interrupted iterations
+rendimiento   [  31% ] 50 VUs  0m56.0s/3m0s
+
+running (0m57.0s), 50/50 VUs, 2264 complete and 0 interrupted iterations
+rendimiento   [  32% ] 50 VUs  0m57.0s/3m0s
+
+running (0m58.0s), 50/50 VUs, 2309 complete and 0 interrupted iterations
+rendimiento   [  32% ] 50 VUs  0m58.0s/3m0s
+
+running (0m59.0s), 50/50 VUs, 2353 complete and 0 interrupted iterations
+rendimiento   [  33% ] 50 VUs  0m59.0s/3m0s
+
+running (1m00.0s), 50/50 VUs, 2394 complete and 0 interrupted iterations
+rendimiento   [  33% ] 50 VUs  1m00.0s/3m0s
+
+running (1m01.0s), 50/50 VUs, 2441 complete and 0 interrupted iterations
+rendimiento   [  34% ] 50 VUs  1m01.0s/3m0s
+
+running (1m02.0s), 50/50 VUs, 2486 complete and 0 interrupted iterations
+rendimiento   [  34% ] 50 VUs  1m02.0s/3m0s
+
+running (1m03.0s), 50/50 VUs, 2533 complete and 0 interrupted iterations
+rendimiento   [  35% ] 50 VUs  1m03.0s/3m0s
+
+running (1m04.0s), 50/50 VUs, 2582 complete and 0 interrupted iterations
+rendimiento   [  36% ] 50 VUs  1m04.0s/3m0s
+
+running (1m05.0s), 50/50 VUs, 2627 complete and 0 interrupted iterations
+rendimiento   [  36% ] 50 VUs  1m05.0s/3m0s
+
+running (1m06.0s), 50/50 VUs, 2670 complete and 0 interrupted iterations
+rendimiento   [  37% ] 50 VUs  1m06.0s/3m0s
+
+running (1m07.0s), 50/50 VUs, 2708 complete and 0 interrupted iterations
+rendimiento   [  37% ] 50 VUs  1m07.0s/3m0s
+
+running (1m08.0s), 50/50 VUs, 2751 complete and 0 interrupted iterations
+rendimiento   [  38% ] 50 VUs  1m08.0s/3m0s
+
+running (1m09.0s), 50/50 VUs, 2797 complete and 0 interrupted iterations
+rendimiento   [  38% ] 50 VUs  1m09.0s/3m0s
+
+running (1m10.0s), 50/50 VUs, 2844 complete and 0 interrupted iterations
+rendimiento   [  39% ] 50 VUs  1m10.0s/3m0s
+
+running (1m11.0s), 50/50 VUs, 2890 complete and 0 interrupted iterations
+rendimiento   [  39% ] 50 VUs  1m11.0s/3m0s
+
+running (1m12.0s), 50/50 VUs, 2937 complete and 0 interrupted iterations
+rendimiento   [  40% ] 50 VUs  1m12.0s/3m0s
+
+running (1m13.0s), 50/50 VUs, 2983 complete and 0 interrupted iterations
+rendimiento   [  41% ] 50 VUs  1m13.0s/3m0s
+
+running (1m14.0s), 50/50 VUs, 3031 complete and 0 interrupted iterations
+rendimiento   [  41% ] 50 VUs  1m14.0s/3m0s
+
+running (1m15.0s), 50/50 VUs, 3072 complete and 0 interrupted iterations
+rendimiento   [  42% ] 50 VUs  1m15.0s/3m0s
+
+running (1m16.0s), 50/50 VUs, 3115 complete and 0 interrupted iterations
+rendimiento   [  42% ] 50 VUs  1m16.0s/3m0s
+
+running (1m17.0s), 50/50 VUs, 3154 complete and 0 interrupted iterations
+rendimiento   [  43% ] 50 VUs  1m17.0s/3m0s
+
+running (1m18.0s), 50/50 VUs, 3201 complete and 0 interrupted iterations
+rendimiento   [  43% ] 50 VUs  1m18.0s/3m0s
+
+running (1m19.0s), 50/50 VUs, 3246 complete and 0 interrupted iterations
+rendimiento   [  44% ] 50 VUs  1m19.0s/3m0s
+
+running (1m20.0s), 50/50 VUs, 3293 complete and 0 interrupted iterations
+rendimiento   [  44% ] 50 VUs  1m20.0s/3m0s
+
+running (1m21.0s), 50/50 VUs, 3340 complete and 0 interrupted iterations
+rendimiento   [  45% ] 50 VUs  1m21.0s/3m0s
+
+running (1m22.0s), 50/50 VUs, 3388 complete and 0 interrupted iterations
+rendimiento   [  46% ] 50 VUs  1m22.0s/3m0s
+
+running (1m23.0s), 50/50 VUs, 3432 complete and 0 interrupted iterations
+rendimiento   [  46% ] 50 VUs  1m23.0s/3m0s
+
+running (1m24.0s), 50/50 VUs, 3472 complete and 0 interrupted iterations
+rendimiento   [  47% ] 50 VUs  1m24.0s/3m0s
+
+running (1m25.0s), 50/50 VUs, 3515 complete and 0 interrupted iterations
+rendimiento   [  47% ] 50 VUs  1m25.0s/3m0s
+
+running (1m26.0s), 50/50 VUs, 3557 complete and 0 interrupted iterations
+rendimiento   [  48% ] 50 VUs  1m26.0s/3m0s
+
+running (1m27.0s), 50/50 VUs, 3604 complete and 0 interrupted iterations
+rendimiento   [  48% ] 50 VUs  1m27.0s/3m0s
+
+running (1m28.0s), 50/50 VUs, 3650 complete and 0 interrupted iterations
+rendimiento   [  49% ] 50 VUs  1m28.0s/3m0s
+
+running (1m29.0s), 50/50 VUs, 3696 complete and 0 interrupted iterations
+rendimiento   [  49% ] 50 VUs  1m29.0s/3m0s
+
+running (1m30.0s), 50/50 VUs, 3742 complete and 0 interrupted iterations
+rendimiento   [  50% ] 50 VUs  1m30.0s/3m0s
+
+running (1m31.0s), 50/50 VUs, 3790 complete and 0 interrupted iterations
+rendimiento   [  51% ] 50 VUs  1m31.0s/3m0s
+
+running (1m32.0s), 50/50 VUs, 3828 complete and 0 interrupted iterations
+rendimiento   [  51% ] 50 VUs  1m32.0s/3m0s
+
+running (1m33.0s), 50/50 VUs, 3873 complete and 0 interrupted iterations
+rendimiento   [  52% ] 50 VUs  1m33.0s/3m0s
+
+running (1m34.0s), 50/50 VUs, 3913 complete and 0 interrupted iterations
+rendimiento   [  52% ] 50 VUs  1m34.0s/3m0s
+
+running (1m35.0s), 50/50 VUs, 3956 complete and 0 interrupted iterations
+rendimiento   [  53% ] 50 VUs  1m35.0s/3m0s
+
+running (1m36.0s), 50/50 VUs, 4002 complete and 0 interrupted iterations
+rendimiento   [  53% ] 50 VUs  1m36.0s/3m0s
+
+running (1m37.0s), 50/50 VUs, 4050 complete and 0 interrupted iterations
+rendimiento   [  54% ] 50 VUs  1m37.0s/3m0s
+
+running (1m38.0s), 50/50 VUs, 4098 complete and 0 interrupted iterations
+rendimiento   [  54% ] 50 VUs  1m38.0s/3m0s
+
+running (1m39.0s), 50/50 VUs, 4143 complete and 0 interrupted iterations
+rendimiento   [  55% ] 50 VUs  1m39.0s/3m0s
+
+running (1m40.0s), 50/50 VUs, 4189 complete and 0 interrupted iterations
+rendimiento   [  56% ] 50 VUs  1m40.0s/3m0s
+
+running (1m41.0s), 50/50 VUs, 4232 complete and 0 interrupted iterations
+rendimiento   [  56% ] 50 VUs  1m41.0s/3m0s
+
+running (1m42.0s), 50/50 VUs, 4270 complete and 0 interrupted iterations
+rendimiento   [  57% ] 50 VUs  1m42.0s/3m0s
+
+running (1m43.0s), 50/50 VUs, 4317 complete and 0 interrupted iterations
+rendimiento   [  57% ] 50 VUs  1m43.0s/3m0s
+
+running (1m44.0s), 50/50 VUs, 4359 complete and 0 interrupted iterations
+rendimiento   [  58% ] 50 VUs  1m44.0s/3m0s
+
+running (1m45.0s), 50/50 VUs, 4404 complete and 0 interrupted iterations
+rendimiento   [  58% ] 50 VUs  1m45.0s/3m0s
+
+running (1m46.0s), 50/50 VUs, 4452 complete and 0 interrupted iterations
+rendimiento   [  59% ] 50 VUs  1m46.0s/3m0s
+
+running (1m47.0s), 50/50 VUs, 4500 complete and 0 interrupted iterations
+rendimiento   [  59% ] 50 VUs  1m47.0s/3m0s
+
+running (1m48.0s), 50/50 VUs, 4548 complete and 0 interrupted iterations
+rendimiento   [  60% ] 50 VUs  1m48.0s/3m0s
+
+running (1m49.0s), 50/50 VUs, 4592 complete and 0 interrupted iterations
+rendimiento   [  61% ] 50 VUs  1m49.0s/3m0s
+
+running (1m50.0s), 50/50 VUs, 4638 complete and 0 interrupted iterations
+rendimiento   [  61% ] 50 VUs  1m50.0s/3m0s
+
+running (1m51.0s), 50/50 VUs, 4678 complete and 0 interrupted iterations
+rendimiento   [  62% ] 50 VUs  1m51.0s/3m0s
+
+running (1m52.0s), 50/50 VUs, 4719 complete and 0 interrupted iterations
+rendimiento   [  62% ] 50 VUs  1m52.0s/3m0s
+
+running (1m53.0s), 50/50 VUs, 4763 complete and 0 interrupted iterations
+rendimiento   [  63% ] 50 VUs  1m53.0s/3m0s
+
+running (1m54.0s), 50/50 VUs, 4809 complete and 0 interrupted iterations
+rendimiento   [  63% ] 50 VUs  1m54.0s/3m0s
+
+running (1m55.0s), 50/50 VUs, 4854 complete and 0 interrupted iterations
+rendimiento   [  64% ] 50 VUs  1m55.0s/3m0s
+
+running (1m56.0s), 50/50 VUs, 4902 complete and 0 interrupted iterations
+rendimiento   [  64% ] 50 VUs  1m56.0s/3m0s
+
+running (1m57.0s), 50/50 VUs, 4950 complete and 0 interrupted iterations
+rendimiento   [  65% ] 50 VUs  1m57.0s/3m0s
+
+running (1m58.0s), 50/50 VUs, 4996 complete and 0 interrupted iterations
+rendimiento   [  66% ] 50 VUs  1m58.0s/3m0s
+
+running (1m59.0s), 50/50 VUs, 5041 complete and 0 interrupted iterations
+rendimiento   [  66% ] 50 VUs  1m59.0s/3m0s
+
+running (2m00.0s), 50/50 VUs, 5084 complete and 0 interrupted iterations
+rendimiento   [  67% ] 50 VUs  2m00.0s/3m0s
+
+running (2m01.0s), 50/50 VUs, 5125 complete and 0 interrupted iterations
+rendimiento   [  67% ] 50 VUs  2m01.0s/3m0s
+
+running (2m02.0s), 50/50 VUs, 5167 complete and 0 interrupted iterations
+rendimiento   [  68% ] 50 VUs  2m02.0s/3m0s
+
+running (2m03.0s), 50/50 VUs, 5213 complete and 0 interrupted iterations
+rendimiento   [  68% ] 50 VUs  2m03.0s/3m0s
+
+running (2m04.0s), 50/50 VUs, 5260 complete and 0 interrupted iterations
+rendimiento   [  69% ] 50 VUs  2m04.0s/3m0s
+
+running (2m05.0s), 50/50 VUs, 5302 complete and 0 interrupted iterations
+rendimiento   [  69% ] 50 VUs  2m05.0s/3m0s
+
+running (2m06.0s), 50/50 VUs, 5352 complete and 0 interrupted iterations
+rendimiento   [  70% ] 50 VUs  2m06.0s/3m0s
+
+running (2m07.0s), 50/50 VUs, 5399 complete and 0 interrupted iterations
+rendimiento   [  71% ] 50 VUs  2m07.0s/3m0s
+
+running (2m08.0s), 50/50 VUs, 5443 complete and 0 interrupted iterations
+rendimiento   [  71% ] 50 VUs  2m08.0s/3m0s
+
+running (2m09.0s), 50/50 VUs, 5484 complete and 0 interrupted iterations
+rendimiento   [  72% ] 50 VUs  2m09.0s/3m0s
+
+running (2m10.0s), 50/50 VUs, 5529 complete and 0 interrupted iterations
+rendimiento   [  72% ] 50 VUs  2m10.0s/3m0s
+
+running (2m11.0s), 50/50 VUs, 5574 complete and 0 interrupted iterations
+rendimiento   [  73% ] 50 VUs  2m11.0s/3m0s
+
+running (2m12.0s), 50/50 VUs, 5617 complete and 0 interrupted iterations
+rendimiento   [  73% ] 50 VUs  2m12.0s/3m0s
+
+running (2m13.0s), 50/50 VUs, 5663 complete and 0 interrupted iterations
+rendimiento   [  74% ] 50 VUs  2m13.0s/3m0s
+
+running (2m14.0s), 50/50 VUs, 5709 complete and 0 interrupted iterations
+rendimiento   [  74% ] 50 VUs  2m14.0s/3m0s
+
+running (2m15.0s), 50/50 VUs, 5753 complete and 0 interrupted iterations
+rendimiento   [  75% ] 50 VUs  2m15.0s/3m0s
+
+running (2m16.0s), 50/50 VUs, 5801 complete and 0 interrupted iterations
+rendimiento   [  76% ] 50 VUs  2m16.0s/3m0s
+
+running (2m17.0s), 50/50 VUs, 5847 complete and 0 interrupted iterations
+rendimiento   [  76% ] 50 VUs  2m17.0s/3m0s
+
+running (2m18.0s), 50/50 VUs, 5888 complete and 0 interrupted iterations
+rendimiento   [  77% ] 50 VUs  2m18.0s/3m0s
+
+running (2m19.0s), 50/50 VUs, 5932 complete and 0 interrupted iterations
+rendimiento   [  77% ] 50 VUs  2m19.0s/3m0s
+
+running (2m20.0s), 50/50 VUs, 5979 complete and 0 interrupted iterations
+rendimiento   [  78% ] 50 VUs  2m20.0s/3m0s
+
+running (2m21.0s), 50/50 VUs, 6021 complete and 0 interrupted iterations
+rendimiento   [  78% ] 50 VUs  2m21.0s/3m0s
+
+running (2m22.0s), 50/50 VUs, 6068 complete and 0 interrupted iterations
+rendimiento   [  79% ] 50 VUs  2m22.0s/3m0s
+
+running (2m23.0s), 50/50 VUs, 6114 complete and 0 interrupted iterations
+rendimiento   [  79% ] 50 VUs  2m23.0s/3m0s
+
+running (2m24.0s), 50/50 VUs, 6155 complete and 0 interrupted iterations
+rendimiento   [  80% ] 50 VUs  2m24.0s/3m0s
+
+running (2m25.0s), 50/50 VUs, 6202 complete and 0 interrupted iterations
+rendimiento   [  81% ] 50 VUs  2m25.0s/3m0s
+
+running (2m26.0s), 50/50 VUs, 6250 complete and 0 interrupted iterations
+rendimiento   [  81% ] 50 VUs  2m26.0s/3m0s
+
+running (2m27.0s), 50/50 VUs, 6296 complete and 0 interrupted iterations
+rendimiento   [  82% ] 50 VUs  2m27.0s/3m0s
+
+running (2m28.0s), 50/50 VUs, 6339 complete and 0 interrupted iterations
+rendimiento   [  82% ] 50 VUs  2m28.0s/3m0s
+
+running (2m29.0s), 50/50 VUs, 6382 complete and 0 interrupted iterations
+rendimiento   [  83% ] 50 VUs  2m29.0s/3m0s
+
+running (2m30.0s), 50/50 VUs, 6426 complete and 0 interrupted iterations
+rendimiento   [  83% ] 50 VUs  2m30.0s/3m0s
+
+running (2m31.0s), 50/50 VUs, 6470 complete and 0 interrupted iterations
+rendimiento   [  84% ] 50 VUs  2m31.0s/3m0s
+
+running (2m32.0s), 50/50 VUs, 6510 complete and 0 interrupted iterations
+rendimiento   [  84% ] 50 VUs  2m32.0s/3m0s
+
+running (2m33.0s), 50/50 VUs, 6559 complete and 0 interrupted iterations
+rendimiento   [  85% ] 50 VUs  2m33.0s/3m0s
+
+running (2m34.0s), 50/50 VUs, 6603 complete and 0 interrupted iterations
+rendimiento   [  86% ] 50 VUs  2m34.0s/3m0s
+
+running (2m35.0s), 50/50 VUs, 6642 complete and 0 interrupted iterations
+rendimiento   [  86% ] 50 VUs  2m35.0s/3m0s
+
+running (2m36.0s), 50/50 VUs, 6686 complete and 0 interrupted iterations
+rendimiento   [  87% ] 50 VUs  2m36.0s/3m0s
+
+running (2m37.0s), 50/50 VUs, 6730 complete and 0 interrupted iterations
+rendimiento   [  87% ] 50 VUs  2m37.0s/3m0s
+
+running (2m38.0s), 50/50 VUs, 6778 complete and 0 interrupted iterations
+rendimiento   [  88% ] 50 VUs  2m38.0s/3m0s
+
+running (2m39.0s), 50/50 VUs, 6827 complete and 0 interrupted iterations
+rendimiento   [  88% ] 50 VUs  2m39.0s/3m0s
+
+running (2m40.0s), 50/50 VUs, 6875 complete and 0 interrupted iterations
+rendimiento   [  89% ] 50 VUs  2m40.0s/3m0s
+
+running (2m41.0s), 50/50 VUs, 6915 complete and 0 interrupted iterations
+rendimiento   [  89% ] 50 VUs  2m41.0s/3m0s
+
+running (2m42.0s), 50/50 VUs, 6959 complete and 0 interrupted iterations
+rendimiento   [  90% ] 50 VUs  2m42.0s/3m0s
+
+running (2m43.0s), 50/50 VUs, 7005 complete and 0 interrupted iterations
+rendimiento   [  91% ] 50 VUs  2m43.0s/3m0s
+
+running (2m44.0s), 50/50 VUs, 7046 complete and 0 interrupted iterations
+rendimiento   [  91% ] 50 VUs  2m44.0s/3m0s
+
+running (2m45.0s), 50/50 VUs, 7091 complete and 0 interrupted iterations
+rendimiento   [  92% ] 50 VUs  2m45.0s/3m0s
+
+running (2m46.0s), 50/50 VUs, 7134 complete and 0 interrupted iterations
+rendimiento   [  92% ] 50 VUs  2m46.0s/3m0s
+
+running (2m47.0s), 50/50 VUs, 7181 complete and 0 interrupted iterations
+rendimiento   [  93% ] 50 VUs  2m47.0s/3m0s
+
+running (2m48.0s), 50/50 VUs, 7228 complete and 0 interrupted iterations
+rendimiento   [  93% ] 50 VUs  2m48.0s/3m0s
+
+running (2m49.0s), 50/50 VUs, 7277 complete and 0 interrupted iterations
+rendimiento   [  94% ] 50 VUs  2m49.0s/3m0s
+
+running (2m50.0s), 50/50 VUs, 7318 complete and 0 interrupted iterations
+rendimiento   [  94% ] 50 VUs  2m50.0s/3m0s
+
+running (2m51.0s), 50/50 VUs, 7364 complete and 0 interrupted iterations
+rendimiento   [  95% ] 50 VUs  2m51.0s/3m0s
+
+running (2m52.0s), 50/50 VUs, 7406 complete and 0 interrupted iterations
+rendimiento   [  96% ] 50 VUs  2m52.0s/3m0s
+
+running (2m53.0s), 50/50 VUs, 7449 complete and 0 interrupted iterations
+rendimiento   [  96% ] 50 VUs  2m53.0s/3m0s
+
+running (2m54.0s), 50/50 VUs, 7494 complete and 0 interrupted iterations
+rendimiento   [  97% ] 50 VUs  2m54.0s/3m0s
+
+running (2m55.0s), 50/50 VUs, 7540 complete and 0 interrupted iterations
+rendimiento   [  97% ] 50 VUs  2m55.0s/3m0s
+
+running (2m56.0s), 50/50 VUs, 7585 complete and 0 interrupted iterations
+rendimiento   [  98% ] 50 VUs  2m56.0s/3m0s
+
+running (2m57.0s), 50/50 VUs, 7631 complete and 0 interrupted iterations
+rendimiento   [  98% ] 50 VUs  2m57.0s/3m0s
+
+running (2m58.0s), 50/50 VUs, 7678 complete and 0 interrupted iterations
+rendimiento   [  99% ] 50 VUs  2m58.0s/3m0s
+
+running (2m59.0s), 50/50 VUs, 7726 complete and 0 interrupted iterations
+rendimiento   [  99% ] 50 VUs  2m59.0s/3m0s
+
+running (3m00.0s), 50/50 VUs, 7768 complete and 0 interrupted iterations
+rendimiento   [ 100% ] 50 VUs  3m00.0s/3m0s
+
+running (3m01.0s), 10/50 VUs, 7809 complete and 0 interrupted iterations
+rendimiento ↓ [ 100% ] 50 VUs  3m0s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{tipo:api}
+    ✓ 'p(95)<500' p(95)=173.56ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 54733   302.226128/s
+    checks_succeeded...: 100.00% 54733 out of 54733
+    checks_failed......: 0.00%   0 out of 54733
+
+    ✓ responde 200
+    ✓ PWA 200
+
+    HTTP
+    http_req_duration..............: avg=79.2ms  min=39.11ms med=55.21ms p(90)=92.18ms p(95)=147.96ms p(99)=637.88ms max=1.69s
+      { expected_response:true }...: avg=79.2ms  min=39.11ms med=55.21ms p(90)=92.18ms p(95)=147.96ms p(99)=637.88ms max=1.69s
+      { tipo:api }.................: avg=85.07ms min=41.14ms med=58.16ms p(90)=99.45ms p(95)=173.56ms p(99)=732.69ms max=1.69s
+    http_req_failed................: 0.00%  0 out of 54733
+    http_reqs......................: 54733  302.226128/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.15s   min=1.09s   med=1.11s   p(90)=1.16s   p(95)=1.27s    p(99)=2.27s    max=3.63s
+    iterations.....................: 7819   43.175161/s
+    vus............................: 10     min=10         max=50
+    vus_max........................: 50     min=50         max=50
+
+    NETWORK
+    data_received..................: 19 MB  104 kB/s
+    data_sent......................: 2.7 MB 15 kB/s
+
+
+
+
+running (3m01.1s), 00/50 VUs, 7819 complete and 0 interrupted iterations
+rendimiento ✓ [ 100% ] 50 VUs  3m0s

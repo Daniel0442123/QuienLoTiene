@@ -56,7 +56,7 @@ services:
     volumes:
       - caddy_data:/data
       - caddy_config:/config
-    mem_limit: 128m
+    mem_limit: 256m # DEF-018: con 128m llegó a 126,5 MiB durante la carga de 100 usuarios (NF-REN-004)
     networks: [interna]
 
 volumes:

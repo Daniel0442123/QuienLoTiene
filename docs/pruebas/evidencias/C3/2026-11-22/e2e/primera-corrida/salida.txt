@@ -1,0 +1,93 @@
+
+Running 5 tests using 1 worker
+
+  ✓  1 pruebas/e2e-01-publicar-y-recibir-respuesta.spec.ts:9:1 › E2E-01 · la respuesta de la tienda aparece al cliente sin recargar @E2E-01 @HU-016 @HU-019 @HU-020 (6.9s)
+  ✓  2 pruebas/e2e-02-elegir-y-entregar-a-domicilio.spec.ts:9:1 › E2E-02 · el pedido a domicilio va de Confirmado a Recibido @E2E-02 @HU-024 @HU-027 @HU-028 (4.8s)
+  ✓  3 pruebas/e2e-03-aprobar-tienda-con-segundo-factor.spec.ts:9:1 › E2E-03 · la tienda aprobada por el administrador con TOTP recibe solicitudes @E2E-03 @HU-002 @HU-004 @HU-036 (2.8s)
+  ✓  4 pruebas/e2e-04-calificar-despues-de-la-entrega.spec.ts:9:1 › E2E-04 · la calificación del cliente se ve en el detalle de la tienda @E2E-04 @HU-028 @HU-034 (4.4s)
+  ✘  5 pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts:17:1 › E2E-05 · sin respuestas el radio pasa a 5 km una vez y la solicitud vence @E2E-05 @HU-021 @HU-022 (30.3m)
+
+
+  1) pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts:17:1 › E2E-05 · sin respuestas el radio pasa a 5 km una vez y la solicitud vence @E2E-05 @HU-021 @HU-022 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Ninguna tienda la tenía disponible.')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Ninguna tienda la tenía disponible.') with timeout 15000ms
+      - waiting for getByText('Ninguna tienda la tenía disponible.')
+
+
+      53 |   expect(vencidaA).toBeGreaterThanOrEqual(vigencia - 5_000)
+      54 |   test.info().annotations.push({ type: 'vencimiento', description: `a los ${(vencidaA / MINUTO).toFixed(1)} min` })
+    > 55 |   await expect(paginaCliente.getByText('Ninguna tienda la tenía disponible.')).toBeVisible()
+         |                                                                                ^
+      56 |   await paginaCliente.reload()
+      57 |   await expect(paginaCliente.getByText('Buscamos a 5 km a la redonda.')).toBeVisible()
+      58 | })
+        at /home/user/quienlotiene/e2e/pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts:55:80
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-6.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-4.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-10.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-7.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-12.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #7: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #8: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #9: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-13.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #10: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-8.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #11: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #12: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-11.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #13: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/test-failed-9.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-05-ampliar-radio-y-ven-ce3d3-na-vez-y-la-solicitud-vence/error-context.md
+
+  Slow test file: pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts (30.3m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    pruebas/e2e-05-ampliar-radio-y-vencer.spec.ts:17:1 › E2E-05 · sin respuestas el radio pasa a 5 km una vez y la solicitud vence @E2E-05 @HU-021 @HU-022 
+  4 passed (30.6m)
+exit 1

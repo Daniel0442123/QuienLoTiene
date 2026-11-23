@@ -1,0 +1,12 @@
+{
+  "name": "quienlotiene-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Escenarios de punta a punta E2E-01 a E2E-05 (libro/02-CASOS.md) con Playwright",
+  "scripts": {
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}
