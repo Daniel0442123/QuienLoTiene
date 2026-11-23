@@ -57,9 +57,13 @@ cliente, como pide HU-031. iOS agrega «from Quién lo tiene» en inglés: es te
 | `android/5-chrome-farmacia-centro.png` | Chrome | Farmacia con el pin cerca del centro (7:49 p. m.) |
 | `android/6-chrome-farmacia-sin-tiendas.png` | Chrome | Esa solicitud no encontró tiendas: el pin quedó fuera de los 3 km de Tienda Uno |
 | `android/7-chrome-esperando-1-tienda.png` | Chrome | 8:01 p. m., «Prueba solicitud 1» con el pin bien puesto: se preguntó a 1 tienda, radio 3 km, cierre 8:27 p. m. |
+| `android/8-chrome-respuesta-en-vivo-830.png` | Chrome | 8:23 p. m., «Acetaminofén - prueba_navegador_Chrome»: radio ampliado a 5 km y la respuesta de Tienda Uno ($ 2.000, a 3,8 km, botón «Elegir») llegó sin recargar |
+| `android/9-chrome-respuesta-en-vivo-827.png` | Chrome | La segunda solicitud igual (cierre 8:27 p. m.), misma respuesta en vivo |
 
 En Android se probó publicar y la pantalla de espera. A las 7:51 p. m. una solicitud publicada por guion desde el punto exacto de Tienda Uno sí la notificó, lo que confirmó que la tienda estaba abierta y que el fallo de las 7:49 p. m. fue la ubicación del pin, no Android. Con el pin bien puesto, a las 8:01 p. m. la solicitud llegó a Tienda Uno.
 
 Teléfono Android: Samsung Galaxy A57 5G (SM-A576B).
 
-Pendiente: versión de Android, respuesta en vivo en Android y Edge en un computador.
+A las 8:16 p. m. Tienda Uno respondió desde la app del iPhone y la respuesta apareció en vivo en Chrome de Android, después de la ampliación del radio a 5 km (HU-022).
+
+Pendiente: versión de Android, respuesta en vivo en Firefox de Android y Edge en un computador.
