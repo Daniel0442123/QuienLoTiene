@@ -1,6 +1,6 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
-> **Control del documento** · Versión 0.3 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Las cifras salen del libro de control (`docs/pruebas/libro/`) al 22/11/2026. QA lo revisa, completa lo pendiente y lo firma.
 
@@ -68,7 +68,7 @@ RF-039 a RF-042 son Won't en esta liberación y no tienen casos.
 - Criterios de liberación: 100 % Alta ejecutados, ≥ 95 % aprobados, 0 S1/S2, ≤ 5 S3 con plan, cobertura ≥ 70 %.
 - Herramientas: JUnit 5, Testcontainers, JaCoCo, Spring Modulith y ArchUnit (en `./mvnw verify` y en CI), Vitest en el frontend, Playwright para punta a punta, k6 y un cliente SSE para carga, Lighthouse, SSL Labs y UptimeRobot.
 
-Cambios al plan durante la campaña (todos en `docs/gestion/CONTROL-DE-CAMBIOS.md`): SC-015 movió el cierre del C1 al 20/11; SC-018 agregó CP-CLI-008-03 al C2; SC-021 sacó HU-006 y HU-011 del Cierre e incluyó HU-015 y HU-022; SC-022 (propuesta, pendiente del comité) deja fuera NF-USA-027 y NF-POR-029.
+Cambios al plan durante la campaña (todos en `docs/gestion/CONTROL-DE-CAMBIOS.md`): SC-015 movió el cierre del C1 al 20/11; SC-018 agregó CP-CLI-008-03 al C2; SC-021 sacó HU-006 y HU-011 del Cierre e incluyó HU-015 y HU-022; SC-022 (aprobada por el Product Owner el 22/11) deja fuera NF-USA-027 y NF-POR-029.
 
 ### 3.2 Integrantes
 
@@ -301,7 +301,7 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 ### Conclusión
 
-Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 98,2 % de aprobación, 0 defectos S1 y S2 abiertos, 1 S3 abierto (límite 5), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando estén NF-DIS-018 y la decisión sobre SC-022 y el triaje de los 4 defectos abiertos. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
+Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 98,2 % de aprobación, 0 defectos S1 y S2 abiertos, 1 S3 abierto (límite 5), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando esté NF-DIS-018 y el triaje de los 4 defectos abiertos. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
 
 ## Anexo A. Matriz de trazabilidad detallada
 
@@ -403,8 +403,8 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | CP-TIE-011-01 | Domicilio gratis desde un monto | No aplica: HU-011 sale del Sprint de Cierre por SC-021 (aprobada por el Product Owner el 22/11) |
 | CP-TIE-011-02 | Tarifa por distancia | No aplica: HU-011 sale del Sprint de Cierre por SC-021 (aprobada por el Product Owner el 22/11) |
 | NF-DIS-018 | Disponibilidad del servicio en el periodo de evaluación | No ejecutado: No había monitor externo antes del 22/11, así que el periodo del 16/11 al 22/11 no tiene medición. Se cierra el 26/11 con la captura del porcentaje |
-| NF-USA-027 | Rapidez para publicar y responder | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Pedro el 22/11, pendiente del comité); depende de conseguir 5 usuarios externos |
-| NF-POR-029 | Despliegue reproducible | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Pedro el 22/11, pendiente del comité); necesita un servidor y un subdominio de prueba que no se van a pagar |
+| NF-USA-027 | Rapidez para publicar y responder | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Pedro y aprobada por el Product Owner el 22/11); depende de conseguir 5 usuarios externos |
+| NF-POR-029 | Despliegue reproducible | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Pedro y aprobada por el Product Owner el 22/11); necesita un servidor y un subdominio de prueba que no se van a pagar |
 
 ## Historial del documento
 
@@ -413,3 +413,4 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | 0.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 22/11: C1, C2 y C3 sobre `v0.5.4`, DEF-001 a DEF-018 y 4 no funcionales pendientes. Pendiente: revisión y firma de QA |
 | 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado con la matriz de navegadores (iPhone, Android y Edge): campaña en 112 de 114 (98,2 %) y 3 no funcionales pendientes |
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica» y RNF-027 y RNF-029 fuera de alcance |
+| 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |

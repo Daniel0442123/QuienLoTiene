@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 3 (C3)
 
-> **Control del documento** · Versión 0.3 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018, de la decisión sobre SC-022, del triaje de DEF-012, DEF-016, DEF-017 y DEF-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018, del triaje de DEF-012, DEF-016, DEF-017 y DEF-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -12,12 +12,12 @@
 | Ciclo / fechas | C3 (Cierre) · 22/11/2026 al 25/11/2026 (planeado del 23/11 al 25/11; se adelantó al 22/11 porque el C2 cerró ese día) |
 | Versiones | Regresión: `v0.5.3` (`ff9ac6d`) · HU-015 y HU-022: rama del PR #89 · Producción, no funcionales y «Cómo llegar»: `v0.5.4` (`f22f20c`) · Punta a punta: pila local construida desde `v0.5.4` |
 | Responsables de QA | Yanimar Burbano Piamba (funcionales) · Francisco José Castro Muñoz (no funcionales y seguridad) |
-| Alcance | Regresión completa de los 86 casos funcionales y de seguridad (incluidos los de las 4 historias Could del Cierre), 5 escenarios de punta a punta y 13 no funcionales sobre el VPS. HU-006 y HU-011 salieron por SC-021 y NF-USA-027 y NF-POR-029 por SC-022 (pendiente del comité), así que se planean 98 casos (104 − 6 «No aplica») |
+| Alcance | Regresión completa de los 86 casos funcionales y de seguridad (incluidos los de las 4 historias Could del Cierre), 5 escenarios de punta a punta y 13 no funcionales sobre el VPS. HU-006 y HU-011 salieron por SC-021 y NF-USA-027 y NF-POR-029 por SC-022 (aprobada por el Product Owner el 22/11), así que se planean 98 casos (104 − 6 «No aplica») |
 | Instrumento | Libro de control (`libro/`) y evidencias (`evidencias/C3/2026-11-22/`) |
 
 ## 1. Resumen de ejecución
 
-De los 98 casos planeados, 97 tienen resultado: 95 aprobados, 2 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 95 / 97 = **97,9 %**. La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. La prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029) no se ejecutan en esta liberación por SC-022, propuesta por Pedro y pendiente del comité. Falta la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
+De los 98 casos planeados, 97 tienen resultado: 95 aprobados, 2 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 95 / 97 = **97,9 %**. La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. La prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029) no se ejecutan en esta liberación por SC-022, propuesta por Pedro y aprobada por el Product Owner el 22/11. Falta la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
 
 - **Regresión.** `./mvnw -B verify` sobre la rama de HU-015 y HU-022: 398 pruebas unitarias y 72 de integración, 0 fallas, y 361 pruebas del frontend con Vitest. Cobertura de líneas de domain y application del 95,5 % (2753 de 2884, incluye shared); el módulo más bajo es clientes con 84,4 %. Los 86 casos tienen resultado: 82 aprobados y 4 «No aplica» de HU-006 y HU-011 (SC-021).
 - **Producción.** El 22/11 se comprobaron en `v0.5.4` «Tu resumen» de la tienda (HU-015) y la ampliación del radio de 3 a 5 km a los 11,9 minutos (HU-022) ([evidencia](../../evidencias/C3/2026-11-22/produccion-v0.5.4/README.md)). El recorrido manual de «Cómo llegar» (CP-ORD-026-01) pasó con el pedido 40233FE4 ([evidencia](../../evidencias/C3/2026-11-22/como-llegar/recorrido.txt)).
@@ -235,7 +235,7 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 
 | Criterio (Plan Maestro 6.3) | Estado (22/11) |
 |---|---|
-| 100 % de casos del ciclo ejecutados | No cumple todavía: 97 de 98. Falta NF-DIS-018 (26/11); NF-USA-027 y NF-POR-029 salen por SC-022 si el comité la aprueba |
+| 100 % de casos del ciclo ejecutados | No cumple todavía: 97 de 98. Falta NF-DIS-018 (26/11); NF-USA-027 y NF-POR-029 salen por SC-022 (aprobada por el Product Owner el 22/11) |
 | Todo Fallido con defecto registrado | Cumple: NF-ESC-020 con DEF-018 y NF-USA-028 con DEF-017 |
 | Cobertura ≥ 70 % en los módulos del ciclo | Cumple: mínimo 84,4 % (clientes); total 95,5 % |
 | 0 defectos S1 y S2 abiertos | Cumple |
@@ -244,13 +244,13 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 
 ## 9. Conclusión y recomendación
 
-El C3 cumple hoy los criterios de calidad (97,9 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, la decisión del comité sobre SC-022, el triaje de 4 defectos y la firma de QA.
+El C3 cumple hoy los criterios de calidad (97,9 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, el triaje de 4 defectos y la firma de QA.
 
 Recomendaciones para el equipo:
 
 1. QA hace el triaje de DEF-012, DEF-016, DEF-017 y DEF-018 antes del comité. DEF-016 y DEF-017 son correcciones pequeñas de la interfaz que pueden salir en una `v0.5.5` antes del 26/11; si no, se aceptan en el acta como S4 con plan.
 2. Para DEF-018: subir el `mem_limit` de Caddy, revisar su log durante la carga y repetir NF-ESC-020 desde otra red. Si las 3 corridas cumplen, NF-ESC-020 pasa a Aprobado y DEF-018 se cierra.
-3. El comité decide SC-022 (NF-USA-027 y NF-POR-029 fuera de esta liberación), y el 26/11 se toma la captura de UptimeRobot para NF-DIS-018.
+3. El 26/11 se toma la captura de UptimeRobot para NF-DIS-018. NF-USA-027 y NF-POR-029 quedan para una liberación posterior (SC-022).
 4. Las pruebas de humo del 26/11 se hacen después del despliegue final con `plantillas/PRUEBAS-DE-HUMO.md`, y después se borran los datos de prueba de producción.
 5. QA (Yanimar Burbano y Francisco Castro) revisa este borrador y lo firma; el PO (Wilson Galindez) lo aprueba. Este documento no lleva firmas en su nombre.
 
@@ -266,3 +266,4 @@ Recomendaciones para el equipo:
 | 0.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 22/11 sobre `v0.5.4`: 94 de 96 aprobados, DEF-016 a DEF-018 nuevos y 4 no funcionales pendientes. Pendiente: triaje de defectos y firma de QA |
 | 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado con la matriz de navegadores (iPhone, Android y Edge): 95 de 97 aprobados y 3 no funcionales pendientes |
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica»; 98 casos planeados y solo NF-DIS-018 pendiente |
+| 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |

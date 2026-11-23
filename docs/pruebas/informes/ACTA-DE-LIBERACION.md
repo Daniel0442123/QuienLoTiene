@@ -1,6 +1,6 @@
 # Acta de liberación (go / no-go) · Quién lo tiene v1.0.0
 
-> **Control del documento** · Versión 0.3 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador para el comité del 25/11/2026 (sin decisión ni firmas) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador para el comité del 25/11/2026 (sin decisión ni firmas) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Los resultados salen del libro de control y de los informes `INFORME-DE-PRUEBAS.md` y `C3/INFORME-DE-CIERRE-C3.md`. La decisión, los defectos aceptados y las firmas los pone el comité el 25/11; este documento no decide ni firma en nombre de nadie.
 
@@ -24,9 +24,9 @@
 | Campo | Valor |
 |---|---|
 | Defectos abiertos aceptados (S3/S4) con plan y responsable | Propuesta para el comité (responsables por confirmar): **DEF-018** (S3, conexiones SSE cerradas en 1 de 3 corridas): subir el `mem_limit` de Caddy y repetir NF-ESC-020 antes del 26/11 · **DEF-017** (S4, botones del mapa de 30 px) y **DEF-016** (S4, mensaje al vencer): corregir en una `v0.5.5` o aceptar con plan para la siguiente versión · **DEF-012** (S4, «Mis respuestas» no refleja el estado del pedido): aceptar con plan para la siguiente versión |
-| Excepciones aprobadas y justificación | Para decidir en el comité: (1) NF-DIS-018 solo tiene medición desde el 22/11 a las 4:43 p. m., no desde el 16/11; (2) los E2E corrieron en una pila local construida desde `v0.5.4` y no en el VPS; (3) NF-ESC-020 queda Fallido mientras no se repita (2 de 3 corridas cumplen); (4) SC-022: NF-USA-027 (prueba con 5 usuarios) y NF-POR-029 (despliegue en un servidor limpio) no se ejecutan, así que RNF-027 y RNF-029 quedan sin verificar |
+| Excepciones aprobadas y justificación | Para decidir en el comité: (1) NF-DIS-018 solo tiene medición desde el 22/11 a las 4:43 p. m., no desde el 16/11; (2) los E2E corrieron en una pila local construida desde `v0.5.4` y no en el VPS; (3) NF-ESC-020 queda Fallido mientras no se repita (2 de 3 corridas cumplen); (4) SC-022, aprobada por el Product Owner el 22/11: NF-USA-027 (prueba con 5 usuarios) y NF-POR-029 (despliegue en un servidor limpio) no se ejecutan, así que RNF-027 y RNF-029 quedan sin verificar |
 | Riesgos residuales | Caddy cerca de su límite de memoria con 100 usuarios; compatibilidad probada solo en la versión actual de cada navegador (NF-COM-026, 22/11); rapidez con usuarios reales sin medir (RNF-027) y reinstalación en otro servidor sin probar (RNF-029); usuarios con la PWA anterior hasta que aceptan la actualización; datos de prueba en producción hasta correr `limpiar.sh pruebas` |
-| Pendientes antes del comité | decisión sobre SC-022 (comité) · triaje de DEF-012, DEF-016, DEF-017 y DEF-018 (QA) · firma de los informes de cierre del C2 y del C3 · NF-DIS-018 y pruebas de humo después del despliegue final (26/11) |
+| Pendientes antes del comité | triaje de DEF-012, DEF-016, DEF-017 y DEF-018 (QA) · firma de los informes de cierre del C2 y del C3 · NF-DIS-018 y pruebas de humo después del despliegue final (26/11) |
 | **Decisión** | ☐ GO: se libera v1.0.0 el 26/11/2026 · ☐ NO-GO: motivo y nueva fecha |
 
 | Rol | Nombre | Firma |
@@ -44,3 +44,4 @@
 | 0.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con los resultados del 22/11 sobre `v0.5.4` para el comité del 25/11. Sin decisión ni firmas |
 | 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado: 112 de 114 en la campaña y 95 de 97 en el C3 |
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 como excepción para el comité: NF-USA-027 y NF-POR-029 no se ejecutan |
+| 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
