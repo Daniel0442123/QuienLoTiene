@@ -1,6 +1,6 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.15 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.16 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3. Avance del C3 registrado como borrador el 22/11/2026 sobre `v0.5.4` (`f22f20c`): punta a punta, no funcionales sobre el VPS y «Cómo llegar».
 >
@@ -43,7 +43,7 @@
 | S1 Crítica | 0 | 0 | 0 | 0 | 0 abiertos |
 | S2 Alta | 0 | 0 | 1 (DEF-011) | 0 | 0 abiertos |
 | S3 Media | 0 | 0 | 8 (DEF-001, DEF-002, DEF-006, DEF-007, DEF-013, DEF-014, DEF-015, DEF-018) | 0 | ≤ 5 con plan |
-| S4 Baja | 1 (DEF-012) | 0 | 8 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010, DEF-016, DEF-017) | 0 | Sin límite, con plan |
+| S4 Baja | 0 | 0 | 8 (DEF-003, DEF-004, DEF-005, DEF-008, DEF-009, DEF-010, DEF-016, DEF-017) | 1 (DEF-012, aceptado en el acta con plan para `v1.0.1`) | Sin límite, con plan |
 
 ## Indicadores
 
@@ -83,3 +83,4 @@ Valores del 22/11/2026 (avance del C3 con la re-prueba sobre `v0.5.5`, borrador)
 | 1.13 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022: NF-USA-027 y NF-POR-029 «No aplica»; avance del C3 en 97 de 98 |
 | 1.14 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; C3 en 97 de 97 (100 %) y campaña en 114 de 114; DEF-016 a DEF-018 en verificación |
 | 1.15 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
+| 1.16 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 pasa a Diferido (aceptado en el acta con plan) |

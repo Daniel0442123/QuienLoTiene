@@ -1,6 +1,6 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
-> **Control del documento** · Versión 0.6 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.7 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Las cifras salen del libro de control (`docs/pruebas/libro/`) al 22/11/2026. QA lo revisa, completa lo pendiente y lo firma.
 
@@ -165,7 +165,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RF-026 | Ver cómo llegar | 10.5 | 1 | 1 | 0 | 0 | 0 | Verificado |
 | RF-027 | Actualizar estado de la orden | 10.5 | 2 | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-028 | Confirmar recepción | 10.5 | 2 | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
-| RF-029 | Cancelar orden | 10.5 | 2 | 2 | 0 | 0 | 1 (S4) DEF-012 | Verificado |
+| RF-029 | Cancelar orden | 10.5 | 2 | 2 | 0 | 0 | 1 (S4) DEF-012, diferido | Verificado |
 | RF-030 | Notificar en tiempo real | 10.6 | 2 | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-031 | Notificaciones push web | 10.6 | 2 | 2 | 0 | 0 | 0 | Verificado |
 | RF-032 | Contactar por WhatsApp | 10.6 | 2 | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
@@ -223,7 +223,7 @@ Se registraron 18 defectos: 11 en el C1, 4 en el C2 y 3 en el C3. Ninguno es S1.
 | DEF-009 | S4 Baja | P4 Baja | Cerrado | CP-ORD-024-02 | En el pedido que ve la tienda el pago dice «Pagas con efectivo a la tienda» | main 5e8ab98 |
 | DEF-010 | S4 Baja | P4 Baja | Cerrado | CP-SOL-021-01 | Punto doble después de la hora en tres textos («10:17 p. m..») | main 55ab5b6 |
 | DEF-011 | S2 Alta | P1 Urgente | Cerrado | Exploratoria-20261117 | Al recargar la pantalla «Esperando respuestas» se pierden la solicitud y las respuestas de las tiendas | v0.3.0 (producción) |
-| DEF-012 | S4 Baja | P4 Baja | Abierto | Humo producción 21/11 (CP-ORD-029-01) | En «Mis respuestas» de la tienda, las respuestas cuyo pedido ya se canceló o se recibió siguen diciendo «Elegida · El cliente te eligió. Prepara el pedido.» | v0.5.2 (producción) |
+| DEF-012 | S4 Baja | P4 Baja | Diferido (aceptado en el acta, plan `v1.0.1`) | Humo producción 21/11 (CP-ORD-029-01) | En «Mis respuestas» de la tienda, las respuestas cuyo pedido ya se canceló o se recibió siguen diciendo «Elegida · El cliente te eligió. Prepara el pedido.» | v0.5.2 (producción) |
 | DEF-013 | S3 Media | P2 Alta | Cerrado | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta: 6 intentos seguidos de la misma cuenta en un minuto siguen respondiendo 401 o 200 | v0.5.2 (main d92847a) |
 | DEF-014 | S3 Media | P2 Alta | Cerrado | NF-SEG-012 | La foto del local se guarda con sus metadatos EXIF (GPS, modelo del celular, fecha) | v0.5.2 (main d92847a) |
 | DEF-015 | S3 Media | P3 Normal | Cerrado | NF-SEG-013 | Cuando la tienda ve el nombre y el celular del cliente de una orden no queda ningún registro de auditoría | v0.5.2 (main d92847a) |
@@ -238,7 +238,7 @@ Orden de atención recomendado y justificación:
 | 1 | DEF-018 | S3 / P3 | Toca un requisito de escalabilidad (RNF-020) y puede volver a pasar con más carga; la causa no está confirmada | Hecho en `v0.5.5`: Caddy con 256 MiB; NF-ESC-020 cumple en 3 corridas seguidas. Falta repetirla desde otra red |
 | 2 | DEF-017 | S4 / P4 | Los botones + y − del mapa de 30 px dificultan tocarlos en el celular (RNF-028); el mapa también se mueve con los dedos | Hecho en `v0.5.5`: + y − de 44 × 44 px, comprobado en producción |
 | 3 | DEF-016 | S4 / P4 | Mensaje contradictorio durante menos de un minuto al vencer una solicitud; el estado final es correcto | Hecho en `v0.5.5`: la lista trata como vencida la solicitud cuyo plazo ya pasó; comprobado en producción |
-| 4 | DEF-012 | S4 / P4 | La tienda ve «Elegida» en respuestas cuyo pedido ya se canceló o se recibió; no cambia lo que puede hacer | Mostrar el estado del pedido en «Mis respuestas», o aceptarlo en el acta con plan |
+| 4 | DEF-012 | S4 / P4 | La tienda ve «Elegida» en respuestas cuyo pedido ya se canceló o se recibió; no cambia lo que puede hacer | Aceptado en el acta el 23/11: se corrige en `v1.0.1` |
 
 Observaciones sin defecto:
 
@@ -278,7 +278,7 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 - DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Falta repetir NF-ESC-020 desde otra red para separar la red del servidor.
 - Dar más tiempo o reintentos a la descarga de imágenes del flujo de despliegue: el de `v0.5.5` falló dos veces por la red y se terminó a mano.
-- Mostrar el estado del pedido en «Mis respuestas» de la tienda (DEF-012).
+- Mostrar el estado del pedido en «Mis respuestas» de la tienda (DEF-012, aceptado en el acta para `v1.0.1`).
 - Mejorar la búsqueda completa de tiendas, que carga cada tienda una por una.
 
 ### Para la documentación
@@ -302,7 +302,7 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 ### Conclusión
 
-Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 100 % de aprobación, 0 defectos S1 y S2 abiertos, 0 S3 abiertos (DEF-018 corregido en `v0.5.5` y cerrado), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando esté NF-DIS-018 y se haga el triaje de DEF-012. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
+Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 100 % de aprobación, 0 defectos S1 y S2 abiertos, 0 S3 abiertos (DEF-018 corregido en `v0.5.5` y cerrado), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. DEF-012 (S4) quedó aceptado en el acta el 23/11 con plan para `v1.0.1`. La recomendación de QA para el comité se completa cuando esté NF-DIS-018. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
 
 ## Anexo A. Matriz de trazabilidad detallada
 
@@ -417,3 +417,4 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: campaña en 114 de 114 (100 %); DEF-016 a DEF-018 corregidos y en verificación |
 | 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
+| 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 diferido: aceptado en el acta con plan para `v1.0.1` |
