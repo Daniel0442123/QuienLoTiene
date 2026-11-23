@@ -42,4 +42,15 @@ La solicitud «Prueba de aviso push iPhone» se publicó a las 5:58 p. m. con un
 (`scripts/carga/publicar-una.mjs`) junto a Tienda Uno: 1 tienda notificada. El aviso no lleva el producto ni datos del
 cliente, como pide HU-031. iOS agrega «from Quién lo tiene» en inglés: es texto del sistema, no de la app.
 
-Pendiente: Android, Edge y Firefox.
+## Android (Chrome y Firefox), 5:05 p. m. a 5:14 p. m.
+
+| Captura | Navegador | Qué se ve |
+|---|---|---|
+| `android/1-chrome-preguntar.png` | Chrome | Formulario con Ferretería, mapa y «Preguntar» fijo abajo |
+| `android/2-chrome-sin-tiendas-abiertas.png` | Chrome | Publicada «Tornillo - prueba_navegador_chrome»: sin ferreterías abiertas cerca (domingo) |
+| `android/3-firefox-preguntar.png` | Firefox | Formulario con el punto marcado en el mapa |
+| `android/4-firefox-sin-tiendas-abiertas.png` | Firefox | Publicada «Tornillos - prueba_navegador_Firefox»: mismo mensaje |
+
+En Android se probó publicar y la pantalla de espera; la respuesta en vivo no, porque no había ferreterías abiertas.
+
+Pendiente: versión de Android, respuesta en vivo en Android y Edge en un computador.
