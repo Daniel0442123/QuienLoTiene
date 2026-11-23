@@ -5,7 +5,7 @@
 - **Por qué no en el VPS:** E2E-03 inicia sesión como administrador con el segundo factor, y el de producción es personal;
   así tampoco quedan pedidos ni calificaciones de prueba en producción. El catálogo (`libro/02-CASOS.md` §3) pedía el VPS:
   queda como desviación para que QA la acepte.
-- **Guiones:** [`e2e/`](../../../../../e2e/README.md). Chromium 1 trabajador, geolocalización de Popayán, cada actor
+- **Guiones:** [`e2e/`](../../../../../../e2e/README.md). Chromium 1 trabajador, geolocalización de Popayán, cada actor
   (cliente, tienda, administrador) en su propio contexto del navegador y todo por la interfaz.
 - **Tiempos:** los aprobados por el plan, 10 minutos para ampliar el radio y 30 para vencer.
 
