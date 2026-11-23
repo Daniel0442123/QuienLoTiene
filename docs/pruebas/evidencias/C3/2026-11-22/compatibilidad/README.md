@@ -2,7 +2,7 @@
 
 ## iPhone 17 Pro Max con iOS 27.2.1 (Safari y Chrome), 5:03 p. m. a 5:25 p. m.
 
-Capturas de Pedro en producción (`v0.5.4`), como cliente:
+Capturas de Daniel Montenegro en producción (`v0.5.4`), como cliente:
 
 | Captura | Navegador | Qué se ve |
 |---|---|---|

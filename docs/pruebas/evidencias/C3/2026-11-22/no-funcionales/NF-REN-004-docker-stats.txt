@@ -1,5 +1,5 @@
 # NF-REN-004 · Memoria en el VPS durante la carga de 100 usuarios y 50 conexiones SSE (21:29:37Z a 21:33:37Z)
-# Corrido por Pedro en el VPS el 22/11/2026 (docker stats --no-stream cada 10 s y free -m). Copia textual.
+# Corrido por Daniel Montenegro en el VPS el 22/11/2026 (docker stats --no-stream cada 10 s y free -m). Copia textual.
 21:29:48
 quienlotiene-caddy-1 78.59MiB / 128MiB 22.86%
 quienlotiene-api-1 582.7MiB / 640MiB 52.15%

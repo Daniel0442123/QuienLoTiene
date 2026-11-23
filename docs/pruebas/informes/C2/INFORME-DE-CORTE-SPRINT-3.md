@@ -66,7 +66,7 @@ Avance del ciclo: 34 / 34 = 100 %. Aprobación sobre lo ejecutado: 100 %. Los 25
 
 ### Recorrido en producción
 
-El 21/11, de 9:40 p. m. a 10:48 p. m., Pedro y Claude Code recorrieron la app en https://quienlotiene.tech con usuario1, tienda1 y la cuenta de administrador. Cubrieron 3 pedidos y el push en un celular Android:
+El 21/11, de 9:40 p. m. a 10:48 p. m., Daniel Montenegro y Claude Code recorrieron la app en https://quienlotiene.tech con usuario1, tienda1 y la cuenta de administrador. Cubrieron 3 pedidos y el push en un celular Android:
 
 - **ECF43503 (recoger):** chat, reserva, recibido y calificación.
 - **5E39F3E9 (domicilio):** cancelado por el cliente.
@@ -94,12 +94,12 @@ Observaciones que no se registran como defecto:
 
 | Bloqueo | Casos afectados | Acción acordada | Responsable | Fecha |
 |---|---|---|---|---|
-| Para probar un sábado de noche se amplió el horario de Tienda Uno | Recorrido en producción | Hecho: se devolvió a lunes a sábado de 07:00 a 18:00 y domingo cerrado el 21/11 a las 10:52 p. m. | Pedro | 2026-11-21 |
+| Para probar un sábado de noche se amplió el horario de Tienda Uno | Recorrido en producción | Hecho: se devolvió a lunes a sábado de 07:00 a 18:00 y domingo cerrado el 21/11 a las 10:52 p. m. | Daniel Montenegro | 2026-11-21 |
 
 ## 6. Plan para el siguiente sprint
 
 1. Triaje de DEF-012 y corrección en el C3.
-2. DEF-013, DEF-014 y DEF-015 quedaron cerrados el 22/11 con el visto bueno de Pedro, después de pasar la re-prueba en producción sobre `v0.5.3`. QA lo revisa al firmar este informe.
+2. DEF-013, DEF-014 y DEF-015 quedaron cerrados el 22/11 con el visto bueno de Daniel Montenegro, después de pasar la re-prueba en producción sobre `v0.5.3`. QA lo revisa al firmar este informe.
 3. Correr la regresión completa del C3 (85 casos + 5 E2E + 13 NF), con los 7 no funcionales ya etiquetados.
 4. Cerrar el C2 con la firma de QA de este informe y de `04-EJECUCION-C2.md`.
 
@@ -110,4 +110,4 @@ Observaciones que no se registran como defecto:
 | 1.0 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte del Sprint 3 sobre `v0.5.2`, preparado con Claude Code para que QA lo revise y firme |
 | 1.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 7 no funcionales que faltaban, ejecutados y aprobados el 22/11; DEF-013 a DEF-015 en corrección; observación sobre la búsqueda completa |
 | 1.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba en producción de NF-SEG-009, 012 y 013 sobre `v0.5.3`: pasan; DEF-013 a DEF-015 en verificación |
-| 1.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 cerrados el 22/11 con el visto bueno de Pedro |
+| 1.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 cerrados el 22/11 con el visto bueno de Daniel Montenegro |

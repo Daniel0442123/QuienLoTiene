@@ -1,6 +1,6 @@
 # Procedimiento de seguimiento · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Aprobó: Daniel Montenegro (dueño del proyecto), 13/11/2026 · Estado: Vigente
 
 Qué registra cada integrante, cuándo y dónde, para que siempre se pueda responder **qué se hizo, cuándo, quién lo hizo, cómo se hizo y qué falta**.
 

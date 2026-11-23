@@ -1,6 +1,6 @@
 # Procedimiento documental · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Wilson Javier Galindez Certuche (Product Owner · documentador) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
+> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Wilson Javier Galindez Certuche (Product Owner · documentador) · Aprobó: Daniel Montenegro (dueño del proyecto), 13/11/2026 · Estado: Vigente
 
 Cómo se identifica, versiona, revisa y conserva cada documento del proyecto, en Markdown y en sus versiones Word, Excel y PDF, y qué norma cubre cada parte.
 

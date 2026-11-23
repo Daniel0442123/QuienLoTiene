@@ -8,7 +8,7 @@
 | Versión | `main` 5e8ab98 (backend #35, #36, #37, #44; frontend #38 a #43 y #45) |
 | Ambiente | Backend real en perfil dev con PostGIS 17-3.5, PWA con Vite, Chromium a 390 × 844 (ver `evidencias/C1/2026-11-16/scripts/README.md`) |
 | Datos | 3 droguerías de Farmacia en Popayán (Droguería La 5: efectivo y transferencia, domicilio $ 5.000; Botica San José: efectivo y datáfono, domicilio $ 5.000; Farmacia Popular: solo efectivo, sin domicilio). Clientes Ana Gómez y Luis Pérez con la dirección «Casa» |
-| Preparó | Claude Code a pedido de Pedro, para que QA (Yanimar Burbano y Francisco Castro) lo revise, lo complete y lo firme |
+| Preparó | Claude Code a pedido de Daniel Montenegro, para que QA (Yanimar Burbano y Francisco Castro) lo revise, lo complete y lo firme |
 | Duración | 1,5 h |
 
 ## Resumen

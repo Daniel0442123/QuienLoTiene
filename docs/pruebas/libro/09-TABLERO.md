@@ -71,7 +71,7 @@ Valores del 22/11/2026 (avance del C3 con la re-prueba sobre `v0.5.5`, borrador)
 | 1.1 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Valores de la ejecución del Sprint 2 del 16/11 (borrador, pendiente de firma de QA) |
 | 1.2 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Defectos después de la re-prueba de DEF-005 a DEF-009 (main 55ab5b6) y nuevo DEF-010 |
 | 1.3 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-010 en verificación tras su re-prueba (main e679ef3): 0 defectos abiertos |
-| 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 10 defectos del C1 pasan a Cerrados (cierre aprobado por Pedro el 16/11) |
+| 1.4 | 16/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los 10 defectos del C1 pasan a Cerrados (cierre aprobado por Daniel Montenegro el 16/11) |
 | 1.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Corte del Sprint 3 (C2) sobre v0.5.2: avance, cobertura por módulo y DEF-012 abierto (borrador, pendiente de firma de QA) |
 | 1.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | C2 con 34 de 34 casos ejecutados, cobertura del 22/11 y DEF-013 a DEF-015 en corrección (borrador, pendiente de firma de QA) |
 | 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-013 a DEF-015 en verificación tras la re-prueba en producción sobre `v0.5.3` |
@@ -82,5 +82,5 @@ Valores del 22/11/2026 (avance del C3 con la re-prueba sobre `v0.5.5`, borrador)
 | 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado: avance del C3 en 97 de 100 (97,9 %) y campaña en 112 de 114 (98,2 %) (borrador, pendiente de firma de QA) |
 | 1.13 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022: NF-USA-027 y NF-POR-029 «No aplica»; avance del C3 en 97 de 98 |
 | 1.14 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; C3 en 97 de 97 (100 %) y campaña en 114 de 114; DEF-016 a DEF-018 en verificación |
-| 1.15 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
+| 1.15 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Daniel Montenegro) |
 | 1.16 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 pasa a Diferido (aceptado en el acta con plan) |

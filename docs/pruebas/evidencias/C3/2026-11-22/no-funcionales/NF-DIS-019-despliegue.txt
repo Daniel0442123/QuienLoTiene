@@ -1,4 +1,4 @@
-# NF-DIS-019 · Tiempo sin servicio al recrear la API y Caddy con la v0.5.4 (docker compose up -d --force-recreate, corrido por Pedro en el VPS)
+# NF-DIS-019 · Tiempo sin servicio al recrear la API y Caddy con la v0.5.4 (docker compose up -d --force-recreate, corrido por Daniel Montenegro en el VPS)
 # Monitor externo: scripts/carga/disponibilidad.mjs, GET / (espera 200) y GET /api/v1/usuarios/me (espera 401) cada segundo de 21:37:43Z a 21:44:43Z
 2026-11-22T21:37:58.828Z SIN SERVICIO (PWA 200, API 502)
 2026-11-22T21:38:27.115Z vuelve el servicio tras 28.3 s

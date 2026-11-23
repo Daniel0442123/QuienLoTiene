@@ -1,6 +1,6 @@
 # Gestión del proyecto · Seguimiento y control de cambios
 
-> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Aprobó: Pedro (dueño del proyecto), 13/11/2026 · Estado: Vigente
+> **Control del documento** · Versión 1.1 · 16/11/2026 · Responsable: Brayan Grajales Escarraga (Scrum Master) · Aprobó: Daniel Montenegro (dueño del proyecto), 13/11/2026 · Estado: Vigente
 
 Aquí se responde, para todo el proyecto, **qué se hizo, cuándo, quién lo hizo, cómo lo hizo y qué se apartó del plan**. Lo que es propio de las pruebas sigue en `docs/pruebas/`.
 

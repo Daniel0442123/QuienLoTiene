@@ -5,9 +5,9 @@
 | Campo | Valor |
 |---|---|
 | Versión | `v0.5.2` en https://quienlotiene.tech (commit `8d64314`) |
-| Ambiente | Producción (producción-pruebas, SC-016). Cliente en el Chrome de Pedro; tienda y administrador en el navegador integrado de Claude; push en un celular Android con Chrome |
-| Cuentas | usuario1 y tienda1 `@prueba.quienlotiene.tech` («Tienda Uno», Farmacia) y la cuenta ADMIN de Pedro con segundo factor. Pedro escribió las credenciales |
-| Hizo | Pedro (dueño del proyecto) con Claude Code, el 21/11 de 9:40 p. m. a 10:48 p. m. (hora de Bogotá) |
+| Ambiente | Producción (producción-pruebas, SC-016). Cliente en el Chrome de Daniel Montenegro; tienda y administrador en el navegador integrado de Claude; push en un celular Android con Chrome |
+| Cuentas | usuario1 y tienda1 `@prueba.quienlotiene.tech` («Tienda Uno», Farmacia) y la cuenta ADMIN de Daniel Montenegro con segundo factor. Daniel Montenegro escribió las credenciales |
+| Hizo | Daniel Montenegro (dueño del proyecto) con Claude Code, el 21/11 de 9:40 p. m. a 10:48 p. m. (hora de Bogotá) |
 | Objetivo | Probar en la interfaz real las historias del Sprint 3 que se pueden probar sin tocar datos reales |
 | Ajuste temporal | El horario de Tienda Uno se amplió para que recibiera preguntas un sábado de noche; se devolvió a lunes a sábado de 07:00 a 18:00 y domingo cerrado a las 10:52 p. m. |
 
@@ -28,7 +28,7 @@
 | 11 | CP-ORD-025-02 | Entregado y Recibido | Pasa. Los dos a las 10:20 p. m. | 21, 22 |
 | 12 | CP-REP-034-01 / 034-03 | Calificar a Tienda Uno | Pasa. 5 estrellas, «Excelente Servicio» (10:21 p. m.); el botón cambia a «Tu calificación» | 22 a 24 |
 | 13 | CP-MEN-033-02 | Chat del pedido recibido | Pasa. Solo lectura | 25 |
-| 14 | Humo | Pregunta a domicilio sin dirección guardada | Pasa. Pide guardar una dirección; Pedro agregó «Casa» | 26 a 30 |
+| 14 | Humo | Pregunta a domicilio sin dirección guardada | Pasa. Pide guardar una dirección; Daniel Montenegro agregó «Casa» | 26 a 30 |
 | 15 | CP-ORD-029-01 | Pedido 5E39F3E9 ($ 8.500, domicilio) en «Preparando»; el cliente cancela con motivo | Pasa. Cancelado a las 10:29 p. m.; la tienda lo ve cancelado y sin los datos del cliente | 31, 32 |
 | 16 | CP-ORD-029-02 | Pedido F5305EE7 «En camino» (10:32 p. m.) | Pasa. No aparece «Cancelar pedido», solo «Reportar un problema» | 33 |
 | 17 | CP-REP-035-01 | El cliente reporta «Demora en la entrega» (10:33 p. m.) | Pasa. El administrador lo ve Abierto | 34, 35, 37 |

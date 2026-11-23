@@ -9,5 +9,5 @@
 2026-11-22T21:48:13.099Z href: https://www.google.com/maps/dir/?api=1&destination=2.3,-76.7
 2026-11-22T21:48:13.439Z al tocarlo se abre otra pestaña con: chrome-error://chromewebdata/
 2026-11-22T21:48:13.439Z ubicación registrada de la tienda: 2.3, -76.7
-2026-11-22T21:49Z el enlace abierto en el navegador integrado de la app (equipo de Pedro) carga Google Maps con la ruta «Tu ubicación → 2.3000000, -76.7000000», la ubicación registrada de la tienda (2-google-maps-con-la-ruta.jpg). En el entorno del guion la pestaña nueva no cargó (chrome-error) porque la red de ese entorno no permite google.com.
+2026-11-22T21:49Z el enlace abierto en el navegador integrado de la app (equipo de Daniel Montenegro) carga Google Maps con la ruta «Tu ubicación → 2.3000000, -76.7000000», la ubicación registrada de la tienda (2-google-maps-con-la-ruta.jpg). En el entorno del guion la pestaña nueva no cargó (chrome-error) porque la red de ese entorno no permite google.com.
 Resultado CP-ORD-026-01: Aprobado. En un celular el mismo enlace de Google Maps abre la app de mapas si está instalada.

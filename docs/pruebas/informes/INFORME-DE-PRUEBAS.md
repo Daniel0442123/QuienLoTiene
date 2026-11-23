@@ -77,7 +77,7 @@ Cambios al plan durante la campaña (todos en `docs/gestion/CONTROL-DE-CAMBIOS.m
 | Yanimar Burbano Piamba | Líder de QA · funcionales | Responsable de los casos funcionales de los tres ciclos, la exploratoria del 12/11, los recorridos de punta a punta del 16/11 y del 21/11, los 5 escenarios de Playwright y el recorrido de «Cómo llegar». Revisa y firma los informes |
 | Francisco José Castro Muñoz | QA no funcional y seguridad | Responsable de los casos de seguridad y de los 30 no funcionales: análisis de CI, pruebas negativas por API, carga con k6, Lighthouse, TLS, respaldo, despliegue y disponibilidad. NF-USA-027 y NF-POR-029 quedan fuera por SC-022 |
 
-Las ejecuciones las preparó Pedro (dueño del proyecto) con Claude Code y quedaron en el libro como borradores para la revisión y firma de QA. Los comandos del VPS los corrió Pedro.
+Las ejecuciones las preparó Daniel Montenegro (dueño del proyecto) con Claude Code y quedaron en el libro como borradores para la revisión y firma de QA. Los comandos del VPS los corrió Daniel Montenegro.
 
 ## 4. Ejecución de las pruebas y matriz de requerimientos
 
@@ -106,8 +106,8 @@ Una fila por sesión de `libro/08-BITACORA.md`.
 | 22/11 · Recorrido en producción | C3 | v0.5.4 · `f22f20c` (producción) | Yanimar Burbano | Casos 1 (CP-ORD-026-01) y 2 comprobaciones · aprob. 1 · fall. 0 |
 | 22/11 · No funcional | C3 | v0.5.4 · `f22f20c` (producción) | Francisco Castro | Casos 9 · aprob. 7 · fall. 2 · defectos nuevos: 2 (DEF-017, DEF-018) |
 | 22/11 · Punta a punta (Playwright) | C3 | pila local desde v0.5.4 · `f22f20c` | Yanimar Burbano | Casos 5 · aprob. 5 · fall. 0 · defectos nuevos: 1 (DEF-016) |
-| 22/11 · Manual (matriz de navegadores) | C3 | v0.5.4 · `f22f20c` (producción) | Pedro | Casos 1 (NF-COM-026) · aprob. 1 · fall. 0 |
-| 22/11 · Re-prueba (k6, SSE y botones del mapa) | C3 | v0.5.5 · `2d6a71a` (producción) | Pedro | Casos 2 (NF-ESC-020, NF-USA-028) · aprob. 2 · fall. 0 |
+| 22/11 · Manual (matriz de navegadores) | C3 | v0.5.4 · `f22f20c` (producción) | Daniel Montenegro | Casos 1 (NF-COM-026) · aprob. 1 · fall. 0 |
+| 22/11 · Re-prueba (k6, SSE y botones del mapa) | C3 | v0.5.5 · `2d6a71a` (producción) | Daniel Montenegro | Casos 2 (NF-ESC-020, NF-USA-028) · aprob. 2 · fall. 0 |
 
 ### 4.2 Resultados
 
@@ -404,8 +404,8 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | CP-TIE-011-01 | Domicilio gratis desde un monto | No aplica: HU-011 sale del Sprint de Cierre por SC-021 (aprobada por el Product Owner el 22/11) |
 | CP-TIE-011-02 | Tarifa por distancia | No aplica: HU-011 sale del Sprint de Cierre por SC-021 (aprobada por el Product Owner el 22/11) |
 | NF-DIS-018 | Disponibilidad del servicio en el periodo de evaluación | No ejecutado: No había monitor externo antes del 22/11, así que el periodo del 16/11 al 22/11 no tiene medición. Se cierra el 26/11 con la captura del porcentaje |
-| NF-USA-027 | Rapidez para publicar y responder | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Pedro y aprobada por el Product Owner el 22/11); depende de conseguir 5 usuarios externos |
-| NF-POR-029 | Despliegue reproducible | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Pedro y aprobada por el Product Owner el 22/11); necesita un servidor y un subdominio de prueba que no se van a pagar |
+| NF-USA-027 | Rapidez para publicar y responder | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Daniel Montenegro y aprobada por el Product Owner el 22/11); depende de conseguir 5 usuarios externos |
+| NF-POR-029 | Despliegue reproducible | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Daniel Montenegro y aprobada por el Product Owner el 22/11); necesita un servidor y un subdominio de prueba que no se van a pagar |
 
 ## Historial del documento
 
@@ -416,5 +416,5 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica» y RNF-027 y RNF-029 fuera de alcance |
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: campaña en 114 de 114 (100 %); DEF-016 a DEF-018 corregidos y en verificación |
-| 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
+| 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Daniel Montenegro) |
 | 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 diferido: aceptado en el acta con plan para `v1.0.1` |

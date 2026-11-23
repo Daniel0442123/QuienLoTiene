@@ -1,6 +1,6 @@
 # Decisiones técnicas y convenciones del backend · Quién lo tiene
 
-> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Pedro (versión 1.1, 07/11/2026) · Estado: Vigente · Cambios: «Historial» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.3 · 16/11/2026 · Responsable: Daniel Montenegro Almendra (arquitecto de software) · Aprobó: Daniel Montenegro (versión 1.1, 07/11/2026) · Estado: Vigente · Cambios: «Historial» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 Este documento reúne las decisiones que el equipo necesita tener claras para que todos escriban el backend de la misma forma. Todas las decisiones de la tabla están aprobadas; las que vienen del documento de arquitectura se marcan como tales. Lo poco que falta está en la sección 20.
 
@@ -14,8 +14,8 @@ Documentos relacionados: `docs/arquitectura/Arquitectura-de-software-QuienLoTien
 |---|---|---|---|
 | D-01 | Lenguaje y plataforma | Java 21, Spring Boot 4.1.2, Maven con `./mvnw` | Decidida |
 | D-02 | Estilo arquitectónico | Monolito modular (Spring Modulith) con Clean Architecture dentro de cada módulo | Decidida |
-| D-03 | Idioma del código | Conceptos del negocio en español; sufijos técnicos de patrones en inglés (`Controller`, `Repository`, `Test`) | Decidida (Pedro, 07/11) |
-| D-04 | Nombres nemotécnicos | Nombres descriptivos que digan qué representa la variable, sin prefijos de tipo | Decidida (Pedro, 07/11) |
+| D-03 | Idioma del código | Conceptos del negocio en español; sufijos técnicos de patrones en inglés (`Controller`, `Repository`, `Test`) | Decidida (Daniel Montenegro, 07/11) |
+| D-04 | Nombres nemotécnicos | Nombres descriptivos que digan qué representa la variable, sin prefijos de tipo | Decidida (Daniel Montenegro, 07/11) |
 | D-05 | Paquete base | `com.quienlotiene`, `groupId` `com.quienlotiene` | Decidida (aplicada) |
 | D-06 | Comunicación entre módulos | Solo por la fachada `api/` del otro módulo o por eventos de Spring Modulith | Decidida |
 | D-07 | DTOs | `record` de Java, uno de entrada y uno de salida por caso de uso | Decidida |
@@ -34,7 +34,7 @@ Documentos relacionados: `docs/arquitectura/Arquitectura-de-software-QuienLoTien
 | D-20 | Registros (logs) | SLF4J, logs JSON en producción, mensajes en español, sin datos personales | Decidida (detalle propuesto) |
 | D-21 | Pruebas | JUnit 5 + Mockito + AssertJ, `*Test` unitarias y `*IT` integración, JaCoCo ≥ 70 % | Decidida |
 | D-22 | Flujo de Git | Ramas cortas desde `main`, Conventional Commits en español, pull request aprobado por el arquitecto de software y CI en verde | Decidida |
-| D-23 | Acceso a datos | Sin procedimientos almacenados: Spring Data JPA y consultas nativas parametrizadas solo para PostGIS, `SKIP LOCKED` y `pg_trgm` | Decidida (Pedro, 07/11) |
+| D-23 | Acceso a datos | Sin procedimientos almacenados: Spring Data JPA y consultas nativas parametrizadas solo para PostGIS, `SKIP LOCKED` y `pg_trgm` | Decidida (Daniel Montenegro, 07/11) |
 
 ---
 
@@ -405,9 +405,9 @@ Las versiones exactas se fijan al agregarlas, revisando que sean compatibles con
 
 ## 20. Decisiones pendientes
 
-### 20.1 Para Pedro
+### 20.1 Para Daniel Montenegro
 
-Ninguna. Pedro aprobó todas las decisiones el 07/11/2026.
+Ninguna. Daniel Montenegro aprobó todas las decisiones el 07/11/2026.
 
 ### 20.2 Para el equipo de backend (se pueden decidir al empezar el Sprint 1)
 
@@ -421,8 +421,8 @@ Ninguna. Pedro aprobó todas las decisiones el 07/11/2026.
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 0.1 | 07/11/2026 | Primera propuesta |
-| 0.2 | 07/11/2026 | Pedro aprueba nombres descriptivos en español (D-03 y D-04); no se usan prefijos de tipo |
+| 0.2 | 07/11/2026 | Daniel Montenegro aprueba nombres descriptivos en español (D-03 y D-04); no se usan prefijos de tipo |
 | 1.1 | 07/11/2026 | D-23: sin procedimientos almacenados (sección 10.1) |
-| 1.0 | 07/11/2026 | Pedro aprueba todas las propuestas; el arquitecto de software aprueba los pull requests; paquete `com.quienlotiene` aplicado |
+| 1.0 | 07/11/2026 | Daniel Montenegro aprueba todas las propuestas; el arquitecto de software aprueba los pull requests; paquete `com.quienlotiene` aplicado |
 | 1.2 | 13/11/2026 | Se registran en el historial los cambios del PR #7 (07/11): `SOL-001` responde 429 y no 422 en las secciones 7, 8 y 11 (SC-001), y el límite por hora se cuenta en PostgreSQL y no con Bucket4j, sección 11 (SC-002). Sección 17: aprobación registrada en GitHub y etiquetas anotadas (SC-009, SC-010) |
 | 1.3 | 16/11/2026 | Sección 12 (D-18): hasta 5 conexiones SSE por usuario en lugar de una (SC-014) |
