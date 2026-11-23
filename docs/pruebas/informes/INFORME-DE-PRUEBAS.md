@@ -1,6 +1,6 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
-> **Control del documento** · Versión 0.5 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.6 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Las cifras salen del libro de control (`docs/pruebas/libro/`) al 22/11/2026. QA lo revisa, completa lo pendiente y lo firma.
 
@@ -157,7 +157,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RF-018 | Ver solicitudes nuevas | 10.4 | 2 | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-019 | Responder solicitud | 10.4 | 4 | 4 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-020 | Ver y ordenar respuestas | 10.4 | 3 | 3 | 0 | 0 | 0 | Verificado (borrador 16/11) |
-| RF-021 | Vencer y cerrar solicitudes | 10.4 | 2 | 2 | 0 | 0 | 1 (S4) DEF-016 (E2E-05, 22/11; corregido en v0.5.5, en verificación); DEF-008 y DEF-010 cerrados el 16/11 | Verificado |
+| RF-021 | Vencer y cerrar solicitudes | 10.4 | 2 | 2 | 0 | 0 | 1 (S4) DEF-016 (E2E-05, 22/11; corregido en v0.5.5 y cerrado); DEF-008 y DEF-010 cerrados el 16/11 | Verificado |
 | RF-022 | Ampliar radio automáticamente | 10.4 | 2 | 2 | 0 | 0 | 0 | Verificado |
 | RF-023 | Advertir productos restringidos | 10.4 | 2 | 2 | 0 | 0 | 0 | Verificado |
 | RF-024 | Elegir respuesta y crear orden | 10.5 | 4 | 4 | 0 | 0 | 2 (DEF-007 S3, DEF-009 S4; cerrados el 16/11, la re-prueba pasa) | Verificado |
@@ -227,9 +227,9 @@ Se registraron 18 defectos: 11 en el C1, 4 en el C2 y 3 en el C3. Ninguno es S1.
 | DEF-013 | S3 Media | P2 Alta | Cerrado | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta: 6 intentos seguidos de la misma cuenta en un minuto siguen respondiendo 401 o 200 | v0.5.2 (main d92847a) |
 | DEF-014 | S3 Media | P2 Alta | Cerrado | NF-SEG-012 | La foto del local se guarda con sus metadatos EXIF (GPS, modelo del celular, fecha) | v0.5.2 (main d92847a) |
 | DEF-015 | S3 Media | P3 Normal | Cerrado | NF-SEG-013 | Cuando la tienda ve el nombre y el celular del cliente de una orden no queda ningún registro de auditoría | v0.5.2 (main d92847a) |
-| DEF-016 | S4 Baja | P4 Baja | En verificación | E2E-05 | Al vencer la solicitud, «Esperando respuestas» muestra «Tu solicitud venció» y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
-| DEF-017 | S4 Baja | P4 Baja | En verificación | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px del RNF-028 | v0.5.4 |
-| DEF-018 | S3 Media | P3 Normal | En verificación | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones de tiempo real (SSE) se cerraron antes de terminar | v0.5.4 |
+| DEF-016 | S4 Baja | P4 Baja | Cerrado | E2E-05 | Al vencer la solicitud, «Esperando respuestas» muestra «Tu solicitud venció» y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
+| DEF-017 | S4 Baja | P4 Baja | Cerrado | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px del RNF-028 | v0.5.4 |
+| DEF-018 | S3 Media | P3 Normal | Cerrado | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones de tiempo real (SSE) se cerraron antes de terminar | v0.5.4 |
 
 Orden de atención recomendado y justificación:
 
@@ -302,7 +302,7 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 ### Conclusión
 
-Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 100 % de aprobación, 0 defectos S1 y S2 abiertos, 0 S3 abiertos (DEF-018 corregido en `v0.5.5`, en verificación), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando esté NF-DIS-018, se cierren DEF-016 a DEF-018 y se haga el triaje de DEF-012. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
+Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 100 % de aprobación, 0 defectos S1 y S2 abiertos, 0 S3 abiertos (DEF-018 corregido en `v0.5.5` y cerrado), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando esté NF-DIS-018 y se haga el triaje de DEF-012. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
 
 ## Anexo A. Matriz de trazabilidad detallada
 
@@ -416,3 +416,4 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica» y RNF-027 y RNF-029 fuera de alcance |
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: campaña en 114 de 114 (100 %); DEF-016 a DEF-018 corregidos y en verificación |
+| 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Pedro) |
