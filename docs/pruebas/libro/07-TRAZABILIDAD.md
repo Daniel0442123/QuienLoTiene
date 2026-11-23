@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.12 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.13 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -58,7 +58,7 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-001 | NF-REN-001 | p95 menor o igual a 500 ms en prueba de carga con k6 o JMeter. | C3 | Aprobado | 0 | Verificado (producción, v0.5.4) |
 | RNF-002 | NF-REN-002 | p95 menor o igual a 3 s. | C3 | Aprobado | 0 | Verificado (producción, v0.5.4) |
 | RNF-003 | NF-REN-003 | Menor o igual a 200 ms usando índice GiST. | C2 | Aprobado | 0 | Verificado |
-| RNF-004 | NF-REN-004 | API como máximo 640 MB y todo el stack como máximo 2 GB de los 4 GB del VPS. | C3 | Aprobado | 0 | Verificado (Caddy cerca de su límite, ver DEF-018) |
+| RNF-004 | NF-REN-004 | API como máximo 640 MB y todo el stack como máximo 2 GB de los 4 GB del VPS. | C3 | Aprobado | 0 | Verificado (Caddy cerca de su límite en v0.5.4; en v0.5.5 tiene 256 MiB, ver DEF-018) |
 | RNF-005 | NF-REN-005 | Mayor o igual a 80 y primera carga de 3 s o menos en 4G simulado. | C3 | Aprobado | 0 | Verificado (producción, v0.5.4) |
 | RNF-006 | NF-SEG-006 | Mínimo 15 caracteres, hash Argon2id o bcrypt, rechazo de contraseñas de la lista de filtradas. | C1 | Aprobado | 0 | Verificado |
 | RNF-007 | NF-SEG-007 | 0 accesos indebidos; cada endpoint con datos personales tiene prueba negativa. | C2 | Aprobado | 0 | Verificado |
@@ -74,7 +74,7 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-017 | NF-FIA-017 | RPO de 24 h, RTO de 4 h y una restauración probada antes de la entrega. | C3 | Aprobado | 0 | Verificado (restauración de prueba en 22 s) |
 | RNF-018 | NF-DIS-018 | Mayor o igual a 99 % entre el 16/11/2026 y el 26/11/2026. | C3 | No ejecutado | 0 | Sin ejecutar (monitor desde el 22/11; se cierra el 26/11) |
 | RNF-019 | NF-DIS-019 | Como máximo 60 s por despliegue. | C3 | Aprobado | 0 | Verificado (28,3 s) |
-| RNF-020 | NF-ESC-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | C3 | Fallido | 1 (S3) DEF-018 | Con fallas |
+| RNF-020 | NF-ESC-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | C3 | Aprobado | 1 (S3) DEF-018, corregido en v0.5.5 | Verificado |
 | RNF-021 | NF-ESC-021 | 0 violaciones de dependencias entre módulos. | C1 | Aprobado | 0 | Verificado |
 | RNF-022 | NF-MAN-022 | Mayor o igual a 70 %. | C1 | Aprobado | 1 (S4) | Verificado |
 | RNF-023 | NF-MAN-023 | 0 violaciones en el pipeline. | C1 | Aprobado | 0 | Verificado |
@@ -82,7 +82,7 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-025 | NF-COM-025 | JSON sobre HTTPS con prefijo /api/v1. | C2 | Aprobado | 0 | Verificado |
 | RNF-026 | NF-COM-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | C3 | Aprobado | 0 | Verificado |
 | RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 | No aplica | 0 | Fuera de alcance (SC-022) |
-| RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 | Fallido | 1 (S4) DEF-017 | Con fallas |
+| RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 | Aprobado | 1 (S4) DEF-017, corregido en v0.5.5 | Verificado |
 | RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 | No aplica | 0 | Fuera de alcance (SC-022) |
 | RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 | Aprobado | 0 | Verificado |
 
@@ -106,3 +106,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Resultados de los no funcionales del C3 sobre `v0.5.4` (9 aprobados, 2 fallidos con DEF-017 y DEF-018, 4 sin ejecutar) y DEF-016 en RF-021 (borrador, pendiente de firma de QA) |
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-026 verificado: NF-COM-026 aprobado en iPhone, Android y Edge (borrador, pendiente de firma de QA) |
 | 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-027 y RNF-029 fuera de alcance por SC-022 (pendiente del comité) |
+| 1.13 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-020 y RNF-028 verificados con la re-prueba sobre `v0.5.5` |

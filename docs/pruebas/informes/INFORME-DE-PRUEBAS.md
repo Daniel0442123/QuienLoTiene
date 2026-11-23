@@ -1,6 +1,6 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
-> **Control del documento** · Versión 0.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.5 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Las cifras salen del libro de control (`docs/pruebas/libro/`) al 22/11/2026. QA lo revisa, completa lo pendiente y lo firma.
 
@@ -31,7 +31,7 @@ Este informe resume la campaña de pruebas de la Liberación 1.0: qué se probó
 |---|---|---|---|
 | C1 | 02/11 al 20/11/2026 | v0.2.0, main `5e8ab98`, v0.3.0 y v0.3.1 | Historias de los Sprints 1 y 2 (53 casos) y 8 no funcionales que corren en CI |
 | C2 | 16/11 al 22/11/2026 | v0.5.2 y v0.5.3 | Historias del Sprint 3 (22 casos más 3 de HU-008 por SC-018) y 9 no funcionales de integración y seguridad |
-| C3 | 22/11 al 25/11/2026 | v0.5.3 y v0.5.4 | Regresión completa (86 casos), 5 escenarios de punta a punta y 13 no funcionales sobre el VPS |
+| C3 | 22/11 al 25/11/2026 | v0.5.3, v0.5.4 y v0.5.5 | Regresión completa (86 casos), 5 escenarios de punta a punta y 13 no funcionales sobre el VPS |
 
 ## 2. Alcance de las pruebas
 
@@ -107,6 +107,7 @@ Una fila por sesión de `libro/08-BITACORA.md`.
 | 22/11 · No funcional | C3 | v0.5.4 · `f22f20c` (producción) | Francisco Castro | Casos 9 · aprob. 7 · fall. 2 · defectos nuevos: 2 (DEF-017, DEF-018) |
 | 22/11 · Punta a punta (Playwright) | C3 | pila local desde v0.5.4 · `f22f20c` | Yanimar Burbano | Casos 5 · aprob. 5 · fall. 0 · defectos nuevos: 1 (DEF-016) |
 | 22/11 · Manual (matriz de navegadores) | C3 | v0.5.4 · `f22f20c` (producción) | Pedro | Casos 1 (NF-COM-026) · aprob. 1 · fall. 0 |
+| 22/11 · Re-prueba (k6, SSE y botones del mapa) | C3 | v0.5.5 · `2d6a71a` (producción) | Pedro | Casos 2 (NF-ESC-020, NF-USA-028) · aprob. 2 · fall. 0 |
 
 ### 4.2 Resultados
 
@@ -125,10 +126,10 @@ Resultado final de cada caso, que es el de su última ejecución (C3 para los 86
 | solicitudes | 21 | 21 | 0 | 0 | 99,7 % |
 | tiendas | 16 (2 No aplica) | 14 | 0 | 0 | 90,5 % |
 | Punta a punta | 5 | 5 | 0 | 0 | — |
-| No funcionales | 30 (2 No aplica, 1 sin ejecutar) | 25 | 2 | 0 | — |
-| **Total** | **121 (6 No aplica, 1 sin ejecutar)** | **112** | **2** | **0** | **95,5 %** (incluye shared, 77,4 %) |
+| No funcionales | 30 (2 No aplica, 1 sin ejecutar) | 27 | 0 | 0 | — |
+| **Total** | **121 (6 No aplica, 1 sin ejecutar)** | **114** | **0** | **0** | **95,5 %** (incluye shared, 77,4 %) |
 
-Tasa de aprobación de la campaña: 112 / 114 concluyentes = **98,2 %**. Casos de prioridad Alta: 54 de 54 ejecutados y aprobados. Pruebas automatizadas en la última corrida: 398 unitarias y 72 de integración del backend, 361 del frontend y 5 escenarios de Playwright, todas en verde.
+Tasa de aprobación de la campaña: 114 / 114 concluyentes = **100 %** (NF-ESC-020 y NF-USA-028 fallaron sobre `v0.5.4` y se aprobaron en la re-prueba sobre `v0.5.5`). Casos de prioridad Alta: 54 de 54 ejecutados y aprobados. Pruebas automatizadas en la última corrida: 398 unitarias y 72 de integración del backend, 363 del frontend (v0.5.5) y 5 escenarios de Playwright, todas en verde.
 
 ### 4.3 Matriz de requerimientos (trazabilidad)
 
@@ -156,7 +157,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RF-018 | Ver solicitudes nuevas | 10.4 | 2 | 2 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-019 | Responder solicitud | 10.4 | 4 | 4 | 0 | 0 | 0 | Verificado (borrador 16/11) |
 | RF-020 | Ver y ordenar respuestas | 10.4 | 3 | 3 | 0 | 0 | 0 | Verificado (borrador 16/11) |
-| RF-021 | Vencer y cerrar solicitudes | 10.4 | 2 | 2 | 0 | 0 | 1 (S4) DEF-016 (E2E-05, 22/11); DEF-008 y DEF-010 cerrados el 16/11 | Verificado |
+| RF-021 | Vencer y cerrar solicitudes | 10.4 | 2 | 2 | 0 | 0 | 1 (S4) DEF-016 (E2E-05, 22/11; corregido en v0.5.5, en verificación); DEF-008 y DEF-010 cerrados el 16/11 | Verificado |
 | RF-022 | Ampliar radio automáticamente | 10.4 | 2 | 2 | 0 | 0 | 0 | Verificado |
 | RF-023 | Advertir productos restringidos | 10.4 | 2 | 2 | 0 | 0 | 0 | Verificado |
 | RF-024 | Elegir respuesta y crear orden | 10.5 | 4 | 4 | 0 | 0 | 2 (DEF-007 S3, DEF-009 S4; cerrados el 16/11, la re-prueba pasa) | Verificado |
@@ -177,7 +178,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RNF-001 | Rendimiento: Tiempo de respuesta de la API en operaciones de lectura y escritura | 11 | 1 (NF-REN-001) | 1 | 0 | 0 | 0 | Verificado (producción, v0.5.4) |
 | RNF-002 | Rendimiento: Tiempo desde que se publica una solicitud hasta que llega al panel de las tiendas elegibles | 11 | 1 (NF-REN-002) | 1 | 0 | 0 | 0 | Verificado (producción, v0.5.4) |
 | RNF-003 | Rendimiento: Consulta geoespacial de tiendas elegibles | 11 | 1 (NF-REN-003) | 1 | 0 | 0 | 0 | Verificado |
-| RNF-004 | Rendimiento: Consumo de memoria en el servidor | 11 | 1 (NF-REN-004) | 1 | 0 | 0 | 0 | Verificado (Caddy cerca de su límite, ver DEF-018) |
+| RNF-004 | Rendimiento: Consumo de memoria en el servidor | 11 | 1 (NF-REN-004) | 1 | 0 | 0 | 0 | Verificado (Caddy cerca de su límite en v0.5.4; 256 MiB en v0.5.5, ver DEF-018) |
 | RNF-005 | Rendimiento: Carga del frontend en el celular | 11 | 1 (NF-REN-005) | 1 | 0 | 0 | 0 | Verificado (producción, v0.5.4) |
 | RNF-006 | Seguridad: Almacenamiento y política de contraseñas según NIST SP 800-63B | 11 | 1 (NF-SEG-006) | 1 | 0 | 0 | 0 | Verificado |
 | RNF-007 | Seguridad: Autorización por objeto: ninguna tienda accede a datos personales de un cliente que no la eligió | 11 | 1 (NF-SEG-007) | 1 | 0 | 0 | 0 | Verificado |
@@ -193,7 +194,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RNF-017 | Fiabilidad: Copias de seguridad y restauración | 11 | 1 (NF-FIA-017) | 1 | 0 | 0 | 0 | Verificado (restauración de prueba en 22 s) |
 | RNF-018 | Disponibilidad: Disponibilidad del servicio en el periodo de evaluación | 11 | 1 (NF-DIS-018) | 0 | 0 | 0 | 0 | Sin ejecutar (monitor desde el 22/11; se cierra el 26/11) |
 | RNF-019 | Disponibilidad: Despliegues sin interrumpir la demo | 11 | 1 (NF-DIS-019) | 1 | 0 | 0 | 0 | Verificado (28,3 s) |
-| RNF-020 | Escalabilidad: Capacidad en el servidor actual | 11 | 1 (NF-ESC-020) | 0 | 1 | 0 | 1 (S3) DEF-018 | Con fallas |
+| RNF-020 | Escalabilidad: Capacidad en el servidor actual | 11 | 1 (NF-ESC-020) | 1 | 0 | 0 | 1 (S3) DEF-018, corregido en v0.5.5 | Verificado (re-prueba en v0.5.5) |
 | RNF-021 | Escalabilidad: Fronteras de módulos que permitan extraer servicios en el futuro | 11 | 1 (NF-ESC-021) | 1 | 0 | 0 | 0 | Verificado |
 | RNF-022 | Mantenibilidad: Cobertura de pruebas automatizadas | 11 | 1 (NF-MAN-022) | 1 | 0 | 0 | 1 (S4) | Verificado |
 | RNF-023 | Mantenibilidad: Respeto de la arquitectura limpia | 11 | 1 (NF-MAN-023) | 1 | 0 | 0 | 0 | Verificado |
@@ -201,7 +202,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RNF-025 | Compatibilidad: API REST versionada | 11 | 1 (NF-COM-025) | 1 | 0 | 0 | 0 | Verificado |
 | RNF-026 | Compatibilidad: Navegadores y dispositivos soportados | 11 | 1 (NF-COM-026) | 1 | 0 | 0 | 0 | Verificado (producción, v0.5.4; versión actual de cada navegador) |
 | RNF-027 | Usabilidad: Rapidez para publicar y responder | 11 | 1 (NF-USA-027) | 0 | 0 | 0 | 0 | Fuera de alcance (SC-022) |
-| RNF-028 | Usabilidad: Accesibilidad para usuarios poco técnicos | 11 | 1 (NF-USA-028) | 0 | 1 | 0 | 1 (S4) DEF-017 | Con fallas |
+| RNF-028 | Usabilidad: Accesibilidad para usuarios poco técnicos | 11 | 1 (NF-USA-028) | 1 | 0 | 0 | 1 (S4) DEF-017, corregido en v0.5.5 | Verificado (re-prueba en v0.5.5) |
 | RNF-029 | Portabilidad: Despliegue reproducible | 11 | 1 (NF-POR-029) | 0 | 0 | 0 | 0 | Fuera de alcance (SC-022) |
 | RNF-030 | Portabilidad: Configuración por entorno sin secretos en el código | 11 | 1 (NF-POR-030) | 1 | 0 | 0 | 0 | Verificado |
 
@@ -226,17 +227,17 @@ Se registraron 18 defectos: 11 en el C1, 4 en el C2 y 3 en el C3. Ninguno es S1.
 | DEF-013 | S3 Media | P2 Alta | Cerrado | NF-SEG-009 | El inicio de sesión no limita los intentos por cuenta: 6 intentos seguidos de la misma cuenta en un minuto siguen respondiendo 401 o 200 | v0.5.2 (main d92847a) |
 | DEF-014 | S3 Media | P2 Alta | Cerrado | NF-SEG-012 | La foto del local se guarda con sus metadatos EXIF (GPS, modelo del celular, fecha) | v0.5.2 (main d92847a) |
 | DEF-015 | S3 Media | P3 Normal | Cerrado | NF-SEG-013 | Cuando la tienda ve el nombre y el celular del cliente de una orden no queda ningún registro de auditoría | v0.5.2 (main d92847a) |
-| DEF-016 | S4 Baja | P4 Baja | Nuevo | E2E-05 | Al vencer la solicitud, «Esperando respuestas» muestra «Tu solicitud venció» y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
-| DEF-017 | S4 Baja | P4 Baja | Nuevo | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px del RNF-028 | v0.5.4 |
-| DEF-018 | S3 Media | P3 Normal | Nuevo | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones de tiempo real (SSE) se cerraron antes de terminar | v0.5.4 |
+| DEF-016 | S4 Baja | P4 Baja | En verificación | E2E-05 | Al vencer la solicitud, «Esperando respuestas» muestra «Tu solicitud venció» y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
+| DEF-017 | S4 Baja | P4 Baja | En verificación | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px del RNF-028 | v0.5.4 |
+| DEF-018 | S3 Media | P3 Normal | En verificación | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones de tiempo real (SSE) se cerraron antes de terminar | v0.5.4 |
 
 Orden de atención recomendado y justificación:
 
 | # | Defecto | Sev. / Prior. | Por qué esa clasificación | Acción sugerida |
 |---|---|---|---|---|
-| 1 | DEF-018 | S3 / P3 | Toca un requisito de escalabilidad (RNF-020) y puede volver a pasar con más carga; la causa no está confirmada | Subir el `mem_limit` de Caddy, revisar su log y repetir NF-ESC-020 desde otra red antes del comité |
-| 2 | DEF-017 | S4 / P4 | Los botones + y − del mapa de 30 px dificultan tocarlos en el celular (RNF-028); el mapa también se mueve con los dedos | Agrandar los controles de Leaflet a 44 px con CSS; corrección pequeña para una `v0.5.5` |
-| 3 | DEF-016 | S4 / P4 | Mensaje contradictorio durante menos de un minuto al vencer una solicitud; el estado final es correcto | Que la lista trate como vencida la solicitud cuyo plazo ya pasó, como el título |
+| 1 | DEF-018 | S3 / P3 | Toca un requisito de escalabilidad (RNF-020) y puede volver a pasar con más carga; la causa no está confirmada | Hecho en `v0.5.5`: Caddy con 256 MiB; NF-ESC-020 cumple en 3 corridas seguidas. Falta repetirla desde otra red |
+| 2 | DEF-017 | S4 / P4 | Los botones + y − del mapa de 30 px dificultan tocarlos en el celular (RNF-028); el mapa también se mueve con los dedos | Hecho en `v0.5.5`: + y − de 44 × 44 px, comprobado en producción |
+| 3 | DEF-016 | S4 / P4 | Mensaje contradictorio durante menos de un minuto al vencer una solicitud; el estado final es correcto | Hecho en `v0.5.5`: la lista trata como vencida la solicitud cuyo plazo ya pasó; falta verlo en producción |
 | 4 | DEF-012 | S4 / P4 | La tienda ve «Elegida» en respuestas cuyo pedido ya se canceló o se recibió; no cambia lo que puede hacer | Mostrar el estado del pedido en «Mis respuestas», o aceptarlo en el acta con plan |
 
 Observaciones sin defecto:
@@ -275,8 +276,8 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 ### Para el producto (desarrollo)
 
-- Corregir DEF-016 y DEF-017 antes del 26/11; son cambios pequeños de la interfaz.
-- Subir el límite de memoria de Caddy y confirmar la causa de DEF-018 con una nueva corrida de NF-ESC-020.
+- DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). Falta repetir NF-ESC-020 desde otra red para separar la red del servidor.
+- Dar más tiempo o reintentos a la descarga de imágenes del flujo de despliegue: el de `v0.5.5` falló dos veces por la red y se terminó a mano.
 - Mostrar el estado del pedido en «Mis respuestas» de la tienda (DEF-012).
 - Mejorar la búsqueda completa de tiendas, que carga cada tienda una por una.
 
@@ -301,7 +302,7 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 ### Conclusión
 
-Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 98,2 % de aprobación, 0 defectos S1 y S2 abiertos, 1 S3 abierto (límite 5), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando esté NF-DIS-018 y el triaje de los 4 defectos abiertos. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
+Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 100 % de aprobación, 0 defectos S1 y S2 abiertos, 0 S3 abiertos (DEF-018 corregido en `v0.5.5`, en verificación), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando esté NF-DIS-018, se cierren DEF-016 a DEF-018 y se haga el triaje de DEF-012. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
 
 ## Anexo A. Matriz de trazabilidad detallada
 
@@ -414,3 +415,4 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado con la matriz de navegadores (iPhone, Android y Edge): campaña en 112 de 114 (98,2 %) y 3 no funcionales pendientes |
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica» y RNF-027 y RNF-029 fuera de alcance |
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
+| 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: campaña en 114 de 114 (100 %); DEF-016 a DEF-018 corregidos y en verificación |

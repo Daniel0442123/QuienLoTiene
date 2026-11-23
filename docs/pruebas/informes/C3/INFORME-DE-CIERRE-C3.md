@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 3 (C3)
 
-> **Control del documento** · Versión 0.4 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018, del triaje de DEF-012, DEF-016, DEF-017 y DEF-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.5 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018, del cierre de DEF-016 a DEF-018, del triaje de DEF-012 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -17,12 +17,12 @@
 
 ## 1. Resumen de ejecución
 
-De los 98 casos planeados, 97 tienen resultado: 95 aprobados, 2 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 95 / 97 = **97,9 %**. La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. La prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029) no se ejecutan en esta liberación por SC-022, propuesta por Pedro y aprobada por el Product Owner el 22/11. Falta la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
+De los 98 casos planeados, 97 tienen resultado: 97 aprobados, 0 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 97 / 97 = **100 %**. NF-ESC-020 y NF-USA-028 fallaron sobre `v0.5.4` y se aprobaron en la re-prueba sobre `v0.5.5`, desplegada el 22/11 a las 10:51 p. m. con las correcciones de DEF-016 a DEF-018 (#92). La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. La prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029) no se ejecutan en esta liberación por SC-022, propuesta por Pedro y aprobada por el Product Owner el 22/11. Falta la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
 
 - **Regresión.** `./mvnw -B verify` sobre la rama de HU-015 y HU-022: 398 pruebas unitarias y 72 de integración, 0 fallas, y 361 pruebas del frontend con Vitest. Cobertura de líneas de domain y application del 95,5 % (2753 de 2884, incluye shared); el módulo más bajo es clientes con 84,4 %. Los 86 casos tienen resultado: 82 aprobados y 4 «No aplica» de HU-006 y HU-011 (SC-021).
 - **Producción.** El 22/11 se comprobaron en `v0.5.4` «Tu resumen» de la tienda (HU-015) y la ampliación del radio de 3 a 5 km a los 11,9 minutos (HU-022) ([evidencia](../../evidencias/C3/2026-11-22/produccion-v0.5.4/README.md)). El recorrido manual de «Cómo llegar» (CP-ORD-026-01) pasó con el pedido 40233FE4 ([evidencia](../../evidencias/C3/2026-11-22/como-llegar/recorrido.txt)).
 - **Punta a punta.** Los 5 escenarios pasan con Playwright, cada actor en su propio navegador y todo por la interfaz ([evidencia](../../evidencias/C3/2026-11-22/e2e/README.md)). E2E-05 corrió con los tiempos reales: el radio pasó a 5 km a los 11,0 minutos y la solicitud venció a los 30,0. En la primera corrida E2E-05 encontró DEF-016.
-- **No funcionales.** 7 aprobados (rendimiento, difusión, memoria, Lighthouse, TLS, respaldo y despliegue) y 2 fallidos: NF-ESC-020 por DEF-018 (en 1 de 3 corridas se cerraron 8 de 50 conexiones SSE) y NF-USA-028 por DEF-017 (los botones + y − del mapa miden 30 px).
+- **No funcionales.** 7 aprobados a la primera (rendimiento, difusión, memoria, Lighthouse, TLS, respaldo y despliegue) y 2 aprobados en la re-prueba sobre `v0.5.5`: NF-ESC-020 (en 1 de 3 corridas sobre `v0.5.4` se cerraron 8 de 50 conexiones SSE, DEF-018; con Caddy en 256 MiB, las corridas 4 a 6 cumplen) y NF-USA-028 (los botones + y − del mapa medían 30 px, DEF-017; en `v0.5.5` miden 44 × 44 px) ([evidencia](../../evidencias/C3/2026-11-22/v0.5.5/)).
 
 | Módulo | Responsable | Casos | Aprob. | Fall. | Bloq. | No ejec. | Cobertura |
 |---|---|---|---|---|---|---|---|
@@ -156,10 +156,10 @@ De los 98 casos planeados, 97 tienen resultado: 95 aprobados, 2 fallidos y 0 blo
 | NF-FIA-017 | Copias de seguridad y restauración | — | No funcional (pg_dump / restauración) | Francisco Castro | 2026-11-22 | Aprobado | — |
 | NF-DIS-018 | Disponibilidad del servicio en el periodo de evaluación | — | No funcional (Monitor externo (UptimeRobot)) | Francisco Castro | 2026-11-22 | No ejecutado | — |
 | NF-DIS-019 | Despliegues sin interrumpir la demo | — | No funcional (Script de despliegue + monitor) | Francisco Castro | 2026-11-22 | Aprobado | — |
-| NF-ESC-020 | Capacidad en el servidor actual | — | No funcional (k6) | Francisco Castro | 2026-11-22 | Fallido | DEF-018 |
+| NF-ESC-020 | Capacidad en el servidor actual | — | No funcional (k6) | Francisco Castro | 2026-11-22 | Aprobado (re-prueba en v0.5.5) | DEF-018 |
 | NF-COM-026 | Navegadores y dispositivos soportados | — | No funcional (Manual (matriz de navegadores)) | Pedro | 2026-11-22 | Aprobado | — |
 | NF-USA-027 | Rapidez para publicar y responder | — | No funcional (Prueba con 5 usuarios) | — | 2026-11-22 | No aplica | — |
-| NF-USA-028 | Accesibilidad para usuarios poco técnicos | — | No funcional (Lighthouse + axe + checklist WCAG) | Francisco Castro | 2026-11-22 | Fallido | DEF-017 |
+| NF-USA-028 | Accesibilidad para usuarios poco técnicos | — | No funcional (Lighthouse + axe + checklist WCAG) | Francisco Castro | 2026-11-22 | Aprobado (re-prueba en v0.5.5) | DEF-017 |
 | NF-POR-029 | Despliegue reproducible | — | No funcional (Manual de despliegue en servidor limpio) | — | 2026-11-22 | No aplica | — |
 
 ## 3. Defectos por severidad y estado
@@ -169,15 +169,15 @@ Se listan los defectos abiertos y los nuevos del ciclo. DEF-001 a DEF-011 (C1) y
 | ID | Severidad | Prioridad | Estado | Caso | Qué falla | Versión |
 |---|---|---|---|---|---|---|
 | DEF-012 | S4 Baja | P4 Baja | Abierto (sin triaje) | Humo 21/11 (CP-ORD-029-01) | En «Mis respuestas» de la tienda, las respuestas cuyo pedido ya se canceló o se recibió siguen diciendo «Elegida» | v0.5.2 |
-| DEF-016 | S4 Baja | P4 Baja | Nuevo | E2E-05 | Al vencer la solicitud, la pantalla dice que venció y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
-| DEF-017 | S4 Baja | P4 Baja | Nuevo | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px | v0.5.4 |
-| DEF-018 | S3 Media | P3 Normal | Nuevo | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones SSE se cerraron antes de terminar (causa sin confirmar) | v0.5.4 |
+| DEF-016 | S4 Baja | P4 Baja | En verificación (corregido en v0.5.5) | E2E-05 | Al vencer la solicitud, la pantalla dice que venció y debajo «Te avisamos en esta pantalla apenas una tienda conteste» durante hasta un minuto | v0.5.4 |
+| DEF-017 | S4 Baja | P4 Baja | En verificación (corregido en v0.5.5; re-prueba aprobada) | NF-USA-028 | Los botones + y − del mapa miden 30 × 30 px, por debajo de los 44 × 44 px | v0.5.4 |
+| DEF-018 | S3 Media | P3 Normal | En verificación (corregido en v0.5.5; re-prueba aprobada) | NF-ESC-020 | En la primera corrida de carga con 100 usuarios, 8 de 50 conexiones SSE se cerraron antes de terminar (causa sin confirmar) | v0.5.4 |
 
-Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 1 (DEF-018) · S4 = 3 (DEF-012, DEF-016, DEF-017)
+Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 0 · S4 = 1 (DEF-012). En verificación tras `v0.5.5`: DEF-016, DEF-017 y DEF-018
 
 ## 4. Requisitos y trazabilidad
 
-Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 están verificados y 2 quedan fuera de alcance por SC-021 (RF-006 y RF-011). De los 30 no funcionales, 25 están verificados, 2 tienen fallas, 2 quedan fuera de alcance por SC-022 (RNF-027 y RNF-029) y 1 sigue sin ejecutar (RNF-018).
+Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 están verificados y 2 quedan fuera de alcance por SC-021 (RF-006 y RF-011). De los 30 no funcionales, 27 están verificados, 2 quedan fuera de alcance por SC-022 (RNF-027 y RNF-029) y 1 sigue sin ejecutar (RNF-018).
 
 | Requisito | Nombre | Casos | Apr. | Fall. | Bloq. | Defectos | Estado |
 |---|---|---|---|---|---|---|---|
@@ -188,8 +188,8 @@ Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 est�
 | RF-022 | Ampliar radio automáticamente | 2 + E2E-05 | 3 | 0 | 0 | — | Verificado (nuevo en el C3, comprobado en producción) |
 | RF-026 | Ver cómo llegar | 1 | 1 | 0 | 0 | — | Verificado (recorrido manual en producción) |
 | RNF-001, 002, 004, 005, 010, 017 y 019 | No funcionales del C3 | 7 | 7 | 0 | 0 | — | Verificado |
-| RNF-020 | Escalabilidad (100 usuarios y 50 SSE) | 1 | 0 | 1 | 0 | DEF-018 (S3) | Con fallas |
-| RNF-028 | Accesibilidad | 1 | 0 | 1 | 0 | DEF-017 (S4) | Con fallas |
+| RNF-020 | Escalabilidad (100 usuarios y 50 SSE) | 1 | 1 | 0 | 0 | DEF-018 (S3, corregido en v0.5.5) | Verificado (re-prueba en v0.5.5) |
+| RNF-028 | Accesibilidad | 1 | 1 | 0 | 0 | DEF-017 (S4, corregido en v0.5.5) | Verificado (re-prueba en v0.5.5) |
 | RNF-018, 026, 027 y 029 | Disponibilidad, compatibilidad, usabilidad y portabilidad | 4 | 0 | 0 | 0 | — | Sin ejecutar |
 | 17 RNF del C1 y del C2 | Seguridad, mantenibilidad, fiabilidad y otros | 17 | 17 | 0 | 0 | — | Verificado (la regresión los repite en verde) |
 
@@ -225,7 +225,9 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 
 - Los escenarios de punta a punta corrieron contra una pila local (PostGIS, la API y la PWA construidas desde la etiqueta `v0.5.4`) y no contra el VPS. E2E-03 necesita el segundo factor de un administrador, y el de producción es personal; así tampoco quedan pedidos ni calificaciones de prueba en producción. El catálogo (`02-CASOS.md` §3) pedía el VPS: se registra como desviación para que QA la acepte o pida repetirlos allí.
 - Las pruebas de carga se lanzaron desde el entorno de pruebas contra `https://quienlotiene.tech`, así que los tiempos incluyen la red hasta el VPS. Con 100 usuarios el p95 de la API varió entre 280 y 547 ms en las 3 corridas.
-- Caddy llegó a 126,5 de sus 128 MiB de límite de memoria durante la carga (NF-REN-004). Conviene subir su `mem_limit` antes de repetir NF-ESC-020 (DEF-018).
+- Caddy llegó a 126,5 de sus 128 MiB de límite de memoria durante la carga (NF-REN-004). Con 256 MiB llegó a 170,8 MiB (67 %), así que estaba limitado por memoria (DEF-018). El stack quedó en unos 810 MiB.
+- El flujo de despliegue de `v0.5.5` falló dos veces por la red entre GitHub y el VPS (una descarga de imagen detenida y un SSH sin respuesta). Pedro terminó el despliegue a mano con los mismos comandos. Conviene dar más tiempo al paso de descarga o reintentarlo.
+- En la corrida 5 (2 minutos después de reiniciar la API) el p95 de la API fue 1,5 s; en la 6 volvió a 296 ms. Con 100 usuarios el p95 no es criterio, pero conviene correr la carga con la API ya caliente.
 - La PWA usa `registerType: 'prompt'`: un navegador sigue con la versión anterior hasta que el usuario acepta el aviso de actualización. Al comprobar `v0.5.4` en producción hubo que activar el service worker nuevo.
 - En producción quedaron datos de prueba: cuentas `@prueba.quienlotiene.tech` (50 clientes de carga y los de las comprobaciones), «Tienda de prueba de carga», solicitudes abiertas y el pedido 40233FE4. Se borran con `limpiar.sh pruebas` cuando QA lo indique.
 - Los guiones quedaron en el repositorio para repetir las pruebas: `e2e/` (Playwright), `scripts/carga/` (k6 y SSE) y `scripts/usabilidad/` (texto y botones a 375 px).
@@ -236,20 +238,20 @@ Ninguno. Los no funcionales que no se ejecutan no están bloqueados por un defec
 | Criterio (Plan Maestro 6.3) | Estado (22/11) |
 |---|---|
 | 100 % de casos del ciclo ejecutados | No cumple todavía: 97 de 98. Falta NF-DIS-018 (26/11); NF-USA-027 y NF-POR-029 salen por SC-022 (aprobada por el Product Owner el 22/11) |
-| Todo Fallido con defecto registrado | Cumple: NF-ESC-020 con DEF-018 y NF-USA-028 con DEF-017 |
+| Todo Fallido con defecto registrado | Cumple: NF-ESC-020 (DEF-018) y NF-USA-028 (DEF-017) fallaron con defecto registrado y pasaron la re-prueba en `v0.5.5` |
 | Cobertura ≥ 70 % en los módulos del ciclo | Cumple: mínimo 84,4 % (clientes); total 95,5 % |
 | 0 defectos S1 y S2 abiertos | Cumple |
-| (C3) ≥ 95 % aprobados en el resultado final | Cumple hoy: 97,9 % (95 de 97). Con NF-DIS-018 queda en 96 de 98 (98,0 %) si se aprueba o 95 de 98 (96,9 %) si falla |
+| (C3) ≥ 95 % aprobados en el resultado final | Cumple hoy: 100 % (97 de 97). Con NF-DIS-018 queda en 98 de 98 si se aprueba o 97 de 98 (99,0 %) si falla |
 | (C3) E2E-01 a E2E-03 aprobados | Cumple: los 5 escenarios aprobados |
 
 ## 9. Conclusión y recomendación
 
-El C3 cumple hoy los criterios de calidad (97,9 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, el triaje de 4 defectos y la firma de QA.
+El C3 cumple hoy los criterios de calidad (100 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan NF-DIS-018, la verificación de DEF-016 en producción, el cierre de DEF-016 a DEF-018, el triaje de DEF-012 y la firma de QA.
 
 Recomendaciones para el equipo:
 
-1. QA hace el triaje de DEF-012, DEF-016, DEF-017 y DEF-018 antes del comité. DEF-016 y DEF-017 son correcciones pequeñas de la interfaz que pueden salir en una `v0.5.5` antes del 26/11; si no, se aceptan en el acta como S4 con plan.
-2. Para DEF-018: subir el `mem_limit` de Caddy, revisar su log durante la carga y repetir NF-ESC-020 desde otra red. Si las 3 corridas cumplen, NF-ESC-020 pasa a Aprobado y DEF-018 se cierra.
+1. DEF-016, DEF-017 y DEF-018 salieron corregidos en `v0.5.5` (22/11). DEF-017 y DEF-018 pasaron la re-prueba; DEF-016 se verifica en producción dejando vencer una solicitud. QA los cierra y hace el triaje de DEF-012, que se acepta en el acta como S4 con plan.
+2. NF-ESC-020 se repitió 3 veces con Caddy en 256 MiB (una sobre `v0.5.4` con el cambio aplicado a mano y dos sobre `v0.5.5`) y las 3 cumplen. Queda pendiente repetirla desde otra red para separar la red del servidor.
 3. El 26/11 se toma la captura de UptimeRobot para NF-DIS-018. NF-USA-027 y NF-POR-029 quedan para una liberación posterior (SC-022).
 4. Las pruebas de humo del 26/11 se hacen después del despliegue final con `plantillas/PRUEBAS-DE-HUMO.md`, y después se borran los datos de prueba de producción.
 5. QA (Yanimar Burbano y Francisco Castro) revisa este borrador y lo firma; el PO (Wilson Galindez) lo aprueba. Este documento no lleva firmas en su nombre.
@@ -267,3 +269,4 @@ Recomendaciones para el equipo:
 | 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado con la matriz de navegadores (iPhone, Android y Edge): 95 de 97 aprobados y 3 no funcionales pendientes |
 | 0.3 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 (propuesta): NF-USA-027 y NF-POR-029 «No aplica»; 98 casos planeados y solo NF-DIS-018 pendiente |
 | 0.4 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022 aprobada por el Product Owner |
+| 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; 97 de 97 (100 %) y DEF-016 a DEF-018 en verificación |
