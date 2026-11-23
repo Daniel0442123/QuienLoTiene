@@ -1,6 +1,6 @@
 # Hoja «Bitácora» · Sesiones de prueba
 
-> **Control del documento** · Versión 1.9 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.10 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Una fila por responsable de QA y por día de pruebas. Las ejecuciones automáticas de CI en cada push no se registran aquí; sí las corridas que se usan como evidencia (cierre de historia, corte de sprint, cierre de ciclo, re-prueba).
 
@@ -25,6 +25,7 @@
 | 2026-11-22 | C3 | Cierre | Yanimar Burbano | 0,5 | Recorrido en producción | v0.5.4 · `f22f20c` (producción) | https://quienlotiene.tech como tienda 1 y un cliente de prueba: «Tu resumen» (HU-015), ampliación del radio (HU-022) y «Cómo llegar» con el pedido 40233FE4 · ver `evidencias/C3/2026-11-22/produccion-v0.5.4/` y `como-llegar/` | 1 (CP-ORD-026-01) y 2 comprobaciones | 1 | 0 | 0 | — | 0 | El navegador tenía la versión anterior de la PWA hasta activar el service worker nuevo; Google Maps no abre desde el entorno de pruebas | El enlace de «Cómo llegar» se comprobó en el navegador de Pedro | Hecho por Pedro con Claude Code de 4:14 p. m. a 5:00 p. m.; pendiente la revisión y firma de QA |
 | 2026-11-22 | C3 | Cierre | Francisco Castro | 2,0 | No funcional | v0.5.4 · `f22f20c` (producción) | k6 con 50 y 100 usuarios, 50 conexiones SSE, difusión, docker stats, Lighthouse, openssl y SSL Labs, respaldo y restauración de prueba, despliegue medido cada segundo y UptimeRobot · ver `evidencias/C3/2026-11-22/no-funcionales/` | 9 | 7 | 2 | 0 | — | 2 (DEF-017, DEF-018) | NF-COM-026, NF-USA-027 y NF-POR-029 necesitan equipos, personas o un servidor limpio; NF-DIS-018 mide hasta el 26/11 | Francisco los hace el 24/11; subir el mem_limit de Caddy y repetir NF-ESC-020 | Pedro corrió los comandos del VPS; preparado con Claude Code; pendiente la revisión y firma de QA |
 | 2026-11-22 | C3 | Cierre | Yanimar Burbano | 1,0 | Punta a punta (Playwright) | pila local desde v0.5.4 · `f22f20c` | `npx playwright test` en `e2e/` con los tiempos reales (10 y 30 min) · E2E-01 a E2E-05 · ver `evidencias/C3/2026-11-22/e2e/README.md` | 5 | 5 | 0 | 0 | — | 1 (DEF-016) | La primera corrida falló en E2E-05 por DEF-016 y otra antes por el límite de inicios de sesión del administrador | Ajustada la prueba (espera hasta 2 min el mensaje final y comparte la sesión de administrador); triaje de DEF-016 | Corrida oficial de 4:33 p. m. a 5:05 p. m.; preparada con Claude Code; pendiente la revisión y firma de QA |
+| 2026-11-22 | C3 | Cierre | Pedro | 3,5 | Manual (matriz de navegadores) | v0.5.4 · `f22f20c` (producción) | https://quienlotiene.tech en iPhone 17 Pro Max (Safari y Chrome), Samsung Galaxy A57 5G (Chrome y Firefox) y Edge en Windows, con Tienda Uno respondiendo · NF-COM-026 · ver `evidencias/C3/2026-11-22/compatibilidad/README.md` | 1 | 1 | 0 | 0 | — | 0 | La primera solicitud de Android no encontró tiendas porque el pin quedó a más de 3 km | Repetida con el pin en el centro | De 5:03 p. m. a 8:35 p. m.; se probó la versión actual de cada navegador; preparada con Claude Code; pendiente la revisión y firma de QA |
 
 ## Historial del documento
 
@@ -42,3 +43,4 @@
 | 1.7 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera sesión del C3: regresión automatizada sobre `v0.5.3` |
 | 1.8 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesión del C3 con los casos de HU-015 y HU-022 |
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del C3 sobre `v0.5.4`: producción y «Cómo llegar», no funcionales sobre el VPS y punta a punta con Playwright (borrador, pendiente de firma de QA) |
+| 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesión de compatibilidad del C3 (NF-COM-026) en iPhone, Android y Edge |

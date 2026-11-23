@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 3 (C3)
 
-> **Control del documento** · Versión 0.1 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de los 4 no funcionales que faltan, del triaje de DEF-012, DEF-016, DEF-017 y DEF-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.2 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de los 3 no funcionales que faltan, del triaje de DEF-012, DEF-016, DEF-017 y DEF-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -17,7 +17,7 @@
 
 ## 1. Resumen de ejecución
 
-De los 100 casos planeados, 96 tienen resultado: 94 aprobados, 2 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 94 / 96 = **97,9 %**. Faltan 4 no funcionales que no se pueden hacer desde el entorno de pruebas: la matriz de navegadores (NF-COM-026), la prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029), asignados a Francisco para el 24/11, y la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
+De los 100 casos planeados, 97 tienen resultado: 95 aprobados, 2 fallidos y 0 bloqueados. La tasa de aprobación sobre los concluyentes es 95 / 97 = **97,9 %**. La matriz de navegadores (NF-COM-026) se aprobó el 22/11 en un iPhone, un Android y Edge. Faltan 3 no funcionales que no se pueden hacer desde el entorno de pruebas: la prueba con 5 usuarios (NF-USA-027) y el despliegue en un servidor limpio (NF-POR-029), asignados a Francisco para el 24/11, y la disponibilidad (NF-DIS-018), que se mide hasta el 26/11.
 
 - **Regresión.** `./mvnw -B verify` sobre la rama de HU-015 y HU-022: 398 pruebas unitarias y 72 de integración, 0 fallas, y 361 pruebas del frontend con Vitest. Cobertura de líneas de domain y application del 95,5 % (2753 de 2884, incluye shared); el módulo más bajo es clientes con 84,4 %. Los 86 casos tienen resultado: 82 aprobados y 4 «No aplica» de HU-006 y HU-011 (SC-021).
 - **Producción.** El 22/11 se comprobaron en `v0.5.4` «Tu resumen» de la tienda (HU-015) y la ampliación del radio de 3 a 5 km a los 11,9 minutos (HU-022) ([evidencia](../../evidencias/C3/2026-11-22/produccion-v0.5.4/README.md)). El recorrido manual de «Cómo llegar» (CP-ORD-026-01) pasó con el pedido 40233FE4 ([evidencia](../../evidencias/C3/2026-11-22/como-llegar/recorrido.txt)).
@@ -38,8 +38,8 @@ De los 100 casos planeados, 96 tienen resultado: 94 aprobados, 2 fallidos y 0 bl
 | tiendas | Francisco / Yanimar | 16 (2 No aplica) | 14 | 0 | 0 | 0 | 90,5 % |
 | **Funcionales y de seguridad** | | **86** (4 No aplica) | **82** | **0** | **0** | **0** | **95,5 %** |
 | Punta a punta (Playwright) | Yanimar | 5 | 5 | 0 | 0 | 0 | — |
-| No funcionales sobre el VPS | Francisco | 13 | 7 | 2 | 0 | 4 | — |
-| **Total** | | **104 (4 No aplica)** | **94** | **2** | **0** | **4** | **95,5 %** |
+| No funcionales sobre el VPS | Francisco | 13 | 8 | 2 | 0 | 3 | — |
+| **Total** | | **104 (4 No aplica)** | **95** | **2** | **0** | **3** | **95,5 %** |
 
 ## 2. Detalle por caso
 
@@ -157,7 +157,7 @@ De los 100 casos planeados, 96 tienen resultado: 94 aprobados, 2 fallidos y 0 bl
 | NF-DIS-018 | Disponibilidad del servicio en el periodo de evaluación | — | No funcional (Monitor externo (UptimeRobot)) | Francisco Castro | 2026-11-22 | No ejecutado | — |
 | NF-DIS-019 | Despliegues sin interrumpir la demo | — | No funcional (Script de despliegue + monitor) | Francisco Castro | 2026-11-22 | Aprobado | — |
 | NF-ESC-020 | Capacidad en el servidor actual | — | No funcional (k6) | Francisco Castro | 2026-11-22 | Fallido | DEF-018 |
-| NF-COM-026 | Navegadores y dispositivos soportados | — | No funcional (Manual (matriz de navegadores)) | — | — | No ejecutado | — |
+| NF-COM-026 | Navegadores y dispositivos soportados | — | No funcional (Manual (matriz de navegadores)) | Pedro | 2026-11-22 | Aprobado | — |
 | NF-USA-027 | Rapidez para publicar y responder | — | No funcional (Prueba con 5 usuarios) | — | — | No ejecutado | — |
 | NF-USA-028 | Accesibilidad para usuarios poco técnicos | — | No funcional (Lighthouse + axe + checklist WCAG) | Francisco Castro | 2026-11-22 | Fallido | DEF-017 |
 | NF-POR-029 | Despliegue reproducible | — | No funcional (Manual de despliegue en servidor limpio) | — | — | No ejecutado | — |
@@ -177,7 +177,7 @@ Abiertos por severidad: S1 = 0 · S2 = 0 · S3 = 1 (DEF-018) · S4 = 3 (DEF-012,
 
 ## 4. Requisitos y trazabilidad
 
-Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 están verificados y 2 quedan fuera de alcance por SC-021 (RF-006 y RF-011). De los 30 no funcionales, 24 están verificados, 2 tienen fallas y 4 siguen sin ejecutar.
+Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 están verificados y 2 quedan fuera de alcance por SC-021 (RF-006 y RF-011). De los 30 no funcionales, 25 están verificados, 2 tienen fallas y 3 siguen sin ejecutar.
 
 | Requisito | Nombre | Casos | Apr. | Fall. | Bloq. | Defectos | Estado |
 |---|---|---|---|---|---|---|---|
@@ -206,19 +206,18 @@ Resumen de `libro/07-TRAZABILIDAD.md`. De los 38 requisitos funcionales, 36 est�
 | NF-DIS-018 | RNF-018 | Mayor o igual a 99 % entre el 16/11/2026 y el 26/11/2026. | Monitor creado el 22/11 a las 4:43 p. m.: 100 % hasta ahora | No ejecutado |
 | NF-DIS-019 | RNF-019 | Como máximo 60 s por despliegue. | 28,3 s sin API al recrear la API y Caddy (la PWA siguió cargando) | Aprobado |
 | NF-ESC-020 | RNF-020 | 100 usuarios concurrentes y 50 conexiones SSE con tasa de error menor a 1 %. | 3 corridas con 100 usuarios y 50 SSE: HTTP 0,006 %, 0 % y 0 % de error; SSE 16 %, 0 % y 0 % | Fallido |
-| NF-COM-026 | RNF-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | — | No ejecutado |
+| NF-COM-026 | RNF-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | iPhone 17 Pro Max (iOS 27.2.1) con Safari y Chrome, Galaxy A57 5G (Android 17) con Chrome y Firefox, y Edge en Windows: publicar y respuesta en vivo en los 5 (versión actual de cada navegador) | Aprobado |
 | NF-USA-027 | RNF-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | — | No ejecutado |
 | NF-USA-028 | RNF-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | Lighthouse accesibilidad 100 en 3 páginas; texto base 16 px; botones de 44 px salvo + y − del mapa (30 px) | Fallido |
 | NF-POR-029 | RNF-029 | 15 minutos o menos siguiendo el manual de despliegue. | — | No ejecutado |
 
 ## 6. Casos bloqueados
 
-Ninguno. Los 4 no funcionales sin ejecutar no están bloqueados por un defecto: necesitan personas, equipos o tiempo que el entorno de pruebas no tiene.
+Ninguno. Los 3 no funcionales sin ejecutar no están bloqueados por un defecto: necesitan personas, equipos o tiempo que el entorno de pruebas no tiene.
 
 | Causa | Casos | Detalle | Qué se habría requerido |
 |---|---|---|---|
 | Periodo de medición | NF-DIS-018 | No había monitor externo antes del 22/11; UptimeRobot se creó el 22/11 a las 4:43 p. m. y lleva 100 % | Captura del porcentaje el 26/11. El periodo del 16/11 al 22/11 no tiene medición, así que el comité decide si acepta el periodo medido |
-| Equipos reales | NF-COM-026 | Matriz de Chrome, Edge, Firefox y Safari en sus dos últimas versiones, Android 10+ e iOS 16.4+ | Francisco, con los celulares y navegadores del equipo, el 24/11 |
 | Personas | NF-USA-027 | Prueba de tareas con 5 usuarios (publicar en 60 s, responder Sí en 3 toques, No lo tengo en 1) | Francisco, con 5 participantes, el 24/11 |
 | Servidor limpio | NF-POR-029 | Seguir el manual de despliegue en un servidor nuevo y medir que tarda 15 minutos o menos | Francisco, con un VPS o máquina virtual vacía, el 24/11 |
 
@@ -236,22 +235,22 @@ Ninguno. Los 4 no funcionales sin ejecutar no están bloqueados por un defecto: 
 
 | Criterio (Plan Maestro 6.3) | Estado (22/11) |
 |---|---|
-| 100 % de casos del ciclo ejecutados | No cumple todavía: 96 de 100. Los 4 que faltan tienen fecha (24/11 y 26/11) |
+| 100 % de casos del ciclo ejecutados | No cumple todavía: 97 de 100. Los 3 que faltan tienen fecha (24/11 y 26/11) |
 | Todo Fallido con defecto registrado | Cumple: NF-ESC-020 con DEF-018 y NF-USA-028 con DEF-017 |
 | Cobertura ≥ 70 % en los módulos del ciclo | Cumple: mínimo 84,4 % (clientes); total 95,5 % |
 | 0 defectos S1 y S2 abiertos | Cumple |
-| (C3) ≥ 95 % aprobados en el resultado final | Cumple hoy: 97,9 % (94 de 96). Si los 4 pendientes se aprueban queda en 98 de 100; si fallan 2 o más, baja de 95 % |
+| (C3) ≥ 95 % aprobados en el resultado final | Cumple hoy: 97,9 % (95 de 97). Si los 3 pendientes se aprueban queda en 98 de 100; si fallan 2 o más, baja de 95 % |
 | (C3) E2E-01 a E2E-03 aprobados | Cumple: los 5 escenarios aprobados |
 
 ## 9. Conclusión y recomendación
 
-El C3 cumple hoy los criterios de calidad (97,9 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan 4 no funcionales, el triaje de 4 defectos y la firma de QA.
+El C3 cumple hoy los criterios de calidad (97,9 % de aprobación, 0 S1 y S2, cobertura de 95,5 % y los 5 escenarios de punta a punta aprobados), pero no se puede cerrar todavía: faltan 3 no funcionales, el triaje de 4 defectos y la firma de QA.
 
 Recomendaciones para el equipo:
 
 1. QA hace el triaje de DEF-012, DEF-016, DEF-017 y DEF-018 antes del comité. DEF-016 y DEF-017 son correcciones pequeñas de la interfaz que pueden salir en una `v0.5.5` antes del 26/11; si no, se aceptan en el acta como S4 con plan.
 2. Para DEF-018: subir el `mem_limit` de Caddy, revisar su log durante la carga y repetir NF-ESC-020 desde otra red. Si las 3 corridas cumplen, NF-ESC-020 pasa a Aprobado y DEF-018 se cierra.
-3. Francisco ejecuta NF-COM-026, NF-USA-027 y NF-POR-029 el 24/11, y el 26/11 se toma la captura de UptimeRobot para NF-DIS-018.
+3. Francisco ejecuta NF-USA-027 y NF-POR-029 el 24/11, y el 26/11 se toma la captura de UptimeRobot para NF-DIS-018.
 4. Las pruebas de humo del 26/11 se hacen después del despliegue final con `plantillas/PRUEBAS-DE-HUMO.md`, y después se borran los datos de prueba de producción.
 5. QA (Yanimar Burbano y Francisco Castro) revisa este borrador y lo firma; el PO (Wilson Galindez) lo aprueba. Este documento no lleva firmas en su nombre.
 
@@ -265,3 +264,4 @@ Recomendaciones para el equipo:
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 22/11 sobre `v0.5.4`: 94 de 96 aprobados, DEF-016 a DEF-018 nuevos y 4 no funcionales pendientes. Pendiente: triaje de defectos y firma de QA |
+| 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado con la matriz de navegadores (iPhone, Android y Edge): 95 de 97 aprobados y 3 no funcionales pendientes |

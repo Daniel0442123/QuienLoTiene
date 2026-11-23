@@ -1,6 +1,6 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
-> **Control del documento** · Versión 0.1 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.2 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Las cifras salen del libro de control (`docs/pruebas/libro/`) al 22/11/2026. QA lo revisa, completa lo pendiente y lo firma.
 
@@ -75,7 +75,7 @@ Cambios al plan durante la campaña (todos en `docs/gestion/CONTROL-DE-CAMBIOS.m
 | Integrante | Responsabilidad | Qué hizo |
 |---|---|---|
 | Yanimar Burbano Piamba | Líder de QA · funcionales | Responsable de los casos funcionales de los tres ciclos, la exploratoria del 12/11, los recorridos de punta a punta del 16/11 y del 21/11, los 5 escenarios de Playwright y el recorrido de «Cómo llegar». Revisa y firma los informes |
-| Francisco José Castro Muñoz | QA no funcional y seguridad | Responsable de los casos de seguridad y de los 30 no funcionales: análisis de CI, pruebas negativas por API, carga con k6, Lighthouse, TLS, respaldo, despliegue y disponibilidad. Tiene asignados NF-COM-026, NF-USA-027 y NF-POR-029 para el 24/11 |
+| Francisco José Castro Muñoz | QA no funcional y seguridad | Responsable de los casos de seguridad y de los 30 no funcionales: análisis de CI, pruebas negativas por API, carga con k6, Lighthouse, TLS, respaldo, despliegue y disponibilidad. Tiene asignados NF-USA-027 y NF-POR-029 para el 24/11 |
 
 Las ejecuciones las preparó Pedro (dueño del proyecto) con Claude Code y quedaron en el libro como borradores para la revisión y firma de QA. Los comandos del VPS los corrió Pedro.
 
@@ -106,6 +106,7 @@ Una fila por sesión de `libro/08-BITACORA.md`.
 | 22/11 · Recorrido en producción | C3 | v0.5.4 · `f22f20c` (producción) | Yanimar Burbano | Casos 1 (CP-ORD-026-01) y 2 comprobaciones · aprob. 1 · fall. 0 |
 | 22/11 · No funcional | C3 | v0.5.4 · `f22f20c` (producción) | Francisco Castro | Casos 9 · aprob. 7 · fall. 2 · defectos nuevos: 2 (DEF-017, DEF-018) |
 | 22/11 · Punta a punta (Playwright) | C3 | pila local desde v0.5.4 · `f22f20c` | Yanimar Burbano | Casos 5 · aprob. 5 · fall. 0 · defectos nuevos: 1 (DEF-016) |
+| 22/11 · Manual (matriz de navegadores) | C3 | v0.5.4 · `f22f20c` (producción) | Pedro | Casos 1 (NF-COM-026) · aprob. 1 · fall. 0 |
 
 ### 4.2 Resultados
 
@@ -124,10 +125,10 @@ Resultado final de cada caso, que es el de su última ejecución (C3 para los 86
 | solicitudes | 21 | 21 | 0 | 0 | 99,7 % |
 | tiendas | 16 (2 No aplica) | 14 | 0 | 0 | 90,5 % |
 | Punta a punta | 5 | 5 | 0 | 0 | — |
-| No funcionales | 30 (4 sin ejecutar) | 24 | 2 | 0 | — |
-| **Total** | **121 (4 No aplica, 4 sin ejecutar)** | **111** | **2** | **0** | **95,5 %** (incluye shared, 77,4 %) |
+| No funcionales | 30 (3 sin ejecutar) | 25 | 2 | 0 | — |
+| **Total** | **121 (4 No aplica, 3 sin ejecutar)** | **112** | **2** | **0** | **95,5 %** (incluye shared, 77,4 %) |
 
-Tasa de aprobación de la campaña: 111 / 113 concluyentes = **98,2 %**. Casos de prioridad Alta: 54 de 54 ejecutados y aprobados. Pruebas automatizadas en la última corrida: 398 unitarias y 72 de integración del backend, 361 del frontend y 5 escenarios de Playwright, todas en verde.
+Tasa de aprobación de la campaña: 112 / 114 concluyentes = **98,2 %**. Casos de prioridad Alta: 54 de 54 ejecutados y aprobados. Pruebas automatizadas en la última corrida: 398 unitarias y 72 de integración del backend, 361 del frontend y 5 escenarios de Playwright, todas en verde.
 
 ### 4.3 Matriz de requerimientos (trazabilidad)
 
@@ -198,7 +199,7 @@ Fuente: `libro/07-TRAZABILIDAD.md`. El detalle caso por caso está en el Anexo A
 | RNF-023 | Mantenibilidad: Respeto de la arquitectura limpia | 11 | 1 (NF-MAN-023) | 1 | 0 | 0 | 0 | Verificado |
 | RNF-024 | Mantenibilidad: Documentación de la API | 11 | 1 (NF-MAN-024) | 1 | 0 | 0 | 0 | Verificado |
 | RNF-025 | Compatibilidad: API REST versionada | 11 | 1 (NF-COM-025) | 1 | 0 | 0 | 0 | Verificado |
-| RNF-026 | Compatibilidad: Navegadores y dispositivos soportados | 11 | 1 (NF-COM-026) | 0 | 0 | 0 | 0 | Sin ejecutar (asignado para el 24/11) |
+| RNF-026 | Compatibilidad: Navegadores y dispositivos soportados | 11 | 1 (NF-COM-026) | 1 | 0 | 0 | 0 | Verificado (producción, v0.5.4; versión actual de cada navegador) |
 | RNF-027 | Usabilidad: Rapidez para publicar y responder | 11 | 1 (NF-USA-027) | 0 | 0 | 0 | 0 | Sin ejecutar (asignado para el 24/11) |
 | RNF-028 | Usabilidad: Accesibilidad para usuarios poco técnicos | 11 | 1 (NF-USA-028) | 0 | 1 | 0 | 1 (S4) DEF-017 | Con fallas |
 | RNF-029 | Portabilidad: Despliegue reproducible | 11 | 1 (NF-POR-029) | 0 | 0 | 0 | 0 | Sin ejecutar (asignado para el 24/11) |
@@ -267,7 +268,6 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 |---|---|---|---|
 | Cambio de alcance (SC-021) | CP-IDE-006-01, CP-IDE-006-02, CP-TIE-011-01, CP-TIE-011-02 | HU-006 (verificar correo) y HU-011 (tarifas de domicilio avanzadas) salieron del Cierre por decisión del Product Owner del 22/11 | Implementar las dos historias en una liberación posterior |
 | Periodo de medición | NF-DIS-018 | No había monitor externo antes del 22/11; UptimeRobot mide desde el 22/11 a las 4:43 p. m. | Un monitor desde el 16/11. Se cierra el 26/11 con el periodo medido |
-| Equipos reales | NF-COM-026 | Los E2E corren en Chromium; faltan Edge, Firefox, Safari, Android e iOS | La matriz manual con los equipos del grupo (24/11) |
 | Personas | NF-USA-027 | Prueba de tareas con 5 usuarios | 5 participantes y una sesión de 1 hora (24/11) |
 | Servidor limpio | NF-POR-029 | Seguir el manual de despliegue en un servidor nuevo | Un VPS o una máquina virtual vacía (24/11) |
 
@@ -301,7 +301,7 @@ Convenciones usadas: resultados de la lista del libro; todo Fallido con DEF-nnn;
 
 ### Conclusión
 
-Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 98,2 % de aprobación, 0 defectos S1 y S2 abiertos, 1 S3 abierto (límite 5), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando estén los 4 no funcionales pendientes y el triaje de los 4 defectos abiertos. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
+Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del Plan Maestro: 54 de 54 casos Alta aprobados, 98,2 % de aprobación, 0 defectos S1 y S2 abiertos, 1 S3 abierto (límite 5), cobertura de 95,5 % y E2E-01 a E2E-03 aprobados. La recomendación de QA para el comité se completa cuando estén los 3 no funcionales pendientes y el triaje de los 4 defectos abiertos. La decisión la toma el comité en el acta de liberación (`ACTA-DE-LIBERACION.md`).
 
 ## Anexo A. Matriz de trazabilidad detallada
 
@@ -403,7 +403,6 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | CP-TIE-011-01 | Domicilio gratis desde un monto | No aplica: HU-011 sale del Sprint de Cierre por SC-021 (aprobada por el Product Owner el 22/11) |
 | CP-TIE-011-02 | Tarifa por distancia | No aplica: HU-011 sale del Sprint de Cierre por SC-021 (aprobada por el Product Owner el 22/11) |
 | NF-DIS-018 | Disponibilidad del servicio en el periodo de evaluación | No ejecutado: No había monitor externo antes del 22/11, así que el periodo del 16/11 al 22/11 no tiene medición. Se cierra el 26/11 con la captura del porcentaje |
-| NF-COM-026 | Navegadores y dispositivos soportados | No ejecutado: Pendiente: matriz manual de navegadores (Chrome, Edge, Firefox, Safari, Android, iOS) asignada a Francisco para el 24/11. Los E2E corren en Chromium |
 | NF-USA-027 | Rapidez para publicar y responder | No ejecutado: Pendiente: prueba con 5 usuarios asignada a Francisco para el 24/11 |
 | NF-POR-029 | Despliegue reproducible | No ejecutado: Pendiente: requiere un servidor limpio para seguir el manual de despliegue; asignada a Francisco para el 24/11 |
 
@@ -412,3 +411,4 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 0.1 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Borrador con las cifras del 22/11: C1, C2 y C3 sobre `v0.5.4`, DEF-001 a DEF-018 y 4 no funcionales pendientes. Pendiente: revisión y firma de QA |
+| 0.2 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado con la matriz de navegadores (iPhone, Android y Edge): campaña en 112 de 114 (98,2 %) y 3 no funcionales pendientes |

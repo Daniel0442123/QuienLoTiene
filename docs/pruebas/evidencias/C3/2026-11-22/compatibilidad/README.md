@@ -1,4 +1,4 @@
-# NF-COM-026 · Compatibilidad (en curso, 22/11/2026)
+# NF-COM-026 · Compatibilidad (aprobado, 22/11/2026)
 
 ## iPhone 17 Pro Max con iOS 27.2.1 (Safari y Chrome), 5:03 p. m. a 5:25 p. m.
 
@@ -74,6 +74,9 @@ A las 8:31 p. m. Tienda Uno respondió desde el navegador de escritorio y la res
 
 | Captura | Qué se ve |
 |---|---|
-| `edge/1-edge-esperando-1-tienda.png` | «Acetaminofén Prueba Edge PC» publicada: se preguntó a 1 tienda, radio 3 km, cierre 9:03 p. m. Tienda Uno respondió a las 8:35 p. m. con $ 3.000 |
+| `edge/1-edge-esperando-1-tienda.png` | «Acetaminofén Prueba Edge PC» publicada: se preguntó a 1 tienda, radio 3 km, cierre 9:03 p. m. |
+| `edge/2-edge-respuesta-en-vivo.png` | Tienda Uno respondió a las 8:35 p. m. con $ 3.000 y la respuesta (a 2,8 km, «Elegir») apareció sin recargar |
 
-Pendiente: captura de la respuesta en vivo en Edge.
+## Resultado
+
+Aprobado. En los 5 navegadores (Safari y Chrome en iOS 27.2.1, Chrome y Firefox en Android 17, Edge en Windows) se publicó una solicitud y la respuesta de la tienda llegó en vivo. Límite: se probó la versión actual de cada navegador, no la anterior.
