@@ -70,4 +70,10 @@ A las 8:16 p. m. Tienda Uno respondió desde la app del iPhone y la respuesta ap
 
 A las 8:31 p. m. Tienda Uno respondió desde el navegador de escritorio y la respuesta apareció en vivo en Firefox de Android.
 
-Pendiente: Edge en un computador.
+## Edge en un computador (Windows), 8:34 p. m.
+
+| Captura | Qué se ve |
+|---|---|
+| `edge/1-edge-esperando-1-tienda.png` | «Acetaminofén Prueba Edge PC» publicada: se preguntó a 1 tienda, radio 3 km, cierre 9:03 p. m. Tienda Uno respondió a las 8:35 p. m. con $ 3.000 |
+
+Pendiente: captura de la respuesta en vivo en Edge.
