@@ -1,6 +1,6 @@
 # Hoja «Trazabilidad» · Matriz de trazabilidad de requisitos (RTM)
 
-> **Control del documento** · Versión 1.11 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.12 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Libro de control de QA · Quién lo tiene · Byte Force. Fuente en Markdown del Excel «Libro-Control-QA-QuienLoTiene.xlsx». Solo se diligencian las columnas vacías; los catálogos los mantiene QA.
 
@@ -81,9 +81,9 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | RNF-024 | NF-MAN-024 | 100 % de endpoints documentados. | C2 | Aprobado | 0 | Verificado |
 | RNF-025 | NF-COM-025 | JSON sobre HTTPS con prefijo /api/v1. | C2 | Aprobado | 0 | Verificado |
 | RNF-026 | NF-COM-026 | Funciona en las dos últimas versiones de Chrome, Edge, Firefox y Safari, en Android 10+ e iOS 16.4+. | C3 | Aprobado | 0 | Verificado |
-| RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 | No ejecutado | 0 | Sin ejecutar (asignado para el 24/11) |
+| RNF-027 | NF-USA-027 | Publicar una solicitud en 60 s o menos; responder Sí en 3 toques o menos; No lo tengo en 1 toque. | C3 | No aplica | 0 | Fuera de alcance (SC-022) |
 | RNF-028 | NF-USA-028 | Mayor o igual a 90, texto base de 16 px o más, botones de 44 × 44 px o más y contraste WCAG 2.2 AA. | C3 | Fallido | 1 (S4) DEF-017 | Con fallas |
-| RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 | No ejecutado | 0 | Sin ejecutar (asignado para el 24/11) |
+| RNF-029 | NF-POR-029 | 15 minutos o menos siguiendo el manual de despliegue. | C3 | No aplica | 0 | Fuera de alcance (SC-022) |
 | RNF-030 | NF-POR-030 | 0 secretos en el repositorio; toda la configuración por variables de entorno. | C1 | Aprobado | 0 | Verificado |
 
 ## Historial del documento
@@ -105,3 +105,4 @@ RF-039 a RF-042 son Won't: sin casos en esta entrega.
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RF-015 y RF-022 verificados en el C3; RF-006 y RF-011 fuera de alcance por SC-021 (pendiente del comité) |
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Resultados de los no funcionales del C3 sobre `v0.5.4` (9 aprobados, 2 fallidos con DEF-017 y DEF-018, 4 sin ejecutar) y DEF-016 en RF-021 (borrador, pendiente de firma de QA) |
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-026 verificado: NF-COM-026 aprobado en iPhone, Android y Edge (borrador, pendiente de firma de QA) |
+| 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | RNF-027 y RNF-029 fuera de alcance por SC-022 (pendiente del comité) |

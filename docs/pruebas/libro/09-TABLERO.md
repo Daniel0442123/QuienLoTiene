@@ -1,6 +1,6 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.12 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.13 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3. Avance del C3 registrado como borrador el 22/11/2026 sobre `v0.5.4` (`f22f20c`): punta a punta, no funcionales sobre el VPS y «Cómo llegar».
 >
@@ -17,6 +17,7 @@
 | C3 (Cierre, regresión) · avance 22/11 con HU-015 y HU-022 (borrador) | 100 (104 − 4 «No aplica» por SC-021) | 81 | 81 | 0 | 0 | 81,0 % | 100 % | ≥ 95 % aprobados |
 | C3 (Cierre) · avance 22/11 sobre v0.5.4 con E2E y no funcionales (borrador) | 100 | 96 | 94 | 2 | 0 | 96,0 % | 97,9 % | ≥ 95 % aprobados |
 | C3 (Cierre) · avance 22/11 con la matriz de navegadores (borrador) | 100 | 97 | 95 | 2 | 0 | 97,0 % | 97,9 % | ≥ 95 % aprobados |
+| C3 (Cierre) · 22/11 con SC-022 (borrador) | 98 (100 − NF-USA-027 y NF-POR-029 «No aplica») | 97 | 95 | 2 | 0 | 99,0 % | 97,9 % | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
@@ -49,11 +50,11 @@ Valores del 22/11/2026 (avance del C3 sobre `v0.5.4`, borrador). Los del corte d
 
 | Indicador | Fórmula | Valor |
 |---|---|---|
-| Avance de ejecución (C3) | Casos ejecutados / casos planeados | 97 / 100 = 97,0 % (faltan NF-USA-027, NF-POR-029 y NF-DIS-018) |
+| Avance de ejecución (C3) | Casos ejecutados / casos planeados | 97 / 98 = 99,0 % (falta NF-DIS-018; NF-USA-027 y NF-POR-029 «No aplica» por SC-022) |
 | Tasa de aprobación (C3) | Aprobados / (ejecutados − No aplica) | 95 / 97 = 97,9 % |
-| Tasa de aprobación (campaña, resultado final) | Aprobados / concluyentes | 112 / 114 = 98,2 % (86 funcionales y de seguridad, 30 no funcionales y 5 E2E; 4 No aplica y 3 sin ejecutar) |
+| Tasa de aprobación (campaña, resultado final) | Aprobados / concluyentes | 112 / 114 = 98,2 % (86 funcionales y de seguridad, 30 no funcionales y 5 E2E; 6 No aplica y 1 sin ejecutar) |
 | Casos Alta ejecutados | Casos Alta con resultado / casos Alta | 54 / 54 = 100 % (y E2E-01 a E2E-03) |
-| Cobertura de requisitos | Requisitos con todos sus casos ejecutados / requisitos en alcance | 36 RF de 36 (RF-006 y RF-011 fuera por SC-021) y 26 RNF de 30 |
+| Cobertura de requisitos | Requisitos con todos sus casos ejecutados / requisitos en alcance | 36 RF de 36 (RF-006 y RF-011 fuera por SC-021) y 27 RNF de 28 (RNF-027 y RNF-029 fuera por SC-022) |
 | Densidad de defectos | Defectos registrados / requisitos en alcance | 18 / 66 (36 RF + 30 RNF) = 0,27 |
 | Defectos reabiertos | Reabiertos / corregidos | 0 / 14 |
 | Cobertura de código | Líneas cubiertas / líneas de domain + application | 2753 / 2884 = 95,5 % |
@@ -78,3 +79,4 @@ Valores del 22/11/2026 (avance del C3 sobre `v0.5.4`, borrador). Los del corte d
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 con HU-015 y HU-022 aprobadas y HU-006 y HU-011 fuera por SC-021: 81 de 100 |
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Avance del C3 sobre `v0.5.4` (96 de 100, 97,9 %), defectos con DEF-016 a DEF-018 y DEF-011 en S2, e indicadores al 22/11 (borrador, pendiente de firma de QA) |
 | 1.12 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | NF-COM-026 aprobado: avance del C3 en 97 de 100 (97,9 %) y campaña en 112 de 114 (98,2 %) (borrador, pendiente de firma de QA) |
+| 1.13 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | SC-022: NF-USA-027 y NF-POR-029 «No aplica»; avance del C3 en 97 de 98 |
