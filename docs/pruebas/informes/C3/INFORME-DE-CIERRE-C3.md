@@ -1,6 +1,6 @@
 # Informe de Cierre — Ciclo 3 (C3)
 
-> **Control del documento** · Versión 0.7 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.8 · 24/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (pendiente de NF-DIS-018 y de la firma de QA) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 **ASEGURAMIENTO DE LA CALIDAD** · Quién lo tiene · Liberación 1.0
 
@@ -261,6 +261,10 @@ Recomendaciones para el equipo:
 | Yanimar Burbano Piamba · Líder de QA · Firma: | Wilson Javier Galindez Certuche · Product Owner · Firma: |
 | Francisco José Castro Muñoz · QA no funcional · Firma: | |
 
+## Prueba de usabilidad de caja negra (SC-023)
+
+A pedido del docente se agregó una prueba de usabilidad de caja negra con la ruta feliz y las excepciones de cada rol (guion QLT-PRU-UP-01). Se ejecutó el 23/11/2026 sobre `main` df2325a en local: **14 de 14 tareas y 30 de 30 excepciones aprobadas, sin defectos nuevos**. «Sí lo tengo» se responde en 3 toques y «No lo tengo» en 1, como pide RNF-027. Quedan por registrar las sesiones con usuarios (tiempo de publicar y SUS) en el formato QLT-PRU-UP-02. Detalle en `docs/pruebas/usabilidad/` y en la sección 3.1 de `libro/05-EJECUCION-C3.md`.
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
@@ -272,3 +276,4 @@ Recomendaciones para el equipo:
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; 97 de 97 (100 %) y DEF-016 a DEF-018 en verificación |
 | 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Daniel Montenegro) |
 | 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 diferido: aceptado en el acta con plan para `v1.0.1` |
+| 0.8 | 24/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega la prueba de usabilidad de caja negra del 23/11 (SC-023) |

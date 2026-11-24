@@ -1,6 +1,6 @@
 # Informe de pruebas de software · Quién lo tiene — Liberación 1.0
 
-> **Control del documento** · Versión 0.7 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.8 · 24/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador (se completa con los no funcionales del 24/11 y el 26/11 y se entrega con el acta de liberación) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Las cifras salen del libro de control (`docs/pruebas/libro/`) al 22/11/2026. QA lo revisa, completa lo pendiente y lo firma.
 
@@ -407,6 +407,10 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | NF-USA-027 | Rapidez para publicar y responder | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Daniel Montenegro y aprobada por el Product Owner el 22/11); depende de conseguir 5 usuarios externos |
 | NF-POR-029 | Despliegue reproducible | No aplica: no se ejecuta en esta liberación por SC-022 (propuesta por Daniel Montenegro y aprobada por el Product Owner el 22/11); necesita un servidor y un subdominio de prueba que no se van a pagar |
 
+## Prueba de usabilidad de caja negra (SC-023)
+
+A pedido del docente se agregó una prueba de usabilidad de caja negra con la ruta feliz y las excepciones de cada rol (guion QLT-PRU-UP-01). Se ejecutó el 23/11/2026 sobre `main` df2325a en local: **14 de 14 tareas y 30 de 30 excepciones aprobadas, sin defectos nuevos**. «Sí lo tengo» se responde en 3 toques y «No lo tengo» en 1, como pide RNF-027. Quedan por registrar las sesiones con usuarios (tiempo de publicar y SUS) en el formato QLT-PRU-UP-02. Detalle en `docs/pruebas/usabilidad/` y en la sección 3.1 de `libro/05-EJECUCION-C3.md`.
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
@@ -418,3 +422,4 @@ Con las cifras del 22/11, la Liberación 1.0 cumple los criterios de calidad del
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: campaña en 114 de 114 (100 %); DEF-016 a DEF-018 corregidos y en verificación |
 | 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Daniel Montenegro) |
 | 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 diferido: aceptado en el acta con plan para `v1.0.1` |
+| 0.8 | 24/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega la prueba de usabilidad de caja negra del 23/11 (SC-023) |

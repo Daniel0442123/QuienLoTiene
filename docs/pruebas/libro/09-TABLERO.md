@@ -1,6 +1,6 @@
 # Hoja «Tablero» · Indicadores de la campaña
 
-> **Control del documento** · Versión 1.16 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.17 · 24/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Corte del Sprint 1 registrado el 12/11/2026 sobre v0.2.0. Ejecución del Sprint 2 registrada como borrador el 16/11/2026 sobre main 5e8ab98 (pendiente de firma de QA). Corte del Sprint 3 (C2) registrado como borrador el 22/11/2026 sobre v0.5.2 (`8d64314`); el mismo día se ejecutaron los 7 no funcionales que faltaban sobre la rama de sus correcciones, y los de seguridad se re-probaron en producción sobre v0.5.3. Avance del C3 registrado como borrador el 22/11/2026 sobre `v0.5.4` (`f22f20c`): punta a punta, no funcionales sobre el VPS y «Cómo llegar».
 >
@@ -19,6 +19,7 @@
 | C3 (Cierre) · avance 22/11 con la matriz de navegadores (borrador) | 100 | 97 | 95 | 2 | 0 | 97,0 % | 97,9 % | ≥ 95 % aprobados |
 | C3 (Cierre) · 22/11 con SC-022 (borrador) | 98 (100 − NF-USA-027 y NF-POR-029 «No aplica») | 97 | 95 | 2 | 0 | 99,0 % | 97,9 % | ≥ 95 % aprobados |
 | C3 (Cierre) · 22/11 con la re-prueba sobre v0.5.5 (borrador) | 98 | 97 | 97 | 0 | 0 | 99,0 % | 100 % | ≥ 95 % aprobados |
+| C3 (Cierre) · 23/11 con la prueba de usabilidad, SC-023 (borrador) | 99 (100 − NF-POR-029 «No aplica») | 98 | 98 | 0 | 0 | 99,0 % | 100 % | ≥ 95 % aprobados |
 
 ## Cobertura por módulo (JaCoCo, líneas de domain + application)
 
@@ -51,11 +52,11 @@ Valores del 22/11/2026 (avance del C3 con la re-prueba sobre `v0.5.5`, borrador)
 
 | Indicador | Fórmula | Valor |
 |---|---|---|
-| Avance de ejecución (C3) | Casos ejecutados / casos planeados | 97 / 98 = 99,0 % (falta NF-DIS-018; NF-USA-027 y NF-POR-029 «No aplica» por SC-022) |
+| Avance de ejecución (C3) | Casos ejecutados / casos planeados | 98 / 99 = 99,0 % (falta NF-DIS-018; NF-POR-029 «No aplica» por SC-022; NF-USA-027 aprobado en la prueba de usabilidad de caja negra, SC-023) |
 | Tasa de aprobación (C3) | Aprobados / (ejecutados − No aplica) | 97 / 97 = 100 % |
 | Tasa de aprobación (campaña, resultado final) | Aprobados / concluyentes | 114 / 114 = 100 % (86 funcionales y de seguridad, 30 no funcionales y 5 E2E; 6 No aplica y 1 sin ejecutar) |
 | Casos Alta ejecutados | Casos Alta con resultado / casos Alta | 54 / 54 = 100 % (y E2E-01 a E2E-03) |
-| Cobertura de requisitos | Requisitos con todos sus casos ejecutados / requisitos en alcance | 36 RF de 36 (RF-006 y RF-011 fuera por SC-021) y 27 RNF de 28 (RNF-027 y RNF-029 fuera por SC-022) |
+| Cobertura de requisitos | Requisitos con todos sus casos ejecutados / requisitos en alcance | 36 RF de 36 (RF-006 y RF-011 fuera por SC-021) y 28 RNF de 29 (RNF-029 fuera por SC-022; RNF-027 verificado parcialmente por SC-023) |
 | Densidad de defectos | Defectos registrados / requisitos en alcance | 18 / 66 (36 RF + 30 RNF) = 0,27 |
 | Defectos reabiertos | Reabiertos / corregidos | 0 / 17 |
 | Cobertura de código | Líneas cubiertas / líneas de domain + application | 2753 / 2884 = 95,5 % |
@@ -84,3 +85,4 @@ Valores del 22/11/2026 (avance del C3 con la re-prueba sobre `v0.5.5`, borrador)
 | 1.14 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Re-prueba sobre `v0.5.5`: NF-ESC-020 y NF-USA-028 aprobados; C3 en 97 de 97 (100 %) y campaña en 114 de 114; DEF-016 a DEF-018 en verificación |
 | 1.15 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados (visto bueno de Daniel Montenegro) |
 | 1.16 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 pasa a Diferido (aceptado en el acta con plan) |
+| 1.17 | 24/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Prueba de usabilidad de caja negra (SC-023): NF-USA-027 aprobado; C3 en 98 de 99 |

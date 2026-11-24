@@ -1,6 +1,6 @@
 # Procedimiento documental · Quién lo tiene
 
-> **Control del documento** · Versión 1.0 · 13/11/2026 · Responsable: Wilson Javier Galindez Certuche (Product Owner · documentador) · Aprobó: Daniel Montenegro (dueño del proyecto), 13/11/2026 · Estado: Vigente
+> **Control del documento** · Versión 1.1 · 24/11/2026 · Responsable: Wilson Javier Galindez Certuche (Product Owner · documentador) · Aprobó: Daniel Montenegro (dueño del proyecto), 13/11/2026 · Estado: Vigente
 
 Cómo se identifica, versiona, revisa y conserva cada documento del proyecto, en Markdown y en sus versiones Word, Excel y PDF, y qué norma cubre cada parte.
 
@@ -12,6 +12,7 @@ Normas que atiende: ISO 9001:2015 (7.5 información documentada), ISO/IEC/IEEE 1
 
 - **El Markdown en Git es la fuente.** Los Word, Excel y PDF de `entregables/` son copias para entregar o imprimir y deben decir la misma versión que su MD.
 - Si un cambio toca un MD que tiene versión Word o Excel, se actualizan **en el mismo PR**. Si no se puede (por ejemplo, exportar un PDF), queda un compromiso abierto en la bitácora con responsable y fecha.
+- **Formato de los Word: APA 7 y Español (Colombia).** Los Word que salen de un MD se generan con `python3 scripts/gestion/word_apa.py` (portada de estudiante con el escudo de la FUP, Times New Roman 12 a doble espacio, márgenes de 2,54 cm, número de página arriba a la derecha, títulos por niveles, «Tabla N» y «Figura N» con su título). Los Word hechos a mano (formatos, plantillas, planes y manuales) se pasan por `word_apa.py --normalizar` para dejarlos con la tipografía APA y el idioma es-CO.
 - Nada se borra del historial: un documento que deja de usarse queda con estado «Obsoleto» y el motivo.
 
 ## 2. Encabezado de control
@@ -89,3 +90,4 @@ Qué norma respalda cada parte del seguimiento, y dónde queda la evidencia.
 | Versión | Fecha | Autor | Cambio |
 |---|---|---|---|
 | 1.0 | 13/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Primera versión (SC-009) |
+| 1.1 | 24/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Los Word se entregan con normas APA 7 y en Español (Colombia) con `word_apa.py`, a pedido de Daniel Montenegro |

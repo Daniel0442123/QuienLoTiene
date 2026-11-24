@@ -6,6 +6,9 @@ copia para entregar. Usa como base el formato de los Word del corte del
 Sprint 1 (portada, encabezado, pie con número de página, títulos y tablas con
 los colores del proyecto) y escribe las capturas dentro del documento.
 
+Nota: desde el 24/11/2026 los Word de entrega se generan con normas APA con
+scripts/gestion/word_apa.py, que usa la lista DOCUMENTOS de este archivo.
+
 Uso (desde la raíz del repositorio):
 
     python3 scripts/gestion/informes_word.py            # todos los del ciclo C1
