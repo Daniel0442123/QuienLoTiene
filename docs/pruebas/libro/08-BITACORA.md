@@ -1,6 +1,6 @@
 # Hoja «Bitácora» · Sesiones de prueba
 
-> **Control del documento** · Versión 1.11 · 22/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 1.12 · 24/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Vigente · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > Una fila por responsable de QA y por día de pruebas. Las ejecuciones automáticas de CI en cada push no se registran aquí; sí las corridas que se usan como evidencia (cierre de historia, corte de sprint, cierre de ciclo, re-prueba).
 
@@ -27,6 +27,7 @@
 | 2026-11-22 | C3 | Cierre | Yanimar Burbano | 1,0 | Punta a punta (Playwright) | pila local desde v0.5.4 · `f22f20c` | `npx playwright test` en `e2e/` con los tiempos reales (10 y 30 min) · E2E-01 a E2E-05 · ver `evidencias/C3/2026-11-22/e2e/README.md` | 5 | 5 | 0 | 0 | — | 1 (DEF-016) | La primera corrida falló en E2E-05 por DEF-016 y otra antes por el límite de inicios de sesión del administrador | Ajustada la prueba (espera hasta 2 min el mensaje final y comparte la sesión de administrador); triaje de DEF-016 | Corrida oficial de 4:33 p. m. a 5:05 p. m.; preparada con Claude Code; pendiente la revisión y firma de QA |
 | 2026-11-22 | C3 | Cierre | Daniel Montenegro | 3,5 | Manual (matriz de navegadores) | v0.5.4 · `f22f20c` (producción) | https://quienlotiene.tech en iPhone 17 Pro Max (Safari y Chrome), Samsung Galaxy A57 5G (Chrome y Firefox) y Edge en Windows, con Tienda Uno respondiendo · NF-COM-026 · ver `evidencias/C3/2026-11-22/compatibilidad/README.md` | 1 | 1 | 0 | 0 | — | 0 | La primera solicitud de Android no encontró tiendas porque el pin quedó a más de 3 km | Repetida con el pin en el centro | De 5:03 p. m. a 8:35 p. m.; se probó la versión actual de cada navegador; preparada con Claude Code; pendiente la revisión y firma de QA |
 | 2026-11-22 | C3 | Cierre | Daniel Montenegro | 1,5 | Re-prueba (k6, SSE, docker stats y medición de botones) | v0.5.4 con Caddy en 256 MiB a mano y v0.5.5 · `2d6a71a` (producción) | Corrida 4 de NF-ESC-020 con docker stats en el VPS; despliegue de `v0.5.5`; corridas 5 y 6; botones del mapa en `/registrar-tienda` a tamaño de iPhone · NF-ESC-020, NF-USA-028 · ver `evidencias/C3/2026-11-22/v0.5.5/` | 2 | 2 | 0 | 0 | — | 0 | El flujo de despliegue falló dos veces por la red entre GitHub y el VPS | Daniel Montenegro terminó el despliegue a mano con los mismos comandos (10:51 p. m.) | De 10:00 p. m. a 11:00 p. m.; preparada con Claude Code; pendiente la revisión y firma de QA |
+| 2026-11-23 | C3 | Cierre | Claude Code (a pedido de Daniel Montenegro) | 0,5 | Usabilidad de caja negra (Playwright) | main · `df2325a` (local) | `npx playwright test -c usabilidad/up.config.ts` en `e2e/` · guion QLT-PRU-UP-01: 14 tareas y 30 excepciones de cliente, tienda y administrador | 44 | 44 | 0 | 0 | — | — | — | Sesiones con usuarios (tiempo y SUS) según la sección 6 del formato; firma de QA | SC-023; evidencias en `docs/pruebas/usabilidad/` |
 
 ## Historial del documento
 
@@ -46,3 +47,4 @@
 | 1.9 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesiones del C3 sobre `v0.5.4`: producción y «Cómo llegar», no funcionales sobre el VPS y punta a punta con Playwright (borrador, pendiente de firma de QA) |
 | 1.10 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesión de compatibilidad del C3 (NF-COM-026) en iPhone, Android y Edge |
 | 1.11 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesión de re-prueba sobre `v0.5.5` (NF-ESC-020 y NF-USA-028) |
+| 1.12 | 24/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Sesión de la prueba de usabilidad de caja negra del 23/11 (SC-023) |

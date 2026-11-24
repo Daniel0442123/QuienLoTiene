@@ -1,6 +1,6 @@
 # Acta de liberación (go / no-go) · Quién lo tiene v1.0.0
 
-> **Control del documento** · Versión 0.7 · 23/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador para el comité del 25/11/2026 (sin decisión ni firmas) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
+> **Control del documento** · Versión 0.8 · 24/11/2026 · Responsable: Yanimar Burbano Piamba (líder de QA) · Estado: Borrador para el comité del 25/11/2026 (sin decisión ni firmas) · Cambios: «Historial del documento» al final y `docs/gestion/CONTROL-DE-CAMBIOS.md`
 
 > **Borrador del 22/11/2026, preparado con Claude Code.** Los resultados salen del libro de control y de los informes `INFORME-DE-PRUEBAS.md` y `C3/INFORME-DE-CIERRE-C3.md`. La decisión, los defectos aceptados y las firmas los pone el comité el 25/11; este documento no decide ni firma en nombre de nadie.
 
@@ -37,6 +37,10 @@
 | Arquitecto de software | Daniel Montenegro Almendra | |
 | Scrum Master | Brayan Grajales Escarraga | |
 
+## Prueba de usabilidad de caja negra (SC-023)
+
+A pedido del docente se agregó una prueba de usabilidad de caja negra con la ruta feliz y las excepciones de cada rol (guion QLT-PRU-UP-01). Se ejecutó el 23/11/2026 sobre `main` df2325a en local: **14 de 14 tareas y 30 de 30 excepciones aprobadas, sin defectos nuevos**. «Sí lo tengo» se responde en 3 toques y «No lo tengo» en 1, como pide RNF-027. Quedan por registrar las sesiones con usuarios (tiempo de publicar y SUS) en el formato QLT-PRU-UP-02. Detalle en `docs/pruebas/usabilidad/` y en la sección 3.1 de `libro/05-EJECUCION-C3.md`.
+
 ## Historial del documento
 
 | Versión | Fecha | Autor | Cambio |
@@ -48,3 +52,4 @@
 | 0.5 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Versión evaluada `v0.5.5`: 100 % en la campaña y en el C3; 0 S3 abiertos |
 | 0.6 | 22/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-016, DEF-017 y DEF-018 cerrados |
 | 0.7 | 23/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | DEF-012 aceptado con plan para `v1.0.1` (decisión de Daniel Montenegro) |
+| 0.8 | 24/11/2026 | Daniel Montenegro Almendra (@Daniel0442123) | Se agrega la prueba de usabilidad de caja negra del 23/11 (SC-023) |

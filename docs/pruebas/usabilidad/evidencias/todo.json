@@ -1,0 +1,370 @@
+[
+ {
+  "id": "UP-CLI-01",
+  "resultado": "Pasa",
+  "segundos": 0.5,
+  "toques": 7,
+  "observado": "Cuenta creada. Ya puedes entrar con tu correo y tu frase de contraseña.",
+  "captura": "capturas/UP-CLI-01.png"
+ },
+ {
+  "id": "UP-CLI-01-E1",
+  "resultado": "Pasa",
+  "segundos": 1.9,
+  "toques": null,
+  "observado": "Ya existe una cuenta con ese correo. Inicia sesión o usa otro correo. Entrar con ese correo | Este correo ya tiene una cuenta. · datos conservados: sí",
+  "captura": "capturas/UP-CLI-01-E1.png"
+ },
+ {
+  "id": "UP-CLI-01-E2",
+  "resultado": "Pasa",
+  "segundos": 1.1,
+  "toques": null,
+  "observado": "La frase debe tener al menos 15 caracteres. Llevas 9.",
+  "captura": "capturas/UP-CLI-01-E2.png"
+ },
+ {
+  "id": "UP-CLI-01-E3",
+  "resultado": "Pasa",
+  "segundos": 1,
+  "toques": null,
+  "observado": "Para crear la cuenta debes marcar la autorización de datos.",
+  "captura": "capturas/UP-CLI-01-E3.png"
+ },
+ {
+  "id": "UP-CLI-01-E4",
+  "resultado": "Pasa",
+  "segundos": 1.4,
+  "toques": null,
+  "observado": "El correo o la frase de contraseña no coinciden. Revísalos e inténtalo de nuevo.",
+  "captura": "capturas/UP-CLI-01-E4.png"
+ },
+ {
+  "id": "UP-CLI-02",
+  "resultado": "Pasa",
+  "segundos": 0.5,
+  "toques": null,
+  "observado": "",
+  "captura": "capturas/UP-CLI-02.png"
+ },
+ {
+  "id": "UP-CLI-02-E1",
+  "resultado": "Pasa",
+  "segundos": 1.1,
+  "toques": null,
+  "observado": "Todavía no has marcado la ubicación. | Marca la ubicación en el mapa: usa tu ubicación o toca el mapa. | Escribe la dirección. · datos conservados: sí",
+  "captura": "capturas/UP-CLI-02-E1.png"
+ },
+ {
+  "id": "UP-CLI-03",
+  "resultado": "Pasa",
+  "segundos": 0.4,
+  "toques": null,
+  "observado": "",
+  "captura": "capturas/UP-CLI-03.png"
+ },
+ {
+  "id": "UP-CLI-03-E1",
+  "resultado": "Pasa",
+  "segundos": 1,
+  "toques": null,
+  "observado": "Escribe qué estás buscando. | Elige dónde buscamos: farmacia o ferretería. | Todavía no has marcado la ubicación. | Elige cerca de dónde buscamos: una dirección, tu ubicación o un punto del mapa. · datos que señala a la vez: 3",
+  "captura": "capturas/UP-CLI-03-E1.png"
+ },
+ {
+  "id": "UP-CLI-03-E2",
+  "resultado": "Pasa",
+  "segundos": 1.7,
+  "toques": null,
+  "observado": "Aviso: Este medicamento necesita fórmula médica Las tiendas no lo llevan a domicilio: recógelo en la tienda con tu fórmula médica. · Domicilio deshabilitado: sí",
+  "captura": "capturas/UP-CLI-03-E2.png"
+ },
+ {
+  "id": "UP-CLI-04-E3",
+  "resultado": "Pasa",
+  "segundos": 0,
+  "toques": null,
+  "observado": "Botones de WhatsApp antes de elegir: 0",
+  "captura": "capturas/UP-CLI-04-E3.png"
+ },
+ {
+  "id": "UP-CLI-03-E3",
+  "resultado": "Pasa",
+  "segundos": 0.3,
+  "toques": null,
+  "observado": "Después de recargar siguen la solicitud y la respuesta de la tienda.",
+  "captura": "capturas/UP-CLI-03-E3.png"
+ },
+ {
+  "id": "UP-CLI-04",
+  "resultado": "Pasa",
+  "segundos": 0.3,
+  "toques": 4,
+  "observado": "Pedido Confirmado; desglose $ 8.000 + $ 3.000 = $ 11.000.",
+  "captura": "capturas/UP-CLI-04.png"
+ },
+ {
+  "id": "UP-CLI-04-E1",
+  "resultado": "Pasa",
+  "segundos": 1.1,
+  "toques": null,
+  "observado": "Medios ofrecidos con la tienda que solo acepta efectivo: solo efectivo · Respuestas a tu solicitud Le preguntamos a 3 tiendas cercanas si tienen «Acetaminofén 500 mg UP 1468». Buscamos a 3 km a la redonda. Elegiste a Droguería E2E 96",
+  "captura": "capturas/UP-CLI-04-E1.png"
+ },
+ {
+  "id": "UP-CLI-05",
+  "resultado": "Pasa",
+  "segundos": 0.6,
+  "toques": null,
+  "observado": "Estado Preparando llegó sin recargar; botón de WhatsApp: sí; mensaje enviado.",
+  "captura": "capturas/UP-CLI-05.png"
+ },
+ {
+  "id": "UP-CLI-06-E1",
+  "resultado": "Pasa",
+  "segundos": 0,
+  "toques": null,
+  "observado": "Botón cancelar visible en «En camino»: no · sugiere reportar: sí",
+  "captura": "capturas/UP-CLI-06-E1.png"
+ },
+ {
+  "id": "UP-CLI-07",
+  "resultado": "Pasa",
+  "segundos": 1.5,
+  "toques": null,
+  "observado": "Gracias, tu calificación quedó publicada.",
+  "captura": "capturas/UP-CLI-07.png"
+ },
+ {
+  "id": "UP-CLI-05-E1",
+  "resultado": "Pasa",
+  "segundos": 1.1,
+  "toques": null,
+  "observado": "Chat en solo lectura: sí ·  El pedido terminó, así que el chat quedó de solo lectura.",
+  "captura": "capturas/UP-CLI-05-E1.png"
+ },
+ {
+  "id": "UP-CLI-07-E1",
+  "resultado": "Pasa",
+  "segundos": 2,
+  "toques": null,
+  "observado": "Enlace para calificar otra vez: no · al abrir /calificar: Pedido Ya calificaste este pedido Tu calificación 4 de 5 estrellas · el 23/11/2026, 11:10 p. m. «Llegó rápido y bien empacado.»",
+  "captura": "capturas/UP-CLI-07-E1.png"
+ },
+ {
+  "id": "UP-CLI-07-E2",
+  "resultado": "Pasa",
+  "segundos": 1.8,
+  "toques": null,
+  "observado": "Con «Otro problema», cuéntanos qué pasó.",
+  "captura": "capturas/UP-CLI-07-E2.png"
+ },
+ {
+  "id": "UP-CLI-06-E2",
+  "resultado": "Pasa",
+  "segundos": 1,
+  "toques": null,
+  "observado": "Escribe por qué cancelas. | Pedido confirmado. Droguería E2E 96279 ya tiene tus datos.",
+  "captura": "capturas/UP-CLI-06-E2.png"
+ },
+ {
+  "id": "UP-CLI-06",
+  "resultado": "Pasa",
+  "segundos": 0.1,
+  "toques": null,
+  "observado": "",
+  "captura": "capturas/UP-CLI-06.png"
+ },
+ {
+  "id": "UP-ADM-01-E1",
+  "resultado": "Pasa",
+  "segundos": 1.6,
+  "toques": null,
+  "observado": "El código no es correcto o ya cambió. Escribe el que muestra ahora tu aplicación autenticadora. | Sesión iniciada. · se puede intentar otra vez: sí",
+  "captura": "capturas/UP-ADM-01-E1.png"
+ },
+ {
+  "id": "UP-ADM-01",
+  "resultado": "Pasa",
+  "segundos": 1.7,
+  "toques": null,
+  "observado": "Entra al panel de administración.",
+  "captura": "capturas/UP-ADM-01.png"
+ },
+ {
+  "id": "UP-TIE-01-E1",
+  "resultado": "Pasa",
+  "segundos": 1.5,
+  "toques": null,
+  "observado": "Ubicación marcada en el mapa. | Adjunta una foto del local. | Adjunta el RUT o el certificado de existencia del negocio. · datos conservados: sí",
+  "captura": "capturas/UP-TIE-01-E1.png"
+ },
+ {
+  "id": "UP-TIE-01-E2",
+  "resultado": "Pasa",
+  "segundos": 0.9,
+  "toques": null,
+  "observado": "Ubicación marcada en el mapa. | Ese archivo no sirve. Usa una foto JPG, PNG o WebP, o un PDF. | Adjunta el RUT o el certificado de existencia del negocio.",
+  "captura": "capturas/UP-TIE-01-E2.png"
+ },
+ {
+  "id": "UP-TIE-01",
+  "resultado": "Pasa",
+  "segundos": 0.4,
+  "toques": null,
+  "observado": " Revisamos los documentos antes de activarla.  Lo usamos para avisarte de la revisión.",
+  "captura": "capturas/UP-TIE-01.png"
+ },
+ {
+  "id": "UP-ADM-02",
+  "resultado": "Pasa",
+  "segundos": 0.4,
+  "toques": null,
+  "observado": "",
+  "captura": "capturas/UP-ADM-02.png"
+ },
+ {
+  "id": "UP-ADM-02-E1",
+  "resultado": "Pasa",
+  "segundos": 0.9,
+  "toques": null,
+  "observado": "Escribe el motivo con al menos 5 caracteres. Llevas 0. | Aprobaste Droguería E2E 72781. Ya puede abrir y recibir solicitudes.",
+  "captura": "capturas/UP-ADM-02-E1.png"
+ },
+ {
+  "id": "UP-ADM-02-rechazo",
+  "resultado": "Pasa",
+  "segundos": 0.1,
+  "toques": null,
+  "observado": "",
+  "captura": "capturas/UP-ADM-02-rechazo.png"
+ },
+ {
+  "id": "UP-TIE-02-E1",
+  "resultado": "Pasa",
+  "segundos": 1.5,
+  "toques": null,
+  "observado": "Vacío: Escribe el valor del domicilio, o 0 si es gratis. · Negativo: Escribe el valor en pesos, solo números y sin puntos. Por ejemplo 4000.",
+  "captura": "capturas/UP-TIE-02-E1.png"
+ },
+ {
+  "id": "UP-TIE-02-E2",
+  "resultado": "Pasa",
+  "segundos": 0.1,
+  "toques": null,
+  "observado": "El radio se elige de una lista; no se puede escribir 100 m ni 20 km. Opciones: Elige una distancia, 500 m, 1 km, 2 km, 3 km, 5 km, 8 km, 10 km",
+  "captura": "capturas/UP-TIE-02-E2.png"
+ },
+ {
+  "id": "UP-TIE-02",
+  "resultado": "Pasa",
+  "segundos": 0.4,
+  "toques": null,
+  "observado": "Domicilio 3 km · $ 4.000 y medios efectivo y transferencia guardados.",
+  "captura": "capturas/UP-TIE-02.png"
+ },
+ {
+  "id": "UP-TIE-02-E3",
+  "resultado": "Pasa",
+  "segundos": 0.8,
+  "toques": null,
+  "observado": "Elige al menos un medio de pago. | Medios de pago actualizados.",
+  "captura": "capturas/UP-TIE-02-E3.png"
+ },
+ {
+  "id": "UP-TIE-03-E3",
+  "resultado": "Pasa",
+  "segundos": 2,
+  "toques": null,
+  "observado": "Con la tienda cerrada, la solicitud aparece en su bandeja: no",
+  "captura": "capturas/UP-TIE-03-E3.png"
+ },
+ {
+  "id": "UP-TIE-03",
+  "resultado": "Pasa",
+  "segundos": 0.3,
+  "toques": 3,
+  "observado": "La solicitud llegó sin recargar; «Sí lo tengo» en 3 toques (tocar, escribir precio, enviar) y la respuesta apareció al cliente en vivo.",
+  "captura": "capturas/UP-TIE-03.png"
+ },
+ {
+  "id": "UP-TIE-03-E1",
+  "resultado": "Pasa",
+  "segundos": 1.4,
+  "toques": null,
+  "observado": "Describe qué producto ofreces.",
+  "captura": "capturas/UP-TIE-03-E1.png"
+ },
+ {
+  "id": "UP-TIE-03-E2",
+  "resultado": "Pasa",
+  "segundos": 0.9,
+  "toques": null,
+  "observado": "Describe qué producto ofreces. | Escribe un precio entre $ 1 y $ 100.000.000, solo con números.",
+  "captura": "capturas/UP-TIE-03-E2.png"
+ },
+ {
+  "id": "UP-TIE-03-No",
+  "resultado": "Pasa",
+  "segundos": 1.1,
+  "toques": 1,
+  "observado": "«No lo tengo» en 1 toque; la tarjeta sale de la lista: sí · Descartaste «Tapabocas UP 4497». Puedes deshacerlo durante unos segundos.",
+  "captura": "capturas/UP-TIE-03-No.png"
+ },
+ {
+  "id": "UP-TIE-04-E1",
+  "resultado": "Pasa",
+  "segundos": 0.1,
+  "toques": null,
+  "observado": "En «Confirmado» se ofrece: Empezar a preparar · Cancelar pedido",
+  "captura": "capturas/UP-TIE-04-E1.png"
+ },
+ {
+  "id": "UP-TIE-04",
+  "resultado": "Pasa",
+  "segundos": 0.4,
+  "toques": 3,
+  "observado": "Cada estado llegó al cliente sin recargar (1 toque por cambio).",
+  "captura": "capturas/UP-TIE-04.png"
+ },
+ {
+  "id": "UP-TIE-04-E2",
+  "resultado": "Pasa",
+  "segundos": 1.1,
+  "toques": null,
+  "observado": "Dirección del cliente visible después de recibido: no",
+  "captura": "capturas/UP-TIE-04-E2.png"
+ },
+ {
+  "id": "UP-ADM-03",
+  "resultado": "Pasa",
+  "segundos": 2.2,
+  "toques": null,
+  "observado": "Droguería E2E 72781 quedó suspendida · Reporte resuelto. Salió de los abiertos.",
+  "captura": "capturas/UP-ADM-03.png"
+ },
+ {
+  "id": "UP-ADM-03-E1",
+  "resultado": "Pasa",
+  "segundos": 1.8,
+  "toques": null,
+  "observado": "Tu cuenta está suspendida. Escríbenos si crees que es un error.",
+  "captura": "capturas/UP-ADM-03-E1.png"
+ },
+ {
+  "id": "UP-ADM-03-E2",
+  "resultado": "Pasa",
+  "segundos": 4,
+  "toques": null,
+  "observado": "Ferretería quedó inactiva: ya no aparece al publicar. · «Ferretería» al publicar: no aparece · se volvió a activar.",
+  "captura": "capturas/UP-ADM-03-E2.png"
+ },
+ {
+  "id": "UP-CLI-04-E2",
+  "resultado": "Pasa",
+  "segundos": 180.4,
+  "toques": null,
+  "observado": "Pantalla «Tu solicitud venció» con la explicación y el botón «Hacer otra pregunta». (Vigencia acortada a 3 min para la prueba; en producción son 30 min.)",
+  "captura": "capturas/UP-CLI-04-E2.png"
+ }
+]

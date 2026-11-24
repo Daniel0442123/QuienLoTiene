@@ -1,0 +1,10 @@
+[
+  {
+    "id": "UP-CLI-04-E2",
+    "resultado": "No pasa",
+    "segundos": 180.4,
+    "toques": null,
+    "observado": "Pantalla «Tu solicitud venció»; ofrece volver a preguntar: no · Tu solicitud venció Por ahora ninguna tienda abierta de esa categoría está cerca para preguntarle por «Repuesto inexistente UP 2998». Prueba más tarde o cambia la ubicación de la búsqueda. Hacer otra ",
+    "captura": "capturas/UP-CLI-04-E2.png"
+  }
+]
